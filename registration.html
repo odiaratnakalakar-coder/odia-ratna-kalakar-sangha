@@ -89,7 +89,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 document.getElementById("registrationForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
+  try {
+  await addDoc(collection(db, "members"), {
   e.preventDefault();
 
   alert("Submit button କାମ କରୁଛି!");
