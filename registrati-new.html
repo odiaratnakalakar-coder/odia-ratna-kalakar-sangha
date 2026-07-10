@@ -32,3 +32,25 @@
 </div>
 
 <script type="module">
+document.getElementById("registrationForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  try {
+    await addDoc(collection(db, "members"), {
+      name: document.getElementById("name").value,
+      father: document.getElementById("father").value,
+      mobile: document.getElementById("mobile").value,
+      address: document.getElementById("address").value,
+      createdAt: new Date()
+    });
+
+    alert("Registration Successful!");
+    document.getElementById("registrationForm").reset();
+
+  } catch (err) {
+    alert("Error: " + err.message);
+  }
+});
+  </script>
+</body>
+</html>
