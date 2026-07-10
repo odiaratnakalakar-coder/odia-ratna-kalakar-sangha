@@ -91,6 +91,10 @@ const db = getFirestore(app);
 document.getElementById("registrationForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  alert("Submit button କାମ କରୁଛି!");
+});
+  e.preventDefault();
+
   try {
     await addDoc(collection(db, "members"), {
       name: document.getElementById("name").value,
