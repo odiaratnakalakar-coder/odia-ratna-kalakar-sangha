@@ -27,7 +27,7 @@ text-align:center;
 color:#b30000;
 }
 
-input,select,textarea{
+input,textarea{
 width:100%;
 padding:10px;
 margin:8px 0;
@@ -60,23 +60,81 @@ background:#800000;
 
 <h2>📝 ସଦସ୍ୟ ପଞ୍ଜୀକରଣ</h2>
 
-<form>
+<form id="registrationForm">
 
-<input type="text" placeholder="ପୂର୍ଣ୍ଣ ନାମ" required>
+<input type="text" id="name" placeholder="ପୂର୍ଣ୍ଣ ନାମ" required>
 
-<input type="text" placeholder="ପିତାଙ୍କ ନାମ" required>
+<input type="text" id="father" placeholder="ପିତାଙ୍କ ନାମ" required>
 
-<input type="tel" placeholder="ମୋବାଇଲ୍ ନମ୍ବର" required>
+<input type="tel" id="mobile" placeholder="ମୋବାଇଲ୍ ନମ୍ବର" required>
 
-<textarea placeholder="ଠିକଣା"></textarea>
+<textarea id="address" placeholder="ଠିକଣା"></textarea>
 
-<button type="submit">
-Submit
-</button>
+<button type="submit">Submit</button>
 
 </form>
 
 </div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getFirestore,
+collection,
+addDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyBuVQISkaKjflN7qQNy35hW7VVWIb-AL2Y",
+authDomain: "odia-ratna-kalakar-sangha.firebaseapp.com",
+projectId: "odia-ratna-kalakar-sangha",
+storageBucket: "odia-ratna-kalakar-sangha.firebasestorage.app",
+messagingSenderId: "462765943345",
+appId: "1:462765943345:web:167b7dd0eaba5786830310",
+measurementId: "G-CKSBB2XCZB"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+document.getElementById("registrationForm")
+.addEventListener("submit", async (e) => {
+
+e.preventDefault();
+
+try {
+
+await addDoc(collection(db, "members"), {
+
+name: document.getElementById("name").value,
+
+father: document.getElementById("father").value,
+
+mobile: document.getElementById("mobile").value,
+
+address: document.getElementById("address").value,
+
+createdAt: new Date()
+
+});
+
+alert("Registration Successful!");
+
+document.getElementById("registrationForm").reset();
+
+}
+
+catch(error){
+
+alert("Error: " + error.message);
+
+}
+
+});
+
+</script>
 
 </body>
 </html>
