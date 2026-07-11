@@ -135,6 +135,40 @@ alert("Error: " + error.message);
 });
 
 </script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBuVQISkaKjflN7qQNy35hW7VVWIb-AL2Y",
+  authDomain: "odia-ratna-kalakar-sangha.firebaseapp.com",
+  projectId: "odia-ratna-kalakar-sangha",
+  storageBucket: "odia-ratna-kalakar-sangha.firebasestorage.app",
+  messagingSenderId: "462765943345",
+  appId: "1:462765943345:web:167b7dd0eaba5786830310"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+document.getElementById("registrationForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  try {
+    await addDoc(collection(db, "members"), {
+      name: document.getElementById("name").value,
+      father: document.getElementById("father").value,
+      mobile: document.getElementById("mobile").value,
+      address: document.getElementById("address").value,
+      createdAt: new Date()
+    });
+
+    alert("Registration Successful!");
+    document.getElementById("registrationForm").reset();
+  } catch (error) {
+    alert("Error: " + error.message);
+  }
+});
+</script>
 </body>
 </html>
