@@ -85,14 +85,7 @@ async function loadMembers() {
   querySnapshot.forEach((doc) => {
     const data = doc.data();
 
-    membersList.innerHTML += `
-      <div class="member">
-        <p><strong>ନାମ:</strong> ${data.name}</p>
-        <p><strong>ପିତାଙ୍କ ନାମ:</strong> ${data.father}</p>
-        <p><strong>ମୋବାଇଲ୍:</strong> ${data.mobile}</p>
-        <p><strong>ଠିକଣା:</strong> ${data.address}</p>
-      </div>
-    `;
+    
   });
 }
 
