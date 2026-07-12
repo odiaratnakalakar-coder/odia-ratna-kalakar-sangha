@@ -30,7 +30,7 @@ color:#b30000;
 input,textarea{
 width:100%;
 padding:10px;
-margin:8px 0;
+margin:10px 0;
 border:1px solid #ccc;
 border-radius:5px;
 box-sizing:border-box;
@@ -40,7 +40,7 @@ button{
 width:100%;
 padding:12px;
 background:#b30000;
-color:white;
+color:#fff;
 border:none;
 border-radius:5px;
 font-size:18px;
@@ -51,7 +51,6 @@ button:hover{
 background:#800000;
 }
 </style>
-
 </head>
 
 <body>
@@ -68,84 +67,17 @@ background:#800000;
 
 <input type="tel" id="mobile" placeholder="ମୋବାଇଲ୍ ନମ୍ବର" required>
 
-<textarea id="address" placeholder="ଠିକଣା"></textarea>
-
+<textarea id="address" placeholder="ଠିକଣା" required></textarea>
 
 <label>ପାସପୋର୍ଟ ସାଇଜ ଫଟୋ</label>
-<input type="file" id="photo" accept="image/*" required>
+<input type="file" id="photo" accept="image/*">
 
 <button type="submit">Submit</button>
-
-
-
-
-
-
 
 </form>
 
 </div>
-
 <script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-getFirestore,
-collection,
-addDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-apiKey: "AIzaSyBuVQISkaKjflN7qQNy35hW7VVWIb-AL2Y",
-authDomain: "odia-ratna-kalakar-sangha.firebaseapp.com",
-projectId: "odia-ratna-kalakar-sangha",
-storageBucket: "odia-ratna-kalakar-sangha.firebasestorage.app",
-messagingSenderId: "462765943345",
-appId: "1:462765943345:web:167b7dd0eaba5786830310",
-measurementId: "G-CKSBB2XCZB"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-document.getElementById("registrationForm")
-.addEventListener("submit", async (e) => {
-
-e.preventDefault();
-
-try {
-
-await addDoc(collection(db, "members"), {
-
-name: document.getElementById("name").value,
-
-father: document.getElementById("father").value,
-
-mobile: document.getElementById("mobile").value,
-
-address: document.getElementById("address").value,
-
-createdAt: new Date()
-
-});
-
-alert("Registration Successful!");
-
-document.getElementById("registrationForm").reset();
-
-}
-
-catch(error){
-
-alert("Error: " + error.message);
-
-}
-
-});
-
-</script>
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -180,5 +112,6 @@ document.getElementById("registrationForm").addEventListener("submit", async (e)
   }
 });
 </script>
+
 </body>
 </html>
