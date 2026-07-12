@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ସଦସ୍ୟ ତାଲିକା</title>
 
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+h2{
+text-align:center;
+color:#b30000;
+margin-bottom:20px;
+}
+
+.member{
+border:1px solid #ddd;
+border-radius:8px;
+padding:15px;
+margin-bottom:15px;
+background:#fafafa;
+}
+
+.member p{
+margin:6px 0;
+font-size:16px;
+}
+
+strong{
+color:#b30000;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📋 ସଦସ୍ୟ ତାଲିକା</h2>
+
+<div id="membersList"></div>
+
+</div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBuVQISkaKjflN7qQNy35hW7VVWIb-AL2Y",
+  authDomain: "odia-ratna-kalakar-sangha.firebaseapp.com",
+  projectId: "odia-ratna-kalakar-sangha",
+  storageBucket: "odia-ratna-kalakar-sangha.firebasestorage.app",
+  messagingSenderId: "462765943345",
+  appId: "1:462765943345:web:167b7dd0eaba5786830310"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const membersList = document.getElementById("membersList");
+
+async function loadMembers() {
+  const querySnapshot = await getDocs(collection(db, "members"));
+
+  querySnapshot.forEach((doc) => {
+    const data = doc.data();
+
+    membersList.innerHTML += `
+      <div class="member">
+        <p><strong>ନାମ:</strong> ${data.name}</p>
+        <p><strong>ପିତାଙ୍କ ନାମ:</strong> ${data.father}</p>
+        <p><strong>ମୋବାଇଲ୍:</strong> ${data.mobile}</p>
+        <p><strong>ଠିକଣା:</strong> ${data.address}</p>
+      </div>
+    `;
+  });
+}
+
+loadMembers();
+</script>
+
+</body>
+</html>
