@@ -117,7 +117,8 @@ async function getNextMemberId() {
 }
 document.getElementById("registrationForm").addEventListener("submit", async (e) => {
   e.preventDefault();
-
+const docRef = await addDoc(collection(db, "members"), {
+  memberId: await getNextMemberId(),
   try {
     const docRef = addDoc(collection(db, "members"), {memberId: await getNextMemberId(),
       name: document.getElementById("name").value,
