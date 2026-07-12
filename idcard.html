@@ -108,9 +108,11 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const params = new URLSearchParams(window.location.search);
-alert(memberDocId);const params = new URLSearchParams(window.location.search);
 const memberDocId = params.get("id");
-alert(memberDocId);
+
+if (memberDocId) {
+
+
 
 if (memberDocId) {
   
