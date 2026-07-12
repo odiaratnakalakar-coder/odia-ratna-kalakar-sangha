@@ -114,7 +114,7 @@ if (!querySnapshot.empty) {
   document.getElementById("name").textContent = data.name;
   document.getElementById("father").textContent = data.father;
   document.getElementById("mobile").textContent = data.mobile;
-  document.getElementById("address").textContent = data.address;
+  document.getElementById("photo").src = "photos/" + data.memberId + ".jpg";
 }
 </script>
 
