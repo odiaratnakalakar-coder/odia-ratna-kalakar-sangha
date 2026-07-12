@@ -99,7 +99,22 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+async function getNextMemberId() {
+  const counterRef = doc(db, "system", "counter");
+  const counterSnap = await getDoc(counterRef);
 
+  let number = 1;
+
+  if (counterSnap.exists()) {
+    number = counterSnap.data().lastNumber + 1;
+  }
+
+  await setDoc(counterRef, {
+    lastNumber: number
+  });
+
+  return "ORKS" + String(number).padStart(4, "0");
+}
 document.getElementById("registrationForm").addEventListener("submit", async (e) => {
   e.preventDefault();
 
