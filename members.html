@@ -149,4 +149,26 @@ View ID
 });
 
 }
+search.addEventListener("keyup", ()=>{
 
+const value = search.value.toLowerCase();
+
+const filtered = members.filter(member =>
+
+(member.name || "").toLowerCase().includes(value) ||
+
+(member.memberId || "").toLowerCase().includes(value)
+
+);
+
+showMembers(filtered);
+
+});
+
+loadMembers();
+
+</script>
+
+</body>
+
+</html>
