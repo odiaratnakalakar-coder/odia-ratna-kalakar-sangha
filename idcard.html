@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ସଦସ୍ୟ ପରିଚୟ ପତ୍ର</title>
 
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="card">
+
+<img src="logo.png" class="logo" alt="Logo">
+
+<h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
+
+<img id="photo" class="photo" src="logo.png" alt="Photo">
+
+<p><b>ସଦସ୍ୟ ID:</b> <span id="memberId"></span></p>
+
+<p><b>ନାମ:</b> <span id="name"></span></p>
+
+<p><b>ପିତାଙ୍କ ନାମ:</b> <span id="father"></span></p>
+
+<p><b>ମୋବାଇଲ୍:</b> <span id="mobile"></span></p>
+
+<p><b>ଠିକଣା:</b> <span id="address"></span></p>
+
+<button onclick="window.print()">Print ID Card</button>
+
+</div>
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const params = new URLSearchParams(window.location.search);
+const memberDocId = params.get("id");
+  if (!memberDocId) {
+
+  alert("Member ID ମିଳିଲା ନାହିଁ");
+
+} else {
+
+  const docRef = doc(db, "members", memberDocId);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+
+    const data = docSnap.data();
+        document.getElementById("memberId").textContent = data.memberId || "";
+    document.getElementById("name").textContent = data.name || "";
+    document.getElementById("father").textContent = data.father || "";
+    document.getElementById("mobile").textContent = data.mobile || "";
+    document.getElementById("address").textContent = data.address || "";
+
+    if (data.photoUrl) {
+      document.getElementById("photo").src = data.photoUrl;
+    }
+
+  } else {
+    alert("ସଦସ୍ୟ ମିଳିଲା ନାହିଁ");
+  }
+}
+
+</script>
+
+</body>
+</html>
