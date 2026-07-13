@@ -5,44 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ସଦସ୍ୟ ତାଲିକା</title>
 
-<style>
-body{
-font-family:Arial,sans-serif;
-background:#f5f5f5;
-margin:0;
-padding:20px;
-}
+<link rel="stylesheet" href="style.css">
 
+<style>
 .container{
-max-width:900px;
-margin:auto;
-background:#fff;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,.2);
+    max-width:900px;
+    margin:20px auto;
+    padding:20px;
 }
 
 h2{
-text-align:center;
-color:#b30000;
-margin-bottom:20px;
+    text-align:center;
+    color:#fff;
 }
 
-.member{
-border:1px solid #ddd;
-border-radius:8px;
-padding:15px;
-margin-bottom:15px;
-background:#fafafa;
+#search{
+    width:100%;
+    padding:12px;
+    margin:15px 0;
+    border-radius:8px;
+    border:none;
+    font-size:16px;
 }
 
-.member p{
-margin:6px 0;
-font-size:16px;
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#fff;
 }
 
-strong{
-color:#b30000;
+th,td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#b30000;
+    color:#fff;
+}
+
+button{
+    background:#b30000;
+    color:#fff;
+    border:none;
+    padding:8px 12px;
+    border-radius:5px;
+    cursor:pointer;
 }
 </style>
 
@@ -52,57 +61,92 @@ color:#b30000;
 
 <div class="container">
 
-<h2>📋 ସଦସ୍ୟ ତାଲିକା</h2>
+<h2>ସଦସ୍ୟ ତାଲିକା</h2>
 
-<div id="membersList"></div>
+<input
+type="text"
+id="search"
+placeholder="ନାମ କିମ୍ବା Member ID ଖୋଜନ୍ତୁ">
 
-</div>
+<table>
+
+<thead>
+
+<tr>
+<th>Member ID</th>
+<th>ନାମ</th>
+<th>ମୋବାଇଲ୍</th>
+<th>ID Card</th>
+</tr>
+
+</thead>
+
+<tbody id="memberTable">
+
+</tbody>
+
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { db } from "./firebase.js";
+
 import {
-  getFirestore,
-  collection,
-  getDocs
+collection,
+getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBuVQISkaKjflN7qQNy35hW7VVWIb-AL2Y",
-  authDomain: "odia-ratna-kalakar-sangha.firebaseapp.com",
-  projectId: "odia-ratna-kalakar-sangha",
-  storageBucket: "odia-ratna-kalakar-sangha.firebasestorage.app",
-  messagingSenderId: "462765943345",
-  appId: "1:462765943345:web:167b7dd0eaba5786830310"
-};
+const table = document.getElementById("memberTable");
+const search = document.getElementById("search");
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+let members = [];
 
-const membersList = document.getElementById("membersList");
+async function loadMembers(){
 
-async function loadMembers() {
-  const querySnapshot = await getDocs(collection(db, "members"));
+const querySnapshot = await getDocs(collection(db,"members"));
 
-  querySnapshot.forEach((doc) => {
-    const data = doc.data();
+members = [];
 
-membersList.innerHTML += `
-<div class="member">
-<p><strong>ସଦସ୍ୟ ID:</strong> ${data.memberId}</p>
-<p><strong>ନାମ:</strong> ${data.name}</p>
-<p><strong>ପିତାଙ୍କ ନାମ:</strong> ${data.father}</p>
-<p><strong>ମୋବାଇଲ୍:</strong> ${data.mobile}</p>
-<p><strong>ଠିକଣା:</strong> ${data.address}</p>
+querySnapshot.forEach((doc)=>{
 
-<button onclick="location.href='idcard.html?id=${doc.id}'">
-Print ID Card
-</button>
-</div>
-`;    
-  });
+members.push({
+docId: doc.id,
+...doc.data()
+});
+
+});
+
+showMembers(members);
+
 }
 
-loadMembers();
-</script>
+function showMembers(list){
 
-</body>
-</html>
+table.innerHTML="";
+
+list.forEach(member=>{
+
+table.innerHTML += `
+<tr>
+
+<td>${member.memberId||""}</td>
+
+<td>${member.name||""}</td>
+
+<td>${member.mobile||""}</td>
+
+<td>
+
+<button onclick="window.location='idcard.html?id=${member.docId}'">
+
+View ID
+
+</button>
+
+</td>
+
+</tr>
+`;
+
+});
+
+}
+
