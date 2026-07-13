@@ -181,3 +181,49 @@ button{
     width:100%;
     font-size:18px;
 }
+/* ===== Professional ID Card ===== */
+
+.card-header{
+    text-align:center;
+    background:#b30000;
+    color:#fff;
+    padding:10px;
+    border-radius:10px 10px 0 0;
+}
+
+.card-header h2{
+    color:#fff;
+    font-size:20px;
+    margin:5px 0;
+}
+
+.photo-box{
+    text-align:center;
+    margin:15px 0;
+}
+
+.photo{
+    width:120px;
+    height:140px;
+    border:3px solid #b30000;
+    border-radius:10px;
+    object-fit:cover;
+    background:#fff;
+}
+
+.details{
+    margin-top:15px;
+}
+
+.details p{
+    font-size:16px;
+    margin:10px 0;
+    border-bottom:1px dashed #ccc;
+    padding-bottom:5px;
+}
+
+.card-footer{
+    margin-top:20px;
+    font-size:14px;
+    text-align:center;
+}
