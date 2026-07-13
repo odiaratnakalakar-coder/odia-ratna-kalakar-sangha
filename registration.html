@@ -89,7 +89,7 @@ document.getElementById("registrationForm").addEventListener("submit", async (e)
 
     alert("Registration Successful");
 
-    window.location.href = "idcard.html?id=" + docRef.id;
+    location.assign("idcard.html?id=" + docRef.id);
 
   } catch (error) {
     alert("Error: " + error.message);
