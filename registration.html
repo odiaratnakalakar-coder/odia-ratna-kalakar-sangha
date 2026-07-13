@@ -180,3 +180,27 @@ window.location.href = "idcard.html?id=" + docRef.id;
 
 </body>
 </html>
+    const docRef = await addDoc(collection(db, "members"), {
+      memberId: memberId,
+      name: document.getElementById("name").value,
+      father: document.getElementById("father").value,
+      mobile: document.getElementById("mobile").value,
+      address: document.getElementById("address").value,
+      createdAt: new Date()
+    });
+
+    alert("Registration Successful!");
+
+    window.location.href = "idcard.html?id=" + docRef.id;
+
+  } catch (error) {
+    alert("Error: " + error.message);
+    console.error(error);
+  }
+
+});
+
+</script>
+
+</body>
+</html>
