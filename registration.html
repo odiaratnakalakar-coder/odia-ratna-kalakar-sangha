@@ -165,7 +165,9 @@ async function getNextMemberId(){
       createdAt: new Date()
     });
 
-    alert("Registration Successful!");
+    alert("Registration Successful!\n\nDoc ID = " + docRef.id);
+
+window.location.href = "idcard.html?id=" + docRef.id;
 
     window.location.href = "idcard.html?id=" + docRef.id;
 
