@@ -7,61 +7,59 @@
 
 <style>
 body{
-  margin:0;
-  padding:20px;
-  background:#f2f2f2;
-  font-family:Arial,sans-serif;
+margin:0;
+padding:20px;
+background:#f2f2f2;
+font-family:Arial,sans-serif;
 }
 
 .card{
-  width:350px;
-  margin:auto;
-  background:#fff;
-  border:3px solid #b30000;
-  border-radius:15px;
-  padding:20px;
-  text-align:center;
-  box-shadow:0 0 10px rgba(0,0,0,.2);
+width:350px;
+margin:auto;
+background:#fff;
+border:3px solid #b30000;
+border-radius:15px;
+padding:20px;
+text-align:center;
+box-shadow:0 0 10px rgba(0,0,0,.2);
 }
 
 .logo{
-  width:80px;
-  height:80px;
-  border-radius:50%;
-}
-
-h2{
-  color:#b30000;
-  margin:10px 0;
+width:80px;
+height:80px;
 }
 
 .photo{
-  width:100px;
-  height:120px;
-  border:1px solid #999;
-  margin:15px auto;
-  object-fit:cover;
+width:100px;
+height:120px;
+border:1px solid #999;
+margin:15px auto;
+object-fit:cover;
+}
+
+h2{
+color:#b30000;
+margin:10px 0;
 }
 
 p{
-  text-align:left;
-  font-size:16px;
-  margin:8px 0;
+text-align:left;
+font-size:16px;
+margin:8px 0;
 }
 
 button{
-  width:100%;
-  padding:12px;
-  margin-top:15px;
-  background:#b30000;
-  color:#fff;
-  border:none;
-  border-radius:5px;
-  font-size:18px;
-  cursor:pointer;
+width:100%;
+padding:12px;
+margin-top:15px;
+background:#b30000;
+color:#fff;
+border:none;
+border-radius:5px;
+font-size:18px;
+cursor:pointer;
 }
 </style>
-
 </head>
 
 <body>
@@ -72,76 +70,125 @@ button{
 
 <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
 
-<img id="photo" class="photo" src="photos/default.jpg" alt="Photo">
+<img id="photo" class="photo" src="logo.png">
 
-<p><strong>ସଦସ୍ୟ ID:</strong> <span id="memberId"></span></p>
+<p><b>ସଦସ୍ୟ ID:</b> <span id="memberId"></span></p>
 
-<p><strong>ନାମ:</strong> <span id="name"></span></p>
+<p><b>ନାମ:</b> <span id="name"></span></p>
 
-<p><strong>ପିତାଙ୍କ ନାମ:</strong> <span id="father"></span></p>
+<p><b>ପିତାଙ୍କ ନାମ:</b> <span id="father"></span></p>
 
-<p><strong>ମୋବାଇଲ୍:</strong> <span id="mobile"></span></p>
+<p><b>ମୋବାଇଲ୍:</b> <span id="mobile"></span></p>
 
-<p><strong>ଠିକଣା:</strong> <span id="address"></span></p>
+<p><b>ଠିକଣା:</b> <span id="address"></span></p>
 
 <button onclick="window.print()">Print ID Card</button>
 
-</div><script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+</div>
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ସଦସ୍ୟ ପରିଚୟ ପତ୍ର</title>
 
-import {
-  getFirestore,
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<style>
+body{
+margin:0;
+padding:20px;
+background:#f2f2f2;
+font-family:Arial,sans-serif;
+}
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBuVQISkaKjflN7qQNy35hW7VVWIb-AL2Y",
-  authDomain: "odia-ratna-kalakar-sangha.firebaseapp.com",
-  projectId: "odia-ratna-kalakar-sangha",
-  storageBucket: "odia-ratna-kalakar-sangha.firebasestorage.app",
-  messagingSenderId: "462765943345",
-  appId: "1:462765943345:web:167b7dd0eaba5786830310"
-};
+.card{
+width:350px;
+margin:auto;
+background:#fff;
+border:3px solid #b30000;
+border-radius:15px;
+padding:20px;
+text-align:center;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+}
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+.logo{
+width:80px;
+height:80px;
+}
 
-const params = new URLSearchParams(window.location.search);
-const memberDocId = params.get("id");
+.photo{
+width:100px;
+height:120px;
+border:1px solid #999;
+margin:15px auto;
+object-fit:cover;
+}
 
-alert("ID = " + memberDocId);
+h2{
+color:#b30000;
+margin:10px 0;
+}
 
-if (memberDocId) {
+p{
+text-align:left;
+font-size:16px;
+margin:8px 0;
+}
 
-  const docRef = doc(db, "members", memberDocId);
-  const docSnap = await getDoc(docRef);
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+background:#b30000;
+color:#fff;
+border:none;
+border-radius:5px;
+font-size:18px;
+cursor:pointer;
+}
+</style>
+</head>
 
+<body>
+
+<div class="card">
+
+<img src="logo.png" class="logo">
+
+<h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
+
+<img id="photo" class="photo" src="logo.png">
+
+<p><b>ସଦସ୍ୟ ID:</b> <span id="memberId"></span></p>
+
+<p><b>ନାମ:</b> <span id="name"></span></p>
+
+<p><b>ପିତାଙ୍କ ନାମ:</b> <span id="father"></span></p>
+
+<p><b>ମୋବାଇଲ୍:</b> <span id="mobile"></span></p>
+
+<p><b>ଠିକଣା:</b> <span id="address"></span></p>
+
+<button onclick="window.print()">Print ID Card</button>
+
+</div>
   if (docSnap.exists()) {
 
     const data = docSnap.data();
 
-    document.getElementById("memberId").textContent = data.memberId;
-    document.getElementById("name").textContent = data.name;
-    document.getElementById("father").textContent = data.father;
-    document.getElementById("mobile").textContent = data.mobile;
-    document.getElementById("address").textContent = data.address;
+    document.getElementById("memberId").textContent = data.memberId || "";
+    document.getElementById("name").textContent = data.name || "";
+    document.getElementById("father").textContent = data.father || "";
+    document.getElementById("mobile").textContent = data.mobile || "";
+    document.getElementById("address").textContent = data.address || "";
 
-    // ଫଟୋ ଥାଇଲେ ଦେଖାଇବ
     if (data.photoUrl) {
       document.getElementById("photo").src = data.photoUrl;
     }
 
   } else {
-
     alert("ସଦସ୍ୟ ମିଳିଲା ନାହିଁ");
-
   }
-
-} else {
-
-  alert("Member ID ମିଳିଲା ନାହିଁ");
-
 }
 
 </script>
