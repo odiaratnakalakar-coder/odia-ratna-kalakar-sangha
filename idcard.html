@@ -7,62 +7,63 @@
 
 <style>
 body{
-margin:0;
-padding:20px;
-background:#f0f0f0;
-font-family:Arial,sans-serif;
+  margin:0;
+  padding:20px;
+  background:#f2f2f2;
+  font-family:Arial,sans-serif;
 }
 
 .card{
-width:350px;
-margin:auto;
-background:#fff;
-border:3px solid #b30000;
-border-radius:15px;
-padding:20px;
-text-align:center;
-box-shadow:0 0 10px rgba(0,0,0,.2);
+  width:350px;
+  margin:auto;
+  background:#fff;
+  border:3px solid #b30000;
+  border-radius:15px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 0 10px rgba(0,0,0,.2);
 }
 
 .logo{
-width:80px;
-height:80px;
-border-radius:50%;
+  width:80px;
+  height:80px;
+  border-radius:50%;
 }
 
 h2{
-color:#b30000;
-margin:10px 0;
+  color:#b30000;
+  margin:10px 0;
 }
 
 .photo{
-width:100px;
-height:120px;
-border:1px solid #999;
-margin:15px auto;
-background:#eee;
+  width:100px;
+  height:120px;
+  border:1px solid #999;
+  margin:15px auto;
+  object-fit:cover;
 }
 
 p{
-font-size:16px;
-margin:8px 0;
-text-align:left;
+  text-align:left;
+  font-size:16px;
+  margin:8px 0;
 }
 
 button{
-width:100%;
-padding:12px;
-background:#b30000;
-color:#fff;
-border:none;
-border-radius:5px;
-font-size:18px;
-cursor:pointer;
-margin-top:15px;
+  width:100%;
+  padding:12px;
+  margin-top:15px;
+  background:#b30000;
+  color:#fff;
+  border:none;
+  border-radius:5px;
+  font-size:18px;
+  cursor:pointer;
 }
 </style>
 
 </head>
+
 <body>
 
 <div class="card">
@@ -71,7 +72,7 @@ margin-top:15px;
 
 <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
 
-<img id="photo" class="photo" src="" alt="Photo">
+<img id="photo" class="photo" src="photos/default.jpg" alt="Photo">
 
 <p><strong>ସଦସ୍ୟ ID:</strong> <span id="memberId"></span></p>
 
@@ -85,15 +86,14 @@ margin-top:15px;
 
 <button onclick="window.print()">Print ID Card</button>
 
-</div>
-<script type="module">
+</div><script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
   getFirestore,
   doc,
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  
 
 const firebaseConfig = {
   apiKey: "AIzaSyBuVQISkaKjflN7qQNy35hW7VVWIb-AL2Y",
@@ -108,20 +108,13 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const params = new URLSearchParams(window.location.search);
-const memberDocId = params.get("id");
-
-if (memberDocId) {
-
-
-
-
-  
-
+const memberDocId = params.get("id");if (memberDocId) {
 
   const docRef = doc(db, "members", memberDocId);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
+
     const data = docSnap.data();
 
     document.getElementById("memberId").textContent = data.memberId;
@@ -129,8 +122,25 @@ if (memberDocId) {
     document.getElementById("father").textContent = data.father;
     document.getElementById("mobile").textContent = data.mobile;
     document.getElementById("address").textContent = data.address;
-    document.getElementById("photo").src = "photos/" + data.memberId + ".jpg";
+
+    // ଫଟୋ ଥାଇଲେ ଦେଖାଇବ
+    if (data.photoUrl) {
+      document.getElementById("photo").src = data.photoUrl;
+    }
+
   } else {
+
     alert("ସଦସ୍ୟ ମିଳିଲା ନାହିଁ");
+
   }
+
+} else {
+
+  alert("Member ID ମିଳିଲା ନାହିଁ");
+
 }
+
+</script>
+
+</body>
+</html>
