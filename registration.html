@@ -6,79 +6,111 @@
 <title>ସଦସ୍ୟ ପଞ୍ଜୀକରଣ</title>
 
 <style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
 body{
-font-family:Arial,sans-serif;
-background:#f5f5f5;
-margin:0;
-padding:20px;
+  font-family:Arial,sans-serif;
+  background:#f2f2f2;
+  padding:20px;
 }
 
 .container{
-max-width:500px;
-margin:auto;
-background:#fff;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,.2);
+  max-width:500px;
+  margin:auto;
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+.logo{
+  width:80px;
+  display:block;
+  margin:auto;
 }
 
 h2{
-text-align:center;
-color:#b30000;
+  text-align:center;
+  color:#b30000;
+  margin:10px 0 20px;
+}
+
+label{
+  font-weight:bold;
+  display:block;
+  margin-top:10px;
 }
 
 input,textarea{
-width:100%;
-padding:10px;
-margin:10px 0;
-border:1px solid #ccc;
-border-radius:5px;
-box-sizing:border-box;
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+  border:1px solid #ccc;
+  border-radius:5px;
+  font-size:16px;
+}
+
+textarea{
+  resize:none;
 }
 
 button{
-width:100%;
-padding:12px;
-background:#b30000;
-color:#fff;
-border:none;
-border-radius:5px;
-font-size:18px;
-cursor:pointer;
+  width:100%;
+  margin-top:20px;
+  padding:12px;
+  background:#b30000;
+  color:#fff;
+  border:none;
+  border-radius:5px;
+  font-size:18px;
+  cursor:pointer;
 }
 
 button:hover{
-background:#800000;
+  background:#800000;
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<h2>📝 ସଦସ୍ୟ ପଞ୍ଜୀକରଣ</h2>
+<img src="logo.png" class="logo">
+
+<h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
 
 <form id="registrationForm">
 
-<input type="text" id="name" placeholder="ପୂର୍ଣ୍ଣ ନାମ" required>
+<label>ପୂର୍ଣ୍ଣ ନାମ</label>
+<input type="text" id="name" required>
 
-<input type="text" id="father" placeholder="ପିତାଙ୍କ ନାମ" required>
+<label>ପିତାଙ୍କ ନାମ</label>
+<input type="text" id="father" required>
 
-<input type="tel" id="mobile" placeholder="ମୋବାଇଲ୍ ନମ୍ବର" required>
+<label>ମୋବାଇଲ୍ ନମ୍ବର</label>
+<input type="tel" id="mobile" required>
 
-<textarea id="address" placeholder="ଠିକଣା" required></textarea>
+<label>ଠିକଣା</label>
+<textarea id="address" rows="3" required></textarea>
 
 <label>ପାସପୋର୍ଟ ସାଇଜ ଫଟୋ</label>
 <input type="file" id="photo" accept="image/*">
 
-<button type="submit">Submit</button>
+<button type="submit">ସଦସ୍ୟ ପଞ୍ଜୀକରଣ</button>
 
 </form>
 
 </div>
 <script type="module">
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
   getFirestore,
   collection,
@@ -99,68 +131,33 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-async function getNextMemberId() {
-  const counterRef = doc(db, "system", "counter");
+
+async function getNextMemberId(){
+
+  const counterRef = doc(db,"system","counter");
   const counterSnap = await getDoc(counterRef);
 
   let number = 1;
 
-  if (counterSnap.exists()) {
+  if(counterSnap.exists()){
     number = counterSnap.data().lastNumber + 1;
   }
 
-  await setDoc(counterRef, {
-    lastNumber: number
+  await setDoc(counterRef,{
+    lastNumber:number
   });
 
-  return "ORKS" + String(number).padStart(4, "0");
+  return "ORKS" + String(number).padStart(4,"0");
 }
-// ଏଠାରୁ ବାକି କୋଡ୍ ଆସିବ
-</script>
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  doc,
-  getDoc,
-  setDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBuVQISkaKjflN7qQNy35hW7VVWIb-AL2Y",
-  authDomain: "odia-ratna-kalakar-sangha.firebaseapp.com",
-  projectId: "odia-ratna-kalakar-sangha",
-  storageBucket: "odia-ratna-kalakar-sangha.firebasestorage.app",
-  messagingSenderId: "462765943345",
-  appId: "1:462765943345:web:167b7dd0eaba5786830310"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-async function getNextMemberId() {
-  const counterRef = doc(db, "system", "counter");
-  const counterSnap = await getDoc(counterRef);
-
-  let number = 1;
-
-  if (counterSnap.exists()) {
-    number = counterSnap.data().lastNumber + 1;
-  }
-
-  await setDoc(counterRef, {
-    lastNumber: number
-  });
-
-  return "ORKS" + String(number).padStart(4, "0");
-}
-document.getElementById("registrationForm").addEventListener("submit", async (e) => {
+  document.getElementById("registrationForm").addEventListener("submit", async (e) => {
   e.preventDefault();
-const docRef = await addDoc(collection(db, "members"), {
-  memberId: await getNextMemberId(),
-  memberId: await getNextMemberId(),
+
   try {
-    const docRef = addDoc(collection(db, "members"), {memberId: await getNextMemberId(),
+
+    const memberId = await getNextMemberId();
+
+    const docRef = await addDoc(collection(db, "members"), {
+      memberId: memberId,
       name: document.getElementById("name").value,
       father: document.getElementById("father").value,
       mobile: document.getElementById("mobile").value,
@@ -169,11 +166,14 @@ const docRef = await addDoc(collection(db, "members"), {
     });
 
     alert("Registration Successful!");
-    document.getElementById("registrationForm").reset();
+
+    window.location.href = "idcard.html?id=" + docRef.id;
+
   } catch (error) {
     alert("Error: " + error.message);
   }
 });
+
 </script>
 
 </body>
