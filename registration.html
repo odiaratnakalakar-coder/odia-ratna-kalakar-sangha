@@ -5,83 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ସଦସ୍ୟ ପଞ୍ଜୀକରଣ</title>
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-body{
-  font-family:Arial,sans-serif;
-  background:#f2f2f2;
-  padding:20px;
-}
-
-.container{
-  max-width:500px;
-  margin:auto;
-  background:#fff;
-  padding:20px;
-  border-radius:12px;
-  box-shadow:0 0 10px rgba(0,0,0,.2);
-}
-
-.logo{
-  width:80px;
-  display:block;
-  margin:auto;
-}
-
-h2{
-  text-align:center;
-  color:#b30000;
-  margin:10px 0 20px;
-}
-
-label{
-  font-weight:bold;
-  display:block;
-  margin-top:10px;
-}
-
-input,textarea{
-  width:100%;
-  padding:10px;
-  margin-top:5px;
-  border:1px solid #ccc;
-  border-radius:5px;
-  font-size:16px;
-}
-
-textarea{
-  resize:none;
-}
-
-button{
-  width:100%;
-  margin-top:20px;
-  padding:12px;
-  background:#b30000;
-  color:#fff;
-  border:none;
-  border-radius:5px;
-  font-size:18px;
-  cursor:pointer;
-}
-
-button:hover{
-  background:#800000;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
-
 <body>
 
 <div class="container">
 
-<img src="logo.png" class="logo">
+<img src="logo.png" class="logo" alt="Logo">
 
 <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
 
@@ -102,54 +33,45 @@ button:hover{
 <label>ପାସପୋର୍ଟ ସାଇଜ ଫଟୋ</label>
 <input type="file" id="photo" accept="image/*">
 
-<button type="submit">ସଦସ୍ୟ ପଞ୍ଜୀକରଣ</button>
+<button type="submit">
+ସଦସ୍ୟ ପଞ୍ଜୀକରଣ
+</button>
 
 </form>
 
 </div>
+
 <script type="module">
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { db } from "./firebase.js";
 
 import {
-  getFirestore,
-  collection,
-  addDoc,
-  doc,
-  getDoc,
-  setDoc
+collection,
+addDoc,
+doc,
+getDoc,
+setDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  async function getNextMemberId() {
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBuVQISkaKjflN7qQNy35hW7VVWIb-AL2Y",
-  authDomain: "odia-ratna-kalakar-sangha.firebaseapp.com",
-  projectId: "odia-ratna-kalakar-sangha",
-  storageBucket: "odia-ratna-kalakar-sangha.firebasestorage.app",
-  messagingSenderId: "462765943345",
-  appId: "1:462765943345:web:167b7dd0eaba5786830310"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-async function getNextMemberId(){
-
-  const counterRef = doc(db,"system","counter");
+  const counterRef = doc(db, "system", "counter");
   const counterSnap = await getDoc(counterRef);
 
   let number = 1;
 
-  if(counterSnap.exists()){
+  if (counterSnap.exists()) {
     number = counterSnap.data().lastNumber + 1;
   }
 
-  await setDoc(counterRef,{
-    lastNumber:number
+  await setDoc(counterRef, {
+    lastNumber: number
   });
 
-  return "ORKS" + String(number).padStart(4,"0");
+  return "ORKS" + String(number).padStart(4, "0");
 }
-  document.getElementById("registrationForm").addEventListener("submit", async (e) => {
+
+document.getElementById("registrationForm").addEventListener("submit", async (e) => {
+
   e.preventDefault();
 
   try {
@@ -165,31 +87,7 @@ async function getNextMemberId(){
       createdAt: new Date()
     });
 
-    alert("Registration Successful!\n\nDoc ID = " + docRef.id);
-
-window.location.href = "idcard.html?id=" + docRef.id;
-
-    
-
-  } catch (error) {
-    alert("Error: " + error.message);
-  }
-});
-
-</script>
-
-</body>
-</html>
-    const docRef = await addDoc(collection(db, "members"), {
-      memberId: memberId,
-      name: document.getElementById("name").value,
-      father: document.getElementById("father").value,
-      mobile: document.getElementById("mobile").value,
-      address: document.getElementById("address").value,
-      createdAt: new Date()
-    });
-
-    alert("Registration Successful!");
+    alert("Registration Successful");
 
     window.location.href = "idcard.html?id=" + docRef.id;
 
