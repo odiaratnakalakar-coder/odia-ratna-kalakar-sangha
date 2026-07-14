@@ -1,4 +1,47 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ସଦସ୍ୟ ପଞ୍ଜୀକରଣ</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div class="container">
+
+<img src="logo.png" class="logo" alt="Logo">
+
+<h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
+
+<form id="registrationForm">
+
+<label>ପୂର୍ଣ୍ଣ ନାମ</label>
+<input type="text" id="name" required>
+
+<label>ପିତାଙ୍କ ନାମ</label>
+<input type="text" id="father" required>
+
+<label>ମୋବାଇଲ୍ ନମ୍ବର</label>
+<input type="tel" id="mobile" required>
+
+<label>ଠିକଣା</label>
+<textarea id="address" rows="3" required></textarea>
+
+<label>ପାସପୋର୍ଟ ସାଇଜ ଫଟୋ</label>
+<input type="file" id="photo" accept="image/*" required>
+
+<button type="submit">
+ସଦସ୍ୟ ପଞ୍ଜୀକରଣ
+</button>
+
+</form>
+
+</div>
 <script type="module">
+
 import { db } from "./firebase.js";
 
 import {
@@ -27,6 +70,7 @@ async function getNextMemberId() {
 }
 
 document.getElementById("registrationForm").addEventListener("submit", async (e) => {
+
   e.preventDefault();
 
   try {
@@ -38,7 +82,9 @@ document.getElementById("registrationForm").addEventListener("submit", async (e)
     let photoUrl = "";
 
     if (photo) {
+
       const formData = new FormData();
+
       formData.append("file", photo);
       formData.append("upload_preset", "odiaratan2026");
 
@@ -51,6 +97,7 @@ document.getElementById("registrationForm").addEventListener("submit", async (e)
       );
 
       const result = await response.json();
+
       photoUrl = result.secure_url;
     }    const docRef = await addDoc(collection(db, "members"), {
       memberId: memberId,
@@ -71,16 +118,9 @@ document.getElementById("registrationForm").addEventListener("submit", async (e)
     console.error(error);
   }
 
-</body>
-</html>
-
-} catch (error) {
-  alert("Error: " + error.message);
-  console.error(error);
-}
-
 });
 
 </script>
+
 </body>
 </html>
