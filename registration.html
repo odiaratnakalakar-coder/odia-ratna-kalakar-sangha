@@ -118,7 +118,9 @@ if (photo) {
 
     const docRef = await addDoc(collection(db, "members"), {
       memberId: memberId,
-      name: document.getElementById("name").value,
+photoUrl: photoUrl,
+name: document.getElementById("name").value,
+  
       father: document.getElementById("father").value,
       mobile: document.getElementById("mobile").value,
       address: document.getElementById("address").value,
