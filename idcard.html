@@ -346,7 +346,17 @@ document.getElementById("address").textContent = data.address || "";
 if(data.photoUrl){
 document.getElementById("photo").src = data.photoUrl;
 }
+const verifyUrl = window.location.href;
 
+QRCode.toCanvas(
+  verifyUrl,
+  { width: 100 },
+  function (error, canvas) {
+    if (!error) {
+      document.getElementById("qrcode").appendChild(canvas);
+    }
+  }
+);
 }else{
 alert("Member Not Found");
 }
