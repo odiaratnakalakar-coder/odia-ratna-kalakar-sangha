@@ -173,7 +173,15 @@ const filtered = members.filter(member =>
 showMembers(filtered);
 
 });
+window.deleteMember = async function(id) {
+  if (!confirm("ଏହି Member କୁ Delete କରିବେ?")) return;
 
+  await deleteDoc(doc(db, "members", id));
+
+  alert("Member Deleted Successfully");
+
+  loadMembers();
+};
 loadMembers();
 
 </script>
