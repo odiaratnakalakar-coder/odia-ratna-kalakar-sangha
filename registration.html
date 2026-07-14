@@ -114,7 +114,7 @@ if (photo) {
   const result = await response.json();
   photoUrl = result.secure_url;
 }
-    const memberId = await getNextMemberId();
+    
 
     const docRef = await addDoc(collection(db, "members"), {
       memberId: memberId,
