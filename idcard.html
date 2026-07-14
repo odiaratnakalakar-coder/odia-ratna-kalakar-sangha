@@ -6,98 +6,87 @@
 
 <title>ସଦସ୍ୟ ID Card</title>
 
-<link rel="stylesheet" href="style.css">
-
 <style>
 
-body{
+*{
 margin:0;
-padding:20px;
-background:#f2f2f2;
+padding:0;
+box-sizing:border-box;
 font-family:Arial,sans-serif;
+}
+
+body{
+background:#f2f2f2;
 display:flex;
 justify-content:center;
+padding:20px;
 }
 
 .card{
 width:340px;
 background:#fff;
-border:3px solid #b30000;
-border-radius:15px;
+border:4px solid #b30000;
+border-radius:18px;
 overflow:hidden;
-box-shadow:0 0 10px rgba(0,0,0,.2);
+box-shadow:0 5px 15px rgba(0,0,0,.25);
 }
 
-.card-header{
-background:#fff;
+.header{
+background:#ffffff;
 text-align:center;
 padding:15px;
-border-bottom:3px solid #b30000;
+border-bottom:4px solid #b30000;
 }
 
 .logo{
 width:90px;
+height:90px;
+object-fit:contain;
 }
 
-.card-header h2{
-margin:8px 0 5px;
+.header h2{
 font-size:20px;
 color:#b30000;
+margin-top:8px;
 }
 
-.card-header p{
-margin:0;
+.header p{
 font-size:14px;
 color:#555;
+margin-top:3px;
 }
 
 .photo{
 text-align:center;
-margin-top:15px;
+margin:15px 0;
 }
 
 .photo img{
-width:120px;
-height:150px;
-object-fit:cover;
-border:3px solid #b30000;
+width:140px;
+height:170px;
+border:4px solid #b30000;
 border-radius:10px;
-}
-
-.info{
-padding:15px;
-}
-
-.info h3{
-margin:8px 0;
-font-size:18px;
-text-align:center;
-}
-
-.info p{
-margin:8px 0;
-font-size:16px;
-}.photo-box{
-text-align:center;
-margin-top:15px;
-}
-
-.photo-box img{
-width:120px;
-height:150px;
 object-fit:cover;
-border:3px solid #b30000;
-border-radius:10px;
 }
 
-.footer{
-padding:15px;
+.details{
+padding:18px;
+font-size:17px;
+line-height:2;
+}
+
+.details b{
+color:#b30000;
+}
+  .footer{
 display:flex;
 justify-content:space-between;
 align-items:center;
+padding:15px;
+border-top:2px dashed #ccc;
 }
 
-.signature{
+.sign{
 text-align:center;
 font-size:12px;
 }
@@ -114,25 +103,26 @@ font-size:11px;
 color:#b30000;
 }
 
-button{
+.printBtn{
 width:90%;
 margin:15px auto;
 display:block;
-padding:10px;
+padding:12px;
+font-size:18px;
 background:#b30000;
 color:#fff;
 border:none;
 border-radius:8px;
-font-size:16px;
 cursor:pointer;
 }
 
 @media print{
-button{
+.printBtn{
 display:none;
 }
 body{
 background:#fff;
+padding:0;
 }
 .card{
 box-shadow:none;
@@ -147,23 +137,17 @@ margin:auto;
 
 <div class="card">
 
-<div class="card-header">
-
+<div class="header">
 <img src="logo.png" class="logo">
-
 <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
-
 <p>Surat, Gujarat</p>
-
 </div>
 
-<div class="photo-box">
-
+<div class="photo">
 <img id="photo" src="">
-
 </div>
 
-<div class="info">
+<div class="details">
 
 <p><b>Member ID :</b> <span id="memberId"></span></p>
 
@@ -178,8 +162,8 @@ margin:auto;
 </div>
 <div class="footer">
 
-<div class="signature">
-<hr width="100">
+<div class="sign">
+_________________<br>
 Authorized Signature
 </div>
 
@@ -189,7 +173,7 @@ Official Seal
 
 </div>
 
-<button onclick="window.print()">
+<button class="printBtn" onclick="window.print()">
 🖨️ Print ID Card
 </button>
 
@@ -197,43 +181,36 @@ Official Seal
 
 import { db } from "./firebase.js";
 
-import {
-doc,
-getDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { doc, getDoc }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const params = new URLSearchParams(window.location.search);
-const memberDocId = params.get("id");
+const id = params.get("id");
 
-if(memberDocId){
+if(id){
 
-const docRef = doc(db,"members",memberDocId);
-const docSnap = await getDoc(docRef);
+const snap = await getDoc(doc(db,"members",id));
 
-if(docSnap.exists()){
+if(snap.exists()){
 
-const data = docSnap.data();
+const data = snap.data();
 
-document.getElementById("memberId").textContent=data.memberId||"";
-document.getElementById("name").textContent=data.name||"";
-document.getElementById("father").textContent=data.father||"";
-document.getElementById("mobile").textContent=data.mobile||"";
-document.getElementById("address").textContent=data.address||"";
+document.getElementById("memberId").textContent = data.memberId || "";
+document.getElementById("name").textContent = data.name || "";
+document.getElementById("father").textContent = data.father || "";
+document.getElementById("mobile").textContent = data.mobile || "";
+document.getElementById("address").textContent = data.address || "";
 
 if(data.photoUrl){
-document.getElementById("photo").src=data.photoUrl;
+document.getElementById("photo").src = data.photoUrl;
 }
 
 }else{
-
-alert("Member ମିଳିଲା ନାହିଁ");
-
+alert("Member Not Found");
 }
 
 }else{
-
-alert("Member ID ମିଳିଲା ନାହିଁ");
-
+alert("Invalid ID");
 }
 
 </script>
