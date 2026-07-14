@@ -95,8 +95,8 @@ if (photo) {
   const result = await response.json();
   photoUrl = result.secure_url;
 }
-const memberId = await getNextMemberId();
-let photoUrl = "";
+
+
 
 if (photo) {
   const formData = new FormData();
