@@ -90,9 +90,14 @@ placeholder="ନାମ କିମ୍ବା Member ID ଖୋଜନ୍ତୁ">
 import { db } from "./firebase.js";
 
 import {
-collection,
-getDocs
+  collection,
+  getDocs,
+  deleteDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
 
 const table = document.getElementById("memberTable");
 const search = document.getElementById("search");
