@@ -346,8 +346,11 @@ document.getElementById("address").textContent = data.address || "";
 if(data.photoUrl){
 document.getElementById("photo").src = data.photoUrl;
 }
-const verifyUrl = window.location.href;
 
+const verifyUrl =
+window.location.origin +
+window.location.pathname.replace("idcard.html","view-id.html") +
+"?id=" + id;
 QRCode.toCanvas(
   verifyUrl,
   { width: 100 },
