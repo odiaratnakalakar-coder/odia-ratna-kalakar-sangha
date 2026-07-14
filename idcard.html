@@ -3,31 +3,143 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ସଦସ୍ୟ ପରିଚୟ ପତ୍ର</title>
+
+<title>ସଦସ୍ୟ ID Card</title>
 
 <link rel="stylesheet" href="style.css">
+
 <style>
-@media print {
 
-  body{
-    margin:0;
-    background:#fff;
-  }
-
-  button{
-    display:none;
-  }
-
-  .card{
-    width:85mm;
-    height:54mm;
-    margin:auto;
-    box-shadow:none;
-    border:1px solid #000;
-    page-break-after:avoid;
-  }
-
+body{
+margin:0;
+padding:20px;
+background:#f2f2f2;
+font-family:Arial,sans-serif;
+display:flex;
+justify-content:center;
 }
+
+.card{
+width:340px;
+background:#fff;
+border:3px solid #b30000;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+.card-header{
+background:#fff;
+text-align:center;
+padding:15px;
+border-bottom:3px solid #b30000;
+}
+
+.logo{
+width:90px;
+}
+
+.card-header h2{
+margin:8px 0 5px;
+font-size:20px;
+color:#b30000;
+}
+
+.card-header p{
+margin:0;
+font-size:14px;
+color:#555;
+}
+
+.photo{
+text-align:center;
+margin-top:15px;
+}
+
+.photo img{
+width:120px;
+height:150px;
+object-fit:cover;
+border:3px solid #b30000;
+border-radius:10px;
+}
+
+.info{
+padding:15px;
+}
+
+.info h3{
+margin:8px 0;
+font-size:18px;
+text-align:center;
+}
+
+.info p{
+margin:8px 0;
+font-size:16px;
+}.photo-box{
+text-align:center;
+margin-top:15px;
+}
+
+.photo-box img{
+width:120px;
+height:150px;
+object-fit:cover;
+border:3px solid #b30000;
+border-radius:10px;
+}
+
+.footer{
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.signature{
+text-align:center;
+font-size:12px;
+}
+
+.seal{
+width:70px;
+height:70px;
+border:2px dashed #b30000;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:11px;
+color:#b30000;
+}
+
+button{
+width:90%;
+margin:15px auto;
+display:block;
+padding:10px;
+background:#b30000;
+color:#fff;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+@media print{
+button{
+display:none;
+}
+body{
+background:#fff;
+}
+.card{
+box-shadow:none;
+margin:auto;
+}
+}
+
 </style>
 </head>
 
@@ -35,101 +147,93 @@
 
 <div class="card">
 
-
-
-
 <div class="card-header">
-    <img src="logo.png" class="logo" alt="Logo">
-    <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2><h3 style="margin:5px 0;color:#b30000;">
-ସଦସ୍ୟ ପରିଚୟ ପତ୍ର
-    </h3>
-    <p>Surat, Gujarat</p>
-</div>
 
+<img src="logo.png" class="logo">
+
+<h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
+
+<p>Surat, Gujarat</p>
+
+</div>
 
 <div class="photo-box">
-    <div class="photo-box">
-    <img id="photo" class="photo" src="" alt="Photo">
-    </div>
-</div>
 
-<div class="details">
-
-<p><strong>ସଦସ୍ୟ ID :</strong> <span id="memberId"></span></p>
-
-<p><strong>ନାମ :</strong> <span id="name"></span></p>
-
-<p><strong>ପିତାଙ୍କ ନାମ :</strong> <span id="father"></span></p>
-
-<p><strong>ମୋବାଇଲ୍ :</strong> <span id="mobile"></span></p>
-
-<p><strong>ଠିକଣା :</strong> <span id="address"></span></p>
+<img id="photo" src="">
 
 </div>
 
+<div class="info">
 
+<p><b>Member ID :</b> <span id="memberId"></span></p>
 
+<p><b>ନାମ :</b> <span id="name"></span></p>
 
+<p><b>ପିତାଙ୍କ ନାମ :</b> <span id="father"></span></p>
 
+<p><b>ମୋବାଇଲ୍ :</b> <span id="mobile"></span></p>
 
+<p><b>ଠିକଣା :</b> <span id="address"></span></p>
 
-
-
-<button onclick="window.print()">Print ID Card</button>
-<hr>
-
-<div class="card-footer">
-  <div style="display:flex;justify-content:space-between;margin-top:20px;">
-    <div style="text-align:center;">
-      <p>Authorized Signature</p>
-      <hr style="width:120px;">
-    </div>
-
-    <div style="text-align:center;">
-      <p>Official Seal</p>
-      <div style="width:70px;height:70px;border:2px dashed #b30000;border-radius:50%;margin:auto;"></div>
-    </div>
-  </div>
 </div>
+<div class="footer">
+
+<div class="signature">
+<hr width="100">
+Authorized Signature
 </div>
+
+<div class="seal">
+Official Seal
+</div>
+
+</div>
+
+<button onclick="window.print()">
+🖨️ Print ID Card
+</button>
 
 <script type="module">
 
 import { db } from "./firebase.js";
 
 import {
-  doc,
-  getDoc
+doc,
+getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const params = new URLSearchParams(window.location.search);
 const memberDocId = params.get("id");
-  if (!memberDocId) {
 
-  alert("Member ID ମିଳିଲା ନାହିଁ");
+if(memberDocId){
 
-} else {
+const docRef = doc(db,"members",memberDocId);
+const docSnap = await getDoc(docRef);
 
-  const docRef = doc(db, "members", memberDocId);
-  const docSnap = await getDoc(docRef);
+if(docSnap.exists()){
 
-  if (docSnap.exists()) {
+const data = docSnap.data();
 
-    const data = docSnap.data();
+document.getElementById("memberId").textContent=data.memberId||"";
+document.getElementById("name").textContent=data.name||"";
+document.getElementById("father").textContent=data.father||"";
+document.getElementById("mobile").textContent=data.mobile||"";
+document.getElementById("address").textContent=data.address||"";
 
-    document.getElementById("memberId").textContent = data.memberId;
-    document.getElementById("name").textContent = data.name;
-    document.getElementById("father").textContent = data.father;
-    document.getElementById("mobile").textContent = data.mobile;
-    document.getElementById("address").textContent = data.address;
+if(data.photoUrl){
+document.getElementById("photo").src=data.photoUrl;
+}
 
-    if (data.photoUrl) {
-      document.getElementById("photo").src = data.photoUrl;
-    }
+}else{
 
-  } else {
-    alert("ସଦସ୍ୟ ମିଳିଲା ନାହିଁ");
-  }
+alert("Member ମିଳିଲା ନାହିଁ");
+
+}
+
+}else{
+
+alert("Member ID ମିଳିଲା ନାହିଁ");
+
 }
 
 </script>
