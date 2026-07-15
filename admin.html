@@ -133,6 +133,17 @@ async function loadMembers() {
     `;
   });
 }
+  window.deleteMember = async (id) => {
+
+  if (!confirm("ଏହି Member କୁ Delete କରିବେ?")) return;
+
+  await deleteDoc(doc(db, "Committee", id));
+
+  alert("Member Deleted ✅");
+
+  loadMembers();
+
+};
 </script>
 </body>
 </html>
