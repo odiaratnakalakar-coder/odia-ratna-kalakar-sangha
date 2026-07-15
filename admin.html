@@ -144,6 +144,27 @@ async function loadMembers() {
   loadMembers();
 
 };
+  window.editMember = async (id) => {
+
+  const newName = prompt("ନୂଆ Member Name:");
+  const newPost = prompt("ନୂଆ Post:");
+  const newMobile = prompt("ନୂଆ Mobile:");
+
+  if (!newName || !newPost || !newMobile) return;
+
+  await updateDoc(doc(db, "Committee", id), {
+    name: newName,
+    post: newPost,
+    mobile: newMobile
+  });
+
+  alert("Member Updated ✅");
+
+  loadMembers();
+
+};
+
+loadMembers();
 </script>
 </body>
 </html>
