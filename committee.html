@@ -85,13 +85,13 @@ snapshot.forEach((doc) => {
 
   list.innerHTML += `
     <div class="card">
-      <img src="${data.photoUrl || 'logo.png'}" alt="Photo">
+       <img src="${data.photoUrl}" alt="Photo">
 
       <div class="name">${data.name || ""}</div>
 
       <div class="post">${data.post || ""}</div>
 
-      <div class="mobile">📞 ${data.mobile || ""}</div>
+      <div class="mobile">📞 ${data.mobile}</div>
 
       <br>
 
