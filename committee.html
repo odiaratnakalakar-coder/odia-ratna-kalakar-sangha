@@ -83,28 +83,44 @@ snapshot.forEach((doc) => {
 
   const data = doc.data();
 
-alert(JSON.stringify(data));
-  list.innerHTML += `
-    <div class="card">
-       <img src="${data.photoUrl}" alt="Photo" onerror="this.src='logo.png'">
+list.innerHTML += `
+<div class="card">
+  <img src="${data.photoUrl}" alt="Photo" onerror="this.src='logo.png'">
 
-      <div class="name">${data.name || ""}</div>
+  <div class="name">${data.name || ""}</div>
 
-      <div class="post">${data.post || ""}</div>
+  <div class="post">${data.post || ""}</div>
 
-<div class="mobile">📞 ${data["mobile"]}</div>
+  <div class="mobile">📞 ${data.mobile || ""}</div>
+
+  <a href="tel:${data.mobile}">
+    <button style="padding:8px 15px;background:#b30000;color:#fff;border:none;border-radius:6px;">
+      Call
+    </button>
+  </a>
+</div>
+`;
+  
+    
+    
 
       
-    <a href="tel:${data.mobile}">
-  <button style="padding:8px 15px;background:#b30000;color:#fff;border:none;border-radius:6px;">
-    Call
-  </button>
-</a>
+
+      
+
+
+
+      
+    
+  
+    
+  
+
         
         
       
-    </div>
-  `;
+    
+  
 
 });
 </script>
