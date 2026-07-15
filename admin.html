@@ -68,7 +68,10 @@ import { db } from "./firebase.js";
 import {
   collection,
   addDoc,
-  getDocs
+  getDocs,
+  deleteDoc,
+  updateDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const saveBtn = document.getElementById("saveBtn");
