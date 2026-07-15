@@ -55,6 +55,43 @@ button{
 <button id="saveBtn">Save Member</button>
 
 </div>
+<script type="module">
 
+import { db } from "./firebase.js";
+
+import {
+  collection,
+  addDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+document.getElementById("saveBtn").addEventListener("click", async ()=>{
+
+const name=document.getElementById("name").value.trim();
+const post=document.getElementById("post").value.trim();
+const mobile=document.getElementById("mobile").value.trim();
+const photoUrl=document.getElementById("photoUrl").value.trim();
+
+if(!name || !post || !mobile){
+alert("ସମସ୍ତ ତଥ୍ୟ ଭରନ୍ତୁ");
+return;
+}
+
+await addDoc(collection(db,"Committee"),{
+name,
+post,
+mobile,
+photoUrl
+});
+
+alert("Member Saved Successfully ✅");
+
+document.getElementById("name").value="";
+document.getElementById("post").value="";
+document.getElementById("mobile").value="";
+document.getElementById("photoUrl").value="";
+
+});
+
+</script>
 </body>
 </html>
