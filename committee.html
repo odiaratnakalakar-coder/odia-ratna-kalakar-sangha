@@ -85,7 +85,7 @@ snapshot.forEach((doc) => {
 console.log(data);
   list.innerHTML += `
     <div class="card">
-       <img src="${data.photoUrl || 'logo.png'}" alt="Photo">
+       <img src="${data.photoUrl}" alt="Photo" onerror="this.src='logo.png'">
 
       <div class="name">${data.name || ""}</div>
 
@@ -95,7 +95,7 @@ console.log(data);
 
       <br>
 
-      <a href="tel:${data.mobile}">
+      <a href="tel:${data.mobile || ''}">
         <button style="padding:8px 15px;background:#b30000;color:#fff;border:none;border-radius:6px;">
           Call
         </button>
