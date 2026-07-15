@@ -1,0 +1,136 @@
+<h2>🛠️ Committee Admin Panel</h2>
+
+<div class="form">
+
+  <input type="text" id="name" placeholder="Member Name">
+
+  <input type="text" id="post" placeholder="Post">
+
+  <input type="text" id="mobile" placeholder="Mobile Number">
+
+  <input type="text" id="photoUrl" placeholder="Photo URL">
+
+  <button id="saveBtn">Save Member</button>
+
+</div>
+
+<hr>
+
+<h3>Committee Members</h3>
+
+<div id="memberList"></div>
+<style>
+body{
+    margin:0;
+    padding:20px;
+    background:#111;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+h2,h3{
+    text-align:center;
+    color:#ffb6c1;
+}
+
+.form{
+    max-width:500px;
+    margin:20px auto;
+    background:#222;
+    padding:20px;
+    border:2px solid #b30000;
+    border-radius:10px;
+}
+
+.form input{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:none;
+    border-radius:6px;
+    font-size:16px;
+    box-sizing:border-box;
+}
+
+#saveBtn{
+    width:100%;
+    padding:12px;
+    background:#b30000;
+    color:white;
+    border:none;
+    border-radius:6px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+#saveBtn:hover{
+    background:#d40000;
+}
+
+#memberList{
+    max-width:700px;
+    margin:20px auto;
+}
+</style>
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+  collection,
+  addDoc,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const saveBtn = document.getElementById("saveBtn");
+
+saveBtn.addEventListener("click", async () => {
+
+  const name = document.getElementById("name").value.trim();
+  const post = document.getElementById("post").value.trim();
+  const mobile = document.getElementById("mobile").value.trim();
+  const photoUrl = document.getElementById("photoUrl").value.trim();
+
+  if (!name || !post || !mobile) {
+    alert("ସମସ୍ତ ତଥ୍ୟ ପୂରଣ କରନ୍ତୁ");
+    return;
+  }
+
+  await addDoc(collection(db, "Committee"), {
+    name,
+    post,
+    mobile,
+    photoUrl
+  });
+
+  alert("Member Save Successfully ✅");
+
+  document.getElementById("name").value = "";
+  document.getElementById("post").value = "";
+  document.getElementById("mobile").value = "";
+  document.getElementById("photoUrl").value = "";
+
+});
+
+</script>
+<script type="module">
+
+// imports ...
+
+saveBtn.addEventListener("click", async () => {
+
+  // Save Member କୋଡ୍
+
+});
+
+// ⬇️ ଏଠାରେ Part 4 ପେଷ୍ଟ କରନ୍ତୁ
+
+async function loadMembers() {
+
+  // Part 4 କୋଡ୍
+
+}
+
+loadMembers();
+
+</script>
