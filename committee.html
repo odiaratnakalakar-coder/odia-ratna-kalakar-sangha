@@ -83,7 +83,7 @@ snapshot.forEach((doc) => {
 
   const data = doc.data();
 
-  list.innerHTML += `
+  alert(data.mobile);
     <div class="card">
        <img src="${data.photoUrl}" alt="Photo" onerror="this.src='logo.png'">
 
