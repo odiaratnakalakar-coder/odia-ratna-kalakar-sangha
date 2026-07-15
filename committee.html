@@ -82,7 +82,7 @@ const snapshot = await getDocs(collection(db, "Committee"));
 snapshot.forEach((doc) => {
 
   const data = doc.data();
-console.log(doc.id, data);
+alert(JSON.stringify(data));
   list.innerHTML += `
     <div class="card">
        <img src="${data.photoUrl}" alt="Photo" onerror="this.src='logo.png'">
