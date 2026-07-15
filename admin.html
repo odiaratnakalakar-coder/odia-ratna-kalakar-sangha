@@ -67,57 +67,45 @@ import { db } from "./firebase.js";
 
 import {
   collection,
-  import {
-  collection,
   addDoc,
-  getDocs,
-  deleteDoc,
-  updateDoc,
-  doc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-deleteDoc,
-updateDoc,
-doc
+  getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-document.getElementById("saveBtn").addEventListener("click", async ()=>{
+const saveBtn = document.getElementById("saveBtn");
+const memberList = document.getElementById("memberList");
 
-const name=document.getElementById("name").value.trim();
-const post=document.getElementById("post").value.trim();
-const mobile=document.getElementById("mobile").value.trim();
-const photoUrl=document.getElementById("photoUrl").value.trim();
+saveBtn.addEventListener("click", async () => {
 
-if(!name || !post || !mobile){
-alert("ସମସ୍ତ ତଥ୍ୟ ଭରନ୍ତୁ");
-return;
-}
+  const name = document.getElementById("name").value.trim();
+  const post = document.getElementById("post").value.trim();
+  const mobile = document.getElementById("mobile").value.trim();
+  const photoUrl = document.getElementById("photoUrl").value.trim();
 
-await addDoc(collection(db,"Committee"),{
-name,
-post,
-mobile,
-photoUrl
+  if (!name || !post || !mobile) {
+    alert("ସମସ୍ତ ତଥ୍ୟ ଭରନ୍ତୁ");
+    return;
+  }
+
+  await addDoc(collection(db, "Committee"), {
+    name,
+    post,
+    mobile,
+    photoUrl
+  });
+
+  alert("Member Saved Successfully ✅");
+
+  document.getElementById("name").value = "";
+  document.getElementById("post").value = "";
+  document.getElementById("mobile").value = "";
+  document.getElementById("photoUrl").value = "";
+
+  loadMembers();
+
 });
-
-alert("Member Saved Successfully ✅");
-
-document.getElementById("name").value="";
-document.getElementById("post").value="";
-document.getElementById("mobile").value="";
-document.getElementById("photoUrl").value="";
-
-});
-
-  
-  
-  
-  
-  
-
 
 async function loadMembers() {
 
-  const memberList = document.getElementById("memberList");
   memberList.innerHTML = "";
 
   const snapshot = await getDocs(collection(db, "Committee"));
@@ -127,54 +115,17 @@ async function loadMembers() {
     const data = member.data();
 
     memberList.innerHTML += `
-      <div style="background:#222;padding:15px;margin:10px 0;border-radius:8px;border:1px solid #555;">
+      <div style="background:#fff;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">
         <b>${data.name}</b><br>
         ${data.post}<br>
-        ${data.mobile}<br><br>
-
-        <button onclick="editMember('${member.id}')">
-          ✏ Edit
-        </button>
-
-        <button onclick="deleteMember('${member.id}')">
-          🗑 Delete
-        </button>
+        📞 ${data.mobile}
       </div>
     `;
+
   });
+
 }
-  window.deleteMember = async (id) => {
-
-  if (!confirm("ଏହି Member କୁ Delete କରିବେ?")) return;
-
-  await deleteDoc(doc(db, "Committee", id));
-
-  alert("Member Deleted ✅");
-
-  loadMembers();
-
-};
-  window.editMember = async (id) => {
-
-  const newName = prompt("ନୂଆ Member Name:");
-  const newPost = prompt("ନୂଆ Post:");
-  const newMobile = prompt("ନୂଆ Mobile:");
-
-  if (!newName || !newPost || !newMobile) return;
-
-  await updateDoc(doc(db, "Committee", id), {
-    name: newName,
-    post: newPost,
-    mobile: newMobile
-  });
-
-  alert("Member Updated ✅");
-
-  loadMembers();
-
-};
 
 loadMembers();
+
 </script>
-</body>
-</html>
