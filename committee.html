@@ -82,7 +82,7 @@ const snapshot = await getDocs(collection(db, "Committee"));
 snapshot.forEach((doc) => {
 
   const data = doc.data();
-const data = doc.data();
+alert(JSON.stringify(data));
 alert(JSON.stringify(data));
   list.innerHTML += `
     <div class="card">
