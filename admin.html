@@ -100,25 +100,15 @@ saveBtn.addEventListener("click", async () => {
   document.getElementById("mobile").value = "";
   document.getElementById("photoUrl").value = "";
 
-  loadMembers();
+  <div style="background:#fff;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">
+  <b>${data.name}</b><br>
+  ${data.post}<br>
+  📞 ${data.mobile}<br><br>
 
-});
+  <button onclick="editMember('${member.id}')">✏️ Edit</button>
 
-async function loadMembers() {
-
-  memberList.innerHTML = "";
-
-  const snapshot = await getDocs(collection(db, "Committee"));
-
-  snapshot.forEach((member) => {
-
-    const data = member.data();
-
-    memberList.innerHTML += `
-      <div style="background:#fff;padding:10px;margin:10px 0;border-radius:8px;border:1px solid #ccc;">
-        <b>${data.name}</b><br>
-        ${data.post}<br>
-        📞 ${data.mobile}
+  <button onclick="deleteMember('${member.id}')">🗑️ Delete</button>
+</div>
       </div>
     `;
 
