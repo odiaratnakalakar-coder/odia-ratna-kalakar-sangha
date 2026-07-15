@@ -97,7 +97,42 @@ document.getElementById("mobile").value="";
 document.getElementById("photoUrl").value="";
 
 });
+import {
+  collection,
+  getDocs,
+  deleteDoc,
+  updateDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+async function loadMembers() {
+
+  const memberList = document.getElementById("memberList");
+  memberList.innerHTML = "";
+
+  const snapshot = await getDocs(collection(db, "Committee"));
+
+  snapshot.forEach((member) => {
+
+    const data = member.data();
+
+    memberList.innerHTML += `
+      <div style="background:#222;padding:15px;margin:10px 0;border-radius:8px;border:1px solid #555;">
+        <b>${data.name}</b><br>
+        ${data.post}<br>
+        ${data.mobile}<br><br>
+
+        <button onclick="editMember('${member.id}')">
+          ✏ Edit
+        </button>
+
+        <button onclick="deleteMember('${member.id}')">
+          🗑 Delete
+        </button>
+      </div>
+    `;
+  });
+}
 </script>
 </body>
 </html>
