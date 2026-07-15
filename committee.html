@@ -97,9 +97,15 @@ snapshot.forEach((doc)=>{
 
       <div class="post">${data.post || ""}</div>
 
-      <div class="mobile">📞 ${String(data.mobile ?? "")}</div>
+      <div class="mobile">
+  📞 ${data.mobile ? String(data.mobile) : "No Mobile"}
+</div>
 
-      <a href="tel:${data.mobile || ""}">
+<a href="${data.mobile ? `tel:${data.mobile}` : '#'}">
+  <button>Call</button>
+</a>
+
+      
         <button>Call</button>
       </a>
 
