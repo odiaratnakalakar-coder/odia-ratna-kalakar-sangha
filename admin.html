@@ -109,7 +109,19 @@ saveBtn.addEventListener("click", async () => { alert("Save button clicked");
     return;
   }
 
+  try {
   await addDoc(collection(db, "Committee"), {
+    name,
+    post,
+    mobile,
+    photoUrl
+  });
+
+  alert("Saved Successfully");
+
+} catch (e) {
+  alert(e.message);
+  }
     name,
     post,
     mobile,
