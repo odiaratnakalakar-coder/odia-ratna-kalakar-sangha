@@ -122,7 +122,23 @@ saveBtn.addEventListener("click", async () => {
 
   loadMembers();
 });
+window.editMember = async function(id) {
 
+  const newName = prompt("New Name:");
+  const newPost = prompt("New Post:");
+  const newMobile = prompt("New Mobile:");
+
+  if (!newName || !newPost || !newMobile) return;
+
+  await updateDoc(doc(db, "Committee", id), {
+    name: newName,
+    post: newPost,
+    mobile: newMobile
+  });
+
+  alert("Member Updated ✅");
+  loadMembers();
+}
 loadMembers();
   </script>    
       
