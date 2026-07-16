@@ -122,7 +122,8 @@ memberList.innerHTML+=`
 
 <div class="card">
 
-<img src="${data.photoUrl || 'logo.png'}">
+<img src="${data.photoUrl || 'logo.png'}"
+onerror="this.src='logo.png'">
 
 <h2>${data.name}</h2>
 
