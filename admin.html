@@ -159,7 +159,17 @@ saveBtn.addEventListener("click",async()=>{
 const name=document.getElementById("name").value.trim();
 const post=document.getElementById("post").value.trim();
 const mobile=document.getElementById("mobile").value.trim();
-const photoUrl=document.getElementById("photoUrl").value.trim();
+const file = document.getElementById("photo").files[0];
+
+let photoUrl = "";
+
+if (file) {
+  const storageRef = ref(storage, "committee/" + Date.now() + "_" + file.name);
+
+  await uploadBytes(storageRef, file);
+
+  photoUrl = await getDownloadURL(storageRef);
+}
 
 if(!name || !post || !mobile){
 
