@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Committee Admin</title>
 
 <style>
-
 body{
     margin:0;
     padding:20px;
@@ -62,6 +60,7 @@ button{
     height:120px;
     border-radius:50%;
     object-fit:cover;
+    border:3px solid red;
 }
 
 .actionBtn{
@@ -69,7 +68,6 @@ button{
     padding:8px 15px;
     margin:5px;
 }
-
 </style>
 </head>
 
@@ -87,9 +85,7 @@ button{
 
 <input id="photoUrl" placeholder="Photo URL">
 
-<button id="saveBtn">
-Save Member
-</button>
+<button id="saveBtn">Save Member</button>
 
 </div>
 
@@ -98,143 +94,17 @@ Save Member
 <div id="memberList"></div>
 
 <script type="module">
-  import { db, storage } from "./firebase.js";
+
+import { db } from "./firebase.js";
+
 import {
-  ref,
-  uploadBytes,
-  getDownloadURL
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-import {
-  collection,
-  addDoc,
-  getDocs,
-  deleteDoc,
-  updateDoc,
-  doc
+collection,
+addDoc,
+getDocs,
+deleteDoc,
+updateDoc,
+doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const saveBtn = document.getElementById("saveBtn");
-const memberList = document.getElementById("memberList");
-
-async function loadMembers() {
-
-  memberList.innerHTML = "";
-
-  const snapshot = await getDocs(collection(db,"Committee"));
-
-  snapshot.forEach((member)=>{
-
-    const data = member.data();
-
-    memberList.innerHTML += `
-    <div class="card">
-
-      <img src="${data.photoUrl || 'logo.png'}">
-
-      <h2>${data.name}</h2>
-
-      <p>${data.post}</p>
-
-      <p>📞 ${data.mobile}</p>
-
-      <button class="actionBtn"
-      onclick="editMember('${member.id}')">
-      ✏ Edit
-      </button>
-
-      <button class="actionBtn"
-      onclick="deleteMember('${member.id}')">
-      🗑 Delete
-      </button>
-
-    </div>
-    `;
-
-  });
-
-}
-
-saveBtn.addEventListener("click",async()=>{
-
-const name=document.getElementById("name").value.trim();
-const post=document.getElementById("post").value.trim();
-const mobile=document.getElementById("mobile").value.trim();
-<input type="file" id="photo" accept="image/*">
-
-let photoUrl = "";
-
-if (file) {
-  const storageRef = ref(storage, "committee/" + Date.now() + "_" + file.name);
-
-  await uploadBytes(storageRef, file);
-
-  photoUrl = await getDownloadURL(storageRef);
-}
-
-if(!name || !post || !mobile){
-
-alert("ସମସ୍ତ ତଥ୍ୟ ଭରନ୍ତୁ");
-
-return;
-
-}
-
-await addDoc(collection(db,"Committee"),{
-
-name,
-post,
-mobile,
-photoUrl
-
-});
-
-alert("Member Saved Successfully");
-
-document.getElementById("name").value="";
-document.getElementById("post").value="";
-document.getElementById("mobile").value="";
-document.getElementById("photo").value="";
-
-loadMembers();
-
-});
-  window.editMember = async function(id){
-
-const newName = prompt("New Name");
-const newPost = prompt("New Post");
-const newMobile = prompt("New Mobile");
-
-if(!newName || !newPost || !newMobile) return;
-
-await updateDoc(doc(db,"Committee",id),{
-
-name:newName,
-post:newPost,
-mobile:newMobile
-
-});
-
-alert("Member Updated Successfully");
-
-loadMembers();
-
-}
-
-window.deleteMember = async function(id){
-
-if(!confirm("ଏହି Member କୁ Delete କରିବେ ?")) return;
-
-await deleteDoc(doc(db,"Committee",id));
-
-alert("Member Deleted Successfully");
-
-loadMembers();
-
-}
-
-loadMembers();
-
-</script>
-
-</body>
-</html>
+const saveBtn=document.getElementById("saveBtn");
+const memberList=document.getElementById("memberList");
