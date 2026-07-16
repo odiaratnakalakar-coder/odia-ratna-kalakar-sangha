@@ -132,7 +132,15 @@ onerror="this.src='logo.png'">
 `;
 
 });
+function adminLogin() {
+    const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
 
+    if (pass === "12345") {
+        window.location.href = "admin.html";
+    } else {
+        alert("Wrong Password!");
+    }
+}
 </script>
 
 </body>
