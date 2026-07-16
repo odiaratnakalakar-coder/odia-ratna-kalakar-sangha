@@ -182,24 +182,21 @@ onerror="this.src='logo.png'">
 
 <div class="name">${data.name || ""}</div>
 
-<div class="post">${data.post || ""}</div>
+<div class="post">🏅 ${data.post || ""}</div>
 
 <div class="mobile">📞 ${mobile}</div>
 
-<a href="tel:${mobile}">
-<button>Call</button>
+<div style="margin-top:15px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+
+<a href="tel:${mobile}" class="btn">
+📞 Call
 </a>
 
-<a href="https://wa.me/${mobile}" target="_blank">
-  <button style="background:#25D366;
-                 color:white;
-                 border:none;
-                 padding:8px 18px;
-                 border-radius:6px;
-                 margin-left:8px;">
-    WhatsApp
-  </button>
+<a href="https://wa.me/91${mobile}" target="_blank" class="btn" style="background:#25D366;">
+💬 WhatsApp
 </a>
+
+</div>
 
 </div>
 `;
