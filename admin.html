@@ -152,6 +152,15 @@ window.deleteMember = async function(id) {
 };
 
 loadMembers();
+window.deleteMember = async function(id) {
+  if (!confirm("ଏହି Member କୁ Delete କରିବେ?")) return;
+
+  await deleteDoc(doc(db, "Committee", id));
+
+  alert("Member Deleted ✅");
+  loadMembers();
+};
+
 loadMembers();
   </script>    
       
