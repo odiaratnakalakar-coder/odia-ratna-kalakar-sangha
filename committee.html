@@ -168,6 +168,46 @@ const list = document.getElementById("committeeList");
 
 const snapshot = await getDocs(collection(db,"Committee"));
 
+const members = [];
+
+snapshot.forEach((doc)=>{
+    members.push(doc.data());
+});
+
+members.sort((a,b)=>{
+    if(a.post?.toLowerCase().includes("president")) return -1;
+    if(b.post?.toLowerCase().includes("president")) return 1;
+    return 0;
+});
+
+members.forEach((data)=>{
+
+const mobile = data.mobile || "";
+
+list.innerHTML += `
+<div class="card">
+
+<img src="${data.photoUrl || 'logo.png'}"
+onerror="this.src='logo.png'">
+
+<div class="name">${data.name || ""}</div>
+
+<div class="post">🏅 ${data.post || ""}</div>
+
+<div class="mobile">📞 ${mobile}</div>
+
+<div style="margin-top:15px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+
+<a href="tel:${mobile}" class="btn">📞 Call</a>
+
+<a href="https://wa.me/91${mobile}" target="_blank" class="btn" style="background:#25D366;">💬 WhatsApp</a>
+
+</div>
+
+</div>
+`;
+});
+
 snapshot.forEach((doc)=>{
 
 const data = doc.data();
