@@ -99,7 +99,11 @@ Save Member
 
 <script type="module">
   import { db, storage } from "./firebase.js";
-
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 import {
   collection,
   addDoc,
