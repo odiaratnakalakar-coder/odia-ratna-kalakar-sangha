@@ -3,38 +3,73 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Committee Admin</title>
 
 <style>
+
 body{
-  font-family:Arial,sans-serif;
-  background:#f5f5f5;
-  margin:0;
-  padding:20px;
+    margin:0;
+    padding:20px;
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:white;
 }
+
 .container{
-  max-width:500px;
-  margin:auto;
-  background:#fff;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 2px 10px rgba(0,0,0,.2);
+    max-width:500px;
+    margin:auto;
+    background:#222;
+    padding:20px;
+    border-radius:10px;
 }
+
+h2,h3{
+    text-align:center;
+}
+
 input{
-  width:100%;
-  padding:10px;
-  margin:8px 0;
-  box-sizing:border-box;
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:none;
+    border-radius:6px;
+    box-sizing:border-box;
 }
+
 button{
-  width:100%;
-  padding:12px;
-  background:#b30000;
-  color:white;
-  border:none;
-  border-radius:5px;
-  font-size:16px;
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:6px;
+    background:#c40000;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
 }
+
+.card{
+    background:#222;
+    border:2px solid red;
+    border-radius:12px;
+    padding:15px;
+    margin-top:15px;
+    text-align:center;
+}
+
+.card img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.actionBtn{
+    width:auto;
+    padding:8px 15px;
+    margin:5px;
+}
+
 </style>
 </head>
 
@@ -48,22 +83,22 @@ button{
 
 <input id="post" placeholder="Post">
 
-<input id="mobile" placeholder="Mobile">
+<input id="mobile" placeholder="Mobile Number">
 
 <input id="photoUrl" placeholder="Photo URL">
 
-<button id="saveBtn">Save Member</button>
+<button id="saveBtn">
+Save Member
+</button>
 
 </div>
-<hr>
 
 <h3>Committee Members</h3>
 
 <div id="memberList"></div>
 
 <script type="module">
-
-import { db } from "./firebase.js";
+  import { db } from "./firebase.js";
 
 import {
   collection,
@@ -78,103 +113,114 @@ const saveBtn = document.getElementById("saveBtn");
 const memberList = document.getElementById("memberList");
 
 async function loadMembers() {
+
   memberList.innerHTML = "";
 
-  const snapshot = await getDocs(collection(db, "Committee"));
+  const snapshot = await getDocs(collection(db,"Committee"));
 
-  snapshot.forEach((member) => {
+  snapshot.forEach((member)=>{
+
     const data = member.data();
 
     memberList.innerHTML += `
-      <div style="background:#fff;padding:10px;margin:10px 0;border-radius:8px;color:#000;">
-        <b>${data.name}</b><br>
-        ${data.post}<br>
-        📞 ${data.mobile}<br><br>
+    <div class="card">
 
-  <button onclick="editMember('${member.id}')">✏ Edit</button>
-<button onclick="deleteMember('${member.id}')">🗑 Delete</button>      
-        
-      </div>
+      <img src="${data.photoUrl || 'logo.png'}">
+
+      <h2>${data.name}</h2>
+
+      <p>${data.post}</p>
+
+      <p>📞 ${data.mobile}</p>
+
+      <button class="actionBtn"
+      onclick="editMember('${member.id}')">
+      ✏ Edit
+      </button>
+
+      <button class="actionBtn"
+      onclick="deleteMember('${member.id}')">
+      🗑 Delete
+      </button>
+
+    </div>
     `;
+
   });
+
 }
-saveBtn.addEventListener("click", async () => { alert("Save button clicked");
-  const name = document.getElementById("name").value.trim();
-  const post = document.getElementById("post").value.trim();
-  const mobile = document.getElementById("mobile").value.trim();
-  const photoUrl = document.getElementById("photoUrl").value.trim();
 
-  if (!name || !post || !mobile) {
-    alert("ସମସ୍ତ ତଥ୍ୟ ଭରନ୍ତୁ");
-    return;
-  }
+saveBtn.addEventListener("click",async()=>{
 
-  try {
-  await addDoc(collection(db, "Committee"), {
-    name,
-    post,
-    mobile,
-    photoUrl
-  });
+const name=document.getElementById("name").value.trim();
+const post=document.getElementById("post").value.trim();
+const mobile=document.getElementById("mobile").value.trim();
+const photoUrl=document.getElementById("photoUrl").value.trim();
 
-  alert("Saved Successfully");
+if(!name || !post || !mobile){
 
-} catch (e) {
-  alert(e.message);
-  }
-    
-    
-    
-    
-  
+alert("ସମସ୍ତ ତଥ୍ୟ ଭରନ୍ତୁ");
 
-  document.getElementById("name").value = "";
-  document.getElementById("post").value = "";
-  document.getElementById("mobile").value = "";
-  document.getElementById("photoUrl").value = "";
+return;
 
-  loadMembers();
+}
+
+await addDoc(collection(db,"Committee"),{
+
+name,
+post,
+mobile,
+photoUrl
+
 });
-window.editMember = async function(id) {
 
-  const newName = prompt("New Name:");
-  const newPost = prompt("New Post:");
-  const newMobile = prompt("New Mobile:");
+alert("Member Saved Successfully");
 
-  if (!newName || !newPost || !newMobile) return;
+document.getElementById("name").value="";
+document.getElementById("post").value="";
+document.getElementById("mobile").value="";
+document.getElementById("photoUrl").value="";
 
-  await updateDoc(doc(db, "Committee", id), {
-    name: newName,
-    post: newPost,
-    mobile: newMobile
-  });
+loadMembers();
 
-  alert("Member Updated ✅");
-  loadMembers();
+});
+  window.editMember = async function(id){
+
+const newName = prompt("New Name");
+const newPost = prompt("New Post");
+const newMobile = prompt("New Mobile");
+
+if(!newName || !newPost || !newMobile) return;
+
+await updateDoc(doc(db,"Committee",id),{
+
+name:newName,
+post:newPost,
+mobile:newMobile
+
+});
+
+alert("Member Updated Successfully");
+
+loadMembers();
+
 }
-  
 
-window.deleteMember = async function(id) {
-  if (!confirm("ଏହି Member କୁ Delete କରିବେ?")) return;
+window.deleteMember = async function(id){
 
-  await deleteDoc(doc(db, "Committee", id));
+if(!confirm("ଏହି Member କୁ Delete କରିବେ ?")) return;
 
-  alert("Member Deleted ✅");
-  loadMembers();
-};
+await deleteDoc(doc(db,"Committee",id));
+
+alert("Member Deleted Successfully");
 
 loadMembers();
-window.deleteMember = async function(id) {
-  if (!confirm("ଏହି Member କୁ Delete କରିବେ?")) return;
 
-  await deleteDoc(doc(db, "Committee", id));
-
-  alert("Member Deleted ✅");
-  loadMembers();
-};
+}
 
 loadMembers();
-  </script>    
-      
-    
-  
+
+</script>
+
+</body>
+</html>
