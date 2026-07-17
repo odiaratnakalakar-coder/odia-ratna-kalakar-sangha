@@ -3,160 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Committee Members</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-    font-family:Arial,sans-serif;
-    background:#0f0f0f;
-    color:#fff;
+background:#111;
+color:#fff;
+font-family:Arial,sans-serif;
 }
 
 h2{
-    text-align:center;
-    color:#ffd700;
-    padding:20px;
-    font-size:28px;
+text-align:center;
+color:gold;
+padding:20px;
+}
+
+.addBtn{
+display:block;
+margin:15px auto;
+padding:12px 20px;
+background:#d40000;
+color:#fff;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
 }
 
 .container{
-    max-width:1200px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-    padding:20px;
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+padding:20px;
 }
 
 .card{
-    background:#1a1a1a;
-    border:2px solid #d40000;
-    border-radius:20px;
-    text-align:center;
-    padding:20px;
-    transition:0.3s;
-    box-shadow:0 0 15px rgba(255,0,0,.25);
-}
-
-.card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 0 25px rgba(255,0,0,.6);
+background:#222;
+border:2px solid red;
+border-radius:15px;
+padding:20px;
+text-align:center;
 }
 
 .card img{
-    width:160px;
-    height:160px;
-    border-radius:50%;
-    object-fit:cover;
-    border:5px solid gold;
-    margin-bottom:15px;
+width:150px;
+height:150px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid gold;
 }
 
 .name{
-    font-size:24px;
-    font-weight:bold;
+font-size:24px;
+font-weight:bold;
+margin-top:10px;
 }
 
 .post{
-    color:#ffd700;
-    font-size:18px;
-    margin:10px 0;
+color:gold;
+margin:10px 0;
 }
 
 .mobile{
-    margin:10px 0;
-    font-size:18px;
-}
-
-.btn{
-    display:inline-block;
-    margin:6px;
-    padding:10px 18px;
-    background:#d40000;
-    color:#fff;
-    text-decoration:none;
-    border-radius:8px;
-    font-weight:bold;
+margin:10px 0;
 }
 </style>
-
-    
-
-
-    
-    
-
-
-
-    
-    
-    
-    
-    
-
-
-
-    
-    
-    
-    
-    
-
-
-
-    
-    
-    
-    
-    
-
-
-
-    
-    
-    
-
-
-
-    
-    
-    
-
-
-    
-    
-
-
-
-    
-    
-    
-    
-    
-    
-
-
 
 </head>
 <body>
 
 <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ<br>Committee Members</h2>
 
-
-<button onclick="adminLogin()">➕ Add Committee Member</button>
+<button class="addBtn" onclick="adminLogin()">➕ Add Committee Member</button>
 
 <div class="container" id="committeeList"></div>
 
-
 <script type="module">
-
 import { db } from "./firebase.js";
 
 import {
@@ -164,20 +94,19 @@ collection,
 getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const list = document.getElementById("committeeList");
-
-const snapshot = await getDocs(collection(db,"Committee"));
+const list=document.getElementById("committeeList");
+   const snapshot = await getDocs(collection(db,"Committee"));
 
 const members = [];
 
 snapshot.forEach((doc)=>{
-    members.push(doc.data());
+members.push(doc.data());
 });
 
 members.sort((a,b)=>{
-    if(a.post?.toLowerCase().includes("president")) return -1;
-    if(b.post?.toLowerCase().includes("president")) return 1;
-    return 0;
+if((a.post||"").toLowerCase().includes("president")) return -1;
+if((b.post||"").toLowerCase().includes("president")) return 1;
+return 0;
 });
 
 members.forEach((data)=>{
@@ -198,48 +127,32 @@ onerror="this.src='logo.png'">
 
 <div style="margin-top:15px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
 
-<a href="tel:${mobile}" class="btn">📞 Call</a>
+<a href="tel:${mobile}" class="btn" style="background:#d40000;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;">📞 Call</a>
 
-<a href="https://wa.me/91${mobile}" target="_blank" class="btn" style="background:#25D366;">💬 WhatsApp</a>
+<a href="https://wa.me/91${mobile}" target="_blank" style="background:#25D366;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;">💬 WhatsApp</a>
 
 </div>
 
 </div>
 `;
 });
+    function adminLogin(){
 
+const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
 
+if(pass==="12345"){
 
+window.location.href="admin.html";
 
+}else{
 
+alert("Wrong Password!");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-window.adminLogin = function () {
-    const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
-
-    if (pass === "12345") {
-        window.location.href = "admin.html";
-    } else {
-        alert("Wrong Password!");
-    }
 }
 
+}
 
+</script>
 
-
+</body>
+</html>
