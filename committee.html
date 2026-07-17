@@ -136,7 +136,17 @@ onerror="this.src='logo.png'">
 </div>
 `;
 });
-    function adminLogin(){
+    window.adminLogin = function() {
+
+const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
+
+if(pass === "12345"){
+    window.location.href = "admin.html";
+}else{
+    alert("Wrong Password!");
+}
+
+    }
 
 const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
 
