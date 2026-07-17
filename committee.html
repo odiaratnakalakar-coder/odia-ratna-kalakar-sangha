@@ -230,7 +230,7 @@ onerror="this.src='logo.png'">
 
 
 
-function adminLogin() {
+window.adminLogin = function () {
     const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
 
     if (pass === "12345") {
@@ -239,7 +239,7 @@ function adminLogin() {
         alert("Wrong Password!");
     }
 }
-</script>
 
-</body>
-</html>
+
+
+
