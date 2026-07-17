@@ -79,7 +79,7 @@ button{
 
 <input id="title" placeholder="Photo Title">
 
-const photoUrl = document.getElementById("photoUrl").value.trim();
+<input id="photoName" placeholder="Photo Name (ଉଦାହରଣ: photo2.jpg)">
 
 <button id="saveBtn">Save Photo</button>
 
@@ -161,7 +161,12 @@ return;
 await addDoc(collection(db,"Gallery"),{
 
 title,
-photoUrl
+photoUrl: photoUrl
+
+}); 
+
+
+
 
 });
 
