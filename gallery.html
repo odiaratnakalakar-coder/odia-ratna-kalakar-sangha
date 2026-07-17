@@ -10,55 +10,38 @@ body{
     margin:0;
     padding:20px;
     background:#111;
-    color:white;
+    color:#fff;
     font-family:Arial,sans-serif;
 }
 
 h2{
     text-align:center;
-    color:#fff;
-    margin-bottom:20px;
 }
 
 #gallery{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-    gap:12px;
-    padding:10px;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:15px;
 }
-    
-    
-    
-
 
 .card{
     background:#222;
     border:2px solid red;
-    border-radius:10px;
+    border-radius:12px;
     overflow:hidden;
     text-align:center;
 }
 
 .card img{
     width:100%;
-    height:160px;
+    height:180px;
     object-fit:cover;
     cursor:pointer;
-    transition:0.3s;
 }
-
-.card img:hover{
-    transform:scale(1.05);
-}
-    
-    
-    
-    
-
 
 .card h3{
-    padding:10px;
     margin:0;
+    padding:10px;
 }
 
 #preview{
@@ -68,7 +51,7 @@ h2{
     left:0;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.9);
+    background:rgba(0,0,0,.9);
     justify-content:center;
     align-items:center;
 }
@@ -78,7 +61,6 @@ h2{
     max-height:95%;
 }
 </style>
-
 </head>
 
 <body>
@@ -87,70 +69,53 @@ h2{
 
 <div id="gallery"></div>
 
-<div id="preview" onclick="this.style.display='none'">
-    <img id="previewImg">
+<div id="preview">
+<img id="previewImg">
 </div>
 
-<script type="module">
-  import { db } from "./firebase.js";
+<script>
+    const gallery = document.getElementById("gallery");
 
-import {
-collection,
-getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const photos = [
+"photo1.jpg",
+"photo2.jpg",
+"photo3.jpg",
+"photo4.jpg",
+"photo5.jpg",
+"photo6.jpg",
+"photo7.jpg",
+"photo8.jpg",
+"photo9.jpg",
+"photo10.jpg"
+];
 
-const gallery = document.getElementById("gallery");
-
-async function loadGallery(){
-
-gallery.innerHTML = "";
-
-const snapshot = await getDocs(collection(db,"Gallery"));
-
-snapshot.forEach((photo)=>{
-
-const data = photo.data();
+photos.forEach((file,index)=>{
 
 gallery.innerHTML += `
-
 <div class="card">
+<img src="images/${file}"
+onerror="this.parentElement.style.display='none'"
+onclick="showImage('images/${file}')">
 
-<img src="${data.photoUrl}"
-onerror="this.src='logo.png'"
-onclick="showImage('${data.photoUrl}')">
-
-<h3>${data.title}</h3>
-
+<h3>Photo ${index+1}</h3>
 </div>
-
 `;
 
 });
 
-}
+window.showImage=function(url){
 
-window.showImage = function(url){
-
-const preview = document.getElementById("preview");
-const img = document.getElementById("previewImg");
-
-img.src = url;
-preview.style.display = "flex";
+document.getElementById("preview").style.display="flex";
+document.getElementById("previewImg").src=url;
 
 }
 
-document.getElementById("preview").addEventListener("click", function(){
+document.getElementById("preview").onclick=function(){
 
-this.style.display = "none";
-
-});
-
-
-
-
-  loadGallery();
-
+this.style.display="none";
 </script>
 
 </body>
 </html>
+}
+    
