@@ -144,13 +144,19 @@ const photoName = document.getElementById("photoName").value.trim();
 const photoUrl =
 "https://odiaratnakalakar-coder.github.io/odia-ratna-kalakar-sangha/images/" + photoName;
 
-if(!title || !photoUrl){
+if(!title || !photoName){
 
 alert("ସମସ୍ତ ତଥ୍ୟ ଭରନ୍ତୁ");
 
 return;
 
 }
+
+
+
+
+
+
 
 await addDoc(collection(db,"Gallery"),{
 
