@@ -116,11 +116,23 @@ onclick="showImage('${data.photoUrl}')">
 
 window.showImage = function(url){
 
-document.getElementById("preview").style.display = "flex";
+const preview = document.getElementById("preview");
+const img = document.getElementById("previewImg");
 
-document.getElementById("previewImg").src = url;
+img.src = url;
+preview.style.display = "flex";
 
 }
+
+document.getElementById("preview").addEventListener("click", function(){
+
+this.style.display = "none";
+
+});
+
+
+
+
   loadGallery();
 
 </script>
