@@ -75,9 +75,19 @@ margin:10px 0;
 .mobile{
 margin:10px 0;
 }
-</style>
 
+.btn{
+display:inline-block;
+padding:10px 18px;
+border-radius:8px;
+text-decoration:none;
+color:#fff;
+margin:5px;
+font-weight:bold;
+}
+   </style>
 </head>
+
 <body>
 
 <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ<br>Committee Members</h2>
@@ -87,6 +97,7 @@ margin:10px 0;
 <div class="container" id="committeeList"></div>
 
 <script type="module">
+
 import { db } from "./firebase.js";
 
 import {
@@ -94,8 +105,9 @@ collection,
 getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const list=document.getElementById("committeeList");
-   const snapshot = await getDocs(collection(db,"Committee"));
+const list = document.getElementById("committeeList");
+
+const snapshot = await getDocs(collection(db,"Committee"));
 
 const members = [];
 
@@ -125,18 +137,14 @@ onerror="this.src='logo.png'">
 
 <div class="mobile">📞 ${mobile}</div>
 
-<div style="margin-top:15px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
+<a href="tel:${mobile}" class="btn" style="background:#d40000;">📞 Call</a>
 
-<a href="tel:${mobile}" class="btn" style="background:#d40000;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;">📞 Call</a>
-
-<a href="https://wa.me/91${mobile}" target="_blank" style="background:#25D366;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;">💬 WhatsApp</a>
-
-</div>
+<a href="https://wa.me/91${mobile}" target="_blank" class="btn" style="background:#25D366;">💬 WhatsApp</a>
 
 </div>
 `;
 });
-    window.adminLogin = function() {
+   window.adminLogin = function(){
 
 const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
 
@@ -144,30 +152,6 @@ if(pass === "12345"){
     window.location.href = "admin.html";
 }else{
     alert("Wrong Password!");
-}
-
-    }
-
-
-
-
-    
-
-    
-
-
-    
-
-const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
-
-if(pass==="12345"){
-
-window.location.href="admin.html";
-
-}else{
-
-alert("Wrong Password!");
-
 }
 
 }
