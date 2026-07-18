@@ -231,9 +231,17 @@ loadMembers();
 }
 
 loadMembers();
-window.verifyPayment = async function(id) {
-  alert("Payment Verified Successfully");
+window.verifyPayment = async function(id){
+
+  await updateDoc(doc(db,"members",id),{
+    verified:true
+  });
+
+  alert("✅ Payment Verified Successfully");
+
     }
+  
+    
 </script>
 
 </body>
