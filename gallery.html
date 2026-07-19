@@ -3,69 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gallery</title>
+<title>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ - Gallery</title>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
 body{
-    margin:0;
-    padding:20px;
-    background:#111;
-    color:#fff;
-    font-family:Arial,sans-serif;
+background:#111;
+color:#fff;
+padding:15px;
 }
 
 h2{
-    text-align:center;
+text-align:center;
+margin-bottom:20px;
+color:#ffcc00;
 }
 
 #gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-    gap:15px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+gap:15px;
 }
 
 .card{
-    background:#222;
-    border:2px solid red;
-    border-radius:12px;
-    overflow:hidden;
-    text-align:center;
+background:#222;
+border:2px solid #c40000;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 0 8px rgba(255,0,0,.3);
 }
 
-.card img{
-    width:100%;
-    height:180px;
-    object-fit:cover;
-    cursor:pointer;
+.card img,
+.card video{
+width:100%;
+height:200px;
+object-fit:cover;
+display:block;
 }
 
 .card h3{
-    margin:0;
-    padding:10px;
+padding:10px;
+font-size:16px;
+text-align:center;
 }
 
 #preview{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,.9);
-    justify-content:center;
-    align-items:center;
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+justify-content:center;
+align-items:center;
+z-index:999;
 }
 
 #preview img{
-    max-width:95%;
-    max-height:95%;
+max-width:95%;
+max-height:95%;
+border-radius:10px;
 }
+
 </style>
+
 </head>
 
 <body>
 
-<h2>📷 Gallery</h2>
+<h2>📷 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Gallery</h2>
 
 <div id="gallery"></div>
 
@@ -73,118 +87,74 @@ h2{
 <img id="previewImg">
 </div>
 
-<script type="module">
+<script>
+    const gallery = document.getElementById("gallery");
 
-import { db } from "./firebase.js";
+const media = [
 
-import {
-collection,
-getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+{type:"image",file:"photo1.jpg",title:"ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"},
+{type:"image",file:"photo2.jpg",title:"ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"},
+{type:"image",file:"photo3.jpg",title:"ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"},
 
-const gallery = document.getElementById("gallery");
+{type:"video",file:"video1.mp4",title:"ସାଂସ୍କୃତିକ କାର୍ଯ୍ୟକ୍ରମ"}
 
-async function loadGallery(){
+];
 
-gallery.innerHTML = "";
+media.forEach(item=>{
 
-const snapshot = await getDocs(collection(db,"Gallery"));
+if(item.type==="image"){
 
-snapshot.forEach((photo)=>{
+gallery.innerHTML+=`
 
-const data = photo.data();
-
-if(data.youtubeUrl){
-
-const videoId = data.youtubeUrl.split("v=")[1]?.split("&")[0]
-|| data.youtubeUrl.split("youtu.be/")[1]?.split("?")[0];
-
-gallery.innerHTML += `
 <div class="card">
-<iframe
-width="100%"
-height="180"
-src="https://www.youtube.com/embed/${videoId}"
-frameborder="0"
-allowfullscreen>
-</iframe>
-<h3>${data.title || "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"}</h3>
+
+<img
+src="images/${item.file}"
+onclick="showImage('images/${item.file}')">
+
+<h3>${item.title}</h3>
+
 </div>
+
 `;
 
 }else{
 
-gallery.innerHTML += `
+gallery.innerHTML+=`
+
 <div class="card">
-<img src="${data.photoUrl}"
-onclick="showImage('${data.photoUrl}')">
-<h3>${data.title || "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"}</h3>
+
+<video controls>
+
+<source
+src="images/${item.file}"
+type="video/mp4">
+
+</video>
+
+<h3>${item.title}</h3>
+
 </div>
+
 `;
 
 }
 
 });
 
-}
-
 window.showImage=function(url){
+
 document.getElementById("preview").style.display="flex";
 document.getElementById("previewImg").src=url;
+
 }
 
 document.getElementById("preview").onclick=function(){
+
 this.style.display="none";
-}
 
-loadGallery();
-
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
+ }
+    </script>
 
 </body>
 </html>
-    
