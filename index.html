@@ -86,8 +86,51 @@ function openCommittee() {
 
 <section class="notice">
 <h3>📢 Notice Board</h3>
-<marquee>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତକୁ ସ୍ୱାଗତ।</marquee>
-</section>
 
+<marquee id="noticeBoard">
+Loading Latest News...
+</marquee>
+
+</section>
+<script type="module">
+import { db } from "./firebase.js";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  limit
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const notice = document.getElementById("noticeBoard");
+
+async function loadLatestNews() {
+  try {
+    const q = query(
+      collection(db, "news"),
+      orderBy("createdAt", "desc"),
+      limit(1)
+    );
+
+    const snapshot = await getDocs(q);
+
+    if (snapshot.empty) {
+      notice.textContent = "📢 କୌଣସି News ନାହିଁ";
+      return;
+    }
+
+    snapshot.forEach(doc => {
+      const news = doc.data();
+      notice.textContent = `${news.title} - ${news.details}`;
+    });
+
+  } catch (e) {
+    notice.textContent = "News Load Error";
+    console.error(e);
+  }
+}
+
+loadLatestNews();
+</script>
 </body>
 </html>
