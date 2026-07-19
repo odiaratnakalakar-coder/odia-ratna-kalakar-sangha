@@ -81,7 +81,11 @@ button{
 <input id="title" placeholder="Photo Title">
 
 <input id="photoName" placeholder="Photo Name (ଉଦାହରଣ: photo2.jpg)">
+<input id="photoName" placeholder="Photo Name (ଉଦାହରଣ: photo2.jpg)">
 
+<input id="youtubeUrl" placeholder="YouTube Video Link (Optional)">
+
+<button id="saveBtn">Save Photo</button>
 <button id="saveBtn">Save Photo</button>
 
 </div>
@@ -155,9 +159,15 @@ return;
 await addDoc(collection(db,"Gallery"),{
 
 title: title,
-photoUrl: photoUrl
+photoUrl: photoUrl,
+youtubeUrl: document.getElementById("youtubeUrl").value.trim()
 
 });
+
+
+
+
+
 
 alert("Photo Saved Successfully");
 
