@@ -215,17 +215,24 @@ loadMembers();
 
 window.deleteMember = async function(id){
 
+const password = prompt("🔒 Delete Password ଦିଅନ୍ତୁ");
+
+if(password !== "2026@"){
+    alert("❌ ଭୁଲ Password");
+    return;
+}
+
 if(!confirm("ଏହି Member କୁ Delete କରିବେ ?")) return;
 
 await deleteDoc(doc(db,"Committee",id));
 
-alert("Member Deleted Successfully");
+alert("✅ Member Deleted Successfully");
 
 loadMembers();
 
-}
+                         }
 
-loadMembers();
+
 
 
   
