@@ -7,133 +7,178 @@
 
 <style>
 body{
-    margin:0;
-    padding:20px;
-    font-family:Arial,sans-serif;
-    background:#111;
-    color:white;
+margin:0;
+padding:20px;
+background:#111;
+color:#fff;
+font-family:Arial,sans-serif;
 }
 
 .container{
-    max-width:500px;
-    margin:auto;
-    background:#222;
-    padding:20px;
-    border-radius:10px;
+max-width:500px;
+margin:auto;
+background:#222;
+padding:20px;
+border-radius:12px;
 }
 
 h2,h3{
-    text-align:center;
+text-align:center;
 }
 
 input{
-    width:100%;
-    padding:12px;
-    margin:8px 0;
-    border:none;
-    border-radius:6px;
-    box-sizing:border-box;
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:8px;
+box-sizing:border-box;
 }
 
 button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:6px;
-    background:#c40000;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
+width:100%;
+padding:12px;
+background:red;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
 }
 
 .gallery-card{
-    background:#222;
-    border:2px solid red;
-    border-radius:12px;
-    padding:15px;
-    margin-top:15px;
-    text-align:center;
+background:#222;
+border:2px solid red;
+border-radius:12px;
+padding:10px;
+margin-top:15px;
+text-align:center;
 }
 
 .gallery-card img{
-    width:100%;
-    max-height:220px;
-    object-fit:cover;
-    border-radius:10px;
+width:100%;
+height:200px;
+object-fit:cover;
+border-radius:10px;
 }
 
-.actionBtn{
-    width:auto;
-    padding:8px 15px;
-    margin-top:10px;
+.deleteBtn{
+background:#b00000;
+margin-top:10px;
 }
-
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-<h2>Gallery Admin Panel</h2>
+<h2>📷 Gallery Admin</h2>
 
 <input id="title" placeholder="Photo Title">
 
-<input id="photoName" placeholder="Photo Name (ଉଦାହରଣ: photo2.jpg)">
-<input id="photoName" placeholder="Photo Name (ଉଦାହରଣ: photo2.jpg)">
+<input id="photoName" placeholder="GitHub Photo Name (ଉଦାହରଣ: photo5.jpg)">
 
-<input id="youtubeUrl" placeholder="YouTube Video Link (Optional)">
+<input id="youtubeUrl" placeholder="YouTube Link (Optional)">
 
-<button id="saveBtn">Save Photo</button>
-<button id="saveBtn">Save Photo</button>
+<button id="saveBtn">
+Save
+</button>
 
 </div>
 
-<h3>Gallery Photos</h3>
+<h3>Gallery List</h3>
 
 <div id="galleryList"></div>
 
-<script>
+<script type="module">
+    import { db } from "./firebase.js";
 
-const gallery = document.getElementById("gallery");
+import {
+collection,
+addDoc,
+getDocs,
+deleteDoc,
+doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const photos = [
-"photo1.jpg",
-"photo2.jpg",
-"photo4.jpg"
-];
+const saveBtn = document.getElementById("saveBtn");
+const galleryList = document.getElementById("galleryList");
 
-photos.forEach((file,index)=>{
+async function loadGallery(){
 
-gallery.innerHTML += `
-<div class="card">
+galleryList.innerHTML = "";
 
-<img src="images/${file}"
-onclick="showImage('images/${file}')">
+const snapshot = await getDocs(collection(db,"Gallery"));
 
-<h3>Photo ${index+1}</h3>
+snapshot.forEach((photo)=>{
+
+const data = photo.data();
+
+galleryList.innerHTML += `
+<div class="gallery-card">
+
+<img src="${data.photoUrl}" onerror="this.src='logo.png'">
+
+<h3>${data.title || "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"}</h3>
+
+<button class="deleteBtn"
+onclick="deletePhoto('${photo.id}')">
+🗑 Delete
+</button>
 
 </div>
 `;
 
 });
 
-window.showImage=function(url){
+}
+    saveBtn.onclick = async () => {
 
-document.getElementById("preview").style.display="flex";
+const title = document.getElementById("title").value.trim();
+const photoName = document.getElementById("photoName").value.trim();
+const youtubeUrl = document.getElementById("youtubeUrl").value.trim();
 
-document.getElementById("previewImg").src=url;
-
+if (!title) {
+    alert("Title ଲେଖନ୍ତୁ");
+    return;
 }
 
-document.getElementById("preview").onclick=function(){
+let photoUrl = "";
 
-this.style.display="none";
-
+if (photoName) {
+    photoUrl = `https://odiaratnakalakar-coder.github.io/odia-ratna-kalakar-sangha/images/${photoName}`;
 }
+
+await addDoc(collection(db, "Gallery"), {
+    title,
+    photoUrl,
+    youtubeUrl
+});
+
+alert("Gallery Photo Saved Successfully");
+
+document.getElementById("title").value = "";
+document.getElementById("photoName").value = "";
+document.getElementById("youtubeUrl").value = "";
+
+loadGallery();
+
+};
+
+window.deletePhoto = async (id) => {
+
+if (!confirm("Delete କରିବେ?")) return;
+
+await deleteDoc(doc(db, "Gallery", id));
+
+loadGallery();
+
+};
+
+loadGallery();
 
 </script>
 
-
-
+</body>
+</html>
