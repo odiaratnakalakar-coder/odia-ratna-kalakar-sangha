@@ -94,105 +94,46 @@ button{
 
 <div id="galleryList"></div>
 
-<script type="module">
+<script>
 
-import { db } from "./firebase.js";
+const gallery = document.getElementById("gallery");
 
-import {
-collection,
-addDoc,
-getDocs,
-deleteDoc,
-doc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const photos = [
+"photo1.jpg",
+"photo2.jpg",
+"photo4.jpg"
+];
 
-const saveBtn = document.getElementById("saveBtn");
-const galleryList = document.getElementById("galleryList");
-    async function loadGallery(){
+photos.forEach((file,index)=>{
 
-galleryList.innerHTML = "";
+gallery.innerHTML += `
+<div class="card">
 
-const snapshot = await getDocs(collection(db,"Gallery"));
+<img src="images/${file}"
+onclick="showImage('images/${file}')">
 
-snapshot.forEach((photo)=>{
-
-const data = photo.data();
-
-galleryList.innerHTML += `
-
-<div class="gallery-card">
-
-<img src="${data.photoUrl}" onerror="this.src='logo.png'">
-
-<h3>${data.title}</h3>
-
-<button class="actionBtn"
-onclick="deletePhoto('${photo.id}')">
-🗑 Delete
-</button>
+<h3>Photo ${index+1}</h3>
 
 </div>
-
 `;
 
 });
 
-}
+window.showImage=function(url){
 
-saveBtn.addEventListener("click", async()=>{
+document.getElementById("preview").style.display="flex";
 
-const title = document.getElementById("title").value.trim();
-
-const photoName = document.getElementById("photoName").value.trim();
-
-const photoUrl =
-"https://odiaratnakalakar-coder.github.io/odia-ratna-kalakar-sangha/images/" + photoName;
-
-if(!title || !photoName){
-
-alert("ସମସ୍ତ ତଥ୍ୟ ଭରନ୍ତୁ");
-
-return;
+document.getElementById("previewImg").src=url;
 
 }
 
-await addDoc(collection(db,"Gallery"),{
+document.getElementById("preview").onclick=function(){
 
-title: title,
-photoUrl: photoUrl,
-youtubeUrl: document.getElementById("youtubeUrl").value.trim()
-
-});
-
-
-
-
-
-
-alert("Photo Saved Successfully");
-
-document.getElementById("title").value = "";
-
-document.getElementById("photoName").value = "";
-
-loadGallery();
-
-});
-    window.deletePhoto = async function(id){
-
-if(!confirm("ଏହି ଫଟୋକୁ Delete କରିବେ?")) return;
-
-await deleteDoc(doc(db,"Gallery",id));
-
-alert("Photo Deleted Successfully");
-
-loadGallery();
+this.style.display="none";
 
 }
-
-loadGallery();
 
 </script>
 
-</body>
-</html>
+
+
