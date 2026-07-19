@@ -104,7 +104,21 @@ onclick="showImage('images/${file}')">
 `;
 
 });
-videos.forEach((file,index)=>{
+gallery.innerHTML += `
+<div class="card">
+<iframe
+width="100%"
+height="180"
+src="https://www.youtube.com/embed/7leDC8-J5d4"
+title="YouTube video"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+allowfullscreen>
+</iframe>
+
+<h3>🎥 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h3>
+</div>
+`;
 
 gallery.innerHTML += `
 <div class="card">
