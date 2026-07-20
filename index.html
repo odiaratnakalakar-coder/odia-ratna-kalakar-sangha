@@ -139,7 +139,19 @@ async function loadLatestNews() {
 
 
 loadLatestNews();
-</script>
+Notification.requestPermission().then(async (permission) => {
+  if (permission === "granted") {
+    try {
+      const token = await getToken(messaging, {
+        vapidKey: "BO9LvllkXOapG6zFnYv5ZnAgCJzMaFUX50eKNTPYBTSQbjhBAaraDONwlGExL52qYq_yoV06uFTSSXkeHvxzHQc"
+      });
+
+      console.log("FCM Token:", token);
+    } catch (err) {
+      console.error("Token Error:", err);
+    }
+  }
+});</script>
 
 <script>
 if ("serviceWorker" in navigator) {
