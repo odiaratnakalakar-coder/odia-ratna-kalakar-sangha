@@ -197,3 +197,161 @@ window.deleteNews = async function(id){
 }
 
 loadNews();
+import { db } from "./firebase.js";
+
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const title = document.getElementById("title");
+const date = document.getElementById("date");
+const image = document.getElementById("image");
+const details = document.getElementById("details");
+const newsList = document.getElementById("newsList");
+
+let editId = null;
+
+document.getElementById("saveBtn").addEventListener("click", async () => {
+
+  if (!title.value || !details.value) {
+    alert("ଦୟାକରି Title ଓ Details ଲେଖନ୍ତୁ");
+    return;
+  }
+
+  try {
+
+    if (editId) {
+
+      await updateDoc(doc(db, "news", editId), {
+        title: title.value,
+        date: date.value,
+        image: image.value,
+        details: details.value
+      });
+
+      alert("✅ News Updated");
+
+      editId = null;
+      document.getElementById("saveBtn").innerHTML = "➕ Add News";
+
+    } else {
+
+      await addDoc(collection(db, "news"), {
+        title: title.value,
+        date: date.value,
+        image: image.value,
+        details: details.value,
+        createdAt: serverTimestamp()
+      });
+
+      alert("✅ News Added");
+
+    }
+
+    title.value = "";
+    date.value = "";
+    image.value = "";
+    details.value = "";
+
+    loadNews();
+
+  } catch (e) {
+
+    alert(e.message);
+
+  }
+
+});
+async function loadNews() {
+
+  newsList.innerHTML = "";
+
+  const snapshot = await getDocs(collection(db, "news"));
+
+  snapshot.forEach((d) => {
+
+    const news = d.data();
+
+    newsList.innerHTML += `
+      <div class="news-item">
+
+        <h3>${news.title}</h3>
+
+        <p><b>${news.date || ""}</b></p>
+
+        ${
+          news.image
+            ? `<img src="${news.image}" alt="News Image">`
+            : ""
+        }
+
+        <p>${news.details}</p>
+
+        <button class="action-btn editBtn"
+        onclick="editNews('${d.id}',
+        ${JSON.stringify(news.title)},
+        ${JSON.stringify(news.date || "")},
+        ${JSON.stringify(news.image || "")},
+        ${JSON.stringify(news.details)})">
+        ✏️ Edit
+        </button>
+
+        <button class="action-btn deleteBtn"
+        onclick="deleteNews('${d.id}')">
+        🗑️ Delete
+        </button>
+
+      </div>
+    `;
+
+  });
+
+}
+
+window.editNews = function(id, t, dt, img, det){
+
+  editId = id;
+
+  title.value = t;
+  date.value = dt;
+  image.value = img;
+  details.value = det;
+
+  document.getElementById("saveBtn").innerHTML =
+  "💾 Update News";
+
+}
+
+window.deleteNews = async function(id){
+
+  const password = prompt("🔒 Password ଦିଅନ୍ତୁ");
+
+  if(password !== "2026@"){
+    alert("❌ ଭୁଲ Password");
+    return;
+  }
+
+  if(!confirm("ଏହି News Delete କରିବେ?"))
+    return;
+
+  await deleteDoc(doc(db,"news",id));
+
+  alert("✅ News Deleted");
+
+  loadNews();
+
+}
+loadNews();
+
+</script>
+
+</div>
+
+</body>
+</html>
