@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>News Admin Panel</title>
 
 <style>
-
 body{
     margin:0;
     padding:20px;
@@ -82,18 +80,14 @@ button:hover{
 
 .editBtn{
     background:#0066cc;
-    margin-top:10px;
 }
 
 .deleteBtn{
     background:#cc0000;
-    margin-top:10px;
 }
-
 </style>
 
 </head>
-
 <body>
 
 <div class="container">
@@ -108,14 +102,12 @@ button:hover{
 
 <textarea id="details" placeholder="News Details"></textarea>
 
-<button id="saveBtn">
-➕ Add News
-</button>
+<button id="saveBtn">➕ Add News</button>
 
 <div id="newsList"></div>
 
 <script type="module">
-  import { db } from "./firebase.js";
+    import { db } from "./firebase.js";
 
 import {
   collection,
@@ -137,52 +129,51 @@ const newsList = document.getElementById("newsList");
 const saveBtn = document.getElementById("saveBtn");
 
 let editId = null;
+    saveBtn.addEventListener("click", async () => {
 
-saveBtn.addEventListener("click", async () => {
-
-  if(title.value.trim()==="" || details.value.trim()===""){
+  if (title.value.trim() === "" || details.value.trim() === "") {
     alert("ଦୟାକରି Title ଓ Details ଲେଖନ୍ତୁ");
     return;
   }
 
-  try{
+  try {
 
-    if(editId){
+    if (editId) {
 
-      await updateDoc(doc(db,"news",editId),{
-        title:title.value,
-        date:date.value,
-        image:image.value,
-        details:details.value
+      await updateDoc(doc(db, "news", editId), {
+        title: title.value,
+        date: date.value,
+        image: image.value,
+        details: details.value
       });
 
       alert("✅ News Updated");
 
-      editId=null;
-      saveBtn.innerHTML="➕ Add News";
+      editId = null;
+      saveBtn.innerHTML = "➕ Add News";
 
-    }else{
+    } else {
 
-      await addDoc(collection(db,"news"),{
-        title:title.value,
-        date:date.value,
-        image:image.value,
-        details:details.value,
-        createdAt:serverTimestamp()
+      await addDoc(collection(db, "news"), {
+        title: title.value,
+        date: date.value,
+        image: image.value,
+        details: details.value,
+        createdAt: serverTimestamp()
       });
 
       alert("✅ News Added");
 
     }
 
-    title.value="";
-    date.value="";
-    image.value="";
-    details.value="";
+    title.value = "";
+    date.value = "";
+    image.value = "";
+    details.value = "";
 
     loadNews();
 
-  }catch(err){
+  } catch (err) {
 
     alert(err.message);
 
@@ -193,11 +184,10 @@ saveBtn.addEventListener("click", async () => {
 
   newsList.innerHTML = "";
 
-  const q = query(collection(db,"news"), orderBy("createdAt","desc"));
-
+  const q = query(collection(db, "news"), orderBy("createdAt", "desc"));
   const snapshot = await getDocs(q);
 
-  snapshot.forEach((d)=>{
+  snapshot.forEach((d) => {
 
     const news = d.data();
 
@@ -213,12 +203,10 @@ saveBtn.addEventListener("click", async () => {
       <p>${news.details}</p>
 
       <button class="editBtn">✏️ Edit</button>
-
       <button class="deleteBtn">🗑️ Delete</button>
     `;
 
-    // Edit Button
-    card.querySelector(".editBtn").onclick = ()=>{
+    card.querySelector(".editBtn").onclick = () => {
 
       editId = d.id;
 
@@ -230,25 +218,24 @@ saveBtn.addEventListener("click", async () => {
       saveBtn.innerHTML = "💾 Update News";
 
       window.scrollTo({
-        top:0,
-        behavior:"smooth"
+        top: 0,
+        behavior: "smooth"
       });
 
     };
 
-    // Delete Button
-    card.querySelector(".deleteBtn").onclick = async ()=>{
+    card.querySelector(".deleteBtn").onclick = async () => {
 
       const password = prompt("🔒 Password ଦିଅନ୍ତୁ");
 
-      if(password !== "2026@"){
+      if (password !== "2026@") {
         alert("❌ ଭୁଲ Password");
         return;
       }
 
-      if(!confirm("News Delete କରିବେ?")) return;
+      if (!confirm("News Delete କରିବେ?")) return;
 
-      await deleteDoc(doc(db,"news",d.id));
+      await deleteDoc(doc(db, "news", d.id));
 
       alert("✅ News Deleted");
 
@@ -260,80 +247,8 @@ saveBtn.addEventListener("click", async () => {
 
   });
 
-  }
-  async function loadNews() {
+}
 
-  newsList.innerHTML = "";
-
-  const q = query(collection(db,"news"), orderBy("createdAt","desc"));
-
-  const snapshot = await getDocs(q);
-
-  snapshot.forEach((d)=>{
-
-    const news = d.data();
-
-    const card = document.createElement("div");
-    card.className = "news-item";
-
-    card.innerHTML = `
-      <h3>${news.title}</h3>
-      <p><b>${news.date || ""}</b></p>
-
-      ${news.image ? `<img src="${news.image}" alt="News">` : ""}
-
-      <p>${news.details}</p>
-
-      <button class="editBtn">✏️ Edit</button>
-
-      <button class="deleteBtn">🗑️ Delete</button>
-    `;
-
-    // Edit Button
-    card.querySelector(".editBtn").onclick = ()=>{
-
-      editId = d.id;
-
-      title.value = news.title || "";
-      date.value = news.date || "";
-      image.value = news.image || "";
-      details.value = news.details || "";
-
-      saveBtn.innerHTML = "💾 Update News";
-
-      window.scrollTo({
-        top:0,
-        behavior:"smooth"
-      });
-
-    };
-
-    // Delete Button
-    card.querySelector(".deleteBtn").onclick = async ()=>{
-
-      const password = prompt("🔒 Password ଦିଅନ୍ତୁ");
-
-      if(password !== "2026@"){
-        alert("❌ ଭୁଲ Password");
-        return;
-      }
-
-      if(!confirm("News Delete କରିବେ?")) return;
-
-      await deleteDoc(doc(db,"news",d.id));
-
-      alert("✅ News Deleted");
-
-      loadNews();
-
-    };
-
-    newsList.appendChild(card);
-
-  });
-
-  }
-// ପ୍ରଥମ ଥର News ଲୋଡ୍ କରନ୍ତୁ
 loadNews();
 
 </script>
@@ -341,4 +256,4 @@ loadNews();
 </div>
 
 </body>
-</html>
+</html>  
