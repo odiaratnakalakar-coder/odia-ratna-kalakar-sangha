@@ -15,5 +15,5 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 const storage = getStorage(app);
-
-export { db, storage };
+const messaging = getMessaging(app);
+export { db, storage, messaging };
