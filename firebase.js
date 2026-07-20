@@ -1,10 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore } from "http
 
-import { getStorage } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-
-const firebaseConfig = {
+import { getMessaging } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js";
   apiKey: "AIzaSyBuVQISkaKjflN7qQNy35hW7VVWIb-AL2Y",
   authDomain: "odia-ratna-kalakar-sangha.firebaseapp.com",
   projectId: "odia-ratna-kalakar-sangha",
