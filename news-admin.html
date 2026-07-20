@@ -2,72 +2,92 @@
 <html lang="or">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>News Admin</title>
+<title>News Admin Panel</title>
 
 <style>
 
 body{
-margin:0;
-padding:20px;
-background:#f2f2f2;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:20px;
+    background:#f2f2f2;
+    font-family:Arial,sans-serif;
 }
 
 .container{
-max-width:700px;
-margin:auto;
-background:#fff;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,.2);
+    max-width:700px;
+    margin:auto;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
 }
 
 h2{
-text-align:center;
-color:#8B0000;
+    text-align:center;
+    color:#8B0000;
 }
 
-input,textarea{
-width:100%;
-padding:10px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:5px;
-box-sizing:border-box;
+input,
+textarea{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+    box-sizing:border-box;
 }
 
 textarea{
-height:120px;
-resize:vertical;
+    height:120px;
+    resize:vertical;
 }
 
 button{
-width:100%;
-padding:12px;
-background:#8B0000;
-color:#fff;
-border:none;
-border-radius:5px;
-font-size:18px;
-cursor:pointer;
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    background:#8B0000;
+    color:#fff;
+    border:none;
+    border-radius:5px;
+    font-size:18px;
+    cursor:pointer;
 }
 
 button:hover{
-background:#b30000;
+    background:#b30000;
 }
 
 #newsList{
-margin-top:30px;
+    margin-top:25px;
 }
 
 .news-item{
-background:#fafafa;
-padding:12px;
-margin-bottom:12px;
-border-left:5px solid #8B0000;
-border-radius:5px;
+    background:#fafafa;
+    border-left:5px solid #8B0000;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:6px;
+}
+
+.news-item img{
+    width:100%;
+    max-height:220px;
+    object-fit:cover;
+    border-radius:6px;
+    margin-top:10px;
+}
+
+.editBtn{
+    background:#0066cc;
+    margin-top:10px;
+}
+
+.deleteBtn{
+    background:#cc0000;
+    margin-top:10px;
 }
 
 </style>
@@ -84,7 +104,7 @@ border-radius:5px;
 
 <input type="text" id="date" placeholder="Date">
 
-<input type="text" id="image" placeholder="Image URL">
+<input type="text" id="image" placeholder="Image URL (Optional)">
 
 <textarea id="details" placeholder="News Details"></textarea>
 
@@ -94,110 +114,8 @@ border-radius:5px;
 
 <div id="newsList"></div>
 
-</div>
-  <script type="module">
-
-import { db } from "./firebase.js";
-
-import {
-  collection,
-  addDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const title = document.getElementById("title");
-const date = document.getElementById("date");
-const image = document.getElementById("image");
-const details = document.getElementById("details");
-
-document.getElementById("saveBtn").addEventListener("click", async () => {
-
-  if (!title.value || !details.value) {
-    alert("ଦୟାକରି Title ଓ Details ଲେଖନ୍ତୁ");
-    return;
-  }
-
-  try {
-
-    await addDoc(collection(db, "news"), {
-      title: title.value,
-      date: date.value,
-      image: image.value,
-      details: details.value,
-      createdAt: serverTimestamp()
-    });
-
-    alert("✅ News ସଫଳତାର ସହ Add ହୋଇଗଲା");
-
-    title.value = "";
-    date.value = "";
-    image.value = "";
-    details.value = "";
-
-  } catch (e) {
-    alert("Error : " + e.message);
-  }
-
-});
-
-</script>
-
-</body>
-</html>
-import {
-  getDocs,
-  deleteDoc,
-  doc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const newsList = document.getElementById("newsList");
-
-async function loadNews() {
-
-  newsList.innerHTML = "";
-
-  const snapshot = await getDocs(collection(db, "news"));
-
-  snapshot.forEach((d) => {
-
-    const news = d.data();
-
-    newsList.innerHTML += `
-      <div class="news-item">
-        <h3>${news.title}</h3>
-        <p>${news.date || ""}</p>
-
-        <button onclick="deleteNews('${d.id}')">
-        🗑️ Delete
-        </button>
-
-      </div>
-    `;
-  });
-
-}
-
-window.deleteNews = async function(id){
-
-  const password = prompt("🔒 Password ଦିଅନ୍ତୁ");
-
-  if(password!=="2026@"){
-    alert("❌ ଭୁଲ Password");
-    return;
-  }
-
-  if(!confirm("News Delete କରିବେ?")) return;
-
-  await deleteDoc(doc(db,"news",id));
-
-  alert("✅ News Deleted");
-
-  loadNews();
-
-}
-
-loadNews();
-import { db } from "./firebase.js";
+<script type="module">
+  import { db } from "./firebase.js";
 
 import {
   collection,
@@ -206,6 +124,8 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  query,
+  orderBy,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -214,144 +134,202 @@ const date = document.getElementById("date");
 const image = document.getElementById("image");
 const details = document.getElementById("details");
 const newsList = document.getElementById("newsList");
+const saveBtn = document.getElementById("saveBtn");
 
 let editId = null;
 
-document.getElementById("saveBtn").addEventListener("click", async () => {
+saveBtn.addEventListener("click", async () => {
 
-  if (!title.value || !details.value) {
+  if(title.value.trim()==="" || details.value.trim()===""){
     alert("ଦୟାକରି Title ଓ Details ଲେଖନ୍ତୁ");
     return;
   }
 
-  try {
+  try{
 
-    if (editId) {
+    if(editId){
 
-      await updateDoc(doc(db, "news", editId), {
-        title: title.value,
-        date: date.value,
-        image: image.value,
-        details: details.value
+      await updateDoc(doc(db,"news",editId),{
+        title:title.value,
+        date:date.value,
+        image:image.value,
+        details:details.value
       });
 
       alert("✅ News Updated");
 
-      editId = null;
-      document.getElementById("saveBtn").innerHTML = "➕ Add News";
+      editId=null;
+      saveBtn.innerHTML="➕ Add News";
 
-    } else {
+    }else{
 
-      await addDoc(collection(db, "news"), {
-        title: title.value,
-        date: date.value,
-        image: image.value,
-        details: details.value,
-        createdAt: serverTimestamp()
+      await addDoc(collection(db,"news"),{
+        title:title.value,
+        date:date.value,
+        image:image.value,
+        details:details.value,
+        createdAt:serverTimestamp()
       });
 
       alert("✅ News Added");
 
     }
 
-    title.value = "";
-    date.value = "";
-    image.value = "";
-    details.value = "";
+    title.value="";
+    date.value="";
+    image.value="";
+    details.value="";
 
     loadNews();
 
-  } catch (e) {
+  }catch(err){
 
-    alert(e.message);
+    alert(err.message);
 
   }
 
 });
-async function loadNews() {
+  async function loadNews() {
 
   newsList.innerHTML = "";
 
-  const snapshot = await getDocs(collection(db, "news"));
+  const q = query(collection(db,"news"), orderBy("createdAt","desc"));
 
-  snapshot.forEach((d) => {
+  const snapshot = await getDocs(q);
+
+  snapshot.forEach((d)=>{
 
     const news = d.data();
 
-    newsList.innerHTML += `
-      <div class="news-item">
+    const card = document.createElement("div");
+    card.className = "news-item";
 
-        <h3>${news.title}</h3>
+    card.innerHTML = `
+      <h3>${news.title}</h3>
+      <p><b>${news.date || ""}</b></p>
 
-        <p><b>${news.date || ""}</b></p>
+      ${news.image ? `<img src="${news.image}" alt="News">` : ""}
 
-        ${
-          news.image
-            ? `<img src="${news.image}" alt="News Image">`
-            : ""
-        }
+      <p>${news.details}</p>
 
-        <p>${news.details}</p>
+      <button class="editBtn">✏️ Edit</button>
 
-        <button class="action-btn editBtn"
-        onclick="editNews('${d.id}',
-        ${JSON.stringify(news.title)},
-        ${JSON.stringify(news.date || "")},
-        ${JSON.stringify(news.image || "")},
-        ${JSON.stringify(news.details)})">
-        ✏️ Edit
-        </button>
-
-        <button class="action-btn deleteBtn"
-        onclick="deleteNews('${d.id}')">
-        🗑️ Delete
-        </button>
-
-      </div>
+      <button class="deleteBtn">🗑️ Delete</button>
     `;
+
+    // Edit Button
+    card.querySelector(".editBtn").onclick = ()=>{
+
+      editId = d.id;
+
+      title.value = news.title || "";
+      date.value = news.date || "";
+      image.value = news.image || "";
+      details.value = news.details || "";
+
+      saveBtn.innerHTML = "💾 Update News";
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+
+    };
+
+    // Delete Button
+    card.querySelector(".deleteBtn").onclick = async ()=>{
+
+      const password = prompt("🔒 Password ଦିଅନ୍ତୁ");
+
+      if(password !== "2026@"){
+        alert("❌ ଭୁଲ Password");
+        return;
+      }
+
+      if(!confirm("News Delete କରିବେ?")) return;
+
+      await deleteDoc(doc(db,"news",d.id));
+
+      alert("✅ News Deleted");
+
+      loadNews();
+
+    };
+
+    newsList.appendChild(card);
 
   });
 
-}
-
-window.editNews = function(id, t, dt, img, det){
-
-  editId = id;
-
-  title.value = t;
-  date.value = dt;
-  image.value = img;
-  details.value = det;
-
-  document.getElementById("saveBtn").innerHTML =
-  "💾 Update News";
-
-}
-
-window.deleteNews = async function(id){
-
-  const password = prompt("🔒 Password ଦିଅନ୍ତୁ");
-
-  if(password !== "2026@"){
-    alert("❌ ଭୁଲ Password");
-    return;
   }
+  async function loadNews() {
 
-  if(!confirm("ଏହି News Delete କରିବେ?"))
-    return;
+  newsList.innerHTML = "";
 
-  await deleteDoc(doc(db,"news",id));
+  const q = query(collection(db,"news"), orderBy("createdAt","desc"));
 
-  alert("✅ News Deleted");
+  const snapshot = await getDocs(q);
 
-  loadNews();
+  snapshot.forEach((d)=>{
 
-}
-loadNews();
+    const news = d.data();
 
-</script>
+    const card = document.createElement("div");
+    card.className = "news-item";
 
-</div>
+    card.innerHTML = `
+      <h3>${news.title}</h3>
+      <p><b>${news.date || ""}</b></p>
 
-</body>
-</html>
+      ${news.image ? `<img src="${news.image}" alt="News">` : ""}
+
+      <p>${news.details}</p>
+
+      <button class="editBtn">✏️ Edit</button>
+
+      <button class="deleteBtn">🗑️ Delete</button>
+    `;
+
+    // Edit Button
+    card.querySelector(".editBtn").onclick = ()=>{
+
+      editId = d.id;
+
+      title.value = news.title || "";
+      date.value = news.date || "";
+      image.value = news.image || "";
+      details.value = news.details || "";
+
+      saveBtn.innerHTML = "💾 Update News";
+
+      window.scrollTo({
+        top:0,
+        behavior:"smooth"
+      });
+
+    };
+
+    // Delete Button
+    card.querySelector(".deleteBtn").onclick = async ()=>{
+
+      const password = prompt("🔒 Password ଦିଅନ୍ତୁ");
+
+      if(password !== "2026@"){
+        alert("❌ ଭୁଲ Password");
+        return;
+      }
+
+      if(!confirm("News Delete କରିବେ?")) return;
+
+      await deleteDoc(doc(db,"news",d.id));
+
+      alert("✅ News Deleted");
+
+      loadNews();
+
+    };
+
+    newsList.appendChild(card);
+
+  });
+
+  }
