@@ -99,7 +99,8 @@ Loading Latest News...
 
 </section>
 <script type="module">
-import { db } from "./firebase.js";
+import { db, messaging } from "./firebase.js";
+import { getToken } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js";
 import {
   collection,
   getDocs,
