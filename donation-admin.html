@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Admin</title>
+
+<style>
+
+body{
+margin:0;
+padding:20px;
+font-family:Arial,sans-serif;
+background:#111;
+color:white;
+}
+
+.container{
+max-width:600px;
+margin:auto;
+}
+
+h2{
+text-align:center;
+color:#ff9800;
+margin-bottom:20px;
+}
+
+.summary{
+background:#222;
+border:2px solid #ff9800;
+border-radius:12px;
+padding:15px;
+margin-bottom:20px;
+text-align:center;
+}
+
+.summary h3{
+margin:0;
+font-size:28px;
+color:#ffcc00;
+}
+
+.summary p{
+margin-top:8px;
+}
+
+.card{
+background:#222;
+border:2px solid #ff9800;
+border-radius:12px;
+padding:15px;
+margin-bottom:15px;
+}
+
+.card h3{
+margin:0 0 10px;
+color:#ffcc00;
+}
+
+.card p{
+margin:5px 0;
+}
+
+button{
+padding:10px 15px;
+margin:5px;
+border:none;
+border-radius:6px;
+  <script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+collection,
+getDocs,
+updateDoc,
+deleteDoc,
+doc,
+query,
+orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const donationList = document.getElementById("donationList");
+const totalAmount = document.getElementById("totalAmount");
+
+async function loadDonations(){
+
+donationList.innerHTML="";
+let total = 0;
+
+const q = query(collection(db,"donations"), orderBy("createdAt","desc"));
+const snapshot = await getDocs(q);
+
+snapshot.forEach((item)=>{
+
+const data = item.data();
+
+total += Number(data.amount || 0);
+
+donationList.innerHTML += `
+
+<div class="card">
+
+<h3>${data.name}</h3>
+
+<p>📱 ${data.mobile}</p>
+
+<p>💰 ₹${data.amount}</p>
+
+<p>📝 ${data.purpose || "-"}</p>
+
+<button class="editBtn"
+onclick="editDonation('${item.id}','${data.name}','${data.mobile}','${data.amount}','${data.purpose || ""}')">
+✏️ Edit
+</button>
+
+<button class="deleteBtn"
+onclick="deleteDonation('${item.id}')">
+🗑️ Delete
+</button>
+
+</div>
+
+`;
+
+});
+
+totalAmount.textContent = "₹" + total;
+
+}
+
+window.editDonation = async function(id,name,mobile,amount,purpose){
+
+const newName = prompt("ନୂଆ ନାମ", name);
+const newMobile = prompt("ନୂଆ ମୋବାଇଲ୍", mobile);
+const newAmount = prompt("ନୂଆ ରାଶି", amount);
+const newPurpose = prompt("ନୂଆ ଉଦ୍ଦେଶ୍ୟ", purpose);
+
+if(!newName || !newMobile || !newAmount) return;
+
+await updateDoc(doc(db,"donations",id),{
+name:newName,
+mobile:newMobile,
+amount:Number(newAmount),
+purpose:newPurpose
+});
+
+alert("✅ Donation Updated");
+
+loadDonations();
+
+}
+
+window.deleteDonation = async function(id){
+
+const password = prompt("🔒 Delete Password");
+
+if(password !== "2026@"){
+alert("❌ ଭୁଲ Password");
+return;
+}
+
+if(!confirm("ଏହି Donation କୁ Delete କରିବେ?")) return;
+
+await deleteDoc(doc(db,"donations",id));
+
+alert("✅ Donation Deleted");
+
+loadDonations();
+
+}
+
+loadDonations();
+
+</script>
+
+</body>
+</html>
