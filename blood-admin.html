@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Donor Admin</title>
+
+<style>
+body{
+margin:0;
+padding:20px;
+font-family:Arial,sans-serif;
+background:#111;
+color:white;
+}
+
+.container{
+max-width:550px;
+margin:auto;
+}
+
+h2{
+text-align:center;
+color:#ff4444;
+margin-bottom:20px;
+}
+
+.card{
+background:#222;
+border:2px solid #c40000;
+border-radius:12px;
+padding:15px;
+margin-bottom:15px;
+}
+
+.card h3{
+margin:0 0 8px;
+color:#ffcc00;
+}
+
+.card p{
+margin:5px 0;
+}
+
+button{
+padding:10px 15px;
+margin:5px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+color:white;
+font-weight:bold;
+}
+
+.editBtn{
+background:#2196F3;
+}
+
+.deleteBtn{
+background:#c40000;
+}
+
+.callBtn{
+background:green;
+text-decoration:none;
+display:inline-block;
+padding:10px 15px;
+border-radius:6px;
+color:white;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🩸 Blood Donor Admin</h2>
+
+<div id="donorList"></div>
+
+</div>
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+collection,
+getDocs,
+updateDoc,
+deleteDoc,
+doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const donorList = document.getElementById("donorList");
+
+async function loadDonors(){
+
+donorList.innerHTML="";
+
+const snapshot = await getDocs(collection(db,"bloodDonors"));
+
+snapshot.forEach((item)=>{
+
+const data = item.data();
+
+donorList.innerHTML += `
+
+<div class="card">
+
+<h3>${data.name}</h3>
+
+<p>🩸 ${data.bloodGroup}</p>
+
+<p>📍 ${data.district}</p>
+
+<p>📞 ${data.mobile}</p>
+
+<a class="callBtn" href="tel:${data.mobile}">
+📞 Call
+</a>
+
+<button class="editBtn"
+onclick="editDonor('${item.id}')">
+✏ Edit
+</button>
+
+<button class="deleteBtn"
+onclick="deleteDonor('${item.id}')">
+🗑 Delete
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+window.editDonor = async function(id){
+
+const name = prompt("ନୂଆ ନାମ");
+const mobile = prompt("ନୂଆ ମୋବାଇଲ୍");
+const bloodGroup = prompt("ନୂଆ Blood Group");
+const district = prompt("ନୂଆ ଜିଲ୍ଲା");
+
+if(!name || !mobile || !bloodGroup) return;
+
+await updateDoc(doc(db,"bloodDonors",id),{
+name,
+mobile,
+bloodGroup,
+district
+});
+
+alert("✅ Donor Updated");
+
+loadDonors();
+
+}
+
+window.deleteDonor = async function(id){
+
+const password = prompt("🔒 Delete Password");
+
+if(password !== "2026@"){
+alert("❌ ଭୁଲ Password");
+return;
+}
+
+if(!confirm("ଏହି Donor କୁ Delete କରିବେ?")) return;
+
+await deleteDoc(doc(db,"bloodDonors",id));
+
+alert("✅ Donor Deleted");
+
+loadDonors();
+
+}
+
+loadDonors();
+
+</script>
+
+</body>
+</html>
