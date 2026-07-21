@@ -3,71 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Committee Admin</title>
+
+<title>Admin Dashboard</title>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
 body{
-    margin:0;
-    padding:20px;
-    font-family:Arial,sans-serif;
-    background:#111;
-    color:white;
+background:#111;
+color:white;
+padding:15px;
 }
 
 .container{
-    max-width:500px;
-    margin:auto;
-    background:#222;
-    padding:20px;
-    border-radius:10px;
+max-width:600px;
+margin:auto;
 }
 
-h2,h3{
-    text-align:center;
+h1{
+text-align:center;
+color:#ffcc00;
+margin-bottom:20px;
 }
 
-input{
-    width:100%;
-    padding:12px;
-    margin:8px 0;
-    border:none;
-    border-radius:6px;
-    box-sizing:border-box;
-}
-
-button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:6px;
-    background:#c40000;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
+.dashboard{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:12px;
+margin-bottom:25px;
 }
 
 .card{
-    background:#222;
-    border:2px solid red;
-    border-radius:12px;
-    padding:15px;
-    margin-top:15px;
-    text-align:center;
+background:#222;
+border:2px solid #c40000;
+border-radius:12px;
+padding:20px;
+text-align:center;
+box-shadow:0 0 10px rgba(255,0,0,.3);
 }
 
-.card img{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    object-fit:cover;
-    border:3px solid red;
+.card h2{
+font-size:28px;
+margin-bottom:8px;
 }
 
-.actionBtn{
-    width:auto;
-    padding:8px 15px;
-    margin:5px;
+.card p{
+font-size:15px;
+color:#ddd;
 }
+
+.menu{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.menu a{
+display:block;
+text-decoration:none;
+background:#c40000;
+color:white;
+padding:14px;
+border-radius:8px;
+text-align:center;
+font-size:17px;
+font-weight:bold;
+transition:.3s;
+}
+
+.menu a:hover{
+background:#ff0000;
+}
+
+.footer{
+margin-top:25px;
+text-align:center;
+font-size:14px;
+color:#aaa;
+}
+
 </style>
 </head>
 
@@ -75,173 +95,85 @@ button{
 
 <div class="container">
 
-<h2>Committee Admin Panel</h2>
+<h1>📊 Admin Dashboard</h1>
+<div class="dashboard">
 
-<input id="name" placeholder="Member Name">
+<div class="card">
+<h2 id="memberCount">0</h2>
+<p>👥 Total Members</p>
+</div>
 
-<input id="post" placeholder="Post">
+<div class="card">
+<h2 id="committeeCount">0</h2>
+<p>👨‍💼 Committee Members</p>
+</div>
 
-<input id="mobile" placeholder="Mobile Number">
+<div class="card">
+<h2 id="newsCount">0</h2>
+<p>📰 Total News</p>
+</div>
 
-<input id="photoUrl" placeholder="Photo URL">
-
-<button id="saveBtn">Save Member</button>
+<div class="card">
+<h2 id="bloodCount">0</h2>
+<p>🩸 Blood Donors</p>
+</div>
 
 </div>
 
-<h3>Committee Members</h3>
+<div class="menu">
 
-<div id="memberList"></div>
+<a href="member-admin.html">👥 Members Admin</a>
 
+<a href="committee-admin.html">👨‍💼 Committee Admin</a>
+
+<a href="news-admin.html">📰 News Admin</a>
+
+<a href="gallery-admin.html">🖼️ Gallery Admin</a>
+
+<a href="idcard.html">🪪 ID Card</a>
+
+<a href="index.html">🏠 Website Home</a>
+
+</div>
+
+<div class="footer">
+© 2026 Odia Ratna Kalakar Sangha
+</div>
 <script type="module">
 
 import { db } from "./firebase.js";
 
 import {
 collection,
-addDoc,
-getDocs,
-deleteDoc,
-updateDoc,
-doc
+getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const saveBtn=document.getElementById("saveBtn");
-const memberList=document.getElementById("memberList");
-async function loadMembers(){
+async function loadDashboard(){
 
-memberList.innerHTML="";
+// Total Members
+const memberSnap = await getDocs(collection(db,"members"));
+document.getElementById("memberCount").textContent = memberSnap.size;
 
-const snapshot=await getDocs(collection(db,"Committee"));
+// Total Committee
+const committeeSnap = await getDocs(collection(db,"Committee"));
+document.getElementById("committeeCount").textContent = committeeSnap.size;
 
-snapshot.forEach((member)=>{
+// Total News
+const newsSnap = await getDocs(collection(db,"news"));
+document.getElementById("newsCount").textContent = newsSnap.size;
 
-const data=member.data();
-
-memberList.innerHTML+=`
-
-<div class="card">
-
-<img src="${data.photoUrl || 'logo.png'}"
-onerror="this.src='logo.png'">
-
-<h2>${data.name}</h2>
-
-<p>${data.post}</p>
-
-<p>📞 ${data.mobile}</p>
-
-<button class="actionBtn"
-onclick="editMember('${member.id}')">
-✏ Edit
-</button>
-
-<button class="actionBtn"
-onclick="deleteMember('${member.id}')">
-🗑 Delete
-
-
-</div>
-
-`;
-
-});
+// Total Blood Donors
+try{
+const bloodSnap = await getDocs(collection(db,"bloodDonors"));
+document.getElementById("bloodCount").textContent = bloodSnap.size;
+}catch(e){
+document.getElementById("bloodCount").textContent = "0";
+}
 
 }
 
-saveBtn.addEventListener("click",async()=>{
+loadDashboard();
 
-const name=document.getElementById("name").value.trim();
-
-const post=document.getElementById("post").value.trim();
-
-const mobile=document.getElementById("mobile").value.trim();
-
-const photoUrl=document.getElementById("photoUrl").value.trim();
-
-if(!name || !post || !mobile){
-
-alert("ସମସ୍ତ ତଥ୍ୟ ଭରନ୍ତୁ");
-
-return;
-
-}
-
-await addDoc(collection(db,"Committee"),{
-
-name,
-post,
-mobile,
-photoUrl
-
-});
-
-alert("Member Saved Successfully");
-
-document.getElementById("name").value="";
-
-document.getElementById("post").value="";
-
-document.getElementById("mobile").value="";
-
-document.getElementById("photoUrl").value="";
-
-loadMembers();
-
-});
-    window.editMember = async function(id){
-
-const newName = prompt("New Name");
-const newPost = prompt("New Post");
-const newMobile = prompt("New Mobile");
-const newPhoto = prompt("New Photo URL");
-
-if(!newName || !newPost || !newMobile) return;
-
-await updateDoc(doc(db,"Committee",id),{
-
-name:newName,
-post:newPost,
-mobile:newMobile,
-photoUrl:newPhoto
-
-});
-
-alert("Member Updated Successfully");
-
-loadMembers();
-
-}
-
-window.deleteMember = async function(id){
-
-const password = prompt("🔒 Delete Password ଦିଅନ୍ତୁ");
-
-if(password !== "2026@"){
-    alert("❌ ଭୁଲ Password");
-    return;
-}
-
-if(!confirm("ଏହି Member କୁ Delete କରିବେ ?")) return;
-
-await deleteDoc(doc(db,"Committee",id));
-
-alert("✅ Member Deleted Successfully");
-
-loadMembers();
-
-                         }
-
-
-
-
-  
-    
-  
-
-  
-  
-    
 </script>
 
 </body>
