@@ -1,1 +1,226 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Donor Registration</title>
 
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#111;
+color:white;
+padding:15px;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+background:#222;
+padding:20px;
+border-radius:12px;
+}
+
+h2{
+text-align:center;
+color:#ff4444;
+margin-bottom:20px;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:12px;
+background:#c40000;
+color:white;
+border:none;
+border-radius:8px;
+font-size:17px;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff0000;
+}
+
+.card{
+background:#333;
+border:2px solid #c40000;
+border-radius:10px;
+padding:15px;
+margin-top:15px;
+}
+
+.card h3{
+color:#ffcc00;
+margin-bottom:8px;
+}
+
+.callBtn{
+display:inline-block;
+margin-top:10px;
+padding:8px 15px;
+background:green;
+color:white;
+text-decoration:none;
+border-radius:6px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>🩸 Blood Donor Registration</h2>
+
+<input type="text" id="name" placeholder="ନାମ">
+
+<input type="text" id="mobile" placeholder="ମୋବାଇଲ୍ ନମ୍ବର">
+
+<select id="bloodGroup">
+<option value="">ରକ୍ତ ଗ୍ରୁପ୍ ବାଛନ୍ତୁ</option>
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>AB+</option>
+<option>AB-</option>
+<option>O+</option>
+<option>O-</option>
+</select>
+
+<input type="text" id="district" placeholder="ଜିଲ୍ଲା">
+
+<input type="text" id="address" placeholder="ଠିକଣା">
+
+<button id="saveBtn">🩸 Register Donor</button>
+
+<hr style="margin:20px 0;">
+
+<h2>🔍 Search Blood Donor</h2>
+
+<select id="searchGroup">
+<option value="">ସମସ୍ତ ରକ୍ତ ଗ୍ରୁପ୍</option>
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>AB+</option>
+<option>AB-</option>
+<option>O+</option>
+<option>O-</option>
+</select>
+
+<button id="searchBtn">Search</button>
+
+<div id="donorList"></div>
+
+</div>
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+collection,
+addDoc,
+getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const saveBtn = document.getElementById("saveBtn");
+const searchBtn = document.getElementById("searchBtn");
+const donorList = document.getElementById("donorList");
+
+saveBtn.addEventListener("click", async ()=>{
+
+const name = document.getElementById("name").value.trim();
+const mobile = document.getElementById("mobile").value.trim();
+const bloodGroup = document.getElementById("bloodGroup").value;
+const district = document.getElementById("district").value.trim();
+const address = document.getElementById("address").value.trim();
+
+if(!name || !mobile || !bloodGroup){
+alert("ସମସ୍ତ ତଥ୍ୟ ଭରନ୍ତୁ");
+return;
+}
+
+await addDoc(collection(db,"bloodDonors"),{
+name,
+mobile,
+bloodGroup,
+district,
+address,
+createdAt:new Date()
+});
+
+alert("✅ Blood Donor Registered");
+
+document.getElementById("name").value="";
+document.getElementById("mobile").value="";
+document.getElementById("bloodGroup").value="";
+document.getElementById("district").value="";
+document.getElementById("address").value="";
+
+loadDonors();
+
+});
+
+async function loadDonors(){
+
+donorList.innerHTML="";
+
+const searchGroup=document.getElementById("searchGroup").value;
+
+const snapshot=await getDocs(collection(db,"bloodDonors"));
+
+snapshot.forEach((doc)=>{
+
+const data=doc.data();
+
+if(searchGroup && data.bloodGroup!==searchGroup) return;
+
+donorList.innerHTML += `
+<div class="card">
+
+<h3>${data.name}</h3>
+
+<p>🩸 ${data.bloodGroup}</p>
+
+<p>📍 ${data.district}</p>
+
+<p>📞 ${data.mobile}</p>
+
+<a class="callBtn" href="tel:${data.mobile}">
+📞 Call
+</a>
+
+</div>
+`;
+
+});
+
+}
+
+searchBtn.addEventListener("click",loadDonors);
+
+loadDonors();
+
+</script>
+
+</body>
+</html>
