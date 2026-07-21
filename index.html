@@ -58,6 +58,18 @@ function openCommittee() {
         window.location.href = "committee.html";
     }
 }
+
+function openAdmin() {
+    const pass = prompt("Admin Password ଦିଅ");
+
+    if (pass === "2026@") {
+        window.location.href = "admin.html";
+    } else if (pass !== null) {
+        alert("❌ Wrong Password");
+    }
+}
+
+</script>
 </script>
 
 
