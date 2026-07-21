@@ -172,7 +172,21 @@ document.getElementById("bloodCount").textContent = bloodSnap.size;
 }catch(e){
 document.getElementById("bloodCount").textContent = "0";
 }
+// Total Donation
+try{
+  const donationSnap = await getDocs(collection(db,"donations"));
 
+  let totalDonation = 0;
+
+  donationSnap.forEach(doc=>{
+    totalDonation += Number(doc.data().amount || 0);
+  });
+
+  document.getElementById("donationCount").textContent = "₹" + totalDonation;
+
+}catch(e){
+  document.getElementById("donationCount").textContent = "₹0";
+}
 }
 
 loadDashboard();
