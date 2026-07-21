@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="or">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Donation Admin</title>
 
 <style>
 
-body{
+*{
 margin:0;
-padding:20px;
+padding:0;
+box-sizing:border-box;
 font-family:Arial,sans-serif;
+}
+
+body{
 background:#111;
-color:white;
+color:#fff;
+padding:15px;
 }
 
 .container{
@@ -20,7 +27,7 @@ max-width:600px;
 margin:auto;
 }
 
-h2{
+h1{
 text-align:center;
 color:#ff9800;
 margin-bottom:20px;
@@ -30,19 +37,19 @@ margin-bottom:20px;
 background:#222;
 border:2px solid #ff9800;
 border-radius:12px;
-padding:15px;
-margin-bottom:20px;
+padding:20px;
 text-align:center;
+margin-bottom:20px;
 }
 
-.summary h3{
-margin:0;
-font-size:28px;
+.summary h2{
+font-size:30px;
 color:#ffcc00;
+margin-bottom:8px;
 }
 
 .summary p{
-margin-top:8px;
+font-size:16px;
 }
 
 .card{
@@ -54,20 +61,53 @@ margin-bottom:15px;
 }
 
 .card h3{
-margin:0 0 10px;
 color:#ffcc00;
+margin-bottom:10px;
 }
 
 .card p{
-margin:5px 0;
+margin:6px 0;
+font-size:16px;
 }
 
 button{
 padding:10px 15px;
-margin:5px;
 border:none;
 border-radius:6px;
-  <script type="module">
+cursor:pointer;
+color:#fff;
+font-size:15px;
+margin:5px;
+}
+
+.editBtn{
+background:#2196F3;
+}
+
+.deleteBtn{
+background:#c40000;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>❤️ Donation Admin</h1>
+
+<div class="summary">
+
+<h2 id="totalAmount">₹0</h2>
+
+<p>Total Donation Amount</p>
+
+</div>
+
+<div id="donationList"></div>
+<script type="module">
 
 import { db } from "./firebase.js";
 
@@ -87,14 +127,18 @@ const totalAmount = document.getElementById("totalAmount");
 async function loadDonations(){
 
 donationList.innerHTML="";
-let total = 0;
+let total=0;
 
-const q = query(collection(db,"donations"), orderBy("createdAt","desc"));
-const snapshot = await getDocs(q);
+const q=query(
+collection(db,"donations"),
+orderBy("createdAt","desc")
+);
+
+const snapshot=await getDocs(q);
 
 snapshot.forEach((item)=>{
 
-const data = item.data();
+const data=item.data();
 
 total += Number(data.amount || 0);
 
@@ -111,7 +155,13 @@ donationList.innerHTML += `
 <p>📝 ${data.purpose || "-"}</p>
 
 <button class="editBtn"
-onclick="editDonation('${item.id}','${data.name}','${data.mobile}','${data.amount}','${data.purpose || ""}')">
+onclick="editDonation(
+'${item.id}',
+'${data.name}',
+'${data.mobile}',
+'${data.amount}',
+'${data.purpose || ""}'
+)">
 ✏️ Edit
 </button>
 
@@ -126,16 +176,16 @@ onclick="deleteDonation('${item.id}')">
 
 });
 
-totalAmount.textContent = "₹" + total;
+totalAmount.textContent="₹"+total;
 
 }
 
-window.editDonation = async function(id,name,mobile,amount,purpose){
+window.editDonation=async function(id,name,mobile,amount,purpose){
 
-const newName = prompt("ନୂଆ ନାମ", name);
-const newMobile = prompt("ନୂଆ ମୋବାଇଲ୍", mobile);
-const newAmount = prompt("ନୂଆ ରାଶି", amount);
-const newPurpose = prompt("ନୂଆ ଉଦ୍ଦେଶ୍ୟ", purpose);
+const newName=prompt("ନୂଆ ନାମ",name);
+const newMobile=prompt("ନୂଆ ମୋବାଇଲ୍",mobile);
+const newAmount=prompt("ନୂଆ ରାଶି",amount);
+const newPurpose=prompt("ନୂଆ ଉଦ୍ଦେଶ୍ୟ",purpose);
 
 if(!newName || !newMobile || !newAmount) return;
 
@@ -152,11 +202,11 @@ loadDonations();
 
 }
 
-window.deleteDonation = async function(id){
+window.deleteDonation=async function(id){
 
-const password = prompt("🔒 Delete Password");
+const password=prompt("🔒 Delete Password");
 
-if(password !== "2026@"){
+if(password!=="2026@"){
 alert("❌ ଭୁଲ Password");
 return;
 }
