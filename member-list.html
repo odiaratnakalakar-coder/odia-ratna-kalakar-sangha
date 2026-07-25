@@ -118,7 +118,37 @@ const memberList = document.getElementById("memberList");
 const searchInput = document.getElementById("search");
 
 let members = [];
+function renderMembers(list) {
 
+    memberList.innerHTML = "";
+
+    list.forEach(member => {
+
+        const photo = member.photoUrl || "https://via.placeholder.com/60";
+
+        memberList.innerHTML += `
+        <div class="member-card">
+
+            <div class="member-info">
+
+                <img src="${photo}" alt="Photo">
+
+                <div>
+                    <div class="member-name">${member.name || ""}</div>
+                    <div class="member-id">${member.memberId || ""}</div>
+                </div>
+
+            </div>
+
+            <button class="view-btn" onclick="viewMember('${member.id}')">
+                View
+            </button>
+
+        </div>
+        `;
+    });
+
+}
 async function loadMembers() {
 
     const snap = await getDocs(collection(db, "members"));
