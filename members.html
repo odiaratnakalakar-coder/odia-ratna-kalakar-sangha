@@ -270,11 +270,56 @@ window.deleteMember = async function(id) {
 };
 
 loadMembers();
-  
+  window.viewMember = function(id){
 
+const member = members.find(m => m.docId === id);
 
+if(!member) return;
+
+document.getElementById("mPhoto").src =
+member.photoUrl || "images/default-user.png";
+
+document.getElementById("mName").innerText =
+member.name || "";
+
+document.getElementById("mId").innerText =
+"ID : " + (member.memberId || "");
+
+document.getElementById("mFather").innerText =
+member.father || "";
+
+document.getElementById("mMobile").innerText =
+member.mobile || "";
+
+document.getElementById("mAddress").innerText =
+member.address || "";
+
+document.getElementById("mPaid").innerText =
+member.paid ? "✅ Paid" : "❌ Unpaid";
+
+document.getElementById("mTxn").innerText =
+member.txnId || "-";
+
+const mobile = String(member.mobile || "").replace(/\D/g,"");
+
+document.getElementById("callBtn").href = "tel:" + mobile;
+
+document.getElementById("waBtn").href =
+"https://wa.me/91" + mobile;
+
+document.getElementById("memberModal").style.display = "block";
 
 };
+
+window.closeModal = function(){
+
+document.getElementById("memberModal").style.display = "none";
+
+};
+
+
+
+
 
   
 
