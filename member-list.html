@@ -1,1 +1,105 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>ସଦସ୍ୟ ତାଲିକା</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+header{
+    background:#00695c;
+    color:#fff;
+    padding:15px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.search-box{
+    padding:15px;
+}
+
+.search-box input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+#memberList{
+    padding:15px;
+}
+
+.member-card{
+    background:#fff;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.member-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.member-info img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.member-name{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.member-id{
+    color:#666;
+    font-size:14px;
+}
+
+.view-btn{
+    background:#007bff;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    border-radius:6px;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+👥 ସଦସ୍ୟ ତାଲିକା
+</header>
+
+<div class="search-box">
+<input
+type="text"
+id="search"
+placeholder="ନାମ କିମ୍ବା ମୋବାଇଲ୍ ନମ୍ବରରେ Search କରନ୍ତୁ">
+</div>
+
+<div id="memberList"></div>
