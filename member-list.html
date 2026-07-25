@@ -1,1 +1,252 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>ସଦସ୍ୟ ତାଲିକା</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fa;
+}
+
+header{
+background:#00695c;
+color:#fff;
+padding:18px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.search-box{
+padding:15px;
+background:#fff;
+box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+
+.search-box input{
+width:100%;
+padding:12px;
+font-size:16px;
+border-radius:10px;
+border:1px solid #ccc;
+outline:none;
+}
+
+#memberList{
+padding:15px;
+}
+
+.member-card{
+background:#fff;
+border-radius:12px;
+padding:12px;
+margin-bottom:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.member-left{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.member-left img{
+width:65px;
+height:65px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #00695c;
+}
+
+.member-name{
+font-size:18px;
+font-weight:bold;
+}
+
+.member-id{
+font-size:14px;
+color:#666;
+margin-top:4px;
+}
+
+.view-btn{
+background:#00695c;
+color:#fff;
+border:none;
+padding:8px 16px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.view-btn:hover{
+background:#004d40;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+👥 ସଦସ୍ୟ ତାଲିକା
+</header>
+
+<div class="search-box">
+<input
+type="text"
+id="search"
+placeholder="ନାମ କିମ୍ବା ମୋବାଇଲ୍ ନମ୍ବରରେ Search କରନ୍ତୁ">
+</div>
+
+<div id="memberList"></div>
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+collection,
+getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const memberList = document.getElementById("memberList");
+const search = document.getElementById("search");
+
+let members = [];
+
+async function loadMembers(){
+
+memberList.innerHTML="<h3 style='text-align:center'>Loading...</h3>";
+
+const snap = await getDocs(collection(db,"members"));
+
+members=[];
+
+snap.forEach(doc=>{
+
+members.push({
+id:doc.id,
+...doc.data()
+});
+
+});
+
+members.sort((a,b)=>
+(a.name||"").localeCompare(b.name||"")
+);
+
+renderMembers(members);
+
+}
+
+function renderMembers(list){
+
+memberList.innerHTML="";
+
+if(list.length===0){
+
+memberList.innerHTML="<h3 style='text-align:center'>କୌଣସି ସଦସ୍ୟ ମିଳିଲା ନାହିଁ</h3>";
+
+return;
+
+}
+
+list.forEach(member=>{
+
+memberList.innerHTML+=`
+
+<div class="member-card">
+
+<div class="member-left">
+
+<img src="${member.photoUrl||'images/default-user.png'}">
+
+<div>
+
+<div class="member-name">${member.name||""}</div>
+
+<div class="member-id">
+ID : ${member.memberId||""}
+</div>
+
+</div>
+
+</div>
+
+<button
+class="view-btn"
+onclick="viewMember('${member.id}')">
+View
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+search.addEventListener("input",()=>{
+
+const value=search.value.toLowerCase();
+
+const result=members.filter(m=>
+
+(m.name||"").toLowerCase().includes(value) ||
+
+(m.mobile||"").includes(value) ||
+
+(m.memberId||"").toLowerCase().includes(value)
+
+);
+
+renderMembers(result);
+
+});
+
+window.members=members;
+
+loadMembers();
+window.viewMember = function(id){
+
+const member = members.find(m => m.id === id);
+
+if(!member) return;
+
+const paidStatus = member.paid ? "✅ Paid" : "❌ Unpaid";
+
+alert(
+`👤 ${member.name}
+
+🆔 Member ID : ${member.memberId}
+
+👨 Father : ${member.father}
+
+📞 Mobile : ${member.mobile}
+
+🏠 Address : ${member.address}
+
+💳 ${paidStatus}
+
+Txn ID : ${member.txnId || "-"}`
+);
+
+};
+</script>
+</body>
+</html>
