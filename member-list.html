@@ -251,8 +251,15 @@ member.paid ? "✅ Paid" : "❌ Unpaid";
 
 document.getElementById("mTxn").innerText =
 member.txnId || "-";
-document.getElementById("callBtn").href = "tel:" + (member.mobile || "");
-document.getElementById("waBtn").href = "https://wa.me/91" + (member.mobile || "");
+const mobile = String(member.mobile || "").replace(/\D/g, "");
+
+document.getElementById("callBtn").setAttribute("href", "tel:" + mobile);
+
+document.getElementById("waBtn").setAttribute(
+  "href",
+  "https://wa.me/91" + mobile
+);
+
 document.getElementById("memberModal").style.display = "block";
 
 };
