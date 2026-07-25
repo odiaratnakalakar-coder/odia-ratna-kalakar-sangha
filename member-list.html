@@ -166,7 +166,7 @@ async function loadMembers() {
         (a.name || "").localeCompare(b.name || "")
     );
 
-    console.log("Members Loaded:", members);
+    renderMembers(members);
 
 }
 
