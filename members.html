@@ -329,6 +329,19 @@ document.getElementById("waBtn").href=
 document.getElementById("pdfBtn").onclick = () => {
   window.location.href = "id-card.html?id=" + member.memberId;
 };
+  document.getElementById("cashPaidBtn").onclick = async () => {
+
+  await updateDoc(doc(db, "members", member.docId), {
+    paid: true,
+    txnId: "CASH"
+  });
+
+  alert("✅ Cash Payment Saved");
+
+  loadMembers();
+
+  document.getElementById("popup").style.display = "none";
+};
 };
 
 div.querySelector(".delete").onclick=async()=>{
