@@ -228,25 +228,41 @@ const member = members.find(m => m.id === id);
 
 if(!member) return;
 
-const paidStatus = member.paid ? "✅ Paid" : "❌ Unpaid";
+document.getElementById("mPhoto").src =
+member.photoUrl || "images/default-user.png";
 
-alert(
-`👤 ${member.name}
+document.getElementById("mName").innerText =
+member.name || "";
 
-🆔 Member ID : ${member.memberId}
+document.getElementById("mId").innerText =
+"ID : " + (member.memberId || "");
 
-👨 Father : ${member.father}
+document.getElementById("mFather").innerText =
+member.father || "";
 
-📞 Mobile : ${member.mobile}
+document.getElementById("mMobile").innerText =
+member.mobile || "";
 
-🏠 Address : ${member.address}
+document.getElementById("mAddress").innerText =
+member.address || "";
 
-💳 ${paidStatus}
+document.getElementById("mPaid").innerText =
+member.paid ? "✅ Paid" : "❌ Unpaid";
 
-Txn ID : ${member.txnId || "-"}`
-);
+document.getElementById("mTxn").innerText =
+member.txnId || "-";
+
+document.getElementById("memberModal").style.display = "block";
 
 };
-</script>
-</body>
-</html>
+
+window.closeModal = function(){
+
+document.getElementById("memberModal").style.display = "none";
+
+};
+
+
+
+
+
