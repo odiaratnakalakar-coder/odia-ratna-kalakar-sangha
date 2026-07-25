@@ -1,1 +1,89 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Members</title>
 
+<style>
+body{
+    margin:0;
+    padding:15px;
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:#fff;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    color:#ffcc00;
+}
+
+.search-box{
+    margin:20px 0;
+}
+
+.search-box input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+.member-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.member-card{
+    background:#222;
+    border:1px solid #444;
+    border-radius:10px;
+    padding:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.member-name{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.view-btn{
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>👥 All Members</h1>
+
+<div class="search-box">
+<input type="text" id="search" placeholder="ନାମ କିମ୍ବା ମୋବାଇଲ ନମ୍ବରରେ Search କରନ୍ତୁ...">
+</div>
+
+<div id="memberList" class="member-list">
+
+</div>
+
+</div>
+
+</body>
+</html>
