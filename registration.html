@@ -63,8 +63,13 @@ import {
   addDoc,
   doc,
   getDoc,
-  setDoc
+  setDoc,
+  query,
+  where,
+  getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  
+  
 
 async function getNextMemberId() {
   const counterRef = doc(db, "system", "counter");
