@@ -182,6 +182,9 @@ donationList.innerHTML += `
 
 <div class="card">
 
+<img src="${data.photoUrl || 'logo.png'}"
+style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid orange;margin-bottom:10px;">
+
 <h3>${data.name}</h3>
 
 <p>📱 ${data.mobile}</p>
@@ -192,7 +195,13 @@ donationList.innerHTML += `
 
 </div>
 
-`;
+
+
+
+
+
+
+
 
 });
 
