@@ -306,8 +306,11 @@ member.mobile||"";
 document.getElementById("pAddress").textContent=
 member.address||"";
 
-document.getElementById("pPaid").textContent=
-member.paid||"";
+document.getElementById("pPaid").innerHTML =
+member.paid
+? "<span style='color:green;font-weight:bold'>✅ PAID</span>"
+: "<span style='color:red;font-weight:bold'>❌ UNPAID</span>";
+
 
 document.getElementById("pTxn").textContent=
 member.txnId||"";
