@@ -115,7 +115,15 @@ import {
 const memberList = document.getElementById("memberList");
 
 let members = [];
+const memberList = document.getElementById("memberList");
 
+let members = [];
+
+// 👇 ଏଠାରେ renderMembers() କୋଡ୍ Paste କରନ୍ତୁ
+
+async function loadMembers(){
+
+...
 async function loadMembers(){
 
     const snap = await getDocs(collection(db,"members"));
