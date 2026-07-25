@@ -103,3 +103,43 @@ placeholder="ନାମ କିମ୍ବା ମୋବାଇଲ୍ ନମ୍ବର�
 </div>
 
 <div id="memberList"></div>
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const memberList = document.getElementById("memberList");
+
+let members = [];
+
+async function loadMembers(){
+
+    const snap = await getDocs(collection(db,"members"));
+
+    members = [];
+
+    snap.forEach(doc=>{
+        members.push({
+            id:doc.id,
+            ...doc.data()
+        });
+    });
+
+    members.sort((a,b)=>
+        (a.name || "").localeCompare(b.name || "")
+    );
+
+    console.log(members);
+
+}
+
+loadMembers();
+
+</script>
+
+</body>
+</html>
