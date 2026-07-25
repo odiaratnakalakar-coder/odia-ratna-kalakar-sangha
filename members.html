@@ -318,7 +318,9 @@ document.getElementById("callBtn").href="tel:"+mobile;
 
 document.getElementById("waBtn").href=
 "https://wa.me/91"+mobile;
-
+document.getElementById("pdfBtn").onclick = () => {
+  window.location.href = "id-card.html?id=" + member.memberId;
+};
 };
 
 div.querySelector(".delete").onclick=async()=>{
