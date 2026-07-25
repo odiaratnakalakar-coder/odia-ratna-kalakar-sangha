@@ -187,7 +187,23 @@ window.viewMember = function(id){
 }
 
 loadMembers();
+searchInput.addEventListener("input", () => {
 
+    const text = searchInput.value.toLowerCase();
+
+    const filtered = members.filter(member =>
+
+        (member.name || "").toLowerCase().includes(text) ||
+
+        (member.mobile || "").includes(text) ||
+
+        (member.memberId || "").toLowerCase().includes(text)
+
+    );
+
+    renderMembers(filtered);
+
+});
 </script>
 </body>
 </html>
