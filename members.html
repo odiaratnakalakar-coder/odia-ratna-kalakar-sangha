@@ -1,1 +1,370 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Members Admin</title>
 
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f4f4;
+padding:20px;
+}
+
+h1{
+text-align:center;
+color:#006400;
+margin-bottom:15px;
+}
+
+#total{
+text-align:center;
+font-size:20px;
+font-weight:bold;
+margin-bottom:15px;
+color:#d60000;
+}
+
+#search{
+width:100%;
+padding:12px;
+font-size:16px;
+border:1px solid #ccc;
+border-radius:8px;
+margin-bottom:15px;
+}
+
+.member{
+background:#fff;
+padding:12px;
+border-radius:10px;
+margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 5px rgba(0,0,0,.15);
+}
+
+.left{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.left img{
+width:55px;
+height:55px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid green;
+}
+
+.name{
+font-size:18px;
+font-weight:bold;
+}
+
+.mobile{
+font-size:14px;
+color:#555;
+}
+
+button{
+padding:8px 12px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+margin-left:5px;
+}
+
+.view{
+background:#0066ff;
+color:#fff;
+}
+
+.delete{
+background:red;
+color:#fff;
+}
+
+#popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.6);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.popup-box{
+background:#fff;
+width:100%;
+max-width:420px;
+border-radius:12px;
+padding:20px;
+text-align:center;
+}
+
+.popup-box img{
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid green;
+margin-bottom:10px;
+}
+
+.popup-box h2{
+margin-bottom:8px;
+}
+
+.popup-box p{
+margin:5px 0;
+}
+
+.action-btn{
+display:inline-block;
+margin:8px;
+padding:10px 18px;
+border-radius:8px;
+text-decoration:none;
+color:#fff;
+}
+
+.call{
+background:green;
+}
+
+.wa{
+background:#25D366;
+}
+
+.close{
+background:red;
+color:#fff;
+margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>👥 Members Admin</h1>
+
+<div id="total">ମୋଟ ସଦସ୍ୟ : 0</div>
+
+<input
+type="text"
+id="search"
+placeholder="ସଦସ୍ୟ ଖୋଜନ୍ତୁ...">
+
+<div id="list"></div>
+
+<div id="popup">
+<div class="popup-box">
+
+<img id="pPhoto">
+
+<h2 id="pName"></h2>
+
+<p><b>Member ID :</b> <span id="pId"></span></p>
+
+<p><b>Father :</b> <span id="pFather"></span></p>
+
+<p><b>Mobile :</b> <span id="pMobile"></span></p>
+
+<p><b>Address :</b> <span id="pAddress"></span></p>
+
+<p><b>Payment :</b> <span id="pPaid"></span></p>
+
+<p><b>Txn ID :</b> <span id="pTxn"></span></p>
+
+<a id="callBtn" class="action-btn call">📞 Call</a>
+
+<a id="waBtn" class="action-btn wa">💬 WhatsApp</a>
+
+<br>
+
+<button
+class="close"
+onclick="document.getElementById('popup').style.display='none'">
+Close
+</button>
+
+</div>
+</div>
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+collection,
+getDocs,
+deleteDoc,
+doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const list = document.getElementById("list");
+const total = document.getElementById("total");
+const search = document.getElementById("search");
+
+let members = [];
+
+async function loadMembers(){
+
+list.innerHTML="Loading...";
+
+const snap = await getDocs(collection(db,"members"));
+
+members=[];
+
+snap.forEach(d=>{
+members.push({
+docId:d.id,
+...d.data()
+});
+});
+
+members.sort((a,b)=>
+(a.memberId||"").localeCompare(b.memberId||"")
+);
+
+total.innerHTML="ମୋଟ ସଦସ୍ୟ : "+members.length;
+
+showMembers(members);
+
+}
+
+function showMembers(data){
+
+list.innerHTML="";
+
+data.forEach(member=>{
+
+const div=document.createElement("div");
+
+div.className="member";
+
+div.innerHTML=`
+
+<div class="left">
+
+<img src="${member.photoUrl||'https://via.placeholder.com/100'}">
+
+<div>
+
+<div class="name">${member.name||''}</div>
+
+<div class="mobile">${member.mobile||''}</div>
+
+</div>
+
+</div>
+
+<div>
+
+<button class="view">View</button>
+
+<button class="delete">Delete</button>
+
+</div>
+
+`;
+
+div.querySelector(".view").onclick=()=>{
+
+document.getElementById("popup").style.display="flex";
+
+document.getElementById("pPhoto").src=
+member.photoUrl||"https://via.placeholder.com/100";
+
+document.getElementById("pName").textContent=
+member.name||"";
+
+document.getElementById("pId").textContent=
+member.memberId||"";
+
+document.getElementById("pFather").textContent=
+member.father||"";
+
+document.getElementById("pMobile").textContent=
+member.mobile||"";
+
+document.getElementById("pAddress").textContent=
+member.address||"";
+
+document.getElementById("pPaid").textContent=
+member.paid||"";
+
+document.getElementById("pTxn").textContent=
+member.txnId||"";
+
+const mobile=String(member.mobile||"").replace(/\D/g,"");
+
+document.getElementById("callBtn").href="tel:"+mobile;
+
+document.getElementById("waBtn").href=
+"https://wa.me/91"+mobile;
+
+};
+
+div.querySelector(".delete").onclick=async()=>{
+
+const pass=prompt("Password ଦିଅ");
+
+if(pass!=="2026@"){
+alert("Wrong Password");
+return;
+}
+
+if(confirm("Delete Member?")){
+
+await deleteDoc(doc(db,"members",member.docId));
+
+loadMembers();
+
+}
+
+};
+
+list.appendChild(div);
+
+});
+
+}
+
+search.oninput=()=>{
+
+const value=search.value.toLowerCase();
+
+const filtered=members.filter(m=>
+
+(m.name||"").toLowerCase().includes(value) ||
+
+(m.memberId||"").toLowerCase().includes(value) ||
+
+(m.mobile||"").includes(value)
+
+);
+
+showMembers(filtered);
+
+};
+
+loadMembers();
+
+</script>
+
+</body>
+</html>
