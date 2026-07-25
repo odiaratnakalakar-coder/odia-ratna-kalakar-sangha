@@ -285,7 +285,54 @@ loadMembers();
 
 
 </script>
+<div id="memberModal">
+  <div class="modal-box">
 
+    <span class="close-btn" onclick="closeModal()">×</span>
+
+    <div style="text-align:center">
+
+      <img id="mPhoto"
+           class="modal-photo"
+           src="images/default-user.png">
+
+      <h2 id="mName"></h2>
+
+      <p id="mId"></p>
+
+    </div>
+
+    <hr>
+
+    <p><b>👨 Father:</b> <span id="mFather"></span></p>
+
+    <p><b>📞 Mobile:</b> <span id="mMobile"></span></p>
+
+    <p><b>🏠 Address:</b> <span id="mAddress"></span></p>
+
+    <p><b>💳 Status:</b> <span id="mPaid"></span></p>
+
+    <p><b>🧾 Txn ID:</b> <span id="mTxn"></span></p>
+
+    <div style="display:flex;gap:10px;margin-top:20px;">
+
+      <a id="callBtn"
+         class="action-btn call-btn"
+         href="#">
+         📞 Call
+      </a>
+
+      <a id="waBtn"
+         class="action-btn wa-btn"
+         href="#"
+         target="_blank">
+         💬 WhatsApp
+      </a>
+
+    </div>
+
+  </div>
+</div>
 </body>
 
 </html>
