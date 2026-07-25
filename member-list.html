@@ -237,6 +237,40 @@ async function loadMembers() {
 window.viewMember = function(id){
 
     const member = members.find(m => m.id === id);
+    if(!member) return;
+
+    document.getElementById("memberModal").style.display = "block";
+
+    document.getElementById("modalPhoto").src =
+        member.photoUrl || "https://via.placeholder.com/120";
+
+    document.getElementById("modalName").textContent = member.name || "";
+    document.getElementById("modalId").textContent = member.memberId || "";
+    document.getElementById("modalFather").textContent = member.father || "";
+    document.getElementById("modalMobile").textContent = member.mobile || "";
+    document.getElementById("modalAddress").textContent = member.address || "";
+    document.getElementById("modalTxn").textContent = member.txnId || "";
+    document.getElementById("modalPaid").textContent =
+        member.paid ? "Yes" : "No";
+
+    document.getElementById("callBtn").href =
+        "tel:" + (member.mobile || "");
+
+    document.getElementById("whatsappBtn").href =
+        "https://wa.me/91" + (member.mobile || "");
+};
+
+document.getElementById("closeModal").onclick = function(){
+    document.getElementById("memberModal").style.display = "none";
+};
+
+window.onclick = function(e){
+    if(e.target == document.getElementById("memberModal")){
+        document.getElementById("memberModal").style.display = "none";
+    }
+};
+
+    const member = members.find(m => m.id === id);
 
     if(!member) return;
 
