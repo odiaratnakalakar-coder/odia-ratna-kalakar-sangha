@@ -261,6 +261,30 @@ window.closeModal = function(){
 document.getElementById("memberModal").style.display = "none";
 
 };
+  </script>
+
+<div id="memberModal" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:9999;">
+  <div style="background:#fff;width:90%;max-width:420px;margin:40px auto;padding:20px;border-radius:15px;position:relative;">
+    <span onclick="closeModal()" style="position:absolute;right:15px;top:10px;font-size:28px;cursor:pointer;">×</span>
+
+    <div style="text-align:center;">
+      <img id="mPhoto" src="" style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid #00695c;">
+      <h2 id="mName"></h2>
+      <p id="mId"></p>
+    </div>
+
+    <hr>
+
+    <p><b>👨 Father:</b> <span id="mFather"></span></p>
+    <p><b>📞 Mobile:</b> <span id="mMobile"></span></p>
+    <p><b>🏠 Address:</b> <span id="mAddress"></span></p>
+    <p><b>💳 Status:</b> <span id="mPaid"></span></p>
+    <p><b>🧾 Txn ID:</b> <span id="mTxn"></span></p>
+  </div>
+</div>
+
+</body>
+</html>
 
 
 
