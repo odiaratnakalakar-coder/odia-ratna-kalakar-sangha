@@ -95,7 +95,19 @@ document.getElementById("registrationForm").addEventListener("submit", async (e)
   try {
 
     const memberId = await getNextMemberId();
+const mobile = document.getElementById("mobile").value.trim();
 
+const q = query(
+  collection(db, "members"),
+  where("mobile", "==", mobile)
+);
+
+const snapshot = await getDocs(q);
+
+if (!snapshot.empty) {
+  alert("ଏହି ମୋବାଇଲ ନମ୍ବରରେ ପୂର୍ବରୁ Registration ହୋଇସାରିଛି।");
+  return;
+}
     const photo = document.getElementById("photo").files[0];
 
     let photoUrl = "";
