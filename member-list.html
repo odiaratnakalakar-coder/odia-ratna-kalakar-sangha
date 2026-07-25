@@ -3,95 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All Members</title>
+<title>ସମସ୍ତ ସଦସ୍ୟ</title>
 
 <style>
-body{
+*{
     margin:0;
-    padding:15px;
-    font-family:Arial,sans-serif;
-    background:#111;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f5f5f5;
+}
+
+header{
+    background:#0d6efd;
     color:#fff;
+    text-align:center;
+    padding:18px;
+    font-size:22px;
+    font-weight:bold;
 }
 
 .container{
-    max-width:900px;
-    margin:auto;
-}
-
-h1{
-    text-align:center;
-    color:#ffcc00;
+    width:95%;
+    max-width:1000px;
+    margin:20px auto;
 }
 
 .search-box{
-    margin:20px 0;
+    margin-bottom:20px;
 }
 
 .search-box input{
     width:100%;
     padding:12px;
-    border:none;
+    border:1px solid #ccc;
     border-radius:8px;
     font-size:16px;
 }
 
-.member-list{
+#memberList{
     display:flex;
     flex-direction:column;
     gap:12px;
 }
-
-.member-card{
-    background:#222;
-    border:1px solid #444;
-    border-radius:10px;
-    padding:12px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.member-name{
-    font-size:18px;
-    font-weight:bold;
-}
-
-.view-btn{
-    background:#0d6efd;
-    color:white;
-    border:none;
-    padding:10px 16px;
-    border-radius:8px;
-    cursor:pointer;
-}
 </style>
-
 </head>
 
 <body>
 
+<header>
+👥 ସମସ୍ତ ସଦସ୍ୟ
+</header>
+
 <div class="container">
 
-<h1>👥 All Members</h1>
-
 <div class="search-box">
-<input type="text" id="search" placeholder="ନାମ କିମ୍ବା ମୋବାଇଲ ନମ୍ବରରେ Search କରନ୍ତୁ...">
+<input
+type="text"
+id="search"
+<input
+type="text"
+id="search"
+placeholder="ନାମ କିମ୍ବା ମୋବାଇଲ ନମ୍ବରରେ Search କରନ୍ତୁ">
 </div>
 
-<div id="memberList" class="member-list">
+<div id="memberList">
 
 </div>
 
 </div>
-...
-</div>
-
-<script type="module">
-  // ମୁଁ ଦେଇଥିବା ସମ୍ପୂର୍ଣ୍ଣ JavaScript କୋଡ୍
-</script>
-
-</body>
-</html>
-</body>
-</html>
