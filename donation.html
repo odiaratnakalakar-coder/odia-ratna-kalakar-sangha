@@ -123,6 +123,12 @@ if(!name || !mobile || !amount){
 alert("ସମସ୍ତ ଆବଶ୍ୟକ ତଥ୍ୟ ଭରନ୍ତୁ");
 return;
 }
+  const photo = document.getElementById("photo").files[0];
+
+if (!photo) {
+  alert("ଦୟାକରି ଫଟୋ ଚୟନ କରନ୍ତୁ");
+  return;
+}
 
 await addDoc(collection(db,"donations"),{
 name,
