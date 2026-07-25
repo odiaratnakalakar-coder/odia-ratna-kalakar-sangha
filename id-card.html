@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Member ID Card</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f2f2f2;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.card{
+width:340px;
+background:#fff;
+border-radius:15px;
+box-shadow:0 4px 12px rgba(0,0,0,.25);
+overflow:hidden;
+text-align:center;
+}
+
+.header{
+background:#006400;
+color:#fff;
+padding:15px;
+font-size:20px;
+font-weight:bold;
+}
+
+.logo{
+width:80px;
+height:80px;
+border-radius:50%;
+margin:15px auto;
+border:3px solid green;
+object-fit:cover;
+}
+
+.photo{
+width:120px;
+height:120px;
+border-radius:50%;
+border:4px solid #0a8f08;
+object-fit:cover;
+margin-bottom:10px;
+}
+
+.info{
+padding:15px;
+line-height:1.8;
+font-size:16px;
+}
+
+.download{
+display:inline-block;
+margin:15px;
+padding:12px 22px;
+background:#ff9800;
+color:#fff;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="header">
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+</div>
+
+<img src="images/logo.png" class="logo">
+
+<img id="photo" class="photo">
+
+<div class="info">
+
+<h2 id="name"></h2>
+
+<p><b>ID :</b> <span id="memberId"></span></p>
+
+<p><b>Mobile :</b> <span id="mobile"></span></p>
+
+<p><b>Address :</b> <span id="address"></span></p>
+
+</div>
+
+<a id="downloadBtn" class="download">
+📄 Download PDF
+</a>
+<script type="module">
+
+import { db } from "./firebase.js";
+import {
+collection,
+getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+const snap = await getDocs(collection(db,"members"));
+
+snap.forEach(doc=>{
+
+const member = doc.data();
+
+if(member.memberId===id){
+
+document.getElementById("photo").src =
+member.photoUrl || "";
+
+document.getElementById("name").textContent =
+member.name || "";
+
+document.getElementById("memberId").textContent =
+member.memberId || "";
+
+document.getElementById("mobile").textContent =
+member.mobile || "";
+
+document.getElementById("address").textContent =
+member.address || "";
+
+}
+
+});
+
+document.getElementById("downloadBtn").onclick = () => {
+window.print();
+};
+
+</script>
+
+</div>
+
+</body>
+</html>
