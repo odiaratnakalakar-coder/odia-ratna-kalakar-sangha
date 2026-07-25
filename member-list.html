@@ -270,21 +270,13 @@ window.onclick = function(e){
     }
 };
 
-    const member = members.find(m => m.id === id);
+    
 
-    if(!member) return;
+    
+         
+    
 
-    alert(
-        "👤 ନାମ : " + (member.name || "") +
-        "\n\n🆔 Member ID : " + (member.memberId || "") +
-        "\n\n👨 ପିତା : " + (member.father || "") +
-        "\n\n📞 ମୋବାଇଲ : " + (member.mobile || "") +
-        "\n\n🏠 ଠିକଣା : " + (member.address || "") +
-        "\n\n💳 Txn ID : " + (member.txnId || "") +
-        "\n\n✅ Paid : " + (member.paid ? "Yes" : "No")
-    );
 
-}
 loadMembers();
 searchInput.addEventListener("input", () => {
 
