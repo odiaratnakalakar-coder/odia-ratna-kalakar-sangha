@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accounts Dashboard</title>
+
+<style>
+body{
+margin:0;
+padding:20px;
+font-family:Arial,sans-serif;
+background:#f2f2f2;
+}
+
+h1{
+text-align:center;
+color:#b00000;
+}
+
+.box{
+background:white;
+padding:15px;
+margin:10px 0;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.2);
+font-size:20px;
+font-weight:bold;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+margin-top:20px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+text-align:center;
+}
+
+th{
+background:#b00000;
+color:white;
+}
+</style>
+</head>
+
+<body>
+
+<h1>📊 Trust Accounts Dashboard</h1>
+
+<div class="box" id="totalMembers">👥 Total Members : 0</div>
+<div class="box" id="totalAmount">💰 Total Collection : ₹0</div>
+
+<table>
+<thead>
+<tr>
+<th>ନାମ</th>
+<th>ମୋବାଇଲ୍</th>
+<th>ରାଶି</th>
+<th>Receipt</th>
+</tr>
+</thead>
+
+<tbody id="memberTable"></tbody>
+
+</table>
+
+</body>
+</html>
