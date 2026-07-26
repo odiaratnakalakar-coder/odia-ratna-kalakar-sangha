@@ -68,6 +68,52 @@ color:white;
 <tbody id="memberTable"></tbody>
 
 </table>
+<script type="module">
+import { db } from "./firebase.js";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+const table = document.getElementById("memberTable");
+const totalMembers = document.getElementById("totalMembers");
+const totalAmount = document.getElementById("totalAmount");
+
+let members = 0;
+let amount = 0;
+
+const q = query(
+  collection(db,"donations"),
+  orderBy("createdAt","desc")
+);
+
+const snapshot = await getDocs(q);
+
+snapshot.forEach((doc)=>{
+
+  const data = doc.data();
+
+  members++;
+  amount += Number(data.amount || 0);
+
+  table.innerHTML += `
+  <tr>
+    <td>${data.name}</td>
+    <td>${data.mobile}</td>
+    <td>₹${data.amount}</td>
+    <td>
+      <a href="receipt.html?id=${doc.id}">
+        📄 Receipt
+      </a>
+    </td>
+  </tr>
+  `;
+});
+
+totalMembers.textContent = "👥 Total Members : " + members;
+totalAmount.textContent = "💰 Total Collection : ₹" + amount;
+</script>
 </body>
 </html>
