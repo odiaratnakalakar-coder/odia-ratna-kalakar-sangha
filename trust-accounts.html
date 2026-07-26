@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Trust Accounts</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+padding:15px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+color:#b00000;
+margin-bottom:20px;
+}
+
+.summary{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-bottom:20px;
+}
+
+.box{
+background:#fff;
+padding:15px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.15);
+font-size:18px;
+font-weight:bold;
+}
+
+#dateList{
+display:flex;
+flex-direction:column;
+gap:10px;
+margin-top:20px;
+}
+
+.date-card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.15);
+cursor:pointer;
+}
+
+.date-card:hover{
+background:#fff3f3;
+}
+
+#memberList{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.member{
+background:white;
+padding:10px;
+border-radius:10px;
+display:flex;
+align-items:center;
+gap:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.member img{
+width:70px;
+height:70px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid green;
+}
+
+.info{
+flex:1;
+}
+
+.receipt{
+background:#b00000;
+color:white;
+padding:8px 15px;
+border-radius:6px;
+text-decoration:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📊 Trust Accounts Dashboard</h1>
+
+<div class="summary">
+
+<div class="box">
+👥 Total Members :
+<span id="totalMembers">0</span>
+</div>
+
+<div class="box">
+💰 Total Collection :
+₹<span id="totalAmount">0</span>
+</div>
+
+</div>
+
+<h2>📅 Date Wise Collection</h2>
+
+<div id="dateList"></div>
+
+<h2 style="margin-top:25px;">👥 Members</h2>
+
+<div id="memberList"></div>
+
+</div>
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+collection,
+getDocs
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+
+// Part-2 ରେ ଏଠାରୁ Firestore Logic ଆରମ୍ଭ ହେବ
+
+</script>
+
+</body>
+</html>
