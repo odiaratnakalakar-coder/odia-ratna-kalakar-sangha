@@ -235,9 +235,15 @@ function showMembers(members) {
         🆔 ${member.memberId || ""}
       </div>
 
-      <a class="receipt" href="#">
-        📄 Receipt
-      </a>
+   <a class="call" href="tel:${member.mobile}">
+📞 Call
+</a>
+
+<a class="receipt" href="#">
+📄 Receipt
+</a> 
+        
+      
     `;
 
     memberList.appendChild(card);
