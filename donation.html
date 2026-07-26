@@ -207,13 +207,7 @@ donationList.innerHTML += `
 
 <p>💰 ₹${data.amount}</p>
 
-<p>📝 ${data.purpose || "-"}</p>
-<button onclick="window.open(
-`receipt.html?name=${encodeURIComponent(data.name)}&mobile=${encodeURIComponent(data.mobile)}&amount=${encodeURIComponent(data.amount)}&purpose=${encodeURIComponent(data.purpose || "-")}&photo=${encodeURIComponent(data.photoUrl)}`,
-'_blank'
-)">
-📄 Receipt
-</button>
+<p>📝 ${data.purpose || 
 
 
 </div>
