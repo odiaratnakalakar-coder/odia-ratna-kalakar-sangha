@@ -90,7 +90,9 @@ const totalAmount = document.getElementById("totalAmount");
 
 let members = 0;
 let amount = 0;
-
+let count500 = 0;
+let count200 = 0;
+let otherCount = 0;
 const q = query(
   collection(db,"donations"),
   orderBy("createdAt","desc")
