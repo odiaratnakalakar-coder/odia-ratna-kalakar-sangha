@@ -150,30 +150,30 @@ cursor:pointer;
 
 </div>
 
-<script>
-  const params = new URLSearchParams(window.location.search);
+<script type="module">
+import { db } from "./firebase.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-document.getElementById("receiptNo").textContent =
-params.get("receipt") || ("ORKS-" + Date.now());
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
 
-document.getElementById("receiptDate").textContent =
-new Date().toLocaleDateString("en-IN");
+if (id) {
+  const snap = await getDoc(doc(db, "donations", id));
 
-document.getElementById("donorName").textContent =
-params.get("name") || "-";
+  if (snap.exists()) {
+    const data = snap.data();
 
-document.getElementById("donorMobile").textContent =
-params.get("mobile") || "-";
+    document.getElementById("receiptNo").textContent = "ORKS-" + id.substring(0,8);
+    document.getElementById("receiptDate").textContent = new Date().toLocaleDateString("en-IN");
+    document.getElementById("donorName").textContent = data.name;
+    document.getElementById("donorMobile").textContent = data.mobile;
+    document.getElementById("donorAmount").textContent = "₹" + data.amount;
+    document.getElementById("donorPurpose").textContent = data.purpose || "-";
+    document.getElementById("donorPhoto").src = data.photoUrl || "logo.png";
+  }
+}
+      </script>
+  
 
-document.getElementById("donorAmount").textContent =
-"₹" + (params.get("amount") || "0");
 
-document.getElementById("donorPurpose").textContent =
-params.get("purpose") || "-";
 
-document.getElementById("donorPhoto").src =
-params.get("photo") || "logo.png";
-  </script>
-
-</body>
-</html>
