@@ -99,6 +99,12 @@ background:#0066cc;
 </a>
 
 </div>
+<script>
+const id = new URLSearchParams(window.location.search).get("id");
 
+if (id) {
+  document.getElementById("receiptBtn").href = "receipt.html?id=" + id;
+}
+</script>
 </body>
 </html>
