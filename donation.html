@@ -208,7 +208,9 @@ donationList.innerHTML += `
 <p>💰 ₹${data.amount}</p>
 
 <p>📝 ${data.purpose || "-"}</p>
-
+<button onclick="downloadReceipt('${data.name}','${data.mobile}','${data.amount}','${data.purpose || "-"}','${data.photoUrl}')">
+📄 Receipt Download
+</button>
 </div>
 
 `;
