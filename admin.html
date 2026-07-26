@@ -137,7 +137,7 @@ color:#aaa;
 <a href="donation-admin.html">❤️ Donation Admin</a>
   <a href="accounts.html">📊 Trust Accounts Dashboard</a>
 <a href="index.html">🏠 Website Home</a>
-
+<a href="#" onclick="logout()">🚪 Logout</a>
 </div>
 
 <div class="footer">
@@ -145,7 +145,7 @@ color:#aaa;
 </div>
 <script type="module">
 
-import { db } from "./firebase.js";
+import { db, auth } from "./firebase.js";
 
 import {
 collection,
