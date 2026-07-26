@@ -177,6 +177,7 @@ const docRef = await addDoc(collection(db,"donations"),{
 
 
 alert("✅ Donation Saved Successfully");
+  window.location.href = "receipt.html?id=" + docRef.id;
 
 document.getElementById("name").value="";
 document.getElementById("mobile").value="";
