@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Donation Receipt</title>
+
+<style>
+
+body{
+margin:0;
+padding:20px;
+background:#f2f2f2;
+font-family:Arial,sans-serif;
+}
+
+.receipt{
+max-width:700px;
+margin:auto;
+background:#fff;
+padding:25px;
+border-radius:12px;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+.header{
+text-align:center;
+}
+
+.logo{
+width:120px;
+height:120px;
+object-fit:contain;
+}
+
+h1{
+margin:10px 0;
+color:#b00000;
+}
+
+h3{
+margin:0;
+color:#333;
+}
+
+.line{
+border-top:2px solid #b00000;
+margin:15px 0;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+td{
+padding:10px;
+border:1px solid #ddd;
+font-size:18px;
+}
+
+.photo{
+width:120px;
+height:120px;
+border-radius:10px;
+border:2px solid #b00000;
+object-fit:cover;
+}
+
+.btn{
+margin-top:20px;
+padding:12px 25px;
+background:#b00000;
+color:white;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="receipt">
+
+<div class="header">
+
+<img src="logo.png" class="logo">
+
+<h1>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h1>
+
+<h3>ସୁରତ</h3>
+
+<div class="line"></div>
+<h2 style="text-align:center;">🧾 Donation Receipt</h2>
+
+<table>
+
+<tr>
+<td><b>Receipt No.</b></td>
+<td id="receiptNo"></td>
+</tr>
+
+<tr>
+<td><b>Date</b></td>
+<td id="receiptDate"></td>
+</tr>
+
+<tr>
+<td><b>Donor Name</b></td>
+<td id="donorName"></td>
+</tr>
+
+<tr>
+<td><b>Mobile</b></td>
+<td id="donorMobile"></td>
+</tr>
+
+<tr>
+<td><b>Amount</b></td>
+<td id="donorAmount"></td>
+</tr>
+
+<tr>
+<td><b>Purpose</b></td>
+<td id="donorPurpose"></td>
+</tr>
+
+<tr>
+<td><b>Photo</b></td>
+<td>
+<img id="donorPhoto" class="photo">
+</td>
+</tr>
+
+</table>
+
+<div style="text-align:center;">
+
+<button class="btn" onclick="window.print()">
+🖨️ Print / Save PDF
+</button>
+
+</div>
+
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+
+document.getElementById("receiptNo").textContent =
+params.get("receipt") || ("ORKS-" + Date.now());
+
+document.getElementById("receiptDate").textContent =
+new Date().toLocaleDateString("en-IN");
+
+document.getElementById("donorName").textContent =
+params.get("name") || "-";
+
+document.getElementById("donorMobile").textContent =
+params.get("mobile") || "-";
+
+document.getElementById("donorAmount").textContent =
+"₹" + (params.get("amount") || "0");
+
+document.getElementById("donorPurpose").textContent =
+params.get("purpose") || "-";
+
+document.getElementById("donorPhoto").src =
+params.get("photo") || "logo.png";
+  </script>
+
+</body>
+</html>
