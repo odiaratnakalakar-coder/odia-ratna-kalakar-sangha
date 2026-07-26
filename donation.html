@@ -160,14 +160,21 @@ const result = await response.json();
 
 const photoUrl = result.secure_url;
 
-await addDoc(collection(db,"donations"),{
-name,
-mobile,
-amount:Number(amount),
-purpose,
-photoUrl,
-createdAt:new Date()
+const docRef = await addDoc(collection(db,"donations"),{
+  name,
+  mobile,
+  amount:Number(amount),
+  purpose,
+  photoUrl,
+  createdAt:new Date()
 });
+
+
+
+
+
+
+
 
 alert("✅ Donation Saved Successfully");
 
