@@ -207,7 +207,17 @@ donationList.innerHTML += `
 
 <p>💰 ₹${data.amount}</p>
 
-<button>📄 Receipt</button>
+donationList.innerHTML += `
+<div class="card">
+
+<img src="${data.photoUrl || 'logo.png'}">
+
+<h3>${data.name}</h3>
+
+<p>📱 ${data.mobile}</p>
+
+<p>💰 ₹${data.amount}</p>
+
 <p>📝 ${data.purpose || "-"}</p>
 
 <button onclick="window.location.href='receipt.html?id=${doc.id}'">
@@ -216,6 +226,12 @@ donationList.innerHTML += `
 
 </div>
 `;
+
+
+
+
+
+
 
 
 
