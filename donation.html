@@ -1,3 +1,99 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Registration</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#111;
+color:#fff;
+padding:15px;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+background:#222;
+padding:20px;
+border-radius:12px;
+box-shadow:0 0 10px rgba(255,152,0,.4);
+}
+
+h2{
+text-align:center;
+color:#ff9800;
+margin-bottom:20px;
+}
+
+input,
+textarea{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+textarea{
+resize:vertical;
+min-height:80px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:12px;
+background:#c40000;
+color:#fff;
+border:none;
+border-radius:8px;
+font-size:17px;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff0000;
+}
+
+.card{
+background:#333;
+border:2px solid orange;
+border-radius:12px;
+padding:15px;
+margin-top:15px;
+text-align:center;
+}
+
+.card img{
+width:80px;
+height:80px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid orange;
+margin-bottom:10px;
+}
+
+.card h3{
+color:#ffcc00;
+margin-bottom:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
 <h2>❤️ Donation Registration</h2>
 
 <input type="text" id="name" placeholder="ଦାତାଙ୍କ ନାମ">
@@ -8,19 +104,121 @@
 
 <textarea id="purpose" placeholder="ଦାନର ଉଦ୍ଦେଶ୍ୟ (ଇଚ୍ଛାଧୀନ)"></textarea>
 
-<label style="color:white;">ଦାତାଙ୍କ Photo</label>
+<label>ଦାତାଙ୍କ Photo</label>
 
-<input
-type="file"
-id="photo"
-accept="image/*">
+<input type="file" id="photo" accept="image/*">
 
-<button id="saveBtn">
-❤️ Save Donation
-</button>
+<button id="saveBtn">❤️ Save Donation</button>
 
 <hr style="margin:20px 0;">
 
 <h2>📋 Donation List</h2>
 
 <div id="donationList"></div>
+
+<script type="module">
+  import { db } from "./firebase.js";
+
+import {
+collection,
+addDoc,
+getDocs,
+query,
+orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const saveBtn = document.getElementById("saveBtn");
+const donationList = document.getElementById("donationList");
+
+saveBtn.addEventListener("click", async () => {
+
+const name = document.getElementById("name").value.trim();
+const mobile = document.getElementById("mobile").value.trim();
+const amount = document.getElementById("amount").value.trim();
+const purpose = document.getElementById("purpose").value.trim();
+const photo = document.getElementById("photo").files[0];
+
+if (!name || !mobile || !amount || !photo) {
+alert("ସମସ୍ତ ତଥ୍ୟ ଭରନ୍ତୁ ଏବଂ ଫଟୋ ବାଛନ୍ତୁ");
+return;
+}
+
+const formData = new FormData();
+formData.append("file", photo);
+formData.append("upload_preset", "odiaratan2026");
+
+const response = await fetch(
+"https://api.cloudinary.com/v1_1/y8toswrt/image/upload",
+{
+method: "POST",
+body: formData
+}
+);
+
+const result = await response.json();
+
+const photoUrl = result.secure_url;
+
+await addDoc(collection(db,"donations"),{
+name,
+mobile,
+amount:Number(amount),
+purpose,
+photoUrl,
+createdAt:new Date()
+});
+
+alert("✅ Donation Saved Successfully");
+
+document.getElementById("name").value="";
+document.getElementById("mobile").value="";
+document.getElementById("amount").value="";
+document.getElementById("purpose").value="";
+document.getElementById("photo").value="";
+
+loadDonations();
+
+});
+  async function loadDonations(){
+
+donationList.innerHTML = "";
+
+const q = query(
+collection(db,"donations"),
+orderBy("createdAt","desc")
+);
+
+const snapshot = await getDocs(q);
+
+snapshot.forEach((doc)=>{
+
+const data = doc.data();
+
+donationList.innerHTML += `
+
+<div class="card">
+
+<img src="${data.photoUrl || 'logo.png'}">
+
+<h3>${data.name}</h3>
+
+<p>📱 ${data.mobile}</p>
+
+<p>💰 ₹${data.amount}</p>
+
+<p>📝 ${data.purpose || "-"}</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+loadDonations();
+
+</script>
+
+</body>
+</html>
