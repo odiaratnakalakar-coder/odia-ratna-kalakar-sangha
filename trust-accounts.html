@@ -283,7 +283,19 @@ target="_blank">
   });
 
 }
+document.getElementById("searchBox").addEventListener("input", (e) => {
 
+const text = e.target.value.toLowerCase();
+
+const result = allMembers.filter(member =>
+(member.name || "").toLowerCase().includes(text) ||
+(member.mobile || "").includes(text) ||
+(member.memberId || "").toLowerCase().includes(text)
+);
+
+showMembers(result);
+
+});
 loadData();
 </script>
 </body>
