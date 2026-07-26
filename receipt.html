@@ -154,25 +154,38 @@ cursor:pointer;
 import { db } from "./firebase.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
+try {
+  const id = new URLSearchParams(window.location.search).get("id");
 
-if (id) {
+  if (!id) {
+    alert("Receipt ID ମିଳିଲା ନାହିଁ");
+    throw new Error("No ID");
+  }
+
   const snap = await getDoc(doc(db, "donations", id));
 
-  if (snap.exists()) {
-    const data = snap.data();
-
-    document.getElementById("receiptNo").textContent = "ORKS-" + id.substring(0,8);
-    document.getElementById("receiptDate").textContent = new Date().toLocaleDateString("en-IN");
-    document.getElementById("donorName").textContent = data.name;
-    document.getElementById("donorMobile").textContent = data.mobile;
-    document.getElementById("donorAmount").textContent = "₹" + data.amount;
-    document.getElementById("donorPurpose").textContent = data.purpose || "-";
-    document.getElementById("donorPhoto").src = data.photoUrl || "logo.png";
+  if (!snap.exists()) {
+    alert("Donation document ମିଳିଲା ନାହିଁ");
+    throw new Error("Document not found");
   }
+
+  const data = snap.data();
+
+  document.getElementById("receiptNo").textContent = "ORKS-" + id.substring(0,8);
+  document.getElementById("receiptDate").textContent = new Date().toLocaleDateString("en-IN");
+  document.getElementById("donorName").textContent = data.name;
+  document.getElementById("donorMobile").textContent = data.mobile;
+  document.getElementById("donorAmount").textContent = "₹" + data.amount;
+  document.getElementById("donorPurpose").textContent = data.purpose || "-";
+  document.getElementById("donorPhoto").src = data.photoUrl || "logo.png";
+
+} catch (e) {
+  alert(e.message);
+  console.error(e);
 }
-      </script>
+</script>
+
+
   
 
 
