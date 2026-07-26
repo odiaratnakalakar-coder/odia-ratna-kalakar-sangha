@@ -208,6 +208,14 @@ donationList.innerHTML += `
 <p>💰 ₹${data.amount}</p>
 
 <button>📄 Receipt</button>
+<p>📝 ${data.purpose || "-"}</p>
+
+<button onclick="window.location.href='receipt.html?id=${doc.id}'">
+📄 Receipt
+</button>
+
+</div>
+`;
 
 
 
