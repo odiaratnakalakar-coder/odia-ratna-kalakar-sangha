@@ -106,7 +106,13 @@ snapshot.forEach((doc)=>{
 
   members++;
   amount += Number(data.amount || 0);
-
+if (Number(data.amount) === 500) {
+  count500++;
+} else if (Number(data.amount) === 200) {
+  count200++;
+} else {
+  otherCount++;
+  }
   table.innerHTML += `
   <tr>
     <td>${data.name}</td>
