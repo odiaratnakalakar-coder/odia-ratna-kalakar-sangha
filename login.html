@@ -122,8 +122,8 @@ loginBtn.addEventListener("click", async () => {
 
   } catch (e) {
 
-    document.getElementById("error").textContent =
-      "Login Failed! Email କିମ୍ବା Password ଭୁଲ ଅଛି";
+   document.getElementById("error").textContent = e.code; 
+      
 
   }
 
