@@ -146,7 +146,107 @@ getDocs
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
+const memberCol = collection(db, "members");
 
+const dateList = document.getElementById("dateList");
+const memberList = document.getElementById("memberList");
 
+let allMembers = [];
+
+async function loadData() {
+
+  const snap = await getDocs(memberCol);
+
+  let totalAmount = 0;
+  const groups = {};
+
+  snap.forEach((doc) => {
+
+    const data = doc.data();
+
+    allMembers.push(data);
+
+    totalAmount += 1200;
+
+    let date = "Unknown";
+
+    if (data.createdAt) {
+      const d = data.createdAt.toDate();
+      date = d.toLocaleDateString("en-GB");
+    }
+
+    if (!groups[date]) {
+      groups[date] = [];
+    }
+
+    groups[date].push(data);
+
+  });
+
+  document.getElementById("totalMembers").textContent = allMembers.length;
+  document.getElementById("totalAmount").textContent = totalAmount;
+
+  showDates(groups);
+
+}
+
+function showDates(groups) {
+
+  dateList.innerHTML = "";
+
+  Object.keys(groups).reverse().forEach((date) => {
+
+    const members = groups[date];
+
+    const div = document.createElement("div");
+
+    div.className = "date-card";
+
+    div.innerHTML = `
+      <b>📅 ${date}</b><br>
+      👥 ${members.length} Members<br>
+      💰 ₹${members.length * 1200}
+    `;
+
+    div.onclick = () => showMembers(members);
+
+    dateList.appendChild(div);
+
+  });
+
+}
+
+function showMembers(members) {
+
+  memberList.innerHTML = "";
+
+  members.forEach((member) => {
+
+    const card = document.createElement("div");
+
+    card.className = "member";
+
+    card.innerHTML = `
+      <img src="${member.photoUrl || 'https://via.placeholder.com/70'}">
+
+      <div class="info">
+        <b>👤 ${member.name || ""}</b><br>
+        📱 ${member.mobile || ""}<br>
+        🆔 ${member.memberId || ""}
+      </div>
+
+      <a class="receipt" href="#">
+        📄 Receipt
+      </a>
+    `;
+
+    memberList.appendChild(card);
+
+  });
+
+}
+
+loadData();
+</script>
 </body>
 </html>
