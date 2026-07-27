@@ -246,7 +246,12 @@ expenseSnap.forEach((doc) => {
 
   document.getElementById("totalMembers").textContent = allMembers.length;
   document.getElementById("totalAmount").textContent = totalAmount;
+document.getElementById("totalDonation").textContent = totalDonation;
 
+document.getElementById("totalExpense").textContent = totalExpense;
+
+document.getElementById("currentBalance").textContent =
+totalAmount + totalDonation - totalExpense;
   showDates(groups);
 
 }
