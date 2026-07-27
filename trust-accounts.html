@@ -277,7 +277,9 @@ window.deleteExpense = async function(id) {
   if (!confirm("ଏହି Expense Delete କରିବେ?")) return;
 
   await deleteDoc(doc(db, "expenses", id));
-  loadDashboard();
+  await loadDashboard();
+renderMembers(members);
+renderExpenses();
 };
 
 loadDashboard().then(() => {
