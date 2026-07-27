@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Admin</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+padding:20px;
+}
+.container{
+max-width:500px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.2);
+}
+h2{
+text-align:center;
+color:#b00000;
+}
+input,textarea{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+button{
+width:100%;
+padding:12px;
+background:#b00000;
+color:#fff;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+}
+button:hover{
+background:#900000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>💸 Add Expense</h2>
+
+<input id="purpose" placeholder="Expense Purpose">
+
+<input id="amount" type="number" placeholder="Amount">
+
+<textarea id="note" placeholder="Note (Optional)"></textarea>
+
+<button id="saveBtn">💾 Save Expense</button>
+
+</div>
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+collection,
+addDoc,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const expenseCol = collection(db,"expenses");
+
+document.getElementById("saveBtn").onclick = async()=>{
+
+const purpose=document.getElementById("purpose").value.trim();
+const amount=Number(document.getElementById("amount").value);
+const note=document.getElementById("note").value.trim();
+
+if(!purpose || amount<=0){
+alert("ସମସ୍ତ ତଥ୍ୟ ଭରନ୍ତୁ");
+return;
+}
+
+await addDoc(expenseCol,{
+purpose,
+amount,
+note,
+createdAt:serverTimestamp()
+});
+
+alert("✅ Expense Saved");
+
+document.getElementById("purpose").value="";
+document.getElementById("amount").value="";
+document.getElementById("note").value="";
+
+};
+
+</script>
+
+<script>
+const password = prompt("🔒 Admin Password ଦିଅନ୍ତୁ");
+
+if(password!=="ORKS@2026"){
+alert("❌ Wrong Password");
+window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
