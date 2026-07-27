@@ -352,6 +352,21 @@ target="_blank">
   });
 
 }
+  import {
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+window.deleteExpense = async function(id){
+
+  if(!confirm("ଏହି Expense Delete କରିବେ?")) return;
+
+  await deleteDoc(doc(db, "expenses", id));
+
+  alert("✅ Expense Deleted");
+
+  location.reload();
+}
 document.getElementById("searchBox").addEventListener("input", (e) => {
 
 const text = e.target.value.toLowerCase();
