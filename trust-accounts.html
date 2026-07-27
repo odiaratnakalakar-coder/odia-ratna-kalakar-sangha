@@ -254,6 +254,32 @@ document.getElementById("totalExpense").textContent = totalExpense;
 
 document.getElementById("currentBalance").textContent =
 totalAmount + totalDonation - totalExpense;
+  expenseList.innerHTML = "";
+
+expenseSnap.forEach((doc) => {
+  const data = doc.data();
+
+  const item = document.createElement("div");
+  item.className = "member";
+
+  item.innerHTML = `
+    <div class="info">
+      <b>📝 ${data.purpose || ""}</b><br>
+      💸 ₹${data.amount || 0}<br>
+      📅 ${
+        data.createdAt
+          ? data.createdAt.toDate().toLocaleDateString("en-GB")
+          : ""
+      }
+    </div>
+
+    <button class="receipt" onclick="deleteExpense('${doc.id}')">
+      🗑️ Delete
+    </button>
+  `;
+
+  expenseList.appendChild(item);
+});
   showDates(groups);
 
 }
