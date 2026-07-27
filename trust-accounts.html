@@ -1,1 +1,259 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Trust Accounts Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+    padding:15px;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    color:#b00000;
+    margin-bottom:20px;
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.box{
+    background:#fff;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+    font-size:18px;
+    font-weight:bold;
+}
+
+.section{
+    background:#fff;
+    margin-top:20px;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    margin:15px 0;
+    font-size:16px;
+}
+
+.member,
+.expense{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📊 Trust Accounts Dashboard</h1>
+
+<div class="summary">
+
+<div class="box">
+👥 Total Members<br>
+<span id="totalMembers">0</span>
+</div>
+
+<div class="box">
+💰 Total Collection<br>
+₹<span id="totalAmount">0</span>
+</div>
+
+<div class="box">
+❤️ Total Donation<br>
+₹<span id="totalDonation">0</span>
+</div>
+
+<div class="box">
+💸 Total Expense<br>
+₹<span id="totalExpense">0</span>
+</div>
+
+<div class="box">
+🏦 Current Balance<br>
+₹<span id="currentBalance">0</span>
+</div>
+
+</div>
+<div class="section">
+
+<h2>📅 Date Wise Collection</h2>
+<div id="dateList"></div>
+
+</div>
+
+<div class="section">
+
+<input
+type="text"
+id="searchBox"
+placeholder="🔍 ସଦସ୍ୟଙ୍କ ନାମ କିମ୍ବା ମୋବାଇଲ୍ ନମ୍ବର ଖୋଜନ୍ତୁ...">
+
+<h2>👥 Members List</h2>
+<div id="memberList"></div>
+
+</div>
+
+<div class="section">
+
+<h2>💸 Expense History</h2>
+<div id="expenseList"></div>
+
+</div>
+
+<script type="module">
+  import { db } from "./firebase.js";
+
+import {
+  collection,
+  getDocs,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const totalMembers = document.getElementById("totalMembers");
+const totalAmount = document.getElementById("totalAmount");
+const totalDonation = document.getElementById("totalDonation");
+const totalExpense = document.getElementById("totalExpense");
+const currentBalance = document.getElementById("currentBalance");
+
+const dateList = document.getElementById("dateList");
+const memberList = document.getElementById("memberList");
+const expenseList = document.getElementById("expenseList");
+const searchBox = document.getElementById("searchBox");
+
+let members = [];
+let expenses = [];
+let donations = [];
+  async function loadDashboard() {
+
+  // Members
+  const memberSnap = await getDocs(collection(db, "members"));
+  members = memberSnap.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+
+  // Donations
+  const donationSnap = await getDocs(collection(db, "donations"));
+  donations = donationSnap.docs.map(doc => doc.data());
+
+  // Expenses
+  const expenseSnap = await getDocs(collection(db, "expenses"));
+  expenses = expenseSnap.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+
+  // Totals
+  const memberCount = members.length;
+
+  const collectionTotal = members.reduce(
+    (sum, m) => sum + Number(m.amount || 0),
+    0
+  );
+
+  const donationTotal = donations.reduce(
+    (sum, d) => sum + Number(d.amount || 0),
+    0
+  );
+
+  const expenseTotal = expenses.reduce(
+    (sum, e) => sum + Number(e.amount || 0),
+    0
+  );
+
+  totalMembers.textContent = memberCount;
+  totalAmount.textContent = collectionTotal;
+  totalDonation.textContent = donationTotal;
+  totalExpense.textContent = expenseTotal;
+  currentBalance.textContent =
+    collectionTotal + donationTotal - expenseTotal;
+
+  }
+  function renderMembers(list) {
+  memberList.innerHTML = "";
+
+  list.forEach(member => {
+    memberList.innerHTML += `
+      <div class="member">
+        <b>${member.name || ""}</b><br>
+        📞 ${member.mobile || ""}<br>
+        💰 ₹${member.amount || 0}
+      </div>
+    `;
+  });
+}
+
+searchBox.addEventListener("input", () => {
+  const text = searchBox.value.toLowerCase();
+
+  const filtered = members.filter(m =>
+    (m.name || "").toLowerCase().includes(text) ||
+    (m.mobile || "").includes(text)
+  );
+
+  renderMembers(filtered);
+});
+
+function renderExpenses() {
+  expenseList.innerHTML = "";
+
+  expenses.forEach(expense => {
+    expenseList.innerHTML += `
+      <div class="expense">
+        <b>${expense.title || "Expense"}</b><br>
+        💸 ₹${expense.amount || 0}<br>
+        <button onclick="deleteExpense('${expense.id}')">
+          🗑️ Delete
+        </button>
+      </div>
+    `;
+  });
+}
+
+window.deleteExpense = async function(id) {
+  if (!confirm("ଏହି Expense Delete କରିବେ?")) return;
+
+  await deleteDoc(doc(db, "expenses", id));
+  loadDashboard();
+};
+
+loadDashboard().then(() => {
+  renderMembers(members);
+  renderExpenses();
+});
+  </script>
+</body>
+</html>
