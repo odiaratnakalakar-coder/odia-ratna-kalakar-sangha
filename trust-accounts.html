@@ -203,7 +203,21 @@ let allMembers = [];
 async function loadData() {
 
   const snap = await getDocs(memberCol);
+const donationSnap = await getDocs(donationCol);
+const expenseSnap = await getDocs(expenseCol);
 
+let totalDonation = 0;
+let totalExpense = 0;
+
+donationSnap.forEach((doc) => {
+  const data = doc.data();
+  totalDonation += Number(data.amount || 0);
+});
+
+expenseSnap.forEach((doc) => {
+  const data = doc.data();
+  totalExpense += Number(data.amount || 0);
+});
   let totalAmount = 0;
   const groups = {};
 
