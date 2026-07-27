@@ -213,7 +213,7 @@ let donations = [];
       <div class="member">
         <b>${member.name || ""}</b><br>
         📞 ${member.mobile || ""}<br>
-        💰 ₹${member.amount || 0}
+        💰 ₹${member.paid ? 1200 : 0}
       </div>
     `;
   });
