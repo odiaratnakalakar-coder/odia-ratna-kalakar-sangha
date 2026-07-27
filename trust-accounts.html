@@ -180,9 +180,12 @@ let donations = [];
   const memberCount = members.length;
 
   const collectionTotal = members.reduce(
-    (sum, m) => sum + Number(m.amount || 0),
-    0
-  );
+  (sum, m) => sum + (m.paid === true ? 1200 : 0),
+  0
+);
+    
+    
+  
 
   const donationTotal = donations.reduce(
     (sum, d) => sum + Number(d.amount || 0),
