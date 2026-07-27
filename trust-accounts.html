@@ -206,7 +206,28 @@ let donations = [];
       
 
 
-// 👇 ଏଠାରେ Date Wise Collection କୋଡ୍ ପେଷ୍ଟ କରନ୍ତୁ
+const dateMap = {};
+
+members.forEach(member => {
+  if (!member.paid || !member.createdAt) return;
+
+  const date = member.createdAt.toDate().toLocaleDateString("en-IN");
+
+  dateMap[date] = (dateMap[date] || 0) + 1200;
+});
+
+dateList.innerHTML = "";
+
+Object.keys(dateMap)
+.sort((a,b)=>new Date(b)-new Date(a))
+.forEach(date => {
+  dateList.innerHTML += `
+    <div class="member">
+      <b>📅 ${date}</b><br>
+      💰 Collection : ₹${dateMap[date]}
+    </div>
+  `;
+});
 
   }
 
