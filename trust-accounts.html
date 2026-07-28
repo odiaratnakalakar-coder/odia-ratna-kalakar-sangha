@@ -6,78 +6,91 @@
 
 <title>Trust Accounts Dashboard</title>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-    background:#f5f5f5;
-    padding:15px;
+background:#f5f5f5;
+padding:15px;
 }
 
 .container{
-    max-width:1000px;
-    margin:auto;
+max-width:1000px;
+margin:auto;
 }
 
 h1{
-    text-align:center;
-    color:#b00000;
-    margin-bottom:20px;
+text-align:center;
+color:#b00000;
+margin-bottom:20px;
 }
 
 .summary{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:15px;
-    margin-bottom:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+margin-bottom:20px;
 }
 
 .box{
-    background:#fff;
-    padding:15px;
-    border-radius:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
-    font-size:18px;
-    font-weight:bold;
+background:#fff;
+padding:15px;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.15);
+font-size:18px;
+font-weight:bold;
 }
 
 .section{
-    background:#fff;
-    margin-top:20px;
-    padding:15px;
-    border-radius:10px;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
+background:#fff;
+margin-top:20px;
+padding:15px;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,.15);
 }
 
 input{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    margin:15px 0;
-    font-size:16px;
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+margin:15px 0;
+font-size:16px;
 }
 
-.member,
-.expense{
-    padding:12px;
-    border-bottom:1px solid #ddd;
+.member,.expense{
+padding:12px;
+border-bottom:1px solid #ddd;
+}
+
+button{
+padding:10px 16px;
+background:#b00000;
+color:#fff;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#900000;
 }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
 
 <div class="container">
 
+    
 <h1>📊 Trust Accounts Dashboard</h1>
-
 <div class="summary">
 
 <div class="box">
@@ -106,11 +119,10 @@ input{
 </div>
 
 </div>
-<div class="section">
 
+<div class="section">
 <h2>📅 Date Wise Collection</h2>
 <div id="dateList"></div>
-
 </div>
 
 <div class="section">
@@ -126,245 +138,20 @@ placeholder="🔍 ସଦସ୍ୟଙ୍କ ନାମ କିମ୍ବା ମୋ�
 </div>
 
 <div class="section">
-
 <h2>💸 Expense History</h2>
 <div id="expenseList"></div>
-
 </div>
 
 <script type="module">
-  import { db } from "./firebase.js";
+import { db } from "./firebase.js";
 
 import {
-  collection,
-  getDocs,
-  deleteDoc,
-  doc
+collection,
+getDocs,
+deleteDoc,
+doc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const totalMembers = document.getElementById("totalMembers");
-const totalAmount = document.getElementById("totalAmount");
-const totalDonation = document.getElementById("totalDonation");
-const totalExpense = document.getElementById("totalExpense");
-const currentBalance = document.getElementById("currentBalance");
-
-const dateList = document.getElementById("dateList");
-const memberList = document.getElementById("memberList");
-const expenseList = document.getElementById("expenseList");
-const searchBox = document.getElementById("searchBox");
-
 let members = [];
-let expenses = [];
 let donations = [];
-  async function loadDashboard() {
-
-  // Members
-  const memberSnap = await getDocs(collection(db, "members"));
-  members = memberSnap.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data()
-  }));
-
-  // Donations
-  const donationSnap = await getDocs(collection(db, "donations"));
-  donations = donationSnap.docs.map(doc => doc.data());
-
-  // Expenses
-  const expenseSnap = await getDocs(collection(db, "expenses"));
-  expenses = expenseSnap.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data()
-  }));
-
-  // Totals
-  const memberCount = members.length;
-
-  const collectionTotal = members.reduce(
-  (sum, m) => sum + (m.paid === true ? 1200 : 0),
-  0
-);
-    
-    
-  
-
-  const donationTotal = donations.reduce(
-    (sum, d) => sum + Number(d.amount || 0),
-    0
-  );
-
-  const expenseTotal = expenses.reduce(
-    (sum, e) => sum + Number(e.amount || 0),
-    0
-  );
-
-  totalMembers.textContent = memberCount;
-  totalAmount.textContent = collectionTotal;
-  totalDonation.textContent = donationTotal;
-  totalExpense.textContent = expenseTotal;
-  currentBalance.textContent =
-    collectionTotal + donationTotal - expenseTotal;
-      
-
-
-const dateMap = {};
-
-members.forEach(member => {
-  if (!member.paid || !member.createdAt) return;
-
-  const date = member.createdAt.toDate().toLocaleDateString("en-IN");
-
-  dateMap[date] = (dateMap[date] || 0) + 1200;
-});
-
-dateList.innerHTML = "";
-
-Object.keys(dateMap)
-.sort((a,b)=>new Date(b)-new Date(a))
-.forEach(date => {
-  dateList.innerHTML += `
-    <div class="member">
-      <b>📅 ${date}</b><br>
-      💰 Collection : ₹${dateMap[date]}
-    </div>
-    `;
-});
-
-  }
-
-
-  
-
-  
-  function renderMembers(list) {
-  memberList.innerHTML = "";
-
-  list.forEach(member => {
-    memberList.innerHTML += `
-      <div class="member">
-        <b>${member.name || ""}</b><br>
-        📞 ${member.mobile || ""}<br>
-        💰 ₹${member.paid ? 1200 : 0}
-        <br><br>
-<button onclick="downloadReceipt('${member.id}')">
-📄 Receipt
-</button>
-      </div>
-    `;
-  });
-}
-
-searchBox.addEventListener("input", () => {
-  const text = searchBox.value.toLowerCase();
-
-  const filtered = members.filter(m =>
-    (m.name || "").toLowerCase().includes(text) ||
-    (m.mobile || "").includes(text)
-  );
-
-  renderMembers(filtered);
-});
-
-function renderExpenses() {
-  expenseList.innerHTML = "";
-
-  expenses.forEach(expense => {
-    expenseList.innerHTML += `
-      <div class="expense">
-        <b>${expense.title || "Expense"}</b><br>
-        💸 ₹${expense.amount || 0}<br>
-        <button onclick="deleteExpense('${expense.id}')">
-          🗑️ Delete
-        </button>
-      </div>
-    `;
-  });
-}
-
-window.deleteExpense = async function(id) {
-  if (!confirm("ଏହି Expense Delete କରିବେ?")) return;
-
-  await deleteDoc(doc(db, "expenses", id));
-  await loadDashboard();
-renderMembers(members);
-renderExpenses();
-};
-
-loadDashboard()
-.then(() => {
-  renderMembers(members);
-  renderExpenses();
-})
-.catch(error => {
-  console.error(error);
-  alert(error.message);
-});
-  
-  
-
-  window.downloadReceipt = function(id) {
-  const member = members.find(m => m.id === id);
-
-  if (!member) {
-    alert("Member not found");
-    return;
-  }
-
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-
-  const logo = new Image();
-  logo.src = "images/logo.png";
-
-  logo.onload = function () {
-
-    doc.addImage(logo, "PNG", 15, 10, 25, 25);
-
-    const sign = new Image();
-    sign.src = "images/signature.png";
-
-    sign.onload = function () {
-
-      doc.addImage(sign, "PNG", 145, 240, 45, 18);
-
-      doc.setDrawColor(180,0,0);
-      doc.setLineWidth(1);
-      doc.rect(8,8,194,281);
-
-      doc.setFontSize(18);
-      doc.setTextColor(180,0,0);
-      doc.text("ODIA RATNA KALAKAR SANGHA",105,20,{align:"center"});
-
-      doc.setFontSize(14);
-      doc.setTextColor(0,0,0);
-      doc.text("PAYMENT RECEIPT",105,30,{align:"center"});
-
-      doc.setFontSize(12);
-      doc.text("Name : " + (member.name || ""),20,55);
-      doc.text("Member ID : " + (member.memberId || ""),20,70);
-      doc.text("Mobile : " + (member.mobile || ""),20,85);
-      doc.text("Amount : Rs.1200",20,100);
-      doc.text("Status : PAID",20,115);
-      doc.text("Transaction ID : " + (member.txnId || "CASH"),20,130);
-
-      doc.text("Authorized Signature",140,262);
-
-      doc.save((member.name || "receipt") + ".pdf");
-    };
-
-    sign.onerror = function () {
-      alert("signature.png not found");
-    };
-
-  };
-
-  logo.onerror = function () {
-    alert("logo.png not found");
-  };
-
-};
-  
-
-  
-    
-
-  
+let expenses = [];
