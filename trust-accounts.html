@@ -311,7 +311,13 @@ loadDashboard()
 
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
 
+const logo = new Image();
+logo.src = "images/logo.png";
+
+logo.onload = function () {
   doc.setDrawColor(180, 0, 0);
 doc.setLineWidth(1);
 doc.rect(8, 8, 194, 281);
