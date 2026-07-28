@@ -289,10 +289,18 @@ renderMembers(members);
 renderExpenses();
 };
 
-loadDashboard().then(() => {
+loadDashboard()
+.then(() => {
   renderMembers(members);
   renderExpenses();
+})
+.catch(error => {
+  console.error(error);
+  alert(error.message);
 });
+  
+  
+
   window.downloadReceipt = function(id) {
   const member = members.find(m => m.id === id);
 
