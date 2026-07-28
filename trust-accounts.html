@@ -312,93 +312,59 @@ loadDashboard()
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
 
+  const logo = new Image();
+  logo.src = "images/logo.png";
 
+  logo.onload = function () {
 
-const logo = new Image();
-logo.src = "images/logo.png";
+    doc.addImage(logo, "PNG", 15, 10, 25, 25);
 
-logo.onload = function () {
-  doc.setDrawColor(180, 0, 0);
-doc.setLineWidth(1);
-doc.rect(8, 8, 194, 281);
+    const sign = new Image();
+    sign.src = "images/signature.png";
 
-doc.setFontSize(18);
-doc.setTextColor(180, 0, 0);
-doc.text("ODIA RATNA KALAKAR SANGHA", 105, 20, { align: "center" });
+    sign.onload = function () {
 
-doc.setFontSize(14);
-doc.setTextColor(0, 0, 0);
-doc.text("PAYMENT RECEIPT", 105, 30, { align: "center" });
+      doc.addImage(sign, "PNG", 145, 240, 45, 18);
 
-doc.setFontSize(12);
-doc.text("Name : " + (member.name || ""), 20, 55);
-doc.text("Member ID : " + (member.memberId || ""), 20, 70);
-doc.text("Mobile : " + (member.mobile || ""), 20, 85);
-doc.text("Amount : Rs.1200", 20, 100);
-doc.text("Status : PAID", 20, 115);
-doc.text("Transaction ID : " + (member.txnId || "CASH"), 20, 130);
+      doc.setDrawColor(180,0,0);
+      doc.setLineWidth(1);
+      doc.rect(8,8,194,281);
 
-doc.text("Authorized Signature", 140, 250);
+      doc.setFontSize(18);
+      doc.setTextColor(180,0,0);
+      doc.text("ODIA RATNA KALAKAR SANGHA",105,20,{align:"center"});
 
-doc.save((member.name || "receipt") + ".pdf");
+      doc.setFontSize(14);
+      doc.setTextColor(0,0,0);
+      doc.text("PAYMENT RECEIPT",105,30,{align:"center"});
+
+      doc.setFontSize(12);
+      doc.text("Name : " + (member.name || ""),20,55);
+      doc.text("Member ID : " + (member.memberId || ""),20,70);
+      doc.text("Mobile : " + (member.mobile || ""),20,85);
+      doc.text("Amount : Rs.1200",20,100);
+      doc.text("Status : PAID",20,115);
+      doc.text("Transaction ID : " + (member.txnId || "CASH"),20,130);
+
+      doc.text("Authorized Signature",140,262);
+
+      doc.save((member.name || "receipt") + ".pdf");
+    };
+
+    sign.onerror = function () {
+      alert("signature.png not found");
+    };
+
   };
 
+  logo.onerror = function () {
+    alert("logo.png not found");
+  };
 
-  
-
-  
-  
-  
-  
-  
 };
   
 
   
     
-    
-  
-
-  
-
-   
-
-
-
-
-
-
-
-  
-
-  
-
-    
-
-    
-    
-
-    
-    
-
-    
-    
-
-    
-    
-    
-    
-
-    
-
-  
-
-
-
-
-
-</script>
-</body>
-</html>
 
   
