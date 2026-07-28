@@ -310,42 +310,68 @@ loadDashboard()
   }
 
   const { jsPDF } = window.jspdf;
-const doc = new jsPDF();
-   const logo = new Image();
-logo.src = "images/logo.png";
+  const doc = new jsPDF();
 
-const sign = new Image();
-sign.src = "images/signature.png";
+  doc.setFontSize(18);
+  doc.text("ODIA RATNA KALAKAR SANGHA", 105, 20, { align: "center" });
 
-logo.onload = () => {
+  doc.setFontSize(14);
+  doc.text("PAYMENT RECEIPT", 105, 30, { align: "center" });
 
-  doc.addImage(logo, "PNG", 15, 10, 25, 25);
+  doc.setFontSize(12);
+  doc.text("Name : " + (member.name || ""), 20, 50);
+  doc.text("Member ID : " + (member.memberId || ""), 20, 60);
+  doc.text("Mobile : " + (member.mobile || ""), 20, 70);
+  doc.text("Amount : Rs.1200", 20, 80);
+  doc.text("Status : PAID", 20, 90);
+  doc.text("Transaction ID : " + (member.txnId || "CASH"), 20, 100);
 
-  sign.onload = () => {
-
-    doc.addImage(sign, "PNG", 150, 240, 40, 15);
-
-    doc.setFontSize(18);
-    doc.text("ODIA RATNA KALAKAR SANGHA", 105, 20, { align: "center" });
-
-    doc.setFontSize(14);
-    doc.text("PAYMENT RECEIPT", 105, 30, { align: "center" });
-
-    doc.setFontSize(12);
-    doc.text("Name : " + (member.name || ""), 20, 50);
-    doc.text("Member ID : " + (member.memberId || ""), 20, 60);
-    doc.text("Mobile : " + (member.mobile || ""), 20, 70);
-    doc.text("Amount : Rs.1200", 20, 80);
-    doc.text("Status : PAID", 20, 90);
-    doc.text("Transaction ID : " + (member.txnId || "CASH"), 20, 100);
-
-    doc.save((member.name || "receipt") + ".pdf");
-
-  };
-
+  doc.save((member.name || "receipt") + ".pdf");
 };
+  
 
-};
+  
+    
+    
+  
+
+  
+
+   
+
+
+
+
+
+
+
+  
+
+  
+
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+
+    
+
+  
+
+
+
+
 
 </script>
 </body>
