@@ -325,14 +325,69 @@ alert("Error : " + error.message);
 }
 
 });
-import {
-collection,
-addDoc,
-serverTimestamp,
-getDocs,
-query,
-orderBy
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const table = document.getElementById("transactionTable");
+
+async function loadTransactions() {
+
+let income = 0;
+let expense = 0;
+
+table.innerHTML = "";
+
+const q = query(
+  collection(db, "trustAccounts"),
+  orderBy("createdAt", "desc")
+);
+
+const snapshot = await getDocs(q);
+
+if (snapshot.empty) {
+  table.innerHTML = `
+  <tr>
+    <td colspan="6" style="text-align:center;padding:20px;">
+      କୌଣସି ଟ୍ରାଞ୍ଜାକ୍ସନ୍ ନାହିଁ
+    </td>
+  </tr>`;
+} else {
+
+  snapshot.forEach((doc) => {
+
+    const d = doc.data();
+
+    if (d.type === "Income") {
+      income += Number(d.amount);
+    } else {
+      expense += Number(d.amount);
+    }
+
+    table.innerHTML += `
+    <tr>
+      <td>${d.date}</td>
+      <td>${d.type}</td>
+      <td>${d.description}</td>
+      <td>₹${d.amount}</td>
+      <td>${d.paymentMode}</td>
+      <td>-</td>
+    </tr>`;
+  });
+
+}
+
+document.getElementById("totalIncome").textContent = "₹" + income;
+document.getElementById("totalExpense").textContent = "₹" + expense;
+document.getElementById("currentBalance").textContent = "₹" + (income - expense);
+
+}
+
+loadTransactions();
+
 </script>
 </body>
 </html>
+
+
+
+
+
+
