@@ -311,8 +311,8 @@ loadDashboard()
 
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF();
-const { jsPDF } = window.jspdf;
-const doc = new jsPDF();
+
+
 
 const logo = new Image();
 logo.src = "images/logo.png";
@@ -341,7 +341,7 @@ doc.text("Transaction ID : " + (member.txnId || "CASH"), 20, 130);
 doc.text("Authorized Signature", 140, 250);
 
 doc.save((member.name || "receipt") + ".pdf");
-  
+  };
 
 
   
