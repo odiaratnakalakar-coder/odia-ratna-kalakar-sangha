@@ -302,10 +302,14 @@ loadDashboard().then(() => {
   }
 
   const { jsPDF } = window.jspdf;
-     doc.addImage("images/logo.png", "PNG", 15, 10, 25, 25);
-doc.addImage("images/signature.png", "PNG", 150, 240, 40, 15); 
+const doc = new jsPDF();
 
-  const doc = new jsPDF();
+doc.addImage("images/logo.png", "PNG", 15, 10, 25, 25);
+doc.addImage("images/signature.png", "PNG", 150, 240, 40, 15);
+     
+
+
+  
 
   doc.setFontSize(18);
   doc.text("ODIA RATNA KALAKAR SANGHA", 105, 20, { align: "center" });
