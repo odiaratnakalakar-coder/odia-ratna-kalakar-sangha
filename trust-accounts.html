@@ -273,10 +273,17 @@ style="background:#ff9800;color:#fff;border:none;padding:12px 25px;border-radius
 import { db } from "./firebase.js";
 
 import {
-collection,
-addDoc,
-serverTimestamp
+  collection,
+  addDoc,
+  serverTimestamp,
+  getDocs,
+  query,
+  orderBy
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+
+
 
 const form = document.getElementById("transactionForm");
 
