@@ -8,16 +8,37 @@ import {
   
 
 
-console.log("Trust Accounts Loaded");async function loadDashboard() {
-  try {
-    const memberSnap = await getDocs(collection(db, "members"));
+console.log("Trust Accounts Loaded");
 
+async function loadDashboard() {
+  try {
+
+    // Total Members
+    const memberSnap = await getDocs(collection(db, "members"));
     document.getElementById("members").textContent = memberSnap.size;
 
-    console.log("Members:", memberSnap.size);
+    // Total Donation
+    const donationSnap = await getDocs(collection(db, "donations"));
+    let totalDonation = 0;
+
+    donationSnap.forEach(doc => {
+      totalDonation += Number(doc.data().amount || 0);
+    });
+
+    document.getElementById("donation").textContent = "₹" + totalDonation;
+
+    // Total Expense
+    const expenseSnap = await getDocs(collection(db, "expenses"));
+    let totalExpense = 0;
+
+    expenseSnap.forEach(doc => {
+      totalExpense += Number(doc.data().amount || 0);
+    });
+
+    document.getElementById("totalExpense").textContent = "₹" + totalExpense;
 
   } catch (error) {
-    console.error("Firestore Error:", error);
+    console.error(error);
     alert(error.message);
   }
 }
