@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ସଦସ୍ୟ ପେମେଣ୍ଟ</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="member-payment.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💳 ସଦସ୍ୟ ପେମେଣ୍ଟ</h1>
+
+<div class="card">
+
+<label>🔍 ସଦସ୍ୟ ଖୋଜନ୍ତୁ</label>
+<input type="text" id="searchMember"
+placeholder="ନାମ / ମୋବାଇଲ / Member ID">
+
+<button id="searchBtn">
+🔍 Search
+</button>
+
+</div>
+
+<div class="card">
+
+<img id="memberPhoto"
+src="images/default-user.png"
+width="120">
+
+<h2 id="memberName">ନାମ</h2>
+
+<p id="memberId">Member ID</p>
+
+<p id="memberMobile">Mobile</p>
+
+<p id="memberStatus">❌ Pending</p>
+
+</div>
+
+<div class="card">
+
+<label>ପେମେଣ୍ଟ ରାଶି</label>
+
+<input
+type="number"
+id="paymentAmount"
+value="1200">
+
+<label>ପେମେଣ୍ଟ ତାରିଖ</label>
+
+<input
+type="date"
+id="paymentDate">
+
+<label>ପେମେଣ୍ଟ ମୋଡ୍</label>
+
+<select id="paymentMode">
+
+<option>Cash</option>
+
+<option>UPI</option>
+
+<option>Bank</option>
+
+</select>
+
+<button id="receivePayment">
+
+✅ Payment Receive
+
+</button>
+
+</div>
+
+</div>
+
+<script type="module"
+src="member-payment.js"></script>
+
+</body>
+</html>
