@@ -163,3 +163,65 @@ window.deleteTransaction = async function(id){
     }
 
 }
+// ===============================
+// Part 2C
+// Edit + Search + Live Refresh
+// ===============================
+
+// Auto Refresh every 5 seconds
+setInterval(() => {
+    loadTransactions();
+}, 5000);
+
+// Search Transactions
+const searchBox = document.querySelector(".search input");
+
+searchBox.addEventListener("keyup", function () {
+
+    const value = this.value.toLowerCase();
+
+    const rows = document.querySelectorAll("#transactionTable tr");
+
+    rows.forEach((row) => {
+
+        const text = row.innerText.toLowerCase();
+
+        if (text.includes(value)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+
+    });
+
+});
+
+// Edit Transaction
+window.editTransaction = async function(id){
+
+    const newAmount = prompt("Enter New Amount");
+
+    if(newAmount === null) return;
+
+    try{
+
+        await updateDoc(
+            doc(db, "trustAccounts", id),
+            {
+                amount: Number(newAmount)
+            }
+        );
+
+        alert("Transaction Updated Successfully");
+
+        loadTransactions();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+};
