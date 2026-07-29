@@ -68,3 +68,95 @@ async function loadTransactions() {
 }
 
 loadTransactions();
+// ===============================
+// Part 2B
+// Add Transaction + Delete
+// ===============================
+
+// Save Transaction
+transactionForm.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const date = document.getElementById("date").value;
+    const type = document.getElementById("type").value;
+    const category = document.getElementById("category").value;
+
+    const amount =
+        document.querySelector('input[type="number"]').value;
+
+    const description =
+        document.querySelector('input[placeholder="Description"]').value;
+
+    const payment =
+        document.querySelectorAll("select")[2].value;
+
+    const person =
+        document.querySelector('input[placeholder="Collected / Paid By"]').value;
+
+    if (
+        !date ||
+        !amount ||
+        !person
+    ) {
+        alert("Please fill all required fields.");
+        return;
+    }
+
+    try {
+
+        await addDoc(accountsRef, {
+
+            date,
+            type,
+            category,
+            amount: Number(amount),
+            description,
+            payment,
+            person,
+            createdAt: serverTimestamp()
+
+        });
+
+        alert("Transaction Saved Successfully ✅");
+
+        transactionForm.reset();
+
+        loadTransactions();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Error : " + error.message);
+
+    }
+
+});
+
+
+// Delete Transaction
+
+window.deleteTransaction = async function(id){
+
+    if(!confirm("Delete this transaction?")){
+        return;
+    }
+
+    try{
+
+        await deleteDoc(doc(db,"trustAccounts",id));
+
+        loadTransactions();
+
+        alert("Transaction Deleted");
+
+    }catch(error){
+
+        console.log(error);
+
+        alert(error.message);
+
+    }
+
+}
