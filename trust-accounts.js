@@ -36,7 +36,7 @@ let editId = null;
 let editCollection = null;
 
 async function loadDashboard() {
-async function loadDashboard() {
+
   try {
 
     // Total Members
