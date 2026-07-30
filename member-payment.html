@@ -1,108 +1,166 @@
-<!DOCTYPE html>
-<html lang="or">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+import { db } from "./firebase.js";
 
-<title>ସଦସ୍ୟ ପେମେଣ୍ଟ</title>
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+  query,
+  where,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="member-payment.css">
-</head>
+let members = [];
+let selectedMember = null;
 
-<body>
+async function loadMembers() {
+  try {
+    const snapshot = await getDocs(collection(db, "members"));
 
-<div class="container">
+    members = [];
 
-<h1>💳 ସଦସ୍ୟ ପେମେଣ୍ଟ</h1>
+    snapshot.forEach((d) => {
+      members.push({
+        id: d.id,
+        ...d.data()
+      });
+    });
 
-<div class="card">
+    console.log("Members Loaded:", members.length);
 
-<label>🔍 ସଦସ୍ୟ ଖୋଜନ୍ତୁ</label>
-<input type="text" id="searchMember"
-placeholder="ନାମ / ମୋବାଇଲ / Member ID">
+  } catch (err) {
+    console.error(err);
+    alert("Firestore Error : " + err.message);
+  }
+}
 
-<button id="searchBtn">
-🔍 Search
-</button>
+loadMembers();
 
-</div>
+document.getElementById("searchBtn").addEventListener("click", async () => {
 
-<div class="card">
+  if (members.length === 0) {
+    await loadMembers();
+  }
 
-<img id="memberPhoto"
-src="images/default-user.png"
-width="120">
+  const keyword = document
+    .getElementById("searchMember")
+    .value
+    .trim()
+    .toLowerCase();
 
-<h2 id="memberName">ନାମ</h2>
+  selectedMember = members.find(m =>
+    (m.name || "").toLowerCase().includes(keyword) ||
+    (m.mobile || "").includes(keyword) ||
+    (m.memberId || "").toLowerCase().includes(keyword)
+  );
 
-<p id="memberId">Member ID</p>
+  if (!selectedMember) {
+    alert("❌ ସଦସ୍ୟ ମିଳିଲେ ନାହିଁ");
+    return;
+  }
+    document.getElementById("memberPhoto").src =
+    selectedMember.photoUrl || "images/default-user.png";
 
-<p id="memberMobile">Mobile</p>
+  document.getElementById("memberName").textContent =
+    selectedMember.name || "";
 
-<p id="memberStatus">❌ Pending</p>
+  document.getElementById("memberId").textContent =
+    "Member ID : " + (selectedMember.memberId || "");
 
-</div>
+  document.getElementById("memberMobile").textContent =
+    "Mobile : " + (selectedMember.mobile || "");
 
-<div class="card">
+  document.getElementById("memberStatus").textContent =
+    selectedMember.paid ? "✅ Paid" : "❌ Pending";
 
-<label>ପେମେଣ୍ଟ ରାଶି</label>
+  await loadPaymentHistory(selectedMember.memberId);
 
-<input
-type="number"
-id="paymentAmount"
-value="1200">
+});
 
-<label>ପେମେଣ୍ଟ ତାରିଖ</label>
+document.getElementById("receivePayment").addEventListener("click", async () => {
 
-<input
-type="date"
-id="paymentDate">
+  if (!selectedMember) {
+    alert("ପ୍ରଥମେ ସଦସ୍ୟଙ୍କୁ Search କରନ୍ତୁ");
+    return;
+  }
 
-<label>ପେମେଣ୍ଟ ମୋଡ୍</label>
+  const amount = Number(document.getElementById("paymentAmount").value);
 
-<select id="paymentMode">
+  const paymentDate =
+    document.getElementById("paymentDate").value;
 
-<option>Cash</option>
+  const paymentMode =
+    document.getElementById("paymentMode").value;
 
-<option>UPI</option>
+  if (!paymentDate) {
+    alert("ପେମେଣ୍ଟ ତାରିଖ ବାଛନ୍ତୁ");
+    return;
+  }
 
-<option>Bank</option>
+  const receiptNo = "ORKS-" + Date.now();
+    await updateDoc(doc(db, "members", selectedMember.id), {
+    paid: true,
+    paymentAmount: amount,
+    paymentDate: paymentDate,
+    paymentMode: paymentMode,
+    receiptNo: receiptNo
+  });
 
-</select>
+  await addDoc(collection(db, "transactions"), {
+    memberId: selectedMember.memberId,
+    name: selectedMember.name,
+    mobile: selectedMember.mobile,
+    amount: amount,
+    paymentDate: paymentDate,
+    paymentMode: paymentMode,
+    receiptNo: receiptNo,
+    createdAt: new Date()
+  });
 
-<button id="receivePayment">
+  alert("✅ Payment Successful");
 
-✅ Payment Receive
+  await loadMembers();
 
-</button>
+  document.getElementById("memberStatus").textContent = "✅ Paid";
 
-</div>
+  await loadPaymentHistory(selectedMember.memberId);
 
-</div>
-<div class="card">
+});
+async function loadPaymentHistory(memberId) {
 
-<h2>📜 Payment History</h2>
+  const tbody = document.querySelector("#paymentHistoryTable tbody");
 
-<table id="paymentHistoryTable">
+  tbody.innerHTML = "";
 
-<thead>
-<tr>
-<th>ତାରିଖ</th>
-<th>ରାଶି</th>
-<th>Mode</th>
-</tr>
-</thead>
+  try {
 
-<tbody>
+    const q = query(
+      collection(db, "transactions"),
+      where("memberId", "==", memberId)
+    );
 
-</tbody>
+    const snapshot = await getDocs(q);
 
-</table>
+    snapshot.forEach((d) => {
 
-</div>
-<script type="module"
-src="member-payment.js"></script>
+      const data = d.data();
 
-</body>
-</html>
+      tbody.innerHTML += `
+        <tr>
+          <td>${data.paymentDate || "-"}</td>
+          <td>₹${data.amount || 0}</td>
+          <td>${data.paymentMode || "-"}</td>
+        </tr>
+      `;
+
+    });
+
+  } catch (err) {
+
+    console.error(err);
+    alert("Payment History Error : " + err.message);
+
+  }
+
+}
