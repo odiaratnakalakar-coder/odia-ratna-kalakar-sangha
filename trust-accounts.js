@@ -112,10 +112,17 @@ async function loadTransactions() {
         <td>-</td>
         <td>${data.name || "-"}</td>
         <td>
-<button onclick="deleteTransaction('donations','${doc.id}')">
-Delete
-</button>
+  <button onclick="editTransaction('donations','${doc.id}','${data.amount || 0}','${data.purpose || ""}','${data.name || ""}')">
+    Edit
+  </button>
+  <button onclick="deleteTransaction('donations','${doc.id}')">
+    Delete
+  </button>
 </td>
+
+
+
+
       </tr>
     `;
   });
