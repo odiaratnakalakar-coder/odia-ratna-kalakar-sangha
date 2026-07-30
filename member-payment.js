@@ -2,8 +2,14 @@ import { db } from "./firebase.js";
 
 import {
   collection,
-  getDocs
+  getDocs,
+  doc,
+  updateDoc,
+  addDoc
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+  
+
+
 
 let members = [];
 
@@ -56,11 +62,11 @@ document.getElementById("searchBtn").addEventListener("click", () => {
     window.selectedMember = member;
 loadPaymentHistory(member.memberId);
 });
-import {
-  doc,
-  updateDoc,
-  addDoc
-} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+  
+  
+  
+
 
 document.getElementById("receivePayment").addEventListener("click", async () => {
 
