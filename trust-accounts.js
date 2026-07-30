@@ -61,3 +61,56 @@ document.getElementById("balance").textContent = "₹" + balance;
 }
 
 loadDashboard();
+// Load Transaction History
+async function loadTransactions() {
+
+  const table = document.getElementById("transactionTable");
+  table.innerHTML = "";
+
+  let sl = 1;
+
+  // Donations
+  const donationSnap = await getDocs(collection(db, "donations"));
+
+  donationSnap.forEach(doc => {
+
+    const data = doc.data();
+
+    table.innerHTML += `
+      <tr>
+        <td>${sl++}</td>
+        <td>${data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString() : "-"}</td>
+        <td>Income</td>
+        <td>Donation</td>
+        <td>₹${data.amount || 0}</td>
+        <td>-</td>
+        <td>${data.name || "-"}</td>
+        <td>-</td>
+      </tr>
+    `;
+  });
+
+  // Expenses
+  const expenseSnap = await getDocs(collection(db, "expenses"));
+
+  expenseSnap.forEach(doc => {
+
+    const data = doc.data();
+
+    table.innerHTML += `
+      <tr>
+        <td>${sl++}</td>
+        <td>${data.createdAt ? new Date(data.createdAt.seconds * 1000).toLocaleDateString() : "-"}</td>
+        <td>Expense</td>
+        <td>${data.purpose || "-"}</td>
+        <td>₹${data.amount || 0}</td>
+        <td>-</td>
+        <td>${data.note || "-"}</td>
+        <td>-</td>
+      </tr>
+    `;
+  });
+
+}
+
+loadTransactions();
