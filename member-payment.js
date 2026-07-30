@@ -147,7 +147,16 @@ async function loadPaymentHistory(memberId) {
     );
 
     const snapshot = await getDocs(q);
-
+if (snapshot.empty) {
+  tbody.innerHTML = `
+    <tr>
+      <td colspan="3" style="text-align:center;">
+        କୌଣସି Payment History ମିଳିଲା ନାହିଁ
+      </td>
+    </tr>
+  `;
+  return;
+}
     snapshot.forEach((docSnap) => {
 
       const data = docSnap.data();
