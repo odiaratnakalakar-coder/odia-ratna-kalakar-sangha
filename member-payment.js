@@ -89,7 +89,10 @@ document.getElementById("receivePayment").addEventListener("click", async () => 
     alert("ପ୍ରଥମେ ସଦସ୍ୟଙ୍କୁ Search କରନ୍ତୁ");
     return;
   }
-
+if (selectedMember.paid) {
+  alert("⚠️ ଏହି ସଦସ୍ୟ ପୂର୍ବରୁ Payment କରିସାରିଛନ୍ତି");
+  return;
+}
   const amount = Number(document.getElementById("paymentAmount").value);
 
   const paymentDate = document.getElementById("paymentDate").value;
