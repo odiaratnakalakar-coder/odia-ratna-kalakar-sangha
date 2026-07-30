@@ -14,7 +14,14 @@ import {
 let members = [];
 
 async function loadMembers() {
-    const snap = await getDocs(collection(db, "members"));
+    let snap;
+
+try {
+    snap = await getDocs(collection(db, "members"));
+} catch (e) {
+    alert(e.message);
+    return;
+}
 
     members = [];
 
