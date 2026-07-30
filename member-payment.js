@@ -7,53 +7,73 @@ import {
   updateDoc,
   addDoc
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-  
-
-
 
 let members = [];
+window.selectedMember = null;
 
 async function loadMembers() {
+
     let snap;
 
-try {
-    snap = await getDocs(collection(db, "members"));
-} catch (e) {
-    alert(e.message);
-    return;
-}
+    try {
+
+        snap = await getDocs(collection(db, "members"));
+
+    } catch (e) {
+
+        alert("Firestore Error: " + e.message);
+        return;
+
+    }
 
     members = [];
 
-    snap.forEach(doc => {
+    snap.forEach((d) => {
+
         members.push({
-            id: doc.id,
-            ...doc.data()
+            id: d.id,
+            ...d.data()
         });
+
     });
+
+    console.log("Members Loaded:", members.length);
+
 }
-console.log(members);
-loadMembers().then(() => {
-    alert("Members Loaded: " + members.length);
-});
-    
 
-document.getElementById("searchBtn").addEventListener("click", () => {
+loadMembers();
 
-    const keyword = document.getElementById("searchMember").value.trim().toLowerCase();
+document.getElementById("searchBtn").addEventListener("click", async () => {
+
+    if (members.length === 0) {
+
+        await loadMembers();
+
+    }
+
+    const keyword = document
+        .getElementById("searchMember")
+        .value
+        .trim()
+        .toLowerCase();
 
     const member = members.find(m =>
+
         (m.name || "").toLowerCase().includes(keyword) ||
         (m.mobile || "").includes(keyword) ||
         (m.memberId || "").toLowerCase().includes(keyword)
+
     );
 
     if (!member) {
+
         alert("ସଦସ୍ୟ ମିଳିଲେ ନାହିଁ");
         return;
+
     }
 
-    document.getElementById("memberPhoto").src =
+    window.selectedMember = member;
+      document.getElementById("memberPhoto").src =
         member.photoUrl || "images/default-user.png";
 
     document.getElementById("memberName").innerText =
@@ -68,14 +88,9 @@ document.getElementById("searchBtn").addEventListener("click", () => {
     document.getElementById("memberStatus").innerText =
         member.paid ? "✅ Paid" : "❌ Pending";
 
-    window.selectedMember = member;
-loadPaymentHistory(member.memberId);
+    await loadPaymentHistory(member.memberId);
+
 });
-
-  
-  
-  
-
 
 document.getElementById("receivePayment").addEventListener("click", async () => {
 
@@ -90,7 +105,6 @@ document.getElementById("receivePayment").addEventListener("click", async () => 
 
     const receiptNo = "ORKS-" + Date.now();
 
-    // Update member
     await updateDoc(doc(db, "members", window.selectedMember.id), {
         paid: true,
         paymentAmount: amount,
@@ -99,45 +113,40 @@ document.getElementById("receivePayment").addEventListener("click", async () => 
         txId: receiptNo
     });
 
-    // Save transaction
     await addDoc(collection(db, "transactions"), {
-        memberId: window.selectedMember.memberId,
-        name: window.selectedMember.name,
-        amount: amount,
-        paymentDate: paymentDate,
-        paymentMode: paymentMode,
-        receiptNo: receiptNo,
-        type: "Membership Fee",
-        createdAt: new Date()
-    });
-
-    alert("✅ Payment Successful\nReceipt No: " + receiptNo);
-
-    loadMembers();
-});
-async function loadPaymentHistory(memberId) {
+        memberId:
+          async function loadPaymentHistory(memberId) {
 
     const tbody = document.querySelector("#paymentHistoryTable tbody");
     tbody.innerHTML = "";
 
-    const snap = await getDocs(collection(db, "transactions"));
+    try {
 
-    snap.forEach(doc => {
+        const snap = await getDocs(collection(db, "transactions"));
 
-        const data = doc.data();
+        snap.forEach((d) => {
 
-        if (data.memberId === memberId) {
+            const data = d.data();
 
-            tbody.innerHTML += `
-                <tr>
-                    <td>${data.paymentDate || "-"}</td>
-                    <td>₹${data.amount || 0}</td>
-                    <td>${data.paymentMode || "-"}</td>
-                </tr>
-            `;
+            if (data.memberId === memberId) {
 
-        }
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${data.paymentDate || "-"}</td>
+                        <td>₹${data.amount || 0}</td>
+                        <td>${data.paymentMode || "-"}</td>
+                    </tr>
+                `;
 
-    });
+            }
 
-}
+        });
+
+    } catch (e) {
+
+        console.error(e);
+        alert("Payment History Error: " + e.message);
+
+    }
+
+          }
