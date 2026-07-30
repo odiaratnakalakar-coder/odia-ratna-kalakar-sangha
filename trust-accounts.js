@@ -25,7 +25,8 @@ async function loadDashboard() {
       totalDonation += Number(doc.data().amount || 0);
     });
 
-    document.getElementById("donation").textContent = "₹" + totalDonation;
+    document.getElementById("donation").textContent =
+"Docs: " + donationSnap.size + " | ₹" + totalDonation;
 
     // Total Expense
     const expenseSnap = await getDocs(collection(db, "expenses"));
@@ -35,7 +36,8 @@ async function loadDashboard() {
       totalExpense += Number(doc.data().amount || 0);
     });
 
-    document.getElementById("totalExpense").textContent = "₹" + totalExpense;
+    document.getElementById("totalExpense").textContent =
+"Docs: " + expenseSnap.size + " | ₹" + totalExpense;
 
   } catch (error) {
     console.error(error);
