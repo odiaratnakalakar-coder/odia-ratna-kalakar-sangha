@@ -29,6 +29,8 @@ console.log(members);
 loadMembers().then(() => {
     alert("Members Loaded: " + members.length);
 });
+    
+
 document.getElementById("searchBtn").addEventListener("click", () => {
 
     const keyword = document.getElementById("searchMember").value.trim().toLowerCase();
