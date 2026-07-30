@@ -180,7 +180,31 @@ document.getElementById("transactionForm").addEventListener("submit", async (e) 
 
   try {
 
-    if (type === "Income") {
+  if (editId) {
+
+    await updateDoc(doc(db, editCollection, editId), {
+      amount: amount,
+      purpose: description || category,
+      name: by,
+      note: by
+    });
+
+    alert("Transaction Updated Successfully");
+
+    editId = null;
+    editCollection = null;
+
+    document.getElementById("transactionForm").reset();
+
+    loadDashboard();
+    loadTransactions();
+
+    return;
+  }
+
+  if (type === "Income") {
+
+    
 
       await addDoc(collection(db, "donations"), {
         ...data,
