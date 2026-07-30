@@ -3,150 +3,143 @@ import { db } from "./firebase.js";
 import {
   collection,
   getDocs,
-  doc,
+  addDoc,
   updateDoc,
-  addDoc
+  doc,
+  query,
+  where
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 let members = [];
-window.selectedMember = null;
+let selectedMember = null;
 
 async function loadMembers() {
+  try {
+    const snap = await getDocs(collection(db, "members"));
 
-    let snap;
-
-    try {
-
-        snap = await getDocs(collection(db, "members"));
-
-    } catch (e) {
-
-        alert("Firestore Error: " + e.message);
-        return;
-
-    }
-
-    members = [];
-
-    snap.forEach((d) => {
-
-        members.push({
-            id: d.id,
-            ...d.data()
-        });
-
-    });
+    members = snap.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
 
     console.log("Members Loaded:", members.length);
 
+  } catch (err) {
+    console.error(err);
+    alert("Firestore Error: " + err.message);
+  }
 }
 
 loadMembers();
 
 document.getElementById("searchBtn").addEventListener("click", async () => {
 
-    if (members.length === 0) {
+  if (members.length === 0) {
+    await loadMembers();
+  }
 
-        await loadMembers();
+  const keyword = document
+    .getElementById("searchMember")
+    .value
+    .trim()
+    .toLowerCase();
 
-    }
+  selectedMember = members.find(m =>
+    (m.name || "").toLowerCase().includes(keyword) ||
+    (m.mobile || "").includes(keyword) ||
+    (m.memberId || "").toLowerCase().includes(keyword)
+  );
 
-    const keyword = document
-        .getElementById("searchMember")
-        .value
-        .trim()
-        .toLowerCase();
+  if (!selectedMember) {
+    alert("ସଦସ୍ୟ ମିଳିଲେ ନାହିଁ");
+    return;
+  }
+    document.getElementById("memberPhoto").src =
+    selectedMember.photoUrl || "images/default-user.png";
 
-    const member = members.find(m =>
+  document.getElementById("memberName").innerText =
+    selectedMember.name || "";
 
-        (m.name || "").toLowerCase().includes(keyword) ||
-        (m.mobile || "").includes(keyword) ||
-        (m.memberId || "").toLowerCase().includes(keyword)
+  document.getElementById("memberId").innerText =
+    "Member ID : " + (selectedMember.memberId || "");
 
-    );
+  document.getElementById("memberMobile").innerText =
+    "Mobile : " + (selectedMember.mobile || "");
 
-    if (!member) {
+  document.getElementById("memberStatus").innerText =
+    selectedMember.paid ? "✅ Paid" : "❌ Pending";
 
-        alert("ସଦସ୍ୟ ମିଳିଲେ ନାହିଁ");
-        return;
-
-    }
-
-    window.selectedMember = member;
-      document.getElementById("memberPhoto").src =
-        member.photoUrl || "images/default-user.png";
-
-    document.getElementById("memberName").innerText =
-        member.name || "";
-
-    document.getElementById("memberId").innerText =
-        "Member ID : " + (member.memberId || "");
-
-    document.getElementById("memberMobile").innerText =
-        "Mobile : " + (member.mobile || "");
-
-    document.getElementById("memberStatus").innerText =
-        member.paid ? "✅ Paid" : "❌ Pending";
-
-    await loadPaymentHistory(member.memberId);
+  loadPaymentHistory(selectedMember.memberId);
 
 });
 
 document.getElementById("receivePayment").addEventListener("click", async () => {
 
-    if (!window.selectedMember) {
-        alert("ପ୍ରଥମେ ସଦସ୍ୟଙ୍କୁ Search କରନ୍ତୁ");
-        return;
-    }
+  if (!selectedMember) {
+    alert("ପ୍ରଥମେ ସଦସ୍ୟଙ୍କୁ Search କରନ୍ତୁ");
+    return;
+  }
 
-    const amount = Number(document.getElementById("paymentAmount").value);
-    const paymentDate = document.getElementById("paymentDate").value;
-    const paymentMode = document.getElementById("paymentMode").value;
+  const amount = Number(document.getElementById("paymentAmount").value);
+  const paymentDate = document.getElementById("paymentDate").value;
+  const paymentMode = document.getElementById("paymentMode").value;
 
-    const receiptNo = "ORKS-" + Date.now();
+  if (!paymentDate) {
+    alert("Payment Date ବାଛନ୍ତୁ");
+    return;
+  }
 
-    await updateDoc(doc(db, "members", window.selectedMember.id), {
-        paid: true,
-        paymentAmount: amount,
-        paymentDate: paymentDate,
-        paymentMode: paymentMode,
-        txId: receiptNo
-    });
+  const receiptNo = "ORKS-" + Date.now();
 
+  await updateDoc(doc(db, "members", selectedMember.id), {
+    paid: true,
+    paymentAmount: amount,
+    paymentDate: paymentDate,
+    paymentMode: paymentMode,
+    txId: receiptNo
+  });
     await addDoc(collection(db, "transactions"), {
-        memberId:
-          async function loadPaymentHistory(memberId) {
+    memberId: selectedMember.memberId,
+    name: selectedMember.name,
+    mobile: selectedMember.mobile,
+    amount: amount,
+    paymentDate: paymentDate,
+    paymentMode: paymentMode,
+    receiptNo: receiptNo,
+    type: "Membership Fee",
+    createdAt: new Date()
+  });
 
-    const tbody = document.querySelector("#paymentHistoryTable tbody");
-    tbody.innerHTML = "";
+  alert("✅ Payment Successful\nReceipt No: " + receiptNo);
 
-    try {
+  await loadMembers();
+  await loadPaymentHistory(selectedMember.memberId);
 
-        const snap = await getDocs(collection(db, "transactions"));
+});
 
-        snap.forEach((d) => {
+async function loadPaymentHistory(memberId) {
 
-            const data = d.data();
+  const tbody = document.querySelector("#paymentHistoryTable tbody");
+  tbody.innerHTML = "";
 
-            if (data.memberId === memberId) {
+  const q = query(
+    collection(db, "transactions"),
+    where("memberId", "==", memberId)
+  );
 
-                tbody.innerHTML += `
-                    <tr>
-                        <td>${data.paymentDate || "-"}</td>
-                        <td>₹${data.amount || 0}</td>
-                        <td>${data.paymentMode || "-"}</td>
-                    </tr>
-                `;
+  const snap = await getDocs(q);
 
-            }
+  snap.forEach((doc) => {
 
-        });
+    const data = doc.data();
 
-    } catch (e) {
+    tbody.innerHTML += `
+      <tr>
+        <td>${data.paymentDate || "-"}</td>
+        <td>₹${data.amount || 0}</td>
+        <td>${data.paymentMode || "-"}</td>
+      </tr>
+    `;
 
-        console.error(e);
-        alert("Payment History Error: " + e.message);
-
-    }
-
-          }
+  });
+}
