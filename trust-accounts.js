@@ -98,7 +98,11 @@ async function loadTransactions() {
         <td>₹${data.amount || 0}</td>
         <td>-</td>
         <td>${data.name || "-"}</td>
-        <td>-</td>
+        <td>
+<button onclick="deleteTransaction('donations','${doc.id}')">
+Delete
+</button>
+</td>
       </tr>
     `;
   });
@@ -119,7 +123,11 @@ async function loadTransactions() {
         <td>₹${data.amount || 0}</td>
         <td>-</td>
         <td>${data.note || "-"}</td>
-        <td>-</td>
+        <td>
+<button onclick="deleteTransaction('expenses','${doc.id}')">
+Delete
+</button>
+</td>
       </tr>
     `;
   });
