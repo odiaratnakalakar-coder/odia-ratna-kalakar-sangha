@@ -19,7 +19,7 @@ async function loadMembers() {
         });
     });
 }
-
+console.log(members);
 loadMembers();
 document.getElementById("searchBtn").addEventListener("click", () => {
 
