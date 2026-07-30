@@ -52,7 +52,7 @@ document.getElementById("searchBtn").addEventListener("click", () => {
         member.paid ? "✅ Paid" : "❌ Pending";
 
     window.selectedMember = member;
-
+loadPaymentHistory(member.memberId);
 });
 import {
   doc,
