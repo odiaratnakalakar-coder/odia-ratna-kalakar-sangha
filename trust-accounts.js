@@ -261,7 +261,9 @@ function editTransaction(collectionName, id, amount, description, by) {
   document.getElementById("description").value = description;
   document.getElementById("by").value = by;
 
-  alert("Edit Mode Enabled. Update the data and click Save Transaction.");
+ document.getElementById("type").disabled = true;
+
+alert("Edit Mode Enabled. Update the data and click Save Transaction."); 
 }
 
 window.editTransaction = editTransaction;
