@@ -30,7 +30,12 @@ import {
 
 
 console.log("Trust Accounts Loaded");
+console.log("Trust Accounts Loaded");
 
+let editId = null;
+let editCollection = null;
+
+async function loadDashboard() {
 async function loadDashboard() {
   try {
 
