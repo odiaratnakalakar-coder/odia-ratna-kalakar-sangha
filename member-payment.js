@@ -13,25 +13,33 @@ import {
 let members = [];
 let selectedMember = null;
 
+// Load all members
 async function loadMembers() {
-  try {
-    const snap = await getDocs(collection(db, "members"));
 
-    members = snap.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
+  try {
+
+    const snapshot = await getDocs(collection(db, "members"));
+
+    members = snapshot.docs.map(d => ({
+      id: d.id,
+      ...d.data()
     }));
 
     console.log("Members Loaded:", members.length);
 
   } catch (err) {
+
     console.error(err);
     alert("Firestore Error: " + err.message);
+
   }
+
 }
 
+// Load members on page start
 loadMembers();
 
+// Search button
 document.getElementById("searchBtn").addEventListener("click", async () => {
 
   if (members.length === 0) {
@@ -51,28 +59,30 @@ document.getElementById("searchBtn").addEventListener("click", async () => {
   );
 
   if (!selectedMember) {
-    alert("ସଦସ୍ୟ ମିଳିଲେ ନାହିଁ");
+    alert("❌ ସଦସ୍ୟ ମିଳିଲେ ନାହିଁ");
     return;
   }
-    document.getElementById("memberPhoto").src =
+    // Show member details
+  document.getElementById("memberPhoto").src =
     selectedMember.photoUrl || "images/default-user.png";
 
-  document.getElementById("memberName").innerText =
+  document.getElementById("memberName").textContent =
     selectedMember.name || "";
 
-  document.getElementById("memberId").innerText =
+  document.getElementById("memberId").textContent =
     "Member ID : " + (selectedMember.memberId || "");
 
-  document.getElementById("memberMobile").innerText =
+  document.getElementById("memberMobile").textContent =
     "Mobile : " + (selectedMember.mobile || "");
 
-  document.getElementById("memberStatus").innerText =
+  document.getElementById("memberStatus").textContent =
     selectedMember.paid ? "✅ Paid" : "❌ Pending";
 
-  loadPaymentHistory(selectedMember.memberId);
+  await loadPaymentHistory(selectedMember.memberId);
 
 });
 
+// Receive Payment
 document.getElementById("receivePayment").addEventListener("click", async () => {
 
   if (!selectedMember) {
@@ -81,24 +91,26 @@ document.getElementById("receivePayment").addEventListener("click", async () => 
   }
 
   const amount = Number(document.getElementById("paymentAmount").value);
+
   const paymentDate = document.getElementById("paymentDate").value;
+
   const paymentMode = document.getElementById("paymentMode").value;
 
   if (!paymentDate) {
-    alert("Payment Date ବାଛନ୍ତୁ");
+    alert("ପେମେଣ୍ଟ ତାରିଖ ବାଛନ୍ତୁ");
     return;
   }
 
   const receiptNo = "ORKS-" + Date.now();
-
-  await updateDoc(doc(db, "members", selectedMember.id), {
+    await updateDoc(doc(db, "members", selectedMember.id), {
     paid: true,
     paymentAmount: amount,
     paymentDate: paymentDate,
     paymentMode: paymentMode,
-    txId: receiptNo
+    receiptNo: receiptNo
   });
-    await addDoc(collection(db, "transactions"), {
+
+  await addDoc(collection(db, "transactions"), {
     memberId: selectedMember.memberId,
     name: selectedMember.name,
     mobile: selectedMember.mobile,
@@ -106,40 +118,58 @@ document.getElementById("receivePayment").addEventListener("click", async () => 
     paymentDate: paymentDate,
     paymentMode: paymentMode,
     receiptNo: receiptNo,
-    type: "Membership Fee",
     createdAt: new Date()
   });
 
-  alert("✅ Payment Successful\nReceipt No: " + receiptNo);
+  selectedMember.paid = true;
 
-  await loadMembers();
+  document.getElementById("memberStatus").textContent = "✅ Paid";
+
+  alert("✅ Payment Successful");
+
   await loadPaymentHistory(selectedMember.memberId);
 
 });
-
+// Payment History
 async function loadPaymentHistory(memberId) {
 
   const tbody = document.querySelector("#paymentHistoryTable tbody");
   tbody.innerHTML = "";
 
-  const q = query(
-    collection(db, "transactions"),
-    where("memberId", "==", memberId)
-  );
+  try {
 
-  const snap = await getDocs(q);
+    const q = query(
+      collection(db, "transactions"),
+      where("memberId", "==", memberId)
+    );
 
-  snap.forEach((doc) => {
+    const snapshot = await getDocs(q);
 
-    const data = doc.data();
+    snapshot.forEach((docSnap) => {
 
-    tbody.innerHTML += `
-      <tr>
-        <td>${data.paymentDate || "-"}</td>
-        <td>₹${data.amount || 0}</td>
-        <td>${data.paymentMode || "-"}</td>
-      </tr>
-    `;
+      const data = docSnap.data();
 
-  });
+      const row = `
+        <tr>
+          <td>${data.paymentDate || "-"}</td>
+          <td>₹${data.amount || 0}</td>
+          <td>${data.paymentMode || "-"}</td>
+        </tr>
+      `;
+
+      tbody.insertAdjacentHTML("beforeend", row);
+
+    });
+
+  } catch (err) {
+
+    console.error("Payment History:", err);
+    alert("Payment History Error: " + err.message);
+
+  }
+
 }
+
+// Default payment date = today
+document.getElementById("paymentDate").value =
+  new Date().toISOString().split("T")[0];
