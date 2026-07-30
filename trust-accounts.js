@@ -182,3 +182,21 @@ document.getElementById("transactionForm").addEventListener("submit", async (e) 
   }
 
 });
+async function deleteTransaction(collectionName, id) {
+
+  if (!confirm("ଏହି Transaction କୁ Delete କରିବେ?")) return;
+
+  try {
+    await deleteDoc(doc(db, collectionName, id));
+
+    alert("Transaction Deleted Successfully");
+
+    loadDashboard();
+    loadTransactions();
+
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+window.deleteTransaction = deleteTransaction;
