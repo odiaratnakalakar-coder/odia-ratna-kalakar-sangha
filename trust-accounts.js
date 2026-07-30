@@ -144,10 +144,18 @@ async function loadTransactions() {
         <td>-</td>
         <td>${data.note || "-"}</td>
         <td>
-<button onclick="deleteTransaction('expenses','${doc.id}')">
-Delete
-</button>
+  <button onclick="editTransaction('expenses','${doc.id}','${data.amount || 0}','${data.purpose || ""}','${data.note || ""}')">
+    Edit
+  </button>
+
+  <button onclick="deleteTransaction('expenses','${doc.id}')">
+    Delete
+  </button>
 </td>
+
+
+
+
       </tr>
     `;
   });
