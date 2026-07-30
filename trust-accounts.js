@@ -119,3 +119,50 @@ async function loadTransactions() {
 }
 
 loadTransactions();
+document.getElementById("transactionForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const type = document.getElementById("type").value;
+  const category = document.getElementById("category").value;
+  const amount = Number(document.getElementById("amount").value);
+  const description = document.getElementById("description").value;
+  const payment = document.getElementById("payment").value;
+  const by = document.getElementById("by").value;
+
+  const data = {
+    amount,
+    createdAt: serverTimestamp()
+  };
+
+  try {
+
+    if (type === "Income") {
+
+      await addDoc(collection(db, "donations"), {
+        ...data,
+        name: by,
+        purpose: description || category
+      });
+
+    } else {
+
+      await addDoc(collection(db, "expenses"), {
+        ...data,
+        note: by,
+        purpose: description || category
+      });
+
+    }
+
+    alert("Transaction Saved Successfully");
+
+    document.getElementById("transactionForm").reset();
+
+    loadDashboard();
+    loadTransactions();
+
+  } catch (err) {
+    alert(err.message);
+  }
+
+});
