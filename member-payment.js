@@ -98,3 +98,29 @@ document.getElementById("receivePayment").addEventListener("click", async () => 
 
     loadMembers();
 });
+async function loadPaymentHistory(memberId) {
+
+    const tbody = document.querySelector("#paymentHistoryTable tbody");
+    tbody.innerHTML = "";
+
+    const snap = await getDocs(collection(db, "transactions"));
+
+    snap.forEach(doc => {
+
+        const data = doc.data();
+
+        if (data.memberId === memberId) {
+
+            tbody.innerHTML += `
+                <tr>
+                    <td>${data.paymentDate || "-"}</td>
+                    <td>₹${data.amount || 0}</td>
+                    <td>${data.paymentMode || "-"}</td>
+                </tr>
+            `;
+
+        }
+
+    });
+
+}
