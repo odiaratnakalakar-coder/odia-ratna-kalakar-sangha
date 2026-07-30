@@ -228,3 +228,16 @@ async function deleteTransaction(collectionName, id) {
 }
 
 window.deleteTransaction = deleteTransaction;
+function editTransaction(collectionName, id, amount, description, by) {
+
+  editCollection = collectionName;
+  editId = id;
+
+  document.getElementById("amount").value = amount;
+  document.getElementById("description").value = description;
+  document.getElementById("by").value = by;
+
+  alert("Edit Mode Enabled. Update the data and click Save Transaction.");
+}
+
+window.editTransaction = editTransaction;
