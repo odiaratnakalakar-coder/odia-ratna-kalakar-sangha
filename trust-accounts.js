@@ -37,7 +37,22 @@ async function loadDashboard() {
     });
 
     document.getElementById("totalExpense").textContent = "₹" + totalExpense;
+// Membership Income
+let membershipIncome = 0;
 
+memberSnap.forEach(doc => {
+  const data = doc.data();
+  if (data.paid === true) {
+    membershipIncome += Number(data.paymentAmount || 1200);
+  }
+});
+
+document.getElementById("totalIncome").textContent = "₹" + membershipIncome;
+
+// Current Balance
+const balance = membershipIncome + totalDonation - totalExpense;
+
+document.getElementById("balance").textContent = "₹" + balance;
 
   } catch (error) {
     console.error(error);
