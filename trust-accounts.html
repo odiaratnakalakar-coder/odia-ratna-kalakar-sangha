@@ -73,7 +73,9 @@
 <option>Income</option>
 <option>Expense</option>
 </select>
-
+document.getElementById("totalIncome").textContent = "₹" + totalIncome;
+document.getElementById("balance").textContent = "₹" + (totalIncome + totalDonation - totalExpense);
+document.getElementById("todayEntry").textContent = 0;
 <select id="category">
 <option>Membership Fee</option>
 <option>Donation</option>
