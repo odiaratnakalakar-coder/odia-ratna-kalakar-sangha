@@ -96,12 +96,19 @@ window.approveMember = async function(id) {
   }
 
   const memberId = await getNextMemberId();
+const txnId = "RCPT-" + Date.now();
 
-  await updateDoc(memberRef, {
+await updateDoc(memberRef, {
   memberId: memberId,
   status: "approved",
-  paid: true
+  paid: true,
+  txnId: txnId
 });
+  
+  
+  
+  
+
 
 // Member Data
 const member = memberSnap.data();
