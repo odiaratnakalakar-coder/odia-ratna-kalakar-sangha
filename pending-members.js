@@ -2,8 +2,15 @@ import { db } from "./firebase.js";
 
 import {
   collection,
-  getDocs
+  getDocs,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  
+  
+
 
 const memberList = document.getElementById("memberList");
 
@@ -59,11 +66,57 @@ async function loadPendingMembers() {
 }
 
 loadPendingMembers();
+async function getNextMemberId() {
 
-window.approveMember = function(id){
-  alert("Approve Function ପରବର୍ତ୍ତୀ Step ରେ ଯୋଡ଼ିବା");
+  const counterRef = doc(db, "system", "counter");
+  const counterSnap = await getDoc(counterRef);
+
+  let number = 1;
+
+  if (counterSnap.exists()) {
+    number = counterSnap.data().lastNumber + 1;
+  }
+
+  await setDoc(counterRef, {
+    lastNumber: number
+  });
+
+  return "ORKS" + String(number).padStart(4, "0");
+
+}
+window.approveMember = async function(id){
+
+  const memberRef = doc(db, "members", id);
+
+const memberSnap = await getDoc(memberRef);
+
+if (!memberSnap.exists()) {
+  alert("Member ମିଳିଲା ନାହିଁ");
+  return;
+}
+
+const memberId = await getNextMemberId();
+
+await updateDoc(memberRef, {
+  memberId: memberId,
+  status: "approved",
+  paid: true
+});
+
+alert("✅ Member Approved Successfully");
+
+loadPendingMembers();
+
 };
 
-window.rejectMember = function(id){
-  alert("Reject Function ପରବର୍ତ୍ତୀ Step ରେ ଯୋଡ଼ିବା");
+window.rejectMember = async function(id){
+
+  alert("Reject Function ପରବର୍ତ୍ତୀ Step ରେ ଯୋଡ଼ାଯିବ।");
+
 };
+  
+
+
+
+   
+
