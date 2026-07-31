@@ -94,7 +94,34 @@ async function loadTransactions() {
   table.innerHTML = "";
 
   let sl = 1;
+// Members Membership Fee
+const memberSnap = await getDocs(collection(db, "members"));
 
+memberSnap.forEach(doc => {
+    const data = doc.data();
+
+    if (data.paid === true) {
+
+        table.innerHTML += `
+        <tr>
+            <td>${sl++}</td>
+            <td>${data.createdAt ?
+                new Date(data.createdAt.seconds * 1000).toLocaleDateString()
+                : "-"}</td>
+            <td>Income</td>
+            <td>Membership Fee</td>
+            <td>₹${data.paymentAmount || 1200}</td>
+            <td>${data.paymentMode || "Online"}</td>
+            <td>
+                ${data.name || "-"}<br>
+                <small>${data.memberId || "-"}</small><br>
+                <small>${data.txnId || "-"}</small>
+            </td>
+            <td>-</td>
+        </tr>
+        `;
+    }
+});
   // Donations
   const donationSnap = await getDocs(collection(db, "donations"));
 
@@ -206,11 +233,17 @@ document.getElementById("transactionForm").addEventListener("submit", async (e) 
 
     
 
-      await addDoc(collection(db, "donations"), {
-        ...data,
-        name: by,
-        purpose: description || category
-      });
+      await addDoc(collection(db, "income"), {
+    ...data,
+    name: by,
+    purpose: description || category,
+    paymentMode: payment,
+    collectedBy: by
+});
+        
+        
+      
+      
 
     } else {
 
