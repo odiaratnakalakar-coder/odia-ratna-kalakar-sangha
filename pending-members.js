@@ -107,7 +107,7 @@ window.approveMember = async function(id) {
 const member = memberSnap.data();
 
 // Income Entry
-await setDoc(doc(collection(db, "income")), {
+await addDoc(collection(db, "income"), {
   memberId: memberId,
   name: member.name,
   mobile: member.mobile,
