@@ -73,10 +73,19 @@ memberSnap.forEach(doc => {
   }
 });
 
-document.getElementById("totalIncome").textContent = "₹" + membershipIncome;
+const incomeSnap = await getDocs(collection(db, "income"));
+let manualIncome = 0;
+
+incomeSnap.forEach(doc => {
+    manualIncome += Number(doc.data().amount || 0);
+});
+
+const totalIncome = membershipIncome + manualIncome;
+
+document.getElementById("totalIncome").textContent = "₹" + totalIncome;
 
 // Current Balance
-const balance = membershipIncome + totalDonation - totalExpense;
+const balance = totalIncome + totalDonation - totalExpense;
 
 document.getElementById("balance").textContent = "₹" + balance;
 
