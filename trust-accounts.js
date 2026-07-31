@@ -75,7 +75,22 @@ memberSnap.forEach(doc => {
         membershipIncome += Number(data.paymentAmount || 1200);
     }
 });
-  
+  // Paid & Unpaid Members
+let paidMembers = 0;
+let unpaidMembers = 0;
+
+memberSnap.forEach(doc => {
+  const data = doc.data();
+
+  if (data.paid === true) {
+    paidMembers++;
+  } else {
+    unpaidMembers++;
+  }
+});
+
+document.getElementById("paidMembers").textContent = paidMembers;
+document.getElementById("unpaidMembers").textContent = unpaidMembers;
 
   
   
