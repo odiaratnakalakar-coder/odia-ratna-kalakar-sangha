@@ -6,7 +6,8 @@ import {
   doc,
   getDoc,
   setDoc,
-  updateDoc
+  updateDoc,
+deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
   
   
@@ -111,9 +112,19 @@ loadPendingMembers();
 
 window.rejectMember = async function(id){
 
-  alert("Reject Function ପରବର୍ତ୍ତୀ Step ରେ ଯୋଡ଼ାଯିବ।");
+  if (!confirm("ଏହି Pending Member କୁ Reject କରିବେ?")) return;
+
+  await deleteDoc(doc(db, "members", id));
+
+  alert("❌ Member Rejected Successfully");
+
+  loadPendingMembers();
 
 };
+
+  
+
+
   
 
 
