@@ -73,14 +73,14 @@ memberSnap.forEach(doc => {
   }
 });
 
-const incomeSnap = await getDocs(collection(db, "income"));
-let manualIncome = 0;
+const totalIncome = membershipIncome;
 
-incomeSnap.forEach(doc => {
-    manualIncome += Number(doc.data().amount || 0);
-});
 
-const totalIncome = membershipIncome + manualIncome;
+
+    
+
+
+
 
 document.getElementById("totalIncome").textContent = "₹" + totalIncome;
 
