@@ -2,7 +2,12 @@ import { db } from "./firebase.js";
 
 import {
   collection,
-  getDocs
+  getDocs,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  deleteDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const memberList = document.getElementById("memberList");
@@ -23,7 +28,8 @@ async function loadPendingMembers() {
     };
 
     if (member.paid === true) return;
-        memberList.innerHTML += `
+
+    memberList.innerHTML += `
       <div class="member-card">
 
         <img src="${member.photoUrl || 'images/default-user.png'}">
@@ -54,16 +60,69 @@ async function loadPendingMembers() {
 
       </div>
     `;
-      });
+  });
 
 }
 
 loadPendingMembers();
+async function getNextMemberId() {
 
-window.approveMember = function(id){
-  alert("Approve Function ପରବର୍ତ୍ତୀ Step ରେ ଯୋଡ଼ିବା");
-};
+  const counterRef = doc(db, "system", "counter");
+  const counterSnap = await getDoc(counterRef);
 
-window.rejectMember = function(id){
-  alert("Reject Function ପରବର୍ତ୍ତୀ Step ରେ ଯୋଡ଼ିବା");
+  let number = 1;
+
+  if (counterSnap.exists()) {
+    number = counterSnap.data().lastNumber + 1;
+  }
+
+  await setDoc(counterRef, {
+    lastNumber: number
+  });
+
+  return "ORKS" + String(number).padStart(4, "0");
+}
+
+window.approveMember = async function(id) {
+
+  const memberRef = doc(db, "members", id);
+  const memberSnap = await getDoc(memberRef);
+
+  if (!memberSnap.exists()) {
+    alert("Member ମିଳିଲା ନାହିଁ");
+    return;
+  }
+
+  const memberId = await getNextMemberId();
+
+  await updateDoc(memberRef, {
+    memberId: memberId,
+    status: "approved",
+    paid: true
+  });
+
+  alert("✅ Member Approved Successfully");
+
+  loadPendingMembers();
 };
+window.rejectMember = async function(id) {
+
+  const ok = confirm("ଏହି Pending Member କୁ Delete କରିବେ?");
+
+  if (!ok) return;
+
+  await deleteDoc(doc(db, "members", id));
+
+  alert("❌ Member Rejected Successfully");
+
+  loadPendingMembers();
+
+};
+// V2 Pending Members System Ready
+console.log("✅ Pending Members V2 Loaded");
+
+// ଭବିଷ୍ୟତରେ ଏଠାରେ ଯୋଡ଼ାଯିବ:
+// - Payment Verification
+// - Receipt Generate
+// - Trust Accounts Auto Entry
+// - WhatsApp Notification

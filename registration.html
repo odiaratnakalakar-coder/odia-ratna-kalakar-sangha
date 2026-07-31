@@ -40,16 +40,21 @@
 
 <p><b>UPI ID:</b> 9827275681@pthdfc</p>
 
-<label>
-<input type="checkbox" id="paid" required>
-ମୁଁ ₹1200 ପେମେଣ୍ଟ କରିସାରିଛି
-</label>
+<div class="notice" style="background:#fff3cd;color:#856404;padding:12px;border-radius:8px;margin:15px 0;">
+<b>⚠️ ସୂଚନା</b><br>
+ଆପଣଙ୍କ Registration ପ୍ରଥମେ <b>Pending</b> ରେ ଯିବ।<br>
+Admin Approval ପରେ Payment Verify କରାଯିବ ଏବଂ Member ID ଦିଆଯିବ।
+</div>
 
-<label>Transaction ID</label>
-<input type="text" id="txnId" placeholder="Transaction ID" required>
+
+
+
+
 <button type="submit">
-ସଦସ୍ୟ ପଞ୍ଜୀକରଣ
+📝 Registration Submit
 </button>
+
+
 
 </form>
 
@@ -131,20 +136,35 @@ if (!snapshot.empty) {
 
       photoUrl = result.secure_url;
     }    const docRef = await addDoc(collection(db, "members"), {
-      memberId: memberId,
-      photoUrl: photoUrl,
-      name: document.getElementById("name").value,
-      father: document.getElementById("father").value,
-      mobile: document.getElementById("mobile").value,
-      address: document.getElementById("address").value,
-      paid: true,
-txnId: document.getElementById("txnId").value,
-      createdAt: new Date()
+      memberId: "",
+photoUrl: photoUrl,
+name: document.getElementById("name").value,
+father: document.getElementById("father").value,
+mobile: document.getElementById("mobile").value,
+address: document.getElementById("address").value,
+
+status: "pending",
+paid: false,
+
+paymentMode: "",
+txnId: "",
+
+createdAt: new Date()
+      
+    
+      
+      
+      
+      
+
+      
     });
 
-    alert("Registration Successful!");
+    
 
-    location.assign("idcard.html?id=" + docRef.id);
+    alert("ଆପଣଙ୍କ Registration ସଫଳତାର ସହ Submit ହୋଇଛି। Admin Approval ପରେ Member ID ଦିଆଯିବ।");
+
+document.getElementById("registrationForm").reset();
 
   } catch (error) {
     alert("Error: " + error.message);
