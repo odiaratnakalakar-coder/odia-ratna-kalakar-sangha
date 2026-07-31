@@ -96,10 +96,30 @@ window.approveMember = async function(id) {
   const memberId = await getNextMemberId();
 
   await updateDoc(memberRef, {
-    memberId: memberId,
-    status: "approved",
-    paid: true
-  });
+  memberId: memberId,
+  status: "approved",
+  paid: true
+});
+
+// Member Data
+const member = memberSnap.data();
+
+// Income Entry
+await setDoc(doc(collection(db, "income")), {
+  memberId: memberId,
+  name: member.name,
+  mobile: member.mobile,
+  amount: 1200,
+  purpose: "New Membership Fee",
+  paymentMode: "Online",
+  receiptNo: "RCPT-" + Date.now(),
+  collectedBy: "Admin",
+  createdAt: new Date()
+});
+    
+    
+    
+  
 
   alert("✅ Member Approved Successfully");
 
