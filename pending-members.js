@@ -121,7 +121,7 @@ await addDoc(collection(db, "income"), {
   amount: 1200,
   purpose: "New Membership Fee",
   paymentMode: "Online",
-  receiptNo: "RCPT-" + Date.now(),
+  receiptNo: txnId,
   collectedBy: "Admin",
   createdAt: new Date()
 });
