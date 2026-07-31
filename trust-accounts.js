@@ -67,6 +67,8 @@ async function loadDashboard() {
 let membershipIncome = 0;
 
 memberSnap.forEach(doc => {
+  console.log("Members:", memberSnap.size);
+console.log("Member:", data);
   const data = doc.data();
   if (data.paid === true) {
     membershipIncome += Number(data.paymentAmount || 1200);
