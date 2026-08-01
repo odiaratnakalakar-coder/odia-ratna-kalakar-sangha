@@ -113,6 +113,22 @@ document.getElementById("totalIncome").textContent = "₹" + totalIncome;
 const balance = totalIncome + totalDonation - totalExpense;
 
 document.getElementById("balance").textContent = "₹" + balance;
+    const today = new Date().toLocaleDateString();
+
+let todayEntry = 0;
+
+memberSnap.forEach(doc => {
+  const data = doc.data();
+
+  if (
+    data.createdAt &&
+    new Date(data.createdAt.seconds * 1000).toLocaleDateString() === today
+  ) {
+    todayEntry++;
+  }
+});
+
+document.getElementById("todayEntry").textContent = todayEntry;
 
   } catch (error) {
     console.error(error);
