@@ -521,13 +521,23 @@ Balance : ₹${income - expense}`
     );
 }
 
-function monthlyReport() {
-    dailyReport();
+function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text("Trust Accounts Report", 14, 15);
+
+    doc.autoTable({
+        html: "#transactionTable",
+        startY: 25,
+        theme: "grid"
+    });
+
+    doc.save("Trust-Accounts-Report.pdf");
 }
 
-function yearlyReport() {
-    dailyReport();
-}
+window.downloadPDF = downloadPDF;
 
 window.dailyReport = dailyReport;
 window.monthlyReport = monthlyReport;
