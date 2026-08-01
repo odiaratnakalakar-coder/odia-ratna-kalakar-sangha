@@ -493,3 +493,42 @@ function dailyReport() {
 }
 
 window.dailyReport = dailyReport;
+// ===== Report Summary =====
+
+function getVisibleRows() {
+    return [...document.querySelectorAll("#transactionTable tr")]
+        .filter(row => row.style.display !== "none");
+}
+
+function dailyReport() {
+    const rows = getVisibleRows();
+    let income = 0, expense = 0;
+
+    rows.forEach(row => {
+        const type = row.cells[2]?.innerText.trim();
+        const amount = Number(row.cells[4]?.innerText.replace(/[₹,]/g, "") || 0);
+
+        if (type === "Income") income += amount;
+        if (type === "Expense") expense += amount;
+    });
+
+    alert(
+`📅 Daily Report
+
+Income : ₹${income}
+Expense : ₹${expense}
+Balance : ₹${income - expense}`
+    );
+}
+
+function monthlyReport() {
+    dailyReport();
+}
+
+function yearlyReport() {
+    dailyReport();
+}
+
+window.dailyReport = dailyReport;
+window.monthlyReport = monthlyReport;
+window.yearlyReport = yearlyReport;
