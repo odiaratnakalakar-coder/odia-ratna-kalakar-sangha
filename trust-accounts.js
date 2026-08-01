@@ -398,36 +398,42 @@ function searchTransaction() {
 
 window.searchTransaction = searchTransaction;
 function filterByDate() {
-  const selectedDate = document.getElementById("filterDate").value;
-  const rows = document.querySelectorAll("#transactionTable tr");
+    const selectedDate = document.getElementById("filterDate").value;
 
-  rows.forEach(row => {
-    const dateCell = row.cells[1];
-    if (!dateCell) return;
+    const rows = document.querySelectorAll("#transactionTable tr");
 
-    const rowDate = dateCell.innerText.trim();
+    rows.forEach(row => {
 
-    if (!selectedDate) {
-      row.style.display = "";
-      return;
-    }
+        const dateCell = row.cells[1];
+        if (!dateCell) return;
 
-    const d = new Date(selectedDate).toLocaleDateString("en-GB");
+        const rowDate = dateCell.textContent.trim();
 
-    if (rowDate === d) {
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
-    }
-  });
+        if (!selectedDate) {
+            row.style.display = "";
+            return;
+        }
+
+        const parts = selectedDate.split("-"); // YYYY-MM-DD
+        const formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
+
+        if (rowDate === formattedDate) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+
+    });
 }
 
 function clearDateFilter() {
-  document.getElementById("filterDate").value = "";
+    document.getElementById("filterDate").value = "";
 
-  const rows = document.querySelectorAll("#transactionTable tr");
-  rows.forEach(row => row.style.display = "");
+    document.querySelectorAll("#transactionTable tr").forEach(row => {
+        row.style.display = "";
+    });
 }
 
 window.filterByDate = filterByDate;
 window.clearDateFilter = clearDateFilter;
+
