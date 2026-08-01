@@ -249,7 +249,7 @@ document.getElementById("transactionForm").addEventListener("submit", async (e) 
   const description = document.getElementById("description").value;
   const payment = document.getElementById("payment").value;
   const by = document.getElementById("by").value;
-
+const date = document.getElementById("date").value;
   const data = {
     amount,
     createdAt: serverTimestamp()
