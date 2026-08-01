@@ -117,11 +117,21 @@
   id="searchTransaction"
   placeholder="Search Transaction..."
   onkeyup="searchTransaction()">
-    <div class="date-filter">
-  <input type="date" id="filterDate">
-  <button onclick="filterByDate()">Filter</button>
-  <button onclick="clearDateFilter()">Clear</button>
+    <div class="date-range-filter">
+
+  <input type="date" id="fromDate">
+
+  <input type="date" id="toDate">
+
+  <button type="button" onclick="filterDateRange()">Filter</button>
+
+  <button type="button" onclick="clearDateRange()">Clear</button>
+
     </div>
+  
+  
+  
+    
 </section>
 
 <section class="table-section">
