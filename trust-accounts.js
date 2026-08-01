@@ -117,16 +117,34 @@ document.getElementById("balance").textContent = "₹" + balance;
 
 let todayEntry = 0;
 
-memberSnap.forEach(doc => {
+const incomeSnap = await getDocs(collection(db, "income"));
+
+incomeSnap.forEach(doc => {
   const data = doc.data();
 
-if (data.date === new Date().toISOString().split("T")[0]) {  
-    
-    
-  
+  if (data.date === new Date().toISOString().split("T")[0]) {
     todayEntry++;
   }
 });
+
+const expenseSnap2 = await getDocs(collection(db, "expenses"));
+
+expenseSnap2.forEach(doc => {
+  const data = doc.data();
+
+  if (data.date === new Date().toISOString().split("T")[0]) {
+    todayEntry++;
+  }
+});
+  
+
+
+    
+    
+  
+    
+  
+
 
 document.getElementById("todayEntry").textContent = todayEntry;
 
