@@ -123,7 +123,7 @@ memberSnap.forEach(doc => {
   if (
     data.createdAt &&
     new Date(data.createdAt.seconds * 1000).toLocaleDateString() === today
-  ) {
+  )
     todayEntry++;
   }
 });
