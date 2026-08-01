@@ -251,9 +251,13 @@ document.getElementById("transactionForm").addEventListener("submit", async (e) 
   const by = document.getElementById("by").value;
 const date = document.getElementById("date").value;
   const data = {
-    amount,
-    createdAt: serverTimestamp()
-  };
+  amount,
+  date,
+  createdAt: serverTimestamp()
+};
+    
+  
+  
 
   try {
 
