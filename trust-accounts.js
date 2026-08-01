@@ -476,3 +476,20 @@ function clearDateRange() {
 
 window.filterDateRange = filterDateRange;
 window.clearDateRange = clearDateRange;
+function dailyReport() {
+
+    const selectedDate =
+        document.getElementById("filterDate")?.value ||
+        document.getElementById("fromDate")?.value;
+
+    if (!selectedDate) {
+        alert("Please select a date first.");
+        return;
+    }
+
+    filterByDate();
+
+    alert("Daily Report Generated for: " + selectedDate);
+}
+
+window.dailyReport = dailyReport;
