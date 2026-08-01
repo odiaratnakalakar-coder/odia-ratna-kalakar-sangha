@@ -436,4 +436,43 @@ function clearDateFilter() {
 
 window.filterByDate = filterByDate;
 window.clearDateFilter = clearDateFilter;
+function filterDateRange() {
+    const from = document.getElementById("fromDate").value;
+    const to = document.getElementById("toDate").value;
 
+    const rows = document.querySelectorAll("#transactionTable tr");
+
+    rows.forEach(row => {
+        const dateCell = row.cells[1];
+        if (!dateCell) return;
+
+        const parts = dateCell.textContent.trim().split("/");
+        const rowDate = new Date(parts[2], parts[1] - 1, parts[0]);
+
+        let show = true;
+
+        if (from) {
+            const fromDate = new Date(from);
+            if (rowDate < fromDate) show = false;
+        }
+
+        if (to) {
+            const toDate = new Date(to);
+            if (rowDate > toDate) show = false;
+        }
+
+        row.style.display = show ? "" : "none";
+    });
+}
+
+function clearDateRange() {
+    document.getElementById("fromDate").value = "";
+    document.getElementById("toDate").value = "";
+
+    document.querySelectorAll("#transactionTable tr").forEach(row => {
+        row.style.display = "";
+    });
+}
+
+window.filterDateRange = filterDateRange;
+window.clearDateRange = clearDateRange;
