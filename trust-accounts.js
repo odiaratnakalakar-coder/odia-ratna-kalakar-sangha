@@ -89,8 +89,8 @@ memberSnap.forEach(doc => {
   }
 });
 
-document.getElementById("paidMembers").textContent = paidMembers;
-document.getElementById("unpaidMembers").textContent = unpaidMembers;
+
+
 
   
   
