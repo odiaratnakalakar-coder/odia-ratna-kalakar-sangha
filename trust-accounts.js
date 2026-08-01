@@ -185,7 +185,15 @@ memberSnap.forEach(doc => {
                 <small>${data.memberId || "-"}</small><br>
                 <small>${data.txnId || "-"}</small>
             </td>
-            <td>-</td>
+          <td>
+<button onclick="editTransaction('members','${doc.id}','${data.paymentAmount || 1200}','Membership Fee','${data.name || ""}')">
+Edit
+</button>
+
+<button onclick="deleteTransaction('members','${doc.id}')">
+Delete
+</button>
+</td>
         </tr>
         `;
     }
