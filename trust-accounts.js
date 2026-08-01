@@ -120,10 +120,10 @@ let todayEntry = 0;
 memberSnap.forEach(doc => {
   const data = doc.data();
 
-  if (
-    data.createdAt &&
-    new Date(data.createdAt.seconds * 1000).toLocaleDateString() === today
-  )
+if (data.date === new Date().toISOString().split("T")[0]) {  
+    
+    
+  
     todayEntry++;
   }
 });
