@@ -523,19 +523,66 @@ Balance : ₹${income - expense}`
 
 function downloadPDF() {
     const { jsPDF } = window.jspdf;
+
     const doc = new jsPDF();
 
     doc.setFontSize(16);
     doc.text("Trust Accounts Report", 14, 15);
 
-    doc.autoTable({
-        html: "#transactionTable",
+    const rows = [];
+
+    document.querySelectorAll("#transactionTable tr").forEach(row => {
+
+        if (row.style.display === "none") return;
+
+        const cols = row.querySelectorAll("td");
+
+        if (cols.length >= 7) {
+            rows.push([
+                cols[0].innerText,
+                cols[1].innerText,
+                cols[2].innerText,
+                cols[3].innerText,
+                cols[4].innerText,
+                cols[5].innerText,
+                cols[6].innerText
+            ]);
+        }
+
+    });
+      doc.autoTable({
+        head: [[
+            "Sl",
+            "Date",
+            "Type",
+            "Category",
+            "Amount",
+            "Payment",
+            "By"
+        ]],
+        body: rows,
         startY: 25,
         theme: "grid"
     });
 
     doc.save("Trust-Accounts-Report.pdf");
 }
+
+window.downloadPDF = downloadPDF;
+    
+    
+
+    
+  
+
+    
+        
+        
+        
+    
+
+    
+
 
 window.downloadPDF = downloadPDF;
 
