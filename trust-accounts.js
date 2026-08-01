@@ -380,3 +380,20 @@ alert("Edit Mode Enabled. Update the data and click Save Transaction.");
 }
 
 window.editTransaction = editTransaction;
+function searchTransaction() {
+  let input = document.getElementById("searchTransaction").value.toLowerCase();
+  let table = document.getElementById("transactionTable");
+  let rows = table.getElementsByTagName("tr");
+
+  for (let i = 0; i < rows.length; i++) {
+    let text = rows[i].innerText.toLowerCase();
+
+    if (text.indexOf(input) > -1) {
+      rows[i].style.display = "";
+    } else {
+      rows[i].style.display = "none";
+    }
+  }
+}
+
+window.searchTransaction = searchTransaction;
