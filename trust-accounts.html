@@ -117,6 +117,11 @@
   id="searchTransaction"
   placeholder="Search Transaction..."
   onkeyup="searchTransaction()">
+    <div class="date-filter">
+  <input type="date" id="filterDate">
+  <button onclick="filterByDate()">Filter</button>
+  <button onclick="clearDateFilter()">Clear</button>
+    </div>
 </section>
 
 <section class="table-section">
