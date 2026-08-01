@@ -397,3 +397,37 @@ function searchTransaction() {
 }
 
 window.searchTransaction = searchTransaction;
+function filterByDate() {
+  const selectedDate = document.getElementById("filterDate").value;
+  const rows = document.querySelectorAll("#transactionTable tr");
+
+  rows.forEach(row => {
+    const dateCell = row.cells[1];
+    if (!dateCell) return;
+
+    const rowDate = dateCell.innerText.trim();
+
+    if (!selectedDate) {
+      row.style.display = "";
+      return;
+    }
+
+    const d = new Date(selectedDate).toLocaleDateString("en-GB");
+
+    if (rowDate === d) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  });
+}
+
+function clearDateFilter() {
+  document.getElementById("filterDate").value = "";
+
+  const rows = document.querySelectorAll("#transactionTable tr");
+  rows.forEach(row => row.style.display = "");
+}
+
+window.filterByDate = filterByDate;
+window.clearDateFilter = clearDateFilter;
