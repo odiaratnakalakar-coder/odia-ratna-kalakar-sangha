@@ -585,7 +585,13 @@ window.downloadPDF = downloadPDF;
 
 
 window.downloadPDF = downloadPDF;
+function monthlyReport() {
+    dailyReport();
+}
 
+function yearlyReport() {
+    dailyReport();
+}
 window.dailyReport = dailyReport;
 window.monthlyReport = monthlyReport;
 window.yearlyReport = yearlyReport;
