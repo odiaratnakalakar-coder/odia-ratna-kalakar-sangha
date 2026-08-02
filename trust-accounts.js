@@ -102,7 +102,34 @@ async function loadTransactions() {
 
         return;
     }
+snapshot.forEach((doc) => {
+document.getElementById("totalIncome").textContent = "₹" + income;
+document.getElementById("totalExpense").textContent = "₹" + expense;
+document.getElementById("totalDonation").textContent = "₹" + donation;
+document.getElementById("currentBalance").textContent =
+    "₹" + (income + donation - expense);
 
+}
+    const data = doc.data();
+
+    if (data.type === "Income" || data.type === "Membership") {
+        income += Number(data.amount);
+    } else if (data.type === "Expense") {
+        expense += Number(data.amount);
+    } else if (data.type === "Donation") {
+        donation += Number(data.amount);
+    }
+
+    container.innerHTML += `
+    <div class="transaction-card">
+        <h3>${data.type}</h3>
+        <p><b>Date:</b> ${data.date}</p>
+        <p><b>Amount:</b> ₹${data.amount}</p>
+        <p><b>Description:</b> ${data.description}</p>
+        <p><b>Payment:</b> ${data.paymentMode || "-"}</p>
+        <p><b>Receipt:</b> ${data.receiptNumber || "-"}</p>
+    </div>`;
+});
     
 
 // First Load
