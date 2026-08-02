@@ -1,234 +1,329 @@
+/* ===========================
+   Trust Accounts Dashboard
+=========================== */
+
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
 
 body{
-  background:#f5f5f5;
+    background:#f4f6f9;
+    color:#333;
 }
 
-.header{
-  background:#ff6a00;
-  color:#fff;
-  display:flex;
-  align-items:center;
-  padding:15px;
+/* Header */
+
+.top-bar{
+    background:#8B0000;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
 }
 
-.logo{
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  margin-right:15px;
+.top-bar h1{
+    font-size:28px;
+    margin-bottom:8px;
 }
 
-.banner img{
-  width:100%;
-  height:200px;
-  object-fit:cover;
+.top-bar p{
+    font-size:16px;
+    opacity:.95;
 }
 
-.menu{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-  padding:15px;
+/* Dashboard */
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    padding:20px;
 }
+
+/* Cards */
 
 .card{
-  background:#fff;
-  border-radius:15px;
-  padding:20px;
-  text-align:center;
-  text-decoration:none;
-  color:#333;
-  box-shadow:0 2px 8px rgba(0,0,0,.15);
-  transition:.3s;
-}
-
-.card i{
-  font-size:35px;
-  color:#ff6a00;
-  margin-bottom:10px;
-}
-
-.card span{
-  display:block;
-  font-size:16px;
-  font-weight:bold;
+    background:#fff;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    transition:.3s;
 }
 
 .card:hover{
-  transform:translateY(-5px);
+    transform:translateY(-5px);
 }
 
-.notice{
-  margin:15px;
-  padding:15px;
-  background:#fff;
-  border-radius:15px;
-  box-shadow:0 2px 8px rgba(0,0,0,.15);
-}
-
-.notice h3{
-  color:#ff6a00;
-  margin-bottom:10px;
-}
-.container{
-    max-width:420px;
-    margin:20px auto;
-    background:#fff;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 2px 10px rgba(0,0,0,.2);
-}
-
-.container h2{
-    text-align:center;
-    color:#b30000;
-    margin-bottom:20px;
-}
-
-label{
-    display:block;
-    margin-top:12px;
-    font-weight:bold;
-}
-
-input,
-textarea{
-    width:100%;
-    padding:10px;
-    margin-top:5px;
+.card i{
+    font-size:30px;
     margin-bottom:10px;
-    border:1px solid #ccc;
-    border-radius:6px;
 }
 
-textarea{
-    resize:none;
-}
-
-button{
-    width:100%;
-    padding:12px;
-    background:#b30000;
-    color:#fff;
-    border:none;
-    border-radius:6px;
+.card h3{
+    margin-bottom:10px;
     font-size:18px;
-    cursor:pointer;
-}
-
-.photo{
-    width:100px;
-    height:120px;
-    object-fit:cover;
-    border:1px solid #999;
-    display:block;
-    margin:15px auto;
-}
-/* ===== ID CARD DESIGN ===== */
-
-body{
-    background:#222;
-}
-
-.card{
-    max-width:350px;
-    margin:20px auto;
-    background:#fff;
-    border:4px solid #b30000;
-    border-radius:15px;
-    padding:15px;
-    text-align:center;
-    color:#000;
 }
 
 .card h2{
-    color:#b30000;
-    font-size:22px;
-    margin:10px 0;
+    color:#8B0000;
+    font-size:30px;
 }
 
-.logo{
-    width:60px;
-    height:60px;
+/* Card Colors */
+
+.income i{
+    color:#28a745;
 }
 
-.photo{
-    width:110px;
-    height:130px;
-    border:3px solid #b30000;
-    border-radius:8px;
-    object-fit:cover;
-    margin:10px auto;
+.expense i{
+    color:#dc3545;
 }
 
-.card p{
-    margin:6px 0;
-    font-size:16px;
+.balance i{
+    color:#007bff;
 }
 
-button{
-    background:#b30000;
-    color:#fff;
-    padding:12px;
-    border:none;
-    border-radius:8px;
+.donation i{
+    color:#ff9800;
+}
+/* ===========================
+   Add Transaction Form
+=========================== */
+
+.add-transaction{
+    background:#fff;
+    margin:20px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.add-transaction h2{
+    margin-bottom:20px;
+    color:#8B0000;
+}
+
+#transactionForm{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+#transactionForm input,
+#transactionForm select,
+#transactionForm textarea{
     width:100%;
-    font-size:18px;
-}
-/* ===== Professional ID Card ===== */
-
-.card-header{
-    text-align:center;
-    background:#b30000;
-    color:#fff;
-    padding:10px;
-    border-radius:10px 10px 0 0;
-}
-
-.card-header h2{
-    color:#fff;
-    font-size:20px;
-    margin:5px 0;
-}
-
-.photo-box{
-    text-align:center;
-    margin:15px 0;
-}
-
-.photo{
-    width:120px;
-    height:150px;
-    border:3px solid #b30000;
+    padding:12px;
+    border:1px solid #ccc;
     border-radius:10px;
-    object-fit:cover;
+    font-size:15px;
+    outline:none;
+}
+
+#transactionForm input:focus,
+#transactionForm select:focus,
+#transactionForm textarea:focus{
+    border-color:#8B0000;
+}
+
+/* Button */
+
+#transactionForm button{
+    background:#8B0000;
+    color:#fff;
+    border:none;
+    padding:14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+#transactionForm button:hover{
+    background:#a00000;
+}
+
+/* ===========================
+   Search & Filter
+=========================== */
+
+.transaction-tools{
+    margin:20px;
+}
+
+.tools{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.tools input,
+.tools select{
+    flex:1;
+    min-width:220px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
+}
+
+/* ===========================
+   Table
+=========================== */
+
+.table-container{
+    overflow-x:auto;
+    margin:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
     background:#fff;
 }
 
-.details{
+th{
+    background:#8B0000;
+    color:#fff;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    border-bottom:1px solid #eee;
+    text-align:center;
+}
+
+tr:hover{
+    background:#f8f8f8;
+}
+/* ===========================
+   Modal
+=========================== */
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.6);
+}
+
+.modal-content{
+    background:#fff;
+    width:90%;
+    max-width:500px;
+    margin:8% auto;
+    padding:20px;
+    border-radius:15px;
+    position:relative;
+    animation:popup .3s ease;
+}
+
+.close{
+    position:absolute;
+    right:15px;
+    top:10px;
+    font-size:28px;
+    cursor:pointer;
+    color:#8B0000;
+}
+
+#receiptImage{
+    width:100%;
+    border-radius:10px;
     margin-top:15px;
 }
 
-.details p{
-    font-size:16px;
-    margin:10px 0;
-    border-bottom:1px dashed #ccc;
-    padding-bottom:5px;
+#editForm{
+    display:grid;
+    gap:12px;
 }
 
-.card-footer{
-    margin-top:20px;
-    font-size:14px;
-    text-align:center;
+#editForm input,
+#editForm select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
 }
-.card-header .logo{
-    width:70px;
-    height:70px;
-    border-radius:50%;
+
+#editForm button{
+    background:#8B0000;
+    color:#fff;
+    border:none;
+    padding:12px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* Delete Buttons */
+
+#confirmDelete{
+    background:#dc3545;
+    color:#fff;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+#cancelDelete{
+    background:#6c757d;
+    color:#fff;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-left:10px;
+}
+
+/* Animation */
+
+@keyframes popup{
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .top-bar h1{
+        font-size:22px;
+    }
+
+    .dashboard{
+        grid-template-columns:1fr;
+    }
+
+    #transactionForm{
+        grid-template-columns:1fr;
+    }
+
+    .tools{
+        flex-direction:column;
+    }
+
+    table{
+        font-size:14px;
+    }
+
+    th,
+    td{
+        padding:8px;
+    }
+
 }
