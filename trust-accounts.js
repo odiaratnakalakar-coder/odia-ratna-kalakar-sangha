@@ -31,7 +31,7 @@ import {
 
 console.log("Trust Accounts Loaded");
 console.log("Trust Accounts Loaded");
-
+alert("Trust Accounts JS Loaded");
 let editId = null;
 let editCollection = null;
 
