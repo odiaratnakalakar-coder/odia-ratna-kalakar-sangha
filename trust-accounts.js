@@ -206,7 +206,13 @@ Delete
     }
 });
   // Donations
-  const donationSnap = await getDocs(collection(db, "donations"));
+  let donationSnap = { forEach: () => {} };
+
+try {
+  donationSnap = await getDocs(collection(db, "donations"));
+} catch (e) {
+  console.log("Donations collection not found");
+}
 
   donationSnap.forEach(doc => {
 
