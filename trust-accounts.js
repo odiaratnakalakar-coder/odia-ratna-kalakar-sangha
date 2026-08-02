@@ -75,11 +75,15 @@ await loadTransactions();
 // Load Transactions
 // ===============================
 
+// ===============================
+// Load Transactions (Card View)
+// ===============================
+
 async function loadTransactions() {
 
-    const tbody = document.getElementById("transactionBody");
+    const container = document.getElementById("transactionCards");
 
-    tbody.innerHTML = "";
+    container.innerHTML = "";
 
     const q = query(accountsRef, orderBy("createdAt", "desc"));
 
@@ -89,39 +93,17 @@ async function loadTransactions() {
     let expense = 0;
     let donation = 0;
 
-    snapshot.forEach((doc) => {
+    if (snapshot.empty) {
 
-        const data = doc.data();
+        container.innerHTML = `
+        <div class="empty-card">
+            No Transactions Found
+        </div>`;
 
-        if (data.type === "Income" || data.type === "Membership") {
-            income += Number(data.amount);
-        } else if (data.type === "Expense") {
-            expense += Number(data.amount);
-        } else if (data.type === "Donation") {
-            donation += Number(data.amount);
-        }
+        return;
+    }
 
-        tbody.innerHTML += `
-        <tr>
-            <td>${data.date}</td>
-            <td>${data.type}</td>
-            <td>${data.description}</td>
-            <td>₹${data.amount}</td>
-            <td>${data.paymentMode || "-"}</td>
-            <td>${data.receiptNumber || "-"}</td>
-            <td>
-                <button>Edit</button>
-                <button>Delete</button>
-            </td>
-        </tr>`;
-    });
-
-    document.getElementById("totalIncome").textContent = "₹" + income;
-    document.getElementById("totalExpense").textContent = "₹" + expense;
-    document.getElementById("totalDonation").textContent = "₹" + donation;
-    document.getElementById("currentBalance").textContent =
-        "₹" + (income + donation - expense);
-}
+    
 
 // First Load
 loadTransactions();
