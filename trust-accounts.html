@@ -3,187 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trust Accounts | ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ</title>
+    <title>Trust Accounts | Odia Ratna Kalakar Sangha</title>
 
-    <link rel="stylesheet" href="trust-accounts.css">
+    <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
 <body>
 
-<header class="header">
-    <div class="logo">
-        <img src="images/logo.png" alt="Logo">
-        <div>
-            <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ</h2>
-            <p>Trust Accounts Dashboard</p>
-        </div>
-    </div>
-
-    <div class="admin">
-        <i class="fa-solid fa-user"></i> Admin
-    </div>
+<header class="top-bar">
+    <h1>🏦 Trust Accounts</h1>
+    <p>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ - ସୁରତ</p>
 </header>
 
 <section class="dashboard">
 
-<div class="card income">
-<h3>Total Income</h3>
-<h2 id="totalIncome">₹0</h2>
-</div>
+    <div class="card income">
+        <i class="fas fa-arrow-down"></i>
+        <h3>Total Income</h3>
+        <h2 id="totalIncome">₹0</h2>
+    </div>
 
-<div class="card expense">
-<h3>Total Expense</h3>
-<h2 id="totalExpense">₹0</h2>
-</div>
+    <div class="card expense">
+        <i class="fas fa-arrow-up"></i>
+        <h3>Total Expense</h3>
+        <h2 id="totalExpense">₹0</h2>
+    </div>
 
-<div class="card balance">
-<h3>Current Balance</h3>
-<h2 id="balance">₹0</h2>
-</div>
+    <div class="card balance">
+        <i class="fas fa-wallet"></i>
+        <h3>Current Balance</h3>
+        <h2 id="currentBalance">₹0</h2>
+    </div>
 
-<div class="card donation">
-<h3>Total Donation</h3>
-<h2 id="donation">₹0</h2>
-</div>
-
-<div class="card members">
-<h3>Total Members</h3>
-<h2 id="members">0</h2>
-</div>
-<div class="card paid">
-    <h3>Paid Members</h3>
-    <h2 id="paidMembers">0</h2>
-</div>
-
-<div class="card unpaid">
-    <h3>Unpaid Members</h3>
-    <h2 id="unpaidMembers">0</h2>
-</div>
-<div class="card today">
-<h3>Today's Entry</h3>
-<h2 id="todayEntry">0</h2>
-</div>
+    <div class="card donation">
+        <i class="fas fa-hand-holding-heart"></i>
+        <h3>Total Donation</h3>
+        <h2 id="totalDonation">₹0</h2>
+    </div>
 
 </section>
 
-<section class="transaction-form">
+<section class="add-transaction">
 
-<h2>Add Transaction</h2>
+    <h2>➕ Add Transaction</h2>
 
-<form id="transactionForm">
+    <form id="transactionForm">
 
-<input type="date" id="date">
+        <input
+            type="date"
+            id="date"
+            required>
+<!-- Payment Mode -->
 
-<select id="type">
-<option>Income</option>
-<option>Expense</option>
+<select id="paymentMode" required>
+    <option value="">💳 Payment Mode</option>
+    <option value="Cash">Cash</option>
+    <option value="UPI">UPI</option>
+    <option value="Bank">Bank Transfer</option>
 </select>
 
+<!-- Receipt Number -->
 
-<select id="category">
-<option>Membership Fee</option>
-<option>Donation</option>
-<option>Office Expense</option>
-<option>Medical Help</option>
-<option>Event</option>
-<option>Other</option>
-</select>
-
-<input type="number" id="amount" placeholder="Amount">
-
-<input type="text" id="description" placeholder="Description">
-
-<select id="payment">
-<option>Cash</option>
-<option>UPI</option>
-<option>Bank</option>
-</select>
-
-<input type="text" id="by" placeholder="Collected / Paid By">
-
-<input type="file">
-<button type="submit">Save Transaction</button>
-
-</form>
-
-</section>
-
-<section class="search">
 <input
-  type="text"
-  id="searchTransaction"
-  placeholder="Search Transaction..."
-  onkeyup="searchTransaction()">
-    <div class="date-range-filter">
+    type="text"
+    id="receiptNumber"
+    placeholder="📄 Receipt Number">
 
-  <input type="date" id="fromDate">
+<!-- Collected / Paid By -->
 
-  <input type="date" id="toDate">
+<input
+    type="text"
+    id="collectedBy"
+    placeholder="👤 Collected / Paid By"
+    required>
 
-  <button type="button" onclick="filterDateRange()">Filter</button>
+<!-- Member Name -->
 
-  <button type="button" onclick="clearDateRange()">Clear</button>
+<input
+    type="text"
+    id="memberName"
+    placeholder="👤 Member / Donor Name">
+
+<!-- Mobile Number -->
+
+<input
+    type="tel"
+    id="mobile"
+    placeholder="📱 Mobile Number">
+
+<!-- Receipt Photo -->
+
+<label for="receiptPhoto">
+    📷 Receipt Photo
+</label>
+
+<input
+    type="file"
+    id="receiptPhoto"
+    accept="image/*">
+
+<!-- Notes -->
+
+<textarea
+    id="notes"
+    rows="3"
+    placeholder="📝 Additional Notes"></textarea>
+        <select id="type" required>
+            <option value="">Select Type</option>
+            <option value="Income">Income</option>
+            <option value="Expense">Expense</option>
+            <option value="Donation">Donation</option>
+            <option value="Membership">Membership Fee</option>
+        </select>
+
+        <input
+            type="number"
+            id="amount"
+            placeholder="Amount"
+            required>
+
+        <input
+            type="text"
+            id="description"
+            placeholder="Description"
+            required>
+
+        <button type="submit">
+            Save Transaction
+        </button>
+
+    </form>
+
+</section>
+<!-- Search & Filter -->
+
+<section class="transaction-tools">
+
+    <h2>📋 Transaction History</h2>
+
+    <div class="tools">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search by Name / Description">
+
+        <select id="filterType">
+
+            <option value="All">All Transactions</option>
+
+            <option value="Income">Income</option>
+
+            <option value="Expense">Expense</option>
+
+            <option value="Donation">Donation</option>
+
+            <option value="Membership">
+                Membership Fee
+            </option>
+
+        </select>
 
     </div>
-  
-  
-  
-    
+
 </section>
+
+
+<!-- Transaction Table -->
 
 <section class="table-section">
 
-<h2>Transaction History</h2>
+<div class="table-container">
 
-<table>
+<table id="transactionTable">
 
 <thead>
+
 <tr>
-<th>Sl</th>
+
 <th>Date</th>
+
 <th>Type</th>
-<th>Category</th>
+
+<th>Description</th>
+
 <th>Amount</th>
+
 <th>Payment</th>
-<th>By</th>
+
+<th>Receipt</th>
+
 <th>Action</th>
+
 </tr>
+
 </thead>
 
-<tbody id="transactionTable">
+<tbody id="transactionBody">
+
+<tr>
+
+<td colspan="7"
+style="text-align:center;padding:30px;">
+
+No Transactions Found
+
+</td>
+
+</tr>
 
 </tbody>
 
 </table>
 
-</section>
-
-<section class="reports">
-
-<button onclick="dailyReport()">📅 Daily Report</button>
-
-<button onclick="monthlyReport()">📆 Monthly Report</button>
-
-<button onclick="yearlyReport()">🗓️ Yearly Report</button>
-
-<button onclick="downloadPDF()">📄 Download PDF</button>
-
-<button onclick="downloadExcel()">📊 Download Excel</button>
-
-<button onclick="window.print()">🖨️ Print</button>
-
-
-
-
+</div>
 
 </section>
+<!-- Receipt Preview Modal -->
+<div id="receiptModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="receiptImage" src="" alt="Receipt">
+    </div>
+</div>
 
+<script type="module" src="firebase.js"></script>
 <script type="module" src="trust-accounts.js"></script>
 
 </body>
