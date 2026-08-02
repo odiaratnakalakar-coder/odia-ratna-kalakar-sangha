@@ -306,3 +306,32 @@ table{
 table{
     min-width:750px;
 }
+/* Part 3 - Transaction History Mobile Fix */
+
+@media (max-width:768px){
+
+  .tools{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .tools input,
+  .tools select{
+    width:100%;
+  }
+
+  .table-container{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  table{
+    min-width:900px;
+  }
+
+  th,td{
+    white-space:nowrap;
+  }
+
+}
