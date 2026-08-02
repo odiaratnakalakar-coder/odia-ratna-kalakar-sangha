@@ -156,3 +156,43 @@ th{
 .expense i{color:#dc3545;}
 .balance i{color:#007bff;}
 .donation i{color:#ff9800;}
+/* Mobile Form Fix */
+@media (max-width:768px){
+
+.add-transaction{
+    padding:15px;
+    margin:15px;
+}
+
+#transactionForm{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:12px;
+}
+
+#transactionForm input,
+#transactionForm select,
+#transactionForm textarea,
+#transactionForm button{
+    width:100%;
+}
+
+#transactionForm button{
+    padding:15px;
+    font-size:18px;
+    font-weight:bold;
+    background:#8B0000;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+}
+
+.table-container{
+    overflow-x:auto;
+}
+
+table{
+    min-width:800px;
+}
+
+}
