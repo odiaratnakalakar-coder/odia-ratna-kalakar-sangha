@@ -41,6 +41,7 @@ async function loadDashboard() {
 
     // Total Members
     const memberSnap = await getDocs(collection(db, "members"));
+    console.log("Members:", memberSnap.size);
     document.getElementById("members").textContent = memberSnap.size;
 
     // Total Donation
