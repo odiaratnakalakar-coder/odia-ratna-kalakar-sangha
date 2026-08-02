@@ -131,3 +131,28 @@ th{
 }
 
 }
+.card{
+    transition:0.3s ease;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
+}
+
+.card h2{
+    font-size:30px;
+    color:#8B0000;
+    margin-top:10px;
+}
+
+.card i{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.income i{color:#28a745;}
+.expense i{color:#dc3545;}
+.balance i{color:#007bff;}
+.donation i{color:#ff9800;}
