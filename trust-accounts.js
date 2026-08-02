@@ -44,14 +44,26 @@ async function loadDashboard() {
     document.getElementById("members").textContent = memberSnap.size;
 
     // Total Donation
-    const donationSnap = await getDocs(collection(db, "donations"));
     let totalDonation = 0;
 
-    donationSnap.forEach(doc => {
-      totalDonation += Number(doc.data().amount || 0);
-    });
+try {
+  const donationSnap = await getDocs(collection(db, "donations"));
 
-  document.getElementById("donation").textContent = "₹" + totalDonation;  
+  donationSnap.forEach(doc => {
+    totalDonation += Number(doc.data().amount || 0);
+  });
+
+} catch (e) {
+  console.log("Donations collection not found");
+}
+
+document.getElementById("donation").textContent = "₹" + totalDonation;
+    
+
+    
+      
+
+   
 
 
     // Total Expense
