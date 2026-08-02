@@ -136,7 +136,7 @@ if (!snapshot.empty) {
 
       photoUrl = result.secure_url;
     }    const docRef = await addDoc(collection(db, "members"), {
-      memberId: "",
+      memberId: memberId,
 photoUrl: photoUrl,
 name: document.getElementById("name").value,
 father: document.getElementById("father").value,
