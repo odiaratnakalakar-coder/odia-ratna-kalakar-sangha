@@ -124,9 +124,9 @@ document.getElementById("balance").textContent = "₹" + balance;
 
 let todayEntry = 0;
 
-const incomeSnap = await getDocs(collection(db, "income"));
+const todayIncomeSnap = await getDocs(collection(db, "income"));
 
-incomeSnap.forEach(doc => {
+todayIncomeSnap.forEach(doc => {
   const data = doc.data();
 
   if (data.date === new Date().toISOString().split("T")[0]) {
