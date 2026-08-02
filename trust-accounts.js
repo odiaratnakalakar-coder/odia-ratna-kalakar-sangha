@@ -168,6 +168,7 @@ expenseSnap2.forEach(doc => {
 
 document.getElementById("todayEntry").textContent = todayEntry;
 
+  }
   catch (error) {
   console.error(error);
 
