@@ -168,10 +168,21 @@ expenseSnap2.forEach(doc => {
 
 document.getElementById("todayEntry").textContent = todayEntry;
 
-  } catch (error) {
-    console.error(error);
-    alert(error.message);
+  catch (error) {
+  console.error(error);
+
+  alert(
+    "ERROR:\n\n" +
+    error.name +
+    "\n\n" +
+    error.message +
+    "\n\n" +
+    error.stack
+  );
   }
+  
+    
+  
 }
 
 loadDashboard();
