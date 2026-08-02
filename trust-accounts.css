@@ -335,14 +335,25 @@ table{
   }
 
 }
+.table-section{
+    width:100%;
+    overflow-x:auto;
+}
+
 .table-container{
     width:100%;
     overflow-x:auto;
+    display:block;
     -webkit-overflow-scrolling:touch;
 }
 
 #transactionTable{
-    width:100%;
-    min-width:700px;
+    display:table;
+    min-width:900px;
+    width:max-content;
     border-collapse:collapse;
 }
+    
+
+
+
