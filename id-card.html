@@ -122,6 +122,14 @@ snap.forEach(doc=>{
 const member = doc.data();
 
 if(member.memberId===id){
+if (member.status !== "approved") {
+    alert("⛔ Member is not approved.");
+    window.location.href = "members.html";
+    return;
+}
+    
+    
+    
 
 document.getElementById("photo").src =
 member.photoUrl || "";
