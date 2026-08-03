@@ -113,16 +113,37 @@ if (selectedMember.paid) {
     receiptNo: receiptNo
   });
 
-  await addDoc(collection(db, "transactions"), {
-    memberId: selectedMember.memberId,
-    name: selectedMember.name,
-    mobile: selectedMember.mobile,
-    amount: amount,
-    paymentDate: paymentDate,
-    paymentMode: paymentMode,
-    receiptNo: receiptNo,
-    createdAt: new Date()
-  });
+ await addDoc(collection(db, "transactions"), {
+  memberId: selectedMember.memberId,
+  name: selectedMember.name,
+  mobile: selectedMember.mobile,
+  amount: amount,
+  paymentDate: paymentDate,
+  paymentMode: paymentMode,
+  receiptNo: receiptNo,
+  createdAt: new Date()
+});
+
+await addDoc(collection(db, "trust_accounts"), {
+  date: paymentDate,
+  type: "Membership",
+  amount: amount,
+  description: "Membership Fee",
+  paymentMode: paymentMode,
+  receiptNumber: receiptNo,
+  collectedBy: "Admin",
+  memberName: selectedMember.name,
+  mobile: selectedMember.mobile,
+  notes: "Automatic Entry",
+  createdAt: new Date()
+}); 
+    
+    
+    
+    
+    
+    
+  
 
   selectedMember.paid = true;
 
