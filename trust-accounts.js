@@ -1,5 +1,5 @@
 // ===============================
-// Trust Accounts JS - Part 1
+// Trust Accounts JS
 // ===============================
 
 import { db } from "./firebase.js";
@@ -11,17 +11,13 @@ import {
   orderBy
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// Firestore Collection
 const incomeRef = collection(db, "income");
 
-// Load Transactions
 async function loadTransactions() {
 
-  const tbody = document.getElementById("transactionBody");
+  const container = document.getElementById("transactionCards");
 
-  if (!tbody) return;
-
-  tbody.innerHTML = "";
+  container.innerHTML = "";
 
   const snapshot = await getDocs(
     query(incomeRef, orderBy("createdAt", "desc"))
@@ -36,34 +32,37 @@ async function loadTransactions() {
 
     income += Number(data.amount || 0);
 
-    tbody.innerHTML += `
-      <tr>
-        <td>${data.createdAt?.toDate
-          ? data.createdAt.toDate().toLocaleDateString()
-          : "-"}</td>
+    container.innerHTML += `
+      <div class="transaction-card">
+        <h3>${data.purpose || "Membership Fee"}</h3>
 
-        <td>${data.purpose || "Membership"}</td>
+        <p><b>Member:</b> ${data.name || "-"}</p>
 
-        <td>${data.memberId || "-"}</td>
+        <p><b>Member ID:</b> ${data.memberId || "-"}</p>
 
-        <td>₹${data.amount || 0}</td>
+        <p><b>Amount:</b> ₹${data.amount || 0}</p>
 
-        <td>${data.paymentMode || "-"}</td>
+        <p><b>Payment Mode:</b> ${data.paymentMode || "-"}</p>
 
-        <td>${data.receiptNo || "-"}</td>
+        <p><b>Receipt No:</b> ${data.receiptNo || "-"}</p>
 
-        <td>Paid</td>
-      </tr>
+        <p><b>Date:</b>
+          ${
+            data.createdAt?.toDate
+              ? data.createdAt.toDate().toLocaleDateString()
+              : "-"
+          }
+        </p>
+      </div>
     `;
-
   });
-
-  document.getElementById("totalIncome").textContent = "₹" + income;
+    document.getElementById("totalIncome").textContent = "₹" + income;
   document.getElementById("totalExpense").textContent = "₹" + expense;
   document.getElementById("totalDonation").textContent = "₹" + donation;
   document.getElementById("currentBalance").textContent =
     "₹" + (income + donation - expense);
-  }
+
+}
 
 // First Load
 loadTransactions();
