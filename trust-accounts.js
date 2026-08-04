@@ -222,7 +222,7 @@ monthlyReportBtn.addEventListener("click", async () => {
     let donation = 0;
     let expense = 0;
 
-    const incomeSnap = await getDocs(incomeRef);
+    const incomeSnap = await getDocs(donationsRef);
 
     incomeSnap.forEach((doc) => {
 
