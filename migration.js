@@ -4,42 +4,37 @@ import {
   collection,
   getDocs,
   addDoc,
-  query
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const incomeRef = collection(db, "income");
-const trustRef = collection(db, "trust_accounts");
+async function migratePaidMembers() {
 
-async function migrateIncomeToTrust() {
-  const snapshot = await getDocs(query(incomeRef));
+  const snap = await getDocs(collection(db, "members"));
 
-  console.log("Total Records:", snapshot.size);
-    for (const docSnap of snapshot.docs) {
+  for (const d of snap.docs) {
 
-    const data = docSnap.data();
+    const m = d.data();
 
-    await addDoc(trustRef, {
-      date: data.paymentDate || "",
-      type: "Membership",
-      amount: Number(data.amount || 1200),
-      description: data.purpose || "Membership Fee",
-      paymentMode: data.paymentMode || "Cash",
-      receiptNumber: data.receiptNo || "",
-      collectedBy: data.collectedBy || "Admin",
-      memberName: data.name || "",
-      mobile: data.mobile || "",
-      notes: "Migrated from income collection",
-      createdAt: data.createdAt || new Date()
-    });
+    if (m.paid === true) {
 
-    console.log("Migrated:", data.memberId);
+      await addDoc(collection(db, "income"), {
+        memberId: m.memberId || "",
+        name: m.name || "",
+        mobile: m.mobile || "",
+        amount: 1200,
+        type: "Membership",
+        purpose: "Old Membership Fee",
+        paymentMode: "Cash",
+        receiptNo: "OLD-" + (m.memberId || Date.now()),
+        collectedBy: "Migration",
+        createdAt: serverTimestamp()
+      });
+
+      console.log("Added:", m.name);
     }
-    alert("✅ Migration Completed Successfully!");
+  }
+
+  alert("✅ Migration Completed");
 }
 
-migrateIncomeToTrust()
-  .then(() => console.log("Done"))
-  .catch((err) => {
-    console.error(err);
-    alert("❌ Migration Error: " + err.message);
-  });
+migratePaidMembers();
