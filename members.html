@@ -404,7 +404,10 @@ await addDoc(collection(db, "income"), {
 });
 
 alert("✅ Cash Payment Saved");
-
+cashBtn.innerHTML = "✅ Paid";
+cashBtn.disabled = true;
+cashBtn.style.background = "gray";
+member.paid = true;
   
 
   loadMembers();
