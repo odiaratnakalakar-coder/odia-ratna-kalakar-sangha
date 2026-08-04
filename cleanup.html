@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cleanup Duplicate Membership Income</title>
+</head>
+<body>
+
+<h2>Cleaning Duplicate Membership Income...</h2>
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+  collection,
+  getDocs,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+async function cleanup() {
+
+  const snapshot = await getDocs(collection(db, "income"));
+
+  const seen = {};
+  let deleted = 0;
+
+  for (const d of snapshot.docs) {
+
+    const data = d.data();
+
+    if (data.type !== "Membership") continue;
+    if (!data.memberId) continue;
+
+    if (seen[data.memberId]) {
+      await deleteDoc(doc(db, "income", d.id));
+      deleted++;
+    } else {
+      seen[data.memberId] = true;
+    }
+  }
+
+  document.body.innerHTML = `
+    <h1>✅ Cleanup Complete</h1>
+    <h2>Deleted Duplicate Entries: ${deleted}</h2>
+  `;
+}
+
+cleanup();
+
+</script>
+
+</body>
+</html>
