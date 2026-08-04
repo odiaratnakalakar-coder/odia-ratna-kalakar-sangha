@@ -362,7 +362,17 @@ if (member.status === "approved") {
     paid: true,
     txnId: "CASH"
   });
-
+await addDoc(collection(db, "income"), {
+  memberId: member.memberId,
+  name: member.name,
+  mobile: member.mobile,
+  amount: 1200,
+  purpose: "New Membership Fee",
+  paymentMode: "Cash",
+  receiptNo: "CASH-" + Date.now(),
+  collectedBy: "Admin",
+  createdAt: serverTimestamp()
+});
   alert("✅ Cash Payment Saved");
 
   loadMembers();
