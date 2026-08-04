@@ -197,3 +197,73 @@ transactionForm.addEventListener("submit", async (e) => {
     }
 
 });
+// =====================================
+// Part 4A
+// Monthly Report
+// =====================================
+
+const reportMonth = document.getElementById("reportMonth");
+const monthlyReportBtn = document.getElementById("monthlyReportBtn");
+
+const monthlyMemberIncome = document.getElementById("monthlyMemberIncome");
+const monthlyDonation = document.getElementById("monthlyDonation");
+const monthlyExpense = document.getElementById("monthlyExpense");
+const monthlyBalance = document.getElementById("monthlyBalance");
+
+monthlyReportBtn.addEventListener("click", async () => {
+
+    const month = reportMonth.value;
+
+    if (!month) {
+        alert("Please select month");
+        return;
+    }
+
+    let donation = 0;
+    let expense = 0;
+
+    const incomeSnap = await getDocs(incomeRef);
+
+    incomeSnap.forEach((doc) => {
+
+        const data = doc.data();
+
+        if (data.date && data.date.startsWith(month)) {
+
+            if (data.type === "Donation") {
+                donation += Number(data.amount || 0);
+            }
+
+        }
+
+    });
+
+    const expenseSnap = await getDocs(expensesRef);
+
+    expenseSnap.forEach((doc) => {
+
+        const data = doc.data();
+
+        if (data.date && data.date.startsWith(month)) {
+
+            expense += Number(data.amount || 0);
+
+        }
+
+    });
+
+    const memberIncomeMonth = totalMembers * MEMBER_FEE;
+
+    monthlyMemberIncome.textContent =
+        "₹" + memberIncomeMonth.toLocaleString("en-IN");
+
+    monthlyDonation.textContent =
+        "₹" + donation.toLocaleString("en-IN");
+
+    monthlyExpense.textContent =
+        "₹" + expense.toLocaleString("en-IN");
+
+    monthlyBalance.textContent =
+        "₹" + (memberIncomeMonth + donation - expense).toLocaleString("en-IN");
+
+});
