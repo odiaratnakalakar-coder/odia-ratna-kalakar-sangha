@@ -242,6 +242,64 @@ async function init() {
     await startDashboard();
 
 }
+// ===============================
+// PART 3C-1
+// Save Transaction
+// ===============================
+
+transactionForm.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const type = document.getElementById("type").value;
+    const amount = Number(document.getElementById("amount").value);
+    const description = document.getElementById("description").value;
+    const memberName = document.getElementById("memberName").value;
+    const mobile = document.getElementById("mobile").value;
+    const paymentMode = document.getElementById("paymentMode").value;
+    const receiptNumber = document.getElementById("receiptNumber").value;
+    const collectedBy = document.getElementById("collectedBy").value;
+    const notes = document.getElementById("notes").value;
+    const date = document.getElementById("date").value;
+
+    const data = {
+        date,
+        amount,
+        description,
+        memberName,
+        mobile,
+        paymentMode,
+        receiptNumber,
+        collectedBy,
+        notes,
+        createdAt: serverTimestamp()
+    };
+
+    try {
+
+        if (type === "Donation") {
+
+            await addDoc(donationsRef, data);
+
+        } else if (type === "Expense") {
+
+            await addDoc(expensesRef, data);
+
+        }
+
+        alert("Transaction Saved Successfully");
+
+        transactionForm.reset();
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("Save Failed");
+
+    }
+
+});
 
 
     
