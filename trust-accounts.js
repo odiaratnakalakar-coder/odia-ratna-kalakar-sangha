@@ -172,7 +172,7 @@ transactionForm.addEventListener("submit", async (e) => {
 
         if (type === "Donation") {
 
-            await addDoc(incomeRef, data);
+            await addDoc(donationsRef, data);
 
         } else if (type === "Expense") {
 
@@ -180,7 +180,7 @@ transactionForm.addEventListener("submit", async (e) => {
 
         } else if (type === "Membership") {
 
-            await addDoc(incomeRef, data);
+            await addDoc(donationsRef, data);
 
         }
 
