@@ -67,7 +67,7 @@ async function loadMembers() {
 // Donation Total
 function loadDonationTotal() {
 
-    onSnapshot(incomeRef, (snapshot) => {
+    onSnapshot(donationsRef, (snapshot) => {
 
         totalDonation = 0;
 
