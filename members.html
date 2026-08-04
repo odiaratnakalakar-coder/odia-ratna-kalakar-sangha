@@ -367,22 +367,34 @@ if (member.paid) {
     alert("ଏହି Member ପୂର୍ବରୁ Cash Paid ହୋଇସାରିଛି");
     return;
 }
-  await updateDoc(doc(db, "members", member.docId), {
+  const memberRef = doc(db, "members", member.docId);
+const memberSnap = await getDoc(memberRef);
+
+if (memberSnap.exists() && memberSnap.data().paid === true) {
+    alert("ଏହି Member ପୂର୍ବରୁ Cash Paid ହୋଇସାରିଛି");
+    return;
+}
+
+await updateDoc(memberRef, {
     paid: true,
     txnId: "CASH"
-  });
-await addDoc(collection(db, "income"), {
-  memberId: member.memberId,
-  name: member.name,
-  mobile: member.mobile,
-  amount: 1200,
-  purpose: "New Membership Fee",
-  paymentMode: "Cash",
-  receiptNo: "CASH-" + Date.now(),
-  collectedBy: "Admin",
-  createdAt: serverTimestamp()
 });
-  alert("✅ Cash Payment Saved");
+
+await addDoc(collection(db, "income"), {
+    memberId: member.memberId,
+    name: member.name,
+    mobile: member.mobile,
+    amount: 1200,
+    purpose: "New Membership Fee",
+    paymentMode: "Cash",
+    receiptNo: "CASH-" + Date.now(),
+    collectedBy: "Admin",
+    createdAt: serverTimestamp()
+});
+
+alert("✅ Cash Payment Saved");
+
+  
 
   loadMembers();
 
