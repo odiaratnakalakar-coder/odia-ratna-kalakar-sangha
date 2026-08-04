@@ -1,294 +1,304 @@
+/* ==========================
+   TRUST ACCOUNTS V2
+   PART 2A
+========================== */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
 body{
-    font-family:Arial,sans-serif;
-    background:#f4f7fb;
-    color:#333;
+    background:#f4f6f9;
+    color:#222;
 }
 
-.header{
-    background:#8B0000;
+/* ==========================
+   HEADER
+========================== */
+
+.top-bar{
+    background:#006400;
     color:#fff;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 20px;
-    flex-wrap:wrap;
+    text-align:center;
+    padding:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.2);
 }
 
-.logo{
-    display:flex;
-    align-items:center;
-    gap:15px;
+.top-bar h1{
+    font-size:28px;
+    margin-bottom:8px;
 }
 
-.logo img{
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:#fff;
+.top-bar p{
+    font-size:15px;
+    opacity:.95;
 }
+
+/* ==========================
+   DASHBOARD
+========================== */
 
 .dashboard{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:15px;
-    padding:20px;
-}
-
-.card{
-    background:#fff;
-    border-radius:12px;
-    padding:20px;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
-    text-align:center;
-}
-
-.card h3{
-    font-size:16px;
-    margin-bottom:10px;
-}
-
-.card h2{
-    color:#8B0000;
-}
-
-.transaction-form,
-.table-section,
-.search,
-.reports{
-    background:#fff;
-    margin:20px;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 2px 10px rgba(0,0,0,.1);
-}
-
-#transactionForm{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:12px;
+    gap:18px;
+    padding:20px;
 }
 
-#transactionForm input,
-#transactionForm select,
-#transactionForm button{
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
-}
-
-#transactionForm button{
-    background:#8B0000;
-    color:#fff;
-    border:none;
-    cursor:pointer;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th,td{
-    padding:10px;
-    border-bottom:1px solid #ddd;
-    text-align:center;
-}
-
-th{
-    background:#8B0000;
-    color:#fff;
-}
-
-.reports button{
-    padding:10px 15px;
-    margin:5px;
-    border:none;
-    border-radius:8px;
-    background:#0d6efd;
-    color:#fff;
-    cursor:pointer;
-}
-
-@media(max-width:768px){
-
-.header{
-    flex-direction:column;
-    text-align:center;
-}
-
-.logo{
-    flex-direction:column;
-}
-
-.dashboard{
-    grid-template-columns:1fr;
-}
-
-}
 .card{
-    transition:0.3s ease;
-    cursor:pointer;
+    background:#fff;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:.3s;
 }
 
 .card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 8px 20px rgba(0,0,0,.18);
+    transform:translateY(-5px);
+}
+
+.card i{
+    font-size:34px;
+    margin-bottom:12px;
+}
+
+.card h3{
+    font-size:18px;
+    margin-bottom:10px;
 }
 
 .card h2{
     font-size:30px;
-    color:#8B0000;
-    margin-top:10px;
+    font-weight:bold;
 }
 
-.card i{
-    font-size:32px;
-    margin-bottom:10px;
+/* Card Colors */
+
+.members{
+    border-top:6px solid #1976d2;
 }
 
-.income i{color:#28a745;}
-.expense i{color:#dc3545;}
-.balance i{color:#007bff;}
-.donation i{color:#ff9800;}
-/* Mobile Form Fix */
+.member-income{
+    border-top:6px solid #2e7d32;
+}
+
+.donation{
+    border-top:6px solid #8e24aa;
+}
+
+.expense{
+    border-top:6px solid #d32f2f;
+}
+
+.income{
+    border-top:6px solid #00897b;
+}
+
+.balance{
+    border-top:6px solid #ff9800;
+}
+
+/* Icons */
+
+.members i{
+    color:#1976d2;
+}
+
+.member-income i{
+    color:#2e7d32;
+}
+
+.donation i{
+    color:#8e24aa;
+}
+
+.expense i{
+    color:#d32f2f;
+}
+
+.income i{
+    color:#00897b;
+}
+
+.balance i{
+    color:#ff9800;
+}
+
+/* ==========================
+   ACCOUNT INFO
+========================== */
+
+.account-info{
+    background:#fff;
+    margin:20px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+.account-info h2{
+    margin-bottom:15px;
+    color:#006400;
+}
+
+.account-info p{
+    margin:8px 0;
+    font-size:16px;
+    line-height:1.6;
+}
+/* ==========================
+   ADD TRANSACTION FORM
+========================== */
+
+.add-transaction{
+    background:#fff;
+    margin:20px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+.add-transaction h2{
+    text-align:center;
+    color:#006400;
+    margin-bottom:20px;
+}
 
 #transactionForm{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns:1fr 1fr;
     gap:15px;
 }
 
+#transactionForm label{
+    font-weight:bold;
+    color:#444;
+    margin-bottom:5px;
+    display:block;
+}
+
 #transactionForm input,
 #transactionForm select,
-#transactionForm textarea,
-#transactionForm button{
+#transactionForm textarea{
+
     width:100%;
     padding:12px;
-    border-radius:8px;
-    box-sizing:border-box;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+
 }
 
-#transactionForm button{
-    background:#8B0000;
+#transactionForm input:focus,
+#transactionForm select:focus,
+#transactionForm textarea:focus{
+
+    border-color:#006400;
+    box-shadow:0 0 5px rgba(0,100,0,.3);
+
+}
+
+#transactionForm textarea{
+
+    resize:vertical;
+    min-height:90px;
+
+}
+
+/* Full Width Fields */
+
+#notes,
+#description{
+    grid-column:1/3;
+}
+
+/* Buttons */
+
+#saveTransactionBtn{
+
+    background:#006400;
     color:#fff;
     border:none;
+    padding:14px;
+    border-radius:10px;
+    cursor:pointer;
     font-size:16px;
     font-weight:bold;
+    transition:.3s;
+
+}
+
+#saveTransactionBtn:hover{
+
+    background:#008000;
+
+}
+
+#cancelEditBtn{
+
+    background:#d32f2f;
+    color:#fff;
+    border:none;
+    padding:14px;
+    border-radius:10px;
     cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:.3s;
+
 }
 
-@media (max-width:768px){
+#cancelEditBtn:hover{
 
-    #transactionForm{
-        grid-template-columns:1fr;
-    }
+    background:#b71c1c;
 
-    .dashboard{
-        grid-template-columns:1fr;
-    }
-
-    .tools{
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-    }
-
-    .tools input,
-    .tools select{
-        width:100%;
-    }
-
-    .table-container{
-        overflow-x:auto;
-    }
-
-    table{
-        min-width:700px;
-    }
 }
-/* Mobile Form Fix */
-@media (max-width:768px){
 
-.add-transaction{
-    padding:15px;
-    margin:15px;
-}
+/* Mobile */
+
+@media(max-width:768px){
 
 #transactionForm{
-    display:grid;
+
     grid-template-columns:1fr;
-    gap:12px;
-}
-
-#transactionForm input,
-#transactionForm select,
-#transactionForm textarea,
-#transactionForm button{
-    width:100%;
-}
-
-#transactionForm button{
-    padding:15px;
-    font-size:18px;
-    font-weight:bold;
-    background:#8B0000;
-    color:#fff;
-    border:none;
-    border-radius:10px;
-}
-
-.table-container{
-    overflow-x:auto;
-}
-
-table{
-    min-width:800px;
-}
 
 }
-/* ===== Part 2 - Professional Mobile UI ===== */
 
-#date,
-#paymentMode,
-#receiptNumber,
-#collectedBy,
-#memberName,
-#mobile,
-#receiptPhoto,
 #notes,
-#type,
-#amount,
 #description{
-    font-size:16px;
-    min-height:48px;
+
+    grid-column:1;
+
 }
 
-#notes{
-    min-height:90px;
-    resize:vertical;
 }
-
-#transactionForm button{
-    width:100%;
-    margin-top:10px;
-    padding:15px;
-    font-size:18px;
-    border-radius:12px;
-}
+/* ==========================
+   PART 2C
+   SEARCH + TRANSACTIONS
+========================== */
 
 .transaction-tools{
-    margin:15px;
+    background:#fff;
+    margin:20px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+.transaction-tools h2{
+    color:#006400;
+    margin-bottom:15px;
 }
 
 .tools{
     display:flex;
-    gap:10px;
+    gap:15px;
     flex-wrap:wrap;
 }
 
@@ -296,64 +306,615 @@ table{
 .tools select{
     flex:1;
     min-width:220px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
 }
 
-.table-container{
-    overflow-x:auto;
-    border-radius:12px;
+.tools input:focus,
+.tools select:focus{
+    border-color:#006400;
+    box-shadow:0 0 5px rgba(0,100,0,.3);
 }
 
-table{
-    min-width:750px;
-}
-/* Part 3 - Transaction History Mobile Fix */
+/* ==========================
+   TRANSACTION CARDS
+========================== */
 
-@media (max-width:768px){
-
-  .tools{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-  }
-
-  .tools input,
-  .tools select{
-    width:100%;
-  }
-
-  .table-container{
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-  }
-
-  table{
-    min-width:900px;
-  }
-
-  th,td{
-    white-space:nowrap;
-  }
-
-}
 .table-section{
+    padding:20px;
+}
+
+.transaction-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:20px;
+}
+
+.transaction-card{
+
+    background:#fff;
+    border-radius:15px;
+    padding:18px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+    border-left:6px solid #006400;
+
+}
+
+.transaction-card h3{
+    color:#006400;
+    margin-bottom:10px;
+}
+
+.transaction-card p{
+    margin:6px 0;
+    font-size:15px;
+    color:#444;
+}
+
+.transaction-card strong{
+    color:#000;
+}
+
+.transaction-card .amount{
+
+    font-size:24px;
+    font-weight:bold;
+    margin-top:10px;
+
+}
+
+.transaction-card .donation{
+
+    color:#2e7d32;
+
+}
+
+.transaction-card .expense{
+
+    color:#d32f2f;
+
+}
+
+/* ==========================
+   CARD BUTTONS
+========================== */
+
+.card-buttons{
+
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+
+}
+
+.edit-btn,
+.delete-btn,
+.print-btn{
+
+    flex:1;
+    border:none;
+    padding:10px;
+    border-radius:8px;
+    cursor:pointer;
+    color:#fff;
+    font-weight:bold;
+    transition:.3s;
+
+}
+
+.edit-btn{
+
+    background:#1976d2;
+
+}
+
+.edit-btn:hover{
+
+    background:#0d47a1;
+
+}
+
+.delete-btn{
+
+    background:#d32f2f;
+
+}
+
+.delete-btn:hover{
+
+    background:#b71c1c;
+
+}
+
+.print-btn{
+
+    background:#00897b;
+
+}
+
+.print-btn:hover{
+
+    background:#00695c;
+
+}
+
+/* ==========================
+   EMPTY CARD
+========================== */
+
+.empty-card{
+
+    background:#fff;
+    border-radius:15px;
+    padding:40px;
+    text-align:center;
+    color:#888;
+    font-size:18px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.tools{
+    flex-direction:column;
+}
+
+.card-buttons{
+    flex-direction:column;
+}
+
+.transaction-card{
+    padding:15px;
+}
+
+}
+/* ==========================
+   PART 2D
+   MONTHLY REPORT + PRINT
+========================== */
+
+.monthly-report{
+    background:#fff;
+    margin:20px;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+.monthly-report h2{
+    color:#006400;
+    margin-bottom:20px;
+}
+
+.month-selector{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.month-selector input{
+    flex:1;
+    min-width:180px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
+}
+
+#monthlyReportBtn{
+
+    background:#006400;
+    color:#fff;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+
+}
+
+#monthlyReportBtn:hover{
+
+    background:#008000;
+
+}
+
+/* ==========================
+   MONTHLY SUMMARY
+========================== */
+
+.monthly-summary{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+
+}
+
+.report-card{
+
+    background:#f8f8f8;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    border-top:5px solid #006400;
+
+}
+
+.report-card h3{
+
+    margin-bottom:10px;
+    color:#006400;
+
+}
+
+.report-card strong{
+
+    font-size:24px;
+    color:#111;
+
+}
+
+/* ==========================
+   PRINT SECTION
+========================== */
+
+.print-section{
+
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin:25px;
+
+}
+
+#printBtn,
+#printMonthlyBtn{
+
+    border:none;
+    background:#1976d2;
+    color:#fff;
+    padding:14px 22px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+
+}
+
+#printBtn:hover{
+
+    background:#125ea9;
+
+}
+
+#printMonthlyBtn{
+
+    background:#ff9800;
+
+}
+
+#printMonthlyBtn:hover{
+
+    background:#ef6c00;
+
+}
+
+/* ==========================
+   RECEIPT MODAL
+========================== */
+
+.modal{
+
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    z-index:999;
+
+}
+
+.modal-content{
+
+    width:90%;
+    max-width:700px;
+    margin:50px auto;
+    background:#fff;
+    border-radius:15px;
+    padding:20px;
+    position:relative;
+
+}
+
+.modal-content img{
+
     width:100%;
-    overflow-x:auto;
+    border-radius:10px;
+
 }
 
-.table-container{
+.close{
+
+    position:absolute;
+    top:10px;
+    right:15px;
+    font-size:32px;
+    cursor:pointer;
+    color:#d32f2f;
+    background:none;
+    border:none;
+
+}
+
+/* ==========================
+   PRINT STYLE
+========================== */
+
+@media print{
+
+.top-bar{
+    box-shadow:none;
+}
+
+.add-transaction,
+.transaction-tools,
+.print-section,
+button{
+
+    display:none !important;
+
+}
+
+body{
+
+    background:#fff;
+
+}
+
+.card,
+.report-card,
+.transaction-card{
+
+    box-shadow:none;
+    border:1px solid #ddd;
+
+}
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.month-selector{
+
+    flex-direction:column;
+
+}
+
+.print-section{
+
+    flex-direction:column;
+
+}
+
+#printBtn,
+#printMonthlyBtn{
+
     width:100%;
-    overflow-x:auto;
-    display:block;
-    -webkit-overflow-scrolling:touch;
+
 }
 
-#transactionTable{
-    display:table;
-    min-width:900px;
-    width:max-content;
-    border-collapse:collapse;
 }
-    
+/* ==========================
+   PART 2E
+   FINAL CSS
+========================== */
 
+/* Footer */
 
+.footer{
 
+    background:#006400;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+
+}
+
+.footer p{
+
+    font-size:15px;
+
+}
+
+/* Loading */
+
+.loading{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+
+}
+
+.spinner{
+
+    width:45px;
+    height:45px;
+    border:5px solid #ddd;
+    border-top:5px solid #006400;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+0%{
+
+transform:rotate(0deg);
+
+}
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* Status Badge */
+
+.badge{
+
+    display:inline-block;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+    color:#fff;
+
+}
+
+.badge-income{
+
+    background:#2e7d32;
+
+}
+
+.badge-expense{
+
+    background:#d32f2f;
+
+}
+
+.badge-donation{
+
+    background:#8e24aa;
+
+}
+
+/* Success Message */
+
+.success{
+
+    background:#e8f5e9;
+    color:#2e7d32;
+    padding:12px;
+    border-radius:10px;
+    margin:15px 0;
+    text-align:center;
+
+}
+
+/* Error Message */
+
+.error{
+
+    background:#ffebee;
+    color:#c62828;
+    padding:12px;
+    border-radius:10px;
+    margin:15px 0;
+    text-align:center;
+
+}
+
+/* Fade Animation */
+
+.fade-in{
+
+    animation:fadeIn .5s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+transform:translateY(15px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#006400;
+border-radius:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#eee;
+
+}
+
+/* Mobile */
+
+@media(max-width:480px){
+
+.top-bar h1{
+
+font-size:22px;
+
+}
+
+.card h2{
+
+font-size:24px;
+
+}
+
+.card h3{
+
+font-size:16px;
+
+}
+
+.report-card strong{
+
+font-size:20px;
+
+}
+
+.transaction-card{
+
+padding:12px;
+
+}
+
+}
