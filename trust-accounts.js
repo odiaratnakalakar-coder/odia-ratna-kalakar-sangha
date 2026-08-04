@@ -140,3 +140,60 @@ async function init() {
 }
 
 init();
+// =====================================
+// Part 3
+// Save Transaction
+// =====================================
+
+const transactionForm = document.getElementById("transactionForm");
+
+transactionForm.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const type = document.getElementById("type").value;
+    const amount = Number(document.getElementById("amount").value);
+
+    const data = {
+        date: document.getElementById("date").value,
+        amount: amount,
+        description: document.getElementById("description").value,
+        memberName: document.getElementById("memberName").value,
+        mobile: document.getElementById("mobile").value,
+        paymentMode: document.getElementById("paymentMode").value,
+        receiptNumber: document.getElementById("receiptNumber").value,
+        collectedBy: document.getElementById("collectedBy").value,
+        notes: document.getElementById("notes").value,
+        type: type,
+        createdAt: serverTimestamp()
+    };
+
+    try {
+
+        if (type === "Donation") {
+
+            await addDoc(incomeRef, data);
+
+        } else if (type === "Expense") {
+
+            await addDoc(expensesRef, data);
+
+        } else if (type === "Membership") {
+
+            await addDoc(incomeRef, data);
+
+        }
+
+        alert("✅ Transaction Saved");
+
+        transactionForm.reset();
+
+    } catch (err) {
+
+        console.error(err);
+
+        alert("❌ Save Failed");
+
+    }
+
+});
