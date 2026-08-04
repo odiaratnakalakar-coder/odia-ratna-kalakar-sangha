@@ -25,7 +25,7 @@ import {
 // ===============================
 
 const membersRef = collection(db, "members");
-const donationsRef = collection(db, "donations");
+const donationsRef = collection(db, "income");
 const expensesRef = collection(db, "expenses");
 const settingsRef = doc(db, "settings", "trust");
 
