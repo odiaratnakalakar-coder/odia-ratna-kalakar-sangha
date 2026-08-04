@@ -363,10 +363,10 @@ if (member.status === "approved") {
   
 
   document.getElementById("cashPaidBtn").onclick = async () => {
-if (member.paid) {
-    alert("ଏହି Member ପୂର୍ବରୁ Cash Paid ହୋଇସାରିଛି");
-    return;
-}
+
+    
+    
+
   const memberRef = doc(db, "members", member.docId);
 const memberSnap = await getDoc(memberRef);
 
