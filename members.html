@@ -234,8 +234,11 @@ getDocs,
 deleteDoc,
   updateDoc,
 doc,
+getDoc,
 addDoc,
 serverTimestamp
+
+
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const list = document.getElementById("list");
@@ -360,7 +363,10 @@ if (member.status === "approved") {
   
 
   document.getElementById("cashPaidBtn").onclick = async () => {
-
+if (member.paid) {
+    alert("ଏହି Member ପୂର୍ବରୁ Cash Paid ହୋଇସାରିଛି");
+    return;
+}
   await updateDoc(doc(db, "members", member.docId), {
     paid: true,
     txnId: "CASH"
