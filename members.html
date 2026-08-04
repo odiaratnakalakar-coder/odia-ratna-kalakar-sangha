@@ -350,7 +350,17 @@ const pdfBtn = document.getElementById("pdfBtn");
 if (member.status === "approved") {
 
     pdfBtn.style.display = "inline-block";
+const cashBtn = document.getElementById("cashPaidBtn");
 
+if (member.paid === true) {
+    cashBtn.innerHTML = "✅ Paid";
+    cashBtn.disabled = true;
+    cashBtn.style.background = "gray";
+} else {
+    cashBtn.innerHTML = "💵 Cash Paid";
+    cashBtn.disabled = false;
+    cashBtn.style.background = "green";
+}
     pdfBtn.onclick = () => {
         window.location.href = "id-card.html?id=" + member.memberId;
     };
@@ -362,7 +372,7 @@ if (member.status === "approved") {
 }
   
 
-  document.getElementById("cashPaidBtn").onclick = async () => {
+  cashBtn.onclick = async () => {
 
     
     
