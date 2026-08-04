@@ -385,6 +385,7 @@ await addDoc(collection(db, "income"), {
     name: member.name,
     mobile: member.mobile,
     amount: 1200,
+    type: "Membership",
     purpose: "New Membership Fee",
     paymentMode: "Cash",
     receiptNo: "CASH-" + Date.now(),
