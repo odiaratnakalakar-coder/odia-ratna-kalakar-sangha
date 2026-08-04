@@ -76,9 +76,9 @@ function loadDonationTotal() {
             const data = doc.data();
 
             // କେବଳ Donation କୁ ଗଣନା କର
-            if (data.type === "Donation") {
-                totalDonation += Number(data.amount || 0);
-            }
+          totalDonation += Number(data.amount || 0);
+                
+            
 
         });
 
