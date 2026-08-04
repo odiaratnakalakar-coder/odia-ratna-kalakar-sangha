@@ -30,7 +30,15 @@ async function loadTransactions() {
 
     const data = doc.data();
 
-    income += Number(data.amount || 0);
+   const amount = Number(data.amount || 0);
+
+if (data.type === "Income" || data.type === "Membership") {
+    income += amount;
+} else if (data.type === "Expense") {
+    expense += amount;
+} else if (data.type === "Donation") {
+    donation += amount;
+} 
 
     container.innerHTML += `
       <div class="transaction-card">
