@@ -230,9 +230,9 @@ monthlyReportBtn.addEventListener("click", async () => {
 
         if (data.date && data.date.startsWith(month)) {
 
-            if (data.type === "Donation") {
-                donation += Number(data.amount || 0);
-            }
+        totalDonation += Number(data.amount || 0);
+              
+            
 
         }
 
