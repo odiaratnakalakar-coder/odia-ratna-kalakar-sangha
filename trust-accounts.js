@@ -22,7 +22,7 @@ import {
 // Firestore Collections
 
 const membersRef = collection(db, "members");
-const incomeRef = collection(db, "income");
+const donationsRef = collection(db, "donations");
 const expensesRef = collection(db, "expenses");
 
 // Dashboard Elements
