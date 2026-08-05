@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Member Profile</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+padding:20px;
+}
+
+.card{
+max-width:450px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:15px;
+box-shadow:0 2px 10px rgba(0,0,0,.2);
+text-align:center;
+}
+
+img{
+width:130px;
+height:130px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid green;
+margin-bottom:10px;
+}
+
+h2{
+margin-bottom:10px;
+color:#006400;
+}
+
+p{
+margin:8px 0;
+font-size:17px;
+}
+
+.status{
+font-weight:bold;
+}
+
+.loading{
+text-align:center;
+font-size:20px;
+margin-top:50px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="loading" class="loading">
+Loading Member...
+</div>
+
+<div id="card" class="card" style="display:none;">
+
+<img id="photo">
+
+<h2 id="name"></h2>
+
+<p><b>Member ID :</b> <span id="memberId"></span></p>
+
+<p><b>Father :</b> <span id="father"></span></p>
+
+<p><b>Mobile :</b> <span id="mobile"></span></p>
+
+<p><b>Address :</b> <span id="address"></span></p>
+
+<p class="status" id="payment"></p>
+
+</div>
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+doc,
+getDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const params = new URLSearchParams(window.location.search);
+
+const id = params.get("id");
+
+if(!id){
+
+document.getElementById("loading").innerHTML =
+"Member ID ମିଳିଲା ନାହିଁ";
+
+throw new Error("No Member ID");
+
+}
+
+const loading = document.getElementById("loading");
+
+const card = document.getElementById("card");
+
+const snap = await getDoc(doc(db,"members",id));
+
+if(!snap.exists()){
+
+loading.innerHTML="Member ମିଳିଲା ନାହିଁ";
+
+throw new Error("Member not found");
+
+}
+
+const member = snap.data();
+
+loading.style.display="none";
+
+card.style.display="block";
+
+document.getElementById("photo").src =
+member.photoUrl || "https://via.placeholder.com/150";
+
+document.getElementById("name").textContent =
+member.name || "";
+
+document.getElementById("memberId").textContent =
+member.memberId || "";
+
+document.getElementById("father").textContent =
+member.father || "";
+
+document.getElementById("mobile").textContent =
+member.mobile || "";
+
+document.getElementById("address").textContent =
+member.address || "";
+
+document.getElementById("payment").innerHTML =
+member.paid
+? "<span style='color:green'>✅ PAID</span>"
+: "<span style='color:red'>❌ UNPAID</span>";
+  </script>
+
+</body>
+</html>
