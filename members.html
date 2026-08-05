@@ -342,15 +342,28 @@ member.paid
 document.getElementById("pTxn").textContent=
 member.txnId||"";
 
-const mobile=String(member.mobile||"").replace(/\D
-   const profileUrl =
+const mobile = String(member.mobile || "").replace(/\D/g, "");
+
+document.getElementById("callBtn").href = "tel:" + mobile;
+
+document.getElementById("waBtn").href =
+"https://wa.me/91" + mobile;
+
+const profileUrl =
 window.location.origin +
-window.location.pathname.replace("members-admin.html","member.html") +
+window.location.pathname.replace("members.html", "member.html") +
 "?id=" + member.memberId;
 
 document.getElementById("memberQR").src =
 "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" +
-encodeURIComponent(profileUrl); 
+encodeURIComponent(profileUrl);
+   
+
+
+
+
+
+
 const pdfBtn = document.getElementById("pdfBtn");
 
 if (member.status === "approved") {
