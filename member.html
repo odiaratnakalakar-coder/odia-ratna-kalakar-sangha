@@ -89,9 +89,14 @@ Loading Member...
 import { db } from "./firebase.js";
 
 import {
-doc,
-getDoc
+collection,
+query,
+where,
+getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
 
 const params = new URLSearchParams(window.location.search);
 
@@ -110,17 +115,32 @@ const loading = document.getElementById("loading");
 
 const card = document.getElementById("card");
 
-const snap = await getDoc(doc(db,"members",id));
+const q = query(
+    collection(db, "members"),
+    where("memberId", "==", id)
+);
 
-if(!snap.exists()){
+const snap = await getDocs(q);
 
-loading.innerHTML="Member ମିଳିଲା ନାହିଁ";
+if (snap.empty) {
 
-throw new Error("Member not found");
+    loading.innerHTML = "Member ମିଳିଲା ନାହିଁ";
+
+    throw new Error("Member not found");
 
 }
 
-const member = snap.data();
+const member = snap.docs[0].data();
+
+
+
+
+
+
+
+
+
+
 
 loading.style.display="none";
 
