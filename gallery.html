@@ -7,7 +7,6 @@
 <title>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ - Gallery</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
@@ -39,6 +38,11 @@ border:2px solid #c40000;
 border-radius:12px;
 overflow:hidden;
 box-shadow:0 0 8px rgba(255,0,0,.3);
+transition:.3s;
+}
+
+.card:hover{
+transform:scale(1.03);
 }
 
 .card img,
@@ -47,7 +51,7 @@ width:100%;
 height:200px;
 display:block;
 border:none;
-object-fit:contain;
+object-fit:cover;
 background:#000;
 }
 
@@ -75,7 +79,6 @@ max-width:95%;
 max-height:95%;
 border-radius:10px;
 }
-
 </style>
 
 </head>
@@ -89,13 +92,76 @@ border-radius:10px;
 <div id="preview">
 <img id="previewImg">
 </div>
-
 <script type="module">
 
-import { db } from 
+import { db } from "./firebase.js";
+
+import {
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const gallery = document.getElementById("gallery");
+
+async function loadGallery(){
+
+  gallery.innerHTML = "";
+
+  const snapshot = await getDocs(collection(db,"Gallery"));
+
+  snapshot.forEach((doc)=>{
+
+    const data = doc.data();
+
+    if(data.youtubeUrl && data.youtubeUrl.trim() !== ""){
+
+      gallery.innerHTML += `
+      <div class="card">
+        <iframe
+          src="${data.youtubeUrl.replace("watch?v=","embed/")}"
+          allowfullscreen>
+        </iframe>
+
+        <h3>${data.title || "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"}</h3>
+      </div>
+      `;
+
+    }else{
+
+      gallery.innerHTML += `
+      <div class="card">
+
+        <img
+          src="${data.photoUrl}"
+          alt="${data.title || ""}"
+          onclick="showImage('${data.photoUrl}')"
+          onerror="this.src='logo.png'">
+
+        <h3>${data.title || "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"}</h3>
+
+      </div>
+      `;
+
+    }
+
+  });
+  }
+
+window.showImage = function(url){
+  document.getElementById("preview").style.display = "flex";
+  document.getElementById("previewImg").src = url;
+}
+
+document.getElementById("preview").onclick = function(){
+  this.style.display = "none";
+}
+
+loadGallery().catch(error=>{
+  console.error(error);
+  alert("Gallery Load Error: " + error.message);
+});
+
 </script>
-<script>
-alert("Hello");
-</script>
+
 </body>
 </html>
