@@ -106,7 +106,7 @@ const snapshot = await getDocs(collection(db,"Gallery"));
 snapshot.forEach((doc)=>{
 
 const data = doc.data();
-alert(JSON.stringify(data));
+
 if(data.youtubeUrl){
 
 gallery.innerHTML += `
