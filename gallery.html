@@ -161,7 +161,10 @@ this.style.display = "none";
 
 }
 
-
+loadGallery().catch(error => {
+    alert(error.message);
+    console.error(error);
+});
 </script>
 
 </body>
