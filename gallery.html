@@ -88,61 +88,58 @@ border-radius:10px;
 </div>
 
 <script>
-    const gallery = document.getElementById("gallery");
+    import { db } from "./firebase.js";
 
-const media = [
+import {
+collection,
+getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-{type:"image",file:"photo1.jpg",title:"ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"},
-{type:"image",file:"photo2.jpg",title:"ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"},
-{type:"image",file:"photo3.jpg",title:"ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"},
+const gallery = document.getElementById("gallery");
 
-{type:"video",file:"video1.mp4",title:"ସାଂସ୍କୃତିକ କାର୍ଯ୍ୟକ୍ରମ"}
+async function loadGallery(){
 
-];
+gallery.innerHTML = "";
 
-media.forEach(item=>{
+const snapshot = await getDocs(collection(db,"Gallery"));
 
-if(item.type==="image"){
+snapshot.forEach((doc)=>{
 
-gallery.innerHTML+=`
+const data = doc.data();
 
+if(data.youtubeUrl){
+
+gallery.innerHTML += `
 <div class="card">
-
-<img
-src="images/${item.file}"
-onclick="showImage('images/${item.file}')">
-
-<h3>${item.title}</h3>
-
+<iframe
+width="100%"
+height="200"
+src="${data.youtubeUrl.replace("watch?v=","embed/")}"
+frameborder="0"
+allowfullscreen>
+</iframe>
+<h3>${data.title}</h3>
 </div>
-
 `;
 
 }else{
 
-gallery.innerHTML+=`
-
+gallery.innerHTML += `
 <div class="card">
-
-<video controls>
-
-<source
-src="images/${item.file}"
-type="video/mp4">
-
-</video>
-
-<h3>${item.title}</h3>
-
+<img
+src="${data.photoUrl}"
+onclick="showImage('${data.photoUrl}')">
+<h3>${data.title}</h3>
 </div>
-
 `;
 
 }
 
 });
 
-window.showImage=function(url){
+}
+
+window.showImage = function(url){
 
 document.getElementById("preview").style.display="flex";
 document.getElementById("previewImg").src=url;
@@ -153,7 +150,17 @@ document.getElementById("preview").onclick=function(){
 
 this.style.display="none";
 
- }
+}
+
+loadGallery();
+
+
+
+
+
+
+
+
     </script>
 
 </body>
