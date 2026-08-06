@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ - Gallery</title>
 
 <style>
@@ -41,11 +42,12 @@ box-shadow:0 0 8px rgba(255,0,0,.3);
 }
 
 .card img,
-.card video{
+.card iframe{
 width:100%;
 height:200px;
-object-fit:cover;
 display:block;
+border:none;
+object-fit:cover;
 }
 
 .card h3{
@@ -88,7 +90,8 @@ border-radius:10px;
 </div>
 
 <script type="module">
-    import { db } from "./firebase.js";
+
+import { db } from "./firebase.js";
 
 import {
 collection,
@@ -102,23 +105,22 @@ async function loadGallery(){
 gallery.innerHTML = "";
 
 const snapshot = await getDocs(collection(db,"Gallery"));
-
-snapshot.forEach((doc)=>{
+    snapshot.forEach((doc)=>{
 
 const data = doc.data();
 
-if(data.youtubeUrl){
+if(data.youtubeUrl && data.youtubeUrl.trim() !== ""){
 
 gallery.innerHTML += `
 <div class="card">
+
 <iframe
-width="100%"
-height="200"
 src="${data.youtubeUrl.replace("watch?v=","embed/")}"
-frameborder="0"
 allowfullscreen>
 </iframe>
+
 <h3>${data.title || "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"}</h3>
+
 </div>
 `;
 
@@ -126,42 +128,37 @@ allowfullscreen>
 
 gallery.innerHTML += `
 <div class="card">
+
 <img
 src="${data.photoUrl}"
-onclick="showImage('${data.photoUrl}')">
+alt="${data.title || ''}"
+onclick="showImage('${data.photoUrl}')"
+onerror="this.src='logo.png'">
+
 <h3>${data.title || "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"}</h3>
+
 </div>
 `;
 
 }
 
 });
+    window.showImage = function(url){
+
+document.getElementById("preview").style.display = "flex";
+document.getElementById("previewImg").src = url;
 
 }
 
-window.showImage = function(url){
+document.getElementById("preview").onclick = function(){
 
-document.getElementById("preview").style.display="flex";
-document.getElementById("previewImg").src=url;
-
-}
-
-document.getElementById("preview").onclick=function(){
-
-this.style.display="none";
+this.style.display = "none";
 
 }
 
 loadGallery();
 
-
-
-
-
-
-
-
-    </script>
+</script>
 
 </body>
 </html>
