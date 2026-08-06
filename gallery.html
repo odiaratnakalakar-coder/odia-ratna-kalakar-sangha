@@ -92,80 +92,10 @@ border-radius:10px;
 
 <script type="module">
 
-import { db } from "./firebase.js";
-alert("Script Started");
-import {
-collection,
-getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const gallery = document.getElementById("gallery");
-
-async function loadGallery(){
-
-gallery.innerHTML = "";
-
-const snapshot = await getDocs(collection(db,"Gallery"));
-    console.log("Gallery Loaded");
-console.log(snapshot.size);
-    alert(snapshot.size);
-    snapshot.forEach((doc)=>{
-
-const data = doc.data();
-
-if(data.youtubeUrl && data.youtubeUrl.trim() !== ""){
-
-gallery.innerHTML += `
-<div class="card">
-
-<iframe
-src="${data.youtubeUrl.replace("watch?v=","embed/")}"
-allowfullscreen>
-</iframe>
-
-<h3>${data.title || "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"}</h3>
-
-</div>
-`;
-
-}else{
-
-gallery.innerHTML += `
-<div class="card">
-
-<img
-src="${data.photoUrl}"
-alt="${data.title || ''}"
-onclick="showImage('${data.photoUrl}')"
-onerror="this.src='logo.png'">
-
-<h3>${data.title || "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"}</h3>
-
-</div>
-`;
-
-}
-
-});
-} 
- window.showImage = function(url){
-
-document.getElementById("preview").style.display = "flex";
-document.getElementById("previewImg").src = url;
-
-}
-
-document.getElementById("preview").onclick = function(){
-
-this.style.display = "none";
-
-}
-
-loadGallery().catch(error => {
-    alert(error.message);
-    console.error(error);
-});
+import { db } from 
 </script>
-
+<script>
+alert("Hello");
+</script>
 </body>
 </html>
