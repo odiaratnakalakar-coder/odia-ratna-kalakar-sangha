@@ -147,7 +147,9 @@ if (!title) {
 let photoUrl = "";
 
 if (photoName) {
-    photoUrl = `https://odiaratnakalakar-coder.github.io/odia-ratna-kalakar-sangha/images/${photoName}`;
+  photoUrl = `https://odiaratnakalakar-coder.github.io/odia-ratna-kalakar-sangha/images/${photoName}`;
+}
+    
 }
 
 await addDoc(collection(db, "Gallery"), {
