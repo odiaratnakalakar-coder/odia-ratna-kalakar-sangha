@@ -106,6 +106,8 @@ async function loadGallery(){
 gallery.innerHTML = "";
 
 const snapshot = await getDocs(collection(db,"Gallery"));
+    console.log("Gallery Loaded");
+console.log(snapshot.size);
     alert(snapshot.size);
     snapshot.forEach((doc)=>{
 
