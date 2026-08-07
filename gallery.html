@@ -115,14 +115,36 @@ async function loadGallery() {
     if (data.youtubeUrl && data.youtubeUrl.trim() !== "") {
 
       gallery.innerHTML += `
-      <div class="card">
-        <a href="${data.youtubeUrl}" target="_blank">
-  <img src="https://img.youtube.com/vi/${
-    data.youtubeUrl.includes("youtu.be/")
-      ? data.youtubeUrl.split("youtu.be/")[1].split("?")[0]
-      : data.youtubeUrl.split("v=")[1].split("&")[0]
-  }/hqdefault.jpg" alt="Video Thumbnail">
+<div class="card">
+
+<a href="${data.youtubeUrl}" target="_blank">
+<img src="https://img.youtube.com/vi/${
+(() => {
+  if (data.youtubeUrl.includes("youtu.be/")) {
+    return data.youtubeUrl.split("youtu.be/")[1].split("?")[0];
+  }
+
+  if (data.youtubeUrl.includes("watch?v=")) {
+    return data.youtubeUrl.split("v=")[1].split("&")[0];
+  }
+
+  return "";
+})()
+}/hqdefault.jpg" alt="Video Thumbnail">
 </a>
+
+<h3>${data.title || "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"}</h3>
+
+</div>
+`;
+      
+        
+  
+    
+      
+      
+  
+
           
 
 
@@ -131,9 +153,9 @@ async function loadGallery() {
           
         
 
-        <h3>${data.title || "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"}</h3>
-      </div>
-      `;
+        
+      
+      
 
     } else {
 
