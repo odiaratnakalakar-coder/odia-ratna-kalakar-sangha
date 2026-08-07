@@ -116,14 +116,20 @@ async function loadGallery() {
 
       gallery.innerHTML += `
       <div class="card">
-        <iframe
-          src="${
-data.youtubeUrl.includes('youtu.be/')
-? data.youtubeUrl.replace('https://youtu.be/','https://www.youtube.com/embed/').split('?')[0]
-: data.youtubeUrl.replace('watch?v=','embed/')
-}"
-          allowfullscreen>
-        </iframe>
+        <a href="${data.youtubeUrl}" target="_blank">
+  <img src="https://img.youtube.com/vi/${
+    data.youtubeUrl.includes("youtu.be/")
+      ? data.youtubeUrl.split("youtu.be/")[1].split("?")[0]
+      : data.youtubeUrl.split("v=")[1].split("&")[0]
+  }/hqdefault.jpg" alt="Video Thumbnail">
+</a>
+          
+
+
+
+
+          
+        
 
         <h3>${data.title || "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ"}</h3>
       </div>
