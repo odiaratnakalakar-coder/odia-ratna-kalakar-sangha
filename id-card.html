@@ -121,7 +121,7 @@ snap.forEach(doc=>{
 
 const member = doc.data();
 
-if(member.memberId===id){
+if ((member.memberId === id) || (doc.id === id)) {
 if (member.status !== "approved") {
     alert("⛔ Member is not approved.");
     window.location.href = "members.html";
