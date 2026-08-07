@@ -120,7 +120,7 @@ const snap = await getDocs(collection(db,"members"));
 snap.forEach(doc=>{
 
 const member = doc.data();
-alert(doc.id);
+
 if ((member.memberId === id) || (doc.id === id)) {
 if (member.status !== "approved") {
     alert("⛔ Member is not approved.");
