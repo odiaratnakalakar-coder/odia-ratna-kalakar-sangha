@@ -117,7 +117,11 @@ async function loadGallery() {
       gallery.innerHTML += `
       <div class="card">
         <iframe
-          src="${data.youtubeUrl.replace("watch?v=","embed/")}"
+          src="${
+data.youtubeUrl.includes('youtu.be/')
+? data.youtubeUrl.replace('https://youtu.be/','https://www.youtube.com/embed/').split('?')[0]
+: data.youtubeUrl.replace('watch?v=','embed/')
+}"
           allowfullscreen>
         </iframe>
 
