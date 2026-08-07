@@ -114,7 +114,7 @@ getDocs
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
-
+alert(id);
 const snap = await getDocs(collection(db,"members"));
 
 snap.forEach(doc=>{
