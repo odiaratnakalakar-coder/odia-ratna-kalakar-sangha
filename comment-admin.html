@@ -279,36 +279,72 @@ document.getElementById("commentsList");
    LOGIN
 ===================================== */
 
-loginBtn.addEventListener(
-"click",
-async () => {
+loginBtn.addEventListener("click", async () => {
 
-    loginStatus.style.color =
-    "#ff6a00";
+    loginStatus.style.color = "#ff6a00";
 
     loginStatus.textContent =
-    "Login ହେଉଛି...";
+        "⏳ Google Login ଖୋଲୁଛି...";
 
-    try{
+    try {
 
-        await signInWithPopup(
+        const result = await signInWithPopup(
             auth,
             provider
         );
 
-    }catch(error){
+        console.log(
+            "Login Success:",
+            result.user
+        );
 
-        console.error(error);
-
-        loginStatus.style.color =
-        "red";
+        loginStatus.style.color = "green";
 
         loginStatus.textContent =
-        "❌ Login ହୋଇପାରିଲା ନାହିଁ।";
+            "✅ Login ସଫଳ ହୋଇଛି।";
+
+    } catch (error) {
+
+        console.error(
+            "LOGIN ERROR:",
+            error
+        );
+
+        loginStatus.style.color = "red";
+
+        loginStatus.textContent =
+            "❌ Error: " + error.code;
 
     }
 
 });
+
+
+
+    
+
+    
+
+    
+
+        
+            
+            
+        
+
+    
+
+        
+
+        
+        
+
+        
+    
+
+    
+
+
 
 
 
