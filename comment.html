@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ମନ୍ତବ୍ୟ</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#111;
+    color:white;
+    padding:15px;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+}
+
+.header{
+    background:#ff6a00;
+    padding:18px;
+    border-radius:15px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.header h2{
+    margin-bottom:6px;
+}
+
+.form-box{
+    background:white;
+    color:#111;
+    padding:20px;
+    border-radius:15px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin:12px 0 6px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #ccc;
+    border-radius:9px;
+    font-size:16px;
+}
+
+textarea{
+    height:120px;
+    resize:none;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:18px;
+    border:none;
+    border-radius:10px;
+    background:#ff6a00;
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.message{
+    text-align:center;
+    margin-top:12px;
+    font-weight:bold;
+}
+
+.comments-title{
+    margin:25px 0 12px;
+}
+
+.comment-card{
+    background:white;
+    color:#111;
+    padding:16px;
+    margin-bottom:12px;
+    border-radius:12px;
+}
+
+.comment-text{
+    font-size:16px;
+    line-height:1.6;
+}
+
+.comment-date{
+    margin-top:8px;
+    color:#777;
+    font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h2>📝 ମନ୍ତବ୍ୟ</h2>
+        <p>ଆପଣଙ୍କ ମତାମତ ଆମ ପାଇଁ ମୂଲ୍ୟବାନ</p>
+    </div>
+
+    <div class="form-box">
+
+        <form id="commentForm">
+
+            <label>ନାମ</label>
+            <input
+                type="text"
+                id="name"
+                placeholder="ଆପଣଙ୍କ ନାମ"
+                required
+            >
+
+            <label>Mobile Number</label>
+            <input
+                type="tel"
+                id="mobile"
+                placeholder="10 digit Mobile Number"
+                maxlength="10"
+                required
+            >
+
+            <label>ମନ୍ତବ୍ୟ</label>
+            <textarea
+                id="comment"
+                placeholder="ଆପଣଙ୍କ ମନ୍ତବ୍ୟ ଲେଖନ୍ତୁ..."
+                required
+            ></textarea>
+
+            <button type="submit" id="submitBtn">
+                📤 ମନ୍ତବ୍ୟ ପଠାନ୍ତୁ
+            </button>
+
+            <div id="message" class="message"></div>
+
+        </form>
+
+    </div>
+
+    <h3 class="comments-title">
+        💬 ମନ୍ତବ୍ୟ
+    </h3>
+
+    <div id="commentsList">
+        ଲୋଡ୍ ହେଉଛି...
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+const form = document.getElementById("commentForm");
+
+const submitBtn =
+    document.getElementById("submitBtn");
+
+const message =
+    document.getElementById("message");
+
+const commentsList =
+    document.getElementById("commentsList");
+
+
+// ===============================
+// SEND COMMENT
+// ===============================
+
+form.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const name =
+        document.getElementById("name").value.trim();
+
+    const mobile =
+        document.getElementById("mobile").value.trim();
+
+    const comment =
+        document.getElementById("comment").value.trim();
+
+
+    if(!/^[0-9]{10}$/.test(mobile)){
+
+        message.style.color = "red";
+
+        message.textContent =
+            "❌ 10 digit Mobile Number ଦିଅନ୍ତୁ।";
+
+        return;
+    }
+
+
+    submitBtn.disabled = true;
+
+    submitBtn.textContent =
+        "ପଠାଯାଉଛି...";
+
+
+    try{
+
+        // PUBLIC COLLECTION
+        // କେବଳ COMMENT + DATE
+        // NAME / MOBILE ଏଠାରେ ନାହିଁ
+
+        await addDoc(
+            collection(db,"comments_public"),
+            {
+                comment: comment,
+                createdAt: serverTimestamp()
+            }
+        );
+
+
+        // PRIVATE COLLECTION
+        // NAME + MOBILE + COMMENT + DATE
+        // ପରେ କେବଳ ADMIN ଦେଖିବେ
+
+        await addDoc(
+            collection(db,"comments_private"),
+            {
+                name: name,
+                mobile: mobile,
+                comment: comment,
+                createdAt: serverTimestamp()
+            }
+        );
+
+
+        message.style.color = "green";
+
+        message.textContent =
+            "✅ ମନ୍ତବ୍ୟ ସଫଳତାର ସହିତ ପଠାଯାଇଛି।";
+
+
+        form.reset();
+
+        loadComments();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        message.style.color = "red";
+
+        message.textContent =
+            "❌ ମନ୍ତବ୍ୟ ପଠାଇବାରେ ସମସ୍ୟା ହେଲା।";
+
+    }
+
+
+    submitBtn.disabled = false;
+
+    submitBtn.textContent =
+        "📤 ମନ୍ତବ୍ୟ ପଠାନ୍ତୁ";
+
+});
+
+
+// ===============================
+// PUBLIC COMMENTS
+// ===============================
+
+async function loadComments(){
+
+    try{
+
+        const q = query(
+            collection(db,"comments_public"),
+            orderBy("createdAt","desc")
+        );
+
+
+        const snapshot =
+            await getDocs(q);
+
+
+        commentsList.innerHTML = "";
+
+
+        if(snapshot.empty){
+
+            commentsList.innerHTML = `
+                <div class="comment-card">
+                    ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ମନ୍ତବ୍ୟ ନାହିଁ।
+                </div>
+            `;
+
+            return;
+        }
+
+
+        snapshot.forEach((doc) => {
+
+            const data = doc.data();
+
+
+            let dateText = "";
+
+
+            if(data.createdAt){
+
+                const date =
+                    data.createdAt.toDate();
+
+
+                dateText =
+                    date.toLocaleDateString("or-IN")
+                    + " "
+                    +
+                    date.toLocaleTimeString("or-IN",{
+                        hour:"2-digit",
+                        minute:"2-digit"
+                    });
+            }
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "comment-card";
+
+
+            card.innerHTML = `
+
+                <div class="comment-text">
+                    💬 ${escapeHTML(data.comment || "")}
+                </div>
+
+                <div class="comment-date">
+                    🗓️ ${dateText}
+                </div>
+
+            `;
+
+
+            commentsList.appendChild(card);
+
+        });
+
+
+    }catch(error){
+
+        console.error(error);
+
+        commentsList.innerHTML = `
+            <div class="comment-card">
+                ମନ୍ତବ୍ୟ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ।
+            </div>
+        `;
+    }
+}
+
+
+// ===============================
+// SECURITY
+// ===============================
+
+function escapeHTML(text){
+
+    return text
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+
+// PAGE LOAD
+
+loadComments();
+
+</script>
+
+</body>
+</html>
