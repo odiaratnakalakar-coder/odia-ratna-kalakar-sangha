@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday / DOB Admin</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#111;
+color:white;
+padding:15px;
+}
+
+.container{
+max-width:650px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+color:#ffcc00;
+margin-bottom:8px;
+}
+
+.subtitle{
+text-align:center;
+color:#ccc;
+margin-bottom:20px;
+}
+
+.member{
+background:#222;
+border:2px solid #c40000;
+border-radius:12px;
+padding:15px;
+margin-bottom:15px;
+}
+
+.member h2{
+color:#ffcc00;
+font-size:19px;
+margin-bottom:8px;
+}
+
+.member p{
+margin:6px 0;
+color:#ddd;
+}
+
+label{
+display:block;
+margin-top:12px;
+margin-bottom:6px;
+color:#fff;
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:7px;
+font-size:16px;
+background:#fff;
+color:#111;
+}
+
+.saveBtn{
+width:100%;
+margin-top:12px;
+padding:12px;
+border:none;
+border-radius:7px;
+background:#008000;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.saveBtn:hover{
+background:#00a000;
+}
+
+.status{
+margin-top:8px;
+text-align:center;
+font-size:14px;
+}
+
+.backBtn{
+display:block;
+text-decoration:none;
+text-align:center;
+background:#c40000;
+color:white;
+padding:12px;
+border-radius:8px;
+margin-bottom:20px;
+font-weight:bold;
+}
+
+.loading{
+text-align:center;
+color:#ffcc00;
+font-size:18px;
+padding:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="admin.html" class="backBtn">
+⬅️ Admin Dashboard
+</a>
+
+<h1>🎂 Birthday / DOB Admin</h1>
+
+<div class="subtitle">
+ପୁରୁଣା Members ଙ୍କ ଜନ୍ମ ତାରିଖ ଏଠାରେ ଭରନ୍ତୁ
+</div>
+
+<div id="memberList">
+<div class="loading">Members Loading...</div>
+</div>
+
+</div>
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+collection,
+getDocs,
+doc,
+updateDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const memberList = document.getElementById("memberList");
+
+
+async function loadMembers(){
+
+try{
+
+const snap = await getDocs(collection(db,"members"));
+
+memberList.innerHTML = "";
+
+if(snap.empty){
+
+memberList.innerHTML =
+"<div class='loading'>କୌଣସି Member ମିଳିଲେ ନାହିଁ</div>";
+
+return;
+}
+
+
+snap.forEach(memberDoc => {
+
+const data = memberDoc.data();
+
+const box = document.createElement("div");
+
+box.className = "member";
+
+box.innerHTML = `
+
+<h2>👤 ${data.name || "ନାମ ନାହିଁ"}</h2>
+
+<p>🪪 Member ID:
+<strong>${data.memberId || "-"}</strong></p>
+
+<p>📱 Mobile:
+<strong>${data.mobile || "-"}</strong></p>
+
+<label>🎂 ଜନ୍ମ ତାରିଖ (DD/MM/YYYY)</label>
+
+<input
+type="text"
+id="dob-${memberDoc.id}"
+placeholder="ଉଦାହରଣ: 15/08/1990"
+value="${data.dob || ""}"
+maxlength="10"
+>
+
+<button class="saveBtn">
+💾 DOB Save
+</button>
+
+<div class="status" id="status-${memberDoc.id}"></div>
+
+`;
+
+
+const input =
+box.querySelector(`#dob-${memberDoc.id}`);
+
+const button =
+box.querySelector(".saveBtn");
+
+const status =
+box.querySelector(`#status-${memberDoc.id}`);
+
+
+button.addEventListener("click", async () => {
+
+const dob = input.value.trim();
+
+
+// DD/MM/YYYY validation
+const pattern =
+/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/[0-9]{4}$/;
+
+
+if(!pattern.test(dob)){
+
+status.style.color = "#ff4444";
+
+status.textContent =
+"❌ ଠିକ୍ format ରେ ଲେଖନ୍ତୁ: DD/MM/YYYY";
+
+return;
+}
+
+
+try{
+
+button.disabled = true;
+
+button.textContent = "Saving...";
+
+
+await updateDoc(
+doc(db,"members",memberDoc.id),
+{
+dob: dob
+}
+);
+
+
+status.style.color = "#00ff66";
+
+status.textContent =
+"✅ Date of Birth Save ହୋଇଗଲା";
+
+button.textContent = "✅ Saved";
+
+
+setTimeout(() => {
+
+button.disabled = false;
+button.textContent = "💾 DOB Save";
+
+},1500);
+
+
+}catch(error){
+
+console.error(error);
+
+status.style.color = "#ff4444";
+
+status.textContent =
+"❌ Save ହୋଇନାହିଁ";
+
+button.disabled = false;
+
+button.textContent = "💾 DOB Save";
+
+}
+
+});
+
+
+memberList.appendChild(box);
+
+});
+
+
+}catch(error){
+
+console.error(error);
+
+memberList.innerHTML =
+
+"<div class='loading'>❌ Members Load ହୋଇନାହିଁ</div>";
+
+}
+
+}
+
+
+loadMembers();
+
+</script>
+
+</body>
+</html>
