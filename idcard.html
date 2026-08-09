@@ -269,18 +269,48 @@ cursor:pointer;
 }
 
 @media print{
-.printBtn{
-display:none;
+
+@page{
+    size:54mm 85.6mm;
+    margin:0;
 }
-body{
-background:#fff;
-padding:0;
+
+html,body{
+    width:54mm;
+    height:85.6mm;
+    margin:0;
+    padding:0;
+    background:#fff;
 }
+
 .card{
-box-shadow:none;
-margin:auto;
+    width:54mm;
+    height:85.6mm;
+    min-height:85.6mm;
+    margin:0;
+    border:1px solid #b30000;
+    border-radius:0;
+    box-shadow:none;
+    overflow:hidden;
 }
+
+.printBtn{
+    display:none;
 }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 </style>
 </head>
