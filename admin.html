@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="or">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -58,6 +60,53 @@ font-size:15px;
 color:#ddd;
 }
 
+
+/* ================= BIRTHDAY CARD ================= */
+
+.birthdayCard{
+grid-column:1 / -1;
+border:2px solid #ff9900;
+background:#222;
+}
+
+.birthdayCard h2{
+color:#ffcc00;
+font-size:32px;
+}
+
+.birthdayCard p{
+color:#ffcc00;
+font-weight:bold;
+}
+
+.birthdayList{
+margin-top:12px;
+text-align:left;
+}
+
+.birthdayMember{
+background:#151515;
+border-left:4px solid #ffcc00;
+border-radius:7px;
+padding:9px;
+margin-top:7px;
+line-height:1.5;
+}
+
+.birthdayMember strong{
+color:#ffcc00;
+}
+
+.noBirthday{
+color:#aaa;
+text-align:center;
+padding:5px;
+font-size:14px;
+}
+
+
+/* ================= MENU ================= */
+
 .menu{
 display:flex;
 flex-direction:column;
@@ -81,6 +130,9 @@ transition:.3s;
 background:#ff0000;
 }
 
+
+/* ================= FOOTER ================= */
+
 .footer{
 margin-top:25px;
 text-align:center;
@@ -88,117 +140,640 @@ font-size:14px;
 color:#aaa;
 }
 
+
+/* ================= MOBILE ================= */
+
+@media(max-width:450px){
+
+.dashboard{
+gap:10px;
+}
+
+.card{
+padding:17px 10px;
+}
+
+.card h2{
+font-size:26px;
+}
+
+.card p{
+font-size:14px;
+}
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
 
-<h1>📊 Admin Dashboard</h1>
+
+<h1>
+📊 Admin Dashboard
+</h1>
+
+
 <div class="dashboard">
 
-<div class="card">
-<h2 id="memberCount">0</h2>
-<p>👥 Total Members</p>
-</div>
+
+<!-- TOTAL MEMBERS -->
 
 <div class="card">
-<h2 id="committeeCount">0</h2>
-<p>👨‍💼 Committee Members</p>
+
+<h2 id="memberCount">
+0
+</h2>
+
+<p>
+👥 Total Members
+</p>
+
 </div>
 
-<div class="card">
-<h2 id="newsCount">0</h2>
-<p>📰 Total News</p>
-</div>
+
+<!-- COMMITTEE -->
 
 <div class="card">
-<h2 id="bloodCount">0</h2>
-<p>🩸 Blood Donors</p>
+
+<h2 id="committeeCount">
+0
+</h2>
+
+<p>
+👨‍💼 Committee Members
+</p>
+
 </div>
+
+
+<!-- NEWS -->
+
 <div class="card">
-<h2 id="donationCount">₹0</h2>
-<p>❤️ Total Donation</p>
+
+<h2 id="newsCount">
+0
+</h2>
+
+<p>
+📰 Total News
+</p>
+
 </div>
+
+
+<!-- BLOOD -->
+
+<div class="card">
+
+<h2 id="bloodCount">
+0
+</h2>
+
+<p>
+🩸 Blood Donors
+</p>
+
 </div>
+
+
+<!-- DONATION -->
+
+<div class="card">
+
+<h2 id="donationCount">
+₹0
+</h2>
+
+<p>
+❤️ Total Donation
+</p>
+
+</div>
+
+
+<!-- ================= BIRTHDAY ================= -->
+
+<div class="card birthdayCard">
+
+<h2 id="birthdayCount">
+0
+</h2>
+
+<p>
+🎂 Birthday Today
+</p>
+
+
+<div
+id="birthdayList"
+class="birthdayList"
+>
+
+<div class="noBirthday">
+Birthday checking...
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- ================= MENU ================= -->
 
 <div class="menu">
 
-<a href="members.html">👥 Members Admin</a>
- <a href="birthday-admin.html">🎂 Birthday / DOB Admin</a> 
-<a href="pending-members.html">⏳ Pending Members</a>
-<a href="committee-admin.html">👨‍💼 Committee Admin</a>
 
-<a href="news-admin.html">📰 News Admin</a>
+<a href="members.html">
+👥 Members Admin
+</a>
 
-<a href="gallery-admin.html">🖼️ Gallery Admin</a>
 
-<a href="idcard.html">🪪 ID Card</a>
-<a href="donation-admin.html">❤️ Donation Admin</a>
-  <a href="payment-receipt.html">🧾 Payment Receipt</a>
-  <a href="trust-accounts.html">📊 Trust Accounts Dashboard</a>
-<a href="index.html">🏠 Website Home</a>
-<a href="#" onclick="logout()">🚪 Logout</a>
+<a href="birthday-admin.html">
+🎂 Birthday / DOB Admin
+</a>
+
+
+<a href="pending-members.html">
+⏳ Pending Members
+</a>
+
+
+<a href="committee-admin.html">
+👨‍💼 Committee Admin
+</a>
+
+
+<a href="news-admin.html">
+📰 News Admin
+</a>
+
+
+<a href="gallery-admin.html">
+🖼️ Gallery Admin
+</a>
+
+
+<a href="idcard.html">
+🪪 ID Card
+</a>
+
+
+<a href="donation-admin.html">
+❤️ Donation Admin
+</a>
+
+
+<a href="payment-receipt.html">
+🧾 Payment Receipt
+</a>
+
+
+<a href="trust-accounts.html">
+📊 Trust Accounts Dashboard
+</a>
+
+
+<a href="index.html">
+🏠 Website Home
+</a>
+
+
+<a href="#" onclick="logout()">
+🚪 Logout
+</a>
+
+
 </div>
+
 
 <div class="footer">
+
 © 2026 Odia Ratna Kalakar Sangha
+
 </div>
+
+
+<!-- ================= FIREBASE ================= -->
+
 <script type="module">
 
-import { db, auth } from "./firebase.js";
+import {
+db,
+auth
+}
+from "./firebase.js";
+
 
 import {
 collection,
 getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { signOut } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+import {
+signOut
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+
+/* ================================================= */
+/* LOAD DASHBOARD */
+/* ================================================= */
+
 async function loadDashboard(){
 
-// Total Members
-const memberSnap = await getDocs(collection(db,"members"));
-document.getElementById("memberCount").textContent = memberSnap.size;
-
-// Total Committee
-const committeeSnap = await getDocs(collection(db,"Committee"));
-document.getElementById("committeeCount").textContent = committeeSnap.size;
-
-// Total News
-const newsSnap = await getDocs(collection(db,"news"));
-document.getElementById("newsCount").textContent = newsSnap.size;
-
-// Total Blood Donors
 try{
-const bloodSnap = await getDocs(collection(db,"bloodDonors"));
-document.getElementById("bloodCount").textContent = bloodSnap.size;
-}catch(e){
-document.getElementById("bloodCount").textContent = "0";
-}
-// Total Donation
+
+
+/* ================= MEMBERS ================= */
+
+const memberSnap =
+await getDocs(
+collection(db,"members")
+);
+
+
+document
+.getElementById("memberCount")
+.textContent =
+memberSnap.size;
+
+
+/* ================= BIRTHDAY ================= */
+
+loadTodayBirthdays(
+memberSnap
+);
+
+
+/* ================= COMMITTEE ================= */
+
+const committeeSnap =
+await getDocs(
+collection(db,"Committee")
+);
+
+
+document
+.getElementById("committeeCount")
+.textContent =
+committeeSnap.size;
+
+
+/* ================= NEWS ================= */
+
+const newsSnap =
+await getDocs(
+collection(db,"news")
+);
+
+
+document
+.getElementById("newsCount")
+.textContent =
+newsSnap.size;
+
+
+/* ================= BLOOD DONORS ================= */
+
 try{
-  const donationSnap = await getDocs(collection(db,"donations"));
 
-  let totalDonation = 0;
+const bloodSnap =
+await getDocs(
+collection(db,"bloodDonors")
+);
 
-  donationSnap.forEach(doc=>{
-    totalDonation += Number(doc.data().amount || 0);
-  });
 
-  document.getElementById("donationCount").textContent = "₹" + totalDonation;
+document
+.getElementById("bloodCount")
+.textContent =
+bloodSnap.size;
 
-}catch(e){
-  document.getElementById("donationCount").textContent = "₹0";
 }
+catch(e){
+
+document
+.getElementById("bloodCount")
+.textContent =
+"0";
+
 }
+
+
+/* ================= DONATION ================= */
+
+try{
+
+const donationSnap =
+await getDocs(
+collection(db,"donations")
+);
+
+
+let totalDonation = 0;
+
+
+donationSnap.forEach(
+doc => {
+
+totalDonation +=
+Number(
+doc.data().amount || 0
+);
+
+});
+
+
+document
+.getElementById("donationCount")
+.textContent =
+"₹" + totalDonation;
+
+}
+catch(e){
+
+document
+.getElementById("donationCount")
+.textContent =
+"₹0";
+
+}
+
+
+}
+catch(error){
+
+console.error(
+"Dashboard Error:",
+error
+);
+
+}
+
+}
+
+
+/* ================================================= */
+/* TODAY BIRTHDAY */
+/* ================================================= */
+
+function loadTodayBirthdays(
+memberSnap
+){
+
+const today =
+new Date();
+
+
+const todayDay =
+String(
+today.getDate()
+)
+.padStart(2,"0");
+
+
+const todayMonth =
+String(
+today.getMonth() + 1
+)
+.padStart(2,"0");
+
+
+const birthdays = [];
+
+
+/* ================= CHECK MEMBERS ================= */
+
+memberSnap.forEach(
+memberDoc => {
+
+
+const data =
+memberDoc.data();
+
+
+const dob =
+String(
+data.dob || ""
+).trim();
+
+
+/*
+DOB FORMAT:
+
+DD/MM/YYYY
+*/
+
+
+const parts =
+dob.split("/");
+
+
+if(parts.length !== 3){
+
+return;
+
+}
+
+
+const day =
+parts[0];
+
+const month =
+parts[1];
+
+
+/* ================= MATCH ================= */
+
+if(
+day === todayDay &&
+month === todayMonth
+){
+
+birthdays.push({
+
+name:
+data.name || "Member",
+
+memberId:
+data.memberId || "-",
+
+mobile:
+data.mobile || "-",
+
+dob:
+dob
+
+});
+
+}
+
+});
+
+
+/* ================= COUNT ================= */
+
+document
+.getElementById("birthdayCount")
+.textContent =
+birthdays.length;
+
+
+/* ================= LIST ================= */
+
+const list =
+document.getElementById(
+"birthdayList"
+);
+
+
+list.innerHTML = "";
+
+
+/* NO BIRTHDAY */
+
+if(
+birthdays.length === 0
+){
+
+list.innerHTML = `
+
+<div class="noBirthday">
+
+🎉 ଆଜି କୌଣସି Member ଙ୍କ Birthday ନାହିଁ
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+/* ================= SHOW BIRTHDAYS ================= */
+
+birthdays.forEach(
+member => {
+
+
+const div =
+document.createElement("div");
+
+
+div.className =
+"birthdayMember";
+
+
+div.innerHTML = `
+
+🎉 <strong>
+${escapeHTML(member.name)}
+</strong>
+
+<br>
+
+🎂 DOB:
+${escapeHTML(member.dob)}
+
+<br>
+
+📱 Mobile:
+${escapeHTML(member.mobile)}
+
+`;
+
+
+list.appendChild(div);
+
+});
+
+}
+
+
+/* ================================================= */
+/* ESCAPE HTML */
+/* ================================================= */
+
+function escapeHTML(
+value
+){
+
+return String(value)
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
+
+}
+
+
+/* ================================================= */
+/* LOGOUT */
+/* ================================================= */
+
+window.logout =
+async function(){
+
+try{
+
+await signOut(auth);
+
+window.location.href =
+"login.html";
+
+}
+catch(error){
+
+console.error(error);
+
+}
+
+};
+
+
+/* ================================================= */
+/* START */
+/* ================================================= */
 
 loadDashboard();
-window.logout = async function () {
-  await signOut(auth);
-  window.location.href = "login.html";
-};
-  
+
 </script>
 
+
+</div>
+
 </body>
+
 </html>
