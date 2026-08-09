@@ -1,1 +1,689 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Payment Receipt</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#111;
+  color:#fff;
+  padding:15px;
+}
+
+.container{
+  max-width:600px;
+  margin:auto;
+}
+
+h1{
+  text-align:center;
+  color:#ffcc00;
+  margin-bottom:20px;
+}
+
+.search-box{
+  background:#222;
+  padding:20px;
+  border-radius:12px;
+  border:2px solid #c40000;
+  margin-bottom:20px;
+}
+
+label{
+  display:block;
+  margin-bottom:7px;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:7px;
+  margin-bottom:12px;
+  font-size:16px;
+}
+
+button{
+  width:100%;
+  padding:13px;
+  border:none;
+  border-radius:8px;
+  background:#c40000;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:5px;
+}
+
+button:hover{
+  background:#ff0000;
+}
+
+#message{
+  text-align:center;
+  margin:12px 0;
+  font-weight:bold;
+}
+
+/* RECEIPT */
+
+.receipt{
+  display:none;
+  background:white;
+  color:#111;
+  padding:25px;
+  margin-top:20px;
+  border-radius:5px;
+}
+
+.receipt-header{
+  text-align:center;
+  border-bottom:2px solid #111;
+  padding-bottom:15px;
+  margin-bottom:15px;
+}
+
+.receipt-header h2{
+  font-size:24px;
+  margin-bottom:5px;
+}
+
+.receipt-header p{
+  font-size:14px;
+}
+
+.receipt-title{
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  margin:15px 0;
+}
+
+.receipt-info{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+.receipt-info td{
+  border:1px solid #aaa;
+  padding:9px;
+  font-size:14px;
+}
+
+.receipt-info td:first-child{
+  font-weight:bold;
+  width:42%;
+}
+
+.amount-box{
+  margin-top:15px;
+  border:2px solid #111;
+  padding:12px;
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.signature-section{
+  margin-top:25px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.signature-box{
+  width:48%;
+  text-align:center;
+}
+
+.signature-box img{
+  width:130px;
+  height:auto;
+  max-height:65px;
+  object-fit:contain;
+}
+
+.signature-line{
+  border-top:1px solid #111;
+  margin-top:5px;
+  padding-top:5px;
+  font-size:13px;
+}
+
+.thankyou{
+  text-align:center;
+  margin-top:25px;
+  padding-top:15px;
+  border-top:1px solid #aaa;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.receipt-buttons{
+  margin-top:15px;
+}
+
+.back-btn{
+  background:#555;
+}
+
+@media print{
+
+  body{
+    background:white;
+    padding:0;
+  }
+
+  .container{
+    max-width:100%;
+  }
+
+  h1,
+  .search-box,
+  #message,
+  .receipt-buttons{
+    display:none !important;
+  }
+
+  .receipt{
+    display:block !important;
+    margin:0;
+    border:none;
+    border-radius:0;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🧾 Payment Receipt</h1>
+
+
+<!-- SEARCH -->
+
+<div class="search-box">
+
+<label>Member ID</label>
+
+<input
+  type="text"
+  id="memberIdInput"
+  placeholder="ଉଦାହରଣ: ORKS0204"
+>
+
+<button onclick="searchMember()">
+🔎 Search Member
+</button>
+
+<hr style="margin:20px 0;border:0;border-top:1px solid #555;">
+
+<label>Amount Received</label>
+
+<input
+  type="number"
+  id="amountInput"
+  placeholder="ଉଦାହରଣ: 1200"
+>
+
+<label>Received By</label>
+
+<input
+  type="text"
+  id="receivedByInput"
+  value="Admin"
+  placeholder="Received By"
+>
+
+<button onclick="generateReceipt()">
+🧾 Generate Receipt
+</button>
+
+</div>
+
+
+<div id="message"></div>
+
+
+<!-- RECEIPT -->
+
+<div class="receipt" id="receipt">
+
+<div class="receipt-header">
+
+<h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
+
+<p>ସୁରତ</p>
+
+</div>
+
+
+<div class="receipt-title">
+PAYMENT RECEIPT
+</div>
+
+
+<table class="receipt-info">
+
+<tr>
+<td>Receipt No.</td>
+<td id="rReceiptNo"></td>
+</tr>
+
+<tr>
+<td>Payment Date</td>
+<td id="rDate"></td>
+</tr>
+
+<tr>
+<td>Member ID</td>
+<td id="rMemberId"></td>
+</tr>
+
+<tr>
+<td>Member Name</td>
+<td id="rName"></td>
+</tr>
+
+<tr>
+<td>Mobile Number</td>
+<td id="rMobile"></td>
+</tr>
+
+<tr>
+<td>Transaction ID</td>
+<td id="rTxnId"></td>
+</tr>
+
+<tr>
+<td>Payment Status</td>
+<td>PAID</td>
+</tr>
+
+</table>
+
+
+<div class="amount-box">
+
+Amount Received: ₹<span id="rAmount"></span>
+
+</div>
+
+
+<div class="signature-section">
+
+<div class="signature-box">
+
+<div style="height:65px;"></div>
+
+<div class="signature-line">
+Received By
+</div>
+
+<strong id="rReceivedBy"></strong>
+
+</div>
+
+
+<div class="signature-box">
+
+<img
+  src="images/signature.png"
+  alt="Digital Signature"
+>
+
+<div class="signature-line">
+Digital Signature
+</div>
+
+<strong>S.K. Behera</strong>
+
+</div>
+
+</div>
+
+
+<div class="thankyou">
+
+<strong>
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସହିତ ଯୋଡ଼ି ହୋଇଥିବାରୁ
+ଆପଣଙ୍କୁ ଅନେକ ଧନ୍ୟବାଦ।
+</strong>
+
+<br>
+
+ଆପଣଙ୍କ ସହଯୋଗ ଓ ଭଲପାଇବା
+ଆମ ସଂଘର ଶକ୍ତି।
+
+<br>
+
+🙏 <strong>ଜୟ ଜଗନ୍ନାଥ</strong> 🙏
+
+</div>
+
+</div>
+
+
+<div class="receipt-buttons">
+
+<button onclick="downloadReceipt()">
+⬇️ Download / Print Receipt
+</button>
+
+<button class="back-btn" onclick="window.location.href='admin.html'">
+⬅️ Back to Admin Dashboard
+</button>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import { db, auth } from "./firebase.js";
+
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  addDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+let selectedMember = null;
+
+
+/* =========================
+   SEARCH MEMBER
+========================= */
+
+window.searchMember = async function(){
+
+  const memberId =
+    document.getElementById("memberIdInput")
+    .value
+    .trim()
+    .toUpperCase();
+
+  const message =
+    document.getElementById("message");
+
+  if(!memberId){
+
+    message.textContent =
+      "⚠️ Member ID ଦିଅନ୍ତୁ";
+
+    message.style.color = "orange";
+
+    return;
+  }
+
+
+  message.textContent =
+    "🔎 Member search ହେଉଛି...";
+
+  message.style.color = "#ffcc00";
+
+
+  try{
+
+    const q = query(
+      collection(db,"members"),
+      where("memberId","==",memberId)
+    );
+
+    const snap = await getDocs(q);
+
+
+    if(snap.empty){
+
+      selectedMember = null;
+
+      message.textContent =
+        "❌ ଏହି Member ID ମିଳିଲା ନାହିଁ";
+
+      message.style.color = "red";
+
+      return;
+    }
+
+
+    const docSnap = snap.docs[0];
+
+    selectedMember = {
+      docId: docSnap.id,
+      ...docSnap.data()
+    };
+
+
+    message.textContent =
+      "✅ Member ମିଳିଗଲା: " +
+      selectedMember.name;
+
+    message.style.color = "#00ff66";
+
+
+  }catch(error){
+
+    console.error(error);
+
+    message.textContent =
+      "❌ Error: " + error.message;
+
+    message.style.color = "red";
+
+  }
+
+};
+
+
+
+/* =========================
+   GENERATE RECEIPT
+========================= */
+
+window.generateReceipt = async function(){
+
+  if(!selectedMember){
+
+    alert("ପ୍ରଥମେ Member ID Search କରନ୍ତୁ।");
+
+    return;
+  }
+
+
+  const amount =
+    Number(
+      document.getElementById("amountInput").value
+    );
+
+
+  const receivedBy =
+    document.getElementById("receivedByInput")
+    .value
+    .trim();
+
+
+  if(!amount || amount <= 0){
+
+    alert("Amount Received ଦିଅନ୍ତୁ।");
+
+    return;
+  }
+
+
+  if(!receivedBy){
+
+    alert("Received By ଦିଅନ୍ତୁ।");
+
+    return;
+  }
+
+
+  try{
+
+    const now = new Date();
+
+
+    const dateText =
+      now.toLocaleDateString("en-IN",{
+        day:"2-digit",
+        month:"2-digit",
+        year:"numeric"
+      });
+
+
+    /* Temporary receipt number */
+
+    const receiptNumber =
+      "ORKS-R-" +
+      Date.now();
+
+
+    /* 
+       IMPORTANT:
+       ଏହା members collection କୁ
+       କିଛି change କରୁନାହିଁ।
+
+       କେବଳ receipts collection ରେ
+       ନୂଆ receipt save କରୁଛି।
+    */
+
+    await addDoc(
+      collection(db,"receipts"),
+      {
+
+        receiptNo: receiptNumber,
+
+        memberId:
+          selectedMember.memberId || "",
+
+        memberName:
+          selectedMember.name || "",
+
+        mobile:
+          selectedMember.mobile || "",
+
+        amount: amount,
+
+        txnId:
+          selectedMember.txnId || "",
+
+        receivedBy:
+          receivedBy,
+
+        paymentDate:
+          dateText,
+
+        createdAt:
+          serverTimestamp()
+
+      }
+    );
+
+
+    /* Fill receipt */
+
+    document.getElementById("rReceiptNo")
+      .textContent = receiptNumber;
+
+    document.getElementById("rDate")
+      .textContent = dateText;
+
+    document.getElementById("rMemberId")
+      .textContent =
+      selectedMember.memberId || "";
+
+    document.getElementById("rName")
+      .textContent =
+      selectedMember.name || "";
+
+    document.getElementById("rMobile")
+      .textContent =
+      selectedMember.mobile || "";
+
+    document.getElementById("rTxnId")
+      .textContent =
+      selectedMember.txnId || "";
+
+    document.getElementById("rAmount")
+      .textContent =
+      amount;
+
+    document.getElementById("rReceivedBy")
+      .textContent =
+      receivedBy;
+
+
+    document.getElementById("receipt")
+      .style.display = "block";
+
+
+    document.getElementById("message")
+      .textContent =
+      "✅ Receipt successfully created";
+
+    document.getElementById("message")
+      .style.color = "#00ff66";
+
+
+    window.scrollTo({
+      top:document.body.scrollHeight,
+      behavior:"smooth"
+    });
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Receipt save କରିବାରେ Error: " +
+      error.message
+    );
+
+  }
+
+};
+
+
+
+/* =========================
+   PRINT / DOWNLOAD
+========================= */
+
+window.downloadReceipt = function(){
+
+  window.print();
+
+};
+
+
+</script>
+
+</body>
+</html>
