@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="or">
+
 <head>
 
 <meta charset="UTF-8">
@@ -10,24 +11,25 @@
 <style>
 
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
 }
 
 body{
-    background:#f2f2f2;
+    background:#f3f3f3;
+    font-family:Arial,sans-serif;
     display:flex;
-    justify-content:center;
-    padding:20px;
+    flex-direction:column;
+    align-items:center;
+    padding:15px;
 }
 
-/* ID CARD */
+/* ================= CARD ================= */
 
 .card{
     width:54mm;
-    height:85.6mm;
+    min-height:85.6mm;
     background:#fff;
     border:1.5px solid #b30000;
     border-radius:3mm;
@@ -35,12 +37,11 @@ body{
     position:relative;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 .header{
     text-align:center;
-    background:#fff;
-    padding:4px 4px 2px;
+    padding:3px 4px 4px;
     border-bottom:1px solid #b30000;
 }
 
@@ -49,125 +50,118 @@ body{
     height:38px;
     object-fit:contain;
     display:block;
-    margin:0 auto 2px;
+    margin:0 auto 1px;
+}
+
+.header h1{
+    color:#b30000;
+    font-size:11px;
+    font-weight:bold;
+    line-height:1.15;
+    margin:1px 0;
 }
 
 .header h2{
-    color:#b30000;
-    font-size:10px;
-    margin:1px 0;
+    color:#16458f;
+    font-size:7px;
     font-weight:bold;
+    margin:1px 0;
 }
 
 .header p{
-    color:#003399;
-    font-size:6px;
-    font-weight:bold;
+    color:#555;
+    font-size:7px;
     margin:1px 0;
 }
 
-.header small{
-    display:block;
-    color:#555;
-    font-size:6px;
-    margin-top:1px;
-}
-
-/* PHOTO */
+/* ================= PHOTO ================= */
 
 .photo{
     text-align:center;
-    margin:5px 0 4px;
+    margin:4px 0 3px;
 }
 
 .photo img{
-    width:25mm;
-    height:30mm;
+    width:29mm;
+    height:32mm;
     object-fit:cover;
     border:1px solid #b30000;
-    border-radius:2mm;
-    display:block;
-    margin:auto;
+    border-radius:3mm;
 }
 
-/* DETAILS */
+/* ================= DETAILS ================= */
 
 .details{
-    padding:0 7px;
+    padding:0 4px;
 }
 
-.details p{
-    margin:2px 0;
-    padding-bottom:2px;
+.detail{
+    display:flex;
+    align-items:flex-start;
     border-bottom:1px dashed #ddd;
-    font-size:8px;
-    line-height:1.2;
+    padding:2px 0;
+    min-height:16px;
 }
 
-.details strong{
+.label{
+    width:28%;
+    flex-shrink:0;
     color:#b30000;
-    display:inline-block;
-    min-width:58px;
+    font-size:7px;
+    font-weight:bold;
 }
 
-.details span{
+.value{
+    width:72%;
     color:#222;
+    font-size:7px;
     font-weight:600;
+    line-height:1.25;
+    word-break:break-word;
 }
 
-/* QR */
+/* ================= BOTTOM ================= */
+
+.bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:4px 5px 5px;
+    gap:4px;
+}
+
+.qrBox{
+    width:45px;
+    min-width:45px;
+    text-align:center;
+}
 
 #qrcode{
     width:45px;
     height:45px;
-    position:absolute;
-    bottom:4px;
-    left:4px;
-    z-index:10;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
-    
-    
 
-
-#qrcode canvas{
-    width:38px !important;
-    height:38px !important;
+#qrcode canvas,
+#qrcode img{
+    width:45px !important;
+    height:45px !important;
 }
 
 .verify{
-    text-align:center;
-    font-size:6px;
+    flex:1;
     color:#b30000;
-    margin-top:1px;
-}
-
-/* FOOTER */
-
-.footer{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    padding:3px 7px;
-    border-top:1px dashed #ccc;
-    margin-top:2px;
-}
-
-.sign{
-    text-align:center;
     font-size:6px;
-    color:#444;
-}
-
-.sign img{
-    width:45px;
-    height:auto;
-    display:block;
-    margin:auto;
+    font-weight:bold;
+    text-align:center;
 }
 
 .seal{
-    width:35px;
-    height:35px;
+    width:38px;
+    height:38px;
+    min-width:38px;
     border:1px dashed #b30000;
     border-radius:50%;
     display:flex;
@@ -176,24 +170,24 @@ body{
     text-align:center;
     color:#b30000;
     font-size:6px;
+    font-weight:bold;
 }
 
-/* PRINT BUTTON */
+/* ================= PRINT BUTTON ================= */
 
 .printBtn{
-    width:90%;
-    margin:15px auto;
-    display:block;
+    width:180px;
+    margin-top:15px;
     padding:10px;
-    font-size:16px;
-    background:#b30000;
+    background:#c00000;
     color:#fff;
     border:none;
     border-radius:8px;
+    font-size:16px;
     cursor:pointer;
 }
 
-/* PRINT */
+/* ================= PRINT ================= */
 
 @media print{
 
@@ -202,7 +196,8 @@ body{
         margin:0;
     }
 
-    html,body{
+    html,
+    body{
         width:54mm;
         height:85.6mm;
         margin:0;
@@ -212,6 +207,7 @@ body{
 
     .card{
         width:54mm;
+        min-height:85.6mm;
         height:85.6mm;
         margin:0;
         border-radius:0;
@@ -229,7 +225,8 @@ body{
 
 <body>
 
-<div>
+
+<!-- ================= ID CARD ================= -->
 
 <div class="card">
 
@@ -237,22 +234,30 @@ body{
 
     <div class="header">
 
-        <img src="logo.png" class="logo">
+        <img
+            class="logo"
+            src="images/logo.png"
+            alt="Logo"
+        >
 
-        <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
+        <h1>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h1>
 
-        <p>ODIA RATNA KALAKAR SANGHA</p>
+        <h2>ODIA RATNA KALAKAR SANGHA</h2>
 
-        <small>Surat, Gujarat</small>
+        <p>Surat, Gujarat</p>
 
     </div>
 
 
-    <!-- MEMBER PHOTO -->
+    <!-- PHOTO -->
 
     <div class="photo">
 
-        <img id="photo" src="" alt="Member Photo">
+        <img
+            id="photo"
+            src=""
+            alt="Member Photo"
+        >
 
     </div>
 
@@ -261,62 +266,108 @@ body{
 
     <div class="details">
 
-        <p>
-            <strong>Member ID:</strong>
-            <span id="memberId"></span>
-        </p>
+        <div class="detail">
 
-        <p>
-            <strong>ନାମ:</strong>
-            <span id="name"></span>
-        </p>
+            <div class="label">
+                Member ID:
+            </div>
 
-        <p>
-            <strong>ପିତାଙ୍କ ନାମ:</strong>
-            <span id="father"></span>
-        </p>
-
-        <p>
-            <strong>ଜନ୍ମ ତାରିଖ:</strong>
-            <span id="dob"></span>
-        </p>
-
-        <p>
-            <strong>ମୋବାଇଲ:</strong>
-            <span id="mobile"></span>
-        </p>
-
-        <p>
-            <strong>ଠିକଣା:</strong>
-            <span id="address"></span>
-        </p>
-
-    </div>
-
-
-    <!-- QR CODE -->
-
-    <div id="qrcode"></div>
-
-    <div class="verify">
-        Scan to Verify
-    </div>
-
-
-    <!-- FOOTER -->
-
-    <div class="footer">
-
-        <div class="sign">
-
-            <img src="signature.png">
-
-            Authorized Signature
+            <div class="value" id="memberId">
+                -
+            </div>
 
         </div>
+
+
+        <div class="detail">
+
+            <div class="label">
+                ନାମ:
+            </div>
+
+            <div class="value" id="name">
+                -
+            </div>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="label">
+                ପିତାଙ୍କ ନାମ:
+            </div>
+
+            <div class="value" id="father">
+                -
+            </div>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="label">
+                ଜନ୍ମ ତାରିଖ:
+            </div>
+
+            <div class="value" id="dob">
+                -
+            </div>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="label">
+                ମୋବାଇଲ:
+            </div>
+
+            <div class="value" id="mobile">
+                -
+            </div>
+
+        </div>
+
+
+        <div class="detail">
+
+            <div class="label">
+                ଠିକଣା:
+            </div>
+
+            <div class="value" id="address">
+                -
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- QR + VERIFY + SEAL -->
+
+    <div class="bottom">
+
+        <div class="qrBox">
+
+            <div id="qrcode"></div>
+
+        </div>
+
+
+        <div class="verify">
+
+            Scan to Verify
+
+        </div>
+
 
         <div class="seal">
-            Official<br>Seal
+
+            OFFICIAL
+
         </div>
 
     </div>
@@ -324,58 +375,42 @@ body{
 </div>
 
 
-<button class="printBtn" onclick="window.print()">
+<!-- PRINT -->
+
+<button
+    class="printBtn"
+    onclick="window.print()"
+>
     🖨️ Print ID Card
 </button>
-
-</div>
 
 
 <!-- QR CODE LIBRARY -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+<!-- FIREBASE -->
+
 <script type="module">
 
-
-
-
 import { db } from "./firebase.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    doc,
+    getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 
+/* ================= GET MEMBER ID ================= */
 
+const params =
+    new URLSearchParams(window.location.search);
 
-
-
-    
-    
-
-
-
-
-
-
-    
-    
-
-    
-    
-    
-
-
-
-
-
-
-
-
-
-/* GET MEMBER ID FROM URL */
-
-const params = new URLSearchParams(window.location.search);
-
-const id = params.get("id");
+const id =
+    params.get("id");
 
 
 if(!id){
@@ -389,15 +424,18 @@ if(!id){
 }
 
 
-/* LOAD MEMBER */
+
+/* ================= LOAD MEMBER ================= */
 
 async function loadMember(id){
 
     try{
 
-        const memberRef = doc(db,"members",id);
+        const memberRef =
+            doc(db,"members",id);
 
-        const memberSnap = await getDoc(memberRef);
+        const memberSnap =
+            await getDoc(memberRef);
 
 
         if(!memberSnap.exists()){
@@ -405,10 +443,12 @@ async function loadMember(id){
             alert("Member ମିଳିଲା ନାହିଁ");
 
             return;
+
         }
 
 
-        const data = memberSnap.data();
+        const data =
+            memberSnap.data();
 
 
         /* MEMBER DATA */
@@ -416,17 +456,22 @@ async function loadMember(id){
         document.getElementById("memberId").textContent =
             data.memberId || id;
 
+
         document.getElementById("name").textContent =
             data.name || "";
+
 
         document.getElementById("father").textContent =
             data.father || "";
 
+
         document.getElementById("dob").textContent =
             data.dob || "";
 
+
         document.getElementById("mobile").textContent =
             data.mobile || "";
+
 
         document.getElementById("address").textContent =
             data.address || "";
@@ -434,15 +479,25 @@ async function loadMember(id){
 
         /* PHOTO */
 
-        if(data.photoUrl){
+        const photo =
+            document.getElementById("photo");
 
-            document.getElementById("photo").src =
-                data.photoUrl;
+
+        const photoURL =
+            data.photoUrl ||
+            data.photo ||
+            data.image ||
+            "";
+
+
+        if(photoURL){
+
+            photo.src = photoURL;
 
         }
 
 
-        /* QR CODE */
+        /* ================= VERIFY URL ================= */
 
         const verifyURL =
             window.location.origin +
@@ -450,18 +505,27 @@ async function loadMember(id){
                 "idcard.html",
                 "view-id.html"
             ) +
-            "?id=" + encodeURIComponent(id);
+            "?id=" +
+            encodeURIComponent(id);
 
+
+        /* CLEAR OLD QR */
+
+        document.getElementById("qrcode").innerHTML = "";
+
+
+        /* ================= QR ================= */
 
         new QRCode(
             document.getElementById("qrcode"),
             {
                 text:verifyURL,
-                width:60,
-height:60
-                
+                width:45,
+                height:45,
+                correctLevel:QRCode.CorrectLevel.M
             }
         );
+
 
     }
 
@@ -469,7 +533,10 @@ height:60
 
         console.error(error);
 
-        alert("Error: " + error.message);
+        alert(
+            "Error: " +
+            error.message
+        );
 
     }
 
@@ -478,4 +545,5 @@ height:60
 </script>
 
 </body>
-</html>
+
+    </html>
