@@ -19,13 +19,85 @@
 body{
     background:#f3f3f3;
     font-family:Arial,sans-serif;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
     padding:15px;
 }
 
-/* ================= CARD ================= */
+/* ================= MEMBER LIST ================= */
+
+#memberListPage{
+    max-width:600px;
+    margin:auto;
+}
+
+.pageTitle{
+    text-align:center;
+    color:#b30000;
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+.searchBox{
+    width:100%;
+    padding:12px;
+    border:2px solid #b30000;
+    border-radius:8px;
+    font-size:16px;
+    margin-bottom:15px;
+    outline:none;
+}
+
+.memberItem{
+    background:#fff;
+    border:1px solid #ddd;
+    border-left:5px solid #b30000;
+    border-radius:8px;
+    padding:12px;
+    margin-bottom:10px;
+    box-shadow:0 2px 6px rgba(0,0,0,.1);
+}
+
+.memberName{
+    font-size:17px;
+    font-weight:bold;
+    color:#222;
+    margin-bottom:5px;
+}
+
+.memberInfo{
+    font-size:13px;
+    color:#555;
+    line-height:1.6;
+}
+
+.idButton{
+    width:100%;
+    margin-top:8px;
+    padding:10px;
+    background:#c00000;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.idButton:active{
+    background:#900000;
+}
+
+.noMember{
+    text-align:center;
+    color:#777;
+    padding:20px;
+}
+
+/* ================= ID CARD ================= */
+
+#cardPage{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+}
 
 .card{
     width:54mm;
@@ -173,18 +245,38 @@ body{
     font-weight:bold;
 }
 
-/* ================= PRINT BUTTON ================= */
+/* ================= BUTTONS ================= */
 
-.printBtn{
-    width:180px;
+.buttonRow{
+    display:flex;
+    gap:8px;
     margin-top:15px;
-    padding:10px;
-    background:#c00000;
+}
+
+.printBtn,
+.backBtn{
+    padding:10px 15px;
     color:#fff;
     border:none;
     border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.printBtn{
+    background:#c00000;
+}
+
+.backBtn{
+    background:#444;
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+    text-align:center;
+    padding:30px;
+    color:#777;
 }
 
 /* ================= PRINT ================= */
@@ -205,6 +297,15 @@ body{
         background:#fff;
     }
 
+    #memberListPage,
+    .buttonRow{
+        display:none !important;
+    }
+
+    #cardPage{
+        display:flex !important;
+    }
+
     .card{
         width:54mm;
         min-height:85.6mm;
@@ -214,9 +315,6 @@ body{
         box-shadow:none;
     }
 
-    .printBtn{
-        display:none;
-    }
 }
 
 </style>
@@ -226,7 +324,40 @@ body{
 <body>
 
 
-<!-- ================= ID CARD ================= -->
+<!-- ================================================= -->
+<!-- MEMBER LIST PAGE -->
+<!-- ================================================= -->
+
+<div id="memberListPage">
+
+    <h1 class="pageTitle">
+        🪪 Member ID Card
+    </h1>
+
+    <input
+        type="text"
+        id="searchBox"
+        class="searchBox"
+        placeholder="🔍 ନାମ / Mobile / Member ID ଖୋଜନ୍ତୁ..."
+    >
+
+    <div id="memberList">
+
+        <div class="loading">
+            Members loading...
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- ID CARD PAGE -->
+<!-- ================================================= -->
+
+<div id="cardPage">
+
 
 <div class="card">
 
@@ -375,57 +506,295 @@ body{
 </div>
 
 
-<!-- PRINT -->
+<!-- BUTTONS -->
 
-<button
-    class="printBtn"
-    onclick="window.print()"
->
-    🖨️ Print ID Card
-</button>
+<div class="buttonRow">
+
+    <button
+        class="backBtn"
+        onclick="showMemberList()"
+    >
+        ← Back
+    </button>
+
+    <button
+        class="printBtn"
+        onclick="window.print()"
+    >
+        🖨️ Print
+    </button>
+
+</div>
 
 
-<!-- QR CODE LIBRARY -->
+</div>
+
+
+<!-- ================================================= -->
+<!-- QR CODE -->
+<!-- ================================================= -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 
+<!-- ================================================= -->
 <!-- FIREBASE -->
+<!-- ================================================= -->
 
 <script type="module">
 
 import { db } from "./firebase.js";
 
 import {
+    collection,
+    getDocs,
     doc,
     getDoc
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
+/* ================================================= */
+/* VARIABLES */
+/* ================================================= */
 
-/* ================= GET MEMBER ID ================= */
-
-const params =
-    new URLSearchParams(window.location.search);
-
-const id =
-    params.get("id");
+let allMembers = [];
 
 
-if(!id){
+/* ================================================= */
+/* LOAD MEMBERS */
+/* ================================================= */
 
-    alert("Member ID ମିଳିଲା ନାହିଁ");
+async function loadMembers(){
 
-}else{
+    try{
+
+        const snap =
+            await getDocs(
+                collection(db,"members")
+            );
+
+
+        allMembers = [];
+
+
+        snap.forEach(item => {
+
+            allMembers.push({
+
+                id:item.id,
+
+                ...item.data()
+
+            });
+
+        });
+
+
+        displayMembers(allMembers);
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        document.getElementById("memberList").innerHTML =
+
+            `<div class="noMember">
+                ❌ Members load ହେଲା ନାହିଁ
+             </div>`;
+
+    }
+
+}
+
+
+/* ================================================= */
+/* DISPLAY MEMBERS */
+/* ================================================= */
+
+function displayMembers(members){
+
+    const list =
+        document.getElementById("memberList");
+
+
+    list.innerHTML = "";
+
+
+    if(members.length === 0){
+
+        list.innerHTML =
+            `<div class="noMember">
+                ❌ Member ମିଳିଲା ନାହିଁ
+             </div>`;
+
+        return;
+
+    }
+
+
+    members.forEach(member => {
+
+
+        const name =
+            member.name || "ନାମ ନାହିଁ";
+
+
+        const memberId =
+            member.memberId || member.id;
+
+
+        const mobile =
+            member.mobile || "";
+
+
+        const div =
+            document.createElement("div");
+
+
+        div.className =
+            "memberItem";
+
+
+        div.innerHTML = `
+
+            <div class="memberName">
+                👤 ${escapeHTML(name)}
+            </div>
+
+            <div class="memberInfo">
+                🪪 Member ID: ${escapeHTML(memberId)}
+                <br>
+                📱 Mobile: ${escapeHTML(mobile)}
+            </div>
+
+            <button
+                class="idButton"
+                data-id="${member.id}"
+            >
+                🪪 View ID Card
+            </button>
+
+        `;
+
+
+        div.querySelector(".idButton")
+            .addEventListener(
+                "click",
+                function(){
+
+                    openIDCard(member.id);
+
+                }
+            );
+
+
+        list.appendChild(div);
+
+    });
+
+}
+
+
+/* ================================================= */
+/* SEARCH */
+/* ================================================= */
+
+document
+.getElementById("searchBox")
+.addEventListener(
+    "input",
+    function(){
+
+        const search =
+            this.value
+            .trim()
+            .toLowerCase();
+
+
+        if(!search){
+
+            displayMembers(allMembers);
+
+            return;
+
+        }
+
+
+        const filtered =
+            allMembers.filter(member => {
+
+                const name =
+                    String(
+                        member.name || ""
+                    ).toLowerCase();
+
+
+                const mobile =
+                    String(
+                        member.mobile || ""
+                    ).toLowerCase();
+
+
+                const memberId =
+                    String(
+                        member.memberId || ""
+                    ).toLowerCase();
+
+
+                return (
+
+                    name.includes(search) ||
+
+                    mobile.includes(search) ||
+
+                    memberId.includes(search)
+
+                );
+
+            });
+
+
+        displayMembers(filtered);
+
+    }
+);
+
+
+/* ================================================= */
+/* OPEN ID CARD */
+/* ================================================= */
+
+function openIDCard(id){
+
+    history.pushState(
+        {},
+        "",
+        "idcard.html?id=" +
+        encodeURIComponent(id)
+    );
+
+
+    document
+        .getElementById("memberListPage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("cardPage")
+        .style.display = "flex";
+
 
     loadMember(id);
 
 }
 
 
-
-/* ================= LOAD MEMBER ================= */
+/* ================================================= */
+/* LOAD MEMBER */
+/* ================================================= */
 
 async function loadMember(id){
 
@@ -434,6 +803,7 @@ async function loadMember(id){
         const memberRef =
             doc(db,"members",id);
 
+
         const memberSnap =
             await getDoc(memberRef);
 
@@ -441,6 +811,8 @@ async function loadMember(id){
         if(!memberSnap.exists()){
 
             alert("Member ମିଳିଲା ନାହିଁ");
+
+            showMemberList();
 
             return;
 
@@ -451,30 +823,52 @@ async function loadMember(id){
             memberSnap.data();
 
 
-        /* MEMBER DATA */
+        /* MEMBER ID */
 
-        document.getElementById("memberId").textContent =
-            data.memberId || id;
-
-
-        document.getElementById("name").textContent =
-            data.name || "";
+        document
+            .getElementById("memberId")
+            .textContent =
+                data.memberId || id;
 
 
-        document.getElementById("father").textContent =
-            data.father || "";
+        /* NAME */
+
+        document
+            .getElementById("name")
+            .textContent =
+                data.name || "-";
 
 
-        document.getElementById("dob").textContent =
-            data.dob || "";
+        /* FATHER */
+
+        document
+            .getElementById("father")
+            .textContent =
+                data.father || "-";
 
 
-        document.getElementById("mobile").textContent =
-            data.mobile || "";
+        /* DOB */
+
+        document
+            .getElementById("dob")
+            .textContent =
+                data.dob || "-";
 
 
-        document.getElementById("address").textContent =
-            data.address || "";
+        /* MOBILE */
+
+        document
+            .getElementById("mobile")
+            .textContent =
+                data.mobile || "-";
+
+
+        /* ADDRESS */
+
+        document
+            .getElementById("address")
+            .textContent =
+                data.address || "-";
 
 
         /* PHOTO */
@@ -495,37 +889,53 @@ async function loadMember(id){
             photo.src = photoURL;
 
         }
+        else{
+
+            photo.src = "logo.png";
+
+        }
 
 
-        /* ================= VERIFY URL ================= */
+        /* ================================================= */
+        /* VERIFY URL */
+        /* ================================================= */
 
         const verifyURL =
             window.location.origin +
-            window.location.pathname.replace(
-                "idcard.html",
-                "view-id.html"
-            ) +
+            window.location.pathname
+                .replace(
+                    "idcard.html",
+                    "view-id.html"
+                ) +
             "?id=" +
             encodeURIComponent(id);
 
 
-        /* CLEAR OLD QR */
+        /* CLEAR QR */
 
-        document.getElementById("qrcode").innerHTML = "";
+        document
+            .getElementById("qrcode")
+            .innerHTML = "";
 
 
-        /* ================= QR ================= */
+        /* QR */
 
         new QRCode(
+
             document.getElementById("qrcode"),
+
             {
                 text:verifyURL,
-                width:200,
-                height:200,
-                correctLevel:QRCode.CorrectLevel.M
-            }
-        );
 
+                width:200,
+
+                height:200,
+
+                correctLevel:
+                    QRCode.CorrectLevel.M
+            }
+
+        );
 
     }
 
@@ -542,8 +952,90 @@ async function loadMember(id){
 
 }
 
+
+/* ================================================= */
+/* BACK TO MEMBER LIST */
+/* ================================================= */
+
+window.showMemberList = function(){
+
+    history.pushState(
+        {},
+        "",
+        "idcard.html"
+    );
+
+
+    document
+        .getElementById("cardPage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("memberListPage")
+        .style.display = "block";
+
+
+    document
+        .getElementById("qrcode")
+        .innerHTML = "";
+
+};
+
+
+/* ================================================= */
+/* HTML SECURITY */
+/* ================================================= */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* ================================================= */
+/* URL ID CHECK */
+/* ================================================= */
+
+const params =
+    new URLSearchParams(
+        window.location.search
+    );
+
+
+const urlID =
+    params.get("id");
+
+
+if(urlID){
+
+    document
+        .getElementById("memberListPage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("cardPage")
+        .style.display = "flex";
+
+
+    loadMember(urlID);
+
+}
+else{
+
+    loadMembers();
+
+}
+
 </script>
 
 </body>
 
-    </html>
+</html>
