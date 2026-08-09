@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="or">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,479 +10,458 @@
 <style>
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
 
 body{
-background:#f2f2f2;
-display:flex;
-justify-content:center;
-padding:20px;
+    background:#f2f2f2;
+    display:flex;
+    justify-content:center;
+    padding:20px;
 }
 
+/* ID CARD */
+
 .card{
-    
     width:54mm;
     height:85.6mm;
-    background:#fff;
-
-    
     background:#fff;
     border:1.5px solid #b30000;
     border-radius:3mm;
     overflow:hidden;
-    box-shadow:0 2px 6px rgba(0,0,0,.20);
     position:relative;
 }
-    
-    
-    
-    
-    
-    
-    
-}
+
+/* HEADER */
+
 .header{
     text-align:center;
     background:#fff;
-    padding:4px 6px;
+    padding:4px 4px 2px;
     border-bottom:1px solid #b30000;
-    }
-    
-    
-    
-    
 }
 
 .logo{
-    width:32px;
-    height:32px;
+    width:38px;
+    height:38px;
     object-fit:contain;
-    margin:2px auto;
+    display:block;
+    margin:0 auto 2px;
 }
-    
-    
-    
-    
-
-    
-    
-    
-    
-
-    
-    
-    
-
 
 .header h2{
     color:#b30000;
-    font-size:11px;
-    margin:2px 0;
+    font-size:10px;
+    margin:1px 0;
     font-weight:bold;
 }
-    
-    
-    
-    
-
 
 .header p{
     color:#003399;
-    font-size:7px;
+    font-size:6px;
     font-weight:bold;
     margin:1px 0;
 }
-    
-    
-    
+
+.header small{
+    display:block;
+    color:#555;
+    font-size:6px;
+    margin-top:1px;
+}
+
+/* PHOTO */
 
 .photo{
     text-align:center;
-    margin:3px 0;
-}
-    
- .photo img{
-    width:22mm;
-    height:28mm;
-    object-fit:cover;
-    border:1px solid #b30000;
-    border-radius:2mm;
- }   
-
-
-
-    
-    
-    
-    
-
-
-    
-    
-    
-    
-    
-    
-
-
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.header p{
-font-size:14px;
-color:#555;
-margin-top:3px;
-}
-
-.photo{
-text-align:center;
-margin:15px 0;
+    margin:5px 0 4px;
 }
 
 .photo img{
-    width:80px;
-    height:95px;
-    border:2px solid #b30000;
-    border-radius:5px;
+    width:25mm;
+    height:30mm;
     object-fit:cover;
+    border:1px solid #b30000;
+    border-radius:2mm;
+    display:block;
+    margin:auto;
 }
 
-
-
-
-
-
+/* DETAILS */
 
 .details{
-    padding:4px 8px;
+    padding:0 7px;
 }
-    
-
 
 .details p{
-    margin:3px 0;
-    padding-bottom:3px;
+    margin:2px 0;
+    padding-bottom:2px;
     border-bottom:1px dashed #ddd;
-    font-size:11px;
-    line-height:1.3;
+    font-size:8px;
+    line-height:1.2;
 }
-    
-    
-    
-    
-    
 
 .details strong{
     color:#b30000;
     display:inline-block;
-    min-width:70px;
+    min-width:58px;
 }
-    
-    
-    
-                              
-    
-    
-    
-
 
 .details span{
     color:#222;
     font-weight:600;
 }
 
+/* QR */
 
+#qrcode{
+    text-align:center;
+    margin:3px 0 0;
+}
 
+#qrcode canvas{
+    width:38px !important;
+    height:38px !important;
+}
 
+.verify{
+    text-align:center;
+    font-size:6px;
+    color:#b30000;
+    margin-top:1px;
+}
 
+/* FOOTER */
 
-
-
-  .footer{
+.footer{
     display:flex;
     justify-content:space-between;
     align-items:flex-end;
-    padding:15px 20px;
+    padding:3px 7px;
     border-top:1px dashed #ccc;
+    margin-top:2px;
 }
 
 .sign{
-    font-size:12px;
     text-align:center;
+    font-size:6px;
     color:#444;
 }
 
+.sign img{
+    width:45px;
+    height:auto;
+    display:block;
+    margin:auto;
+}
+
 .seal{
-    width:70px;
-    height:70px;
-    border:2px dashed #b30000;
+    width:35px;
+    height:35px;
+    border:1px dashed #b30000;
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
-    color:#b30000;
-    font-size:12px;
     text-align:center;
+    color:#b30000;
+    font-size:6px;
 }
 
-
-
-
-
-}
-
-.sign{
-text-align:center;
-font-size:12px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
+/* PRINT BUTTON */
 
 .printBtn{
-width:90%;
-margin:15px auto;
-display:block;
-padding:12px;
-font-size:18px;
-background:#b30000;
-color:#fff;
-border:none;
-border-radius:8px;
-cursor:pointer;
+    width:90%;
+    margin:15px auto;
+    display:block;
+    padding:10px;
+    font-size:16px;
+    background:#b30000;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
 }
+
+/* PRINT */
 
 @media print{
 
-@page{
-    size:54mm 85.6mm;
-    margin:0;
-}
-
-html,body{
-    width:54mm;
-    height:85.6mm;
-    margin:0;
-    padding:0;
-    background:#fff;
-}
-
-.card{
-    width:54mm;
-    height:85.6mm;
-    min-height:85.6mm;
-    margin:0;
-    border:1px solid #b30000;
-    border-radius:0;
-    box-shadow:none;
-    overflow:hidden;
-}
-
-.printBtn{
-    display:none;
+    @page{
+        size:54mm 85.6mm;
+        margin:0;
     }
-    
-    
-    
 
+    html,body{
+        width:54mm;
+        height:85.6mm;
+        margin:0;
+        padding:0;
+        background:#fff;
+    }
 
+    .card{
+        width:54mm;
+        height:85.6mm;
+        margin:0;
+        border-radius:0;
+        box-shadow:none;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    .printBtn{
+        display:none;
+    }
+}
 
 </style>
+
 </head>
 
 <body>
 
+<div>
+
 <div class="card">
 
-<div class="header">
-    <img src="logo.png" class="logo">
+    <!-- HEADER -->
 
-    <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
-    <p>ODIA RATNA KALAKAR SANGHA</p>
-    <small>Surat, Gujarat</small>
-</div>
+    <div class="header">
 
-<div class="photo">
-    <img id="photo" src="">
-</div>
+        <img src="logo.png" class="logo">
 
-<div class="details">
+        <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
 
-    <p><strong>Member ID :</strong>
-        <span id="memberId"></span>
-    </p>
+        <p>ODIA RATNA KALAKAR SANGHA</p>
 
-    <p><strong>ନାମ :</strong>
-        <span id="name"></span>
-    </p>
+        <small>Surat, Gujarat</small>
 
-    <p><strong>ପିତାଙ୍କ ନାମ :</strong>
-        <span id="father"></span>
-    </p>
-<p><strong>ଜନ୍ମ ତାରିଖ :</strong>
-    <span id="dob"></span>
-</p>
-    <p><strong>ମୋବାଇଲ :</strong>
-        <span id="mobile"></span>
-    </p>
+    </div>
 
-    <p><strong>ଠିକଣା :</strong>
-        <span id="address"></span>
-    </p>
 
-</div>
-<div id="qrcode" style="text-align:center; margin:15px 0;">
-</div>
-<p style="text-align:center;font-size:12px;color:#b30000;">
-Scan to Verify
-</p>
-<div class="footer">
+    <!-- MEMBER PHOTO -->
 
-    <img src="signature.png" style="width:120px;height:auto;"><br>
-Authorized Signature
-        
-    
+    <div class="photo">
 
-    <div class="seal">
-        Official Seal
+        <img id="photo" src="" alt="Member Photo">
+
+    </div>
+
+
+    <!-- MEMBER DETAILS -->
+
+    <div class="details">
+
+        <p>
+            <strong>Member ID:</strong>
+            <span id="memberId"></span>
+        </p>
+
+        <p>
+            <strong>ନାମ:</strong>
+            <span id="name"></span>
+        </p>
+
+        <p>
+            <strong>ପିତାଙ୍କ ନାମ:</strong>
+            <span id="father"></span>
+        </p>
+
+        <p>
+            <strong>ଜନ୍ମ ତାରିଖ:</strong>
+            <span id="dob"></span>
+        </p>
+
+        <p>
+            <strong>ମୋବାଇଲ:</strong>
+            <span id="mobile"></span>
+        </p>
+
+        <p>
+            <strong>ଠିକଣା:</strong>
+            <span id="address"></span>
+        </p>
+
+    </div>
+
+
+    <!-- QR CODE -->
+
+    <div id="qrcode"></div>
+
+    <div class="verify">
+        Scan to Verify
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        <div class="sign">
+
+            <img src="signature.png">
+
+            Authorized Signature
+
+        </div>
+
+        <div class="seal">
+            Official<br>Seal
+        </div>
+
     </div>
 
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <button class="printBtn" onclick="window.print()">
-🖨️ Print ID Card
+    🖨️ Print ID Card
 </button>
 
+</div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<!-- QR CODE LIBRARY -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+<!-- FIREBASE -->
+
 <script type="module">
 
-import { db } from "./firebase.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-import { doc, getDoc }
+import {
+    getFirestore,
+    doc,
+    getDoc
+}
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+
+const firebaseConfig = {
+
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+/* GET MEMBER ID FROM URL */
+
 const params = new URLSearchParams(window.location.search);
+
 const id = params.get("id");
 
-if(id){
 
-const snap = await getDoc(doc(db,"members",id));
+if(!id){
 
-if(snap.exists()){
+    alert("Member ID ମିଳିଲା ନାହିଁ");
 
-const data = snap.data();
+}else{
 
-document.getElementById("memberId").textContent = data.memberId || "";
-document.getElementById("name").textContent = data.name || "";
-document.getElementById("father").textContent = data.father || "";
-  document.getElementById("dob").textContent = data.dob || "";  
-document.getElementById("mobile").textContent = data.mobile || "";
-document.getElementById("address").textContent = data.address || "";
+    loadMember(id);
 
-if(data.photoUrl){
-document.getElementById("photo").src = data.photoUrl;
 }
 
-const verifyUrl =
-window.location.origin +
-window.location.pathname.replace("idcard.html","view-id.html") +
-"?id=" + id;
-QRCode.toCanvas(
-  verifyUrl,
-  { width: 100 },
-  function (error, canvas) {
-    if (!error) {
-      document.getElementById("qrcode").appendChild(canvas);
+
+/* LOAD MEMBER */
+
+async function loadMember(id){
+
+    try{
+
+        const memberRef = doc(db,"members",id);
+
+        const memberSnap = await getDoc(memberRef);
+
+
+        if(!memberSnap.exists()){
+
+            alert("Member ମିଳିଲା ନାହିଁ");
+
+            return;
+        }
+
+
+        const data = memberSnap.data();
+
+
+        /* MEMBER DATA */
+
+        document.getElementById("memberId").textContent =
+            data.memberId || id;
+
+        document.getElementById("name").textContent =
+            data.name || "";
+
+        document.getElementById("father").textContent =
+            data.father || "";
+
+        document.getElementById("dob").textContent =
+            data.dob || "";
+
+        document.getElementById("mobile").textContent =
+            data.mobile || "";
+
+        document.getElementById("address").textContent =
+            data.address || "";
+
+
+        /* PHOTO */
+
+        if(data.photoUrl){
+
+            document.getElementById("photo").src =
+                data.photoUrl;
+
+        }
+
+
+        /* QR CODE */
+
+        const verifyURL =
+            window.location.origin +
+            window.location.pathname.replace(
+                "idcard.html",
+                "view-id.html"
+            ) +
+            "?id=" + encodeURIComponent(id);
+
+
+        new QRCode(
+            document.getElementById("qrcode"),
+            {
+                text:verifyURL,
+                width:45,
+                height:45
+            }
+        );
+
     }
-  }
-);
-}else{
-alert("Member Not Found");
-}
 
-}else{
-alert("Invalid ID");
+    catch(error){
+
+        console.error(error);
+
+        alert("Error: " + error.message);
+
+    }
+
 }
 
 </script>
