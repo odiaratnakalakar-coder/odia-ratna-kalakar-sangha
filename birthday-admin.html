@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="or">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -37,6 +39,129 @@ text-align:center;
 color:#ccc;
 margin-bottom:20px;
 }
+
+.backBtn{
+display:block;
+text-decoration:none;
+text-align:center;
+background:#c40000;
+color:white;
+padding:12px;
+border-radius:8px;
+margin-bottom:20px;
+font-weight:bold;
+}
+
+
+/* ================= SECTION ================= */
+
+.section{
+background:#222;
+border-radius:12px;
+padding:15px;
+margin-bottom:20px;
+}
+
+.sectionTitle{
+font-size:20px;
+font-weight:bold;
+text-align:center;
+margin-bottom:12px;
+}
+
+
+/* ================= TODAY ================= */
+
+.todaySection{
+border:2px solid #00aa44;
+}
+
+.todayTitle{
+color:#00ff66;
+}
+
+.todayCount{
+text-align:center;
+font-size:32px;
+font-weight:bold;
+color:#ffcc00;
+margin-bottom:10px;
+}
+
+.birthdayPerson{
+background:#151515;
+border-left:4px solid #ffcc00;
+border-radius:8px;
+padding:10px;
+margin-top:8px;
+line-height:1.7;
+}
+
+.birthdayPerson strong{
+color:#ffcc00;
+}
+
+.noBirthday{
+text-align:center;
+color:#aaa;
+padding:10px;
+}
+
+
+/* ================= UPCOMING ================= */
+
+.upcomingSection{
+border:2px solid #16458f;
+}
+
+.upcomingTitle{
+color:#4da6ff;
+}
+
+.upcomingPerson{
+background:#151515;
+border-left:4px solid #4da6ff;
+border-radius:8px;
+padding:10px;
+margin-top:8px;
+line-height:1.7;
+}
+
+.upcomingDate{
+color:#ffcc00;
+font-weight:bold;
+}
+
+
+/* ================= MISSING DOB ================= */
+
+.missingSection{
+border:2px solid #ff8800;
+}
+
+.missingTitle{
+color:#ff9900;
+}
+
+.missingCount{
+text-align:center;
+font-size:32px;
+font-weight:bold;
+color:#ffcc00;
+margin-bottom:10px;
+}
+
+.missingPerson{
+background:#151515;
+border-left:4px solid #ff8800;
+border-radius:8px;
+padding:10px;
+margin-top:8px;
+line-height:1.7;
+}
+
+
+/* ================= MEMBER ================= */
 
 .member{
 background:#222;
@@ -88,26 +213,14 @@ font-weight:bold;
 cursor:pointer;
 }
 
-.saveBtn:hover{
-background:#00a000;
+.saveBtn:disabled{
+opacity:.6;
 }
 
 .status{
 margin-top:8px;
 text-align:center;
 font-size:14px;
-}
-
-.backBtn{
-display:block;
-text-decoration:none;
-text-align:center;
-background:#c40000;
-color:white;
-padding:12px;
-border-radius:8px;
-margin-bottom:20px;
-font-weight:bold;
 }
 
 .loading{
@@ -117,29 +230,125 @@ font-size:18px;
 padding:20px;
 }
 
+
+/* ================= HIDE ================= */
+
+.hidden{
+display:none;
+}
+
 </style>
+
 </head>
+
 
 <body>
 
 <div class="container">
 
+
 <a href="admin.html" class="backBtn">
 ⬅️ Admin Dashboard
 </a>
 
+
 <h1>🎂 Birthday / DOB Admin</h1>
 
 <div class="subtitle">
-ପୁରୁଣା Members ଙ୍କ ଜନ୍ମ ତାରିଖ ଏଠାରେ ଭରନ୍ତୁ
+Members ଙ୍କ ଜନ୍ମ ତାରିଖ ଏଠାରେ ଭରନ୍ତୁ
 </div>
+
+
+<!-- ================================================= -->
+<!-- TODAY BIRTHDAY -->
+<!-- ================================================= -->
+
+<div class="section todaySection">
+
+<div class="sectionTitle todayTitle">
+🎉 ଆଜିର Birthday
+</div>
+
+<div class="todayCount" id="todayCount">
+0
+</div>
+
+<div id="todayList">
+
+<div class="noBirthday">
+Birthday checking...
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- UPCOMING BIRTHDAY -->
+<!-- ================================================= -->
+
+<div class="section upcomingSection">
+
+<div class="sectionTitle upcomingTitle">
+📅 ଆଗାମୀ Birthday
+</div>
+
+<div id="upcomingList">
+
+<div class="noBirthday">
+Birthday checking...
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- MISSING DOB -->
+<!-- ================================================= -->
+
+<div class="section missingSection">
+
+<div class="sectionTitle missingTitle">
+⚠️ DOB ଦିଆଯାଇନଥିବା Members
+</div>
+
+<div class="missingCount" id="missingCount">
+0
+</div>
+
+<div id="missingList">
+
+<div class="noBirthday">
+Checking...
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- ALL MEMBERS -->
+<!-- ================================================= -->
 
 <div id="memberList">
-<div class="loading">Members Loading...</div>
+
+<div class="loading">
+Members Loading...
 </div>
 
 </div>
 
+
+</div>
+
+
+<!-- ================================================= -->
+<!-- FIREBASE -->
+<!-- ================================================= -->
 
 <script type="module">
 
@@ -150,19 +359,50 @@ collection,
 getDocs,
 doc,
 updateDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-const memberList = document.getElementById("memberList");
+const memberList =
+document.getElementById("memberList");
 
+const todayCount =
+document.getElementById("todayCount");
+
+const todayList =
+document.getElementById("todayList");
+
+const upcomingList =
+document.getElementById("upcomingList");
+
+const missingCount =
+document.getElementById("missingCount");
+
+const missingList =
+document.getElementById("missingList");
+
+
+let allMembers = [];
+
+
+/* ================================================= */
+/* LOAD MEMBERS */
+/* ================================================= */
 
 async function loadMembers(){
 
 try{
 
-const snap = await getDocs(collection(db,"members"));
+const snap =
+await getDocs(
+collection(db,"members")
+);
+
 
 memberList.innerHTML = "";
+
+allMembers = [];
+
 
 if(snap.empty){
 
@@ -170,34 +410,94 @@ memberList.innerHTML =
 "<div class='loading'>କୌଣସି Member ମିଳିଲେ ନାହିଁ</div>";
 
 return;
+
 }
 
 
 snap.forEach(memberDoc => {
 
-const data = memberDoc.data();
+const data =
+memberDoc.data();
 
-const box = document.createElement("div");
+allMembers.push({
+
+id:memberDoc.id,
+
+...data
+
+});
+
+});
+
+
+/* DISPLAY ALL MEMBERS */
+
+allMembers.forEach(member => {
+
+createMemberBox(member);
+
+});
+
+
+/* CHECK BIRTHDAYS */
+
+updateBirthdaySections();
+
+
+}
+catch(error){
+
+console.error(error);
+
+memberList.innerHTML =
+"<div class='loading'>❌ Members Load ହୋଇନାହିଁ</div>";
+
+}
+
+}
+
+
+/* ================================================= */
+/* CREATE MEMBER BOX */
+/* ================================================= */
+
+function createMemberBox(member){
+
+const box =
+document.createElement("div");
 
 box.className = "member";
 
+
 box.innerHTML = `
 
-<h2>👤 ${data.name || "ନାମ ନାହିଁ"}</h2>
+<h2>
+👤 ${escapeHTML(member.name || "ନାମ ନାହିଁ")}
+</h2>
 
-<p>🪪 Member ID:
-<strong>${data.memberId || "-"}</strong></p>
+<p>
+🪪 Member ID:
+<strong>
+${escapeHTML(member.memberId || "-")}
+</strong>
+</p>
 
-<p>📱 Mobile:
-<strong>${data.mobile || "-"}</strong></p>
+<p>
+📱 Mobile:
+<strong>
+${escapeHTML(member.mobile || "-")}
+</strong>
+</p>
 
-<label>🎂 ଜନ୍ମ ତାରିଖ (DD/MM/YYYY)</label>
+<label>
+🎂 ଜନ୍ମ ତାରିଖ (DD/MM/YYYY)
+</label>
 
 <input
 type="text"
-id="dob-${memberDoc.id}"
+id="dob-${member.id}"
 placeholder="ଉଦାହରଣ: 15/08/1990"
-value="${data.dob || ""}"
+value="${escapeHTML(member.dob || "")}"
 maxlength="10"
 >
 
@@ -205,39 +505,96 @@ maxlength="10"
 💾 DOB Save
 </button>
 
-<div class="status" id="status-${memberDoc.id}"></div>
+<div
+class="status"
+id="status-${member.id}">
+</div>
 
 `;
 
 
 const input =
-box.querySelector(`#dob-${memberDoc.id}`);
+box.querySelector(
+`#dob-${member.id}`
+);
+
 
 const button =
 box.querySelector(".saveBtn");
 
+
 const status =
-box.querySelector(`#status-${memberDoc.id}`);
+box.querySelector(
+`#status-${member.id}`
+);
 
 
-button.addEventListener("click", async () => {
+/* SAVE DOB */
 
-const dob = input.value.trim();
+button.addEventListener(
+"click",
+async () => {
 
 
-// DD/MM/YYYY validation
+const dob =
+input.value.trim();
+
+
+/* DD/MM/YYYY */
+
 const pattern =
 /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/[0-9]{4}$/;
 
 
 if(!pattern.test(dob)){
 
-status.style.color = "#ff4444";
+status.style.color =
+"#ff4444";
 
 status.textContent =
 "❌ ଠିକ୍ format ରେ ଲେଖନ୍ତୁ: DD/MM/YYYY";
 
 return;
+
+}
+
+
+/* CHECK REAL DATE */
+
+const parts =
+dob.split("/");
+
+const day =
+Number(parts[0]);
+
+const month =
+Number(parts[1]);
+
+const year =
+Number(parts[2]);
+
+const testDate =
+new Date(
+year,
+month - 1,
+day
+);
+
+
+if(
+testDate.getFullYear() !== year ||
+testDate.getMonth() !== month - 1 ||
+testDate.getDate() !== day
+){
+
+status.style.color =
+"#ff4444";
+
+status.textContent =
+"❌ ଏହି Date ଠିକ୍ ନୁହେଁ";
+
+return;
+
 }
 
 
@@ -245,45 +602,71 @@ try{
 
 button.disabled = true;
 
-button.textContent = "Saving...";
+button.textContent =
+"Saving...";
 
 
 await updateDoc(
-doc(db,"members",memberDoc.id),
+
+doc(
+db,
+"members",
+member.id
+),
+
 {
-dob: dob
+dob:dob
 }
+
 );
 
 
-status.style.color = "#00ff66";
+/* UPDATE LOCAL DATA */
+
+member.dob =
+dob;
+
+
+status.style.color =
+"#00ff66";
 
 status.textContent =
 "✅ Date of Birth Save ହୋଇଗଲା";
 
-button.textContent = "✅ Saved";
+button.textContent =
+"✅ Saved";
+
+
+/* REFRESH BIRTHDAY SECTIONS */
+
+updateBirthdaySections();
 
 
 setTimeout(() => {
 
 button.disabled = false;
-button.textContent = "💾 DOB Save";
+
+button.textContent =
+"💾 DOB Save";
 
 },1500);
 
 
-}catch(error){
+}
+catch(error){
 
 console.error(error);
 
-status.style.color = "#ff4444";
+status.style.color =
+"#ff4444";
 
 status.textContent =
 "❌ Save ହୋଇନାହିଁ";
 
 button.disabled = false;
 
-button.textContent = "💾 DOB Save";
+button.textContent =
+"💾 DOB Save";
 
 }
 
@@ -292,25 +675,480 @@ button.textContent = "💾 DOB Save";
 
 memberList.appendChild(box);
 
+}
+
+
+/* ================================================= */
+/* UPDATE ALL BIRTHDAY SECTIONS */
+/* ================================================= */
+
+function updateBirthdaySections(){
+
+const today =
+new Date();
+
+
+const todayDay =
+today.getDate();
+
+
+const todayMonth =
+today.getMonth() + 1;
+
+
+/* ================= TODAY ================= */
+
+const todayBirthdays =
+allMembers.filter(member => {
+
+const parsed =
+parseDOB(member.dob);
+
+if(!parsed){
+
+return false;
+
+}
+
+return (
+
+parsed.day === todayDay &&
+
+parsed.month === todayMonth
+
+);
+
 });
 
 
-}catch(error){
+todayCount.textContent =
+todayBirthdays.length;
 
-console.error(error);
 
-memberList.innerHTML =
+todayList.innerHTML = "";
 
-"<div class='loading'>❌ Members Load ହୋଇନାହିଁ</div>";
+
+if(todayBirthdays.length === 0){
+
+todayList.innerHTML = `
+
+<div class="noBirthday">
+
+🎉 ଆଜି କୌଣସି Member ଙ୍କ Birthday ନାହିଁ
+
+</div>
+
+`;
+
+}
+else{
+
+todayBirthdays.forEach(member => {
+
+const div =
+document.createElement("div");
+
+div.className =
+"birthdayPerson";
+
+
+div.innerHTML = `
+
+🎉 <strong>
+${escapeHTML(member.name || "Member")}
+</strong>
+
+<br>
+
+🪪 Member ID:
+${escapeHTML(member.memberId || "-")}
+
+<br>
+
+🎂 Birthday:
+${escapeHTML(member.dob || "-")}
+
+<br>
+
+📱 Mobile:
+${escapeHTML(member.mobile || "-")}
+
+`;
+
+
+todayList.appendChild(div);
+
+});
+
+}
+
+
+/* ================= UPCOMING ================= */
+
+const upcoming =
+getUpcomingBirthdays();
+
+
+upcomingList.innerHTML = "";
+
+
+if(upcoming.length === 0){
+
+upcomingList.innerHTML = `
+
+<div class="noBirthday">
+
+📅 କୌଣସି Upcoming Birthday ନାହିଁ
+
+</div>
+
+`;
+
+}
+else{
+
+upcoming.forEach(item => {
+
+const member =
+item.member;
+
+
+const div =
+document.createElement("div");
+
+div.className =
+"upcomingPerson";
+
+
+div.innerHTML = `
+
+<span class="upcomingDate">
+📅 ${item.dateText}
+</span>
+
+<br>
+
+👤 <strong>
+${escapeHTML(member.name || "Member")}
+</strong>
+
+<br>
+
+🪪 Member ID:
+${escapeHTML(member.memberId || "-")}
+
+<br>
+
+📱 Mobile:
+${escapeHTML(member.mobile || "-")}
+
+`;
+
+
+upcomingList.appendChild(div);
+
+});
+
+}
+
+
+/* ================= MISSING DOB ================= */
+
+const missing =
+allMembers.filter(member => {
+
+return !parseDOB(member.dob);
+
+});
+
+
+missingCount.textContent =
+missing.length;
+
+
+missingList.innerHTML = "";
+
+
+if(missing.length === 0){
+
+missingList.innerHTML = `
+
+<div class="noBirthday">
+
+✅ ସମସ୍ତ Member ଙ୍କ DOB ଦିଆଯାଇଛି
+
+</div>
+
+`;
+
+}
+else{
+
+missing.forEach(member => {
+
+const div =
+document.createElement("div");
+
+div.className =
+"missingPerson";
+
+
+div.innerHTML = `
+
+👤 <strong>
+${escapeHTML(member.name || "ନାମ ନାହିଁ")}
+</strong>
+
+<br>
+
+🪪 Member ID:
+${escapeHTML(member.memberId || "-")}
+
+<br>
+
+📱 Mobile:
+${escapeHTML(member.mobile || "-")}
+
+`;
+
+
+missingList.appendChild(div);
+
+});
 
 }
 
 }
 
+
+/* ================================================= */
+/* PARSE DOB */
+/* ================================================= */
+
+function parseDOB(dob){
+
+if(!dob){
+
+return null;
+
+}
+
+
+const parts =
+String(dob).split("/");
+
+
+if(parts.length !== 3){
+
+return null;
+
+}
+
+
+const day =
+Number(parts[0]);
+
+const month =
+Number(parts[1]);
+
+const year =
+Number(parts[2]);
+
+
+if(
+!day ||
+!month ||
+!year ||
+day < 1 ||
+day > 31 ||
+month < 1 ||
+month > 12
+){
+
+return null;
+
+}
+
+
+return {
+
+day:day,
+
+month:month,
+
+year:year
+
+};
+
+}
+
+
+/* ================================================= */
+/* UPCOMING BIRTHDAYS */
+/* ================================================= */
+
+function getUpcomingBirthdays(){
+
+const today =
+new Date();
+
+today.setHours(
+0,0,0,0
+);
+
+
+const results = [];
+
+
+allMembers.forEach(member => {
+
+const dob =
+parseDOB(member.dob);
+
+
+if(!dob){
+
+return;
+
+}
+
+
+/* THIS YEAR */
+
+let birthday =
+new Date(
+today.getFullYear(),
+dob.month - 1,
+dob.day
+);
+
+
+/* IF PASSED, NEXT YEAR */
+
+if(birthday < today){
+
+birthday =
+new Date(
+today.getFullYear() + 1,
+dob.month - 1,
+dob.day
+);
+
+}
+
+
+const diff =
+Math.ceil(
+(
+birthday.getTime() -
+today.getTime()
+) /
+(1000 * 60 * 60 * 24)
+);
+
+
+/* ONLY NEXT 30 DAYS */
+
+if(diff > 0 && diff <= 30){
+
+results.push({
+
+member:member,
+
+date:birthday,
+
+days:diff,
+
+dateText:
+formatBirthdayDate(birthday, diff)
+
+});
+
+}
+
+});
+
+
+/* SORT NEAREST FIRST */
+
+results.sort(
+(a,b) =>
+a.date - b.date
+);
+
+
+return results;
+
+}
+
+
+/* ================================================= */
+/* FORMAT UPCOMING DATE */
+/* ================================================= */
+
+function formatBirthdayDate(
+date,
+days
+){
+
+const day =
+String(
+date.getDate()
+).padStart(2,"0");
+
+
+const month =
+String(
+date.getMonth()+1
+).padStart(2,"0");
+
+
+if(days === 1){
+
+return `${day}/${month} — ଆସନ୍ତାକାଲି 🎂`;
+
+}
+
+if(days <= 7){
+
+return `${day}/${month} — ${days} ଦିନ ପରେ 🎂`;
+
+}
+
+return `${day}/${month}`;
+
+}
+
+
+/* ================================================= */
+/* ESCAPE HTML */
+/* ================================================= */
+
+function escapeHTML(value){
+
+return String(value)
+
+.replace(/&/g,"&amp;")
+
+.replace(/</g,"&lt;")
+
+.replace(/>/g,"&gt;")
+
+.replace(/"/g,"&quot;")
+
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* ================================================= */
+/* START */
+/* ================================================= */
 
 loadMembers();
 
 </script>
 
 </body>
-</html>
+
+  </html>
