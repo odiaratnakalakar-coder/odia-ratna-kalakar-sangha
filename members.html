@@ -351,8 +351,11 @@ document.getElementById("waBtn").href =
 
 const profileUrl =
 window.location.origin +
-window.location.pathname.replace("members.html", "member.html") +
+window.location.pathname.replace("members.html", "view-id.html") +
 "?id=" + member.docId;
+
+
+
 
 document.getElementById("memberQR").src =
 "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" +
