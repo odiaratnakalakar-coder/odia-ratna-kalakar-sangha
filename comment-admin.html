@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Comment Admin</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#111;
+    color:white;
+    padding:15px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+}
+
+.header{
+    background:#ff6a00;
+    padding:18px;
+    border-radius:15px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.header h2{
+    margin-bottom:5px;
+}
+
+.login-box,
+.admin-box{
+    background:white;
+    color:#111;
+    padding:20px;
+    border-radius:15px;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    margin-top:12px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.login-btn{
+    background:#4285F4;
+    color:white;
+}
+
+.logout-btn{
+    background:#333;
+    color:white;
+}
+
+.status{
+    text-align:center;
+    margin-top:12px;
+    font-weight:bold;
+}
+
+.comment-card{
+    background:#f5f5f5;
+    color:#111;
+    padding:16px;
+    border-radius:12px;
+    margin-top:15px;
+}
+
+.row{
+    margin-bottom:9px;
+    line-height:1.5;
+}
+
+.label{
+    font-weight:bold;
+    color:#ff6a00;
+}
+
+.comment-text{
+    background:white;
+    padding:10px;
+    border-radius:8px;
+    margin-top:5px;
+    white-space:pre-wrap;
+}
+
+.delete-btn{
+    background:#d32f2f;
+    color:white;
+}
+
+.hidden{
+    display:none;
+}
+
+.empty{
+    text-align:center;
+    padding:20px;
+    color:#666;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h2>🔐 ମନ୍ତବ୍ୟ Admin</h2>
+
+        <p>
+            Private Member Details
+        </p>
+
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <div id="loginBox" class="login-box">
+
+        <h3>
+            Admin Login
+        </h3>
+
+        <p style="margin-top:10px;">
+            କେବଳ Admin account ଦ୍ୱାରା ପ୍ରବେଶ କରନ୍ତୁ।
+        </p>
+
+        <button
+            id="loginBtn"
+            class="login-btn">
+
+            🔐 Google ଦ୍ୱାରା Login
+
+        </button>
+
+        <div
+            id="loginStatus"
+            class="status">
+        </div>
+
+    </div>
+
+
+    <!-- ADMIN -->
+
+    <div
+        id="adminBox"
+        class="admin-box hidden">
+
+        <div id="adminInfo"></div>
+
+        <button
+            id="logoutBtn"
+            class="logout-btn">
+
+            🚪 Logout
+
+        </button>
+
+        <hr style="margin:20px 0;">
+
+        <h3>
+            💬 ସମସ୍ତ ମନ୍ତବ୍ୟ
+        </h3>
+
+        <div id="commentsList">
+
+            ଲୋଡ୍ ହେଉଛି...
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs,
+    query,
+    orderBy,
+    deleteDoc,
+    doc
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged,
+    signOut
+}
+from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+
+/* =====================================
+   ADMIN UID
+===================================== */
+
+const ADMIN_UID =
+"fhVIMYqbYaT4kvnnaEP3ue3DojO2";
+
+
+
+/* =====================================
+   FIREBASE AUTH
+===================================== */
+
+const auth = getAuth();
+
+const provider =
+new GoogleAuthProvider();
+
+
+
+/* =====================================
+   ELEMENTS
+===================================== */
+
+const loginBox =
+document.getElementById("loginBox");
+
+const adminBox =
+document.getElementById("adminBox");
+
+const loginBtn =
+document.getElementById("loginBtn");
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+const loginStatus =
+document.getElementById("loginStatus");
+
+const adminInfo =
+document.getElementById("adminInfo");
+
+const commentsList =
+document.getElementById("commentsList");
+
+
+
+/* =====================================
+   LOGIN
+===================================== */
+
+loginBtn.addEventListener(
+"click",
+async () => {
+
+    loginStatus.style.color =
+    "#ff6a00";
+
+    loginStatus.textContent =
+    "Login ହେଉଛି...";
+
+    try{
+
+        await signInWithPopup(
+            auth,
+            provider
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        loginStatus.style.color =
+        "red";
+
+        loginStatus.textContent =
+        "❌ Login ହୋଇପାରିଲା ନାହିଁ।";
+
+    }
+
+});
+
+
+
+/* =====================================
+   AUTH STATE
+===================================== */
+
+onAuthStateChanged(
+auth,
+async (user) => {
+
+    if(!user){
+
+        loginBox.classList.remove(
+            "hidden"
+        );
+
+        adminBox.classList.add(
+            "hidden"
+        );
+
+        return;
+    }
+
+
+
+    /* ================================
+       CHECK ADMIN UID
+    ================================= */
+
+    if(user.uid !== ADMIN_UID){
+
+        alert(
+            "❌ ଏହି account କୁ Admin access ନାହିଁ।"
+        );
+
+        await signOut(auth);
+
+        return;
+    }
+
+
+
+    /* ================================
+       ADMIN LOGIN SUCCESS
+    ================================= */
+
+    loginBox.classList.add(
+        "hidden"
+    );
+
+    adminBox.classList.remove(
+        "hidden"
+    );
+
+
+    adminInfo.innerHTML = `
+
+        <div class="row">
+            <span class="label">
+                👤 Admin:
+            </span>
+            ${escapeHTML(user.email || "")}
+        </div>
+
+    `;
+
+
+    loadPrivateComments();
+
+});
+
+
+
+/* =====================================
+   LOGOUT
+===================================== */
+
+logoutBtn.addEventListener(
+"click",
+async () => {
+
+    await signOut(auth);
+
+});
+
+
+
+/* =====================================
+   LOAD PRIVATE COMMENTS
+===================================== */
+
+async function loadPrivateComments(){
+
+    commentsList.innerHTML =
+    "ମନ୍ତବ୍ୟ ଲୋଡ୍ ହେଉଛି...";
+
+
+    try{
+
+        const q =
+        query(
+            collection(
+                db,
+                "comments_private"
+            ),
+            orderBy(
+                "createdAt",
+                "desc"
+            )
+        );
+
+
+        const snapshot =
+        await getDocs(q);
+
+
+        commentsList.innerHTML =
+        "";
+
+
+        if(snapshot.empty){
+
+            commentsList.innerHTML = `
+
+                <div class="empty">
+
+                    ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି
+                    ମନ୍ତବ୍ୟ ନାହିଁ।
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+
+        snapshot.forEach(
+        (item) => {
+
+            const data =
+            item.data();
+
+
+            let dateText =
+            "";
+
+
+            if(data.createdAt){
+
+                const date =
+                data.createdAt.toDate();
+
+
+                dateText =
+                date.toLocaleDateString(
+                    "or-IN"
+                )
+                +
+                " "
+                +
+                date.toLocaleTimeString(
+                    "or-IN",
+                    {
+                        hour:"2-digit",
+                        minute:"2-digit"
+                    }
+                );
+
+            }
+
+
+
+            const card =
+            document.createElement(
+                "div"
+            );
+
+
+            card.className =
+            "comment-card";
+
+
+            card.innerHTML = `
+
+                <div class="row">
+
+                    <span class="label">
+                        👤 ନାମ:
+                    </span>
+
+                    ${escapeHTML(
+                        data.name || ""
+                    )}
+
+                </div>
+
+
+                <div class="row">
+
+                    <span class="label">
+                        📱 Mobile:
+                    </span>
+
+                    ${escapeHTML(
+                        data.mobile || ""
+                    )}
+
+                </div>
+
+
+                <div class="row">
+
+                    <span class="label">
+                        💬 ମନ୍ତବ୍ୟ:
+                    </span>
+
+                    <div class="comment-text">
+
+                        ${escapeHTML(
+                            data.comment || ""
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <span class="label">
+                        🗓️ Date:
+                    </span>
+
+                    ${dateText}
+
+                </div>
+
+
+                <button
+                    class="delete-btn">
+
+                    🗑️ Delete
+
+                </button>
+
+            `;
+
+
+
+            const deleteBtn =
+            card.querySelector(
+                ".delete-btn"
+            );
+
+
+            deleteBtn.addEventListener(
+            "click",
+            async () => {
+
+                const ok =
+                confirm(
+                    "ଏହି ମନ୍ତବ୍ୟ Delete କରିବେ କି?"
+                );
+
+
+                if(!ok) return;
+
+
+                try{
+
+                    await deleteDoc(
+                        doc(
+                            db,
+                            "comments_private",
+                            item.id
+                        )
+                    );
+
+
+                    /*
+                     * Public comment ମଧ୍ୟ
+                     * ପରେ delete କରିବା ପାଇଁ
+                     * ଆମକୁ matching ID ରଖିବାକୁ ପଡ଼ିବ।
+                     *
+                     * ଏବେ private data delete
+                     * ହେବ।
+                     */
+
+
+                    card.remove();
+
+
+                }catch(error){
+
+                    console.error(error);
+
+                    alert(
+                        "❌ Delete ହୋଇପାରିଲା ନାହିଁ।"
+                    );
+
+                }
+
+            });
+
+
+            commentsList.appendChild(
+                card
+            );
+
+        });
+
+
+    }catch(error){
+
+        console.error(error);
+
+        commentsList.innerHTML = `
+
+            <div class="empty">
+
+                ❌ Data ଲୋଡ୍
+                ହୋଇପାରିଲା ନାହିଁ।
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =====================================
+   SECURITY
+===================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+</script>
+
+</body>
+
+</html>
