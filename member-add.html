@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Member Add / Edit</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#111;
+    color:white;
+    padding:15px;
+}
+
+.container{
+    max-width:600px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    color:#ffcc00;
+    margin-bottom:20px;
+}
+
+.box{
+    background:#222;
+    padding:18px;
+    border-radius:12px;
+    border:2px solid #c40000;
+}
+
+label{
+    display:block;
+    margin-top:12px;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:11px;
+    border:none;
+    border-radius:7px;
+    font-size:16px;
+}
+
+textarea{
+    resize:vertical;
+}
+
+.searchBtn,
+.saveBtn,
+.backBtn{
+    width:100%;
+    padding:12px;
+    margin-top:12px;
+    border:none;
+    border-radius:8px;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.searchBtn{
+    background:#0066ff;
+}
+
+.saveBtn{
+    background:#008f08;
+}
+
+.backBtn{
+    background:#555;
+}
+
+/* ================= PHOTO ================= */
+
+.photoBox{
+    margin-top:10px;
+    text-align:center;
+}
+
+.photoFrame{
+    width:155px;
+    height:160px;
+
+    margin:10px auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#f2f2f2;
+
+    border:2px solid #c40000;
+    border-radius:8px;
+
+    overflow:hidden;
+}
+
+.photoFrame img{
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+    object-position:center;
+
+    display:block;
+}
+
+.note{
+    color:#aaa;
+    font-size:13px;
+    margin-top:5px;
+}
+
+.status{
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+hr{
+    margin:20px 0;
+    border:none;
+    border-top:1px solid #555;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>
+👥 Member Add / Edit
+</h1>
+
+
+<div class="box">
+
+
+<!-- ================= SEARCH ================= -->
+
+<label>
+🔎 Member ID / Mobile ଖୋଜନ୍ତୁ
+</label>
+
+
+<input
+    type="text"
+    id="search"
+    placeholder="ଉଦାହରଣ: ORKS0228"
+>
+
+
+<button
+    class="searchBtn"
+    id="searchBtn"
+>
+🔍 Search Member
+</button>
+
+
+<hr>
+
+
+<!-- ================= MEMBER ID ================= -->
+
+<label>
+🪪 Member ID
+</label>
+
+
+<input
+    type="text"
+    id="memberId"
+    readonly
+>
+
+
+<!-- ================= NAME ================= -->
+
+<label>
+👤 ପୂର୍ଣ୍ଣ ନାମ
+</label>
+
+
+<input
+    type="text"
+    id="name"
+>
+
+
+<!-- ================= FATHER ================= -->
+
+<label>
+👨 ପିତାଙ୍କ ନାମ
+</label>
+
+
+<input
+    type="text"
+    id="father"
+>
+
+
+<!-- ================= DOB ================= -->
+
+<label>
+🎂 ଜନ୍ମ ତାରିଖ
+</label>
+
+
+<input
+    type="text"
+    id="dob"
+    placeholder="DD/MM/YYYY"
+>
+
+
+<!-- ================= MOBILE ================= -->
+
+<label>
+📱 ମୋବାଇଲ୍
+</label>
+
+
+<input
+    type="tel"
+    id="mobile"
+>
+
+
+<!-- ================= ADDRESS ================= -->
+
+<label>
+📍 ଠିକଣା
+</label>
+
+
+<textarea
+    id="address"
+    rows="3"
+></textarea>
+
+
+<!-- ================= PHOTO ================= -->
+
+<label>
+📷 Passport Size Photo
+</label>
+
+
+<input
+    type="file"
+    id="photo"
+    accept="image/*"
+>
+
+
+<div class="photoBox">
+
+
+    <div class="photoFrame">
+
+
+        <img
+            id="photoPreview"
+            src="logo.png"
+            alt="Member Photo"
+        >
+
+
+    </div>
+
+
+    <div class="note">
+
+        📌 Passport-size photo
+        <br>
+        Photo ପୁରା ଦେଖାଯିବ — Crop ହେବ ନାହିଁ
+
+    </div>
+
+
+</div>
+
+
+<!-- ================= SAVE ================= -->
+
+<button
+    class="saveBtn"
+    id="saveBtn"
+>
+💾 Save Changes
+</button>
+
+
+<!-- ================= BACK ================= -->
+
+<button
+    class="backBtn"
+    onclick="history.back()"
+>
+← Back
+</button>
+
+
+<div
+    id="status"
+    class="status"
+></div>
+
+
+</div>
+
+
+</div>
+
+
+<!-- ================= FIREBASE ================= -->
+
+<script type="module">
+
+
+import { db } from "./firebase.js";
+
+
+import {
+
+    collection,
+    query,
+    where,
+    getDocs,
+    doc,
+    updateDoc
+
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* ================= VARIABLES ================= */
+
+
+let currentDocId = "";
+
+let oldPhotoUrl = "";
+
+
+/* ================= ELEMENTS ================= */
+
+
+const search =
+document.getElementById("search");
+
+
+const searchBtn =
+document.getElementById("searchBtn");
+
+
+const memberId =
+document.getElementById("memberId");
+
+
+const name =
+document.getElementById("name");
+
+
+const father =
+document.getElementById("father");
+
+
+const dob =
+document.getElementById("dob");
+
+
+const mobile =
+document.getElementById("mobile");
+
+
+const address =
+document.getElementById("address");
+
+
+const photo =
+document.getElementById("photo");
+
+
+const photoPreview =
+document.getElementById("photoPreview");
+
+
+const statusBox =
+document.getElementById("status");
+
+
+/* ================= SEARCH MEMBER ================= */
+
+
+searchBtn.onclick =
+async function(){
+
+
+    const value =
+    search.value.trim();
+
+
+    if(!value){
+
+        alert(
+            "Member ID କିମ୍ବା Mobile ଦିଅନ୍ତୁ"
+        );
+
+        return;
+
+    }
+
+
+    statusBox.textContent =
+    "🔎 Searching...";
+
+
+    try{
+
+
+        let snap;
+
+
+        /* ================= MEMBER ID ================= */
+
+
+        const q1 =
+        query(
+            collection(db,"members"),
+            where(
+                "memberId",
+                "==",
+                value
+            )
+        );
+
+
+        snap =
+        await getDocs(q1);
+
+
+        /* ================= MOBILE ================= */
+
+
+        if(snap.empty){
+
+
+            const q2 =
+            query(
+                collection(db,"members"),
+                where(
+                    "mobile",
+                    "==",
+                    value
+                )
+            );
+
+
+            snap =
+            await getDocs(q2);
+
+
+        }
+
+
+        /* ================= NOT FOUND ================= */
+
+
+        if(snap.empty){
+
+
+            statusBox.textContent =
+            "❌ Member ମିଳିଲା ନାହିଁ";
+
+
+            return;
+
+        }
+
+
+        /* ================= GET MEMBER ================= */
+
+
+        const memberDoc =
+        snap.docs[0];
+
+
+        currentDocId =
+        memberDoc.id;
+
+
+        const data =
+        memberDoc.data();
+
+
+        /* ================= FILL DATA ================= */
+
+
+        memberId.value =
+        data.memberId || "";
+
+
+        name.value =
+        data.name || "";
+
+
+        father.value =
+        data.father || "";
+
+
+        dob.value =
+        data.dob || "";
+
+
+        mobile.value =
+        data.mobile || "";
+
+
+        address.value =
+        data.address || "";
+
+
+        /* ================= OLD PHOTO ================= */
+
+
+        oldPhotoUrl =
+        data.photoUrl || "";
+
+
+        photoPreview.src =
+        oldPhotoUrl || "logo.png";
+
+
+        statusBox.textContent =
+        "✅ Member loaded";
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        statusBox.textContent =
+        "❌ Error: " +
+        error.message;
+
+
+    }
+
+
+};
+
+
+/* ================= PHOTO PREVIEW ================= */
+
+
+photo.addEventListener(
+"change",
+function(){
+
+
+    const file =
+    this.files[0];
+
+
+    if(!file){
+
+        return;
+
+    }
+
+
+    /* IMAGE CHECK */
+
+
+    if(!file.type.startsWith("image/")){
+
+
+        alert(
+            "ଦୟାକରି Photo file ବାଛନ୍ତୁ"
+        );
+
+
+        this.value = "";
+
+        return;
+
+    }
+
+
+    /* FILE SIZE CHECK */
+
+
+    if(file.size > 10 * 1024 * 1024){
+
+
+        alert(
+            "Photo size 10MB ଠାରୁ କମ୍ ହେବା ଦରକାର"
+        );
+
+
+        this.value = "";
+
+        return;
+
+    }
+
+
+    const reader =
+    new FileReader();
+
+
+    reader.onload =
+    function(e){
+
+
+        photoPreview.src =
+        e.target.result;
+
+
+    };
+
+
+    reader.readAsDataURL(file);
+
+
+});
+
+
+/* ================= SAVE ================= */
+
+
+document
+.getElementById("saveBtn")
+.onclick =
+async function(){
+
+
+    if(!currentDocId){
+
+
+        alert(
+            "ପ୍ରଥମେ Member Search କରନ୍ତୁ"
+        );
+
+
+        return;
+
+    }
+
+
+    try{
+
+
+        statusBox.textContent =
+        "💾 Saving...";
+
+
+        /* ================= PHOTO URL ================= */
+
+
+        let photoUrl =
+        oldPhotoUrl;
+
+
+        /* ================= NEW PHOTO ================= */
+
+
+        const file =
+        photo.files[0];
+
+
+        if(file){
+
+
+            const formData =
+            new FormData();
+
+
+            formData.append(
+                "file",
+                file
+            );
+
+
+            formData.append(
+                "upload_preset",
+                "odiaratan2026"
+            );
+
+
+            /* ================= CLOUDINARY ================= */
+
+
+            const response =
+            await fetch(
+
+                "https://api.cloudinary.com/v1_1/y8toswrt/image/upload",
+
+                {
+
+                    method:"POST",
+
+                    body:formData
+
+                }
+
+            );
+
+
+            const result =
+            await response.json();
+
+
+            if(!result.secure_url){
+
+
+                throw new Error(
+                    "Photo upload failed"
+                );
+
+
+            }
+
+
+            photoUrl =
+            result.secure_url;
+
+
+        }
+
+
+        /* ================= FIRESTORE UPDATE ================= */
+
+
+        await updateDoc(
+
+            doc(
+                db,
+                "members",
+                currentDocId
+            ),
+
+            {
+
+
+                name:
+                name.value.trim(),
+
+
+                father:
+                father.value.trim(),
+
+
+                dob:
+                dob.value.trim(),
+
+
+                mobile:
+                mobile.value.trim(),
+
+
+                address:
+                address.value.trim(),
+
+
+                photoUrl:
+                photoUrl
+
+
+            }
+
+        );
+
+
+        /* ================= SUCCESS ================= */
+
+
+        oldPhotoUrl =
+        photoUrl;
+
+
+        statusBox.textContent =
+        "✅ Member Successfully Updated";
+
+
+        alert(
+            "✅ Member data ଓ photo update ହୋଇଛି"
+        );
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(error);
+
+
+        statusBox.textContent =
+        "❌ Error: " +
+        error.message;
+
+
+        alert(
+            "Error: " +
+            error.message
+        );
+
+
+    }
+
+
+};
+
+
+</script>
+
+
+</body>
+
+</html>
