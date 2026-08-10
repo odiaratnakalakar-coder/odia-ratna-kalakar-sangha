@@ -153,12 +153,24 @@ body{
     margin:4px 0 3px;
 }
 
+/* IMPORTANT:
+   Photo crop ହେବ ନାହିଁ
+*/
+
 .photo img{
     width:29mm;
     height:32mm;
-    object-fit:cover;
+
+    object-fit:contain;
+    object-position:center;
+
+    background:#f2f2f2;
+
     border:1px solid #b30000;
     border-radius:3mm;
+
+    display:block;
+    margin:auto;
 }
 
 /* ================= DETAILS ================= */
@@ -358,7 +370,6 @@ body{
 
 <div id="cardPage">
 
-
 <div class="card">
 
     <!-- HEADER -->
@@ -386,7 +397,7 @@ body{
 
         <img
             id="photo"
-            src=""
+            src="logo.png"
             alt="Member Photo"
         >
 
@@ -871,7 +882,9 @@ async function loadMember(id){
                 data.address || "-";
 
 
+        /* ================================================= */
         /* PHOTO */
+        /* ================================================= */
 
         const photo =
             document.getElementById("photo");
@@ -879,14 +892,29 @@ async function loadMember(id){
 
         const photoURL =
             data.photoUrl ||
+            data.photoURL ||
+            data.imageUrl ||
             data.photo ||
             data.image ||
+            data.profilePhoto ||
+            data.profileImage ||
             "";
 
 
         if(photoURL){
 
             photo.src = photoURL;
+
+            photo.onerror = function(){
+
+                console.warn(
+                    "Photo load failed:",
+                    photoURL
+                );
+
+                this.src = "logo.png";
+
+            };
 
         }
         else{
