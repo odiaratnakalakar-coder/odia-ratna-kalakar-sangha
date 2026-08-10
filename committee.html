@@ -161,7 +161,15 @@ background:#d40000;
 .whatsappBtn{
 background:#25D366;
 }
+.deleteBtn{
+background:#8b0000;
+border:2px solid #ff0000;
+cursor:pointer;
+}
 
+.deleteBtn:hover{
+background:#ff0000;
+}
 .loading{
 text-align:center;
 color:#aaa;
@@ -268,7 +276,7 @@ import {
 collection,
 getDocs,
 addDoc,
-serverTimestamp
+serverTimestamp,
   deleteDoc,
 doc
 }
@@ -646,7 +654,63 @@ error.message
 }
 
 };
+/* ================= DELETE MEMBER ================= */
 
+window.deleteMember =
+async function(memberId){
+
+const pass =
+prompt(
+"Admin Password ଦିଅନ୍ତୁ"
+);
+
+if(pass === null){
+return;
+}
+
+if(pass !== "2026@"){
+
+alert(
+"❌ Wrong Password!"
+);
+
+return;
+}
+
+const confirmDelete =
+confirm(
+"⚠️ ଏହି Committee Member କୁ Delete କରିବେ କି?"
+);
+
+if(!confirmDelete){
+return;
+}
+
+try{
+
+await deleteDoc(
+doc(db,"Committee",memberId)
+);
+
+alert(
+"✅ Committee Member Delete ହୋଇଗଲା!"
+);
+
+loadMembers();
+
+}
+catch(error){
+
+console.error(error);
+
+alert(
+"❌ Delete ହେଲା ନାହିଁ\n\n" +
+error.message
+);
+
+}
+
+};
 
 /* ================= ESCAPE HTML ================= */
 
