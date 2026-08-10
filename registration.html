@@ -36,8 +36,45 @@
 <label>ଠିକଣା</label>
 <textarea id="address" rows="3" required></textarea>
 
-<label>ପାସପୋର୍ଟ ସାଇଜ ଫଟୋ</label>
-<input type="file" id="photo" accept="image/*" required>
+<label>📷 ପାସପୋର୍ଟ ସାଇଜ ଫଟୋ</label>
+
+<input
+    type="file"
+    id="photo"
+    accept="image/*"
+    required
+>
+
+<div
+    id="photoPreviewBox"
+    style="
+        display:none;
+        margin-top:12px;
+        text-align:center;
+    "
+>
+
+    <p style="
+        color:#b30000;
+        font-weight:bold;
+        margin-bottom:8px;
+    ">
+        👤 Photo Preview
+    </p>
+
+    <img
+        id="photoPreview"
+        style="
+            width:155px;
+            height:160px;
+            object-fit:cover;
+            border:2px solid #b30000;
+            border-radius:8px;
+        "
+    >
+
+</div>
+
 <h3 style="color:red;">💳 Membership Fee : ₹1200</h3>
 
 <p>ନିମ୍ନରେ ଥିବା QR Code ସ୍କାନ୍ କରି ₹1200 ପେମେଣ୍ଟ କରନ୍ତୁ।</p>
