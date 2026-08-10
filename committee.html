@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="or">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Committee Members</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -22,6 +26,7 @@ h2{
 text-align:center;
 color:gold;
 padding:20px;
+line-height:1.5;
 }
 
 .addBtn{
@@ -34,7 +39,70 @@ border:none;
 border-radius:8px;
 font-size:16px;
 cursor:pointer;
+font-weight:bold;
 }
+
+.addBtn:hover{
+background:#ff0000;
+}
+
+
+/* ================= FORM ================= */
+
+#addForm{
+display:none;
+max-width:500px;
+margin:20px auto;
+padding:20px;
+background:#222;
+border:2px solid gold;
+border-radius:15px;
+}
+
+#addForm h3{
+text-align:center;
+color:gold;
+margin-bottom:15px;
+}
+
+#addForm input,
+#addForm select{
+width:100%;
+padding:12px;
+margin:7px 0;
+border:none;
+border-radius:7px;
+font-size:16px;
+}
+
+.formBtn{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+.saveBtn,
+.cancelBtn{
+flex:1;
+padding:12px;
+border:none;
+border-radius:8px;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.saveBtn{
+background:#00a83b;
+}
+
+.cancelBtn{
+background:#d40000;
+}
+
+
+/* ================= MEMBERS ================= */
 
 .container{
 max-width:1200px;
@@ -85,78 +153,535 @@ color:#fff;
 margin:5px;
 font-weight:bold;
 }
-   </style>
+
+.callBtn{
+background:#d40000;
+}
+
+.whatsappBtn{
+background:#25D366;
+}
+
+.loading{
+text-align:center;
+color:#aaa;
+padding:20px;
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-<h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ<br>Committee Members</h2>
 
-<button class="addBtn" onclick="adminLogin()">➕ Add Committee Member</button>
+<h2>
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ<br>
+Committee Members
+</h2>
 
-<div class="container" id="committeeList"></div>
+
+<button
+class="addBtn"
+onclick="adminLogin()"
+>
+➕ Add Committee Member
+</button>
+
+
+<!-- ================= ADD FORM ================= -->
+
+<div id="addForm">
+
+<h3>
+➕ Add Committee Member
+</h3>
+
+<input
+type="text"
+id="memberName"
+placeholder="👤 Member Name"
+>
+
+<input
+type="text"
+id="memberPost"
+placeholder="🏅 Post"
+>
+
+<input
+type="tel"
+id="memberMobile"
+placeholder="📱 Mobile Number"
+>
+
+<input
+type="text"
+id="memberPhoto"
+placeholder="🖼️ Photo URL"
+>
+
+<div class="formBtn">
+
+<button
+class="saveBtn"
+onclick="addMember()"
+>
+💾 Add Member
+</button>
+
+<button
+class="cancelBtn"
+onclick="closeForm()"
+>
+❌ Cancel
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= MEMBER LIST ================= -->
+
+<div
+class="container"
+id="committeeList"
+>
+
+<div class="loading">
+Committee Members Loading...
+</div>
+
+</div>
+
 
 <script type="module">
+
+
+/* ================= FIREBASE ================= */
 
 import { db } from "./firebase.js";
 
 import {
 collection,
-getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+getDocs,
+addDoc,
+serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const list = document.getElementById("committeeList");
 
-const snapshot = await getDocs(collection(db,"Committee"));
+const list =
+document.getElementById(
+"committeeList"
+);
+
+
+/* ================= ADMIN LOGIN ================= */
+
+window.adminLogin =
+function(){
+
+const pass =
+prompt(
+"Admin Password ଦିଅନ୍ତୁ"
+);
+
+
+if(pass === "12345"){
+
+document
+.getElementById("addForm")
+.style.display =
+"block";
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+else if(pass !== null){
+
+alert(
+"Wrong Password!"
+);
+
+}
+
+};
+
+
+/* ================= CLOSE FORM ================= */
+
+window.closeForm =
+function(){
+
+document
+.getElementById("addForm")
+.style.display =
+"none";
+
+};
+
+
+/* ================= LOAD MEMBERS ================= */
+
+async function loadMembers(){
+
+try{
+
+list.innerHTML = `
+<div class="loading">
+Committee Members Loading...
+</div>
+`;
+
+
+const snapshot =
+await getDocs(
+collection(db,"Committee")
+);
+
 
 const members = [];
 
-snapshot.forEach((doc)=>{
-members.push(doc.data());
+
+snapshot.forEach(
+(doc)=>{
+
+members.push({
+id:doc.id,
+...doc.data()
 });
 
-members.sort((a,b)=>{
-if((a.post||"").toLowerCase().includes("president")) return -1;
-if((b.post||"").toLowerCase().includes("president")) return 1;
+});
+
+
+/* PRESIDENT FIRST */
+
+members.sort(
+(a,b)=>{
+
+const postA =
+(a.post || "")
+.toLowerCase();
+
+const postB =
+(b.post || "")
+.toLowerCase();
+
+
+if(
+postA.includes("president") &&
+!postB.includes("president")
+){
+return -1;
+}
+
+
+if(
+!postA.includes("president") &&
+postB.includes("president")
+){
+return 1;
+}
+
+
 return 0;
+
 });
 
-members.forEach((data)=>{
 
-const mobile = data.mobile || "";
+list.innerHTML = "";
 
-list.innerHTML += `
-<div class="card">
 
-<img src="${data.photoUrl || 'logo.png'}"
-onerror="this.src='logo.png'">
+/* NO MEMBERS */
 
-<div class="name">${data.name || ""}</div>
+if(members.length === 0){
 
-<div class="post">🏅 ${data.post || ""}</div>
-
-<div class="mobile">📞 ${mobile}</div>
-
-<a href="tel:${mobile}" class="btn" style="background:#d40000;">📞 Call</a>
-
-<a href="https://wa.me/91${mobile}" target="_blank" class="btn" style="background:#25D366;">💬 WhatsApp</a>
-
+list.innerHTML = `
+<div class="loading">
+କୌଣସି Committee Member ନାହାନ୍ତି
 </div>
 `;
+
+return;
+
+}
+
+
+/* SHOW MEMBERS */
+
+members.forEach(
+(data)=>{
+
+const mobile =
+data.mobile || "";
+
+
+const photo =
+data.photoUrl ||
+"logo.png";
+
+
+const card =
+document.createElement(
+"div"
+);
+
+
+card.className =
+"card";
+
+
+card.innerHTML = `
+
+<img
+src="${escapeHTML(photo)}"
+onerror="this.src='logo.png'"
+>
+
+<div class="name">
+${escapeHTML(data.name || "")}
+</div>
+
+<div class="post">
+🏅 ${escapeHTML(data.post || "")}
+</div>
+
+<div class="mobile">
+📞 ${escapeHTML(mobile)}
+</div>
+
+<a
+href="tel:${escapeHTML(mobile)}"
+class="btn callBtn"
+>
+📞 Call
+</a>
+
+<a
+href="https://wa.me/91${escapeHTML(mobile)}"
+target="_blank"
+class="btn whatsappBtn"
+>
+💬 WhatsApp
+</a>
+
+`;
+
+
+list.appendChild(card);
+
 });
-   window.adminLogin = function(){
 
-const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
+}
+catch(error){
 
-if(pass === "12345"){
-    window.location.href = "admin.html";
-}else{
-    alert("Wrong Password!");
+console.error(error);
+
+list.innerHTML = `
+<div class="loading">
+❌ Members load ହେଲା ନାହିଁ
+<br><br>
+${escapeHTML(error.message)}
+</div>
+`;
+
 }
 
 }
+
+
+/* ================= ADD MEMBER ================= */
+
+window.addMember =
+async function(){
+
+const name =
+document
+.getElementById("memberName")
+.value
+.trim();
+
+
+const post =
+document
+.getElementById("memberPost")
+.value
+.trim();
+
+
+const mobile =
+document
+.getElementById("memberMobile")
+.value
+.trim();
+
+
+const photoUrl =
+document
+.getElementById("memberPhoto")
+.value
+.trim();
+
+
+/* VALIDATION */
+
+if(!name){
+
+alert(
+"Member Name ଦିଅନ୍ତୁ"
+);
+
+return;
+
+}
+
+
+if(!post){
+
+alert(
+"Post ଦିଅନ୍ତୁ"
+);
+
+return;
+
+}
+
+
+if(!mobile){
+
+alert(
+"Mobile Number ଦିଅନ୍ତୁ"
+);
+
+return;
+
+}
+
+
+try{
+
+await addDoc(
+collection(db,"Committee"),
+{
+
+name:name,
+
+post:post,
+
+mobile:mobile,
+
+photoUrl:
+photoUrl || "logo.png",
+
+createdAt:
+serverTimestamp()
+
+}
+);
+
+
+alert(
+"✅ Committee Member Successfully Added!"
+);
+
+
+/* CLEAR FORM */
+
+document
+.getElementById("memberName")
+.value = "";
+
+
+document
+.getElementById("memberPost")
+.value = "";
+
+
+document
+.getElementById("memberMobile")
+.value = "";
+
+
+document
+.getElementById("memberPhoto")
+.value = "";
+
+
+/* CLOSE FORM */
+
+document
+.getElementById("addForm")
+.style.display =
+"none";
+
+
+/* RELOAD */
+
+loadMembers();
+
+
+}
+catch(error){
+
+console.error(error);
+
+alert(
+"❌ Member Add ହେଲା ନାହିଁ\n\n" +
+error.message
+);
+
+}
+
+};
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHTML(value){
+
+return String(value)
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
+
+}
+
+
+/* ================= START ================= */
+
+loadMembers();
+
 
 </script>
 
 </body>
+
 </html>
