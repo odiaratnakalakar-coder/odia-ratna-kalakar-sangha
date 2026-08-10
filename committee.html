@@ -269,6 +269,8 @@ collection,
 getDocs,
 addDoc,
 serverTimestamp
+  deleteDoc,
+doc
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -290,7 +292,7 @@ prompt(
 );
 
 
-if(pass === "12345"){
+if(pass === "2026@"){
 
 document
 .getElementById("addForm")
@@ -470,7 +472,12 @@ class="btn whatsappBtn"
 >
 💬 WhatsApp
 </a>
-
+<button
+class="btn deleteBtn"
+onclick="deleteMember('${data.id}')"
+>
+🗑️ Delete
+</button>
 `;
 
 
