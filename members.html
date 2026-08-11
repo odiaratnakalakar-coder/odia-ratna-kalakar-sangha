@@ -158,9 +158,6 @@ margin-top:10px;
 </style>
 </head>
 
-    
-    
-
 <body>
 
 <h1>👥 Members Admin</h1>
@@ -184,7 +181,21 @@ placeholder="ସଦସ୍ୟ ଖୋଜନ୍ତୁ...">
 <p><b>Member ID :</b> <span id="pId"></span></p>
 
 <p><b>Father :</b> <span id="pFather"></span></p>
+
 <p><b>🎂 ଜନ୍ମ ତାରିଖ :</b> <span id="pDob"></span></p>
+
+<!-- ================= JOIN DATE & TIME ================= -->
+
+<p>
+<b>📅 Join Date :</b>
+<span id="pJoinDate"></span>
+</p>
+
+<p>
+<b>🕐 Join Time :</b>
+<span id="pJoinTime"></span>
+</p>
+
 <p><b>Mobile :</b> <span id="pMobile"></span></p>
 
 <p><b>Address :</b> <span id="pAddress"></span></p>
@@ -196,15 +207,22 @@ placeholder="ସଦସ୍ୟ ଖୋଜନ୍ତୁ...">
 <a id="callBtn" class="action-btn call">📞 Call</a>
 
 <a id="waBtn" class="action-btn wa">💬 WhatsApp</a>
+
 <div style="margin-top:15px;">
   <img id="memberQR"
        style="width:170px;height:170px;border:1px solid #ccc;border-radius:10px;">
 </div>
+
 <br>
-<a id="pdfBtn" class="action-btn" style="background:#ff9800;color:white;">
+
+<a id="pdfBtn"
+   class="action-btn"
+   style="background:#ff9800;color:white;">
 📄 Download ID Card
 </a>
-<button id="cashPaidBtn"
+
+<button
+id="cashPaidBtn"
 style="background:#0a8f08;color:#fff;padding:10px 15px;border:none;border-radius:8px;margin:8px;cursor:pointer;">
 💵 Cash Paid
 </button>
@@ -216,17 +234,11 @@ class="close"
 onclick="document.getElementById('popup').style.display='none'">
 Close
 </button>
-  
-
-
-
-
-
-
-
 
 </div>
 </div>
+
+
 <script type="module">
 
 import { db } from "./firebase.js";
@@ -235,222 +247,545 @@ import {
 collection,
 getDocs,
 deleteDoc,
-  updateDoc,
+updateDoc,
 doc,
 getDoc,
 addDoc,
 serverTimestamp
-
-
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const list = document.getElementById("list");
-const total = document.getElementById("total");
-const search = document.getElementById("search");
+
+const list =
+document.getElementById("list");
+
+const total =
+document.getElementById("total");
+
+const search =
+document.getElementById("search");
+
 
 let members = [];
+
+
+/* ================================================= */
+/* LOAD MEMBERS */
+/* ================================================= */
 
 async function loadMembers(){
 
 list.innerHTML="Loading...";
 
-const snap = await getDocs(collection(db,"members"));
+const snap =
+await getDocs(
+collection(db,"members")
+);
 
 members=[];
 
 snap.forEach(d=>{
+
 members.push({
+
 docId:d.id,
+
 ...d.data()
+
 });
+
 });
+
 
 members.sort((a,b)=>
-(a.memberId||"").localeCompare(b.memberId||"")
+
+(a.memberId||"").localeCompare(
+(b.memberId||"")
+)
+
 );
 
-total.innerHTML="ମୋଟ ସଦସ୍ୟ : "+members.length;
+
+total.innerHTML =
+"ମୋଟ ସଦସ୍ୟ : " +
+members.length;
+
 
 showMembers(members);
 
 }
 
+
+/* ================================================= */
+/* SHOW MEMBERS */
+/* ================================================= */
+
 function showMembers(data){
 
 list.innerHTML="";
 
+
 data.forEach(member=>{
 
-const div=document.createElement("div");
+
+const div =
+document.createElement("div");
+
 
 div.className="member";
+
 
 div.innerHTML=`
 
 <div class="left">
 
-<img src="${member.photoUrl||'https://via.placeholder.com/100'}">
+<img
+src="${member.photoUrl||'https://via.placeholder.com/100'}">
 
 <div>
 
-<div class="name">${member.name||''}</div>
+<div class="name">
+${member.name||''}
+</div>
 
-<div class="mobile">${member.mobile||''}</div>
-
+<div class="mobile">
+${member.mobile||''}
 </div>
 
 </div>
 
+</div>
+
 <div>
 
-<button class="view">View</button>
+<button class="view">
+View
+</button>
 
-<button class="delete">Delete</button>
+<button class="delete">
+Delete
+</button>
 
 </div>
 
 `;
 
+
+/* ================================================= */
+/* VIEW BUTTON */
+/* ================================================= */
+
 div.querySelector(".view").onclick=()=>{
 
-document.getElementById("popup").style.display="flex";
 
-document.getElementById("pPhoto").src=
-member.photoUrl||"https://via.placeholder.com/100";
+document.getElementById("popup")
+.style.display="flex";
 
-document.getElementById("pName").textContent=
-member.name||"";
 
-document.getElementById("pId").textContent=
-member.memberId||"";
+document.getElementById("pPhoto").src =
+member.photoUrl ||
+"https://via.placeholder.com/100";
 
-document.getElementById("pFather").textContent=
-member.father||"";
+
+document.getElementById("pName").textContent =
+member.name || "";
+
+
+document.getElementById("pId").textContent =
+member.memberId || "";
+
+
+document.getElementById("pFather").textContent =
+member.father || "";
+
+
 document.getElementById("pDob").textContent =
 member.dob || "";
-document.getElementById("pMobile").textContent=
-member.mobile||"";
 
-document.getElementById("pAddress").textContent=
-member.address||"";
+
+/* ================================================= */
+/* JOIN DATE & TIME */
+/* ================================================= */
+
+let joinDate = "Not Available";
+
+let joinTime = "Not Available";
+
+
+if(member.createdAt){
+
+    let date;
+
+    try{
+
+        /* Firestore Timestamp */
+
+        if(
+            typeof member.createdAt.toDate === "function"
+        ){
+
+            date =
+            member.createdAt.toDate();
+
+        }
+
+        /* JavaScript Date / other date */
+
+        else{
+
+            date =
+            new Date(member.createdAt);
+
+        }
+
+
+        if(
+            date &&
+            !isNaN(date.getTime())
+        ){
+
+            joinDate =
+            date.toLocaleDateString(
+                "en-IN",
+                {
+                    day:"2-digit",
+                    month:"2-digit",
+                    year:"numeric"
+                }
+            );
+
+
+            joinTime =
+            date.toLocaleTimeString(
+                "en-IN",
+                {
+                    hour:"2-digit",
+                    minute:"2-digit",
+                    second:"2-digit",
+                    hour12:true
+                }
+            );
+
+        }
+
+    }
+    catch(error){
+
+        console.error(
+            "Join Date Error:",
+            error
+        );
+
+    }
+
+}
+
+
+document.getElementById("pJoinDate")
+.textContent =
+joinDate;
+
+
+document.getElementById("pJoinTime")
+.textContent =
+joinTime;
+
+
+/* ================================================= */
+/* MOBILE */
+/* ================================================= */
+
+document.getElementById("pMobile")
+.textContent =
+member.mobile || "";
+
+
+/* ================================================= */
+/* ADDRESS */
+/* ================================================= */
+
+document.getElementById("pAddress")
+.textContent =
+member.address || "";
+
+
+/* ================================================= */
+/* PAYMENT */
+/* ================================================= */
 
 document.getElementById("pPaid").innerHTML =
 member.paid
+
 ? "<span style='color:green;font-weight:bold'>✅ PAID</span>"
+
 : "<span style='color:red;font-weight:bold'>❌ UNPAID</span>";
 
 
-document.getElementById("pTxn").textContent=
-member.txnId||"";
+/* ================================================= */
+/* TRANSACTION ID */
+/* ================================================= */
 
-const mobile = String(member.mobile || "").replace(/\D/g, "");
+document.getElementById("pTxn").textContent =
+member.txnId || "";
 
-document.getElementById("callBtn").href = "tel:" + mobile;
 
-document.getElementById("waBtn").href =
+/* ================================================= */
+/* CALL */
+/* ================================================= */
+
+const mobile =
+String(
+member.mobile || ""
+)
+.replace(/\D/g,"");
+
+
+document.getElementById("callBtn")
+.href =
+"tel:" + mobile;
+
+
+/* ================================================= */
+/* WHATSAPP */
+/* ================================================= */
+
+document.getElementById("waBtn")
+.href =
 "https://wa.me/91" + mobile;
 
+
+/* ================================================= */
+/* MEMBER QR */
+/* ================================================= */
+
 const profileUrl =
+
 window.location.origin +
-window.location.pathname.replace("members.html", "view-id.html") +
-"?id=" + member.docId;
+
+window.location.pathname.replace(
+"members.html",
+"view-id.html"
+) +
+
+"?id=" +
+
+member.docId;
 
 
+document.getElementById("memberQR")
+.src =
 
-
-document.getElementById("memberQR").src =
 "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" +
+
 encodeURIComponent(profileUrl);
-   
 
 
+/* ================================================= */
+/* ID CARD + CASH PAYMENT */
+/* ================================================= */
+
+const pdfBtn =
+document.getElementById("pdfBtn");
+
+const cashBtn =
+document.getElementById("cashPaidBtn");
 
 
+if(member.status === "approved"){
+
+    pdfBtn.style.display =
+    "inline-block";
 
 
-const pdfBtn = document.getElementById("pdfBtn");
+    if(member.paid === true){
 
-if (member.status === "approved") {
+        cashBtn.innerHTML =
+        "✅ Paid";
 
-    pdfBtn.style.display = "inline-block";
-const cashBtn = document.getElementById("cashPaidBtn");
+        cashBtn.disabled =
+        true;
 
-if (member.paid === true) {
-    cashBtn.innerHTML = "✅ Paid";
-    cashBtn.disabled = true;
-    cashBtn.style.background = "gray";
-} else {
-    cashBtn.innerHTML = "💵 Cash Paid";
-    cashBtn.disabled = false;
-    cashBtn.style.background = "green";
-}
+        cashBtn.style.background =
+        "gray";
+
+    }
+    else{
+
+        cashBtn.innerHTML =
+        "💵 Cash Paid";
+
+        cashBtn.disabled =
+        false;
+
+        cashBtn.style.background =
+        "green";
+
+    }
+
+
     pdfBtn.onclick = () => {
-        window.location.href = "idcard.html?id=" + member.docId;
+
+        window.location.href =
+        "idcard.html?id=" +
+        member.docId;
+
     };
 
-} else {
+}
+else{
 
-    pdfBtn.style.display = "none";
+    pdfBtn.style.display =
+    "none";
 
 }
-  
 
-  cashBtn.onclick = async () => {
 
-    
-    
+/* ================================================= */
+/* CASH PAID */
+/* ================================================= */
 
-  const memberRef = doc(db, "members", member.docId);
-const memberSnap = await getDoc(memberRef);
+cashBtn.onclick =
+async () => {
 
-if (memberSnap.exists() && memberSnap.data().paid === true) {
-    alert("ଏହି Member ପୂର୍ବରୁ Cash Paid ହୋଇସାରିଛି");
-    return;
-}
 
-await updateDoc(memberRef, {
-    paid: true,
-    txnId: "CASH"
-});
+    const memberRef =
+    doc(
+        db,
+        "members",
+        member.docId
+    );
 
-await addDoc(collection(db, "income"), {
-    memberId: member.memberId,
-    name: member.name,
-    mobile: member.mobile,
-    amount: 1200,
-    type: "Membership",
-    purpose: "New Membership Fee",
-    paymentMode: "Cash",
-    receiptNo: "CASH-" + Date.now(),
-    collectedBy: "Admin",
-    createdAt: serverTimestamp()
-});
 
-alert("✅ Cash Payment Saved");
-cashBtn.innerHTML = "✅ Paid";
-cashBtn.disabled = true;
-cashBtn.style.background = "gray";
-member.paid = true;
-  
+    const memberSnap =
+    await getDoc(memberRef);
 
-  loadMembers();
 
-  document.getElementById("popup").style.display = "none";
+    if(
+        memberSnap.exists() &&
+        memberSnap.data().paid === true
+    ){
+
+        alert(
+            "ଏହି Member ପୂର୍ବରୁ Cash Paid ହୋଇସାରିଛି"
+        );
+
+        return;
+
+    }
+
+
+    await updateDoc(
+        memberRef,
+        {
+            paid:true,
+            txnId:"CASH"
+        }
+    );
+
+
+    await addDoc(
+        collection(db,"income"),
+        {
+
+            memberId:
+            member.memberId,
+
+            name:
+            member.name,
+
+            mobile:
+            member.mobile,
+
+            amount:
+            1200,
+
+            type:
+            "Membership",
+
+            purpose:
+            "New Membership Fee",
+
+            paymentMode:
+            "Cash",
+
+            receiptNo:
+            "CASH-" + Date.now(),
+
+            collectedBy:
+            "Admin",
+
+            createdAt:
+            serverTimestamp()
+
+        }
+    );
+
+
+    alert(
+        "✅ Cash Payment Saved"
+    );
+
+
+    cashBtn.innerHTML =
+    "✅ Paid";
+
+
+    cashBtn.disabled =
+    true;
+
+
+    cashBtn.style.background =
+    "gray";
+
+
+    member.paid =
+    true;
+
+
+    loadMembers();
+
+
+    document.getElementById("popup")
+    .style.display =
+    "none";
+
 };
+
 };
 
-div.querySelector(".delete").onclick=async()=>{
 
-const pass=prompt("Password ଦିଅ");
+/* ================================================= */
+/* DELETE */
+/* ================================================= */
 
-if(pass!=="2026@"){
+div.querySelector(".delete").onclick =
+async () => {
+
+
+const pass =
+prompt("Password ଦିଅ");
+
+
+if(pass !== "2026@"){
+
 alert("Wrong Password");
+
 return;
+
 }
 
-if(confirm("Delete Member?")){
 
-await deleteDoc(doc(db,"members",member.docId));
+if(
+confirm("Delete Member?")
+){
+
+await deleteDoc(
+doc(
+db,
+"members",
+member.docId
+)
+);
+
 
 loadMembers();
 
@@ -458,29 +793,53 @@ loadMembers();
 
 };
 
+
 list.appendChild(div);
 
 });
 
 }
 
+
+/* ================================================= */
+/* SEARCH */
+/* ================================================= */
+
 search.oninput=()=>{
 
-const value=search.value.toLowerCase();
+const value =
+search.value.toLowerCase();
 
-const filtered=members.filter(m=>
 
-(m.name||"").toLowerCase().includes(value) ||
+const filtered =
+members.filter(m =>
 
-(m.memberId||"").toLowerCase().includes(value) ||
+(m.name||"")
+.toLowerCase()
+.includes(value)
 
-(m.mobile||"").includes(value)
+||
+
+(m.memberId||"")
+.toLowerCase()
+.includes(value)
+
+||
+
+(m.mobile||"")
+.includes(value)
 
 );
+
 
 showMembers(filtered);
 
 };
+
+
+/* ================================================= */
+/* START */
+/* ================================================= */
 
 loadMembers();
 
