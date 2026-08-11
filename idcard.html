@@ -309,26 +309,44 @@ body{
 
 /* ================= PRINT ================= */
 
-@media print{
+ @media print {
 
-    @page{
-        size:54mm 85.6mm;
-        margin:0;
+    @page {
+        size: A4 portrait;
+        margin: 0;
     }
 
     html,
-    body{
-        width:54mm;
-        height:85.6mm;
-        margin:0;
-        padding:0;
-        background:#fff;
+    body {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
     }
 
-    #memberListPage,
-    .buttonRow{
-        display:none !important;
+    #memberListPage {
+        display: none !important;
     }
+
+    
+        
+        
+    
+
+    
+    
+        
+        
+        
+        
+        
+    
+
+    
+    
+        
+    
 
     #cardPage{
         display:flex !important;
