@@ -8,7 +8,9 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>ସଦସ୍ୟ ପଞ୍ଜି | ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</title>
+<title>
+ସଦସ୍ୟ ପଞ୍ଜି | ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+</title>
 
 <style>
 
@@ -24,12 +26,13 @@ content="width=device-width, initial-scale=1.0">
 
 body{
     background:#111;
-    color:#fff;
+    color:white;
     font-family:Arial,"Noto Sans Oriya",sans-serif;
-    padding:12px;
+    padding:10px;
 }
 
 .container{
+    width:100%;
     max-width:1100px;
     margin:auto;
 }
@@ -43,72 +46,73 @@ body{
     background:#1b1b1b;
     border:1px solid #444;
     border-radius:15px;
-    padding:15px;
+    padding:14px 10px;
     text-align:center;
-    margin-bottom:12px;
+    margin-bottom:10px;
 }
 
 .logo{
-    width:85px;
-    height:85px;
+    width:82px;
+    height:82px;
     object-fit:contain;
     border-radius:50%;
-    background:#fff;
-    padding:3px;
-    margin-bottom:7px;
+    background:white;
+    padding:2px;
+    margin-bottom:5px;
 }
 
 .header h1{
     color:#ffd700;
-    font-size:25px;
+    font-size:24px;
     line-height:1.4;
 }
 
 .header h2{
-    color:#fff;
-    font-size:20px;
-    margin-top:3px;
+    color:white;
+    font-size:19px;
+    margin-top:2px;
 }
 
 .header p{
     color:#bbb;
-    margin-top:5px;
-    font-size:14px;
+    font-size:13px;
+    margin-top:4px;
 }
 
 
 /* =========================
-   CONTROL BOX
+   CONTROLS
 ========================= */
 
 .controls{
     background:#1b1b1b;
     border:1px solid #444;
-    border-radius:12px;
-    padding:10px;
+    border-radius:11px;
+    padding:9px;
 
     display:flex;
-    justify-content:center;
     align-items:center;
-    gap:7px;
+    justify-content:center;
+    gap:6px;
     flex-wrap:wrap;
 
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
 .search{
     width:240px;
-    padding:11px 13px;
+    max-width:100%;
+    padding:10px 12px;
     border:none;
-    outline:none;
     border-radius:8px;
-    font-size:15px;
+    outline:none;
+    font-size:14px;
 }
 
 button{
     border:none;
     border-radius:8px;
-    padding:10px 14px;
+    padding:10px 12px;
     font-size:14px;
     font-weight:bold;
     cursor:pointer;
@@ -116,22 +120,22 @@ button{
 
 .prev{
     background:#555;
-    color:#fff;
+    color:white;
 }
 
 .next{
     background:#087df0;
-    color:#fff;
+    color:white;
 }
 
 .print{
     background:#198754;
-    color:#fff;
+    color:white;
 }
 
 .printAll{
     background:#dc3545;
-    color:#fff;
+    color:white;
 }
 
 button:disabled{
@@ -149,18 +153,18 @@ button:disabled{
     color:#ffd700;
     font-size:16px;
     font-weight:bold;
-    margin:10px 0;
+    margin:9px 0 12px;
 }
 
 
 /* =========================
-   MEMBERS GRID
+   MEMBERS
 ========================= */
 
 .members{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:10px;
+    gap:9px;
 }
 
 
@@ -172,32 +176,30 @@ button:disabled{
     background:#202020;
     border:1px solid #555;
     border-radius:10px;
-    padding:9px;
+
+    padding:8px;
 
     display:flex;
-    gap:10px;
+    gap:9px;
 
-    min-height:130px;
-}
-
-.memberNo{
-    position:absolute;
+    min-height:125px;
 }
 
 .photo{
-    width:80px;
-    height:95px;
+    width:78px;
+    height:94px;
 
     flex-shrink:0;
 
     background:#333;
+
     border-radius:7px;
+
+    overflow:hidden;
 
     display:flex;
     align-items:center;
     justify-content:center;
-
-    overflow:hidden;
 }
 
 .photo img{
@@ -207,7 +209,7 @@ button:disabled{
 }
 
 .noPhoto{
-    font-size:32px;
+    font-size:30px;
     color:#888;
 }
 
@@ -224,28 +226,32 @@ button:disabled{
 }
 
 .details p{
-    font-size:13px;
     color:#ddd;
+    font-size:12px;
     margin:3px 0;
     line-height:1.3;
     word-break:break-word;
 }
 
 .details b{
-    color:#fff;
+    color:white;
 }
 
 
 /* =========================
-   LOADING / EMPTY
+   LOADING
 ========================= */
 
 .loading,
 .empty{
     grid-column:1/-1;
+
     text-align:center;
+
     padding:45px 10px;
+
     color:#ffd700;
+
     font-size:18px;
 }
 
@@ -273,12 +279,12 @@ button:disabled{
     }
 
     .header{
-        padding:12px 8px;
+        padding:12px 7px;
     }
 
     .logo{
-        width:70px;
-        height:70px;
+        width:75px;
+        height:75px;
     }
 
     .header h1{
@@ -317,9 +323,9 @@ button:disabled{
 }
 
 
-/* =================================================
-   PRINT
-================================================= */
+/* ==================================================
+   PRINT CURRENT PAGE
+================================================== */
 
 @media print{
 
@@ -329,34 +335,28 @@ button:disabled{
     }
 
     body{
-        background:#fff !important;
-        color:#000 !important;
+        background:white !important;
+        color:black !important;
         padding:0;
     }
 
     .container{
-        width:100%;
         max-width:none;
+        width:100%;
     }
 
-    .controls{
-        display:none !important;
-    }
-
-    .pageInfo{
-        display:none !important;
-    }
-
+    .controls,
+    .pageInfo,
     .footer{
         display:none !important;
     }
 
     .header{
-        background:#fff !important;
+        background:white !important;
         border:0;
-        border-bottom:2px solid #000;
+        border-bottom:2px solid black;
         border-radius:0;
-        padding:0 0 6px 0;
+        padding:0 0 6px;
         margin-bottom:7px;
     }
 
@@ -364,21 +364,20 @@ button:disabled{
         width:55px;
         height:55px;
         padding:0;
-        margin-bottom:2px;
     }
 
     .header h1{
-        color:#000 !important;
+        color:black !important;
         font-size:18px;
     }
 
     .header h2{
-        color:#000 !important;
+        color:black !important;
         font-size:15px;
     }
 
     .header p{
-        color:#000 !important;
+        color:black !important;
         font-size:10px;
     }
 
@@ -389,13 +388,17 @@ button:disabled{
     }
 
     .member{
-        background:#fff !important;
-        color:#000 !important;
+        background:white !important;
+        color:black !important;
+
         border:1px solid #555;
+
         border-radius:3px;
+
         padding:5px;
 
         min-height:0;
+
         height:82px;
 
         break-inside:avoid;
@@ -405,42 +408,38 @@ button:disabled{
     .photo{
         width:52px;
         height:65px;
-        background:#eee;
-        border-radius:2px;
-    }
 
-    .noPhoto{
-        font-size:22px;
-        color:#777;
+        background:#eee;
     }
 
     .details h3{
-        color:#000 !important;
+        color:black !important;
         font-size:11px;
         margin-bottom:2px;
     }
 
     .details p{
-        color:#000 !important;
+        color:black !important;
         font-size:8px;
         margin:1px 0;
         line-height:1.15;
     }
 
     .details b{
-        color:#000 !important;
+        color:black !important;
     }
 
 }
 
 
-/* =================================================
-   PRINT ALL - PAGE BREAK
-================================================= */
+/* =========================
+   PRINT ALL PAGE BREAK
+========================= */
 
-.print-all-card{
-    break-inside:avoid;
-    page-break-inside:avoid;
+.printBreak{
+    display:block;
+    break-after:page;
+    page-break-after:always;
 }
 
 </style>
@@ -454,118 +453,954 @@ button:disabled{
 <div class="container">
 
 
-    <!-- =========================
-         HEADER
-    ========================== -->
+<!-- =========================
+     HEADER
+========================= -->
 
-    <div class="header">
+<div class="header">
 
-        <img
-            src="./logo.png"
-            class="logo"
-            alt="ସଂଘ Logo"
-            onerror="this.style.display='none';"
-        >
+    <img
+        src="./logo.png"
+        class="logo"
+        alt="Logo"
+        onerror="this.style.display='none';"
+    >
 
-        <h1>
-            ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
-        </h1>
+    <h1>
+        ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+    </h1>
 
-        <h2>
-            ସୁରତ
-        </h2>
+    <h2>
+        ସୁରତ
+    </h2>
 
-        <p>
-            📖 ସଦସ୍ୟ ପଞ୍ଜି
-        </p>
+    <p>
+        📖 ସଦସ୍ୟ ପଞ୍ଜି
+    </p>
+
+</div>
+
+
+
+<!-- =========================
+     CONTROLS
+========================= -->
+
+<div class="controls">
+
+    <input
+        id="search"
+        class="search"
+        type="text"
+        placeholder="🔍 ନାମ / ମୋବାଇଲ ଖୋଜନ୍ତୁ"
+    >
+
+
+    <button
+        id="prevBtn"
+        class="prev"
+        onclick="previousPage()">
+
+        ⬅️ ପୂର୍ବ
+
+    </button>
+
+
+    <button
+        id="nextBtn"
+        class="next"
+        onclick="nextPage()">
+
+        ପରବର୍ତ୍ତୀ ➡️
+
+    </button>
+
+
+    <button
+        class="print"
+        onclick="printCurrentPage()">
+
+        🖨️ ଏହି Page Print
+
+    </button>
+
+
+    <button
+        class="printAll"
+        onclick="printAllMembers()">
+
+        🖨️ ସମସ୍ତ Print
+
+    </button>
+
+</div>
+
+
+
+<!-- =========================
+     PAGE INFO
+========================= -->
+
+<div
+    id="pageInfo"
+    class="pageInfo">
+
+    Page 1 / 1
+
+</div>
+
+
+
+<!-- =========================
+     MEMBERS
+========================= -->
+
+<div
+    id="members"
+    class="members">
+
+    <div class="loading">
+
+        ⏳ ସଦସ୍ୟମାନଙ୍କୁ ଆଣୁଛି...
 
     </div>
 
-
-    <!-- =========================
-         CONTROLS
-    ========================== -->
-
-    <div class="controls">
-
-        <input
-            type="text"
-            id="search"
-            class="search"
-            placeholder="🔍 ନାମ / ମୋବାଇଲ ଖୋଜନ୍ତୁ"
-        >
+</div>
 
 
-        <button
-            class="prev"
-            id="prevBtn"
-            onclick="previousPage()">
 
-            ⬅️ ପୂର୍ବ
+<div class="footer">
 
-        </button>
+    ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ • Member Register
+
+</div>
 
 
-        <button
-            class="next"
-            id="nextBtn"
-            onclick="nextPage()">
-
-            ପରବର୍ତ୍ତୀ ➡️
-
-        </button>
+</div>
 
 
-        <button
-            class="print"
-            onclick="printCurrentPage()">
 
-            🖨️ ଏହି Page Print
-
-        </button>
+<script type="module">
 
 
-        <button
-            class="printAll"
-            onclick="printAllMembers()">
+/* ==================================================
+   FIREBASE 10.12.2
+================================================== */
 
-            🖨️ ସମସ୍ତ Print
+import { db } from "./firebase.js";
 
-        </button>
-
-    </div>
-
-
-    <!-- =========================
-         PAGE INFO
-    ========================== -->
-
-    <div
-        id="pageInfo"
-        class="pageInfo">
-
-        Page 1 / 1
-
-    </div>
+import {
+    collection,
+    getDocs
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-    <!-- =========================
-         MEMBERS
-    ========================== -->
 
-    <div
-        id="members"
-        class="members">
+/* ==================================================
+   VARIABLES
+================================================== */
 
-        <div class="loading">
+let allMembers = [];
 
-            ⏳ ସଦସ୍ୟମାନଙ୍କୁ ଆଣୁଛି...
+let filteredMembers = [];
+
+let currentPage = 1;
+
+const MEMBERS_PER_PAGE = 20;
+
+
+
+/* ==================================================
+   LOAD MEMBERS
+================================================== */
+
+async function loadMembers(){
+
+    const box =
+        document.getElementById("members");
+
+
+    try{
+
+        box.innerHTML = `
+
+            <div class="loading">
+
+                ⏳ ସଦସ୍ୟମାନଙ୍କୁ ଆଣୁଛି...
+
+            </div>
+
+        `;
+
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "members"
+                )
+            );
+
+
+        console.log(
+            "Members found:",
+            snapshot.size
+        );
+
+
+        allMembers = [];
+
+
+        snapshot.forEach(doc=>{
+
+            allMembers.push({
+
+                firestoreId:doc.id,
+
+                ...doc.data()
+
+            });
+
+        });
+
+
+        /*
+           Oldest registration first
+        */
+
+        allMembers.sort(
+            (a,b)=>{
+
+                const aTime =
+                    getTime(a.createdAt);
+
+                const bTime =
+                    getTime(b.createdAt);
+
+                return aTime - bTime;
+
+            }
+        );
+
+
+        filteredMembers =
+            [...allMembers];
+
+
+        renderPage();
+
+
+    }
+
+    catch(error){
+
+        console.error(
+            "FIREBASE ERROR:",
+            error
+        );
+
+
+        box.innerHTML = `
+
+            <div class="empty">
+
+                ❌ ସଦସ୍ୟମାନଙ୍କୁ ଆଣିବାରେ
+                ସମସ୍ୟା ହେଲା।
+
+                <br><br>
+
+                <small>
+                    ${escapeHTML(
+                        error.message
+                    )}
+                </small>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* ==================================================
+   GET FIREBASE TIMESTAMP
+================================================== */
+
+function getTime(value){
+
+    if(!value){
+        return 0;
+    }
+
+
+    if(
+        typeof value.seconds ===
+        "number"
+    ){
+
+        return value.seconds * 1000;
+
+    }
+
+
+    if(
+        typeof value.toMillis ===
+        "function"
+    ){
+
+        return value.toMillis();
+
+    }
+
+
+    return 0;
+
+}
+
+
+
+/* ==================================================
+   RENDER PAGE
+================================================== */
+
+function renderPage(){
+
+    const box =
+        document.getElementById(
+            "members"
+        );
+
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                filteredMembers.length /
+                MEMBERS_PER_PAGE
+            )
+        );
+
+
+    if(
+        currentPage >
+        totalPages
+    ){
+
+        currentPage =
+            totalPages;
+
+    }
+
+
+    const start =
+        (currentPage - 1) *
+        MEMBERS_PER_PAGE;
+
+
+    const end =
+        start +
+        MEMBERS_PER_PAGE;
+
+
+    const pageMembers =
+        filteredMembers.slice(
+            start,
+            end
+        );
+
+
+    box.innerHTML = "";
+
+
+    if(
+        pageMembers.length === 0
+    ){
+
+        box.innerHTML = `
+
+            <div class="empty">
+
+                ❌ କୌଣସି ସଦସ୍ୟ ମିଳିଲେ ନାହିଁ।
+
+            </div>
+
+        `;
+
+    }
+
+
+    pageMembers.forEach(
+        (member,index)=>{
+
+            const card =
+                createMemberCard(
+                    member,
+                    start + index + 1
+                );
+
+
+            box.appendChild(card);
+
+        }
+    );
+
+
+    document
+        .getElementById(
+            "pageInfo"
+        )
+        .textContent =
+        `Page ${currentPage} / ${totalPages}
+         • ମୋଟ ସଦସ୍ୟ: ${filteredMembers.length}`;
+
+
+    document
+        .getElementById(
+            "prevBtn"
+        )
+        .disabled =
+        currentPage <= 1;
+
+
+    document
+        .getElementById(
+            "nextBtn"
+        )
+        .disabled =
+        currentPage >= totalPages;
+
+}
+
+
+
+/* ==================================================
+   CREATE MEMBER CARD
+================================================== */
+
+function createMemberCard(
+    member,
+    number
+){
+
+    const card =
+        document.createElement(
+            "div"
+        );
+
+
+    card.className =
+        "member";
+
+
+    /*
+       EXACT FIRESTORE FIELDS
+    */
+
+    const name =
+        member.name ||
+        "ନାମ ନାହିଁ";
+
+
+    const father =
+        member.father ||
+        "-";
+
+
+    const mobile =
+        member.mobile ||
+        "-";
+
+
+    const address =
+        member.address ||
+        "-";
+
+
+    const memberId =
+        member.memberId ||
+        `ORKS-${number}`;
+
+
+    const photo =
+        member.photoUrl ||
+        "";
+
+
+    let photoHTML = "";
+
+
+    if(photo){
+
+        photoHTML = `
+
+            <img
+                src="${escapeAttribute(
+                    photo
+                )}"
+                alt="${escapeAttribute(
+                    name
+                )}"
+                onerror="
+                    this.style.display='none';
+                    this.parentElement.innerHTML='<span class=noPhoto>👤</span>';
+                "
+            >
+
+        `;
+
+    }
+
+    else{
+
+        photoHTML = `
+
+            <span class="noPhoto">
+                👤
+            </span>
+
+        `;
+
+    }
+
+
+    card.innerHTML = `
+
+        <div class="photo">
+
+            ${photoHTML}
 
         </div>
 
-    </div>
+
+        <div class="details">
+
+            <h3>
+
+                ${escapeHTML(name)}
+
+            </h3>
 
 
-    <div class="footer">
+            <p>
 
-        ଓଡ଼ିଆ ରତ୍ନ କ
+                <b>ସଦସ୍ୟ ନଂ:</b>
+
+                ${escapeHTML(memberId)}
+
+            </p>
+
+
+            <p>
+
+                <b>ପିତା:</b>
+
+                ${escapeHTML(father)}
+
+            </p>
+
+
+            <p>
+
+                <b>ମୋବାଇଲ:</b>
+
+                ${escapeHTML(mobile)}
+
+            </p>
+
+
+            <p>
+
+                <b>ଠିକଣା:</b>
+
+                ${escapeHTML(address)}
+
+            </p>
+
+        </div>
+
+    `;
+
+
+    return card;
+
+}
+
+
+
+/* ==================================================
+   PREVIOUS PAGE
+================================================== */
+
+window.previousPage =
+function(){
+
+    if(
+        currentPage > 1
+    ){
+
+        currentPage--;
+
+        renderPage();
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+};
+
+
+
+/* ==================================================
+   NEXT PAGE
+================================================== */
+
+window.nextPage =
+function(){
+
+    const totalPages =
+        Math.ceil(
+            filteredMembers.length /
+            MEMBERS_PER_PAGE
+        );
+
+
+    if(
+        currentPage <
+        totalPages
+    ){
+
+        currentPage++;
+
+        renderPage();
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+};
+
+
+
+/* ==================================================
+   SEARCH
+================================================== */
+
+document
+.getElementById("search")
+.addEventListener(
+    "input",
+    function(){
+
+        const value =
+            this.value
+            .trim()
+            .toLowerCase();
+
+
+        if(!value){
+
+            filteredMembers =
+                [...allMembers];
+
+        }
+
+        else{
+
+            filteredMembers =
+                allMembers.filter(
+                    member=>{
+
+                        const name =
+                            String(
+                                member.name ||
+                                ""
+                            )
+                            .toLowerCase();
+
+
+                        const mobile =
+                            String(
+                                member.mobile ||
+                                ""
+                            )
+                            .toLowerCase();
+
+
+                        const father =
+                            String(
+                                member.father ||
+                                ""
+                            )
+                            .toLowerCase();
+
+
+                        const memberId =
+                            String(
+                                member.memberId ||
+                                ""
+                            )
+                            .toLowerCase();
+
+
+                        return (
+
+                            name.includes(
+                                value
+                            )
+
+                            ||
+
+                            mobile.includes(
+                                value
+                            )
+
+                            ||
+
+                            father.includes(
+                                value
+                            )
+
+                            ||
+
+                            memberId.includes(
+                                value
+                            )
+
+                        );
+
+                    }
+                );
+
+        }
+
+
+        currentPage = 1;
+
+        renderPage();
+
+    }
+);
+
+
+
+/* ==================================================
+   PRINT CURRENT PAGE
+================================================== */
+
+window.printCurrentPage =
+function(){
+
+    window.print();
+
+};
+
+
+
+/* ==================================================
+   PRINT ALL MEMBERS
+================================================== */
+
+window.printAllMembers =
+function(){
+
+    if(
+        filteredMembers.length === 0
+    ){
+
+        alert(
+            "Print କରିବା ପାଇଁ Member ନାହାନ୍ତି।"
+        );
+
+        return;
+
+    }
+
+
+    const box =
+        document.getElementById(
+            "members"
+        );
+
+
+    const oldHTML =
+        box.innerHTML;
+
+
+    const oldPage =
+        currentPage;
+
+
+    box.innerHTML = "";
+
+
+    filteredMembers.forEach(
+        (member,index)=>{
+
+            const card =
+                createMemberCard(
+                    member,
+                    index + 1
+                );
+
+
+            box.appendChild(card);
+
+
+            /*
+               After every 20 members
+               create A4 page break
+            */
+
+            if(
+
+                (index + 1) %
+                MEMBERS_PER_PAGE === 0
+
+                &&
+
+                index + 1 <
+                filteredMembers.length
+
+            ){
+
+                const breakPage =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                breakPage.className =
+                    "printBreak";
+
+
+                box.appendChild(
+                    breakPage
+                );
+
+            }
+
+        }
+    );
+
+
+    setTimeout(
+        ()=>{
+
+            window.print();
+
+        },
+        700
+    );
+
+
+    window.onafterprint =
+    function(){
+
+        box.innerHTML =
+            oldHTML;
+
+
+        currentPage =
+            oldPage;
+
+
+        renderPage();
+
+
+        window.onafterprint =
+            null;
+
+    };
+
+};
+
+
+
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+function escapeAttribute(value){
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        );
+
+}
+
+
+
+/* ==================================================
+   START
+================================================== */
+
+loadMembers();
+
+
+</script>
+
+
+</body>
+
+</html>
