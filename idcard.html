@@ -309,73 +309,148 @@ body{
 
 /* ================= PRINT ================= */
 
- @media print {
+@media print {
 
     @page {
-        size: A4 portrait;
+        size: 54mm 85.6mm;
         margin: 0;
     }
 
     html,
     body {
-        width: 210mm !important;
-        height: 297mm !important;
+        width: 54mm !important;
+        height: 85.6mm !important;
         margin: 0 !important;
         padding: 0 !important;
         background: #fff !important;
     }
 
-    #memberListPage {
+    #memberListPage,
+    .buttonRow {
         display: none !important;
     }
 
-    
-        
-        
-    
-
-    
-    
-        
-        
-        
-        
-        
-    
-
-    
-    
-        
-    
-
-    #cardPage{
-        display:flex !important;
-    }
-
-        .card {
-        width: 54mm !important;
-        height: 85.6mm !important;
-        min-height: 85.6mm !important;
-        margin: 0 !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-    }
-
     #cardPage {
-        display: flex !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
+        display: block !important;
         width: 54mm !important;
         height: 85.6mm !important;
         margin: 0 !important;
         padding: 0 !important;
     }
 
-    .buttonRow {
-        display: none !important;
+    .card {
+        width: 54mm !important;
+        height: 85.6mm !important;
+        min-height: 85.6mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border-radius: 3mm !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
     }
 
- }
+    .photo {
+        margin: 3px 0 2px !important;
+    }
+
+    .photo img {
+        width: 30mm !important;
+        height: 34mm !important;
+    }
+
+    .detail {
+        min-height: 14px !important;
+        padding: 1.5px 0 !important;
+    }
+
+    .label,
+    .value {
+        font-size: 6.5px !important;
+    }
+
+    .bottom {
+        padding: 3px 4px 3px !important;
+    }
+
+    .qrBox,
+    #qrcode {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    #qrcode canvas,
+    #qrcode img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .seal {
+        width: 34px !important;
+        height: 34px !important;
+        min-width: 34px !important;
+        font-size: 5.5px !important;
+    }
+
+    .verify {
+        font-size: 5.5px !important;
+    }
+
+}
+
+ 
+
+    
+        
+        
+    
+
+    
+    
+        
+    
+        
+        
+        
+    
+
+    
+        
+    
+
+    
+        
+        
+    
+
+    
+    
+        
+        
+        
+        
+        
+    
+
+    
+    
+        
+    
+
+    
+        
+    
+
+        
+        
+        
+        
+        
+    
+        
+    
+
+    
+        
         
         
         
@@ -384,7 +459,20 @@ body{
         
     
 
-}
+    
+        
+    
+
+ 
+        
+        
+        
+        
+        
+        
+    
+
+
 
 </style>
 
