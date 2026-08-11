@@ -1,205 +1,350 @@
 <!DOCTYPE html>
 <html lang="or">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
 <title>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ</title>
 
 <link rel="stylesheet" href="style.css">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <link rel="manifest" href="manifest.json">
+
 <meta name="theme-color" content="#8B0000">
+
 <link rel="icon" href="logo.png">
 
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-window.OneSignalDeferred = window.OneSignalDeferred || [];
-OneSignalDeferred.push(async function(OneSignal) {
-  await OneSignal.init({
-    appId: "9e750c08-3b2d-424f-87a5-c62d08068fcd",
-  });
-});
-</script>
+<link rel="preload"
+      as="image"
+      href="logo.png">
+
+<link rel="preload"
+      as="image"
+      href="banner.jpg">
+
 </head>
+
 
 <body>
 
 <header class="header">
-    <img src="logo.png" class="logo">
+
+    <img src="logo.png"
+         class="logo"
+         alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Logo"
+         width="100"
+         height="100">
+
     <div>
+
         <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
+
         <p>Surat, Gujarat</p>
+
     </div>
+
 </header>
 
+
 <section class="banner">
-    <img src="banner.jpg" alt="Banner">
+
+    <img src="banner.jpg"
+         alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Banner"
+         loading="eager"
+         width="1200"
+         height="400">
+
 </section>
+
 
 <section class="menu">
 
 <a href="registration.html" class="card">
-<i class="fa-solid fa-user-plus"></i>
-<span>Registration</span>
+    <i class="fa-solid fa-user-plus"></i>
+    <span>Registration</span>
 </a>
+
 
 <a href="members.html" class="card">
-    
-<i class="fa-solid fa-id-card"></i>
-<span>ID Card</span>
+    <i class="fa-solid fa-id-card"></i>
+    <span>ID Card</span>
 </a>
-   <a href="#" class="card" onclick="openCommittee()">
+
+
+<a href="#" class="card" onclick="openCommittee(); return false;">
+
     <i class="fa-solid fa-users"></i>
+
     <span>Committee</span>
-   </a> 
 
-<script>
-function openCommittee() {
-    const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
-
-    if (pass === "2026@") {
-        window.location.href = "admin.html";
-    } else {
-        window.location.href = "committee.html";
-    }
-}
-function openAdmin() {
-    const pass = prompt("Admin Password ଦିଅ");
-
-    if (pass === "2026@") {
-        window.location.href = "admin.html";
-    } else if (pass !== null) {
-        alert("❌ Wrong Password");
-    }
-}
-
-    
-
-    
-        
-    
-        
-    
-
-
-</script>
-
-
-
+</a>
 
 
 <a href="gallery.html" class="card">
-<i class="fa-solid fa-image"></i>
-<span>Gallery</span>
+    <i class="fa-solid fa-image"></i>
+    <span>Gallery</span>
 </a>
+
 
 <a href="news.html" class="card">
-<i class="fa-solid fa-newspaper"></i>
-<span>News</span>
+    <i class="fa-solid fa-newspaper"></i>
+    <span>News</span>
 </a>
+
 
 <a href="blood.html" class="card">
-<i class="fa-solid fa-droplet"></i>
-<span>Blood Donor</span>
+    <i class="fa-solid fa-droplet"></i>
+    <span>Blood Donor</span>
 </a>
+
 
 <a href="donation.html" class="card">
-<i class="fa-solid fa-hand-holding-heart"></i>
-<span>Donation</span>
+    <i class="fa-solid fa-hand-holding-heart"></i>
+    <span>Donation</span>
 </a>
+
 
 <a href="contact.html" class="card">
-<i class="fa-solid fa-phone"></i>
-<span>Contact</span>
+    <i class="fa-solid fa-phone"></i>
+    <span>Contact</span>
 </a>
-  <a href="about.html" class="card">
-    <i class="fa-solid fa-circle-info"></i>
-    <span>ଆମ ବିଷୟରେ</span>
-  </a>
-<a href="login.html" class="card">
-    <i class="fa-solid fa-chart-line"></i>
-    <span>Admin Dashboard</span>
-</a>
-    
-    
 
+
+<a href="about.html" class="card">
+
+    <i class="fa-solid fa-circle-info"></i>
+
+    <span>ଆମ ବିଷୟରେ</span>
+
+</a>
+
+
+<a href="login.html" class="card">
+
+    <i class="fa-solid fa-chart-line"></i>
+
+    <span>Admin Dashboard</span>
+
+</a>
 
 </section>
 
 
 <section class="notice">
-<h3>📢 Notice Board</h3>
 
-<marquee id="noticeBoard">
-Loading Latest News...
-</marquee>
+    <h3>📢 Notice Board</h3>
+
+    <marquee id="noticeBoard">
+        Latest News Loading...
+    </marquee>
 
 </section>
-<script type="module">
-import { db } from "./firebase.js";
-import { getToken } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js";
-import {
-  collection,
-  getDocs,
-  query,
-  orderBy,
-  limit
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const notice = document.getElementById("noticeBoard");
-
-async function loadLatestNews() {
-  try {
-    const q = query(
-      collection(db, "news"),
-      orderBy("createdAt", "desc"),
-      limit(1)
-    );
-
-    const snapshot = await getDocs(q);
-
-    if (snapshot.empty) {
-      notice.textContent = "📢 କୌଣସି News ନାହିଁ";
-      return;
-    }
-
-    snapshot.forEach(doc => {
-      const news = doc.data();
-      notice.textContent = `${news.title} - ${news.details}`;
-    });
-
-  } catch (e) {
-    notice.textContent = "News Load Error";
-    console.error(e);
-  }
-}
 
 
-loadLatestNews();
-Notification.requestPermission().then(async (permission) => {
-  if (permission === "granted") {
-    try {
-      const token = await getToken(messaging, {
-        vapidKey: "BO9LvllkXOapG6zFnYv5ZnAgCJzMaFUX50eKNTPYBTSQbjhBAaraDONwlGExL52qYq_yoV06uFTSSXkeHvxzHQc"
-      });
-
-      console.log("FCM Token:", token);
-    } catch (err) {
-      console.error("Token Error:", err);
-    }
-  }
-});</script>
+<!-- Committee Password -->
 
 <script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
+
+function openCommittee() {
+
+    const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
+
+    if (pass === "2026@") {
+
+        window.location.href = "admin.html";
+
+    } else {
+
+        window.location.href = "committee.html";
+
+    }
+
 }
+
+
+function openAdmin() {
+
+    const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
+
+    if (pass === "2026@") {
+
+        window.location.href = "admin.html";
+
+    } else if (pass !== null) {
+
+        alert("❌ Wrong Password");
+
+    }
+
+}
+
 </script>
+
+
+<!-- Firebase News
+     Runs AFTER Homepage becomes visible
+-->
+
+<script type="module">
+
+setTimeout(async () => {
+
+    try {
+
+        const { db } = await import("./firebase.js");
+
+        const {
+            collection,
+            getDocs,
+            query,
+            orderBy,
+            limit
+        } = await import(
+            "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+        );
+
+
+        const notice =
+            document.getElementById("noticeBoard");
+
+
+        const q = query(
+
+            collection(db, "news"),
+
+            orderBy("createdAt", "desc"),
+
+            limit(1)
+
+        );
+
+
+        const snapshot = await getDocs(q);
+
+
+        if (snapshot.empty) {
+
+            notice.textContent =
+                "📢 କୌଣସି News ନାହିଁ";
+
+            return;
+
+        }
+
+
+        snapshot.forEach(doc => {
+
+            const news = doc.data();
+
+            notice.textContent =
+                `${news.title} - ${news.details}`;
+
+        });
+
+
+    } catch (error) {
+
+        console.error("News Load Error:", error);
+
+        document.getElementById("noticeBoard").textContent =
+            "📢 Latest News";
+
+    }
+
+}, 100);
+
+
+</script>
+
+
+<!-- OneSignal
+     Loads after Homepage is ready
+-->
+
+<script>
+
+setTimeout(() => {
+
+    const script =
+        document.createElement("script");
+
+    script.src =
+        "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";
+
+    script.defer = true;
+
+    document.head.appendChild(script);
+
+
+    window.OneSignalDeferred =
+        window.OneSignalDeferred || [];
+
+
+    OneSignalDeferred.push(
+        async function(OneSignal) {
+
+            try {
+
+                await OneSignal.init({
+
+                    appId:
+                    "9e750c08-3b2d-424f-87a5-c62d08068fcd"
+
+                });
+
+            } catch (error) {
+
+                console.error(
+                    "OneSignal Error:",
+                    error
+                );
+
+            }
+
+        }
+    );
+
+
+}, 1500);
+
+</script>
+
+
+<!-- Service Worker -->
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            navigator.serviceWorker
+                .register("service-worker.js")
+                .catch(error => {
+
+                    console.error(
+                        "Service Worker Error:",
+                        error
+                    );
+
+                });
+
+        }
+    );
+
+}
+
+</script>
+
 
 </body>
 </html>
-
-
