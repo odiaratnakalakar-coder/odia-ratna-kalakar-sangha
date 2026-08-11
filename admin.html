@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Admin Dashboard</title>
@@ -128,6 +129,18 @@ transition:.3s;
 
 .menu a:hover{
 background:#ff0000;
+}
+
+
+/* ================= MEMBER BOOK ================= */
+
+.memberBook{
+background:#8b0000 !important;
+border:2px solid #ffcc00;
+}
+
+.memberBook:hover{
+background:#b00000 !important;
 }
 
 
@@ -292,64 +305,103 @@ Birthday checking...
 <div class="menu">
 
 
+<!-- MEMBERS ADMIN -->
+
 <a href="members.html">
 👥 Members Admin
 </a>
+
+
+<!-- ================= NEW MEMBER BOOK ================= -->
+
+<a
+href="members-book.html"
+class="memberBook"
+>
+
+📖 Member Register / Members Book
+
+</a>
+
+
+<!-- MEMBER ADD -->
+
 <a href="member-add.html">
 ➕ Member Add / Edit
 </a>
+
+
+<!-- BIRTHDAY -->
 
 <a href="birthday-admin.html">
 🎂 Birthday / DOB Admin
 </a>
 
 
+<!-- PENDING -->
+
 <a href="pending-members.html">
 ⏳ Pending Members
 </a>
 
+
+<!-- COMMITTEE -->
 
 <a href="committee.html">
 👨‍💼 Committee Admin
 </a>
 
 
-
+<!-- NEWS -->
 
 <a href="news-admin.html">
 📰 News Admin
 </a>
 
 
+<!-- GALLERY -->
+
 <a href="gallery-admin.html">
 🖼️ Gallery Admin
 </a>
 
+
+<!-- ID CARD -->
 
 <a href="idcard.html">
 🪪 ID Card
 </a>
 
 
+<!-- DONATION -->
+
 <a href="donation-admin.html">
 ❤️ Donation Admin
 </a>
 
+
+<!-- PAYMENT -->
 
 <a href="payment-receipt.html">
 🧾 Payment Receipt
 </a>
 
 
+<!-- TRUST ACCOUNTS -->
+
 <a href="trust-accounts.html">
 📊 Trust Accounts Dashboard
 </a>
 
 
+<!-- WEBSITE HOME -->
+
 <a href="index.html">
 🏠 Website Home
 </a>
 
+
+<!-- LOGOUT -->
 
 <a href="#" onclick="logout()">
 🚪 Logout
@@ -366,9 +418,11 @@ Birthday checking...
 </div>
 
 
+
 <!-- ================= FIREBASE ================= -->
 
 <script type="module">
+
 
 import {
 db,
@@ -377,17 +431,23 @@ auth
 from "./firebase.js";
 
 
+/* ================= FIRESTORE ================= */
+
 import {
 collection,
 getDocs
 }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+
+/* ================= AUTH ================= */
 
 import {
 signOut
 }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 /* ================================================= */
@@ -403,12 +463,17 @@ try{
 
 const memberSnap =
 await getDocs(
-collection(db,"members")
+collection(
+db,
+"members"
+)
 );
 
 
 document
-.getElementById("memberCount")
+.getElementById(
+"memberCount"
+)
 .textContent =
 memberSnap.size;
 
@@ -424,12 +489,17 @@ memberSnap
 
 const committeeSnap =
 await getDocs(
-collection(db,"Committee")
+collection(
+db,
+"Committee"
+)
 );
 
 
 document
-.getElementById("committeeCount")
+.getElementById(
+"committeeCount"
+)
 .textContent =
 committeeSnap.size;
 
@@ -438,12 +508,17 @@ committeeSnap.size;
 
 const newsSnap =
 await getDocs(
-collection(db,"news")
+collection(
+db,
+"news"
+)
 );
 
 
 document
-.getElementById("newsCount")
+.getElementById(
+"newsCount"
+)
 .textContent =
 newsSnap.size;
 
@@ -454,12 +529,17 @@ try{
 
 const bloodSnap =
 await getDocs(
-collection(db,"bloodDonors")
+collection(
+db,
+"bloodDonors"
+)
 );
 
 
 document
-.getElementById("bloodCount")
+.getElementById(
+"bloodCount"
+)
 .textContent =
 bloodSnap.size;
 
@@ -467,7 +547,9 @@ bloodSnap.size;
 catch(e){
 
 document
-.getElementById("bloodCount")
+.getElementById(
+"bloodCount"
+)
 .textContent =
 "0";
 
@@ -480,15 +562,19 @@ try{
 
 const donationSnap =
 await getDocs(
-collection(db,"donations")
+collection(
+db,
+"donations"
+)
 );
 
 
-let totalDonation = 0;
+let totalDonation =
+0;
 
 
 donationSnap.forEach(
-doc => {
+doc=>{
 
 totalDonation +=
 Number(
@@ -499,15 +585,20 @@ doc.data().amount || 0
 
 
 document
-.getElementById("donationCount")
+.getElementById(
+"donationCount"
+)
 .textContent =
-"₹" + totalDonation;
+"₹" +
+totalDonation;
 
 }
 catch(e){
 
 document
-.getElementById("donationCount")
+.getElementById(
+"donationCount"
+)
 .textContent =
 "₹0";
 
@@ -543,23 +634,30 @@ const todayDay =
 String(
 today.getDate()
 )
-.padStart(2,"0");
+.padStart(
+2,
+"0"
+);
 
 
 const todayMonth =
 String(
-today.getMonth() + 1
+today.getMonth()+1
 )
-.padStart(2,"0");
+.padStart(
+2,
+"0"
+);
 
 
-const birthdays = [];
+const birthdays =
+[];
 
 
 /* ================= CHECK MEMBERS ================= */
 
 memberSnap.forEach(
-memberDoc => {
+memberDoc=>{
 
 
 const data =
@@ -569,7 +667,8 @@ memberDoc.data();
 const dob =
 String(
 data.dob || ""
-).trim();
+)
+.trim();
 
 
 /*
@@ -583,7 +682,9 @@ const parts =
 dob.split("/");
 
 
-if(parts.length !== 3){
+if(
+parts.length !== 3
+){
 
 return;
 
@@ -607,13 +708,16 @@ month === todayMonth
 birthdays.push({
 
 name:
-data.name || "Member",
+data.name ||
+"Member",
 
 memberId:
-data.memberId || "-",
+data.memberId ||
+"-",
 
 mobile:
-data.mobile || "-",
+data.mobile ||
+"-",
 
 dob:
 dob
@@ -628,7 +732,9 @@ dob
 /* ================= COUNT ================= */
 
 document
-.getElementById("birthdayCount")
+.getElementById(
+"birthdayCount"
+)
 .textContent =
 birthdays.length;
 
@@ -641,10 +747,11 @@ document.getElementById(
 );
 
 
-list.innerHTML = "";
+list.innerHTML =
+"";
 
 
-/* NO BIRTHDAY */
+/* ================= NO BIRTHDAY ================= */
 
 if(
 birthdays.length === 0
@@ -668,11 +775,13 @@ return;
 /* ================= SHOW BIRTHDAYS ================= */
 
 birthdays.forEach(
-member => {
+member=>{
 
 
 const div =
-document.createElement("div");
+document.createElement(
+"div"
+);
 
 
 div.className =
@@ -682,23 +791,35 @@ div.className =
 div.innerHTML = `
 
 🎉 <strong>
-${escapeHTML(member.name)}
+
+${escapeHTML(
+member.name
+)}
+
 </strong>
 
 <br>
 
 🎂 DOB:
-${escapeHTML(member.dob)}
+
+${escapeHTML(
+member.dob
+)}
 
 <br>
 
 📱 Mobile:
-${escapeHTML(member.mobile)}
+
+${escapeHTML(
+member.mobile
+)}
 
 `;
 
 
-list.appendChild(div);
+list.appendChild(
+div
+);
 
 });
 
@@ -752,7 +873,10 @@ async function(){
 
 try{
 
-await signOut(auth);
+await signOut(
+auth
+);
+
 
 window.location.href =
 "login.html";
@@ -760,7 +884,9 @@ window.location.href =
 }
 catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
 }
 
@@ -772,6 +898,7 @@ console.error(error);
 /* ================================================= */
 
 loadDashboard();
+
 
 </script>
 
