@@ -6,17 +6,18 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>
 ସଦସ୍ୟ ପଞ୍ଜି | ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
 </title>
 
+
 <style>
 
-/* =========================
+/* ==================================================
    BASIC
-========================= */
+================================================== */
 
 *{
     margin:0;
@@ -38,9 +39,9 @@ body{
 }
 
 
-/* =========================
+/* ==================================================
    HEADER
-========================= */
+================================================== */
 
 .header{
     background:#1b1b1b;
@@ -80,9 +81,9 @@ body{
 }
 
 
-/* =========================
+/* ==================================================
    CONTROLS
-========================= */
+================================================== */
 
 .controls{
     background:#1b1b1b;
@@ -93,6 +94,7 @@ body{
     display:flex;
     align-items:center;
     justify-content:center;
+
     gap:6px;
     flex-wrap:wrap;
 
@@ -102,20 +104,32 @@ body{
 .search{
     width:240px;
     max-width:100%;
+
     padding:10px 12px;
+
     border:none;
     border-radius:8px;
+
     outline:none;
+
     font-size:14px;
 }
 
 button{
     border:none;
     border-radius:8px;
+
     padding:10px 12px;
+
     font-size:14px;
     font-weight:bold;
+
     cursor:pointer;
+}
+
+button:disabled{
+    opacity:.35;
+    cursor:not-allowed;
 }
 
 .prev{
@@ -138,52 +152,62 @@ button{
     color:white;
 }
 
-button:disabled{
-    opacity:.35;
-    cursor:not-allowed;
-}
 
-
-/* =========================
+/* ==================================================
    PAGE INFO
-========================= */
+================================================== */
 
 .pageInfo{
     text-align:center;
+
     color:#ffd700;
+
     font-size:16px;
+
     font-weight:bold;
+
     margin:9px 0 12px;
 }
 
 
-/* =========================
+/* ==================================================
    MEMBERS
-========================= */
+================================================== */
 
 .members{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap:9px;
 }
 
 
-/* =========================
+/* ==================================================
    MEMBER CARD
-========================= */
+================================================== */
 
 .member{
     background:#202020;
+
     border:1px solid #555;
+
     border-radius:10px;
 
     padding:8px;
 
     display:flex;
+
     gap:9px;
 
     min-height:125px;
 }
+
+
+/* ==================================================
+   PHOTO
+================================================== */
 
 .photo{
     width:78px;
@@ -198,20 +222,30 @@ button:disabled{
     overflow:hidden;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 }
 
 .photo img{
     width:100%;
     height:100%;
+
     object-fit:cover;
+
+    display:block;
 }
 
 .noPhoto{
     font-size:30px;
     color:#888;
 }
+
+
+/* ==================================================
+   DETAILS
+================================================== */
 
 .details{
     flex:1;
@@ -220,16 +254,23 @@ button:disabled{
 
 .details h3{
     color:#ffd700;
+
     font-size:17px;
+
     margin-bottom:5px;
+
     word-break:break-word;
 }
 
 .details p{
     color:#ddd;
+
     font-size:12px;
+
     margin:3px 0;
+
     line-height:1.3;
+
     word-break:break-word;
 }
 
@@ -238,12 +279,13 @@ button:disabled{
 }
 
 
-/* =========================
+/* ==================================================
    LOADING
-========================= */
+================================================== */
 
 .loading,
 .empty{
+
     grid-column:1/-1;
 
     text-align:center;
@@ -256,21 +298,24 @@ button:disabled{
 }
 
 
-/* =========================
+/* ==================================================
    FOOTER
-========================= */
+================================================== */
 
 .footer{
     text-align:center;
+
     color:#888;
+
     font-size:12px;
+
     margin:15px 0;
 }
 
 
-/* =========================
+/* ==================================================
    MOBILE
-========================= */
+================================================== */
 
 @media(max-width:700px){
 
@@ -324,71 +369,120 @@ button:disabled{
 
 
 /* ==================================================
-   PRINT CURRENT PAGE
+   PRINT
 ================================================== */
 
 @media print{
 
     @page{
+
         size:A4 portrait;
+
         margin:8mm;
+
     }
+
 
     body{
+
         background:white !important;
+
         color:black !important;
+
         padding:0;
+
     }
 
+
     .container{
+
         max-width:none;
+
         width:100%;
+
     }
+
 
     .controls,
     .pageInfo,
     .footer{
+
         display:none !important;
+
     }
+
 
     .header{
+
         background:white !important;
+
         border:0;
+
         border-bottom:2px solid black;
+
         border-radius:0;
+
         padding:0 0 6px;
+
         margin-bottom:7px;
+
     }
+
 
     .logo{
+
         width:55px;
+
         height:55px;
+
         padding:0;
+
     }
+
 
     .header h1{
+
         color:black !important;
+
         font-size:18px;
+
     }
+
 
     .header h2{
+
         color:black !important;
+
         font-size:15px;
+
     }
+
 
     .header p{
+
         color:black !important;
+
         font-size:10px;
+
     }
+
 
     .members{
+
         display:grid;
-        grid-template-columns:repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
+
         gap:5px;
+
     }
 
+
     .member{
+
         background:white !important;
+
         color:black !important;
 
         border:1px solid #555;
@@ -402,44 +496,90 @@ button:disabled{
         height:82px;
 
         break-inside:avoid;
+
         page-break-inside:avoid;
+
     }
 
+
     .photo{
+
         width:52px;
+
         height:65px;
 
         background:#eee;
+
     }
+
+
+    .photo img{
+
+        width:100%;
+
+        height:100%;
+
+        object-fit:cover;
+
+    }
+
 
     .details h3{
+
         color:black !important;
+
         font-size:11px;
+
         margin-bottom:2px;
+
     }
+
 
     .details p{
+
         color:black !important;
+
         font-size:8px;
+
         margin:1px 0;
+
         line-height:1.15;
+
     }
 
+
     .details b{
+
         color:black !important;
+
+    }
+
+
+    .printBreak{
+
+        display:block;
+
+        break-after:page;
+
+        page-break-after:always;
+
     }
 
 }
 
 
-/* =========================
-   PRINT ALL PAGE BREAK
-========================= */
+/* ==================================================
+   PRINT PAGE BREAK
+================================================== */
 
 .printBreak{
+
     display:block;
+
     break-after:page;
+
     page-break-after:always;
+
 }
 
 </style>
@@ -453,9 +593,9 @@ button:disabled{
 <div class="container">
 
 
-<!-- =========================
+<!-- ==================================================
      HEADER
-========================= -->
+================================================== -->
 
 <div class="header">
 
@@ -481,12 +621,12 @@ button:disabled{
 </div>
 
 
-
-<!-- =========================
+<!-- ==================================================
      CONTROLS
-========================= -->
+================================================== -->
 
 <div class="controls">
+
 
     <input
         id="search"
@@ -533,13 +673,13 @@ button:disabled{
 
     </button>
 
+
 </div>
 
 
-
-<!-- =========================
+<!-- ==================================================
      PAGE INFO
-========================= -->
+================================================== -->
 
 <div
     id="pageInfo"
@@ -550,10 +690,9 @@ button:disabled{
 </div>
 
 
-
-<!-- =========================
+<!-- ==================================================
      MEMBERS
-========================= -->
+================================================== -->
 
 <div
     id="members"
@@ -568,7 +707,6 @@ button:disabled{
 </div>
 
 
-
 <div class="footer">
 
     ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ • Member Register
@@ -579,23 +717,26 @@ button:disabled{
 </div>
 
 
-
 <script type="module">
 
 
 /* ==================================================
-   FIREBASE 10.12.2
+   FIREBASE
 ================================================== */
 
 import { db } from "./firebase.js";
 
+
 import {
+
     collection,
+
     getDocs
+
 }
+
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
 
 
 /* ==================================================
@@ -611,7 +752,6 @@ let currentPage = 1;
 const MEMBERS_PER_PAGE = 20;
 
 
-
 /* ==================================================
    LOAD MEMBERS
 ================================================== */
@@ -619,7 +759,9 @@ const MEMBERS_PER_PAGE = 20;
 async function loadMembers(){
 
     const box =
-        document.getElementById("members");
+        document.getElementById(
+            "members"
+        );
 
 
     try{
@@ -653,17 +795,20 @@ async function loadMembers(){
         allMembers = [];
 
 
-        snapshot.forEach(doc=>{
+        snapshot.forEach(
+            doc=>{
 
-            allMembers.push({
+                allMembers.push({
 
-                firestoreId:doc.id,
+                    firestoreId:
+                        doc.id,
 
-                ...doc.data()
+                    ...doc.data()
 
-            });
+                });
 
-        });
+            }
+        );
 
 
         /*
@@ -674,10 +819,16 @@ async function loadMembers(){
             (a,b)=>{
 
                 const aTime =
-                    getTime(a.createdAt);
+                    getTime(
+                        a.createdAt
+                    );
+
 
                 const bTime =
-                    getTime(b.createdAt);
+                    getTime(
+                        b.createdAt
+                    );
+
 
                 return aTime - bTime;
 
@@ -691,8 +842,8 @@ async function loadMembers(){
 
         renderPage();
 
-
     }
+
 
     catch(error){
 
@@ -726,15 +877,16 @@ async function loadMembers(){
 }
 
 
-
 /* ==================================================
-   GET FIREBASE TIMESTAMP
+   FIREBASE TIMESTAMP
 ================================================== */
 
 function getTime(value){
 
     if(!value){
+
         return 0;
+
     }
 
 
@@ -763,7 +915,6 @@ function getTime(value){
 }
 
 
-
 /* ==================================================
    RENDER PAGE
 ================================================== */
@@ -778,11 +929,16 @@ function renderPage(){
 
     const totalPages =
         Math.max(
+
             1,
+
             Math.ceil(
+
                 filteredMembers.length /
                 MEMBERS_PER_PAGE
+
             )
+
         );
 
 
@@ -855,6 +1011,7 @@ function renderPage(){
             "pageInfo"
         )
         .textContent =
+
         `Page ${currentPage} / ${totalPages}
          • ମୋଟ ସଦସ୍ୟ: ${filteredMembers.length}`;
 
@@ -877,7 +1034,6 @@ function renderPage(){
 }
 
 
-
 /* ==================================================
    CREATE MEMBER CARD
 ================================================== */
@@ -896,10 +1052,6 @@ function createMemberCard(
     card.className =
         "member";
 
-
-    /*
-       EXACT FIRESTORE FIELDS
-    */
 
     const name =
         member.name ||
@@ -939,16 +1091,22 @@ function createMemberCard(
         photoHTML = `
 
             <img
+
                 src="${escapeAttribute(
                     photo
                 )}"
+
                 alt="${escapeAttribute(
                     name
                 )}"
+
+                loading="lazy"
+
                 onerror="
                     this.style.display='none';
                     this.parentElement.innerHTML='<span class=noPhoto>👤</span>';
                 "
+
             >
 
         `;
@@ -960,7 +1118,9 @@ function createMemberCard(
         photoHTML = `
 
             <span class="noPhoto">
+
                 👤
+
             </span>
 
         `;
@@ -1031,7 +1191,6 @@ function createMemberCard(
 }
 
 
-
 /* ==================================================
    PREVIOUS PAGE
 ================================================== */
@@ -1047,15 +1206,18 @@ function(){
 
         renderPage();
 
+
         window.scrollTo({
+
             top:0,
+
             behavior:"smooth"
+
         });
 
     }
 
 };
-
 
 
 /* ==================================================
@@ -1067,8 +1229,10 @@ function(){
 
     const totalPages =
         Math.ceil(
+
             filteredMembers.length /
             MEMBERS_PER_PAGE
+
         );
 
 
@@ -1081,9 +1245,13 @@ function(){
 
         renderPage();
 
+
         window.scrollTo({
+
             top:0,
+
             behavior:"smooth"
+
         });
 
     }
@@ -1091,107 +1259,354 @@ function(){
 };
 
 
-
 /* ==================================================
    SEARCH
 ================================================== */
 
 document
-.getElementById("search")
-.addEventListener(
-    "input",
-    function(){
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        function(){
 
-        const value =
-            this.value
-            .trim()
-            .toLowerCase();
+            const value =
+                this.value
+                .trim()
+                .toLowerCase();
 
 
-        if(!value){
+            if(!value){
 
-            filteredMembers =
-                [...allMembers];
+                filteredMembers =
+                    [...allMembers];
+
+            }
+
+            else{
+
+                filteredMembers =
+                    allMembers.filter(
+                        member=>{
+
+                            const name =
+                                String(
+                                    member.name ||
+                                    ""
+                                )
+                                .toLowerCase();
+
+
+                            const mobile =
+                                String(
+                                    member.mobile ||
+                                    ""
+                                )
+                                .toLowerCase();
+
+
+                            const father =
+                                String(
+                                    member.father ||
+                                    ""
+                                )
+                                .toLowerCase();
+
+
+                            const memberId =
+                                String(
+                                    member.memberId ||
+                                    ""
+                                )
+                                .toLowerCase();
+
+
+                            return (
+
+                                name.includes(
+                                    value
+                                )
+
+                                ||
+
+                                mobile.includes(
+                                    value
+                                )
+
+                                ||
+
+                                father.includes(
+                                    value
+                                )
+
+                                ||
+
+                                memberId.includes(
+                                    value
+                                )
+
+                            );
+
+                        }
+                    );
+
+            }
+
+
+            currentPage = 1;
+
+            renderPage();
+
+        }
+    );
+
+
+/* ==================================================
+   COMPRESS ONE IMAGE FOR PRINT
+================================================== */
+
+async function compressImageForPrint(
+    img
+){
+
+    try{
+
+        if(
+            !img ||
+            !img.src
+        ){
+
+            return;
 
         }
 
-        else{
 
-            filteredMembers =
-                allMembers.filter(
-                    member=>{
+        /*
+           Already compressed
+        */
 
-                        const name =
-                            String(
-                                member.name ||
-                                ""
-                            )
-                            .toLowerCase();
+        if(
+            img.dataset.printCompressed ===
+            "yes"
+        ){
 
-
-                        const mobile =
-                            String(
-                                member.mobile ||
-                                ""
-                            )
-                            .toLowerCase();
-
-
-                        const father =
-                            String(
-                                member.father ||
-                                ""
-                            )
-                            .toLowerCase();
-
-
-                        const memberId =
-                            String(
-                                member.memberId ||
-                                ""
-                            )
-                            .toLowerCase();
-
-
-                        return (
-
-                            name.includes(
-                                value
-                            )
-
-                            ||
-
-                            mobile.includes(
-                                value
-                            )
-
-                            ||
-
-                            father.includes(
-                                value
-                            )
-
-                            ||
-
-                            memberId.includes(
-                                value
-                            )
-
-                        );
-
-                    }
-                );
+            return;
 
         }
 
 
-        currentPage = 1;
+        const response =
+            await fetch(
+                img.src,
+                {
+                    mode:"cors",
+                    cache:"force-cache"
+                }
+            );
 
-        renderPage();
+
+        if(
+            !response.ok
+        ){
+
+            console.warn(
+                "Image fetch failed:",
+                response.status
+            );
+
+            return;
+
+        }
+
+
+        const blob =
+            await response.blob();
+
+
+        /*
+           Create bitmap
+        */
+
+        const bitmap =
+            await createImageBitmap(
+                blob
+            );
+
+
+        /*
+           Print image maximum size
+
+           This is enough for
+           the small photo box
+        */
+
+        const MAX_WIDTH = 180;
+
+        const MAX_HEIGHT = 220;
+
+
+        let width =
+            bitmap.width;
+
+
+        let height =
+            bitmap.height;
+
+
+        const scale =
+            Math.min(
+
+                MAX_WIDTH / width,
+
+                MAX_HEIGHT / height,
+
+                1
+
+            );
+
+
+        width =
+            Math.max(
+                1,
+                Math.round(
+                    width * scale
+                )
+            );
+
+
+        height =
+            Math.max(
+                1,
+                Math.round(
+                    height * scale
+                )
+            );
+
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+
+        canvas.width =
+            width;
+
+
+        canvas.height =
+            height;
+
+
+        const ctx =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        ctx.drawImage(
+
+            bitmap,
+
+            0,
+
+            0,
+
+            width,
+
+            height
+
+        );
+
+
+        /*
+           JPEG quality
+
+           0.60 = good balance
+        */
+
+        const compressed =
+            canvas.toDataURL(
+
+                "image/jpeg",
+
+                0.60
+
+            );
+
+
+        img.src =
+            compressed;
+
+
+        img.dataset.printCompressed =
+            "yes";
+
+
+        bitmap.close();
 
     }
-);
 
+
+    catch(error){
+
+        /*
+           If CORS prevents compression,
+           original image remains.
+        */
+
+        console.warn(
+
+            "Print compression failed:",
+
+            error
+
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   COMPRESS ALL PRINT IMAGES
+================================================== */
+
+async function compressPrintImages(){
+
+    const images =
+        Array.from(
+
+            document.querySelectorAll(
+                "#members .photo img"
+            )
+
+        );
+
+
+    if(
+        images.length === 0
+    ){
+
+        return;
+
+    }
+
+
+    /*
+       Compress one by one
+       to avoid memory overload
+    */
+
+    for(
+        const img of images
+    ){
+
+        await compressImageForPrint(
+            img
+        );
+
+    }
+
+}
 
 
 /* ==================================================
@@ -1199,12 +1614,75 @@ document
 ================================================== */
 
 window.printCurrentPage =
-function(){
+async function(){
 
-    window.print();
+    const button =
+        document.querySelector(
+            ".print"
+        );
+
+
+    if(button){
+
+        button.disabled = true;
+
+        button.textContent =
+            "⏳ Print ପ୍ରସ୍ତୁତ ହେଉଛି...";
+
+    }
+
+
+    try{
+
+        await compressPrintImages();
+
+
+        /*
+           Small delay so browser
+           updates images
+        */
+
+        await new Promise(
+            resolve =>
+                setTimeout(
+                    resolve,
+                    300
+                )
+        );
+
+
+        window.print();
+
+    }
+
+
+    catch(error){
+
+        console.error(
+            "Print Error:",
+            error
+        );
+
+
+        window.print();
+
+    }
+
+
+    finally{
+
+        if(button){
+
+            button.disabled = false;
+
+            button.textContent =
+                "🖨️ ଏହି Page Print";
+
+        }
+
+    }
 
 };
-
 
 
 /* ==================================================
@@ -1212,7 +1690,7 @@ function(){
 ================================================== */
 
 window.printAllMembers =
-function(){
+async function(){
 
     if(
         filteredMembers.length === 0
@@ -1233,6 +1711,26 @@ function(){
         );
 
 
+    const button =
+        document.querySelector(
+            ".printAll"
+        );
+
+
+    if(button){
+
+        button.disabled = true;
+
+        button.textContent =
+            "⏳ Print ପ୍ରସ୍ତୁତ ହେଉଛି...";
+
+    }
+
+
+    /*
+       Save current page
+    */
+
     const oldHTML =
         box.innerHTML;
 
@@ -1241,90 +1739,209 @@ function(){
         currentPage;
 
 
-    box.innerHTML = "";
+    try{
+
+        /*
+           Show all members
+        */
+
+        box.innerHTML = "";
 
 
-    filteredMembers.forEach(
-        (member,index)=>{
+        filteredMembers.forEach(
+            (member,index)=>{
 
-            const card =
-                createMemberCard(
-                    member,
-                    index + 1
-                );
-
-
-            box.appendChild(card);
-
-
-            /*
-               After every 20 members
-               create A4 page break
-            */
-
-            if(
-
-                (index + 1) %
-                MEMBERS_PER_PAGE === 0
-
-                &&
-
-                index + 1 <
-                filteredMembers.length
-
-            ){
-
-                const breakPage =
-                    document.createElement(
-                        "div"
+                const card =
+                    createMemberCard(
+                        member,
+                        index + 1
                     );
 
 
-                breakPage.className =
-                    "printBreak";
-
-
                 box.appendChild(
-                    breakPage
+                    card
                 );
 
+
+                /*
+                   20 members = 1 A4 page
+                */
+
+                if(
+
+                    (index + 1) %
+                    MEMBERS_PER_PAGE ===
+                    0
+
+                    &&
+
+                    index + 1 <
+                    filteredMembers.length
+
+                ){
+
+                    const pageBreak =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    pageBreak.className =
+                        "printBreak";
+
+
+                    box.appendChild(
+                        pageBreak
+                    );
+
+                }
+
             }
-
-        }
-    );
+        );
 
 
-    setTimeout(
-        ()=>{
+        /*
+           Wait for image elements
+        */
 
-            window.print();
-
-        },
-        700
-    );
+        await waitForImages();
 
 
-    window.onafterprint =
-    function(){
+        /*
+           Compress every photo
+        */
 
-        box.innerHTML =
-            oldHTML;
-
-
-        currentPage =
-            oldPage;
+        await compressPrintImages();
 
 
-        renderPage();
+        /*
+           Allow browser to update
+        */
+
+        await new Promise(
+            resolve =>
+                setTimeout(
+                    resolve,
+                    500
+                )
+        );
 
 
-        window.onafterprint =
-            null;
+        window.print();
 
-    };
+    }
+
+
+    catch(error){
+
+        console.error(
+            "Print All Error:",
+            error
+        );
+
+
+        window.print();
+
+    }
+
+
+    finally{
+
+        /*
+           Restore normal page
+           after print dialog closes
+        */
+
+        setTimeout(
+            ()=>{
+
+                box.innerHTML =
+                    oldHTML;
+
+
+                currentPage =
+                    oldPage;
+
+
+                renderPage();
+
+
+                if(button){
+
+                    button.disabled =
+                        false;
+
+                    button.textContent =
+                        "🖨️ ସମସ୍ତ Print";
+
+                }
+
+            },
+            1000
+        );
+
+    }
 
 };
 
+
+/* ==================================================
+   WAIT FOR IMAGES
+================================================== */
+
+function waitForImages(){
+
+    const images =
+        Array.from(
+
+            document.querySelectorAll(
+                "#members .photo img"
+            )
+
+        );
+
+
+    if(
+        images.length === 0
+    ){
+
+        return Promise.resolve();
+
+    }
+
+
+    return Promise.all(
+
+        images.map(
+            img=>{
+
+                if(
+                    img.complete
+                ){
+
+                    return Promise.resolve();
+
+                }
+
+
+                return new Promise(
+                    resolve=>{
+
+                        img.onload =
+                            resolve;
+
+                        img.onerror =
+                            resolve;
+
+                    }
+                );
+
+            }
+        )
+
+    );
+
+}
 
 
 /* ==================================================
@@ -1363,6 +1980,10 @@ function escapeHTML(value){
 }
 
 
+/* ==================================================
+   ESCAPE ATTRIBUTE
+================================================== */
+
 function escapeAttribute(value){
 
     return String(value)
@@ -1388,7 +2009,6 @@ function escapeAttribute(value){
         );
 
 }
-
 
 
 /* ==================================================
