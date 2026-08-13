@@ -1,223 +1,988 @@
 <!DOCTYPE html>
 <html lang="or">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>ସଦସ୍ୟ ପଞ୍ଜୀକରଣ</title>
 
 <link rel="stylesheet" href="style.css">
 
+<style>
+
+#submitBtn{
+    width:100%;
+    background:#c90000;
+    color:white;
+    border:none;
+    padding:13px;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+#submitBtn:disabled{
+    background:#777;
+    cursor:not-allowed;
+}
+
+#loadingText{
+    display:none;
+    text-align:center;
+    color:#b30000;
+    font-weight:bold;
+    margin-top:10px;
+    line-height:1.6;
+}
+
+</style>
+
 </head>
+
+
 <body>
+
 
 <div class="container">
 
-<img src="logo.png" class="logo" alt="Logo">
 
-<h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
+<img
+src="logo.png"
+class="logo"
+alt="Logo">
+
+
+<h2>
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+</h2>
+
 
 <form id="registrationForm">
 
-<label>ପୂର୍ଣ୍ଣ ନାମ</label>
-<input type="text" id="name" required>
 
-<label>ପିତାଙ୍କ ନାମ</label>
-<input type="text" id="father" required>
+<!-- =========================
+     NAME
+========================= -->
 
-<label>ମୋବାଇଲ୍ ନମ୍ବର</label>
-<input type="tel" id="mobile" required>
-<label>🎂 ଜନ୍ମ ତାରିଖ (DD/MM/YYYY)</label>
-<input
-  type="text"
-  id="dob"
-  placeholder="ଉଦାହରଣ: 07/03/1989"
-  pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}"
-  required>
-<label>ଠିକଣା</label>
-<textarea id="address" rows="3" required></textarea>
-
-<label>📷 ପାସପୋର୍ଟ ସାଇଜ ଫଟୋ</label>
+<label>
+ପୂର୍ଣ୍ଣ ନାମ
+</label>
 
 <input
-    type="file"
-    id="photo"
-    accept="image/*"
-    required
->
+type="text"
+id="name"
+required>
+
+
+<!-- =========================
+     FATHER
+========================= -->
+
+<label>
+ପିତାଙ୍କ ନାମ
+</label>
+
+<input
+type="text"
+id="father"
+required>
+
+
+<!-- =========================
+     MOBILE
+========================= -->
+
+<label>
+ମୋବାଇଲ୍ ନମ୍ବର
+</label>
+
+<input
+type="tel"
+id="mobile"
+inputmode="numeric"
+maxlength="10"
+required>
+
+
+<!-- =========================
+     DOB
+========================= -->
+
+<label>
+🎂 ଜନ୍ମ ତାରିଖ (DD/MM/YYYY)
+</label>
+
+<input
+type="text"
+id="dob"
+placeholder="ଉଦାହରଣ: 07/03/1989"
+pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}"
+required>
+
+
+<!-- =========================
+     ADDRESS
+========================= -->
+
+<label>
+ଠିକଣା
+</label>
+
+<textarea
+id="address"
+rows="3"
+required></textarea>
+
+
+<!-- =========================
+     PHOTO
+========================= -->
+
+<label>
+📷 ପାସପୋର୍ଟ ସାଇଜ ଫଟୋ
+</label>
+
+<input
+type="file"
+id="photo"
+accept="image/*"
+required>
+
+
+<!-- PHOTO PREVIEW -->
 
 <div
-    id="photoPreviewBox"
-    style="
-        display:none;
-        margin-top:12px;
-        text-align:center;
-    "
->
+id="photoPreviewBox"
+style="
+display:none;
+margin-top:12px;
+text-align:center;
+">
 
-    <p style="
-        color:#b30000;
-        font-weight:bold;
-        margin-bottom:8px;
-    ">
-        👤 Photo Preview
-    </p>
+<p style="
+color:#b30000;
+font-weight:bold;
+margin-bottom:8px;
+">
 
-    <img
-        id="photoPreview"
-        style="
-            width:155px;
-            height:160px;
-            object-fit:cover;
-            border:2px solid #b30000;
-            border-radius:8px;
-        "
-    >
+👤 Photo Preview
+
+</p>
+
+
+<img
+id="photoPreview"
+style="
+width:155px;
+height:160px;
+object-fit:cover;
+border:2px solid #b30000;
+border-radius:8px;
+">
+
 
 </div>
 
-<h3 style="color:red;">💳 Membership Fee : ₹1200</h3>
 
-<p>ନିମ୍ନରେ ଥିବା QR Code ସ୍କାନ୍ କରି ₹1200 ପେମେଣ୍ଟ କରନ୍ତୁ।</p>
+<!-- =========================
+     FEE
+========================= -->
 
-<img src="paytm-qr.jpg" width="250" style="display:block;margin:auto;">
+<h3 style="color:red;">
 
-<p><b>UPI ID:</b> 9827275681@pthdfc</p>
+💳 Membership Fee : ₹1200
 
-<div class="notice" style="background:#fff3cd;color:#856404;padding:12px;border-radius:8px;margin:15px 0;">
-<b>⚠️ ସୂଚନା</b><br>
-ଆପଣଙ୍କ Registration ପ୍ରଥମେ <b>Pending</b> ରେ ଯିବ।<br>
-Admin Approval ପରେ Payment Verify କରାଯିବ ଏବଂ Member ID ଦିଆଯିବ।
+</h3>
+
+
+<p>
+
+ନିମ୍ନରେ ଥିବା QR Code ସ୍କାନ୍ କରି
+₹1200 ପେମେଣ୍ଟ କରନ୍ତୁ।
+
+</p>
+
+
+<img
+src="paytm-qr.jpg"
+width="250"
+style="
+display:block;
+margin:auto;
+">
+
+
+<p>
+
+<b>UPI ID:</b>
+9827275681@pthdfc
+
+</p>
+
+
+<!-- =========================
+     NOTICE
+========================= -->
+
+<div
+class="notice"
+style="
+background:#fff3cd;
+color:#856404;
+padding:12px;
+border-radius:8px;
+margin:15px 0;
+">
+
+<b>⚠️ ସୂଚନା</b>
+
+<br>
+
+ଆପଣଙ୍କ Registration ପ୍ରଥମେ
+<b>Pending</b> ରେ ଯିବ।
+
+<br>
+
+Admin Approval ପରେ Payment Verify
+କରାଯିବ ଏବଂ Member ID ଦିଆଯିବ।
+
 </div>
 
 
+<!-- =========================
+     SUBMIT
+========================= -->
 
+<button
+type="submit"
+id="submitBtn">
 
-
-<button type="submit">
 📝 Registration Submit
+
 </button>
 
+
+<div id="loadingText">
+
+⏳ Registration Submit ହେଉଛି...
+
+<br>
+
+ଦୟାକରି button ପୁଣି click କରନ୍ତୁ ନାହିଁ।
+
+</div>
 
 
 </form>
 
+
 </div>
+
+
+
 <script type="module">
+
+
+// ========================================
+// FIREBASE
+// ========================================
 
 import { db } from "./firebase.js";
 
+
 import {
-  collection,
-  addDoc,
-  doc,
-  getDoc,
-  setDoc,
-  query,
-  where,
-  getDocs
+
+    collection,
+
+    addDoc,
+
+    doc,
+
+    runTransaction,
+
+    query,
+
+    where,
+
+    getDocs,
+
+    serverTimestamp
+
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  
-  
 
-async function getNextMemberId() {
-  const counterRef = doc(db, "system", "counter");
-  const counterSnap = await getDoc(counterRef);
 
-  let number = 1;
 
-  if (counterSnap.exists()) {
-    number = counterSnap.data().lastNumber + 1;
-  }
+// ========================================
+// PHOTO PREVIEW
+// ========================================
 
-  await setDoc(counterRef, {
-    lastNumber: number
-  });
+document
+.getElementById("photo")
+.addEventListener("change", function(){
 
-  return "ORKS" + String(number).padStart(4, "0");
-}
+    const file = this.files[0];
 
-document.getElementById("registrationForm").addEventListener("submit", async (e) => {
+    if(!file){
 
-  e.preventDefault();
+        document
+        .getElementById("photoPreviewBox")
+        .style.display = "none";
 
-  try {
+        return;
 
-    const memberId = await getNextMemberId();
-const mobile = document.getElementById("mobile").value.trim();
+    }
 
-const q = query(
-  collection(db, "members"),
-  where("mobile", "==", mobile)
-);
 
-const snapshot = await getDocs(q);
+    const reader =
+    new FileReader();
 
-if (!snapshot.empty) {
-  alert("ଏହି ମୋବାଇଲ ନମ୍ବରରେ ପୂର୍ବରୁ Registration ହୋଇସାରିଛି।");
-  return;
-}
-    const photo = document.getElementById("photo").files[0];
 
-    let photoUrl = "";
+    reader.onload = function(e){
 
-    if (photo) {
+        document
+        .getElementById("photoPreview")
+        .src = e.target.result;
 
-      const formData = new FormData();
 
-      formData.append("file", photo);
-      formData.append("upload_preset", "odiaratan2026");
+        document
+        .getElementById("photoPreviewBox")
+        .style.display = "block";
 
-      const response = await fetch(
-        "https://api.cloudinary.com/v1_1/y8toswrt/image/upload",
-        {
-          method: "POST",
-          body: formData
-        }
-      );
+    };
 
-      const result = await response.json();
 
-      photoUrl = result.secure_url;
-    }    const docRef = await addDoc(collection(db, "members"), {
-      memberId: memberId,
-photoUrl: photoUrl,
-name: document.getElementById("name").value,
-father: document.getElementById("father").value,
-mobile: document.getElementById("mobile").value,
-      dob: document.getElementById("dob").value.trim(),
-address: document.getElementById("address").value,
-
-status: "pending",
-paid: false,
-
-paymentMode: "",
-txnId: "",
-
-createdAt: new Date()
-      
-    
-      
-      
-      
-      
-
-      
-    });
-
-    
-
-    alert("ଆପଣଙ୍କ Registration ସଫଳତାର ସହ Submit ହୋଇଛି। Admin Approval ପରେ Member ID ଦିଆଯିବ।");
-
-document.getElementById("registrationForm").reset();
-
-  } catch (error) {
-    alert("Error: " + error.message);
-    console.error(error);
-  }
+    reader.readAsDataURL(file);
 
 });
 
+
+
+// ========================================
+// COMPRESS PHOTO
+// ========================================
+
+async function compressImage(file){
+
+    return new Promise((resolve,reject)=>{
+
+
+        const img =
+        new Image();
+
+
+        const reader =
+        new FileReader();
+
+
+        reader.onload = function(e){
+
+
+            img.onload = function(){
+
+
+                const canvas =
+                document.createElement("canvas");
+
+
+                const maxWidth = 800;
+
+                const maxHeight = 800;
+
+
+                let width =
+                img.width;
+
+                let height =
+                img.height;
+
+
+                if(width > height){
+
+                    if(width > maxWidth){
+
+                        height =
+                        height * maxWidth / width;
+
+                        width =
+                        maxWidth;
+
+                    }
+
+                }
+
+                else{
+
+                    if(height > maxHeight){
+
+                        width =
+                        width * maxHeight / height;
+
+                        height =
+                        maxHeight;
+
+                    }
+
+                }
+
+
+                canvas.width =
+                width;
+
+                canvas.height =
+                height;
+
+
+                const ctx =
+                canvas.getContext("2d");
+
+
+                ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    width,
+                    height
+                );
+
+
+                canvas.toBlob(
+                    function(blob){
+
+                        if(blob){
+
+                            resolve(blob);
+
+                        }
+
+                        else{
+
+                            reject(
+                                new Error(
+                                    "Photo compression failed"
+                                )
+                            );
+
+                        }
+
+                    },
+                    "image/jpeg",
+                    0.75
+                );
+
+
+            };
+
+
+            img.onerror = function(){
+
+                reject(
+                    new Error(
+                        "Photo load failed"
+                    )
+                );
+
+            };
+
+
+            img.src =
+            e.target.result;
+
+        };
+
+
+        reader.onerror = function(){
+
+            reject(
+                new Error(
+                    "Photo read failed"
+                )
+            );
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+    });
+
+}
+
+
+
+// ========================================
+// SECURE MEMBER ID
+// ========================================
+
+async function createMemberTransaction(data){
+
+
+    const counterRef =
+    doc(db,"system","counter");
+
+
+    const result =
+    await runTransaction(
+        db,
+        async(transaction)=>{
+
+
+            // ============================
+            // CHECK DUPLICATE MOBILE
+            // ============================
+
+            const mobileQuery =
+            query(
+                collection(db,"members"),
+                where(
+                    "mobile",
+                    "==",
+                    data.mobile
+                )
+            );
+
+
+            const mobileSnapshot =
+            await getDocs(mobileQuery);
+
+
+            if(!mobileSnapshot.empty){
+
+                throw new Error(
+                    "DUPLICATE_MOBILE"
+                );
+
+            }
+
+
+            // ============================
+            // GET COUNTER
+            // ============================
+
+            const counterSnapshot =
+            await transaction.get(
+                counterRef
+            );
+
+
+            let nextNumber = 1;
+
+
+            if(counterSnapshot.exists()){
+
+                const oldNumber =
+                Number(
+                    counterSnapshot.data().lastNumber || 0
+                );
+
+
+                nextNumber =
+                oldNumber + 1;
+
+            }
+
+
+            // ============================
+            // MEMBER ID
+            // ============================
+
+            const memberId =
+            "ORKS" +
+            String(nextNumber)
+            .padStart(4,"0");
+
+
+            // ============================
+            // NEW MEMBER DOCUMENT
+            // ============================
+
+            const memberRef =
+            doc(
+                collection(
+                    db,
+                    "members"
+                )
+            );
+
+
+            // ============================
+            // UPDATE COUNTER
+            // ============================
+
+            transaction.set(
+                counterRef,
+                {
+                    lastNumber:nextNumber
+                }
+            );
+
+
+            // ============================
+            // SAVE MEMBER
+            // ============================
+
+            transaction.set(
+                memberRef,
+                {
+
+                    memberId:memberId,
+
+                    photoUrl:data.photoUrl,
+
+                    name:data.name,
+
+                    father:data.father,
+
+                    mobile:data.mobile,
+
+                    dob:data.dob,
+
+                    address:data.address,
+
+                    status:"pending",
+
+                    paid:false,
+
+                    paymentMode:"",
+
+                    txnId:"",
+
+                    createdAt:
+                    serverTimestamp()
+
+                }
+            );
+
+
+            return memberId;
+
+        }
+    );
+
+
+    return result;
+
+}
+
+
+
+// ========================================
+// FORM SUBMIT
+// ========================================
+
+document
+.getElementById("registrationForm")
+.addEventListener(
+"submit",
+async function(e){
+
+
+    e.preventDefault();
+
+
+    const form =
+    document.getElementById(
+        "registrationForm"
+    );
+
+
+    const submitBtn =
+    document.getElementById(
+        "submitBtn"
+    );
+
+
+    const loadingText =
+    document.getElementById(
+        "loadingText"
+    );
+
+
+    // ====================================
+    // PREVENT DOUBLE CLICK
+    // ====================================
+
+    if(submitBtn.disabled){
+
+        return;
+
+    }
+
+
+    // ====================================
+    // GET VALUES
+    // ====================================
+
+    const name =
+    document
+    .getElementById("name")
+    .value
+    .trim();
+
+
+    const father =
+    document
+    .getElementById("father")
+    .value
+    .trim();
+
+
+    const mobile =
+    document
+    .getElementById("mobile")
+    .value
+    .trim();
+
+
+    const dob =
+    document
+    .getElementById("dob")
+    .value
+    .trim();
+
+
+    const address =
+    document
+    .getElementById("address")
+    .value
+    .trim();
+
+
+    const photo =
+    document
+    .getElementById("photo")
+    .files[0];
+
+
+
+    // ====================================
+    // MOBILE VALIDATION
+    // ====================================
+
+    if(!/^[6-9][0-9]{9}$/.test(mobile)){
+
+        alert(
+            "ଦୟାକରି 10 digit ଠିକ୍ Mobile Number ଦିଅନ୍ତୁ।"
+        );
+
+        return;
+
+    }
+
+
+    // ====================================
+    // PHOTO CHECK
+    // ====================================
+
+    if(!photo){
+
+        alert(
+            "ଦୟାକରି Photo ବାଛନ୍ତୁ।"
+        );
+
+        return;
+
+    }
+
+
+    // ====================================
+    // BUTTON LOADING
+    // ====================================
+
+    submitBtn.disabled = true;
+
+    submitBtn.innerHTML =
+    "⏳ Submitting...";
+
+
+    loadingText.style.display =
+    "block";
+
+
+    try{
+
+
+        // =================================
+        // COMPRESS PHOTO
+        // =================================
+
+        const compressedPhoto =
+        await compressImage(photo);
+
+
+
+        // =================================
+        // CLOUDINARY
+        // =================================
+
+        const formData =
+        new FormData();
+
+
+        formData.append(
+            "file",
+            compressedPhoto
+        );
+
+
+        formData.append(
+            "upload_preset",
+            "odiaratan2026"
+        );
+
+
+        const response =
+        await fetch(
+            "https://api.cloudinary.com/v1_1/y8toswrt/image/upload",
+            {
+                method:"POST",
+                body:formData
+            }
+        );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Photo upload failed"
+            );
+
+        }
+
+
+        const result =
+        await response.json();
+
+
+        if(!result.secure_url){
+
+            throw new Error(
+                "Photo URL ମିଳିଲା ନାହିଁ"
+            );
+
+        }
+
+
+        const photoUrl =
+        result.secure_url;
+
+
+
+        // =================================
+        // SECURE FIRESTORE TRANSACTION
+        // =================================
+
+        const memberId =
+        await createMemberTransaction({
+
+            name:name,
+
+            father:father,
+
+            mobile:mobile,
+
+            dob:dob,
+
+            address:address,
+
+            photoUrl:photoUrl
+
+        });
+
+
+
+        // =================================
+        // SUCCESS
+        // =================================
+
+        alert(
+            "✅ Registration ସଫଳତାର ସହ Submit ହୋଇଛି।\n\n" +
+            "Member ID: " +
+            memberId +
+            "\n\n" +
+            "Admin Approval ପରେ Registration ସମ୍ପୂର୍ଣ୍ଣ ହେବ।"
+        );
+
+
+        // =================================
+        // RESET FORM
+        // =================================
+
+        form.reset();
+
+
+        document
+        .getElementById(
+            "photoPreviewBox"
+        )
+        .style.display = "none";
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(
+            "Registration Error:",
+            error
+        );
+
+
+        // =================================
+        // DUPLICATE MOBILE
+        // =================================
+
+        if(
+            error.message ===
+            "DUPLICATE_MOBILE"
+        ){
+
+            alert(
+                "⚠️ ଏହି Mobile Number ରେ ପୂର୍ବରୁ Registration ହୋଇସାରିଛି।"
+            );
+
+        }
+
+
+        else{
+
+            alert(
+                "❌ Registration failed:\n\n" +
+                error.message
+            );
+
+        }
+
+    }
+
+
+    // ====================================
+    // RESTORE BUTTON
+    // ====================================
+
+    submitBtn.disabled =
+    false;
+
+
+    submitBtn.innerHTML =
+    "📝 Registration Submit";
+
+
+    loadingText.style.display =
+    "none";
+
+
+});
+
+
 </script>
 
+
 </body>
+
 </html>
