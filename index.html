@@ -27,165 +27,635 @@
 
 <link rel="preload"
       as="image"
-   href="images/banner-new-2026.jpg"
-
-</head>
+      href="images/banner-new-2026.jpg">
 
 
-<body>
+<!-- =========================
+     WELCOME POPUP STYLE
+========================= -->
 
-<header class="header">
+<style>
 
-    <img src="logo.png"
-         class="logo"
-         alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Logo"
-         width="100"
-         height="100">
+#welcomePopup{
 
-    <div>
+    position:fixed;
 
-        <h2>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h2>
+    inset:0;
 
-        <p>Surat, Gujarat</p>
+    background:rgba(0,0,0,0.78);
 
-    </div>
+    display:flex;
 
-</header>
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:99999;
+
+    padding:20px;
+
+    animation:popupBg 0.5s ease;
+
+}
+
+.welcomeBox{
+
+    width:100%;
+
+    max-width:430px;
+
+    background:linear-gradient(
+        145deg,
+        #fffaf0,
+        #ffffff
+    );
+
+    border-radius:25px;
+
+    padding:28px 22px;
+
+    text-align:center;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,0.45);
+
+    border:3px solid #d4af37;
+
+    animation:welcomeBox 0.7s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.welcomeBox::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-80px;
+
+    right:-80px;
+
+    width:170px;
+
+    height:170px;
+
+    background:#ffd700;
+
+    opacity:0.12;
+
+    border-radius:50%;
+
+}
+
+.welcomeLogo{
+
+    width:90px;
+
+    height:90px;
+
+    object-fit:contain;
+
+    border-radius:50%;
+
+    margin-bottom:10px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.20);
+
+}
+
+.welcomeTitle{
+
+    color:#8B0000;
+
+    font-size:28px;
+
+    margin:5px 0;
+
+    font-weight:bold;
+
+}
+
+.welcomeOrg{
+
+    color:#333;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    line-height:1.5;
+
+    margin:5px 0;
+
+}
+
+.welcomeLocation{
+
+    color:#8B0000;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    margin-bottom:18px;
+
+}
+
+.welcomeLine{
+
+    width:80px;
+
+    height:3px;
+
+    background:#d4af37;
+
+    margin:12px auto 18px;
+
+    border-radius:10px;
+
+}
+
+.welcomeMessage{
+
+    color:#444;
+
+    font-size:16px;
+
+    line-height:1.8;
+
+    margin-bottom:22px;
+
+}
+
+.welcomeButton{
+
+    border:none;
+
+    background:linear-gradient(
+        135deg,
+        #8B0000,
+        #c40000
+    );
+
+    color:white;
+
+    padding:13px 28px;
+
+    border-radius:30px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 5px 15px rgba(139,0,0,0.35);
+
+    transition:0.3s;
+
+}
+
+.welcomeButton:hover{
+
+    transform:scale(1.05);
+
+}
+
+.welcomeBlessing{
+
+    margin-top:18px;
+
+    font-size:14px;
+
+    color:#777;
+
+}
 
 
-<section class="banner">
+/* Popup Animation */
 
-   <img src="images/banner-new-2026.jpg" 
-         alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Banner"
-         loading="eager"
-         width="1500"
-         height="1000">
+@keyframes popupBg{
 
-</section>
+    from{
 
-    
-         
-         
-         
-         
+        opacity:0;
 
-</section>
+    }
 
+    to{
 
-<section class="menu">
+        opacity:1;
 
-<a href="registration.html" class="card">
-    <i class="fa-solid fa-user-plus"></i>
-    <span>Registration</span>
-</a>
+    }
 
+}
 
-<a href="members.html" class="card">
-    <i class="fa-solid fa-id-card"></i>
-    <span>ID Card</span>
-</a>
+@keyframes welcomeBox{
 
+    from{
 
-<a href="#" class="card" onclick="openCommittee(); return false;">
+        opacity:0;
 
-    <i class="fa-solid fa-users"></i>
+        transform:
+            translateY(40px)
+            scale(0.9);
 
-    <span>Committee</span>
+    }
 
-</a>
+    to{
 
+        opacity:1;
 
-<a href="gallery.html" class="card">
-    <i class="fa-solid fa-image"></i>
-    <span>Gallery</span>
-</a>
-
-
-<a href="news.html" class="card">
-    <i class="fa-solid fa-newspaper"></i>
-    <span>News</span>
-</a>
-
-
-<a href="blood.html" class="card">
-    <i class="fa-solid fa-droplet"></i>
-    <span>Blood Donor</span>
-</a>
-
-
-<a href="donation.html" class="card">
-    <i class="fa-solid fa-hand-holding-heart"></i>
-    <span>Donation</span>
-</a>
-
-
-<a href="contact.html" class="card">
-    <i class="fa-solid fa-phone"></i>
-    <span>Contact</span>
-</a>
-
-
-<a href="about.html" class="card">
-
-    <i class="fa-solid fa-circle-info"></i>
-
-    <span>ଆମ ବିଷୟରେ</span>
-
-</a>
-
-
-<a href="login.html" class="card">
-
-    <i class="fa-solid fa-chart-line"></i>
-
-    <span>Admin Dashboard</span>
-
-</a>
-
-</section>
-
-
-<section class="notice">
-
-    <h3>📢 Notice Board</h3>
-
-    <marquee id="noticeBoard">
-        Latest News Loading...
-    </marquee>
-
-</section>
-
-
-<!-- Committee Password -->
-
-<script>
-
-function openCommittee() {
-
-    const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
-
-    if (pass === "2026@") {
-
-        window.location.href = "admin.html";
-
-    } else {
-
-        window.location.href = "committee.html";
+        transform:
+            translateY(0)
+            scale(1);
 
     }
 
 }
 
 
-function openAdmin() {
+/* Mobile */
 
-    const pass = prompt("Admin Password ଦିଅନ୍ତୁ");
+@media(max-width:480px){
 
-    if (pass === "2026@") {
+    .welcomeBox{
 
-        window.location.href = "admin.html";
+        padding:24px 18px;
 
-    } else if (pass !== null) {
+        border-radius:22px;
+
+    }
+
+    .welcomeLogo{
+
+        width:78px;
+
+        height:78px;
+
+    }
+
+    .welcomeTitle{
+
+        font-size:25px;
+
+    }
+
+    .welcomeOrg{
+
+        font-size:19px;
+
+    }
+
+    .welcomeMessage{
+
+        font-size:15px;
+
+        line-height:1.7;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     WELCOME POPUP
+========================= -->
+
+<div id="welcomePopup">
+
+    <div class="welcomeBox">
+
+        <img
+            src="logo.png"
+            class="welcomeLogo"
+            alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Logo"
+        >
+
+        <div class="welcomeTitle">
+            🙏 ସ୍ୱାଗତମ୍ 🙏
+        </div>
+
+        <div class="welcomeLine"></div>
+
+        <div class="welcomeOrg">
+            ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+        </div>
+
+        <div class="welcomeLocation">
+            ସୁରତ
+        </div>
+
+        <div class="welcomeMessage">
+
+            🌸 ଏକ ମନ, ଏକ ପ୍ରାଣ,<br>
+            ଏକତା ଆମର ପରିଚୟ।<br><br>
+
+            ଓଡ଼ିଆ କଳା, ସଂସ୍କୃତି ଓ
+            କଳାକାରଙ୍କ ସମ୍ମାନ ପାଇଁ
+            ଆସନ୍ତୁ ଆମେ ସମସ୍ତେ
+            ଏକାଠି ଆଗକୁ ବଢ଼ିବା। 🙏
+
+        </div>
+
+        <button
+            class="welcomeButton"
+            onclick="closeWelcome()">
+
+            ପ୍ରବେଶ କରନ୍ତୁ →
+            
+        </button>
+
+        <div class="welcomeBlessing">
+            ଆପଣଙ୍କୁ ଆମ ପରିବାରରେ ସାଦର ସ୍ୱାଗତ 🙏
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <img
+        src="logo.png"
+        class="logo"
+        alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Logo"
+        width="100"
+        height="100"
+    >
+
+    <div>
+
+        <h2>
+            ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+        </h2>
+
+        <p>
+            Surat, Gujarat
+        </p>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================
+     OLD BANNER
+     ଏହାକୁ ପରିବର୍ତ୍ତନ କରାଯାଇନାହିଁ
+========================= -->
+
+<section class="banner">
+
+    <img
+        src="images/banner-new-2026.jpg"
+        alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Banner"
+        loading="eager"
+        width="1500"
+        height="1000"
+    >
+
+</section>
+
+
+
+<!-- =========================
+     MENU
+========================= -->
+
+<section class="menu">
+
+
+<a href="registration.html" class="card">
+
+    <i class="fa-solid fa-user-plus"></i>
+
+    <span>
+        Registration
+    </span>
+
+</a>
+
+
+
+<a href="members.html" class="card">
+
+    <i class="fa-solid fa-id-card"></i>
+
+    <span>
+        ID Card
+    </span>
+
+</a>
+
+
+
+<a href="#"
+   class="card"
+   onclick="openCommittee(); return false;">
+
+    <i class="fa-solid fa-users"></i>
+
+    <span>
+        Committee
+    </span>
+
+</a>
+
+
+
+<a href="gallery.html" class="card">
+
+    <i class="fa-solid fa-image"></i>
+
+    <span>
+        Gallery
+    </span>
+
+</a>
+
+
+
+<a href="news.html" class="card">
+
+    <i class="fa-solid fa-newspaper"></i>
+
+    <span>
+        News
+    </span>
+
+</a>
+
+
+
+<a href="blood.html" class="card">
+
+    <i class="fa-solid fa-droplet"></i>
+
+    <span>
+        Blood Donor
+    </span>
+
+</a>
+
+
+
+<a href="donation.html" class="card">
+
+    <i class="fa-solid fa-hand-holding-heart"></i>
+
+    <span>
+        Donation
+    </span>
+
+</a>
+
+
+
+<a href="contact.html" class="card">
+
+    <i class="fa-solid fa-phone"></i>
+
+    <span>
+        Contact
+    </span>
+
+</a>
+
+
+
+<a href="about.html" class="card">
+
+    <i class="fa-solid fa-circle-info"></i>
+
+    <span>
+        ଆମ ବିଷୟରେ
+    </span>
+
+</a>
+
+
+
+<a href="login.html" class="card">
+
+    <i class="fa-solid fa-chart-line"></i>
+
+    <span>
+        Admin Dashboard
+    </span>
+
+</a>
+
+
+</section>
+
+
+
+<!-- =========================
+     NOTICE BOARD
+========================= -->
+
+<section class="notice">
+
+    <h3>
+        📢 Notice Board
+    </h3>
+
+    <marquee id="noticeBoard">
+
+        Latest News Loading...
+
+    </marquee>
+
+</section>
+
+
+
+<!-- =========================
+     WELCOME POPUP SCRIPT
+========================= -->
+
+<script>
+
+function closeWelcome(){
+
+    const popup =
+        document.getElementById("welcomePopup");
+
+    popup.style.opacity = "0";
+
+    popup.style.transition =
+        "opacity 0.4s ease";
+
+    setTimeout(() => {
+
+        popup.style.display = "none";
+
+    }, 400);
+
+}
+
+</script>
+
+
+
+<!-- =========================
+     COMMITTEE PASSWORD
+========================= -->
+
+<script>
+
+function openCommittee(){
+
+    const pass =
+        prompt("Admin Password ଦିଅନ୍ତୁ");
+
+    if(pass === "2026@"){
+
+        window.location.href =
+            "admin.html";
+
+    }else{
+
+        window.location.href =
+            "committee.html";
+
+    }
+
+}
+
+
+
+function openAdmin(){
+
+    const pass =
+        prompt("Admin Password ଦିଅନ୍ତୁ");
+
+    if(pass === "2026@"){
+
+        window.location.href =
+            "admin.html";
+
+    }else if(pass !== null){
 
         alert("❌ Wrong Password");
 
@@ -196,24 +666,28 @@ function openAdmin() {
 </script>
 
 
-<!-- Firebase News
-     Runs AFTER Homepage becomes visible
--->
+
+<!-- =========================
+     FIREBASE NEWS
+========================= -->
 
 <script type="module">
 
 setTimeout(async () => {
 
-    try {
+    try{
 
-        const { db } = await import("./firebase.js");
+        const { db } =
+            await import("./firebase.js");
 
         const {
+
             collection,
             getDocs,
             query,
             orderBy,
             limit
+
         } = await import(
             "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
         );
@@ -227,17 +701,21 @@ setTimeout(async () => {
 
             collection(db, "news"),
 
-            orderBy("createdAt", "desc"),
+            orderBy(
+                "createdAt",
+                "desc"
+            ),
 
             limit(1)
 
         );
 
 
-        const snapshot = await getDocs(q);
+        const snapshot =
+            await getDocs(q);
 
 
-        if (snapshot.empty) {
+        if(snapshot.empty){
 
             notice.textContent =
                 "📢 କୌଣସି News ନାହିଁ";
@@ -249,7 +727,8 @@ setTimeout(async () => {
 
         snapshot.forEach(doc => {
 
-            const news = doc.data();
+            const news =
+                doc.data();
 
             notice.textContent =
                 `${news.title} - ${news.details}`;
@@ -257,24 +736,29 @@ setTimeout(async () => {
         });
 
 
-    } catch (error) {
+    }catch(error){
 
-        console.error("News Load Error:", error);
+        console.error(
+            "News Load Error:",
+            error
+        );
 
-        document.getElementById("noticeBoard").textContent =
+        document.getElementById(
+            "noticeBoard"
+        ).textContent =
             "📢 Latest News";
 
     }
 
-}, 100);
-
+},100);
 
 </script>
 
 
-<!-- OneSignal
-     Loads after Homepage is ready
--->
+
+<!-- =========================
+     ONESIGNAL
+========================= -->
 
 <script>
 
@@ -283,10 +767,13 @@ setTimeout(() => {
     const script =
         document.createElement("script");
 
+
     script.src =
         "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";
 
+
     script.defer = true;
+
 
     document.head.appendChild(script);
 
@@ -296,9 +783,9 @@ setTimeout(() => {
 
 
     OneSignalDeferred.push(
-        async function(OneSignal) {
+        async function(OneSignal){
 
-            try {
+            try{
 
                 await OneSignal.init({
 
@@ -307,7 +794,7 @@ setTimeout(() => {
 
                 });
 
-            } catch (error) {
+            }catch(error){
 
                 console.error(
                     "OneSignal Error:",
@@ -320,23 +807,28 @@ setTimeout(() => {
     );
 
 
-}, 1500);
+},1500);
 
 </script>
 
 
-<!-- Service Worker -->
+
+<!-- =========================
+     SERVICE WORKER
+========================= -->
 
 <script>
 
-if ("serviceWorker" in navigator) {
+if("serviceWorker" in navigator){
 
     window.addEventListener(
         "load",
         () => {
 
             navigator.serviceWorker
-                .register("service-worker.js")
+                .register(
+                    "service-worker.js"
+                )
                 .catch(error => {
 
                     console.error(
@@ -355,4 +847,5 @@ if ("serviceWorker" in navigator) {
 
 
 </body>
+
 </html>
