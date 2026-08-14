@@ -229,6 +229,10 @@ button{
     white-space:nowrap;
 }
 
+.whatsapp-btn:hover{
+    background:#1ebe5d;
+}
+
 .loading{
     text-align:center;
     padding:20px;
@@ -277,6 +281,7 @@ button{
 
 </head>
 
+
 <body>
 
 
@@ -294,40 +299,64 @@ button{
 <div class="container">
 
 
-<!-- FESTIVAL -->
+<!-- FESTIVAL MESSAGE -->
 
 <div class="card">
 
     <h2>🇮🇳 Festival Message</h2>
 
+
     <label for="festival">
         Festival ବାଛନ୍ତୁ
     </label>
 
-    <select id="festival" onchange="changeFestival()">
+
+    <select
+        id="festival"
+        onchange="changeFestival()">
 
         <option value="independence">
             🇮🇳 ସ୍ୱାଧୀନତା ଦିବସ
+        </option>
+
+        <option value="muharram">
+            🌙 ପବିତ୍ର ମହମ୍ମଦ ଜୟନ୍ତୀ
+        </option>
+
+        <option value="jhulan">
+            🌸 ଝୁଲଣ ପୂର୍ଣ୍ଣିମା
+        </option>
+
+        <option value="janmashtami">
+            🛕 ଜନ୍ମାଷ୍ଟମୀ
         </option>
 
         <option value="ganesh">
             🐘 ଗଣେଶ ପୂଜା
         </option>
 
-        <option value="rathayatra">
-            🛕 ରଥଯାତ୍ରା
-        </option>
-
         <option value="nuakhai">
             🌾 ନୂଆଖାଇ
+        </option>
+
+        <option value="nuakhai-next">
+            🌾 ନୂଆଖାଇ ପରଦିନ
+        </option>
+
+        <option value="gandhi">
+            🇮🇳 ଗାନ୍ଧୀ ଜୟନ୍ତୀ
         </option>
 
         <option value="diwali">
             🪔 ଦୀପାବଳି
         </option>
 
-        <option value="newyear">
-            🎉 ନୂଆ ବର୍ଷ
+        <option value="kartik">
+            🛕 କାର୍ତ୍ତିକ ପୂର୍ଣ୍ଣିମା
+        </option>
+
+        <option value="christmas">
+            🎄 ବଡ଼ଦିନ
         </option>
 
     </select>
@@ -336,6 +365,7 @@ button{
     <label for="message">
         📝 ବାର୍ତ୍ତା
     </label>
+
 
     <textarea
         id="message"
@@ -439,15 +469,17 @@ button{
 
 
 
-<!-- =====================================
-     FESTIVAL SYSTEM
-===================================== -->
-
 <script>
+
+
+/* ==========================================
+   FESTIVAL MESSAGES
+========================================== */
 
 const messages = {
 
-    independence:
+
+independence:
 `🇮🇳 ସ୍ୱାଧୀନତା ଦିବସର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🇮🇳
 
 ଆମ ତ୍ରିରଙ୍ଗା ଆମର ଗର୍ବ।
@@ -461,81 +493,174 @@ const messages = {
 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
 
 
-    ganesh:
+muharram:
+`🌙 ପବିତ୍ର ମହମ୍ମଦ ଜୟନ୍ତୀର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🌙
+
+ଏହି ପବିତ୍ର ଦିନଟି ସମସ୍ତଙ୍କ ଜୀବନରେ
+ଶାନ୍ତି, ସଦଭାବ ଓ ସୁଖ ଆଣିଦେଉ।
+
+ସମସ୍ତଙ୍କ ମଙ୍ଗଳ କାମନା କରୁଛୁ।
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+
+jhulan:
+`🌸 ଝୁଲଣ ପୂର୍ଣ୍ଣିମାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🌸
+
+ଭଗବାନ ଶ୍ରୀକୃଷ୍ଣଙ୍କ ଆଶୀର୍ବାଦରେ
+ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖ, ଶାନ୍ତି
+ଓ ସମୃଦ୍ଧିରେ ପରିପୂର୍ଣ୍ଣ ହେଉ।
+
+ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା। 🙏
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+
+janmashtami:
+`🛕 ଶ୍ରୀକୃଷ୍ଣ ଜନ୍ମାଷ୍ଟମୀର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🛕
+
+ଭଗବାନ ଶ୍ରୀକୃଷ୍ଣଙ୍କ ଆଶୀର୍ବାଦରେ
+ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖ, ଶାନ୍ତି
+ଓ ସମୃଦ୍ଧିରେ ପରିପୂର୍ଣ୍ଣ ହେଉ।
+
+ଜୟ ଶ୍ରୀକୃଷ୍ଣ! 🙏
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+
+ganesh:
 `🐘 ଶ୍ରୀ ଗଣେଶ ପୂଜାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🐘
 
-ବିଘ୍ନବିନାଶକ ପ୍ରଭୁ ଶ୍ରୀ ଗଣେଶଙ୍କ ଆଶୀର୍ବାଦରେ ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖ, ଶାନ୍ତି ଓ ସମୃଦ୍ଧିରେ ପରିପୂର୍ଣ୍ଣ ହେଉ।
+ବିଘ୍ନବିନାଶକ ପ୍ରଭୁ ଶ୍ରୀ ଗଣେଶଙ୍କ ଆଶୀର୍ବାଦରେ
+ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖ, ଶାନ୍ତି
+ଓ ସମୃଦ୍ଧିରେ ପରିପୂର୍ଣ୍ଣ ହେଉ।
 
 ଗଣପତି ବାପ୍ପା ମୋରିଆ! 🙏
 
 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
 
 
-    rathayatra:
-`🛕 ପବିତ୍ର ରଥଯାତ୍ରାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🛕
-
-ମହାପ୍ରଭୁ ଶ୍ରୀଜଗନ୍ନାଥଙ୍କ କୃପାରୁ ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖ, ଶାନ୍ତି ଓ ସମୃଦ୍ଧିରେ ପରିପୂର୍ଣ୍ଣ ହେଉ।
-
-ଜୟ ଜଗନ୍ନାଥ! 🙏
-
-ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
-
-
-    nuakhai:
+nuakhai:
 `🌾 ନୂଆଖାଇ ଜୁହାର 🌾
 
-ନୂଆଖାଇ ପର୍ବ ଅବସରରେ ସମସ୍ତ ସଦସ୍ୟ ଓ ପରିବାରବର୍ଗଙ୍କୁ ଅନେକ ଅନେକ ଶୁଭେଚ୍ଛା।
+ନୂଆଖାଇ ପର୍ବ ଅବସରରେ
+ସମସ୍ତ ସଦସ୍ୟ ଓ ପରିବାରବର୍ଗଙ୍କୁ
+ଅନେକ ଅନେକ ଶୁଭେଚ୍ଛା।
 
-ମା' ସମଲେଇଙ୍କ ଆଶୀର୍ବାଦରେ ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖମୟ ହେଉ।
+ମା' ସମଲେଇଙ୍କ ଆଶୀର୍ବାଦରେ
+ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖମୟ ହେଉ।
 
 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
 
 
-    diwali:
+"nuakhai-next":
+`🌾 ନୂଆଖାଇ ପରଦିନର ଶୁଭେଚ୍ଛା 🌾
+
+ସମସ୍ତ ସଦସ୍ୟ ଓ ପରିବାରବର୍ଗଙ୍କୁ
+ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।
+
+ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖମୟ ହେଉ।
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+
+gandhi:
+`🇮🇳 ଗାନ୍ଧୀ ଜୟନ୍ତୀର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🇮🇳
+
+ସତ୍ୟ ଓ ଅହିଂସାର ପଥ ଦେଖାଇଥିବା
+ମହାତ୍ମା ଗାନ୍ଧୀଙ୍କୁ ଶତ ଶତ ନମନ।
+
+ଆସନ୍ତୁ ସତ୍ୟ, ଅହିଂସା ଓ ଏକତାର
+ବାର୍ତ୍ତାକୁ ଆଗକୁ ନେବା।
+
+ଜୟ ହିନ୍ଦ! 🇮🇳
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+
+diwali:
 `🪔 ଦୀପାବଳିର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🪔
 
-ଆଲୋକର ପର୍ବ ଦୀପାବଳି ସମସ୍ତଙ୍କ ଜୀବନରେ ସୁଖ, ଶାନ୍ତି ଓ ସମୃଦ୍ଧି ଆଣିଦେଉ।
+ଆଲୋକର ପର୍ବ ଦୀପାବଳି
+ସମସ୍ତଙ୍କ ଜୀବନରେ ସୁଖ,
+ଶାନ୍ତି ଓ ସମୃଦ୍ଧି ଆଣିଦେଉ।
 
 ଶୁଭ ଦୀପାବଳି! 🪔✨
 
 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
 
 
-    newyear:
-`🎉 ନବବର୍ଷର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🎉
+kartik:
+`🛕 କାର୍ତ୍ତିକ ପୂର୍ଣ୍ଣିମାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🛕
 
-ନୂଆ ବର୍ଷ ସମସ୍ତଙ୍କ ଜୀବନରେ ନୂଆ ଆଶା, ନୂଆ ସଫଳତା ଓ ଅନେକ ଖୁସି ଆଣିଦେଉ।
+ପବିତ୍ର କାର୍ତ୍ତିକ ପୂର୍ଣ୍ଣିମା
+ସମସ୍ତଙ୍କ ଜୀବନରେ ସୁଖ,
+ଶାନ୍ତି ଓ ସମୃଦ୍ଧି ଆଣିଦେଉ।
 
-ଶୁଭ ନବବର୍ଷ! 🙏
+ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା। 🙏
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+
+christmas:
+`🎄 ବଡ଼ଦିନର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🎄
+
+ଏହି ପବିତ୍ର ଦିନଟି
+ସମସ୍ତଙ୍କ ଜୀବନରେ ଖୁସି,
+ଶାନ୍ତି ଓ ସମୃଦ୍ଧି ଆଣିଦେଉ।
+
+Merry Christmas! 🎄✨
 
 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`
 
 };
 
 
-function changeFestival(){
+
+/* ==========================================
+   CHANGE FESTIVAL
+========================================== */
+
+window.changeFestival = function(){
 
     const festival =
-        document.getElementById("festival").value;
+        document.getElementById(
+            "festival"
+        ).value;
 
-    const message =
+
+    document.getElementById(
+        "message"
+    ).value =
         messages[festival] || "";
 
-    document.getElementById("message").value =
-        message;
 
     updatePreview();
 
-}
+};
 
 
-function updatePreview(){
 
-    document.getElementById("preview").textContent =
-        document.getElementById("message").value;
+/* ==========================================
+   PREVIEW
+========================================== */
 
-}
+window.updatePreview = function(){
 
+    document.getElementById(
+        "preview"
+    ).textContent =
+        document.getElementById(
+            "message"
+        ).value;
+
+};
+
+
+
+/* ==========================================
+   READ FESTIVAL FROM CALENDAR
+========================================== */
 
 function loadFestivalFromURL(){
 
@@ -544,62 +669,124 @@ function loadFestivalFromURL(){
             window.location.search
         );
 
+
     const festival =
         params.get("festival");
+
 
     if(
         festival &&
         messages[festival]
     ){
 
-        document.getElementById("festival").value =
+        document.getElementById(
+            "festival"
+        ).value =
             festival;
 
     }
+
 
     changeFestival();
 
 }
 
 
-loadFestivalFromURL();
 
-</script>
+/* ==========================================
+   FIREBASE
+========================================== */
+
+let db = null;
+
+let firebaseReady = false;
 
 
+async function startFirebase(){
 
-<!-- =====================================
-     FIREBASE / MEMBERS SYSTEM
-===================================== -->
+    try{
 
-<script type="module">
+        const firebase =
+            await import(
+                "./firebase.js"
+            );
 
-import { db } from "./firebase.js";
 
-import {
-    collection,
-    getDocs,
-    addDoc,
-    serverTimestamp
+        db =
+            firebase.db;
+
+
+        firebaseReady =
+            true;
+
+
+        loadMembers();
+
+
+    }catch(error){
+
+        console.error(
+            "Firebase Error:",
+            error
+        );
+
+
+        document.getElementById(
+            "memberList"
+        ).innerHTML = `
+
+            <div class="error">
+
+                ❌ Firebase connection ହୋଇନାହିଁ।
+
+                <br><br>
+
+                ${error.message}
+
+            </div>
+
+        `;
+
+    }
+
 }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 
-/* SAVE MESSAGE */
+/* ==========================================
+   SAVE MESSAGE
+========================================== */
 
 window.saveMessage = async function(){
 
+    if(!firebaseReady || !db){
+
+        alert(
+            "Firebase connect ହୋଇନାହିଁ।"
+        );
+
+        return;
+
+    }
+
+
     const festival =
-        document.getElementById("festival").value;
+        document.getElementById(
+            "festival"
+        ).value;
+
 
     const message =
-        document.getElementById("message").value.trim();
+        document.getElementById(
+            "message"
+        ).value.trim();
 
 
     if(!message){
 
-        alert("ଦୟାକରି Message ଲେଖନ୍ତୁ।");
+        alert(
+            "ଦୟାକରି Message ଲେଖନ୍ତୁ।"
+        );
 
         return;
 
@@ -608,21 +795,31 @@ window.saveMessage = async function(){
 
     try{
 
-        await addDoc(
-            collection(
+        const firestore =
+            await import(
+                "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+            );
+
+
+        await firestore.addDoc(
+            firestore.collection(
                 db,
                 "FestivalMessages"
             ),
             {
                 festival:festival,
                 message:message,
-                createdAt:serverTimestamp()
+                createdAt:
+                    firestore.serverTimestamp()
             }
         );
 
 
         const status =
-            document.getElementById("status");
+            document.getElementById(
+                "status"
+            );
+
 
         status.style.display =
             "block";
@@ -643,6 +840,7 @@ window.saveMessage = async function(){
 
         console.error(error);
 
+
         alert(
             "Message Save ହେଲା ନାହିଁ:\n" +
             error.message
@@ -654,19 +852,36 @@ window.saveMessage = async function(){
 
 
 
-/* LOAD MEMBERS */
+/* ==========================================
+   LOAD MEMBERS
+========================================== */
 
 async function loadMembers(){
 
+    if(!db){
+
+        return;
+
+    }
+
+
     const memberList =
-        document.getElementById("memberList");
+        document.getElementById(
+            "memberList"
+        );
 
 
     try{
 
+        const firestore =
+            await import(
+                "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+            );
+
+
         const snapshot =
-            await getDocs(
-                collection(
+            await firestore.getDocs(
+                firestore.collection(
                     db,
                     "members"
                 )
@@ -678,146 +893,196 @@ async function loadMembers(){
 
         if(snapshot.empty){
 
-            memberList.innerHTML =
-                `<div class="empty">
+            memberList.innerHTML = `
+
+                <div class="empty">
+
                     😕 କୌଣସି Member ମିଳିଲା ନାହିଁ।
-                </div>`;
+
+                </div>
+
+            `;
 
             return;
 
         }
 
 
-        snapshot.forEach(function(doc){
+        snapshot.forEach(
+            function(doc){
 
-            const data =
-                doc.data();
-
-
-            const name =
-                data.name ||
-                data.fullName ||
-                data.memberName ||
-                "ନାମ ନାହିଁ";
+                const data =
+                    doc.data();
 
 
-            const mobile =
-                data.mobile ||
-                data.phone ||
-                data.phoneNumber ||
-                "";
+                const name =
+                    data.name ||
+                    data.fullName ||
+                    data.memberName ||
+                    "ନାମ ନାହିଁ";
 
 
-            if(!mobile){
-
-                return;
-
-            }
-
-
-            let number =
-                String(mobile)
-                .replace(/\D/g,"");
+                const mobile =
+                    data.mobile ||
+                    data.phone ||
+                    data.phoneNumber ||
+                    "";
 
 
-            if(number.length === 10){
+                if(!mobile){
 
-                number =
-                    "91" + number;
+                    return;
 
-            }
-
-
-            const member =
-                document.createElement("div");
-
-            member.className =
-                "member";
+                }
 
 
-            const checkbox =
-                document.createElement("input");
-
-            checkbox.type =
-                "checkbox";
-
-            checkbox.className =
-                "member-check";
-
-            checkbox.dataset.number =
-                number;
-
-            checkbox.dataset.name =
-                name;
-
-            checkbox.addEventListener(
-                "change",
-                updateSelectedCount
-            );
+                let number =
+                    String(mobile)
+                    .replace(/\D/g,"");
 
 
-            const info =
-                document.createElement("div");
+                if(
+                    number.length === 10
+                ){
 
-            info.className =
-                "member-info";
+                    number =
+                        "91" + number;
 
-
-            const nameDiv =
-                document.createElement("div");
-
-            nameDiv.className =
-                "member-name";
-
-            nameDiv.textContent =
-                name;
+                }
 
 
-            const mobileDiv =
-                document.createElement("div");
-
-            mobileDiv.className =
-                "member-mobile";
-
-            mobileDiv.textContent =
-                "📱 " + mobile;
-
-
-            info.appendChild(nameDiv);
-
-            info.appendChild(mobileDiv);
-
-
-            const button =
-                document.createElement("button");
-
-            button.className =
-                "whatsapp-btn";
-
-            button.textContent =
-                "🟢 WhatsApp";
-
-
-            button.onclick =
-                function(){
-
-                    sendWhatsApp(
-                        number,
-                        name
+                const member =
+                    document.createElement(
+                        "div"
                     );
 
-                };
+
+                member.className =
+                    "member";
 
 
-            member.appendChild(checkbox);
+                const checkbox =
+                    document.createElement(
+                        "input"
+                    );
 
-            member.appendChild(info);
 
-            member.appendChild(button);
+                checkbox.type =
+                    "checkbox";
 
-            memberList.appendChild(member);
 
-        });
+                checkbox.className =
+                    "member-check";
+
+
+                checkbox.dataset.number =
+                    number;
+
+
+                checkbox.dataset.name =
+                    name;
+
+
+                checkbox.addEventListener(
+                    "change",
+                    updateSelectedCount
+                );
+
+
+                const info =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                info.className =
+                    "member-info";
+
+
+                const nameDiv =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                nameDiv.className =
+                    "member-name";
+
+
+                nameDiv.textContent =
+                    name;
+
+
+                const mobileDiv =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                mobileDiv.className =
+                    "member-mobile";
+
+
+                mobileDiv.textContent =
+                    "📱 " + mobile;
+
+
+                info.appendChild(
+                    nameDiv
+                );
+
+
+                info.appendChild(
+                    mobileDiv
+                );
+
+
+                const button =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                button.className =
+                    "whatsapp-btn";
+
+
+                button.textContent =
+                    "🟢 WhatsApp";
+
+
+                button.onclick =
+                    function(){
+
+                        sendWhatsApp(
+                            number,
+                            name
+                        );
+
+                    };
+
+
+                member.appendChild(
+                    checkbox
+                );
+
+
+                member.appendChild(
+                    info
+                );
+
+
+                member.appendChild(
+                    button
+                );
+
+
+                memberList.appendChild(
+                    member
+                );
+
+            }
+        );
 
 
         updateSelectedCount();
@@ -827,11 +1092,20 @@ async function loadMembers(){
 
         console.error(error);
 
-        memberList.innerHTML =
-            `<div class="error">
-                ❌ Member List Load ହେଲା ନାହିଁ।<br><br>
-                Firebase error: ${error.message}
-            </div>`;
+
+        memberList.innerHTML = `
+
+            <div class="error">
+
+                ❌ Member List Load ହେଲା ନାହିଁ।
+
+                <br><br>
+
+                ${error.message}
+
+            </div>
+
+        `;
 
     }
 
@@ -839,7 +1113,9 @@ async function loadMembers(){
 
 
 
-/* SELECT ALL */
+/* ==========================================
+   SELECT ALL
+========================================== */
 
 window.selectAllMembers = function(){
 
@@ -850,13 +1126,17 @@ window.selectAllMembers = function(){
 
 
     document
-        .querySelectorAll(".member-check")
-        .forEach(function(box){
+        .querySelectorAll(
+            ".member-check"
+        )
+        .forEach(
+            function(box){
 
-            box.checked =
-                checked;
+                box.checked =
+                    checked;
 
-        });
+            }
+        );
 
 
     updateSelectedCount();
@@ -865,7 +1145,9 @@ window.selectAllMembers = function(){
 
 
 
-/* COUNT */
+/* ==========================================
+   SELECTED COUNT
+========================================== */
 
 function updateSelectedCount(){
 
@@ -884,7 +1166,9 @@ function updateSelectedCount(){
 
 
 
-/* SINGLE WHATSAPP */
+/* ==========================================
+   SINGLE WHATSAPP
+========================================== */
 
 function sendWhatsApp(
     number,
@@ -933,7 +1217,9 @@ function sendWhatsApp(
 
 
 
-/* SELECTED WHATSAPP */
+/* ==========================================
+   SELECTED WHATSAPP
+========================================== */
 
 window.sendSelectedWhatsApp = function(){
 
@@ -956,6 +1242,14 @@ window.sendSelectedWhatsApp = function(){
     }
 
 
+    /*
+    WhatsApp does not allow a normal
+    website to automatically send one
+    message to many numbers silently.
+
+    So open the first selected member.
+    */
+
     const first =
         selected[0];
 
@@ -969,9 +1263,14 @@ window.sendSelectedWhatsApp = function(){
 
 
 
-/* START MEMBER LOAD */
+/* ==========================================
+   START
+========================================== */
 
-loadMembers();
+loadFestivalFromURL();
+
+startFirebase();
+
 
 </script>
 
