@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Festival Message | ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,"Noto Sans Oriya",sans-serif;
+    background:#f3f6fa;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#0f172a,#1d4ed8);
+    color:white;
+    text-align:center;
+    padding:22px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:23px;
+}
+
+.header p{
+    margin:7px 0 0;
+    font-size:14px;
+}
+
+.container{
+    max-width:750px;
+    margin:20px auto;
+    padding:0 14px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    margin:0 0 15px;
+    color:#1d4ed8;
+    font-size:19px;
+}
+
+label{
+    display:block;
+    margin:13px 0 7px;
+    font-weight:bold;
+}
+
+select,
+textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
+}
+
+textarea{
+    min-height:210px;
+    resize:vertical;
+    line-height:1.6;
+}
+
+select:focus,
+textarea:focus{
+    border-color:#2563eb;
+}
+
+button{
+    cursor:pointer;
+}
+
+.save-btn{
+    width:100%;
+    margin-top:13px;
+    padding:14px;
+    border:0;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.status{
+    display:none;
+    margin-top:12px;
+    padding:12px;
+    border-radius:10px;
+    background:#dcfce7;
+    color:#166534;
+    text-align:center;
+    font-weight:bold;
+}
+
+.preview{
+    margin-top:18px;
+    padding:16px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:13px;
+}
+
+.preview-title{
+    font-weight:bold;
+    color:#166534;
+    margin-bottom:10px;
+}
+
+#preview{
+    white-space:pre-wrap;
+    line-height:1.7;
+}
+
+
+/* MEMBER TOOLS */
+
+.member-tools{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:12px;
+    margin-bottom:15px;
+    background:#f8fafc;
+    border-radius:12px;
+    border:1px solid #e2e8f0;
+}
+
+.select-all-label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:0;
+    font-weight:bold;
+}
+
+.select-all-label input{
+    width:20px;
+    height:20px;
+    accent-color:#2563eb;
+}
+
+.selected-count{
+    background:#e0e7ff;
+    color:#3730a3;
+    padding:7px 10px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.selected-whatsapp{
+    width:100%;
+    border:0;
+    padding:14px;
+    border-radius:10px;
+    background:#25D366;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.selected-whatsapp:hover{
+    background:#1ebe5d;
+}
+
+.member{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 0;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.member:last-child{
+    border-bottom:0;
+}
+
+.member-check{
+    width:20px;
+    height:20px;
+    flex-shrink:0;
+    accent-color:#2563eb;
+}
+
+.member-info{
+    flex:1;
+    min-width:0;
+}
+
+.member-name{
+    font-size:17px;
+    font-weight:bold;
+}
+
+.member-mobile{
+    margin-top:4px;
+    color:#64748b;
+    font-size:14px;
+}
+
+.whatsapp-btn{
+    border:0;
+    background:#25D366;
+    color:white;
+    padding:10px 13px;
+    border-radius:9px;
+    font-size:14px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.loading{
+    text-align:center;
+    padding:20px;
+    color:#64748b;
+}
+
+.empty{
+    text-align:center;
+    padding:20px;
+    color:#64748b;
+}
+
+.error{
+    background:#fee2e2;
+    color:#991b1b;
+    padding:12px;
+    border-radius:10px;
+    line-height:1.5;
+}
+
+.footer{
+    text-align:center;
+    color:#64748b;
+    font-size:13px;
+    padding:10px 15px 30px;
+}
+
+@media(max-width:520px){
+
+    .header h1{
+        font-size:20px;
+    }
+
+    .member-name{
+        font-size:16px;
+    }
+
+    .whatsapp-btn{
+        padding:9px 10px;
+        font-size:13px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+    <h1>🎉 Festival Message</h1>
+
+    <p>
+        ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ
+    </p>
+
+</div>
+
+
+<div class="container">
+
+
+<!-- FESTIVAL MESSAGE -->
+
+<div class="card">
+
+    <h2>🇮🇳 Festival Message</h2>
+
+    <label for="festival">
+        Festival ବାଛନ୍ତୁ
+    </label>
+
+    <select
+        id="festival"
+        onchange="changeFestival()">
+
+        <option value="independence">
+            🇮🇳 ସ୍ୱାଧୀନତା ଦିବସ
+        </option>
+
+        <option value="ganesh">
+            🐘 ଗଣେଶ ପୂଜା
+        </option>
+
+        <option value="rathayatra">
+            🛕 ରଥଯାତ୍ରା
+        </option>
+
+        <option value="nuakhai">
+            🌾 ନୂଆଖାଇ
+        </option>
+
+        <option value="diwali">
+            🪔 ଦୀପାବଳି
+        </option>
+
+        <option value="newyear">
+            🎉 ନୂଆ ବର୍ଷ
+        </option>
+
+    </select>
+
+
+    <label for="message">
+        📝 ବାର୍ତ୍ତା
+    </label>
+
+    <textarea
+        id="message"
+        oninput="updatePreview()"></textarea>
+
+
+    <button
+        class="save-btn"
+        onclick="saveMessage()">
+
+        💾 Message Save
+
+    </button>
+
+
+    <div
+        id="status"
+        class="status">
+
+        ✅ Message Firestore ରେ Save ହୋଇଛି
+
+    </div>
+
+
+    <div class="preview">
+
+        <div class="preview-title">
+            👀 Message Preview
+        </div>
+
+        <div id="preview"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- MEMBERS -->
+
+<div class="card">
+
+    <h2>
+        👥 ସଦସ୍ୟ ତାଲିକା
+    </h2>
+
+
+    <div class="member-tools">
+
+        <label class="select-all-label">
+
+            <input
+                type="checkbox"
+                id="selectAll"
+                onchange="selectAllMembers()">
+
+            ☑️ ସମସ୍ତଙ୍କୁ ବାଛନ୍ତୁ
+
+        </label>
+
+
+        <div
+            id="selectedCount"
+            class="selected-count">
+
+            0 Selected
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="selected-whatsapp"
+        onclick="sendSelectedWhatsApp()">
+
+        🟢 Selected Member WhatsApp
+
+    </button>
+
+
+    <div id="memberList">
+
+        <div class="loading">
+            ⏳ Member List Loading...
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<div class="footer">
+
+© 2026 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁ
