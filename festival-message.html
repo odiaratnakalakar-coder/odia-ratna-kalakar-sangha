@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Festival Message | ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,"Noto Sans Oriya",sans-serif;
+    background:#f1f5f9;
+    color:#172033;
+    padding-bottom:40px;
+}
+
+.header{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a);
+    color:white;
+    padding:22px 15px;
+    text-align:center;
+}
+
+.header h1{
+    font-size:24px;
+    margin-bottom:6px;
+}
+
+.header p{
+    font-size:14px;
+    opacity:.9;
+}
+
+.container{
+    max-width:700px;
+    margin:20px auto;
+    padding:0 14px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.card h2{
+    font-size:19px;
+    margin-bottom:15px;
+    color:#1e3a8a;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin:12px 0 7px;
+}
+
+select,
+textarea,
+input{
+    width:100%;
+    padding:13px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
+}
+
+textarea{
+    min-height:180px;
+    resize:vertical;
+}
+
+select:focus,
+textarea:focus{
+    border-color:#2563eb;
+}
+
+.preview{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:16px;
+    margin-top:15px;
+    white-space:pre-wrap;
+    line-height:1.7;
+}
+
+.preview-title{
+    font-weight:bold;
+    color:#166534;
+    margin-bottom:10px;
+}
+
+.btn{
+    width:100%;
+    border:0;
+    border-radius:10px;
+    padding:14px;
+    margin-top:12px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.save{
+    background:#2563eb;
+    color:white;
+}
+
+.save:hover{
+    background:#1d4ed8;
+}
+
+.member{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:14px 0;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.member:last-child{
+    border-bottom:none;
+}
+
+.member-info{
+    flex:1;
+}
+
+.member-name{
+    font-weight:bold;
+    font-size:17px;
+}
+
+.member-mobile{
+    color:#64748b;
+    font-size:14px;
+    margin-top:4px;
+}
+
+.whatsapp{
+    background:#25D366;
+    color:white;
+    border:none;
+    border-radius:9px;
+    padding:10px 13px;
+    font-weight:bold;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.whatsapp:hover{
+    background:#1ebe5d;
+}
+
+.status{
+    display:none;
+    background:#dcfce7;
+    color:#166534;
+    padding:12px;
+    border-radius:10px;
+    margin-top:12px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.footer{
+    text-align:center;
+    color:#64748b;
+    font-size:13px;
+    margin-top:25px;
+}
+
+@media(max-width:500px){
+    .header h1{
+        font-size:20px;
+    }
+
+    .member{
+        align-items:center;
+    }
+
+    .whatsapp{
+        padding:9px 10px;
+        font-size:13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h1>🇮🇳 Festival Message</h1>
+    <p>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ</p>
+</div>
+
+<div class="container">
+
+    <!-- FESTIVAL MESSAGE -->
+    <div class="card">
+
+        <h2>🎉 Festival Message</h2>
+
+        <label>Festival ବାଛନ୍ତୁ</label>
+
+        <select id="festival" onchange="changeFestival()">
+            <option value="independence">🇮🇳 ସ୍ୱାଧୀନତା ଦିବସ</option>
+            <option value="rathayatra">🛕 ରଥଯାତ୍ରା</option>
+            <option value="nuakhai">🌾 ନୂଆଖାଇ</option>
+            <option value="diwali">🪔 ଦୀପାବଳି</option>
+            <option value="newyear">🎉 ନୂଆ ବର୍ଷ</option>
+        </select>
+
+        <label>📝 Message</label>
+
+        <textarea id="message" oninput="updatePreview()"></textarea>
+
+        <button class="btn save" onclick="saveMessage()">
+            💾 Message Save
+        </button>
+
+        <div id="status" class="status">
+            ✅ Message Save ହୋଇଛି
+        </div>
+
+        <div class="preview">
+            <div class="preview-title">
+                👀 Message Preview
+            </div>
+
+            <div id="preview"></div>
+        </div>
+
+    </div>
+
+
+    <!-- MEMBER LIST -->
+    <div class="card">
+
+        <h2>👥 Member List</h2>
+
+        <div class="member">
+
+            <div class="member-info">
+                <div class="member-name">
+                    ରମେଶ ଭାଇ
+                </div>
+
+                <div class="member-mobile">
+                    📱 919800000001
+                </div>
+            </div>
+
+            <button class="whatsapp"
+                    onclick="sendWhatsApp('919800000001')">
+                🟢 WhatsApp
+            </button>
+
+        </div>
+
+
+        <div class="member">
+
+            <div class="member-info">
+                <div class="member-name">
+                    ସୁରେଶ ଭାଇ
+                </div>
+
+                <div class="member-mobile">
+                    📱 919800000002
+                </div>
+            </div>
+
+            <button class="whatsapp"
+                    onclick="sendWhatsApp('919800000002')">
+                🟢 WhatsApp
+            </button>
+
+        </div>
+
+
+        <div class="member">
+
+            <div class="member-info">
+                <div class="member-name">
+                    ମହେଶ ଭାଇ
+                </div>
+
+                <div class="member-mobile">
+                    📱 919800000003
+                </div>
+            </div>
+
+            <button class="whatsapp"
+                    onclick="sendWhatsApp('919800000003')">
+                🟢 WhatsApp
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="footer">
+    © 2026 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ
+</div>
+
+
+<script>
+
+const messages = {
+
+    independence:
+`🇮🇳 ସ୍ୱାଧୀନତା ଦିବସର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🇮🇳
+
+ଆମ ତ୍ରିରଙ୍ଗା ଆମର ଗର୍ବ।
+ଆମ ସ୍ୱାଧୀନତା ଆମର ଅମୂଲ୍ୟ ଅଧିକାର।
+
+ଦେଶର ଏକତା, ଭାଇଚାରା ଓ ଗୌରବ ପାଇଁ ଆସନ୍ତୁ ଆମେ ସମସ୍ତେ ଏକାଠି ହୋଇ ଆଗକୁ ବଢ଼ିବା।
+
+🇮🇳 ଜୟ ହିନ୍ଦ!
+🇮🇳 ବନ୍ଦେ ମାତରମ୍!
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+    rathayatra:
+`🛕 ପବିତ୍ର ରଥଯାତ୍ରାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🛕
+
+ମହାପ୍ରଭୁ ଶ୍ରୀଜଗନ୍ନାଥଙ୍କ କୃପାରୁ ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖ, ଶାନ୍ତି ଓ ସମୃଦ୍ଧିରେ ପରିପୂର୍ଣ୍ଣ ହେଉ।
+
+ଜୟ ଜଗନ୍ନାଥ! 🙏
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+    nuakhai:
+`🌾 ନୂଆଖାଇ ଜୁହାର 🌾
+
+ନୂଆଖାଇ ପର୍ବ ଅବସରରେ ସମସ୍ତ ସଦସ୍ୟ ଓ ପରିବାରବର୍ଗଙ୍କୁ ଅନେକ ଅନେକ ଶୁଭେଚ୍ଛା।
+
+ମା' ସମଲେଇଙ୍କ ଆଶୀର୍ବାଦରେ ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖମୟ ହେଉ।
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+    diwali:
+`🪔 ଦୀପାବଳିର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🪔
+
+ଆଲୋକର ପର୍ବ ଦୀପାବଳି ସମସ୍ତଙ୍କ ଜୀବନରୁ ଅନ୍ଧକାର ଦୂର କରି ସୁଖ, ଶାନ୍ତି ଓ ସମୃଦ୍ଧି ଆଣିଦେଉ।
+
+ଶୁଭ ଦୀପାବଳି! 🪔✨
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+    newyear:
+`🎉 ନବବର୍ଷର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🎉
+
+ନୂଆ ବର୍ଷ ସମସ୍ତଙ୍କ ଜୀବନରେ ନୂଆ ଆଶା, ନୂଆ ସଫଳତା ଓ ଅନେକ ଖୁସି ଆଣିଦେଉ।
+
+ଶୁଭ ନବବର୍ଷ! 🙏
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`
+
+};
+
+
+// Festival change
+function changeFestival(){
+
+    const festival =
+        document.getElementById("festival").value;
+
+    document.getElementById("message").value =
+        messages[festival];
+
+    updatePreview();
+}
+
+
+// Preview
+function updatePreview(){
+
+    const message =
+        document.getElementById("message").value;
+
+    document.getElementById("preview
