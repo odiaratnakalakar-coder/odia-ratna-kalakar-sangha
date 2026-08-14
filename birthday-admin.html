@@ -976,9 +976,12 @@ const nameParts =
 fullName.trim().split(/\s+/);
 
 const shortName =
-nameParts.length >= 2
-    ? nameParts.slice(0, 2).join(" ")
+nameParts.length > 1
+    ? nameParts.slice(0, -1).join(" ")
     : nameParts[0];
+
+    
+    
 
 const name =
 shortName + " ଭାଇ";
