@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Festival Calendar | ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,"Noto Sans Oriya",sans-serif;
+    background:#f3f6fa;
+    color:#172033;
+}
+
+.header{
+    background:linear-gradient(135deg,#0f172a,#1d4ed8);
+    color:white;
+    text-align:center;
+    padding:24px 15px;
+}
+
+.header h1{
+    margin:0;
+    font-size:24px;
+}
+
+.header p{
+    margin:7px 0 0;
+    font-size:14px;
+}
+
+.container{
+    max-width:750px;
+    margin:20px auto;
+    padding:0 14px;
+}
+
+.card{
+    background:white;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card-title{
+    color:#1d4ed8;
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+
+/* TODAY */
+
+.today{
+    background:linear-gradient(135deg,#fff7ed,#ffedd5);
+    border:2px solid #fb923c;
+    border-radius:16px;
+    padding:18px;
+}
+
+.today-label{
+    display:inline-block;
+    background:#dc2626;
+    color:white;
+    padding:6px 11px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.today-date{
+    font-size:17px;
+    color:#7c2d12;
+    font-weight:bold;
+}
+
+.today-festival{
+    font-size:24px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.today-message{
+    color:#57534e;
+    line-height:1.6;
+    margin-bottom:14px;
+}
+
+.message-btn{
+    width:100%;
+    border:0;
+    padding:13px;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+}
+
+
+/* FESTIVAL LIST */
+
+.festival{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:15px 0;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.festival:last-child{
+    border-bottom:0;
+}
+
+.date-box{
+    width:65px;
+    min-width:65px;
+    text-align:center;
+    background:#eff6ff;
+    color:#1d4ed8;
+    border-radius:12px;
+    padding:9px 5px;
+}
+
+.date-day{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.date-month{
+    font-size:12px;
+    font-weight:bold;
+}
+
+.festival-info{
+    flex:1;
+}
+
+.festival-name{
+    font-size:17px;
+    font-weight:bold;
+}
+
+.festival-desc{
+    font-size:13px;
+    color:#64748b;
+    margin-top:4px;
+}
+
+.view-btn{
+    border:0;
+    background:#25D366;
+    color:white;
+    padding:9px 11px;
+    border-radius:9px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.footer{
+    text-align:center;
+    color:#64748b;
+    font-size:13px;
+    padding:10px 15px 30px;
+}
+
+@media(max-width:520px){
+
+    .header h1{
+        font-size:20px;
+    }
+
+    .today-festival{
+        font-size:21px;
+    }
+
+    .festival{
+        gap:9px;
+    }
+
+    .date-box{
+        width:58px;
+        min-width:58px;
+    }
+
+    .festival-name{
+        font-size:15px;
+    }
+
+    .view-btn{
+        padding:8px;
+        font-size:12px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="header">
+
+    <h1>📅 Festival Calendar</h1>
+
+    <p>
+        ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ
+    </p>
+
+</div>
+
+
+<div class="container">
+
+
+<!-- TODAY -->
+
+<div class="card">
+
+    <div class="card-title">
+        🔴 ଆଜିର ବିଶେଷ ଦିନ
+    </div>
+
+
+    <div class="today">
+
+        <div class="today-label">
+            ଆଜି
+        </div>
+
+        <div
+            id="todayDate"
+            class="today-date">
+        </div>
+
+        <div
+            id="todayFestival"
+            class="today-festival">
+        </div>
+
+        <div
+            id="todayMessage"
+            class="today-message">
+        </div>
+
+        <button
+            class="message-btn"
+            onclick="openMessage()">
+
+            📝 Festival Message ଦେଖନ୍ତୁ
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- UPCOMING -->
+
+<div class="card">
+
+    <div class="card-title">
+        📅 ଆଗାମୀ ପର୍ବପର୍ବାଣୀ
+    </div>
+
+
+    <div id="festivalList">
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+<div class="footer">
+
+    © 2026 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ
+
+</div>
+
+
+
+<script>
+
+
+/*
+=================================
+FESTIVAL DATA
+=================================
+*/
+
+const festivals = [
+
+    {
+        date:"2026-08-15",
+        day:"15",
+        month:"ଅଗଷ୍ଟ",
+        name:"🇮🇳 ସ୍ୱାଧୀନତା ଦିବସ",
+        message:"ସ୍ୱାଧୀନତା ଦିବସର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
+    },
+
+    {
+        date:"2026-08-27",
+        day:"27",
+        month:"ଅଗଷ୍ଟ",
+        name:"🐘 ଗଣେଶ ପୂଜା",
+        message:"ଶ୍ରୀ ଗଣେଶ ପୂଜାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
+    },
+
+    {
+        date:"2026-09-15",
+        day:"15",
+        month:"ସେପ୍ଟେମ୍ବର",
+        name:"🌾 ନୂଆଖାଇ",
+        message:"ନୂଆଖାଇ ଜୁହାର। ସମସ୍ତଙ୍କୁ ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
+    },
+
+    {
+        date:"2026-10-20",
+        day:"20",
+        month:"ଅକ୍ଟୋବର",
+        name:"🪔 ଦୀପାବଳି",
+        message:"ଦୀପାବଳିର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
+    },
+
+    {
+        date:"2026-11-24",
+        day:"24",
+        month:"ନଭେମ୍ବର",
+        name:"🛕 କାର୍ତ୍ତିକ ପୂର୍ଣ୍ଣିମା",
+        message:"କାର୍ତ୍ତିକ ପୂର୍ଣ୍ଣିମାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
+    },
+
+    {
+        date:"2026-12-25",
+        day:"25",
+        month:"ଡିସେମ୍ବର",
+        name:"🎄 ବଡ଼ଦିନ",
+        message:"ବଡ଼ଦିନର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
+    }
+
+];
+
+
+
+/*
+=================================
+TODAY
+=================================
+*/
+
+function loadToday(){
+
+    const today =
+        new Date();
+
+
+    const todayString =
+        today.getFullYear() +
+        "-" +
+        String(today.getMonth()+1)
+            .padStart(2,"0") +
+        "-" +
+        String(today.getDate())
+            .padStart(2,"0");
+
+
+    const festival =
+        festivals.find(
+            item => item.date === todayString
+        );
+
+
+    const dateText =
+        today.toLocaleDateString(
+            "or-IN",
+            {
+                day:"numeric",
+                month:"long",
+                year:"numeric"
+            }
+        );
+
+
+    document.getElementById(
+        "todayDate"
+    ).textContent =
+        dateText;
+
+
+    if(festival){
+
+        document.getElementById(
+            "todayFestival"
+        ).textContent =
+            festival.name;
+
+
+        document.getElementById(
+            "todayMessage"
+        ).textContent =
+            festival.message;
+
+
+    }else{
+
+        document.getElementById(
+            "todayFestival"
+        ).textContent =
+            "ଆଜି କୌଣସି Festival ନାହିଁ";
+
+
+        document.getElementById(
+            "todayMessage"
+        ).textContent =
+            "ଆଗାମୀ ପର୍ବପର୍ବାଣୀ ତଳେ ଦେଖନ୍ତୁ।";
+
+    }
+
+}
+
+
+
+/*
+=================================
+UPCOMING FESTIVALS
+=================================
+*/
+
+function loadFestivals(){
+
+    const list =
+        document.getElementById(
+            "festivalList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    festivals.forEach(
+        function(item){
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "festival";
+
+
+            div.innerHTML = `
+
+                <div class="date-box">
+
+                    <div class="date-day">
+                        ${item.day}
+                    </div>
+
+                    <div class="date-month">
+                        ${item.month}
+                    </div>
+
+                </div>
+
+
+                <div class="festival-info">
+
+                    <div class="festival-name">
+                        ${item.name}
+                    </div>
+
+                    <div class="festival-desc">
+                        ${item.message}
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="view-btn"
+                    onclick="openMessage()">
+
+                    📝 Message
+
+                </button>
+
+            `;
+
+
+            list.appendChild(div);
+
+        }
+    );
+
+}
+
+
+
+/*
+=================================
+OPEN MESSAGE PAGE
+=================================
+*/
+
+function openMessage(){
+
+    window.location.href =
+        "festival-message.html";
+
+}
+
+
+
+/*
+=================================
+START
+=================================
+*/
+
+loadToday();
+
+loadFestivals();
+
+</script>
+
+
+</body>
+
+</html>
