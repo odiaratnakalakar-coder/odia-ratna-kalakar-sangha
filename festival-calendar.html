@@ -109,6 +109,10 @@ body{
     font-weight:bold;
 }
 
+.message-btn:active{
+    transform:scale(.98);
+}
+
 
 /* NO FESTIVAL */
 
@@ -116,12 +120,12 @@ body{
     background:#f8fafc;
     border:1px solid #e2e8f0;
     border-radius:14px;
-    padding:18px;
+    padding:22px 18px;
     text-align:center;
 }
 
 .no-festival-icon{
-    font-size:35px;
+    font-size:38px;
     margin-bottom:8px;
 }
 
@@ -162,17 +166,20 @@ body{
 
 .festival-info{
     flex:1;
+    min-width:0;
 }
 
 .festival-name{
     font-size:17px;
     font-weight:bold;
+    line-height:1.4;
 }
 
 .festival-desc{
     font-size:13px;
     color:#64748b;
     margin-top:4px;
+    line-height:1.5;
 }
 
 .view-btn{
@@ -183,10 +190,15 @@ body{
     border-radius:9px;
     font-size:13px;
     font-weight:bold;
+    white-space:nowrap;
 }
 
 .view-btn:hover{
     background:#1ebe5d;
+}
+
+.view-btn:active{
+    transform:scale(.96);
 }
 
 
@@ -256,6 +268,8 @@ body{
 <body>
 
 
+<!-- HEADER -->
+
 <div class="header">
 
     <h1>📅 Festival Calendar</h1>
@@ -267,10 +281,13 @@ body{
 </div>
 
 
+
 <div class="container">
 
 
-<!-- TODAY -->
+<!-- ================================
+     TODAY
+================================ -->
 
 <div class="card">
 
@@ -279,15 +296,15 @@ body{
     </div>
 
 
-    <div id="todayArea">
-
-    </div>
+    <div id="todayArea"></div>
 
 </div>
 
 
 
-<!-- UPCOMING -->
+<!-- ================================
+     UPCOMING FESTIVALS
+================================ -->
 
 <div class="card">
 
@@ -296,15 +313,16 @@ body{
     </div>
 
 
-    <div id="festivalList">
-
-    </div>
+    <div id="festivalList"></div>
 
 </div>
 
 
 </div>
 
+
+
+<!-- FOOTER -->
 
 <div class="footer">
 
@@ -318,15 +336,15 @@ body{
 
 
 /*
-========================================
-2026 FESTIVAL DATA
-Odisha Government Holiday Calendar
-========================================
+==================================================
+2026 FESTIVAL CALENDAR
+==================================================
 */
 
 const festivals = [
 
     {
+        key:"independence",
         date:"2026-08-15",
         day:"15",
         month:"ଅଗଷ୍ଟ",
@@ -334,7 +352,9 @@ const festivals = [
         message:"ସ୍ୱାଧୀନତା ଦିବସର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
     },
 
+
     {
+        key:"muharram",
         date:"2026-08-26",
         day:"26",
         month:"ଅଗଷ୍ଟ",
@@ -342,7 +362,9 @@ const festivals = [
         message:"ପବିତ୍ର ମହମ୍ମଦ ଜୟନ୍ତୀର ଶୁଭେଚ୍ଛା।"
     },
 
+
     {
+        key:"jhulan",
         date:"2026-08-27",
         day:"27",
         month:"ଅଗଷ୍ଟ",
@@ -350,7 +372,9 @@ const festivals = [
         message:"ଝୁଲଣ ପୂର୍ଣ୍ଣିମାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
     },
 
+
     {
+        key:"janmashtami",
         date:"2026-09-04",
         day:"04",
         month:"ସେପ୍ଟେମ୍ବର",
@@ -358,7 +382,9 @@ const festivals = [
         message:"ଶ୍ରୀକୃଷ୍ଣ ଜନ୍ମାଷ୍ଟମୀର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
     },
 
+
     {
+        key:"ganesh",
         date:"2026-09-14",
         day:"14",
         month:"ସେପ୍ଟେମ୍ବର",
@@ -366,7 +392,9 @@ const festivals = [
         message:"ଶ୍ରୀ ଗଣେଶ ପୂଜାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
     },
 
+
     {
+        key:"nuakhai",
         date:"2026-09-15",
         day:"15",
         month:"ସେପ୍ଟେମ୍ବର",
@@ -374,7 +402,9 @@ const festivals = [
         message:"ନୂଆଖାଇ ଜୁହାର। ସମସ୍ତଙ୍କୁ ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
     },
 
+
     {
+        key:"nuakhai-next",
         date:"2026-09-16",
         day:"16",
         month:"ସେପ୍ଟେମ୍ବର",
@@ -382,7 +412,9 @@ const festivals = [
         message:"ସମସ୍ତଙ୍କୁ ଶୁଭେଚ୍ଛା।"
     },
 
+
     {
+        key:"gandhi",
         date:"2026-10-02",
         day:"02",
         month:"ଅକ୍ଟୋବର",
@@ -390,7 +422,9 @@ const festivals = [
         message:"ମହାତ୍ମା ଗାନ୍ଧୀଙ୍କୁ ଶତ ଶତ ନମନ।"
     },
 
+
     {
+        key:"diwali",
         date:"2026-10-20",
         day:"20",
         month:"ଅକ୍ଟୋବର",
@@ -398,7 +432,9 @@ const festivals = [
         message:"ଦୀପାବଳିର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
     },
 
+
     {
+        key:"kartik",
         date:"2026-11-24",
         day:"24",
         month:"ନଭେମ୍ବର",
@@ -406,7 +442,9 @@ const festivals = [
         message:"କାର୍ତ୍ତିକ ପୂର୍ଣ୍ଣିମାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
     },
 
+
     {
+        key:"christmas",
         date:"2026-12-25",
         day:"25",
         month:"ଡିସେମ୍ବର",
@@ -419,33 +457,61 @@ const festivals = [
 
 
 /*
-========================================
+==================================================
 GET TODAY
-========================================
+==================================================
 */
 
 function getTodayString(){
 
     const today = new Date();
 
-    return today.getFullYear() +
+    return (
+        today.getFullYear() +
         "-" +
         String(
-            today.getMonth()+1
+            today.getMonth() + 1
         ).padStart(2,"0") +
         "-" +
         String(
             today.getDate()
-        ).padStart(2,"0");
+        ).padStart(2,"0")
+    );
 
 }
 
 
 
 /*
-========================================
+==================================================
+OPEN FESTIVAL MESSAGE
+==================================================
+*/
+
+function openMessage(festivalKey){
+
+    if(!festivalKey){
+
+        festivalKey =
+            "independence";
+
+    }
+
+
+    window.location.href =
+        "festival-message.html?festival=" +
+        encodeURIComponent(
+            festivalKey
+        );
+
+}
+
+
+
+/*
+==================================================
 TODAY DISPLAY
-========================================
+==================================================
 */
 
 function loadToday(){
@@ -456,8 +522,12 @@ function loadToday(){
 
     const festival =
         festivals.find(
-            item =>
-            item.date === todayString
+            function(item){
+
+                return item.date ===
+                    todayString;
+
+            }
         );
 
 
@@ -483,7 +553,9 @@ function loadToday(){
 
 
     /*
-    Festival exists today
+    ==========================================
+    FESTIVAL TODAY
+    ==========================================
     */
 
     if(festival){
@@ -496,21 +568,25 @@ function loadToday(){
                     🔴 ଆଜି
                 </div>
 
+
                 <div class="today-date">
                     ${dateText}
                 </div>
+
 
                 <div class="today-festival">
                     ${festival.name}
                 </div>
 
+
                 <div class="today-message">
                     ${festival.message}
                 </div>
 
+
                 <button
                     class="message-btn"
-                    onclick="openMessage()">
+                    onclick="openMessage('${festival.key}')">
 
                     📝 Festival Message ଦେଖନ୍ତୁ
 
@@ -522,8 +598,11 @@ function loadToday(){
 
     }
 
+
     /*
-    No festival today
+    ==========================================
+    NO FESTIVAL TODAY
+    ==========================================
     */
 
     else{
@@ -536,13 +615,16 @@ function loadToday(){
                     📅
                 </div>
 
+
                 <div class="today-date">
                     ${dateText}
                 </div>
 
+
                 <div class="today-festival">
                     ଆଜି କୌଣସି Festival ନାହିଁ
                 </div>
+
 
                 <div class="today-message">
                     ଆଗାମୀ ପର୍ବପର୍ବାଣୀ ତଳେ ଦେଖନ୍ତୁ।
@@ -559,9 +641,9 @@ function loadToday(){
 
 
 /*
-========================================
+==================================================
 UPCOMING FESTIVALS
-========================================
+==================================================
 */
 
 function loadUpcomingFestivals(){
@@ -577,13 +659,17 @@ function loadUpcomingFestivals(){
 
 
     /*
-    Only future festivals
+    Future festivals only
     */
 
     const upcoming =
         festivals.filter(
-            item =>
-            item.date > todayString
+            function(item){
+
+                return item.date >
+                    todayString;
+
+            }
         );
 
 
@@ -603,7 +689,7 @@ function loadUpcomingFestivals(){
 
 
     /*
-    Show maximum 8
+    Show first 8
     */
 
     const show =
@@ -612,6 +698,10 @@ function loadUpcomingFestivals(){
 
     list.innerHTML = "";
 
+
+    /*
+    No festival
+    */
 
     if(!show.length){
 
@@ -630,6 +720,10 @@ function loadUpcomingFestivals(){
 
     }
 
+
+    /*
+    Display festivals
+    */
 
     show.forEach(
         function(item){
@@ -665,6 +759,7 @@ function loadUpcomingFestivals(){
                         ${item.name}
                     </div>
 
+
                     <div class="festival-desc">
                         ${item.message}
                     </div>
@@ -674,7 +769,7 @@ function loadUpcomingFestivals(){
 
                 <button
                     class="view-btn"
-                    onclick="openMessage()">
+                    onclick="openMessage('${item.key}')">
 
                     📝 Message
 
@@ -693,24 +788,9 @@ function loadUpcomingFestivals(){
 
 
 /*
-========================================
-OPEN FESTIVAL MESSAGE
-========================================
-*/
-
-function openMessage(){
-
-    window.location.href =
-        "festival-message.html";
-
-}
-
-
-
-/*
-========================================
+==================================================
 START
-========================================
+==================================================
 */
 
 loadToday();
