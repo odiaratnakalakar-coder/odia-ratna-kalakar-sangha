@@ -1192,11 +1192,23 @@ function sendWhatsApp(
     }
 
 
-    const finalMessage =
-        "ନମସ୍କାର " +
-        name +
-        " 🙏\n\n" +
-        message;
+   const nameParts =
+    String(name).trim().split(/\s+/);
+
+const shortName =
+    nameParts.length > 1
+        ? nameParts.slice(0, -1).join(" ")
+        : nameParts[0];
+
+const finalMessage =
+    "ନମସ୍କାର " +
+    shortName +
+    " ଭାଇ 🙏\n\n" +
+    message; 
+        
+        
+        
+        
 
 
     const url =
