@@ -969,8 +969,20 @@ document.querySelectorAll(".wishBtn").forEach(button => {
 button.addEventListener("click", () => {
 
 
-const name =
+const fullName =
 button.dataset.name || "ସଦସ୍ୟ";
+
+const nameParts =
+fullName.trim().split(/\s+/);
+
+const shortName =
+nameParts.length >= 2
+    ? nameParts.slice(0, 2).join(" ")
+    : nameParts[0];
+
+const name =
+shortName + " ଭାଇ";
+
 
 
 const mobile =
@@ -1009,7 +1021,7 @@ const message =
 
 `🎂🌹 ଜନ୍ମଦିନର ଅନେକ ଅନେକ ଶୁଭେଚ୍ଛା 🌹🎂
 
-ପ୍ରିୟ ${name} ଭାଇ,
+ପ୍ରିୟ ${name},
 
 ଆପଣଙ୍କ ଜନ୍ମଦିନ ଅବସରରେ
 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ପକ୍ଷରୁ
