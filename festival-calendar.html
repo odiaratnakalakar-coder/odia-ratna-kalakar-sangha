@@ -110,6 +110,22 @@ body{
 }
 
 
+/* NO FESTIVAL */
+
+.no-festival{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:18px;
+    text-align:center;
+}
+
+.no-festival-icon{
+    font-size:35px;
+    margin-bottom:8px;
+}
+
+
 /* FESTIVAL LIST */
 
 .festival{
@@ -169,12 +185,38 @@ body{
     font-weight:bold;
 }
 
+.view-btn:hover{
+    background:#1ebe5d;
+}
+
+
+/* TODAY HIGHLIGHT */
+
+.today-item{
+    border:2px solid #fb923c;
+    background:#fff7ed;
+    border-radius:12px;
+}
+
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+    padding:20px;
+    color:#64748b;
+}
+
+
+/* FOOTER */
+
 .footer{
     text-align:center;
     color:#64748b;
     font-size:13px;
     padding:10px 15px 30px;
 }
+
 
 @media(max-width:520px){
 
@@ -237,34 +279,7 @@ body{
     </div>
 
 
-    <div class="today">
-
-        <div class="today-label">
-            ଆଜି
-        </div>
-
-        <div
-            id="todayDate"
-            class="today-date">
-        </div>
-
-        <div
-            id="todayFestival"
-            class="today-festival">
-        </div>
-
-        <div
-            id="todayMessage"
-            class="today-message">
-        </div>
-
-        <button
-            class="message-btn"
-            onclick="openMessage()">
-
-            📝 Festival Message ଦେଖନ୍ତୁ
-
-        </button>
+    <div id="todayArea">
 
     </div>
 
@@ -303,9 +318,10 @@ body{
 
 
 /*
-=================================
-FESTIVAL DATA
-=================================
+========================================
+2026 FESTIVAL DATA
+Odisha Government Holiday Calendar
+========================================
 */
 
 const festivals = [
@@ -319,9 +335,33 @@ const festivals = [
     },
 
     {
+        date:"2026-08-26",
+        day:"26",
+        month:"ଅଗଷ୍ଟ",
+        name:"🌙 ପବିତ୍ର ମହମ୍ମଦ ଜୟନ୍ତୀ",
+        message:"ପବିତ୍ର ମହମ୍ମଦ ଜୟନ୍ତୀର ଶୁଭେଚ୍ଛା।"
+    },
+
+    {
         date:"2026-08-27",
         day:"27",
         month:"ଅଗଷ୍ଟ",
+        name:"🌸 ଝୁଲଣ ପୂର୍ଣ୍ଣିମା",
+        message:"ଝୁଲଣ ପୂର୍ଣ୍ଣିମାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
+    },
+
+    {
+        date:"2026-09-04",
+        day:"04",
+        month:"ସେପ୍ଟେମ୍ବର",
+        name:"🛕 ଜନ୍ମାଷ୍ଟମୀ",
+        message:"ଶ୍ରୀକୃଷ୍ଣ ଜନ୍ମାଷ୍ଟମୀର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
+    },
+
+    {
+        date:"2026-09-14",
+        day:"14",
+        month:"ସେପ୍ଟେମ୍ବର",
         name:"🐘 ଗଣେଶ ପୂଜା",
         message:"ଶ୍ରୀ ଗଣେଶ ପୂଜାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
     },
@@ -332,6 +372,22 @@ const festivals = [
         month:"ସେପ୍ଟେମ୍ବର",
         name:"🌾 ନୂଆଖାଇ",
         message:"ନୂଆଖାଇ ଜୁହାର। ସମସ୍ତଙ୍କୁ ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା।"
+    },
+
+    {
+        date:"2026-09-16",
+        day:"16",
+        month:"ସେପ୍ଟେମ୍ବର",
+        name:"🌾 ନୂଆଖାଇ ପରଦିନ",
+        message:"ସମସ୍ତଙ୍କୁ ଶୁଭେଚ୍ଛା।"
+    },
+
+    {
+        date:"2026-10-02",
+        day:"02",
+        month:"ଅକ୍ଟୋବର",
+        name:"🇮🇳 ଗାନ୍ଧୀ ଜୟନ୍ତୀ",
+        message:"ମହାତ୍ମା ଗାନ୍ଧୀଙ୍କୁ ଶତ ଶତ ନମନ।"
     },
 
     {
@@ -363,31 +419,56 @@ const festivals = [
 
 
 /*
-=================================
-TODAY
-=================================
+========================================
+GET TODAY
+========================================
+*/
+
+function getTodayString(){
+
+    const today = new Date();
+
+    return today.getFullYear() +
+        "-" +
+        String(
+            today.getMonth()+1
+        ).padStart(2,"0") +
+        "-" +
+        String(
+            today.getDate()
+        ).padStart(2,"0");
+
+}
+
+
+
+/*
+========================================
+TODAY DISPLAY
+========================================
 */
 
 function loadToday(){
 
-    const today =
-        new Date();
-
-
     const todayString =
-        today.getFullYear() +
-        "-" +
-        String(today.getMonth()+1)
-            .padStart(2,"0") +
-        "-" +
-        String(today.getDate())
-            .padStart(2,"0");
+        getTodayString();
 
 
     const festival =
         festivals.find(
-            item => item.date === todayString
+            item =>
+            item.date === todayString
         );
+
+
+    const area =
+        document.getElementById(
+            "todayArea"
+        );
+
+
+    const today =
+        new Date();
 
 
     const dateText =
@@ -401,38 +482,75 @@ function loadToday(){
         );
 
 
-    document.getElementById(
-        "todayDate"
-    ).textContent =
-        dateText;
-
+    /*
+    Festival exists today
+    */
 
     if(festival){
 
-        document.getElementById(
-            "todayFestival"
-        ).textContent =
-            festival.name;
+        area.innerHTML = `
 
+            <div class="today">
 
-        document.getElementById(
-            "todayMessage"
-        ).textContent =
-            festival.message;
+                <div class="today-label">
+                    🔴 ଆଜି
+                </div>
 
+                <div class="today-date">
+                    ${dateText}
+                </div>
 
-    }else{
+                <div class="today-festival">
+                    ${festival.name}
+                </div>
 
-        document.getElementById(
-            "todayFestival"
-        ).textContent =
-            "ଆଜି କୌଣସି Festival ନାହିଁ";
+                <div class="today-message">
+                    ${festival.message}
+                </div>
 
+                <button
+                    class="message-btn"
+                    onclick="openMessage()">
 
-        document.getElementById(
-            "todayMessage"
-        ).textContent =
-            "ଆଗାମୀ ପର୍ବପର୍ବାଣୀ ତଳେ ଦେଖନ୍ତୁ।";
+                    📝 Festival Message ଦେଖନ୍ତୁ
+
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+    /*
+    No festival today
+    */
+
+    else{
+
+        area.innerHTML = `
+
+            <div class="no-festival">
+
+                <div class="no-festival-icon">
+                    📅
+                </div>
+
+                <div class="today-date">
+                    ${dateText}
+                </div>
+
+                <div class="today-festival">
+                    ଆଜି କୌଣସି Festival ନାହିଁ
+                </div>
+
+                <div class="today-message">
+                    ଆଗାମୀ ପର୍ବପର୍ବାଣୀ ତଳେ ଦେଖନ୍ତୁ।
+                </div>
+
+            </div>
+
+        `;
 
     }
 
@@ -441,12 +559,16 @@ function loadToday(){
 
 
 /*
-=================================
+========================================
 UPCOMING FESTIVALS
-=================================
+========================================
 */
 
-function loadFestivals(){
+function loadUpcomingFestivals(){
+
+    const todayString =
+        getTodayString();
+
 
     const list =
         document.getElementById(
@@ -454,10 +576,62 @@ function loadFestivals(){
         );
 
 
+    /*
+    Only future festivals
+    */
+
+    const upcoming =
+        festivals.filter(
+            item =>
+            item.date > todayString
+        );
+
+
+    /*
+    Sort by date
+    */
+
+    upcoming.sort(
+        function(a,b){
+
+            return a.date.localeCompare(
+                b.date
+            );
+
+        }
+    );
+
+
+    /*
+    Show maximum 8
+    */
+
+    const show =
+        upcoming.slice(0,8);
+
+
     list.innerHTML = "";
 
 
-    festivals.forEach(
+    if(!show.length){
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                🎉 ଏହି ବର୍ଷ ପାଇଁ
+                ଆଗାମୀ Festival ନାହିଁ।
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    show.forEach(
         function(item){
 
             const div =
@@ -519,9 +693,9 @@ function loadFestivals(){
 
 
 /*
-=================================
-OPEN MESSAGE PAGE
-=================================
+========================================
+OPEN FESTIVAL MESSAGE
+========================================
 */
 
 function openMessage(){
@@ -534,14 +708,15 @@ function openMessage(){
 
 
 /*
-=================================
+========================================
 START
-=================================
+========================================
 */
 
 loadToday();
 
-loadFestivals();
+loadUpcomingFestivals();
+
 
 </script>
 
