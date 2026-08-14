@@ -131,9 +131,6 @@ button{
     line-height:1.7;
 }
 
-
-/* MEMBER TOOLS */
-
 .member-tools{
     display:flex;
     align-items:center;
@@ -280,7 +277,6 @@ button{
 
 </head>
 
-
 <body>
 
 
@@ -298,7 +294,7 @@ button{
 <div class="container">
 
 
-<!-- FESTIVAL MESSAGE -->
+<!-- FESTIVAL -->
 
 <div class="card">
 
@@ -308,9 +304,7 @@ button{
         Festival ବାଛନ୍ତୁ
     </label>
 
-    <select
-        id="festival"
-        onchange="changeFestival()">
+    <select id="festival" onchange="changeFestival()">
 
         <option value="independence">
             🇮🇳 ସ୍ୱାଧୀନତା ଦିବସ
@@ -439,4 +433,549 @@ button{
 
 <div class="footer">
 
-© 2026 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁ
+    © 2026 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ
+
+</div>
+
+
+
+<!-- =====================================
+     FESTIVAL SYSTEM
+===================================== -->
+
+<script>
+
+const messages = {
+
+    independence:
+`🇮🇳 ସ୍ୱାଧୀନତା ଦିବସର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🇮🇳
+
+ଆମ ତ୍ରିରଙ୍ଗା ଆମର ଗର୍ବ।
+ଆମ ସ୍ୱାଧୀନତା ଆମର ଅମୂଲ୍ୟ ଅଧିକାର।
+
+ଦେଶର ଏକତା, ଭାଇଚାରା ଓ ଗୌରବ ପାଇଁ ଆସନ୍ତୁ ଆମେ ସମସ୍ତେ ଏକାଠି ହୋଇ ଆଗକୁ ବଢ଼ିବା।
+
+🇮🇳 ଜୟ ହିନ୍ଦ!
+🇮🇳 ବନ୍ଦେ ମାତରମ୍!
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+
+    ganesh:
+`🐘 ଶ୍ରୀ ଗଣେଶ ପୂଜାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🐘
+
+ବିଘ୍ନବିନାଶକ ପ୍ରଭୁ ଶ୍ରୀ ଗଣେଶଙ୍କ ଆଶୀର୍ବାଦରେ ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖ, ଶାନ୍ତି ଓ ସମୃଦ୍ଧିରେ ପରିପୂର୍ଣ୍ଣ ହେଉ।
+
+ଗଣପତି ବାପ୍ପା ମୋରିଆ! 🙏
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+
+    rathayatra:
+`🛕 ପବିତ୍ର ରଥଯାତ୍ରାର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🛕
+
+ମହାପ୍ରଭୁ ଶ୍ରୀଜଗନ୍ନାଥଙ୍କ କୃପାରୁ ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖ, ଶାନ୍ତି ଓ ସମୃଦ୍ଧିରେ ପରିପୂର୍ଣ୍ଣ ହେଉ।
+
+ଜୟ ଜଗନ୍ନାଥ! 🙏
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+
+    nuakhai:
+`🌾 ନୂଆଖାଇ ଜୁହାର 🌾
+
+ନୂଆଖାଇ ପର୍ବ ଅବସରରେ ସମସ୍ତ ସଦସ୍ୟ ଓ ପରିବାରବର୍ଗଙ୍କୁ ଅନେକ ଅନେକ ଶୁଭେଚ୍ଛା।
+
+ମା' ସମଲେଇଙ୍କ ଆଶୀର୍ବାଦରେ ସମସ୍ତଙ୍କ ଜୀବନ ସୁଖମୟ ହେଉ।
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+
+    diwali:
+`🪔 ଦୀପାବଳିର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🪔
+
+ଆଲୋକର ପର୍ବ ଦୀପାବଳି ସମସ୍ତଙ୍କ ଜୀବନରେ ସୁଖ, ଶାନ୍ତି ଓ ସମୃଦ୍ଧି ଆଣିଦେଉ।
+
+ଶୁଭ ଦୀପାବଳି! 🪔✨
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`,
+
+
+    newyear:
+`🎉 ନବବର୍ଷର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🎉
+
+ନୂଆ ବର୍ଷ ସମସ୍ତଙ୍କ ଜୀବନରେ ନୂଆ ଆଶା, ନୂଆ ସଫଳତା ଓ ଅନେକ ଖୁସି ଆଣିଦେଉ।
+
+ଶୁଭ ନବବର୍ଷ! 🙏
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`
+
+};
+
+
+function changeFestival(){
+
+    const festival =
+        document.getElementById("festival").value;
+
+    const message =
+        messages[festival] || "";
+
+    document.getElementById("message").value =
+        message;
+
+    updatePreview();
+
+}
+
+
+function updatePreview(){
+
+    document.getElementById("preview").textContent =
+        document.getElementById("message").value;
+
+}
+
+
+function loadFestivalFromURL(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const festival =
+        params.get("festival");
+
+    if(
+        festival &&
+        messages[festival]
+    ){
+
+        document.getElementById("festival").value =
+            festival;
+
+    }
+
+    changeFestival();
+
+}
+
+
+loadFestivalFromURL();
+
+</script>
+
+
+
+<!-- =====================================
+     FIREBASE / MEMBERS SYSTEM
+===================================== -->
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs,
+    addDoc,
+    serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+/* SAVE MESSAGE */
+
+window.saveMessage = async function(){
+
+    const festival =
+        document.getElementById("festival").value;
+
+    const message =
+        document.getElementById("message").value.trim();
+
+
+    if(!message){
+
+        alert("ଦୟାକରି Message ଲେଖନ୍ତୁ।");
+
+        return;
+
+    }
+
+
+    try{
+
+        await addDoc(
+            collection(
+                db,
+                "FestivalMessages"
+            ),
+            {
+                festival:festival,
+                message:message,
+                createdAt:serverTimestamp()
+            }
+        );
+
+
+        const status =
+            document.getElementById("status");
+
+        status.style.display =
+            "block";
+
+
+        setTimeout(
+            function(){
+
+                status.style.display =
+                    "none";
+
+            },
+            3000
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Message Save ହେଲା ନାହିଁ:\n" +
+            error.message
+        );
+
+    }
+
+};
+
+
+
+/* LOAD MEMBERS */
+
+async function loadMembers(){
+
+    const memberList =
+        document.getElementById("memberList");
+
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "members"
+                )
+            );
+
+
+        memberList.innerHTML = "";
+
+
+        if(snapshot.empty){
+
+            memberList.innerHTML =
+                `<div class="empty">
+                    😕 କୌଣସି Member ମିଳିଲା ନାହିଁ।
+                </div>`;
+
+            return;
+
+        }
+
+
+        snapshot.forEach(function(doc){
+
+            const data =
+                doc.data();
+
+
+            const name =
+                data.name ||
+                data.fullName ||
+                data.memberName ||
+                "ନାମ ନାହିଁ";
+
+
+            const mobile =
+                data.mobile ||
+                data.phone ||
+                data.phoneNumber ||
+                "";
+
+
+            if(!mobile){
+
+                return;
+
+            }
+
+
+            let number =
+                String(mobile)
+                .replace(/\D/g,"");
+
+
+            if(number.length === 10){
+
+                number =
+                    "91" + number;
+
+            }
+
+
+            const member =
+                document.createElement("div");
+
+            member.className =
+                "member";
+
+
+            const checkbox =
+                document.createElement("input");
+
+            checkbox.type =
+                "checkbox";
+
+            checkbox.className =
+                "member-check";
+
+            checkbox.dataset.number =
+                number;
+
+            checkbox.dataset.name =
+                name;
+
+            checkbox.addEventListener(
+                "change",
+                updateSelectedCount
+            );
+
+
+            const info =
+                document.createElement("div");
+
+            info.className =
+                "member-info";
+
+
+            const nameDiv =
+                document.createElement("div");
+
+            nameDiv.className =
+                "member-name";
+
+            nameDiv.textContent =
+                name;
+
+
+            const mobileDiv =
+                document.createElement("div");
+
+            mobileDiv.className =
+                "member-mobile";
+
+            mobileDiv.textContent =
+                "📱 " + mobile;
+
+
+            info.appendChild(nameDiv);
+
+            info.appendChild(mobileDiv);
+
+
+            const button =
+                document.createElement("button");
+
+            button.className =
+                "whatsapp-btn";
+
+            button.textContent =
+                "🟢 WhatsApp";
+
+
+            button.onclick =
+                function(){
+
+                    sendWhatsApp(
+                        number,
+                        name
+                    );
+
+                };
+
+
+            member.appendChild(checkbox);
+
+            member.appendChild(info);
+
+            member.appendChild(button);
+
+            memberList.appendChild(member);
+
+        });
+
+
+        updateSelectedCount();
+
+
+    }catch(error){
+
+        console.error(error);
+
+        memberList.innerHTML =
+            `<div class="error">
+                ❌ Member List Load ହେଲା ନାହିଁ।<br><br>
+                Firebase error: ${error.message}
+            </div>`;
+
+    }
+
+}
+
+
+
+/* SELECT ALL */
+
+window.selectAllMembers = function(){
+
+    const checked =
+        document.getElementById(
+            "selectAll"
+        ).checked;
+
+
+    document
+        .querySelectorAll(".member-check")
+        .forEach(function(box){
+
+            box.checked =
+                checked;
+
+        });
+
+
+    updateSelectedCount();
+
+};
+
+
+
+/* COUNT */
+
+function updateSelectedCount(){
+
+    const count =
+        document.querySelectorAll(
+            ".member-check:checked"
+        ).length;
+
+
+    document.getElementById(
+        "selectedCount"
+    ).textContent =
+        count + " Selected";
+
+}
+
+
+
+/* SINGLE WHATSAPP */
+
+function sendWhatsApp(
+    number,
+    name
+){
+
+    const message =
+        document.getElementById(
+            "message"
+        ).value.trim();
+
+
+    if(!message){
+
+        alert(
+            "ପ୍ରଥମେ Festival Message ବାଛନ୍ତୁ।"
+        );
+
+        return;
+
+    }
+
+
+    const finalMessage =
+        "ନମସ୍କାର " +
+        name +
+        " 🙏\n\n" +
+        message;
+
+
+    const url =
+        "https://wa.me/" +
+        number +
+        "?text=" +
+        encodeURIComponent(
+            finalMessage
+        );
+
+
+    window.open(
+        url,
+        "_blank"
+    );
+
+}
+
+
+
+/* SELECTED WHATSAPP */
+
+window.sendSelectedWhatsApp = function(){
+
+    const selected =
+        Array.from(
+            document.querySelectorAll(
+                ".member-check:checked"
+            )
+        );
+
+
+    if(!selected.length){
+
+        alert(
+            "ଦୟାକରି କମ୍ ସେ କମ୍ ଜଣେ Member ବାଛନ୍ତୁ।"
+        );
+
+        return;
+
+    }
+
+
+    const first =
+        selected[0];
+
+
+    sendWhatsApp(
+        first.dataset.number,
+        first.dataset.name
+    );
+
+};
+
+
+
+/* START MEMBER LOAD */
+
+loadMembers();
+
+</script>
+
+
+</body>
+
+</html>
