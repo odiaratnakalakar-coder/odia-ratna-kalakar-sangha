@@ -126,6 +126,23 @@ cursor:pointer;
 .wishBtn:hover{
 opacity:.9;
 }
+.cardBtn{
+width:100%;
+margin-top:10px;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#b8860b;
+color:white;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.cardBtn:hover{
+opacity:.9;
+}
+
 
 
 /* ================= UPCOMING ================= */
@@ -1069,7 +1086,20 @@ whatsappUrl,
 });
 
 });
+document.querySelectorAll(".cardBtn").forEach(button => {
 
+button.addEventListener("click", () => {
+
+const id =
+button.dataset.id;
+
+window.location.href =
+"birthday-card.html?id=" +
+encodeURIComponent(id);
+
+});
+
+});
 }
 
 
