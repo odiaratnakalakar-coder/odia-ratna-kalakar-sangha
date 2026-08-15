@@ -797,11 +797,25 @@ ${escapeHTML(member.mobile || "-")}
 
 <button
 class="wishBtn"
+data-id="${member.id}"
 data-name="${escapeHTML(member.name || "Member")}"
 data-mobile="${escapeHTML(member.mobile || "")}"
 >
 🎂 Birthday Wish
 </button>
+
+<button
+class="cardBtn"
+data-id="${member.id}"
+>
+🎨 Birthday Card
+</button>
+
+
+
+
+
+
 
 `;
 
