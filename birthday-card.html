@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Greeting Card</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  padding:15px;
+  background:#111;
+  font-family:Arial,"Noto Sans Oriya",sans-serif;
+}
+
+.container{
+  max-width:650px;
+  margin:auto;
+}
+
+.topBtn{
+  display:block;
+  text-align:center;
+  text-decoration:none;
+  background:#c40000;
+  color:white;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:15px;
+  font-weight:bold;
+}
+
+#loading{
+  color:#ffcc00;
+  text-align:center;
+  padding:30px;
+  font-size:18px;
+}
+
+#error{
+  color:#ff5555;
+  text-align:center;
+  padding:20px;
+}
+
+
+/* ================= CARD ================= */
+
+.birthdayCard{
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff9e8,
+      #fff0f5
+    );
+
+  border-radius:25px;
+
+  padding:22px;
+
+  text-align:center;
+
+  box-shadow:
+    0 10px 35px
+    rgba(0,0,0,.5);
+
+  overflow:hidden;
+
+  position:relative;
+}
+
+
+/* BALLOONS */
+
+.balloons{
+  font-size:32px;
+  letter-spacing:8px;
+  margin-bottom:8px;
+}
+
+
+/* LOGO */
+
+.logo{
+  width:95px;
+  height:95px;
+  object-fit:contain;
+  margin:auto;
+  display:block;
+}
+
+
+/* TRUST NAME */
+
+.trustName{
+  color:#7b1020;
+  font-size:24px;
+  font-weight:bold;
+  margin-top:8px;
+}
+
+
+/* HAPPY BIRTHDAY */
+
+.happy{
+  margin-top:18px;
+
+  font-size:38px;
+
+  font-weight:bold;
+
+  background:
+    linear-gradient(
+      90deg,
+      #d4145a,
+      #f59b23
+    );
+
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+
+/* PHOTO */
+
+.photoBox{
+  margin:20px auto 10px;
+}
+
+.photo{
+
+  width:200px;
+  height:200px;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  border:7px solid #d4af37;
+
+  box-shadow:
+    0 6px 20px
+    rgba(0,0,0,.25);
+}
+
+
+/* NAME */
+
+.memberName{
+
+  color:#7b1020;
+
+  font-size:30px;
+
+  font-weight:bold;
+
+  margin:12px 0;
+}
+
+
+/* BIRTHDAY TEXT */
+
+.birthdayText{
+
+  display:inline-block;
+
+  background:#7b1020;
+
+  color:white;
+
+  padding:10px 22px;
+
+  border-radius:30px;
+
+  font-size:18px;
+
+  font-weight:bold;
+}
+
+
+/* WISH */
+
+.wish{
+
+  color:#333;
+
+  font-size:18px;
+
+  line-height:1.9;
+
+  margin:20px auto;
+
+  max-width:530px;
+}
+
+
+/* DOB */
+
+.dobBox{
+
+  display:inline-block;
+
+  background:#fff;
+
+  border:2px solid #d4af37;
+
+  border-radius:12px;
+
+  padding:10px 18px;
+
+  color:#333;
+
+  font-weight:bold;
+}
+
+
+/* FOOTER */
+
+.footer{
+
+  margin-top:20px;
+
+  background:#7b1020;
+
+  color:white;
+
+  padding:15px;
+
+  border-radius:15px;
+
+  line-height:1.8;
+
+  font-weight:bold;
+}
+
+
+/* BUTTONS */
+
+.buttons{
+
+  display:flex;
+
+  gap:10px;
+
+  justify-content:center;
+
+  flex-wrap:wrap;
+
+  margin-top:18px;
+}
+
+button{
+
+  border:none;
+
+  border-radius:10px;
+
+  padding:13px 18px;
+
+  color:white;
+
+  font-size:16px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+}
+
+.whatsapp{
+  background:#25D366;
+}
+
+.download{
+  background:#b8860b;
+}
+
+.print{
+  background:#333;
+}
+
+button:active{
+  transform:scale(.97);
+}
+
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+  .happy{
+    font-size:32px;
+  }
+
+  .trustName{
+    font-size:20px;
+  }
+
+  .photo{
+    width:175px;
+    height:175px;
+  }
+
+  .memberName{
+    font-size:26px;
+  }
+
+  .wish{
+    font-size:16px;
+  }
+
+}
+
+
+/* PRINT */
+
+@media print{
+
+  body{
+    background:white;
+    padding:0;
+  }
+
+  .topBtn,
+  .buttons{
+    display:none;
+  }
+
+  .birthdayCard{
+    box-shadow:none;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<a href="birthday-admin.html" class="topBtn">
+⬅️ Birthday Admin
+</a>
+
+
+<div id="loading">
+🎂 Birthday Card Loading...
+</div>
+
+
+<div id="error"></div>
+
+
+<div
+id="birthdayCard"
+class="birthdayCard"
+style="display:none;"
+>
+
+
+<div class="balloons">
+🎈 🎉 🎂 🎉 🎈
+</div>
+
+
+<img
+class="logo"
+src="images/logo.png"
+alt="Trust Logo"
+onerror="this.style.display='none'"
+>
+
+
+<div class="trustName">
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ
+</div>
+
+
+<div class="happy">
+Happy Birthday!
+</div>
+
+
+<div class="photoBox">
+
+<img
+id="memberPhoto"
+class="photo"
+src=""
+alt="Member Photo"
+>
+
+</div>
+
+
+<div
+id="memberName"
+class="memberName">
+</div>
+
+
+<div class="birthdayText">
+🎂 ଜନ୍ମଦିନର ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା 🎂
+</div>
+
+
+<div class="wish">
+
+ପ୍ରିୟ ସଦସ୍ୟ,
+
+<br>
+
+ଆପଣଙ୍କ ଜନ୍ମଦିନ ଅବସରରେ
+<strong>
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ
+</strong>
+ପକ୍ଷରୁ ଆପଣଙ୍କୁ
+ଅନେକ ଅନେକ ଶୁଭେଚ୍ଛା। 💐
+
+<br>
+
+ମହାପ୍ରଭୁ ଶ୍ରୀଜଗନ୍ନାଥ
+ଆପଣଙ୍କ ଜୀବନକୁ ସୁଖ,
+ଶାନ୍ତି, ସୁସ୍ଥତା ଓ ସଫଳତାରେ
+ପରିପୂର୍ଣ୍ଣ କରନ୍ତୁ। 🙏
+
+<br>
+
+ଆପଣଙ୍କ ଆଗାମୀ ଦିନଗୁଡ଼ିକ
+ଆନନ୍ଦମୟ ଓ ଉଜ୍ଜ୍ୱଳ ହେଉ। ❤️
+
+</div>
+
+
+<div class="dobBox">
+
+🎂 ଜନ୍ମ ତାରିଖ:
+<span id="memberDOB">
+-
+</span>
+
+</div>
+
+
+<div class="footer">
+
+❤️ ଏକ ମନ • ଏକ ପ୍ରାଣ • ଏକତା ଆମର ପରିଚୟ ❤️
+
+<br>
+
+ଜୟ ଜଗନ୍ନାଥ 🙏
+
+</div>
+
+
+</div>
+
+
+<div
+class="buttons"
+id="buttons"
+style="display:none;"
+>
+
+<button
+class="whatsapp"
+onclick="shareWhatsApp()"
+>
+📲 WhatsApp
+</button>
+
+
+<button
+class="download"
+onclick="downloadCard()"
+>
+📥 Download
+</button>
+
+
+<button
+class="print"
+onclick="window.print()"
+>
+🖨️ Print
+</button>
+
+</div>
+
+
+</div>
+
+
+<!-- HTML2CANVAS -->
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+</script>
+
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+  doc,
+  getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const loading =
+document.getElementById("loading");
+
+const errorBox =
+document.getElementById("error");
+
+const card =
+document.getElementById("birthdayCard");
+
+const buttons =
+document.getElementById("buttons");
+
+
+/* ============================= */
+/* GET MEMBER ID FROM URL */
+/* ============================= */
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const memberId =
+params.get("id");
+
+
+/* ============================= */
+/* LOAD MEMBER */
+/* ============================= */
+
+async function loadMember(){
+
+  if(!memberId){
+
+    loading.style.display="none";
+
+    errorBox.innerHTML =
+    "❌ Member ID ମିଳିଲା ନାହିଁ।";
+
+    return;
+  }
+
+
+  try{
+
+    const memberRef =
+    doc(
+      db,
+      "members",
+      memberId
+    );
+
+
+    const snap =
+    await getDoc(memberRef);
+
+
+    if(!snap.exists()){
+
+      loading.style.display="none";
+
+      errorBox.innerHTML =
+      "❌ Member ମିଳିଲେ ନାହିଁ।";
+
+      return;
+    }
+
+
+    const member =
+    snap.data();
+
+
+    /* NAME */
+
+    document.getElementById(
+      "memberName"
+    ).textContent =
+    member.name || "ସଦସ୍ୟ";
+
+
+    /* PHOTO */
+
+    const photo =
+    document.getElementById(
+      "memberPhoto"
+    );
+
+
+    if(member.photoUrl){
+
+      photo.src =
+      member.photoUrl;
+
+    }
+    else{
+
+      photo.src =
+      "images/default-member.png";
+
+    }
+
+
+    /* DOB */
+
+    document.getElementById(
+      "memberDOB"
+    ).textContent =
+    member.dob || "-";
+
+
+    loading.style.display="none";
+
+    card.style.display="block";
+
+    buttons.style.display="flex";
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    loading.style.display="none";
+
+    errorBox.innerHTML =
+    "❌ Member data load ହୋଇନାହିଁ।<br>" +
+    error.message;
+
+  }
+
+}
+
+
+/* ============================= */
+/* WHATSAPP */
+/* ============================= */
+
+window.shareWhatsApp =
+function(){
+
+  const name =
+  document.getElementById(
+    "memberName"
+  ).textContent;
+
+
+  const message =
+
+`🎂🌹 ଜନ୍ମଦିନର ଅନେକ ଅନେକ ଶୁଭେଚ୍ଛା 🌹🎂
+
+ପ୍ରିୟ ${name},
+
+ଆପଣଙ୍କ ଜନ୍ମଦିନ ଅବସରରେ
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ
+ପକ୍ଷରୁ ଆପଣଙ୍କୁ ହାର୍ଦ୍ଦିକ ଶୁଭେଚ୍ଛା। 💐
+
+ମହାପ୍ରଭୁ ଶ୍ରୀଜଗନ୍ନାଥ
+ଆପଣଙ୍କୁ ସୁସ୍ଥ, ସୁଖୀ ଓ ଦୀର୍ଘାୟୁ କରନ୍ତୁ। 🙏
+
+🎉 ଶୁଭ ଜନ୍ମଦିନ 🎉
+
+ଜୟ ଜଗନ୍ନାଥ 🙏
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ`;
+
+
+  window.open(
+
+    "https://wa.me/?text=" +
+    encodeURIComponent(message),
+
+    "_blank"
+
+  );
+
+};
+
+
+/* ============================= */
+/* DOWNLOAD CARD */
+/* ============================= */
+
+window.downloadCard =
+async function(){
+
+  const cardElement =
+  document.getElementById(
+    "birthdayCard"
+  );
+
+
+  try{
+
+    const canvas =
+    await html2canvas(
+      cardElement,
+      {
+        scale:2,
+        useCORS:true,
+        backgroundColor:"#fff9e8"
+      }
+    );
+
+
+    const link =
+    document.createElement("a");
+
+
+    const name =
+    document.getElementById(
+      "memberName"
+    ).textContent
+    .replace(/\s+/g,"-");
+
+
+    link.download =
+    "Birthday-" +
+    name +
+    ".png";
+
+
+    link.href =
+    canvas.toDataURL(
+      "image/png"
+    );
+
+
+    link.click();
+
+  }
+
+  catch(error){
+
+    console.error(error);
+
+    alert(
+      "❌ Card Download ହୋଇପାରିଲା ନାହିଁ।"
+    );
+
+  }
+
+};
+
+
+/* START */
+
+loadMember();
+
+</script>
+
+
+</body>
+
+</html>
