@@ -548,7 +548,7 @@ window.location.search
 
 const memberId =
 params.get("id");
-
+let memberMobile = "";
 
 /* ============================= */
 /* LOAD MEMBER */
@@ -594,7 +594,8 @@ async function loadMember(){
 
     const member =
     snap.data();
-
+memberMobile =
+member.mobile || "";
 
     /* NAME */
 
@@ -690,14 +691,32 @@ function(){
 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ`;
 
 
-  window.open(
+  let cleanMobile =
+memberMobile.replace(/\D/g,"");
 
-    "https://wa.me/?text=" +
-    encodeURIComponent(message),
+if(cleanMobile.length === 10){
+  cleanMobile = "91" + cleanMobile;
+}
 
-    "_blank"
+if(!cleanMobile){
+  alert("❌ ଏହି Member ଙ୍କ Mobile Number ନାହିଁ।");
+  return;
+}
 
-  );
+window.open(
+  "https://wa.me/" +
+  cleanMobile +
+  "?text=" +
+  encodeURIComponent(message),
+  "_blank"
+);
+
+    
+    
+
+    
+
+  
 
 };
 
