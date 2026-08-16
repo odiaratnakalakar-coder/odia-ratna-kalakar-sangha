@@ -35,6 +35,8 @@ body{
     margin:auto;
 }
 
+/* HEADER */
+
 .header{
     text-align:center;
     margin-bottom:20px;
@@ -56,6 +58,25 @@ body{
     margin-top:5px;
 }
 
+/* STATUS */
+
+.status{
+    text-align:center;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:8px;
+    display:none;
+}
+
+.success{
+    background:#14532d;
+    color:#bbf7d0;
+}
+
+.error{
+    background:#7f1d1d;
+    color:#fecaca;
+}
 
 /* FORM */
 
@@ -70,6 +91,7 @@ body{
 .formBox h2{
     color:#ffcc00;
     margin-bottom:18px;
+    font-size:21px;
 }
 
 label{
@@ -79,7 +101,7 @@ label{
     font-weight:bold;
 }
 
-input,
+input[type="text"],
 textarea{
     width:100%;
     border:none;
@@ -88,7 +110,7 @@ textarea{
     padding:13px;
     margin-bottom:15px;
     font-size:16px;
-    background:white;
+    background:#fff;
     color:#222;
 }
 
@@ -97,10 +119,9 @@ textarea{
     resize:vertical;
 }
 
+/* PHOTO */
 
-/* FILE BOX */
-
-.fileBox{
+.photoBox{
     background:#171717;
     border:1px solid #444;
     border-radius:10px;
@@ -108,33 +129,34 @@ textarea{
     margin-bottom:15px;
 }
 
-.fileBox label{
+.photoTitle{
     color:#ffcc00;
+    font-weight:bold;
+    margin-bottom:8px;
 }
 
-.fileBox input{
-    margin-bottom:5px;
+input[type="file"]{
+    width:100%;
+    background:white;
+    color:#222;
+    padding:8px;
+    border-radius:7px;
 }
 
-.fileInfo{
+.photoInfo{
     color:#aaa;
     font-size:12px;
+    margin-top:6px;
 }
 
-
-/* PREVIEW */
-
-.preview{
-    margin-top:8px;
-}
-
-.preview img{
+#photoPreview{
+    display:none;
     max-width:180px;
     max-height:180px;
+    margin-top:10px;
     border-radius:8px;
     border:2px solid #555;
 }
-
 
 /* IMPORTANT */
 
@@ -150,7 +172,6 @@ textarea{
     height:20px;
     margin:0;
 }
-
 
 /* BUTTON */
 
@@ -169,6 +190,10 @@ button{
     color:white;
 }
 
+.publishBtn:hover{
+    background:#ff0000;
+}
+
 .publishBtn:disabled{
     background:#555;
     cursor:not-allowed;
@@ -179,29 +204,6 @@ button{
     color:white;
     margin-top:8px;
 }
-
-
-/* STATUS */
-
-.status{
-    text-align:center;
-    padding:12px;
-    margin-bottom:15px;
-    border-radius:8px;
-    display:none;
-    font-weight:bold;
-}
-
-.success{
-    background:#14532d;
-    color:#bbf7d0;
-}
-
-.error{
-    background:#7f1d1d;
-    color:#fecaca;
-}
-
 
 /* LIST */
 
@@ -242,10 +244,12 @@ button{
 
 .normalBadge{
     background:#198754;
+    color:white;
 }
 
 .importantBadge{
     background:#d00000;
+    color:white;
 }
 
 .date{
@@ -265,35 +269,16 @@ button{
     white-space:pre-wrap;
 }
 
-
-/* PHOTO */
-
-.noticePhoto{
-    margin-top:12px;
-}
-
-.noticePhoto img{
+.noticeImage{
     width:100%;
-    max-height:350px;
+    max-width:500px;
+    max-height:450px;
     object-fit:contain;
+    display:block;
+    margin:15px auto;
     border-radius:10px;
-    border:1px solid #555;
-    background:#111;
+    border:1px solid #444;
 }
-
-
-/* FILE BUTTON */
-
-.fileLink{
-    display:inline-block;
-    margin-top:12px;
-    background:#444;
-    color:white;
-    text-decoration:none;
-    padding:10px 14px;
-    border-radius:20px;
-}
-
 
 /* ACTIONS */
 
@@ -304,6 +289,7 @@ button{
 }
 
 .actions button{
+    width:auto;
     flex:1;
     font-size:14px;
     padding:10px;
@@ -319,7 +305,6 @@ button{
     color:white;
 }
 
-
 /* EMPTY */
 
 .empty{
@@ -329,7 +314,6 @@ button{
     background:#1b1b1b;
     border-radius:12px;
 }
-
 
 /* BACK */
 
@@ -345,7 +329,6 @@ button{
     font-weight:bold;
 }
 
-
 /* MOBILE */
 
 @media(max-width:450px){
@@ -360,6 +343,10 @@ button{
 
     .actions{
         flex-direction:column;
+    }
+
+    .actions button{
+        width:100%;
     }
 
 }
@@ -393,7 +380,10 @@ button{
 
 <!-- STATUS -->
 
-<div id="status" class="status"></div>
+<div
+    id="status"
+    class="status">
+</div>
 
 
 <!-- FORM -->
@@ -412,7 +402,7 @@ button{
     <input
         type="text"
         id="noticeTitle"
-        placeholder="ଯଥା: ସାଧାରଣ ସୂଚନା"
+        placeholder="ଯଥା: ଜରୁରୀ ସୂଚନା"
     >
 
 
@@ -428,47 +418,27 @@ button{
 
     <!-- PHOTO -->
 
-    <div class="fileBox">
+    <div class="photoBox">
 
-        <label>
+        <div class="photoTitle">
             🖼️ Notice Photo
-        </label>
+        </div>
 
         <input
             type="file"
-            id="photoFile"
+            id="noticePhoto"
             accept="image/jpeg,image/jpg,image/png"
         >
 
-        <div class="fileInfo">
-            JPG, JPEG, PNG Photo Upload କରନ୍ତୁ
+        <div class="photoInfo">
+            JPG, JPEG, PNG Photo ବାଛନ୍ତୁ।
+            Photo automatically compress ହେବ।
         </div>
 
-        <div
+        <img
             id="photoPreview"
-            class="preview"
-        ></div>
-
-    </div>
-
-
-    <!-- PDF -->
-
-    <div class="fileBox">
-
-        <label>
-            📄 Notice PDF
-        </label>
-
-        <input
-            type="file"
-            id="pdfFile"
-            accept="application/pdf"
+            alt="Photo Preview"
         >
-
-        <div class="fileInfo">
-            PDF file Upload କରନ୍ତୁ
-        </div>
 
     </div>
 
@@ -494,18 +464,20 @@ button{
 
     <button
         id="publishBtn"
-        class="publishBtn"
-    >
+        class="publishBtn">
+
         📢 Publish Notice
+
     </button>
 
 
     <button
         id="cancelBtn"
         class="cancelBtn"
-        style="display:none;"
-    >
+        style="display:none;">
+
         ❌ Cancel Edit
+
     </button>
 
 </div>
@@ -521,8 +493,11 @@ button{
 <div id="noticeList">
 
     <div class="empty">
+
         <i class="fa-solid fa-spinner fa-spin"></i>
+
         Loading...
+
     </div>
 
 </div>
@@ -532,12 +507,13 @@ button{
 
 <a
     href="admin.html"
-    class="backBtn"
->
-    <i class="fa-solid fa-arrow-left"></i>
-    Back to Admin Dashboard
-</a>
+    class="backBtn">
 
+    <i class="fa-solid fa-arrow-left"></i>
+
+    Back to Admin Dashboard
+
+</a>
 
 </div>
 
@@ -547,10 +523,7 @@ button{
 <script type="module">
 
 
-import {
-    db,
-    storage
-} from "./firebase.js";
+import { db } from "./firebase.js";
 
 
 import {
@@ -570,17 +543,6 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-import {
-
-    ref,
-    uploadBytes,
-    getDownloadURL
-
-}
-from
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
-
-
 /* ELEMENTS */
 
 const titleInput =
@@ -592,11 +554,8 @@ document.getElementById("noticeDetails");
 const importantInput =
 document.getElementById("important");
 
-const photoFile =
-document.getElementById("photoFile");
-
-const pdfFile =
-document.getElementById("pdfFile");
+const photoInput =
+document.getElementById("noticePhoto");
 
 const photoPreview =
 document.getElementById("photoPreview");
@@ -619,6 +578,9 @@ document.getElementById("formTitle");
 
 let editingId = null;
 
+let editingImageData = "";
+
+
 
 /* STATUS */
 
@@ -632,10 +594,18 @@ function showStatus(message,type){
     statusBox.style.display =
         "block";
 
+    setTimeout(() => {
+
+        statusBox.style.display =
+            "none";
+
+    },4000);
+
 }
 
 
-/* ESCAPE */
+
+/* ESCAPE HTML */
 
 function escapeHTML(value){
 
@@ -650,93 +620,153 @@ function escapeHTML(value){
 }
 
 
-/* PHOTO PREVIEW */
 
-photoFile.addEventListener(
+/* =========================
+   COMPRESS PHOTO
+========================= */
+
+function compressImage(file){
+
+    return new Promise((resolve,reject)=>{
+
+        const reader =
+            new FileReader();
+
+        reader.onload = function(e){
+
+            const img =
+                new Image();
+
+            img.onload = function(){
+
+                const maxWidth = 900;
+
+                const scale =
+                    Math.min(
+                        1,
+                        maxWidth / img.width
+                    );
+
+                const canvas =
+                    document.createElement(
+                        "canvas"
+                    );
+
+                canvas.width =
+                    Math.round(
+                        img.width * scale
+                    );
+
+                canvas.height =
+                    Math.round(
+                        img.height * scale
+                    );
+
+                const ctx =
+                    canvas.getContext(
+                        "2d"
+                    );
+
+                ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    canvas.width,
+                    canvas.height
+                );
+
+                const dataUrl =
+                    canvas.toDataURL(
+                        "image/jpeg",
+                        0.65
+                    );
+
+                resolve(dataUrl);
+
+            };
+
+            img.onerror =
+                reject;
+
+            img.src =
+                e.target.result;
+
+        };
+
+        reader.onerror =
+            reject;
+
+        reader.readAsDataURL(file);
+
+    });
+
+}
+
+
+
+/* =========================
+   PHOTO PREVIEW
+========================= */
+
+photoInput.addEventListener(
     "change",
-    () => {
+    async function(){
 
         const file =
-            photoFile.files[0];
-
-        photoPreview.innerHTML = "";
+            this.files[0];
 
         if(!file){
+
+            photoPreview.style.display =
+                "none";
+
             return;
+
         }
 
         if(!file.type.startsWith("image/")){
 
             showStatus(
-                "❌ କେବଳ JPG/JPEG/PNG Photo ଦିଅନ୍ତୁ",
+                "❌ କେବଳ JPG, JPEG କିମ୍ବା PNG Photo ଦିଅନ୍ତୁ",
                 "error"
             );
 
-            photoFile.value = "";
+            this.value = "";
 
             return;
+
         }
 
+        try{
 
-        const img =
-            document.createElement("img");
+            const imageData =
+                await compressImage(file);
 
-        img.src =
-            URL.createObjectURL(file);
+            photoPreview.src =
+                imageData;
 
-        photoPreview.appendChild(img);
+            photoPreview.style.display =
+                "block";
+
+        }catch(error){
+
+            console.error(error);
+
+            showStatus(
+                "❌ Photo read ହୋଇପାରିଲା ନାହିଁ",
+                "error"
+            );
+
+        }
 
     }
 );
 
 
-/* UPLOAD FILE */
 
-async function uploadFile(file,folder){
-
-    if(!file){
-        return "";
-    }
-
-
-    const safeName =
-        file.name.replace(
-            /[^a-zA-Z0-9._-]/g,
-            "_"
-        );
-
-
-    const fileName =
-        Date.now() +
-        "_" +
-        safeName;
-
-
-    const storageRef =
-        ref(
-            storage,
-            folder + "/" + fileName
-        );
-
-
-    await uploadBytes(
-        storageRef,
-        file
-    );
-
-
-    const url =
-        await getDownloadURL(
-            storageRef
-        );
-
-
-    return url;
-
-}
-
-
-/* LOAD */
+/* =========================
+   LOAD NOTICES
+========================= */
 
 async function loadNotices(){
 
@@ -751,7 +781,6 @@ async function loadNotices(){
         </div>
 
     `;
-
 
     try{
 
@@ -770,13 +799,11 @@ async function loadNotices(){
 
             );
 
-
         const snapshot =
             await getDocs(q);
 
-
-        noticeList.innerHTML = "";
-
+        noticeList.innerHTML =
+            "";
 
         if(snapshot.empty){
 
@@ -801,7 +828,6 @@ async function loadNotices(){
                 const data =
                     noticeDoc.data();
 
-
                 let dateText = "";
 
                 if(
@@ -825,8 +851,9 @@ async function loadNotices(){
 
 
                 const card =
-                    document.createElement("div");
-
+                    document.createElement(
+                        "div"
+                    );
 
                 card.className =
                     data.important
@@ -878,37 +905,13 @@ async function loadNotices(){
 
 
                     ${
-                        data.imageUrl
+                        data.imageData
                         ?
-                        `
-                        <div class="noticePhoto">
-
-                            <img
-                                src="${data.imageUrl}"
-                                alt="Notice Photo"
-                            >
-
-                        </div>
-                        `
-                        :
-                        ""
-                    }
-
-
-                    ${
-                        data.fileUrl
-                        ?
-                        `
-                        <a
-                            class="fileLink"
-                            href="${data.fileUrl}"
-                            target="_blank"
-                        >
-
-                            📄 Open Notice PDF
-
-                        </a>
-                        `
+                        `<img
+                            class="noticeImage"
+                            src="${data.imageData}"
+                            alt="Notice Photo"
+                        >`
                         :
                         ""
                     }
@@ -918,16 +921,19 @@ async function loadNotices(){
 
                         <button
                             class="editBtn"
-                            data-id="${noticeDoc.id}"
-                        >
+                            data-id="${noticeDoc.id}">
+
                             ✏️ Edit
+
                         </button>
+
 
                         <button
                             class="deleteBtn"
-                            data-id="${noticeDoc.id}"
-                        >
+                            data-id="${noticeDoc.id}">
+
                             🗑️ Delete
+
                         </button>
 
                     </div>
@@ -940,6 +946,8 @@ async function loadNotices(){
             }
         );
 
+
+        /* EDIT */
 
         document
         .querySelectorAll(".editBtn")
@@ -959,6 +967,8 @@ async function loadNotices(){
 
         });
 
+
+        /* DELETE */
 
         document
         .querySelectorAll(".deleteBtn")
@@ -980,7 +990,10 @@ async function loadNotices(){
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Notice Load Error:",
+            error
+        );
 
         noticeList.innerHTML = `
 
@@ -997,7 +1010,10 @@ async function loadNotices(){
 }
 
 
-/* PUBLISH */
+
+/* =========================
+   PUBLISH / UPDATE
+========================= */
 
 publishBtn.addEventListener(
     "click",
@@ -1037,115 +1053,73 @@ publishBtn.addEventListener(
         }
 
 
-        const photo =
-            photoFile.files[0];
+        publishBtn.disabled =
+            true;
 
-        const pdf =
-            pdfFile.files[0];
-
-
-        /* PHOTO SIZE */
-
-        if(photo && photo.size > 5 * 1024 * 1024){
-
-            showStatus(
-                "❌ Photo 5MB ଠାରୁ କମ୍ ହେବା ଦରକାର",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        /* PDF SIZE */
-
-        if(pdf && pdf.size > 10 * 1024 * 1024){
-
-            showStatus(
-                "❌ PDF 10MB ଠାରୁ କମ୍ ହେବା ଦରକାର",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        publishBtn.disabled = true;
+        publishBtn.textContent =
+            "⏳ Saving...";
 
 
         try{
 
-            let imageUrl = "";
+            let imageData =
+                editingImageData || "";
 
-            let fileUrl = "";
 
+            /* NEW PHOTO */
 
-            /* UPLOAD PHOTO */
+            if(photoInput.files[0]){
 
-            if(photo){
-
-                publishBtn.textContent =
-                    "⏳ Photo Uploading...";
-
-                imageUrl =
-                    await uploadFile(
-                        photo,
-                        "public-notices/photos"
+                imageData =
+                    await compressImage(
+                        photoInput.files[0]
                     );
 
             }
 
 
-            /* UPLOAD PDF */
+            /* SIZE CHECK */
 
-            if(pdf){
+            if(imageData){
 
-                publishBtn.textContent =
-                    "⏳ PDF Uploading...";
-
-                fileUrl =
-                    await uploadFile(
-                        pdf,
-                        "public-notices/pdfs"
+                const sizeKB =
+                    Math.round(
+                        (imageData.length * 3 / 4)
+                        / 1024
                     );
+
+                console.log(
+                    "Image size:",
+                    sizeKB,
+                    "KB"
+                );
+
+
+                if(sizeKB > 700){
+
+                    showStatus(
+                        "⚠️ Photo ବହୁତ ବଡ଼। ଛୋଟ Photo ଦିଅନ୍ତୁ।",
+                        "error"
+                    );
+
+                    publishBtn.disabled =
+                        false;
+
+                    publishBtn.textContent =
+                        editingId
+                        ? "💾 Update Notice"
+                        : "📢 Publish Notice";
+
+                    return;
+
+                }
 
             }
 
 
-            publishBtn.textContent =
-                "⏳ Saving Notice...";
-
+            /* UPDATE */
 
             if(editingId){
-
-                const updateData = {
-
-                    title:title,
-
-                    details:details,
-
-                    important:important
-
-                };
-
-
-                if(imageUrl){
-
-                    updateData.imageUrl =
-                        imageUrl;
-
-                }
-
-
-                if(fileUrl){
-
-                    updateData.fileUrl =
-                        fileUrl;
-
-                }
-
 
                 await updateDoc(
 
@@ -1155,7 +1129,17 @@ publishBtn.addEventListener(
                         editingId
                     ),
 
-                    updateData
+                    {
+
+                        title:title,
+
+                        details:details,
+
+                        important:important,
+
+                        imageData:imageData
+
+                    }
 
                 );
 
@@ -1167,6 +1151,8 @@ publishBtn.addEventListener(
 
 
             }else{
+
+                /* ADD */
 
                 await addDoc(
 
@@ -1183,9 +1169,7 @@ publishBtn.addEventListener(
 
                         important:important,
 
-                        imageUrl:imageUrl,
-
-                        fileUrl:fileUrl,
+                        imageData:imageData,
 
                         createdAt:
                             serverTimestamp()
@@ -1211,14 +1195,13 @@ publishBtn.addEventListener(
         }catch(error){
 
             console.error(
-                "UPLOAD/SAVE ERROR:",
+                "Save Notice Error:",
                 error
             );
 
-
             showStatus(
-                "❌ Upload ହୋଇପାରିଲା ନାହିଁ: " +
-                error.message,
+                "❌ Notice save ହୋଇପାରିଲା ନାହିଁ: "
+                + error.message,
                 "error"
             );
 
@@ -1235,7 +1218,10 @@ publishBtn.addEventListener(
 );
 
 
-/* EDIT */
+
+/* =========================
+   EDIT
+========================= */
 
 function editNotice(id,snapshot){
 
@@ -1244,18 +1230,20 @@ function editNotice(id,snapshot){
             d => d.id === id
         );
 
-
     if(!noticeDoc){
-        return;
-    }
 
+        return;
+
+    }
 
     const data =
         noticeDoc.data();
 
-
     editingId =
         id;
+
+    editingImageData =
+        data.imageData || "";
 
 
     titleInput.value =
@@ -1268,47 +1256,60 @@ function editNotice(id,snapshot){
         data.important === true;
 
 
-    photoFile.value = "";
+    if(editingImageData){
 
-    pdfFile.value = "";
+        photoPreview.src =
+            editingImageData;
 
-    photoPreview.innerHTML = "";
+        photoPreview.style.display =
+            "block";
+
+    }else{
+
+        photoPreview.style.display =
+            "none";
+
+    }
 
 
     formTitle.textContent =
         "✏️ Public Notice Edit";
 
-
     publishBtn.textContent =
         "💾 Update Notice";
-
 
     cancelBtn.style.display =
         "block";
 
 
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
 
 }
 
 
-/* DELETE */
+
+/* =========================
+   DELETE
+========================= */
 
 async function deleteNotice(id){
 
-    const ok =
+    const confirmDelete =
         confirm(
             "ଏହି Notice କୁ Delete କରିବେ କି?"
         );
 
+    if(!confirmDelete){
 
-    if(!ok){
         return;
-    }
 
+    }
 
     try{
 
@@ -1322,19 +1323,19 @@ async function deleteNotice(id){
 
         );
 
-
         showStatus(
             "🗑️ Notice delete ହୋଇଗଲା",
             "success"
         );
 
-
         await loadNotices();
-
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Delete Error:",
+            error
+        );
 
         showStatus(
             "❌ Notice delete ହୋଇପାରିଲା ନାହିଁ",
@@ -1346,23 +1347,38 @@ async function deleteNotice(id){
 }
 
 
-/* CLEAR */
+
+/* =========================
+   CLEAR FORM
+========================= */
 
 function clearForm(){
 
-    editingId = null;
+    editingId =
+        null;
 
-    titleInput.value = "";
+    editingImageData =
+        "";
 
-    detailsInput.value = "";
 
-    importantInput.checked = false;
+    titleInput.value =
+        "";
 
-    photoFile.value = "";
+    detailsInput.value =
+        "";
 
-    pdfFile.value = "";
+    importantInput.checked =
+        false;
 
-    photoPreview.innerHTML = "";
+    photoInput.value =
+        "";
+
+    photoPreview.src =
+        "";
+
+    photoPreview.style.display =
+        "none";
+
 
     formTitle.textContent =
         "➕ ନୂଆ Public Notice";
@@ -1376,12 +1392,18 @@ function clearForm(){
 }
 
 
+
 /* CANCEL */
 
 cancelBtn.addEventListener(
     "click",
-    clearForm
+    () => {
+
+        clearForm();
+
+    }
 );
+
 
 
 /* START */
