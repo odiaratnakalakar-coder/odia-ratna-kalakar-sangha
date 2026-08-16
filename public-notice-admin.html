@@ -36,9 +36,7 @@ body{
 }
 
 
-/* =========================
-   HEADER
-========================= */
+/* ================= HEADER ================= */
 
 .header{
     text-align:center;
@@ -62,9 +60,7 @@ body{
 }
 
 
-/* =========================
-   FORM
-========================= */
+/* ================= FORM ================= */
 
 .formBox{
     background:#222;
@@ -106,9 +102,47 @@ textarea{
 }
 
 
-/* =========================
-   IMPORTANT
-========================= */
+/* ================= FILE UPLOAD ================= */
+
+.fileBox{
+    background:#181818;
+    border:1px solid #555;
+    border-radius:10px;
+    padding:14px;
+    margin-bottom:15px;
+}
+
+.fileBox label{
+    color:#ffcc00;
+}
+
+.fileBox input[type="file"]{
+    background:#fff;
+    color:#222;
+    padding:10px;
+    margin-bottom:5px;
+}
+
+.fileHelp{
+    color:#aaa;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.filePreview{
+    margin-top:10px;
+    display:none;
+}
+
+.filePreview img{
+    max-width:100%;
+    max-height:220px;
+    border-radius:10px;
+    border:2px solid #555;
+}
+
+
+/* ================= IMPORTANT ================= */
 
 .importantBox{
     display:flex;
@@ -124,9 +158,7 @@ textarea{
 }
 
 
-/* =========================
-   BUTTON
-========================= */
+/* ================= BUTTON ================= */
 
 button{
     width:100%;
@@ -154,9 +186,7 @@ button{
 }
 
 
-/* =========================
-   NOTICE LIST
-========================= */
+/* ================= NOTICE LIST ================= */
 
 .listTitle{
     color:#ffcc00;
@@ -221,9 +251,36 @@ button{
 }
 
 
-/* =========================
-   ACTION BUTTONS
-========================= */
+/* ================= ATTACHMENTS ================= */
+
+.attachments{
+    margin-top:14px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.attachments a{
+    display:inline-block;
+    text-decoration:none;
+    padding:9px 13px;
+    border-radius:20px;
+    font-weight:bold;
+    font-size:14px;
+}
+
+.photoBtn{
+    background:#2563eb;
+    color:white;
+}
+
+.pdfBtn{
+    background:#dc2626;
+    color:white;
+}
+
+
+/* ================= ACTION BUTTONS ================= */
 
 .actions{
     display:flex;
@@ -249,9 +306,7 @@ button{
 }
 
 
-/* =========================
-   STATUS
-========================= */
+/* ================= STATUS ================= */
 
 .status{
     text-align:center;
@@ -272,9 +327,7 @@ button{
 }
 
 
-/* =========================
-   EMPTY
-========================= */
+/* ================= EMPTY ================= */
 
 .empty{
     text-align:center;
@@ -285,9 +338,7 @@ button{
 }
 
 
-/* =========================
-   BACK
-========================= */
+/* ================= BACK ================= */
 
 .backBtn{
     display:block;
@@ -306,9 +357,7 @@ button{
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+/* ================= MOBILE ================= */
 
 @media(max-width:450px){
 
@@ -341,9 +390,7 @@ button{
 <div class="container">
 
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- ================= HEADER ================= -->
 
 <div class="header">
 
@@ -360,10 +407,7 @@ button{
 </div>
 
 
-
-<!-- =========================
-     STATUS
-========================= -->
+<!-- ================= STATUS ================= -->
 
 <div
     id="status"
@@ -371,10 +415,7 @@ button{
 ></div>
 
 
-
-<!-- =========================
-     FORM
-========================= -->
+<!-- ================= FORM ================= -->
 
 <div class="formBox">
 
@@ -382,6 +423,8 @@ button{
         ➕ ନୂଆ Public Notice
     </h2>
 
+
+    <!-- TITLE -->
 
     <label>
         Notice Title
@@ -394,6 +437,8 @@ button{
     >
 
 
+    <!-- DETAILS -->
+
     <label>
         Notice Details
     </label>
@@ -403,6 +448,62 @@ button{
         placeholder="ସମ୍ପୂର୍ଣ୍ଣ Notice ଏଠାରେ ଲେଖନ୍ତୁ..."
     ></textarea>
 
+
+    <!-- PHOTO -->
+
+    <div class="fileBox">
+
+        <label>
+            🖼️ Notice Photo
+        </label>
+
+        <input
+            type="file"
+            id="photoFile"
+            accept="image/*"
+        >
+
+        <div class="fileHelp">
+            JPG, JPEG, PNG ଇତ୍ୟାଦି Photo Upload କରନ୍ତୁ।
+        </div>
+
+        <div
+            id="photoPreview"
+            class="filePreview"
+        >
+
+            <img
+                id="previewImage"
+                alt="Photo Preview"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- PDF -->
+
+    <div class="fileBox">
+
+        <label>
+            📄 Notice PDF
+        </label>
+
+        <input
+            type="file"
+            id="pdfFile"
+            accept="application/pdf,.pdf"
+        >
+
+        <div class="fileHelp">
+            PDF file Upload କରନ୍ତୁ।
+        </div>
+
+    </div>
+
+
+    <!-- IMPORTANT -->
 
     <div class="importantBox">
 
@@ -421,6 +522,8 @@ button{
     </div>
 
 
+    <!-- PUBLISH -->
+
     <button
         id="publishBtn"
         class="publishBtn"
@@ -428,6 +531,8 @@ button{
         📢 Publish Notice
     </button>
 
+
+    <!-- CANCEL -->
 
     <button
         id="cancelBtn"
@@ -440,10 +545,7 @@ button{
 </div>
 
 
-
-<!-- =========================
-     LIST
-========================= -->
+<!-- ================= LIST ================= -->
 
 <h2 class="listTitle">
     📋 Published Notices
@@ -453,17 +555,17 @@ button{
 <div id="noticeList">
 
     <div class="empty">
+
         <i class="fa-solid fa-spinner fa-spin"></i>
+
         Loading...
+
     </div>
 
 </div>
 
 
-
-<!-- =========================
-     BACK
-========================= -->
+<!-- ================= BACK ================= -->
 
 <a
     href="admin.html"
@@ -481,15 +583,22 @@ button{
 
 
 
-<!-- =========================
-     FIREBASE
-========================= -->
+<!-- ================= FIREBASE ================= -->
 
 <script type="module">
 
 
-import { db } from "./firebase.js";
+/* ================= FIREBASE ================= */
 
+import {
+
+    db,
+    storage
+
+} from "./firebase.js";
+
+
+/* ================= FIRESTORE ================= */
 
 import {
 
@@ -508,10 +617,21 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
+/* ================= STORAGE ================= */
 
-/* =========================
-   ELEMENTS
-========================= */
+import {
+
+    ref,
+    uploadBytes,
+    getDownloadURL
+
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+
+
+/* ================= ELEMENTS ================= */
 
 const titleInput =
     document.getElementById(
@@ -528,6 +648,30 @@ const detailsInput =
 const importantInput =
     document.getElementById(
         "important"
+    );
+
+
+const photoFile =
+    document.getElementById(
+        "photoFile"
+    );
+
+
+const pdfFile =
+    document.getElementById(
+        "pdfFile"
+    );
+
+
+const photoPreview =
+    document.getElementById(
+        "photoPreview"
+    );
+
+
+const previewImage =
+    document.getElementById(
+        "previewImage"
     );
 
 
@@ -561,14 +705,10 @@ const formTitle =
     );
 
 
-
 let editingId = null;
 
 
-
-/* =========================
-   STATUS
-========================= */
+/* ================= STATUS ================= */
 
 function showStatus(
     message,
@@ -595,10 +735,7 @@ function showStatus(
 }
 
 
-
-/* =========================
-   ESCAPE HTML
-========================= */
+/* ================= ESCAPE HTML ================= */
 
 function escapeHTML(
     value
@@ -634,10 +771,110 @@ function escapeHTML(
 }
 
 
+/* ================= FILE UPLOAD ================= */
 
-/* =========================
-   LOAD NOTICES
-========================= */
+async function uploadFile(
+    file,
+    folder
+){
+
+    if(!file){
+
+        return "";
+
+    }
+
+
+    const fileName =
+        Date.now()
+        + "_"
+        + Math.random()
+        .toString(36)
+        .substring(2,8)
+        + "_"
+        + file.name;
+
+
+    const storageRef =
+        ref(
+            storage,
+            `publicNotices/${folder}/${fileName}`
+        );
+
+
+    await uploadBytes(
+        storageRef,
+        file
+    );
+
+
+    return await getDownloadURL(
+        storageRef
+    );
+
+}
+
+
+/* ================= PHOTO PREVIEW ================= */
+
+photoFile.addEventListener(
+    "change",
+    () => {
+
+        const file =
+            photoFile.files[0];
+
+
+        if(!file){
+
+            photoPreview.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        if(!file.type.startsWith("image/")){
+
+            showStatus(
+                "❌ ଦୟାକରି Photo file ଚୟନ କରନ୍ତୁ",
+                "error"
+            );
+
+            photoFile.value = "";
+
+            photoPreview.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(e){
+
+                previewImage.src =
+                    e.target.result;
+
+                photoPreview.style.display =
+                    "block";
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* ================= LOAD NOTICES ================= */
 
 async function loadNotices(){
 
@@ -787,6 +1024,52 @@ async function loadNotices(){
                     </div>
 
 
+                    <!-- ATTACHMENTS -->
+
+                    ${
+                        data.imageUrl || data.fileUrl
+                        ?
+                        `
+
+                        <div class="attachments">
+
+                            ${
+                                data.imageUrl
+                                ?
+                                `<a
+                                    class="photoBtn"
+                                    href="${data.imageUrl}"
+                                    target="_blank"
+                                >
+                                    🖼️ View Photo
+                                </a>`
+                                :
+                                ""
+                            }
+
+
+                            ${
+                                data.fileUrl
+                                ?
+                                `<a
+                                    class="pdfBtn"
+                                    href="${data.fileUrl}"
+                                    target="_blank"
+                                >
+                                    📄 View PDF
+                                </a>`
+                                :
+                                ""
+                            }
+
+                        </div>
+
+                        `
+                        :
+                        ""
+                    }
+
+
                     <div class="actions">
 
                         <button
@@ -821,9 +1104,7 @@ async function loadNotices(){
         );
 
 
-        /* =========================
-           EDIT BUTTONS
-        ========================= */
+        /* ================= EDIT ================= */
 
         document
         .querySelectorAll(
@@ -848,9 +1129,7 @@ async function loadNotices(){
         );
 
 
-        /* =========================
-           DELETE BUTTONS
-        ========================= */
+        /* ================= DELETE ================= */
 
         document
         .querySelectorAll(
@@ -897,10 +1176,7 @@ async function loadNotices(){
 }
 
 
-
-/* =========================
-   ADD / UPDATE
-========================= */
+/* ================= ADD / UPDATE ================= */
 
 publishBtn.addEventListener(
     "click",
@@ -916,6 +1192,14 @@ publishBtn.addEventListener(
 
         const important =
             importantInput.checked;
+
+
+        const photo =
+            photoFile.files[0];
+
+
+        const pdf =
+            pdfFile.files[0];
 
 
         if(!title){
@@ -942,13 +1226,137 @@ publishBtn.addEventListener(
         }
 
 
+        /* ================= FILE TYPE CHECK ================= */
+
+        if(photo){
+
+            if(
+                !photo.type.startsWith(
+                    "image/"
+                )
+            ){
+
+                showStatus(
+                    "❌ Photo file ଠିକ୍ ନୁହେଁ",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            if(
+                photo.size >
+                5 * 1024 * 1024
+            ){
+
+                showStatus(
+                    "❌ Photo 5MB ଠାରୁ କମ୍ ହେବା ଦରକାର",
+                    "error"
+                );
+
+                return;
+
+            }
+
+        }
+
+
+        if(pdf){
+
+            if(
+                pdf.type !==
+                "application/pdf"
+            ){
+
+                showStatus(
+                    "❌ କେବଳ PDF file upload କରନ୍ତୁ",
+                    "error"
+                );
+
+                return;
+
+            }
+
+            if(
+                pdf.size >
+                10 * 1024 * 1024
+            ){
+
+                showStatus(
+                    "❌ PDF 10MB ଠାରୁ କମ୍ ହେବା ଦରକାର",
+                    "error"
+                );
+
+                return;
+
+            }
+
+        }
+
+
         publishBtn.disabled =
             true;
 
 
+        publishBtn.textContent =
+            "⏳ Uploading...";
+
+
         try{
 
+            /* ================= EDIT ================= */
+
             if(editingId){
+
+                const updateData = {
+
+                    title:title,
+
+                    details:details,
+
+                    important:important
+
+                };
+
+
+                /* NEW PHOTO */
+
+                if(photo){
+
+                    showStatus(
+                        "⏳ Photo Upload ହେଉଛି...",
+                        "success"
+                    );
+
+
+                    updateData.imageUrl =
+                        await uploadFile(
+                            photo,
+                            "photos"
+                        );
+
+                }
+
+
+                /* NEW PDF */
+
+                if(pdf){
+
+                    showStatus(
+                        "⏳ PDF Upload ହେଉଛି...",
+                        "success"
+                    );
+
+
+                    updateData.fileUrl =
+                        await uploadFile(
+                            pdf,
+                            "pdfs"
+                        );
+
+                }
+
 
                 await updateDoc(
 
@@ -958,15 +1366,7 @@ publishBtn.addEventListener(
                         editingId
                     ),
 
-                    {
-
-                        title:title,
-
-                        details:details,
-
-                        important:important
-
-                    }
+                    updateData
 
                 );
 
@@ -978,6 +1378,50 @@ publishBtn.addEventListener(
 
 
             }else{
+
+                let imageUrl = "";
+                let fileUrl = "";
+
+
+                /* PHOTO */
+
+                if(photo){
+
+                    showStatus(
+                        "⏳ Photo Upload ହେଉଛି...",
+                        "success"
+                    );
+
+
+                    imageUrl =
+                        await uploadFile(
+                            photo,
+                            "photos"
+                        );
+
+                }
+
+
+                /* PDF */
+
+                if(pdf){
+
+                    showStatus(
+                        "⏳ PDF Upload ହେଉଛି...",
+                        "success"
+                    );
+
+
+                    fileUrl =
+                        await uploadFile(
+                            pdf,
+                            "pdfs"
+                        );
+
+                }
+
+
+                /* SAVE FIRESTORE */
 
                 await addDoc(
 
@@ -993,6 +1437,10 @@ publishBtn.addEventListener(
                         details:details,
 
                         important:important,
+
+                        imageUrl:imageUrl,
+
+                        fileUrl:fileUrl,
 
                         createdAt:
                             serverTimestamp()
@@ -1024,7 +1472,8 @@ publishBtn.addEventListener(
 
 
             showStatus(
-                "❌ Notice save ହୋଇପାରିଲା ନାହିଁ",
+                "❌ Notice save/upload ହୋଇପାରିଲା ନାହିଁ: "
+                + error.message,
                 "error"
             );
 
@@ -1034,14 +1483,17 @@ publishBtn.addEventListener(
         publishBtn.disabled =
             false;
 
+
+        publishBtn.textContent =
+            editingId
+            ? "💾 Update Notice"
+            : "📢 Publish Notice";
+
     }
 );
 
 
-
-/* =========================
-   EDIT
-========================= */
+/* ================= EDIT ================= */
 
 function editNotice(
     id,
@@ -1081,6 +1533,17 @@ function editNotice(
         data.important === true;
 
 
+    photoFile.value =
+        "";
+
+    pdfFile.value =
+        "";
+
+
+    photoPreview.style.display =
+        "none";
+
+
     formTitle.textContent =
         "✏️ Public Notice Edit";
 
@@ -1104,10 +1567,7 @@ function editNotice(
 }
 
 
-
-/* =========================
-   DELETE
-========================= */
+/* ================= DELETE ================= */
 
 async function deleteNotice(
     id
@@ -1166,10 +1626,7 @@ async function deleteNotice(
 }
 
 
-
-/* =========================
-   CLEAR FORM
-========================= */
+/* ================= CLEAR FORM ================= */
 
 function clearForm(){
 
@@ -1189,6 +1646,18 @@ function clearForm(){
         false;
 
 
+    photoFile.value =
+        "";
+
+
+    pdfFile.value =
+        "";
+
+
+    photoPreview.style.display =
+        "none";
+
+
     formTitle.textContent =
         "➕ ନୂଆ Public Notice";
 
@@ -1203,10 +1672,7 @@ function clearForm(){
 }
 
 
-
-/* =========================
-   CANCEL EDIT
-========================= */
+/* ================= CANCEL ================= */
 
 cancelBtn.addEventListener(
     "click",
@@ -1218,10 +1684,7 @@ cancelBtn.addEventListener(
 );
 
 
-
-/* =========================
-   START
-========================= */
+/* ================= START ================= */
 
 loadNotices();
 
