@@ -359,12 +359,16 @@ class="memberBook"
 👨‍💼 Committee Admin
 </a>
 
+<!-- PUBLIC NOTICE -->
 
-<!-- NEWS -->
-
-<a href="news-admin.html">
-📰 News Admin
+<a href="public-notice-admin.html">
+📢 Public Notice Admin
 </a>
+
+
+
+
+
 
 
 <!-- GALLERY -->
@@ -512,23 +516,23 @@ document
 committeeSnap.size;
 
 
-/* ================= NEWS ================= */
-
-const newsSnap =
-await getDocs(
-collection(
-db,
-"news"
-)
-);
 
 
-document
-.getElementById(
-"newsCount"
-)
-.textContent =
-newsSnap.size;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* ================= BLOOD DONORS ================= */
