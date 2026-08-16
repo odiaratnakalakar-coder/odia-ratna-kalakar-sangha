@@ -11,7 +11,7 @@
 <title>Public Notice Admin</title>
 
 <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <meta name="theme-color" content="#8B0000">
 
@@ -35,9 +35,6 @@ body{
     margin:auto;
 }
 
-
-/* ================= HEADER ================= */
-
 .header{
     text-align:center;
     margin-bottom:20px;
@@ -60,7 +57,7 @@ body{
 }
 
 
-/* ================= FORM ================= */
+/* FORM */
 
 .formBox{
     background:#222;
@@ -73,7 +70,6 @@ body{
 .formBox h2{
     color:#ffcc00;
     margin-bottom:18px;
-    font-size:21px;
 }
 
 label{
@@ -92,7 +88,7 @@ textarea{
     padding:13px;
     margin-bottom:15px;
     font-size:16px;
-    background:#fff;
+    background:white;
     color:#222;
 }
 
@@ -102,13 +98,13 @@ textarea{
 }
 
 
-/* ================= FILE UPLOAD ================= */
+/* FILE BOX */
 
 .fileBox{
-    background:#181818;
-    border:1px solid #555;
+    background:#171717;
+    border:1px solid #444;
     border-radius:10px;
-    padding:14px;
+    padding:12px;
     margin-bottom:15px;
 }
 
@@ -116,33 +112,31 @@ textarea{
     color:#ffcc00;
 }
 
-.fileBox input[type="file"]{
-    background:#fff;
-    color:#222;
-    padding:10px;
+.fileBox input{
     margin-bottom:5px;
 }
 
-.fileHelp{
+.fileInfo{
     color:#aaa;
     font-size:12px;
-    line-height:1.5;
 }
 
-.filePreview{
-    margin-top:10px;
-    display:none;
+
+/* PREVIEW */
+
+.preview{
+    margin-top:8px;
 }
 
-.filePreview img{
-    max-width:100%;
-    max-height:220px;
-    border-radius:10px;
+.preview img{
+    max-width:180px;
+    max-height:180px;
+    border-radius:8px;
     border:2px solid #555;
 }
 
 
-/* ================= IMPORTANT ================= */
+/* IMPORTANT */
 
 .importantBox{
     display:flex;
@@ -158,7 +152,7 @@ textarea{
 }
 
 
-/* ================= BUTTON ================= */
+/* BUTTON */
 
 button{
     width:100%;
@@ -175,8 +169,9 @@ button{
     color:white;
 }
 
-.publishBtn:hover{
-    background:#ff0000;
+.publishBtn:disabled{
+    background:#555;
+    cursor:not-allowed;
 }
 
 .cancelBtn{
@@ -186,7 +181,29 @@ button{
 }
 
 
-/* ================= NOTICE LIST ================= */
+/* STATUS */
+
+.status{
+    text-align:center;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:8px;
+    display:none;
+    font-weight:bold;
+}
+
+.success{
+    background:#14532d;
+    color:#bbf7d0;
+}
+
+.error{
+    background:#7f1d1d;
+    color:#fecaca;
+}
+
+
+/* LIST */
 
 .listTitle{
     color:#ffcc00;
@@ -225,12 +242,10 @@ button{
 
 .normalBadge{
     background:#198754;
-    color:white;
 }
 
 .importantBadge{
     background:#d00000;
-    color:white;
 }
 
 .date{
@@ -251,36 +266,36 @@ button{
 }
 
 
-/* ================= ATTACHMENTS ================= */
+/* PHOTO */
 
-.attachments{
-    margin-top:14px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
+.noticePhoto{
+    margin-top:12px;
 }
 
-.attachments a{
+.noticePhoto img{
+    width:100%;
+    max-height:350px;
+    object-fit:contain;
+    border-radius:10px;
+    border:1px solid #555;
+    background:#111;
+}
+
+
+/* FILE BUTTON */
+
+.fileLink{
     display:inline-block;
+    margin-top:12px;
+    background:#444;
+    color:white;
     text-decoration:none;
-    padding:9px 13px;
+    padding:10px 14px;
     border-radius:20px;
-    font-weight:bold;
-    font-size:14px;
-}
-
-.photoBtn{
-    background:#2563eb;
-    color:white;
-}
-
-.pdfBtn{
-    background:#dc2626;
-    color:white;
 }
 
 
-/* ================= ACTION BUTTONS ================= */
+/* ACTIONS */
 
 .actions{
     display:flex;
@@ -289,7 +304,6 @@ button{
 }
 
 .actions button{
-    width:auto;
     flex:1;
     font-size:14px;
     padding:10px;
@@ -306,28 +320,7 @@ button{
 }
 
 
-/* ================= STATUS ================= */
-
-.status{
-    text-align:center;
-    padding:10px;
-    margin-bottom:15px;
-    border-radius:8px;
-    display:none;
-}
-
-.success{
-    background:#14532d;
-    color:#bbf7d0;
-}
-
-.error{
-    background:#7f1d1d;
-    color:#fecaca;
-}
-
-
-/* ================= EMPTY ================= */
+/* EMPTY */
 
 .empty{
     text-align:center;
@@ -338,7 +331,7 @@ button{
 }
 
 
-/* ================= BACK ================= */
+/* BACK */
 
 .backBtn{
     display:block;
@@ -352,12 +345,8 @@ button{
     font-weight:bold;
 }
 
-.backBtn:hover{
-    background:#555;
-}
 
-
-/* ================= MOBILE ================= */
+/* MOBILE */
 
 @media(max-width:450px){
 
@@ -373,10 +362,6 @@ button{
         flex-direction:column;
     }
 
-    .actions button{
-        width:100%;
-    }
-
 }
 
 </style>
@@ -386,11 +371,10 @@ button{
 
 <body>
 
-
 <div class="container">
 
 
-<!-- ================= HEADER ================= -->
+<!-- HEADER -->
 
 <div class="header">
 
@@ -407,15 +391,12 @@ button{
 </div>
 
 
-<!-- ================= STATUS ================= -->
+<!-- STATUS -->
 
-<div
-    id="status"
-    class="status"
-></div>
+<div id="status" class="status"></div>
 
 
-<!-- ================= FORM ================= -->
+<!-- FORM -->
 
 <div class="formBox">
 
@@ -424,8 +405,6 @@ button{
     </h2>
 
 
-    <!-- TITLE -->
-
     <label>
         Notice Title
     </label>
@@ -433,11 +412,9 @@ button{
     <input
         type="text"
         id="noticeTitle"
-        placeholder="ଯଥା: ଜରୁରୀ ସୂଚନା"
+        placeholder="ଯଥା: ସାଧାରଣ ସୂଚନା"
     >
 
-
-    <!-- DETAILS -->
 
     <label>
         Notice Details
@@ -460,24 +437,17 @@ button{
         <input
             type="file"
             id="photoFile"
-            accept="image/*"
+            accept="image/jpeg,image/jpg,image/png"
         >
 
-        <div class="fileHelp">
-            JPG, JPEG, PNG ଇତ୍ୟାଦି Photo Upload କରନ୍ତୁ।
+        <div class="fileInfo">
+            JPG, JPEG, PNG Photo Upload କରନ୍ତୁ
         </div>
 
         <div
             id="photoPreview"
-            class="filePreview"
-        >
-
-            <img
-                id="previewImage"
-                alt="Photo Preview"
-            >
-
-        </div>
+            class="preview"
+        ></div>
 
     </div>
 
@@ -493,11 +463,11 @@ button{
         <input
             type="file"
             id="pdfFile"
-            accept="application/pdf,.pdf"
+            accept="application/pdf"
         >
 
-        <div class="fileHelp">
-            PDF file Upload କରନ୍ତୁ।
+        <div class="fileInfo">
+            PDF file Upload କରନ୍ତୁ
         </div>
 
     </div>
@@ -522,8 +492,6 @@ button{
     </div>
 
 
-    <!-- PUBLISH -->
-
     <button
         id="publishBtn"
         class="publishBtn"
@@ -531,8 +499,6 @@ button{
         📢 Publish Notice
     </button>
 
-
-    <!-- CANCEL -->
 
     <button
         id="cancelBtn"
@@ -545,7 +511,7 @@ button{
 </div>
 
 
-<!-- ================= LIST ================= -->
+<!-- LIST -->
 
 <h2 class="listTitle">
     📋 Published Notices
@@ -555,50 +521,37 @@ button{
 <div id="noticeList">
 
     <div class="empty">
-
         <i class="fa-solid fa-spinner fa-spin"></i>
-
         Loading...
-
     </div>
 
 </div>
 
 
-<!-- ================= BACK ================= -->
+<!-- BACK -->
 
 <a
     href="admin.html"
     class="backBtn"
 >
-
     <i class="fa-solid fa-arrow-left"></i>
-
     Back to Admin Dashboard
-
 </a>
 
 
 </div>
 
 
-
-<!-- ================= FIREBASE ================= -->
+<!-- FIREBASE -->
 
 <script type="module">
 
 
-/* ================= FIREBASE ================= */
-
 import {
-
     db,
     storage
-
 } from "./firebase.js";
 
-
-/* ================= FIRESTORE ================= */
 
 import {
 
@@ -617,8 +570,6 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* ================= STORAGE ================= */
-
 import {
 
     ref,
@@ -630,93 +581,50 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 
-
-/* ================= ELEMENTS ================= */
+/* ELEMENTS */
 
 const titleInput =
-    document.getElementById(
-        "noticeTitle"
-    );
-
+document.getElementById("noticeTitle");
 
 const detailsInput =
-    document.getElementById(
-        "noticeDetails"
-    );
-
+document.getElementById("noticeDetails");
 
 const importantInput =
-    document.getElementById(
-        "important"
-    );
-
+document.getElementById("important");
 
 const photoFile =
-    document.getElementById(
-        "photoFile"
-    );
-
+document.getElementById("photoFile");
 
 const pdfFile =
-    document.getElementById(
-        "pdfFile"
-    );
-
+document.getElementById("pdfFile");
 
 const photoPreview =
-    document.getElementById(
-        "photoPreview"
-    );
-
-
-const previewImage =
-    document.getElementById(
-        "previewImage"
-    );
-
+document.getElementById("photoPreview");
 
 const publishBtn =
-    document.getElementById(
-        "publishBtn"
-    );
-
+document.getElementById("publishBtn");
 
 const cancelBtn =
-    document.getElementById(
-        "cancelBtn"
-    );
-
+document.getElementById("cancelBtn");
 
 const noticeList =
-    document.getElementById(
-        "noticeList"
-    );
-
+document.getElementById("noticeList");
 
 const statusBox =
-    document.getElementById(
-        "status"
-    );
-
+document.getElementById("status");
 
 const formTitle =
-    document.getElementById(
-        "formTitle"
-    );
+document.getElementById("formTitle");
 
 
 let editingId = null;
 
 
-/* ================= STATUS ================= */
+/* STATUS */
 
-function showStatus(
-    message,
-    type
-){
+function showStatus(message,type){
 
-    statusBox.textContent =
-        message;
+    statusBox.textContent = message;
 
     statusBox.className =
         "status " + type;
@@ -724,81 +632,90 @@ function showStatus(
     statusBox.style.display =
         "block";
 
-
-    setTimeout(() => {
-
-        statusBox.style.display =
-            "none";
-
-    },4000);
-
 }
 
 
-/* ================= ESCAPE HTML ================= */
+/* ESCAPE */
 
-function escapeHTML(
-    value
-){
+function escapeHTML(value){
 
     return String(value || "")
 
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-
-    .replace(
-        /</g,
-        "&lt;"
-    )
-
-    .replace(
-        />/g,
-        "&gt;"
-    )
-
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-
-    .replace(
-        /'/g,
-        "&#039;"
-    );
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 
 }
 
 
-/* ================= FILE UPLOAD ================= */
+/* PHOTO PREVIEW */
 
-async function uploadFile(
-    file,
-    folder
-){
+photoFile.addEventListener(
+    "change",
+    () => {
+
+        const file =
+            photoFile.files[0];
+
+        photoPreview.innerHTML = "";
+
+        if(!file){
+            return;
+        }
+
+        if(!file.type.startsWith("image/")){
+
+            showStatus(
+                "❌ କେବଳ JPG/JPEG/PNG Photo ଦିଅନ୍ତୁ",
+                "error"
+            );
+
+            photoFile.value = "";
+
+            return;
+        }
+
+
+        const img =
+            document.createElement("img");
+
+        img.src =
+            URL.createObjectURL(file);
+
+        photoPreview.appendChild(img);
+
+    }
+);
+
+
+/* UPLOAD FILE */
+
+async function uploadFile(file,folder){
 
     if(!file){
-
         return "";
-
     }
 
 
+    const safeName =
+        file.name.replace(
+            /[^a-zA-Z0-9._-]/g,
+            "_"
+        );
+
+
     const fileName =
-        Date.now()
-        + "_"
-        + Math.random()
-        .toString(36)
-        .substring(2,8)
-        + "_"
-        + file.name;
+        Date.now() +
+        "_" +
+        safeName;
 
 
     const storageRef =
         ref(
             storage,
-            `publicNotices/${folder}/${fileName}`
+            folder + "/" + fileName
         );
 
 
@@ -808,73 +725,18 @@ async function uploadFile(
     );
 
 
-    return await getDownloadURL(
-        storageRef
-    );
+    const url =
+        await getDownloadURL(
+            storageRef
+        );
+
+
+    return url;
 
 }
 
 
-/* ================= PHOTO PREVIEW ================= */
-
-photoFile.addEventListener(
-    "change",
-    () => {
-
-        const file =
-            photoFile.files[0];
-
-
-        if(!file){
-
-            photoPreview.style.display =
-                "none";
-
-            return;
-
-        }
-
-
-        if(!file.type.startsWith("image/")){
-
-            showStatus(
-                "❌ ଦୟାକରି Photo file ଚୟନ କରନ୍ତୁ",
-                "error"
-            );
-
-            photoFile.value = "";
-
-            photoPreview.style.display =
-                "none";
-
-            return;
-
-        }
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function(e){
-
-                previewImage.src =
-                    e.target.result;
-
-                photoPreview.style.display =
-                    "block";
-
-            };
-
-
-        reader.readAsDataURL(file);
-
-    }
-);
-
-
-/* ================= LOAD NOTICES ================= */
+/* LOAD */
 
 async function loadNotices(){
 
@@ -913,8 +775,7 @@ async function loadNotices(){
             await getDocs(q);
 
 
-        noticeList.innerHTML =
-            "";
+        noticeList.innerHTML = "";
 
 
         if(snapshot.empty){
@@ -941,8 +802,7 @@ async function loadNotices(){
                     noticeDoc.data();
 
 
-                let dateText =
-                    "";
+                let dateText = "";
 
                 if(
                     data.createdAt &&
@@ -965,9 +825,7 @@ async function loadNotices(){
 
 
                 const card =
-                    document.createElement(
-                        "div"
-                    );
+                    document.createElement("div");
 
 
                 card.className =
@@ -996,7 +854,6 @@ async function loadNotices(){
 
                         </div>
 
-
                         <div class="date">
 
                             📅 ${dateText}
@@ -1008,62 +865,49 @@ async function loadNotices(){
 
                     <div class="noticeTitle">
 
-                        ${escapeHTML(
-                            data.title
-                        )}
+                        ${escapeHTML(data.title)}
 
                     </div>
 
 
                     <div class="noticeDetails">
 
-                        ${escapeHTML(
-                            data.details
-                        )}
+                        ${escapeHTML(data.details)}
 
                     </div>
 
 
-                    <!-- ATTACHMENTS -->
-
                     ${
-                        data.imageUrl || data.fileUrl
+                        data.imageUrl
                         ?
                         `
+                        <div class="noticePhoto">
 
-                        <div class="attachments">
-
-                            ${
-                                data.imageUrl
-                                ?
-                                `<a
-                                    class="photoBtn"
-                                    href="${data.imageUrl}"
-                                    target="_blank"
-                                >
-                                    🖼️ View Photo
-                                </a>`
-                                :
-                                ""
-                            }
-
-
-                            ${
-                                data.fileUrl
-                                ?
-                                `<a
-                                    class="pdfBtn"
-                                    href="${data.fileUrl}"
-                                    target="_blank"
-                                >
-                                    📄 View PDF
-                                </a>`
-                                :
-                                ""
-                            }
+                            <img
+                                src="${data.imageUrl}"
+                                alt="Notice Photo"
+                            >
 
                         </div>
+                        `
+                        :
+                        ""
+                    }
 
+
+                    ${
+                        data.fileUrl
+                        ?
+                        `
+                        <a
+                            class="fileLink"
+                            href="${data.fileUrl}"
+                            target="_blank"
+                        >
+
+                            📄 Open Notice PDF
+
+                        </a>
                         `
                         :
                         ""
@@ -1076,19 +920,14 @@ async function loadNotices(){
                             class="editBtn"
                             data-id="${noticeDoc.id}"
                         >
-
                             ✏️ Edit
-
                         </button>
-
 
                         <button
                             class="deleteBtn"
                             data-id="${noticeDoc.id}"
                         >
-
                             🗑️ Delete
-
                         </button>
 
                     </div>
@@ -1096,70 +935,52 @@ async function loadNotices(){
                 `;
 
 
-                noticeList.appendChild(
-                    card
-                );
+                noticeList.appendChild(card);
 
             }
         );
 
-
-        /* ================= EDIT ================= */
 
         document
-        .querySelectorAll(
-            ".editBtn"
-        )
-        .forEach(
-            button => {
+        .querySelectorAll(".editBtn")
+        .forEach(button => {
 
-                button.addEventListener(
-                    "click",
-                    () => {
+            button.addEventListener(
+                "click",
+                () => {
 
-                        editNotice(
-                            button.dataset.id,
-                            snapshot
-                        );
+                    editNotice(
+                        button.dataset.id,
+                        snapshot
+                    );
 
-                    }
-                );
+                }
+            );
 
-            }
-        );
+        });
 
-
-        /* ================= DELETE ================= */
 
         document
-        .querySelectorAll(
-            ".deleteBtn"
-        )
-        .forEach(
-            button => {
+        .querySelectorAll(".deleteBtn")
+        .forEach(button => {
 
-                button.addEventListener(
-                    "click",
-                    () => {
+            button.addEventListener(
+                "click",
+                () => {
 
-                        deleteNotice(
-                            button.dataset.id
-                        );
+                    deleteNotice(
+                        button.dataset.id
+                    );
 
-                    }
-                );
+                }
+            );
 
-            }
-        );
+        });
 
 
     }catch(error){
 
-        console.error(
-            "Notice Load Error:",
-            error
-        );
-
+        console.error(error);
 
         noticeList.innerHTML = `
 
@@ -1176,7 +997,7 @@ async function loadNotices(){
 }
 
 
-/* ================= ADD / UPDATE ================= */
+/* PUBLISH */
 
 publishBtn.addEventListener(
     "click",
@@ -1185,21 +1006,11 @@ publishBtn.addEventListener(
         const title =
             titleInput.value.trim();
 
-
         const details =
             detailsInput.value.trim();
 
-
         const important =
             importantInput.checked;
-
-
-        const photo =
-            photoFile.files[0];
-
-
-        const pdf =
-            pdfFile.files[0];
 
 
         if(!title){
@@ -1226,86 +1037,86 @@ publishBtn.addEventListener(
         }
 
 
-        /* ================= FILE TYPE CHECK ================= */
+        const photo =
+            photoFile.files[0];
 
-        if(photo){
+        const pdf =
+            pdfFile.files[0];
 
-            if(
-                !photo.type.startsWith(
-                    "image/"
-                )
-            ){
 
-                showStatus(
-                    "❌ Photo file ଠିକ୍ ନୁହେଁ",
-                    "error"
-                );
+        /* PHOTO SIZE */
 
-                return;
+        if(photo && photo.size > 5 * 1024 * 1024){
 
-            }
+            showStatus(
+                "❌ Photo 5MB ଠାରୁ କମ୍ ହେବା ଦରକାର",
+                "error"
+            );
 
-            if(
-                photo.size >
-                5 * 1024 * 1024
-            ){
-
-                showStatus(
-                    "❌ Photo 5MB ଠାରୁ କମ୍ ହେବା ଦରକାର",
-                    "error"
-                );
-
-                return;
-
-            }
+            return;
 
         }
 
 
-        if(pdf){
+        /* PDF SIZE */
 
-            if(
-                pdf.type !==
-                "application/pdf"
-            ){
+        if(pdf && pdf.size > 10 * 1024 * 1024){
 
-                showStatus(
-                    "❌ କେବଳ PDF file upload କରନ୍ତୁ",
-                    "error"
-                );
+            showStatus(
+                "❌ PDF 10MB ଠାରୁ କମ୍ ହେବା ଦରକାର",
+                "error"
+            );
 
-                return;
-
-            }
-
-            if(
-                pdf.size >
-                10 * 1024 * 1024
-            ){
-
-                showStatus(
-                    "❌ PDF 10MB ଠାରୁ କମ୍ ହେବା ଦରକାର",
-                    "error"
-                );
-
-                return;
-
-            }
+            return;
 
         }
 
 
-        publishBtn.disabled =
-            true;
-
-
-        publishBtn.textContent =
-            "⏳ Uploading...";
+        publishBtn.disabled = true;
 
 
         try{
 
-            /* ================= EDIT ================= */
+            let imageUrl = "";
+
+            let fileUrl = "";
+
+
+            /* UPLOAD PHOTO */
+
+            if(photo){
+
+                publishBtn.textContent =
+                    "⏳ Photo Uploading...";
+
+                imageUrl =
+                    await uploadFile(
+                        photo,
+                        "public-notices/photos"
+                    );
+
+            }
+
+
+            /* UPLOAD PDF */
+
+            if(pdf){
+
+                publishBtn.textContent =
+                    "⏳ PDF Uploading...";
+
+                fileUrl =
+                    await uploadFile(
+                        pdf,
+                        "public-notices/pdfs"
+                    );
+
+            }
+
+
+            publishBtn.textContent =
+                "⏳ Saving Notice...";
+
 
             if(editingId){
 
@@ -1320,40 +1131,18 @@ publishBtn.addEventListener(
                 };
 
 
-                /* NEW PHOTO */
-
-                if(photo){
-
-                    showStatus(
-                        "⏳ Photo Upload ହେଉଛି...",
-                        "success"
-                    );
-
+                if(imageUrl){
 
                     updateData.imageUrl =
-                        await uploadFile(
-                            photo,
-                            "photos"
-                        );
+                        imageUrl;
 
                 }
 
 
-                /* NEW PDF */
-
-                if(pdf){
-
-                    showStatus(
-                        "⏳ PDF Upload ହେଉଛି...",
-                        "success"
-                    );
-
+                if(fileUrl){
 
                     updateData.fileUrl =
-                        await uploadFile(
-                            pdf,
-                            "pdfs"
-                        );
+                        fileUrl;
 
                 }
 
@@ -1378,50 +1167,6 @@ publishBtn.addEventListener(
 
 
             }else{
-
-                let imageUrl = "";
-                let fileUrl = "";
-
-
-                /* PHOTO */
-
-                if(photo){
-
-                    showStatus(
-                        "⏳ Photo Upload ହେଉଛି...",
-                        "success"
-                    );
-
-
-                    imageUrl =
-                        await uploadFile(
-                            photo,
-                            "photos"
-                        );
-
-                }
-
-
-                /* PDF */
-
-                if(pdf){
-
-                    showStatus(
-                        "⏳ PDF Upload ହେଉଛି...",
-                        "success"
-                    );
-
-
-                    fileUrl =
-                        await uploadFile(
-                            pdf,
-                            "pdfs"
-                        );
-
-                }
-
-
-                /* SAVE FIRESTORE */
 
                 await addDoc(
 
@@ -1466,14 +1211,14 @@ publishBtn.addEventListener(
         }catch(error){
 
             console.error(
-                "Save Notice Error:",
+                "UPLOAD/SAVE ERROR:",
                 error
             );
 
 
             showStatus(
-                "❌ Notice save/upload ହୋଇପାରିଲା ନାହିଁ: "
-                + error.message,
+                "❌ Upload ହୋଇପାରିଲା ନାହିଁ: " +
+                error.message,
                 "error"
             );
 
@@ -1483,22 +1228,16 @@ publishBtn.addEventListener(
         publishBtn.disabled =
             false;
 
-
         publishBtn.textContent =
-            editingId
-            ? "💾 Update Notice"
-            : "📢 Publish Notice";
+            "📢 Publish Notice";
 
     }
 );
 
 
-/* ================= EDIT ================= */
+/* EDIT */
 
-function editNotice(
-    id,
-    snapshot
-){
+function editNotice(id,snapshot){
 
     const noticeDoc =
         snapshot.docs.find(
@@ -1507,9 +1246,7 @@ function editNotice(
 
 
     if(!noticeDoc){
-
         return;
-
     }
 
 
@@ -1524,24 +1261,18 @@ function editNotice(
     titleInput.value =
         data.title || "";
 
-
     detailsInput.value =
         data.details || "";
-
 
     importantInput.checked =
         data.important === true;
 
 
-    photoFile.value =
-        "";
+    photoFile.value = "";
 
-    pdfFile.value =
-        "";
+    pdfFile.value = "";
 
-
-    photoPreview.style.display =
-        "none";
+    photoPreview.innerHTML = "";
 
 
     formTitle.textContent =
@@ -1557,32 +1288,25 @@ function editNotice(
 
 
     window.scrollTo({
-
         top:0,
-
         behavior:"smooth"
-
     });
 
 }
 
 
-/* ================= DELETE ================= */
+/* DELETE */
 
-async function deleteNotice(
-    id
-){
+async function deleteNotice(id){
 
-    const confirmDelete =
+    const ok =
         confirm(
             "ଏହି Notice କୁ Delete କରିବେ କି?"
         );
 
 
-    if(!confirmDelete){
-
+    if(!ok){
         return;
-
     }
 
 
@@ -1610,11 +1334,7 @@ async function deleteNotice(
 
     }catch(error){
 
-        console.error(
-            "Delete Error:",
-            error
-        );
-
+        console.error(error);
 
         showStatus(
             "❌ Notice delete ହୋଇପାରିଲା ନାହିଁ",
@@ -1626,45 +1346,29 @@ async function deleteNotice(
 }
 
 
-/* ================= CLEAR FORM ================= */
+/* CLEAR */
 
 function clearForm(){
 
-    editingId =
-        null;
+    editingId = null;
 
+    titleInput.value = "";
 
-    titleInput.value =
-        "";
+    detailsInput.value = "";
 
+    importantInput.checked = false;
 
-    detailsInput.value =
-        "";
+    photoFile.value = "";
 
+    pdfFile.value = "";
 
-    importantInput.checked =
-        false;
-
-
-    photoFile.value =
-        "";
-
-
-    pdfFile.value =
-        "";
-
-
-    photoPreview.style.display =
-        "none";
-
+    photoPreview.innerHTML = "";
 
     formTitle.textContent =
         "➕ ନୂଆ Public Notice";
 
-
     publishBtn.textContent =
         "📢 Publish Notice";
-
 
     cancelBtn.style.display =
         "none";
@@ -1672,25 +1376,19 @@ function clearForm(){
 }
 
 
-/* ================= CANCEL ================= */
+/* CANCEL */
 
 cancelBtn.addEventListener(
     "click",
-    () => {
-
-        clearForm();
-
-    }
+    clearForm
 );
 
 
-/* ================= START ================= */
+/* START */
 
 loadNotices();
 
-
 </script>
-
 
 </body>
 
