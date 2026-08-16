@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Public Notice Admin</title>
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<meta name="theme-color" content="#8B0000">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,"Noto Sans Oriya",sans-serif;
+}
+
+body{
+    background:#111;
+    color:white;
+    padding:15px;
+}
+
+.container{
+    max-width:650px;
+    margin:auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.header i{
+    font-size:40px;
+    color:#ffcc00;
+    margin-bottom:8px;
+}
+
+.header h1{
+    color:#ffcc00;
+    font-size:25px;
+}
+
+.header p{
+    color:#bbb;
+    margin-top:5px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.formBox{
+    background:#222;
+    border:2px solid #c40000;
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:25px;
+}
+
+.formBox h2{
+    color:#ffcc00;
+    margin-bottom:18px;
+    font-size:21px;
+}
+
+label{
+    display:block;
+    margin-bottom:7px;
+    color:#ddd;
+    font-weight:bold;
+}
+
+input,
+textarea{
+    width:100%;
+    border:none;
+    outline:none;
+    border-radius:8px;
+    padding:13px;
+    margin-bottom:15px;
+    font-size:16px;
+    background:#fff;
+    color:#222;
+}
+
+textarea{
+    min-height:150px;
+    resize:vertical;
+}
+
+
+/* =========================
+   IMPORTANT
+========================= */
+
+.importantBox{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.importantBox input{
+    width:20px;
+    height:20px;
+    margin:0;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+button{
+    width:100%;
+    border:none;
+    padding:13px;
+    border-radius:8px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.publishBtn{
+    background:#c40000;
+    color:white;
+}
+
+.publishBtn:hover{
+    background:#ff0000;
+}
+
+.cancelBtn{
+    background:#555;
+    color:white;
+    margin-top:8px;
+}
+
+
+/* =========================
+   NOTICE LIST
+========================= */
+
+.listTitle{
+    color:#ffcc00;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+.noticeCard{
+    background:#222;
+    border:1px solid #444;
+    border-left:5px solid #8B0000;
+    border-radius:12px;
+    padding:16px;
+    margin-bottom:15px;
+}
+
+.noticeCard.important{
+    border-left-color:#ff0000;
+}
+
+.noticeTop{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:10px;
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:15px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.normalBadge{
+    background:#198754;
+    color:white;
+}
+
+.importantBadge{
+    background:#d00000;
+    color:white;
+}
+
+.date{
+    color:#aaa;
+    font-size:13px;
+}
+
+.noticeTitle{
+    color:#ffcc00;
+    font-size:19px;
+    margin-bottom:8px;
+}
+
+.noticeDetails{
+    color:#ddd;
+    line-height:1.7;
+    white-space:pre-wrap;
+}
+
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.actions{
+    display:flex;
+    gap:8px;
+    margin-top:14px;
+}
+
+.actions button{
+    width:auto;
+    flex:1;
+    font-size:14px;
+    padding:10px;
+}
+
+.editBtn{
+    background:#ff9900;
+    color:#111;
+}
+
+.deleteBtn{
+    background:#b00000;
+    color:white;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+    text-align:center;
+    padding:10px;
+    margin-bottom:15px;
+    border-radius:8px;
+    display:none;
+}
+
+.success{
+    background:#14532d;
+    color:#bbf7d0;
+}
+
+.error{
+    background:#7f1d1d;
+    color:#fecaca;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    text-align:center;
+    color:#aaa;
+    padding:30px 10px;
+    background:#1b1b1b;
+    border-radius:12px;
+}
+
+
+/* =========================
+   BACK
+========================= */
+
+.backBtn{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    background:#444;
+    color:white;
+    padding:12px;
+    border-radius:8px;
+    margin-top:20px;
+    font-weight:bold;
+}
+
+.backBtn:hover{
+    background:#555;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:450px){
+
+    body{
+        padding:10px;
+    }
+
+    .formBox{
+        padding:15px;
+    }
+
+    .actions{
+        flex-direction:column;
+    }
+
+    .actions button{
+        width:100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="header">
+
+    <i class="fa-solid fa-bullhorn"></i>
+
+    <h1>
+        📢 Public Notice Admin
+    </h1>
+
+    <p>
+        ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ
+    </p>
+
+</div>
+
+
+
+<!-- =========================
+     STATUS
+========================= -->
+
+<div
+    id="status"
+    class="status"
+></div>
+
+
+
+<!-- =========================
+     FORM
+========================= -->
+
+<div class="formBox">
+
+    <h2 id="formTitle">
+        ➕ ନୂଆ Public Notice
+    </h2>
+
+
+    <label>
+        Notice Title
+    </label>
+
+    <input
+        type="text"
+        id="noticeTitle"
+        placeholder="ଯଥା: ଜରୁରୀ ସୂଚନା"
+    >
+
+
+    <label>
+        Notice Details
+    </label>
+
+    <textarea
+        id="noticeDetails"
+        placeholder="ସମ୍ପୂର୍ଣ୍ଣ Notice ଏଠାରେ ଲେଖନ୍ତୁ..."
+    ></textarea>
+
+
+    <div class="importantBox">
+
+        <input
+            type="checkbox"
+            id="important"
+        >
+
+        <label
+            for="important"
+            style="margin:0;"
+        >
+            🔴 Important Notice
+        </label>
+
+    </div>
+
+
+    <button
+        id="publishBtn"
+        class="publishBtn"
+    >
+        📢 Publish Notice
+    </button>
+
+
+    <button
+        id="cancelBtn"
+        class="cancelBtn"
+        style="display:none;"
+    >
+        ❌ Cancel Edit
+    </button>
+
+</div>
+
+
+
+<!-- =========================
+     LIST
+========================= -->
+
+<h2 class="listTitle">
+    📋 Published Notices
+</h2>
+
+
+<div id="noticeList">
+
+    <div class="empty">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        Loading...
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     BACK
+========================= -->
+
+<a
+    href="admin.html"
+    class="backBtn"
+>
+
+    <i class="fa-solid fa-arrow-left"></i>
+
+    Back to Admin Dashboard
+
+</a>
+
+
+</div>
+
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script type="module">
+
+
+import { db } from "./firebase.js";
+
+
+import {
+
+    collection,
+    addDoc,
+    getDocs,
+    query,
+    orderBy,
+    doc,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp
+
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const titleInput =
+    document.getElementById(
+        "noticeTitle"
+    );
+
+
+const detailsInput =
+    document.getElementById(
+        "noticeDetails"
+    );
+
+
+const importantInput =
+    document.getElementById(
+        "important"
+    );
+
+
+const publishBtn =
+    document.getElementById(
+        "publishBtn"
+    );
+
+
+const cancelBtn =
+    document.getElementById(
+        "cancelBtn"
+    );
+
+
+const noticeList =
+    document.getElementById(
+        "noticeList"
+    );
+
+
+const statusBox =
+    document.getElementById(
+        "status"
+    );
+
+
+const formTitle =
+    document.getElementById(
+        "formTitle"
+    );
+
+
+
+let editingId = null;
+
+
+
+/* =========================
+   STATUS
+========================= */
+
+function showStatus(
+    message,
+    type
+){
+
+    statusBox.textContent =
+        message;
+
+    statusBox.className =
+        "status " + type;
+
+    statusBox.style.display =
+        "block";
+
+
+    setTimeout(() => {
+
+        statusBox.style.display =
+            "none";
+
+    },4000);
+
+}
+
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHTML(
+    value
+){
+
+    return String(value || "")
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+
+/* =========================
+   LOAD NOTICES
+========================= */
+
+async function loadNotices(){
+
+    noticeList.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-spinner fa-spin"></i>
+
+            Loading...
+
+        </div>
+
+    `;
+
+
+    try{
+
+        const q =
+            query(
+
+                collection(
+                    db,
+                    "publicNotices"
+                ),
+
+                orderBy(
+                    "createdAt",
+                    "desc"
+                )
+
+            );
+
+
+        const snapshot =
+            await getDocs(q);
+
+
+        noticeList.innerHTML =
+            "";
+
+
+        if(snapshot.empty){
+
+            noticeList.innerHTML = `
+
+                <div class="empty">
+
+                    📢 ବର୍ତ୍ତମାନ କୌଣସି Notice ନାହିଁ
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        snapshot.forEach(
+            noticeDoc => {
+
+                const data =
+                    noticeDoc.data();
+
+
+                let dateText =
+                    "";
+
+                if(
+                    data.createdAt &&
+                    data.createdAt.toDate
+                ){
+
+                    dateText =
+                        data.createdAt
+                        .toDate()
+                        .toLocaleDateString(
+                            "or-IN",
+                            {
+                                day:"2-digit",
+                                month:"long",
+                                year:"numeric"
+                            }
+                        );
+
+                }
+
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    data.important
+                    ? "noticeCard important"
+                    : "noticeCard";
+
+
+                card.innerHTML = `
+
+                    <div class="noticeTop">
+
+                        <div>
+
+                            ${
+                                data.important
+                                ?
+                                `<span class="badge importantBadge">
+                                    🔴 Important
+                                </span>`
+                                :
+                                `<span class="badge normalBadge">
+                                    🆕 Notice
+                                </span>`
+                            }
+
+                        </div>
+
+
+                        <div class="date">
+
+                            📅 ${dateText}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="noticeTitle">
+
+                        ${escapeHTML(
+                            data.title
+                        )}
+
+                    </div>
+
+
+                    <div class="noticeDetails">
+
+                        ${escapeHTML(
+                            data.details
+                        )}
+
+                    </div>
+
+
+                    <div class="actions">
+
+                        <button
+                            class="editBtn"
+                            data-id="${noticeDoc.id}"
+                        >
+
+                            ✏️ Edit
+
+                        </button>
+
+
+                        <button
+                            class="deleteBtn"
+                            data-id="${noticeDoc.id}"
+                        >
+
+                            🗑️ Delete
+
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                noticeList.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+        /* =========================
+           EDIT BUTTONS
+        ========================= */
+
+        document
+        .querySelectorAll(
+            ".editBtn"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        editNotice(
+                            button.dataset.id,
+                            snapshot
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* =========================
+           DELETE BUTTONS
+        ========================= */
+
+        document
+        .querySelectorAll(
+            ".deleteBtn"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        deleteNotice(
+                            button.dataset.id
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Notice Load Error:",
+            error
+        );
+
+
+        noticeList.innerHTML = `
+
+            <div class="empty">
+
+                ❌ Notice load ହୋଇପାରିଲା ନାହିଁ
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+
+/* =========================
+   ADD / UPDATE
+========================= */
+
+publishBtn.addEventListener(
+    "click",
+    async () => {
+
+        const title =
+            titleInput.value.trim();
+
+
+        const details =
+            detailsInput.value.trim();
+
+
+        const important =
+            importantInput.checked;
+
+
+        if(!title){
+
+            showStatus(
+                "⚠️ Notice Title ଦିଅନ୍ତୁ",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!details){
+
+            showStatus(
+                "⚠️ Notice Details ଦିଅନ୍ତୁ",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        publishBtn.disabled =
+            true;
+
+
+        try{
+
+            if(editingId){
+
+                await updateDoc(
+
+                    doc(
+                        db,
+                        "publicNotices",
+                        editingId
+                    ),
+
+                    {
+
+                        title:title,
+
+                        details:details,
+
+                        important:important
+
+                    }
+
+                );
+
+
+                showStatus(
+                    "✅ Notice update ହୋଇଗଲା",
+                    "success"
+                );
+
+
+            }else{
+
+                await addDoc(
+
+                    collection(
+                        db,
+                        "publicNotices"
+                    ),
+
+                    {
+
+                        title:title,
+
+                        details:details,
+
+                        important:important,
+
+                        createdAt:
+                            serverTimestamp()
+
+                    }
+
+                );
+
+
+                showStatus(
+                    "✅ Public Notice publish ହୋଇଗଲା",
+                    "success"
+                );
+
+            }
+
+
+            clearForm();
+
+            await loadNotices();
+
+
+        }catch(error){
+
+            console.error(
+                "Save Notice Error:",
+                error
+            );
+
+
+            showStatus(
+                "❌ Notice save ହୋଇପାରିଲା ନାହିଁ",
+                "error"
+            );
+
+        }
+
+
+        publishBtn.disabled =
+            false;
+
+    }
+);
+
+
+
+/* =========================
+   EDIT
+========================= */
+
+function editNotice(
+    id,
+    snapshot
+){
+
+    const noticeDoc =
+        snapshot.docs.find(
+            d => d.id === id
+        );
+
+
+    if(!noticeDoc){
+
+        return;
+
+    }
+
+
+    const data =
+        noticeDoc.data();
+
+
+    editingId =
+        id;
+
+
+    titleInput.value =
+        data.title || "";
+
+
+    detailsInput.value =
+        data.details || "";
+
+
+    importantInput.checked =
+        data.important === true;
+
+
+    formTitle.textContent =
+        "✏️ Public Notice Edit";
+
+
+    publishBtn.textContent =
+        "💾 Update Notice";
+
+
+    cancelBtn.style.display =
+        "block";
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+
+/* =========================
+   DELETE
+========================= */
+
+async function deleteNotice(
+    id
+){
+
+    const confirmDelete =
+        confirm(
+            "ଏହି Notice କୁ Delete କରିବେ କି?"
+        );
+
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+
+    try{
+
+        await deleteDoc(
+
+            doc(
+                db,
+                "publicNotices",
+                id
+            )
+
+        );
+
+
+        showStatus(
+            "🗑️ Notice delete ହୋଇଗଲା",
+            "success"
+        );
+
+
+        await loadNotices();
+
+
+    }catch(error){
+
+        console.error(
+            "Delete Error:",
+            error
+        );
+
+
+        showStatus(
+            "❌ Notice delete ହୋଇପାରିଲା ନାହିଁ",
+            "error"
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   CLEAR FORM
+========================= */
+
+function clearForm(){
+
+    editingId =
+        null;
+
+
+    titleInput.value =
+        "";
+
+
+    detailsInput.value =
+        "";
+
+
+    importantInput.checked =
+        false;
+
+
+    formTitle.textContent =
+        "➕ ନୂଆ Public Notice";
+
+
+    publishBtn.textContent =
+        "📢 Publish Notice";
+
+
+    cancelBtn.style.display =
+        "none";
+
+}
+
+
+
+/* =========================
+   CANCEL EDIT
+========================= */
+
+cancelBtn.addEventListener(
+    "click",
+    () => {
+
+        clearForm();
+
+    }
+);
+
+
+
+/* =========================
+   START
+========================= */
+
+loadNotices();
+
+
+</script>
+
+
+</body>
+
+</html>
