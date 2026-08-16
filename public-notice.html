@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Public Notice - ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<meta name="theme-color" content="#8B0000">
+
+<style>
+
+/* =========================
+   PUBLIC NOTICE PAGE
+========================= */
+
+body{
+    margin:0;
+    font-family:Arial,"Noto Sans Oriya",sans-serif;
+    background:#f5f5f5;
+}
+
+/* Header */
+
+.noticeHeader{
+    background:linear-gradient(135deg,#8B0000,#b30000);
+    color:white;
+    padding:22px 15px;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.20);
+}
+
+.noticeHeader i{
+    font-size:38px;
+    margin-bottom:8px;
+}
+
+.noticeHeader h1{
+    margin:5px 0;
+    font-size:25px;
+}
+
+.noticeHeader p{
+    margin:5px 0;
+    font-size:14px;
+}
+
+
+/* Back Button */
+
+.backBox{
+    padding:15px;
+    text-align:left;
+}
+
+.backBtn{
+    display:inline-block;
+    text-decoration:none;
+    background:#8B0000;
+    color:white;
+    padding:10px 16px;
+    border-radius:25px;
+    font-weight:bold;
+}
+
+.backBtn i{
+    margin-right:5px;
+}
+
+
+/* Search */
+
+.searchBox{
+    max-width:600px;
+    margin:0 auto 18px;
+    padding:0 15px;
+}
+
+.searchBox input{
+    width:100%;
+    box-sizing:border-box;
+    padding:13px 18px;
+    border:1px solid #ddd;
+    border-radius:30px;
+    outline:none;
+    font-size:16px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.08);
+}
+
+
+/* Notice Container */
+
+.noticeContainer{
+    max-width:700px;
+    margin:auto;
+    padding:0 15px 30px;
+}
+
+
+/* Notice Card */
+
+.noticeCard{
+    background:white;
+    border-radius:18px;
+    margin-bottom:18px;
+    padding:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,0.10);
+    border-left:5px solid #8B0000;
+}
+
+.noticeCard.important{
+    border-left-color:#d00000;
+    background:#fff8f8;
+}
+
+
+/* Top */
+
+.noticeTop{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+
+/* Badge */
+
+.badge{
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.newBadge{
+    background:#198754;
+    color:white;
+}
+
+.importantBadge{
+    background:#d00000;
+    color:white;
+}
+
+
+/* Date */
+
+.noticeDate{
+    color:#777;
+    font-size:13px;
+}
+
+
+/* Title */
+
+.noticeTitle{
+    color:#8B0000;
+    font-size:20px;
+    margin:12px 0 8px;
+}
+
+.noticeDetails{
+    color:#444;
+    line-height:1.7;
+    font-size:15px;
+}
+
+
+/* Attachment */
+
+.attachment{
+    margin-top:14px;
+}
+
+.attachment a{
+    display:inline-block;
+    text-decoration:none;
+    background:#eee;
+    color:#333;
+    padding:9px 13px;
+    border-radius:20px;
+    margin-right:7px;
+    margin-bottom:7px;
+    font-size:14px;
+}
+
+
+/* WhatsApp */
+
+.whatsappBtn{
+    display:inline-block;
+    margin-top:12px;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    padding:9px 15px;
+    border-radius:22px;
+    font-weight:bold;
+}
+
+.whatsappBtn i{
+    margin-right:5px;
+}
+
+
+/* Loading */
+
+.loading{
+    text-align:center;
+    padding:35px;
+    color:#777;
+    font-size:16px;
+}
+
+
+/* Empty */
+
+.empty{
+    text-align:center;
+    background:white;
+    padding:35px 20px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.empty i{
+    font-size:45px;
+    color:#bbb;
+    margin-bottom:12px;
+}
+
+
+/* Mobile */
+
+@media(max-width:480px){
+
+    .noticeHeader h1{
+        font-size:22px;
+    }
+
+    .noticeTitle{
+        font-size:18px;
+    }
+
+    .noticeCard{
+        padding:15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="noticeHeader">
+
+    <i class="fa-solid fa-bullhorn"></i>
+
+    <h1>
+        📢 Public Notice
+    </h1>
+
+    <p>
+        ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ
+    </p>
+
+</header>
+
+
+
+<!-- =========================
+     BACK BUTTON
+========================= -->
+
+<div class="backBox">
+
+    <a href="index.html" class="backBtn">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Home
+
+    </a>
+
+</div>
+
+
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="searchBox">
+
+    <input
+        type="search"
+        id="searchInput"
+        placeholder="🔎 Notice ଖୋଜନ୍ତୁ..."
+        oninput="searchNotice()"
+    >
+
+</div>
+
+
+
+<!-- =========================
+     NOTICE LIST
+========================= -->
+
+<main
+    id="noticeContainer"
+    class="noticeContainer">
+
+    <div class="loading">
+
+        <i class="fa-solid fa-spinner fa-spin"></i>
+
+        Notice Loading...
+
+    </div>
+
+</main>
+
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+
+    collection,
+    getDocs,
+    query,
+    orderBy
+
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const noticeContainer =
+    document.getElementById("noticeContainer");
+
+
+let allNotices = [];
+
+
+/* =========================
+   LOAD NOTICES
+========================= */
+
+async function loadNotices(){
+
+    try{
+
+        const q = query(
+
+            collection(db,"publicNotices"),
+
+            orderBy("createdAt","desc")
+
+        );
+
+
+        const snapshot =
+            await getDocs(q);
+
+
+        allNotices = [];
+
+
+        snapshot.forEach(doc => {
+
+            allNotices.push({
+
+                id:doc.id,
+
+                ...doc.data()
+
+            });
+
+        });
+
+
+        displayNotices(allNotices);
+
+
+    }catch(error){
+
+        console.error(
+            "Notice Load Error:",
+            error
+        );
+
+
+        noticeContainer.innerHTML = `
+
+            <div class="empty">
+
+                <i class="fa-solid fa-circle-exclamation"></i>
+
+                <h3>
+                    Notice Load ହୋଇପାରିଲା ନାହିଁ
+                </h3>
+
+                <p>
+                    ପରେ ପୁଣିଥରେ ଚେଷ୍ଟା କରନ୍ତୁ।
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================
+   DISPLAY
+========================= */
+
+function displayNotices(notices){
+
+    noticeContainer.innerHTML = "";
+
+
+    if(notices.length === 0){
+
+        noticeContainer.innerHTML = `
+
+            <div class="empty">
+
+                <i class="fa-solid fa-bullhorn"></i>
+
+                <h3>
+                    ବର୍ତ୍ତମାନ କୌଣସି Public Notice ନାହିଁ
+                </h3>
+
+                <p>
+                    ନୂଆ Notice ପ୍ରକାଶ ପାଇଲେ
+                    ଏଠାରେ ଦେଖାଯିବ।
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    notices.forEach(notice => {
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            notice.important
+            ? "noticeCard important"
+            : "noticeCard";
+
+
+        /* Date */
+
+        let dateText = "";
+
+        if(notice.createdAt){
+
+            try{
+
+                const date =
+                    notice.createdAt.toDate
+                    ? notice.createdAt.toDate()
+                    : new Date(notice.createdAt);
+
+                dateText =
+                    date.toLocaleDateString(
+                        "or-IN",
+                        {
+                            day:"2-digit",
+                            month:"long",
+                            year:"numeric"
+                        }
+                    );
+
+            }catch(e){
+
+                dateText = "";
+
+            }
+
+        }
+
+
+        /* WhatsApp */
+
+        const whatsappText =
+            encodeURIComponent(
+
+                `📢 Public Notice
+
+${notice.title || ""}
+
+${notice.details || ""}
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`
+
+            );
+
+
+        card.innerHTML = `
+
+            <div class="noticeTop">
+
+                <div>
+
+                    ${
+                        notice.important
+                        ?
+                        `<span class="badge importantBadge">
+                            🔴 Important
+                        </span>`
+                        :
+                        `<span class="badge newBadge">
+                            🆕 Notice
+                        </span>`
+                    }
+
+                </div>
+
+
+                <div class="noticeDate">
+
+                    📅 ${dateText}
+
+                </div>
+
+            </div>
+
+
+            <h2 class="noticeTitle">
+
+                ${notice.title || "Public Notice"}
+
+            </h2>
+
+
+            <div class="noticeDetails">
+
+                ${notice.details || ""}
+
+            </div>
+
+
+            <div class="attachment">
+
+                ${
+                    notice.fileUrl
+                    ?
+                    `<a href="${notice.fileUrl}"
+                        target="_blank">
+
+                        📎 Attachment
+
+                    </a>`
+                    :
+                    ""
+                }
+
+
+                ${
+                    notice.imageUrl
+                    ?
+                    `<a href="${notice.imageUrl}"
+                        target="_blank">
+
+                        🖼️ Photo
+
+                    </a>`
+                    :
+                    ""
+                }
+
+            </div>
+
+
+            <a
+                class="whatsappBtn"
+                target="_blank"
+                href="https://wa.me/?text=${whatsappText}">
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+                WhatsApp Share
+
+            </a>
+
+        `;
+
+
+        noticeContainer.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+window.searchNotice = function(){
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    if(!search){
+
+        displayNotices(allNotices);
+
+        return;
+
+    }
+
+
+    const filtered =
+        allNotices.filter(notice => {
+
+            const title =
+                (notice.title || "")
+                .toLowerCase();
+
+            const details =
+                (notice.details || "")
+                .toLowerCase();
+
+
+            return (
+
+                title.includes(search) ||
+                details.includes(search)
+
+            );
+
+        });
+
+
+    displayNotices(filtered);
+
+};
+
+
+loadNotices();
+
+</script>
+
+
+</body>
+
+</html>
