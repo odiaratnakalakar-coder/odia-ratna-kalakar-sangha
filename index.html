@@ -17,7 +17,7 @@
 
 <link rel="manifest" href="manifest.json">
 
-<meta name="theme-color" content="#8B0000">
+<meta name="theme-color" content="#ff5a00">
 
 <link rel="icon" href="logo.png">
 
@@ -30,11 +30,134 @@
       href="images/banner-new-2026.jpg">
 
 
-<!-- =========================
-     WELCOME POPUP STYLE
-========================= -->
+<!-- ==================================================
+     PAGE STYLE
+================================================== -->
 
 <style>
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:10px 15px;
+
+    background:linear-gradient(
+        135deg,
+        #ff5a00,
+        #ff3300
+    );
+
+    color:white;
+
+    box-shadow:
+        0 3px 12px rgba(0,0,0,0.25);
+
+}
+
+.header-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.header .logo{
+
+    width:55px;
+
+    height:55px;
+
+    object-fit:contain;
+
+    border-radius:50%;
+
+}
+
+.header h2{
+
+    margin:0;
+
+    font-size:20px;
+
+    line-height:1.3;
+
+}
+
+.header p{
+
+    margin:2px 0 0;
+
+    font-size:13px;
+
+    opacity:0.95;
+
+}
+
+
+/* ==================================================
+   ADMIN BUTTON
+================================================== */
+
+.admin-header-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    text-decoration:none;
+
+    color:white;
+
+    border:2px solid white;
+
+    padding:9px 13px;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    background:rgba(255,255,255,0.08);
+
+    transition:0.3s;
+
+}
+
+.admin-header-btn:hover{
+
+    background:white;
+
+    color:#ff4d00;
+
+    transform:scale(1.04);
+
+}
+
+.admin-header-btn i{
+
+    font-size:15px;
+
+}
+
+
+/* ==================================================
+   WELCOME POPUP
+================================================== */
 
 #welcomePopup{
 
@@ -237,9 +360,6 @@
 
 }
 
-
-/* Popup Animation */
-
 @keyframes popupBg{
 
     from{
@@ -281,45 +401,490 @@
 }
 
 
-/* Mobile */
+/* ==================================================
+   BANNER
+================================================== */
 
-@media(max-width:480px){
+.banner{
 
-    .welcomeBox{
+    width:100%;
 
-        padding:24px 18px;
+    overflow:hidden;
 
-        border-radius:22px;
+}
+
+.banner img{
+
+    width:100%;
+
+    height:auto;
+
+    display:block;
+
+}
+
+
+/* ==================================================
+   MENU
+================================================== */
+
+.menu{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap:18px;
+
+    padding:22px 15px;
+
+    max-width:1000px;
+
+    margin:auto;
+
+}
+
+
+/* CARD */
+
+.menu .card{
+
+    min-height:105px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:9px;
+
+    text-decoration:none;
+
+    color:#111;
+
+    background:#fff;
+
+    border:3px solid #c90000;
+
+    border-radius:16px;
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,0.25);
+
+    transition:0.25s;
+
+}
+
+.menu .card i{
+
+    color:#ff5a00;
+
+    font-size:31px;
+
+}
+
+.menu .card span{
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+}
+
+.menu .card:hover{
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,0.30);
+
+}
+
+
+/* ==================================================
+   LATEST UPDATES
+================================================== */
+
+.latest-section{
+
+    width:94%;
+
+    max-width:1000px;
+
+    margin:5px auto 30px;
+
+    background:#fff;
+
+    border:3px solid #ff5a00;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 6px 20px rgba(0,0,0,0.30);
+
+}
+
+
+/* HEADER */
+
+.latest-header{
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff5a00,
+            #e60000
+        );
+
+    color:white;
+
+    padding:13px 15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+}
+
+
+/* TITLE */
+
+.latest-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+
+/* ALL BUTTON */
+
+.latest-all-btn{
+
+    color:white;
+
+    text-decoration:none;
+
+    border:2px solid white;
+
+    background:#ff8500;
+
+    padding:7px 11px;
+
+    border-radius:18px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    white-space:nowrap;
+
+}
+
+
+/* NEWS LIST */
+
+.latest-list{
+
+    background:#fffaf0;
+
+}
+
+
+/* NEWS ITEM */
+
+.latest-item{
+
+    min-height:60px;
+
+    padding:10px 12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    border-bottom:1px dashed #bbb;
+
+}
+
+.latest-item:last-child{
+
+    border-bottom:none;
+
+}
+
+
+/* NEW BADGE */
+
+.latest-new{
+
+    background:#ed1c24;
+
+    color:white;
+
+    font-size:10px;
+
+    font-weight:bold;
+
+    padding:5px 7px;
+
+    border-radius:8px;
+
+    flex-shrink:0;
+
+}
+
+
+/* ICON */
+
+.latest-icon{
+
+    font-size:22px;
+
+    flex-shrink:0;
+
+}
+
+
+/* TEXT */
+
+.latest-text{
+
+    flex:1;
+
+    color:#222;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+}
+
+
+/* DATE */
+
+.latest-date{
+
+    color:#666;
+
+    font-size:11px;
+
+    white-space:nowrap;
+
+}
+
+
+/* LOADING */
+
+.latest-loading{
+
+    padding:22px;
+
+    text-align:center;
+
+    color:#777;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width:700px){
+
+    .header{
+
+        padding:9px 10px;
 
     }
 
-    .welcomeLogo{
+    .header .logo{
 
-        width:78px;
+        width:48px;
 
-        height:78px;
+        height:48px;
 
     }
 
-    .welcomeTitle{
+    .header h2{
+
+        font-size:16px;
+
+    }
+
+    .header p{
+
+        font-size:11px;
+
+    }
+
+    .admin-header-btn{
+
+        padding:8px 9px;
+
+        font-size:12px;
+
+        border-radius:10px;
+
+    }
+
+    .admin-header-btn i{
+
+        font-size:13px;
+
+    }
+
+
+    .menu{
+
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap:12px;
+
+        padding:16px 10px;
+
+    }
+
+    .menu .card{
+
+        min-height:92px;
+
+        border-radius:14px;
+
+    }
+
+    .menu .card i{
 
         font-size:25px;
 
     }
 
-    .welcomeOrg{
+    .menu .card span{
 
-        font-size:19px;
+        font-size:11px;
+
+    }
+
+
+    .latest-section{
+
+        width:94%;
+
+        border-radius:17px;
 
     }
 
-    .welcomeMessage{
+    .latest-title{
 
-        font-size:15px;
-
-        line-height:1.7;
+        font-size:17px;
 
     }
+
+    .latest-all-btn{
+
+        font-size:10px;
+
+        padding:6px 8px;
+
+    }
+
+    .latest-item{
+
+        align-items:flex-start;
+
+        padding:11px 8px;
+
+    }
+
+    .latest-text{
+
+        font-size:12px;
+
+    }
+
+    .latest-date{
+
+        font-size:9px;
+
+    }
+
+}
+
+
+/* VERY SMALL SCREEN */
+
+@media(max-width:380px){
+
+    .header h2{
+
+        font-size:14px;
+
+    }
+
+    .admin-header-btn span{
+
+        display:none;
+
+    }
+
+    .admin-header-btn{
+
+        width:36px;
+
+        height:36px;
+
+        justify-content:center;
+
+        padding:0;
+
+    }
+
+    .menu{
+
+        gap:9px;
+
+    }
+
+    .menu .card{
+
+        min-height:85px;
+
+    }
+
+}
+
+
+/* ==================================================
+   DARK PAGE COMPATIBILITY
+================================================== */
+
+body{
+
+    margin:0;
 
 }
 
@@ -331,9 +896,9 @@
 <body>
 
 
-<!-- =========================
+<!-- ==================================================
      WELCOME POPUP
-========================= -->
+================================================== -->
 
 <div id="welcomePopup">
 
@@ -362,6 +927,7 @@
         <div class="welcomeMessage">
 
             🌸 ଏକ ମନ, ଏକ ପ୍ରାଣ,<br>
+
             ଏକତା ଆମର ପରିଚୟ।<br><br>
 
             ଓଡ଼ିଆ କଳା, ସଂସ୍କୃତି ଓ
@@ -376,11 +942,14 @@
             onclick="closeWelcome()">
 
             ପ୍ରବେଶ କରନ୍ତୁ →
-            
+
         </button>
 
         <div class="welcomeBlessing">
-            ଆପଣଙ୍କୁ ଆମ ପରିବାର ର ହାର୍ଦ୍ଦିକ ସ୍ୱାଗତ 🙏
+
+            ଆପଣଙ୍କୁ ଆମ ପରିବାରର
+            ହାର୍ଦ୍ଦିକ ସ୍ୱାଗତ 🙏
+
         </div>
 
     </div>
@@ -388,41 +957,57 @@
 </div>
 
 
-
-<!-- =========================
+<!-- ==================================================
      HEADER
-========================= -->
+================================================== -->
 
 <header class="header">
 
-    <img
-        src="logo.png"
-        class="logo"
-        alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Logo"
-        width="100"
-        height="100"
-    >
+    <div class="header-left">
 
-    <div>
+        <img
+            src="logo.png"
+            class="logo"
+            alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Logo"
+            width="100"
+            height="100"
+        >
 
-        <h2>
-            ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
-        </h2>
+        <div>
 
-        <p>
-            Surat, Gujarat
-        </p>
+            <h2>
+                ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+            </h2>
+
+            <p>
+                Surat, Gujarat
+            </p>
+
+        </div>
 
     </div>
+
+
+    <!-- ADMIN -->
+
+    <a
+        href="login.html"
+        class="admin-header-btn">
+
+        <i class="fa-solid fa-lock"></i>
+
+        <span>
+            Admin
+        </span>
+
+    </a>
 
 </header>
 
 
-
-<!-- =========================
-     OLD BANNER
-     ଏହାକୁ ପରିବର୍ତ୍ତନ କରାଯାଇନାହିଁ
-========================= -->
+<!-- ==================================================
+     BANNER
+================================================== -->
 
 <section class="banner">
 
@@ -437,176 +1022,215 @@
 </section>
 
 
-
-<!-- =========================
+<!-- ==================================================
      MENU
-========================= -->
+================================================== -->
 
 <section class="menu">
 
 
-<a href="registration.html" class="card">
+    <!-- REGISTRATION -->
 
-    <i class="fa-solid fa-user-plus"></i>
+    <a
+        href="registration.html"
+        class="card">
 
-    <span>
-        Registration
-    </span>
+        <i class="fa-solid fa-user-plus"></i>
 
-</a>
+        <span>
+            Registration
+        </span>
 
-
-
-<a href="members.html" class="card">
-
-    <i class="fa-solid fa-id-card"></i>
-
-    <span>
-        ID Card
-    </span>
-
-</a>
+    </a>
 
 
+    <!-- ID CARD -->
 
-<a href="#"
-   class="card"
-   onclick="openCommittee(); return false;">
+    <a
+        href="members.html"
+        class="card">
 
-    <i class="fa-solid fa-users"></i>
+        <i class="fa-solid fa-id-card"></i>
 
-    <span>
-        Committee
-    </span>
+        <span>
+            ID Card
+        </span>
 
-</a>
-
-
-
-<a href="gallery.html" class="card">
-
-    <i class="fa-solid fa-image"></i>
-
-    <span>
-        Gallery
-    </span>
-
-</a>
+    </a>
 
 
+    <!-- COMMITTEE -->
 
-<a href="public-notice.html" class="card">
+    <a
+        href="#"
+        class="card"
+        onclick="
+            openCommittee();
+            return false;
+        ">
 
-    <i class="fa-solid fa-bullhorn"></i>
+        <i class="fa-solid fa-users"></i>
 
-    <span>
-        Public Notice
-    </span>
+        <span>
+            Committee
+        </span>
 
-</a>
-
-
-    
-        
-    
-
-
-
-
-
-<a href="blood.html" class="card">
-
-    <i class="fa-solid fa-droplet"></i>
-
-    <span>
-        Blood Donor
-    </span>
-
-</a>
+    </a>
 
 
+    <!-- GALLERY -->
 
-<a href="donation.html" class="card">
+    <a
+        href="gallery.html"
+        class="card">
 
-    <i class="fa-solid fa-hand-holding-heart"></i>
+        <i class="fa-solid fa-image"></i>
 
-    <span>
-        Donation
-    </span>
+        <span>
+            Gallery
+        </span>
 
-</a>
-
-
-
-<a href="contact.html" class="card">
-
-    <i class="fa-solid fa-phone"></i>
-
-    <span>
-        Contact
-    </span>
-
-</a>
+    </a>
 
 
+    <!-- PUBLIC NOTICE -->
 
-<a href="about.html" class="card">
+    <a
+        href="public-notice.html"
+        class="card">
 
-    <i class="fa-solid fa-circle-info"></i>
+        <i class="fa-solid fa-bullhorn"></i>
 
-    <span>
-        ଆମ ବିଷୟରେ
-    </span>
+        <span>
+            Public Notice
+        </span>
 
-</a>
+    </a>
 
 
+    <!-- BLOOD -->
 
-<a href="login.html" class="card">
+    <a
+        href="blood.html"
+        class="card">
 
-    <i class="fa-solid fa-chart-line"></i>
+        <i class="fa-solid fa-droplet"></i>
 
-    <span>
-        Admin Dashboard
-    </span>
+        <span>
+            Blood Donor
+        </span>
 
-</a>
+    </a>
+
+
+    <!-- DONATION -->
+
+    <a
+        href="donation.html"
+        class="card">
+
+        <i class="fa-solid fa-hand-holding-heart"></i>
+
+        <span>
+            Donation
+        </span>
+
+    </a>
+
+
+    <!-- CONTACT -->
+
+    <a
+        href="contact.html"
+        class="card">
+
+        <i class="fa-solid fa-phone"></i>
+
+        <span>
+            Contact
+        </span>
+
+    </a>
+
+
+    <!-- ABOUT -->
+
+    <a
+        href="about.html"
+        class="card">
+
+        <i class="fa-solid fa-circle-info"></i>
+
+        <span>
+            ଆମ ବିଷୟରେ
+        </span>
+
+    </a>
 
 
 </section>
 
 
+<!-- ==================================================
+     LATEST UPDATES
+================================================== -->
 
-<!-- =========================
-     NOTICE BOARD
-========================= -->
+<section class="latest-section">
 
-<section class="notice">
 
-    <h3>
-        📢 Notice Board
-    </h3>
+    <div class="latest-header">
 
-    <marquee id="noticeBoard">
+        <div class="latest-title">
 
-        Latest News Loading...
+            <span>
+                📢
+            </span>
 
-    </marquee>
+            <span>
+                LATEST UPDATES
+            </span>
+
+        </div>
+
+
+        <a
+            href="public-notice.html"
+            class="latest-all-btn">
+
+            ସମସ୍ତ ନୋଟିସ୍ ଦେଖନ୍ତୁ ➜
+
+        </a>
+
+    </div>
+
+
+    <div
+        class="latest-list"
+        id="latestNewsList">
+
+        <div class="latest-loading">
+
+            📢 Latest News Loading...
+
+        </div>
+
+    </div>
 
 </section>
 
 
-
-<!-- =========================
+<!-- ==================================================
      WELCOME POPUP SCRIPT
-========================= -->
+================================================== -->
 
 <script>
 
 function closeWelcome(){
 
     const popup =
-        document.getElementById("welcomePopup");
+        document.getElementById(
+            "welcomePopup"
+        );
 
     popup.style.opacity = "0";
 
@@ -617,24 +1241,25 @@ function closeWelcome(){
 
         popup.style.display = "none";
 
-    }, 400);
+    },400);
 
 }
 
 </script>
 
 
-
-<!-- =========================
-     COMMITTEE PASSWORD
-========================= -->
+<!-- ==================================================
+     COMMITTEE
+================================================== -->
 
 <script>
 
 function openCommittee(){
 
     const pass =
-        prompt("Admin Password ଦିଅନ୍ତୁ");
+        prompt(
+            "Admin Password ଦିଅନ୍ତୁ"
+        );
 
     if(pass === "2026@"){
 
@@ -650,33 +1275,12 @@ function openCommittee(){
 
 }
 
-
-
-function openAdmin(){
-
-    const pass =
-        prompt("Admin Password ଦିଅନ୍ତୁ");
-
-    if(pass === "2026@"){
-
-        window.location.href =
-            "admin.html";
-
-    }else if(pass !== null){
-
-        alert("❌ Wrong Password");
-
-    }
-
-}
-
 </script>
 
 
-
-<!-- =========================
-     FIREBASE NEWS
-========================= -->
+<!-- ==================================================
+     FIREBASE LATEST NEWS
+================================================== -->
 
 <script type="module">
 
@@ -685,7 +1289,10 @@ setTimeout(async () => {
     try{
 
         const { db } =
-            await import("./firebase.js");
+            await import(
+                "./firebase.js"
+            );
+
 
         const {
 
@@ -700,20 +1307,25 @@ setTimeout(async () => {
         );
 
 
-        const notice =
-            document.getElementById("noticeBoard");
+        const newsList =
+            document.getElementById(
+                "latestNewsList"
+            );
 
 
         const q = query(
 
-            collection(db, "news"),
+            collection(
+                db,
+                "news"
+            ),
 
             orderBy(
                 "createdAt",
                 "desc"
             ),
 
-            limit(1)
+            limit(4)
 
         );
 
@@ -724,12 +1336,25 @@ setTimeout(async () => {
 
         if(snapshot.empty){
 
-            notice.textContent =
-                "📢 କୌଣସି News ନାହିଁ";
+            newsList.innerHTML = `
+
+                <div class="latest-loading">
+
+                    📢 କୌଣସି Latest News ନାହିଁ
+
+                </div>
+
+            `;
 
             return;
 
         }
+
+
+        newsList.innerHTML = "";
+
+
+        let count = 0;
 
 
         snapshot.forEach(doc => {
@@ -737,8 +1362,131 @@ setTimeout(async () => {
             const news =
                 doc.data();
 
-            notice.textContent =
-                `${news.title} - ${news.details}`;
+            count++;
+
+
+            const title =
+                news.title ||
+                "Latest News";
+
+
+            const details =
+                news.details ||
+                "";
+
+
+            let icon = "📢";
+
+
+            if(count === 1){
+
+                icon = "🇮🇳";
+
+            }
+
+            else if(count === 2){
+
+                icon = "📢";
+
+            }
+
+            else if(count === 3){
+
+                icon = "📅";
+
+            }
+
+            else{
+
+                icon = "🎁";
+
+            }
+
+
+            let dateText = "";
+
+
+            if(news.createdAt){
+
+                try{
+
+                    const date =
+                        news.createdAt.toDate
+                        ? news.createdAt.toDate()
+                        : new Date(
+                            news.createdAt
+                        );
+
+
+                    dateText =
+                        date.toLocaleDateString(
+                            "en-IN",
+                            {
+                                day:"2-digit",
+                                month:"short",
+                                year:"numeric"
+                            }
+                        );
+
+                }catch(e){
+
+                    dateText = "";
+
+                }
+
+            }
+
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "latest-item";
+
+
+            item.innerHTML = `
+
+                <span class="latest-new">
+                    NEW
+                </span>
+
+                <span class="latest-icon">
+                    ${icon}
+                </span>
+
+                <div class="latest-text">
+
+                    <b>
+                        ${escapeHTML(title)}
+                    </b>
+
+                    ${
+                        details
+                        ? `<br>
+                           <small>
+                               ${escapeHTML(details)}
+                           </small>`
+                        : ""
+                    }
+
+                </div>
+
+                ${
+                    dateText
+                    ? `<span class="latest-date">
+                           📅 ${dateText}
+                       </span>`
+                    : ""
+                }
+
+            `;
+
+
+            newsList.appendChild(
+                item
+            );
 
         });
 
@@ -750,29 +1498,58 @@ setTimeout(async () => {
             error
         );
 
+
         document.getElementById(
-            "noticeBoard"
-        ).textContent =
-            "📢 Latest News";
+            "latestNewsList"
+        ).innerHTML = `
+
+            <div class="latest-loading">
+
+                📢 Latest Updates
+
+            </div>
+
+        `;
 
     }
 
 },100);
 
+
+
+/* ==================================================
+   SAFE TEXT
+================================================== */
+
+function escapeHTML(text){
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.textContent =
+        text ?? "";
+
+    return div.innerHTML;
+
+}
+
 </script>
 
 
-
-<!-- =========================
+<!-- ==================================================
      ONESIGNAL
-========================= -->
+================================================== -->
 
 <script>
 
 setTimeout(() => {
 
     const script =
-        document.createElement("script");
+        document.createElement(
+            "script"
+        );
 
 
     script.src =
@@ -782,14 +1559,18 @@ setTimeout(() => {
     script.defer = true;
 
 
-    document.head.appendChild(script);
+    document.head.appendChild(
+        script
+    );
 
 
     window.OneSignalDeferred =
-        window.OneSignalDeferred || [];
+        window.OneSignalDeferred ||
+        [];
 
 
     OneSignalDeferred.push(
+
         async function(OneSignal){
 
             try{
@@ -811,6 +1592,7 @@ setTimeout(() => {
             }
 
         }
+
     );
 
 
@@ -819,33 +1601,41 @@ setTimeout(() => {
 </script>
 
 
-
-<!-- =========================
+<!-- ==================================================
      SERVICE WORKER
-========================= -->
+================================================== -->
 
 <script>
 
-if("serviceWorker" in navigator){
+if(
+    "serviceWorker"
+    in navigator
+){
 
     window.addEventListener(
+
         "load",
+
         () => {
 
-            navigator.serviceWorker
+            navigator
+                .serviceWorker
                 .register(
                     "service-worker.js"
                 )
-                .catch(error => {
+                .catch(
+                    error => {
 
-                    console.error(
-                        "Service Worker Error:",
-                        error
-                    );
+                        console.error(
+                            "Service Worker Error:",
+                            error
+                        );
 
-                });
+                    }
+                );
 
         }
+
     );
 
 }
