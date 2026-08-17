@@ -17,9 +17,455 @@
 
 <link rel="manifest" href="manifest.json">
 
-<meta name="theme-color" content="#ff4b00">
+<meta name="theme-color" content="#8B0000">
 
 <link rel="icon" href="logo.png">
+
+<link rel="preload"
+      as="image"
+      href="logo.png">
+
+<link rel="preload"
+      as="image"
+      href="images/banner-new-2026.jpg">
+
+
+<style>
+
+/* =================================================
+   ଆମର ଲକ୍ଷ୍ୟ
+================================================= */
+
+.mission-section{
+
+    margin:25px 15px 30px;
+
+    padding:28px 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff8e8,
+            #ffffff
+        );
+
+    border:3px solid #d4af37;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,0.25);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.mission-section::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:150px;
+    height:150px;
+
+    border-radius:50%;
+
+    background:#ffd700;
+
+    opacity:0.10;
+
+    top:-60px;
+    right:-50px;
+
+}
+
+.mission-icon{
+
+    width:70px;
+    height:70px;
+
+    margin:0 auto 10px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#8B0000;
+
+    color:#ffd700;
+
+    font-size:32px;
+
+    box-shadow:
+        0 5px 15px
+        rgba(139,0,0,0.35);
+
+}
+
+.mission-title{
+
+    font-size:30px;
+
+    font-weight:900;
+
+    color:#8B0000;
+
+    margin:8px 0 12px;
+
+}
+
+.mission-line{
+
+    width:100px;
+    height:4px;
+
+    margin:0 auto 18px;
+
+    border-radius:10px;
+
+    background:#d4af37;
+
+}
+
+.mission-text{
+
+    font-size:17px;
+
+    line-height:1.9;
+
+    color:#333;
+
+    font-weight:500;
+
+    margin:0;
+
+}
+
+
+/* =================================================
+   WELCOME POPUP
+================================================= */
+
+#welcomePopup{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.78);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:99999;
+
+    padding:20px;
+
+    animation:popupBg .5s ease;
+
+}
+
+.welcomeBox{
+
+    width:100%;
+
+    max-width:430px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffaf0,
+            #ffffff
+        );
+
+    border-radius:25px;
+
+    padding:28px 22px;
+
+    text-align:center;
+
+    box-shadow:
+        0 15px 50px
+        rgba(0,0,0,0.45);
+
+    border:3px solid #d4af37;
+
+    animation:welcomeBox .7s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.welcomeBox::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-80px;
+    right:-80px;
+
+    width:170px;
+    height:170px;
+
+    background:#ffd700;
+
+    opacity:.12;
+
+    border-radius:50%;
+
+}
+
+.welcomeLogo{
+
+    width:90px;
+    height:90px;
+
+    object-fit:contain;
+
+    border-radius:50%;
+
+    margin-bottom:10px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0,0,0,.20);
+
+}
+
+.welcomeTitle{
+
+    color:#8B0000;
+
+    font-size:28px;
+
+    margin:5px 0;
+
+    font-weight:bold;
+
+}
+
+.welcomeOrg{
+
+    color:#333;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    line-height:1.5;
+
+    margin:5px 0;
+
+}
+
+.welcomeLocation{
+
+    color:#8B0000;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    margin-bottom:18px;
+
+}
+
+.welcomeLine{
+
+    width:80px;
+    height:3px;
+
+    background:#d4af37;
+
+    margin:12px auto 18px;
+
+    border-radius:10px;
+
+}
+
+.welcomeMessage{
+
+    color:#444;
+
+    font-size:16px;
+
+    line-height:1.8;
+
+    margin-bottom:22px;
+
+}
+
+.welcomeButton{
+
+    border:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8B0000,
+            #c40000
+        );
+
+    color:white;
+
+    padding:13px 28px;
+
+    border-radius:30px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 5px 15px
+        rgba(139,0,0,.35);
+
+}
+
+.welcomeBlessing{
+
+    margin-top:18px;
+
+    font-size:14px;
+
+    color:#777;
+
+}
+
+
+/* =================================================
+   ANIMATION
+================================================= */
+
+@keyframes popupBg{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+@keyframes welcomeBox{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(40px)
+            scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =================================================
+   MOBILE
+================================================= */
+
+@media(max-width:480px){
+
+    .mission-section{
+
+        margin:20px 12px 25px;
+
+        padding:24px 16px;
+
+    }
+
+    .mission-icon{
+
+        width:62px;
+        height:62px;
+
+        font-size:28px;
+
+    }
+
+    .mission-title{
+
+        font-size:28px;
+
+    }
+
+    .mission-text{
+
+        font-size:16px;
+
+        line-height:1.8;
+
+    }
+
+    .welcomeBox{
+
+        padding:24px 18px;
+
+        border-radius:22px;
+
+    }
+
+    .welcomeLogo{
+
+        width:78px;
+        height:78px;
+
+    }
+
+    .welcomeTitle{
+
+        font-size:25px;
+
+    }
+
+    .welcomeOrg{
+
+        font-size:19px;
+
+    }
+
+    .welcomeMessage{
+
+        font-size:15px;
+
+        line-height:1.7;
+
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -27,9 +473,9 @@
 <body>
 
 
-<!-- ==================================================
+<!-- =================================================
      WELCOME POPUP
-================================================== -->
+================================================= -->
 
 <div id="welcomePopup">
 
@@ -38,7 +484,7 @@
         <img
             src="logo.png"
             class="welcomeLogo"
-            alt="ସଂଘ Logo"
+            alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Logo"
         >
 
         <div class="welcomeTitle">
@@ -76,7 +522,10 @@
         </button>
 
         <div class="welcomeBlessing">
-            ଆପଣଙ୍କୁ ଆମ ପରିବାରର ହାର୍ଦ୍ଦିକ ସ୍ୱାଗତ 🙏
+
+            ଆପଣଙ୍କୁ ଆମ ପରିବାରର
+            ହାର୍ଦ୍ଦିକ ସ୍ୱାଗତ 🙏
+
         </div>
 
     </div>
@@ -84,53 +533,38 @@
 </div>
 
 
-<!-- ==================================================
+<!-- =================================================
      HEADER
-================================================== -->
+================================================= -->
 
-<header class="mainHeader">
+<header class="header">
 
-    <div class="headerLeft">
+    <img
+        src="logo.png"
+        class="logo"
+        alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Logo"
+        width="100"
+        height="100"
+    >
 
-        <img
-            src="logo.png"
-            class="headerLogo"
-            alt="ସଂଘ Logo"
-        >
+    <div>
 
-        <div class="headerText">
+        <h2>
+            ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+        </h2>
 
-            <h1>
-                ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
-            </h1>
-
-            <p>
-                Surat, Gujarat
-            </p>
-
-        </div>
+        <p>
+            Surat, Gujarat
+        </p>
 
     </div>
-
-
-    <!-- ADMIN -->
-
-    <a
-        href="login.html"
-        class="adminButton">
-
-        <i class="fa-solid fa-lock"></i>
-
-        <span>Admin</span>
-
-    </a>
 
 </header>
 
 
-<!-- ==================================================
+<!-- =================================================
      BANNER
-================================================== -->
+================================================= -->
 
 <section class="banner">
 
@@ -138,218 +572,180 @@
         src="images/banner-new-2026.jpg"
         alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ Banner"
         loading="eager"
+        width="1500"
+        height="1000"
     >
 
 </section>
 
 
-<!-- ==================================================
+<!-- =================================================
      MENU
-================================================== -->
+================================================= -->
 
 <section class="menu">
 
 
-    <!-- Registration -->
+<a href="registration.html" class="card">
 
-    <a
-        href="registration.html"
-        class="menuCard">
+    <i class="fa-solid fa-user-plus"></i>
 
-        <i class="fa-solid fa-user-plus"></i>
+    <span>
+        Registration
+    </span>
 
-        <span>
-            Registration
-        </span>
-
-    </a>
+</a>
 
 
-    <!-- ID Card -->
+<a href="members.html" class="card">
 
-    <a
-        href="members.html"
-        class="menuCard">
+    <i class="fa-solid fa-id-card"></i>
 
-        <i class="fa-solid fa-id-card"></i>
+    <span>
+        ID Card
+    </span>
 
-        <span>
-            ID Card
-        </span>
-
-    </a>
+</a>
 
 
-    <!-- Committee -->
+<a href="#"
+   class="card"
+   onclick="openCommittee(); return false;">
 
-    <a
-        href="#"
-        class="menuCard"
-        onclick="openCommittee(); return false;">
+    <i class="fa-solid fa-users"></i>
 
-        <i class="fa-solid fa-users"></i>
+    <span>
+        Committee
+    </span>
 
-        <span>
-            Committee
-        </span>
-
-    </a>
+</a>
 
 
-    <!-- Gallery -->
+<a href="gallery.html" class="card">
 
-    <a
-        href="gallery.html"
-        class="menuCard">
+    <i class="fa-solid fa-image"></i>
 
-        <i class="fa-solid fa-image"></i>
+    <span>
+        Gallery
+    </span>
 
-        <span>
-            Gallery
-        </span>
-
-    </a>
+</a>
 
 
-    <!-- Public Notice -->
+<a href="public-notice.html" class="card">
 
-    <a
-        href="public-notice.html"
-        class="menuCard">
+    <i class="fa-solid fa-bullhorn"></i>
 
-        <i class="fa-solid fa-bullhorn"></i>
+    <span>
+        Public Notice
+    </span>
 
-        <span>
-            Public Notice
-        </span>
-
-    </a>
+</a>
 
 
-    <!-- Blood Donor -->
+<a href="blood.html" class="card">
 
-    <a
-        href="blood.html"
-        class="menuCard">
+    <i class="fa-solid fa-droplet"></i>
 
-        <i class="fa-solid fa-droplet"></i>
+    <span>
+        Blood Donor
+    </span>
 
-        <span>
-            Blood Donor
-        </span>
-
-    </a>
+</a>
 
 
-    <!-- Donation -->
+<a href="donation.html" class="card">
 
-    <a
-        href="donation.html"
-        class="menuCard">
+    <i class="fa-solid fa-hand-holding-heart"></i>
 
-        <i class="fa-solid fa-hand-holding-heart"></i>
+    <span>
+        Donation
+    </span>
 
-        <span>
-            Donation
-        </span>
-
-    </a>
+</a>
 
 
-    <!-- Contact -->
+<a href="contact.html" class="card">
 
-    <a
-        href="contact.html"
-        class="menuCard">
+    <i class="fa-solid fa-phone"></i>
 
-        <i class="fa-solid fa-phone"></i>
+    <span>
+        Contact
+    </span>
 
-        <span>
-            Contact
-        </span>
-
-    </a>
+</a>
 
 
-    <!-- About -->
+<a href="about.html" class="card">
 
-    <a
-        href="about.html"
-        class="menuCard aboutCard">
+    <i class="fa-solid fa-circle-info"></i>
 
-        <i class="fa-solid fa-circle-info"></i>
+    <span>
+        ଆମ ବିଷୟରେ
+    </span>
 
-        <span>
-            ଆମ ବିଷୟରେ
-        </span>
+</a>
 
-    </a>
+
+<a href="login.html" class="card">
+
+    <i class="fa-solid fa-chart-line"></i>
+
+    <span>
+        Admin Dashboard
+    </span>
+
+</a>
 
 
 </section>
 
 
-<!-- ==================================================
-     LATEST UPDATES
-================================================== -->
+<!-- =================================================
+     ଆମର ଲକ୍ଷ୍ୟ
+================================================= -->
 
-<section class="latestSection">
+<section class="mission-section">
 
-    <div class="latestHeader">
+    <div class="mission-icon">
 
-        <div class="latestTitle">
-
-            <span class="speaker">
-                📢
-            </span>
-
-            <span>
-                LATEST UPDATES
-            </span>
-
-        </div>
-
-
-        <a
-            href="public-notice.html"
-            class="latestButton">
-
-            ସମସ୍ତ ଦେଖନ୍ତୁ ➜
-
-        </a>
+        <i class="fa-solid fa-hands-holding-circle"></i>
 
     </div>
 
 
-    <div
-        id="latestNewsList"
-        class="latestList">
+    <h2 class="mission-title">
 
-        <div class="loadingNews">
-            📢 Latest News Loading...
-        </div>
+        🙏 ଆମର ଲକ୍ଷ୍ୟ
 
-    </div>
+    </h2>
+
+
+    <div class="mission-line"></div>
+
+
+    <p class="mission-text">
+
+        ଓଡ଼ିଆ କଳା, ସଂସ୍କୃତି ଓ
+        ପରମ୍ପରାର ସୁରକ୍ଷା ସହିତ
+        କଳାକାର ଓ ସମାଜର ଉନ୍ନତି
+        ପାଇଁ ଏକତାର ସହ
+        କାର୍ଯ୍ୟ କରିବା।
+
+        <br><br>
+
+        🤝 ଏକତା ଆମର ଶକ୍ତି,
+        ସେବା ଆମର ଧର୍ମ,
+        ପ୍ରଗତି ଆମର ଲକ୍ଷ୍ୟ। 🙏
+
+    </p>
 
 </section>
 
 
-<!-- ==================================================
-     FOOTER MESSAGE
-================================================== -->
-
-<section class="footerMessage">
-
-    ❤️ ଏକତା ଆମର ଶକ୍ତି,
-    ସେବା ଆମର ଧର୍ମ,
-    ପ୍ରଗତି ଆମର ଲକ୍ଷ୍ୟ। 🙏
-
-</section>
-
-
-<!-- ==================================================
-     WELCOME SCRIPT
-================================================== -->
+<!-- =================================================
+     WELCOME POPUP SCRIPT
+================================================= -->
 
 <script>
 
@@ -363,11 +759,12 @@ function closeWelcome(){
     popup.style.opacity = "0";
 
     popup.style.transition =
-        "opacity 0.4s ease";
+        "opacity .4s ease";
 
-    setTimeout(function(){
+    setTimeout(() => {
 
-        popup.style.display = "none";
+        popup.style.display =
+            "none";
 
     },400);
 
@@ -376,9 +773,9 @@ function closeWelcome(){
 </script>
 
 
-<!-- ==================================================
+<!-- =================================================
      COMMITTEE PASSWORD
-================================================== -->
+================================================= -->
 
 <script>
 
@@ -395,9 +792,7 @@ function openCommittee(){
         window.location.href =
             "admin.html";
 
-    }
-
-    else{
+    }else{
 
         window.location.href =
             "committee.html";
@@ -406,288 +801,40 @@ function openCommittee(){
 
 }
 
-</script>
 
+function openAdmin(){
 
-<!-- ==================================================
-     FIREBASE LATEST NEWS
-================================================== -->
-
-<script type="module">
-
-setTimeout(async function(){
-
-    try{
-
-        const { db } =
-            await import(
-                "./firebase.js"
-            );
-
-
-        const {
-
-            collection,
-            getDocs,
-            query,
-            orderBy,
-            limit
-
-        } = await import(
-            "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+    const pass =
+        prompt(
+            "Admin Password ଦିଅନ୍ତୁ"
         );
 
 
-        const list =
-            document.getElementById(
-                "latestNewsList"
-            );
+    if(pass === "2026@"){
 
+        window.location.href =
+            "admin.html";
 
-        const newsQuery = query(
+    }else if(pass !== null){
 
-            collection(
-                db,
-                "news"
-            ),
-
-            orderBy(
-                "createdAt",
-                "desc"
-            ),
-
-            limit(4)
-
+        alert(
+            "❌ Wrong Password"
         );
-
-
-        const snapshot =
-            await getDocs(
-                newsQuery
-            );
-
-
-        if(snapshot.empty){
-
-            list.innerHTML = `
-
-                <div class="loadingNews">
-
-                    📢 କୌଣସି Latest News ନାହିଁ
-
-                </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        list.innerHTML = "";
-
-
-        let number = 0;
-
-
-        snapshot.forEach(function(doc){
-
-            const news =
-                doc.data();
-
-
-            number++;
-
-
-            const title =
-                news.title ||
-                "Latest News";
-
-
-            const details =
-                news.details ||
-                "";
-
-
-            let icon = "📢";
-
-
-            if(number === 1){
-
-                icon = "🇮🇳";
-
-            }
-
-            else if(number === 2){
-
-                icon = "📢";
-
-            }
-
-            else if(number === 3){
-
-                icon = "📅";
-
-            }
-
-            else{
-
-                icon = "🎁";
-
-            }
-
-
-            let dateText = "";
-
-
-            if(news.createdAt){
-
-                try{
-
-                    const date =
-                        news.createdAt.toDate
-                        ? news.createdAt.toDate()
-                        : new Date(
-                            news.createdAt
-                        );
-
-
-                    dateText =
-                        date.toLocaleDateString(
-                            "en-IN",
-                            {
-                                day:"2-digit",
-                                month:"short",
-                                year:"numeric"
-                            }
-                        );
-
-                }
-
-                catch(error){
-
-                    dateText = "";
-
-                }
-
-            }
-
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-
-            item.className =
-                "latestItem";
-
-
-            item.innerHTML = `
-
-                <span class="newBadge">
-                    NEW
-                </span>
-
-                <span class="newsIcon">
-                    ${icon}
-                </span>
-
-                <div class="newsContent">
-
-                    <strong>
-                        ${safeText(title)}
-                    </strong>
-
-                    ${
-                        details
-                        ?
-                        `
-                        <small>
-                            ${safeText(details)}
-                        </small>
-                        `
-                        :
-                        ""
-                    }
-
-                </div>
-
-                ${
-                    dateText
-                    ?
-                    `
-                    <span class="newsDate">
-                        📅 ${dateText}
-                    </span>
-                    `
-                    :
-                    ""
-                }
-
-            `;
-
-
-            list.appendChild(
-                item
-            );
-
-        });
-
 
     }
-
-    catch(error){
-
-        console.error(
-            "Firebase News Error:",
-            error
-        );
-
-
-        document.getElementById(
-            "latestNewsList"
-        ).innerHTML = `
-
-            <div class="loadingNews">
-
-                📢 Latest Updates
-
-            </div>
-
-        `;
-
-    }
-
-},100);
-
-
-/* SAFE TEXT */
-
-function safeText(text){
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-    div.textContent =
-        text || "";
-
-    return div.innerHTML;
 
 }
 
 </script>
 
 
-<!-- ==================================================
+<!-- =================================================
      ONESIGNAL
-================================================== -->
+================================================= -->
 
 <script>
 
-setTimeout(function(){
+setTimeout(() => {
 
     const script =
         document.createElement(
@@ -712,7 +859,6 @@ setTimeout(function(){
 
 
     OneSignalDeferred.push(
-
         async function(OneSignal){
 
             try{
@@ -724,9 +870,7 @@ setTimeout(function(){
 
                 });
 
-            }
-
-            catch(error){
+            }catch(error){
 
                 console.error(
                     "OneSignal Error:",
@@ -736,43 +880,38 @@ setTimeout(function(){
             }
 
         }
-
     );
+
 
 },1500);
 
 </script>
 
 
-<!-- ==================================================
+<!-- =================================================
      SERVICE WORKER
-================================================== -->
+================================================= -->
 
 <script>
 
-if(
-    "serviceWorker"
-    in navigator
-){
+if("serviceWorker" in navigator){
 
     window.addEventListener(
         "load",
-        function(){
+        () => {
 
             navigator.serviceWorker
                 .register(
                     "service-worker.js"
                 )
-                .catch(
-                    function(error){
+                .catch(error => {
 
-                        console.error(
-                            "Service Worker Error:",
-                            error
-                        );
+                    console.error(
+                        "Service Worker Error:",
+                        error
+                    );
 
-                    }
-                );
+                });
 
         }
     );
@@ -780,1020 +919,6 @@ if(
 }
 
 </script>
-
-
-<!-- ==================================================
-     ALL PAGE CSS
-================================================== -->
-
-<style>
-
-/* ==================================================
-   RESET
-================================================== */
-
-*{
-    box-sizing:border-box;
-}
-
-html,
-body{
-
-    margin:0;
-    padding:0;
-
-    width:100%;
-
-    overflow-x:hidden;
-
-}
-
-body{
-
-    background:#202020;
-
-    color:#fff;
-
-    font-family:
-        Arial,
-        "Noto Sans Oriya",
-        sans-serif;
-
-}
-
-
-/* ==================================================
-   HEADER
-================================================== */
-
-.mainHeader{
-
-    width:100%;
-
-    min-height:68px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:8px 14px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff5a00,
-            #e60000
-        );
-
-    box-shadow:
-        0 3px 12px
-        rgba(0,0,0,0.35);
-
-}
-
-
-.headerLeft{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    min-width:0;
-
-}
-
-
-.headerLogo{
-
-    width:52px;
-
-    height:52px;
-
-    border-radius:50%;
-
-    object-fit:contain;
-
-    flex-shrink:0;
-
-}
-
-
-.headerText{
-
-    min-width:0;
-
-}
-
-
-.headerText h1{
-
-    margin:0;
-
-    font-size:20px;
-
-    line-height:1.2;
-
-    white-space:nowrap;
-
-}
-
-
-.headerText p{
-
-    margin:3px 0 0;
-
-    font-size:12px;
-
-}
-
-
-/* ADMIN */
-
-.adminButton{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:6px;
-
-    color:white;
-
-    text-decoration:none;
-
-    border:2px solid white;
-
-    border-radius:11px;
-
-    padding:8px 11px;
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    flex-shrink:0;
-
-}
-
-
-.adminButton i{
-
-    font-size:14px;
-
-}
-
-
-/* ==================================================
-   BANNER
-================================================== */
-
-.banner{
-
-    width:100%;
-
-    margin:0;
-
-    padding:0;
-
-    overflow:hidden;
-
-}
-
-
-.banner img{
-
-    display:block;
-
-    width:100%;
-
-    height:auto;
-
-}
-
-
-/* ==================================================
-   MENU
-================================================== */
-
-.menu{
-
-    width:100%;
-
-    max-width:1000px;
-
-    margin:0 auto;
-
-    padding:18px 14px;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:14px;
-
-}
-
-
-.menuCard{
-
-    min-height:102px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:7px;
-
-    text-decoration:none;
-
-    color:#111;
-
-    background:#fff;
-
-    border:2px solid #df151c;
-
-    border-radius:15px;
-
-    box-shadow:
-        0 5px 12px
-        rgba(0,0,0,0.35);
-
-    transition:0.2s;
-
-}
-
-
-.menuCard i{
-
-    color:#ff5a00;
-
-    font-size:29px;
-
-}
-
-
-.menuCard span{
-
-    font-size:13px;
-
-    font-weight:bold;
-
-    text-align:center;
-
-}
-
-
-.menuCard:active{
-
-    transform:scale(0.96);
-
-}
-
-
-/* ABOUT */
-
-.aboutCard{
-
-    grid-column:span 2;
-
-    flex-direction:row;
-
-    min-height:72px;
-
-}
-
-
-/* ==================================================
-   LATEST
-================================================== */
-
-.latestSection{
-
-    width:94%;
-
-    max-width:1000px;
-
-    margin:4px auto 22px;
-
-    background:#fff;
-
-    border:2px solid #ff5a00;
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 6px 18px
-        rgba(0,0,0,0.35);
-
-}
-
-
-.latestHeader{
-
-    min-height:48px;
-
-    padding:9px 12px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:8px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff5a00,
-            #e60000
-        );
-
-}
-
-
-.latestTitle{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:6px;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-}
-
-
-.latestButton{
-
-    color:white;
-
-    text-decoration:none;
-
-    border:1px solid white;
-
-    border-radius:15px;
-
-    padding:6px 9px;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-    white-space:nowrap;
-
-}
-
-
-.latestList{
-
-    background:#fffaf0;
-
-}
-
-
-.latestItem{
-
-    min-height:60px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    padding:9px 10px;
-
-    border-bottom:1px dashed #aaa;
-
-    color:#222;
-
-}
-
-
-.latestItem:last-child{
-
-    border-bottom:none;
-
-}
-
-
-.newBadge{
-
-    background:#ed1c24;
-
-    color:white;
-
-    padding:5px 6px;
-
-    border-radius:7px;
-
-    font-size:8px;
-
-    font-weight:bold;
-
-    flex-shrink:0;
-
-}
-
-
-.newsIcon{
-
-    font-size:21px;
-
-    flex-shrink:0;
-
-}
-
-
-.newsContent{
-
-    flex:1;
-
-    min-width:0;
-
-}
-
-
-.newsContent strong{
-
-    display:block;
-
-    font-size:13px;
-
-    line-height:1.3;
-
-}
-
-
-.newsContent small{
-
-    display:block;
-
-    margin-top:2px;
-
-    color:#555;
-
-    font-size:10px;
-
-    line-height:1.3;
-
-}
-
-
-.newsDate{
-
-    color:#666;
-
-    font-size:9px;
-
-    white-space:nowrap;
-
-}
-
-
-.loadingNews{
-
-    padding:22px 10px;
-
-    text-align:center;
-
-    color:#555;
-
-}
-
-
-/* ==================================================
-   FOOTER MESSAGE
-================================================== */
-
-.footerMessage{
-
-    width:94%;
-
-    max-width:1000px;
-
-    margin:0 auto 20px;
-
-    padding:15px 10px;
-
-    text-align:center;
-
-    color:#ffd36a;
-
-    background:#8b0000;
-
-    border-radius:15px;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-}
-
-
-/* ==================================================
-   WELCOME POPUP
-================================================== */
-
-#welcomePopup{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:99999;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:18px;
-
-    background:
-        rgba(0,0,0,0.82);
-
-}
-
-
-.welcomeBox{
-
-    width:100%;
-
-    max-width:420px;
-
-    padding:25px 18px;
-
-    text-align:center;
-
-    background:
-        linear-gradient(
-            145deg,
-            #fffaf0,
-            #fff
-        );
-
-    border:3px solid #d4af37;
-
-    border-radius:24px;
-
-    color:#333;
-
-    box-shadow:
-        0 15px 50px
-        rgba(0,0,0,0.5);
-
-}
-
-
-.welcomeLogo{
-
-    width:82px;
-
-    height:82px;
-
-    border-radius:50%;
-
-    object-fit:contain;
-
-}
-
-
-.welcomeTitle{
-
-    margin-top:8px;
-
-    color:#8b0000;
-
-    font-size:26px;
-
-    font-weight:bold;
-
-}
-
-
-.welcomeLine{
-
-    width:70px;
-
-    height:3px;
-
-    margin:12px auto;
-
-    background:#d4af37;
-
-    border-radius:10px;
-
-}
-
-
-.welcomeOrg{
-
-    font-size:20px;
-
-    font-weight:bold;
-
-}
-
-
-.welcomeLocation{
-
-    margin-top:4px;
-
-    color:#8b0000;
-
-    font-size:16px;
-
-    font-weight:bold;
-
-}
-
-
-.welcomeMessage{
-
-    margin:18px 0;
-
-    color:#444;
-
-    font-size:15px;
-
-    line-height:1.7;
-
-}
-
-
-.welcomeButton{
-
-    border:none;
-
-    padding:12px 25px;
-
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #8b0000,
-            #c40000
-        );
-
-    border-radius:25px;
-
-    font-size:16px;
-
-    font-weight:bold;
-
-}
-
-
-.welcomeBlessing{
-
-    margin-top:15px;
-
-    color:#777;
-
-    font-size:13px;
-
-}
-
-
-/* ==================================================
-   MOBILE
-================================================== */
-
-@media(max-width:700px){
-
-    .mainHeader{
-
-        min-height:62px;
-
-        padding:7px 9px;
-
-    }
-
-
-    .headerLogo{
-
-        width:46px;
-
-        height:46px;
-
-    }
-
-
-    .headerLeft{
-
-        gap:7px;
-
-    }
-
-
-    .headerText h1{
-
-        font-size:15px;
-
-    }
-
-
-    .headerText p{
-
-        font-size:10px;
-
-        margin-top:2px;
-
-    }
-
-
-    .adminButton{
-
-        padding:7px 9px;
-
-        font-size:11px;
-
-        border-radius:9px;
-
-    }
-
-
-    .adminButton i{
-
-        font-size:12px;
-
-    }
-
-
-    /* 4 CARDS */
-
-    .menu{
-
-        grid-template-columns:
-            repeat(4,1fr);
-
-        gap:9px;
-
-        padding:15px 9px 10px;
-
-    }
-
-
-    .menuCard{
-
-        min-height:82px;
-
-        height:82px;
-
-        border-radius:12px;
-
-        border-width:2px;
-
-        gap:5px;
-
-    }
-
-
-    .menuCard i{
-
-        font-size:24px;
-
-    }
-
-
-    .menuCard span{
-
-        font-size:9px;
-
-        line-height:1.2;
-
-    }
-
-
-    .aboutCard{
-
-        grid-column:span 2;
-
-        min-height:68px;
-
-        height:68px;
-
-        flex-direction:row;
-
-        gap:7px;
-
-    }
-
-
-    .aboutCard i{
-
-        font-size:22px;
-
-    }
-
-
-    /* LATEST */
-
-    .latestSection{
-
-        width:94%;
-
-        margin:10px auto 18px;
-
-        border-radius:15px;
-
-    }
-
-
-    .latestHeader{
-
-        min-height:43px;
-
-        padding:8px 9px;
-
-    }
-
-
-    .latestTitle{
-
-        font-size:15px;
-
-    }
-
-
-    .latestButton{
-
-        padding:5px 7px;
-
-        font-size:8px;
-
-    }
-
-
-    .latestItem{
-
-        min-height:56px;
-
-        padding:8px 6px;
-
-        gap:6px;
-
-    }
-
-
-    .newBadge{
-
-        padding:4px 5px;
-
-        font-size:7px;
-
-    }
-
-
-    .newsIcon{
-
-        font-size:18px;
-
-    }
-
-
-    .newsContent strong{
-
-        font-size:10px;
-
-    }
-
-
-    .newsContent small{
-
-        font-size:8px;
-
-    }
-
-
-    .newsDate{
-
-        font-size:7px;
-
-    }
-
-
-    .footerMessage{
-
-        width:94%;
-
-        font-size:11px;
-
-        padding:12px 7px;
-
-    }
-
-}
-
-
-/* ==================================================
-   VERY SMALL MOBILE
-================================================== */
-
-@media(max-width:380px){
-
-    .headerText h1{
-
-        font-size:13px;
-
-    }
-
-
-    .headerText p{
-
-        font-size:9px;
-
-    }
-
-
-    .adminButton{
-
-        width:35px;
-
-        height:35px;
-
-        padding:0;
-
-        justify-content:center;
-
-    }
-
-
-    .adminButton span{
-
-        display:none;
-
-    }
-
-
-    .menu{
-
-        gap:7px;
-
-        padding-left:7px;
-
-        padding-right:7px;
-
-    }
-
-
-    .menuCard{
-
-        min-height:77px;
-
-        height:77px;
-
-    }
-
-
-    .menuCard i{
-
-        font-size:22px;
-
-    }
-
-
-    .menuCard span{
-
-        font-size:8px;
-
-    }
-
-
-    .latestTitle{
-
-        font-size:13px;
-
-    }
-
-
-    .latestButton{
-
-        font-size:7px;
-
-    }
-
-}
-
-</style>
 
 
 </body>
