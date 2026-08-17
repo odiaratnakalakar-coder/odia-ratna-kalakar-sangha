@@ -82,6 +82,54 @@ body{
 
 
 /* ==================================================
+   STATS
+================================================== */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin-bottom:10px;
+}
+
+.stat{
+    background:#202020;
+    border:1px solid #555;
+    border-radius:10px;
+    padding:10px;
+    text-align:center;
+}
+
+.stat .icon{
+    font-size:20px;
+}
+
+.stat span{
+    display:block;
+    color:#ccc;
+    font-size:12px;
+    margin:3px 0;
+}
+
+.stat b{
+    display:block;
+    font-size:23px;
+}
+
+.total b{
+    color:#ffd700;
+}
+
+.submitted b{
+    color:#00e676;
+}
+
+.pending b{
+    color:#ff9800;
+}
+
+
+/* ==================================================
    CONTROLS
 ================================================== */
 
@@ -121,7 +169,7 @@ button{
 
     padding:10px 12px;
 
-    font-size:14px;
+    font-size:13px;
     font-weight:bold;
 
     cursor:pointer;
@@ -131,6 +179,27 @@ button:disabled{
     opacity:.35;
     cursor:not-allowed;
 }
+
+
+/* FILTER BUTTONS */
+
+.statusAll{
+    background:#555;
+    color:white;
+}
+
+.statusSubmitted{
+    background:#198754;
+    color:white;
+}
+
+.statusPending{
+    background:#ff9800;
+    color:white;
+}
+
+
+/* PAGE BUTTONS */
 
 .prev{
     background:#555;
@@ -162,7 +231,7 @@ button:disabled{
 
     color:#ffd700;
 
-    font-size:16px;
+    font-size:15px;
 
     font-weight:bold;
 
@@ -201,7 +270,7 @@ button:disabled{
 
     gap:9px;
 
-    min-height:125px;
+    min-height:150px;
 }
 
 
@@ -280,6 +349,54 @@ button:disabled{
 
 
 /* ==================================================
+   DOCUMENT STATUS
+================================================== */
+
+.documentStatus{
+    display:inline-block;
+
+    margin-top:4px;
+
+    padding:5px 8px;
+
+    border-radius:6px;
+
+    font-size:11px;
+
+    font-weight:bold;
+}
+
+.statusOk{
+    background:#198754;
+    color:white;
+}
+
+.statusWait{
+    background:#ff9800;
+    color:white;
+}
+
+
+/* ==================================================
+   VERIFY BUTTON
+================================================== */
+
+.verifyBtn{
+    margin-top:6px;
+
+    background:#087df0;
+
+    color:white;
+
+    padding:7px 9px;
+
+    font-size:11px;
+
+    width:100%;
+}
+
+
+/* ==================================================
    LOADING
 ================================================== */
 
@@ -345,7 +462,7 @@ button:disabled{
     }
 
     .member{
-        min-height:125px;
+        min-height:150px;
     }
 
     .photo{
@@ -365,6 +482,26 @@ button:disabled{
         width:100%;
     }
 
+    .stats{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .stat{
+        padding:7px 3px;
+    }
+
+    .stat .icon{
+        font-size:17px;
+    }
+
+    .stat span{
+        font-size:10px;
+    }
+
+    .stat b{
+        font-size:19px;
+    }
+
 }
 
 
@@ -375,196 +512,122 @@ button:disabled{
 @media print{
 
     @page{
-
         size:A4 portrait;
-
         margin:8mm;
-
     }
-
 
     body{
-
         background:white !important;
-
         color:black !important;
-
         padding:0;
-
     }
-
 
     .container{
-
         max-width:none;
-
         width:100%;
-
     }
-
 
     .controls,
     .pageInfo,
-    .footer{
-
+    .footer,
+    .stats{
         display:none !important;
-
     }
-
 
     .header{
-
         background:white !important;
-
         border:0;
-
         border-bottom:2px solid black;
-
         border-radius:0;
-
         padding:0 0 6px;
-
         margin-bottom:7px;
-
     }
-
 
     .logo{
-
         width:55px;
-
         height:55px;
-
         padding:0;
-
     }
-
 
     .header h1{
-
         color:black !important;
-
         font-size:18px;
-
     }
-
 
     .header h2{
-
         color:black !important;
-
         font-size:15px;
-
     }
-
 
     .header p{
-
         color:black !important;
-
         font-size:10px;
-
     }
-
 
     .members{
-
         display:grid;
-
-        grid-template-columns:
-            repeat(2,1fr);
-
+        grid-template-columns:repeat(2,1fr);
         gap:5px;
-
     }
-
 
     .member{
-
         background:white !important;
-
         color:black !important;
-
         border:1px solid #555;
-
         border-radius:3px;
-
         padding:5px;
-
         min-height:0;
-
-        height:82px;
-
+        height:95px;
         break-inside:avoid;
-
         page-break-inside:avoid;
-
     }
-
 
     .photo{
-
         width:52px;
-
         height:65px;
-
         background:#eee;
-
     }
-
 
     .photo img{
-
         width:100%;
-
         height:100%;
-
         object-fit:cover;
-
     }
-
 
     .details h3{
-
         color:black !important;
-
         font-size:11px;
-
         margin-bottom:2px;
-
     }
-
 
     .details p{
-
         color:black !important;
-
         font-size:8px;
-
         margin:1px 0;
-
         line-height:1.15;
-
     }
-
 
     .details b{
-
         color:black !important;
-
     }
 
+    .documentStatus{
+        padding:2px 4px;
+        font-size:7px;
+        color:black !important;
+        background:white !important;
+        border:1px solid #555;
+    }
+
+    .verifyBtn{
+        display:none !important;
+    }
 
     .printBreak{
-
         display:block;
-
         break-after:page;
-
         page-break-after:always;
-
     }
-
 }
 
 
@@ -573,13 +636,9 @@ button:disabled{
 ================================================== */
 
 .printBreak{
-
     display:block;
-
     break-after:page;
-
     page-break-after:always;
-
 }
 
 </style>
@@ -622,6 +681,65 @@ button:disabled{
 
 
 <!-- ==================================================
+     DOCUMENT STATS
+================================================== -->
+
+<div class="stats">
+
+    <div class="stat total">
+
+        <div class="icon">
+            👥
+        </div>
+
+        <span>
+            ମୋଟ Member
+        </span>
+
+        <b id="totalCount">
+            0
+        </b>
+
+    </div>
+
+
+    <div class="stat submitted">
+
+        <div class="icon">
+            📄
+        </div>
+
+        <span>
+            Document ଜମା
+        </span>
+
+        <b id="submittedCount">
+            0
+        </b>
+
+    </div>
+
+
+    <div class="stat pending">
+
+        <div class="icon">
+            ⏳
+        </div>
+
+        <span>
+            Document ବାକି
+        </span>
+
+        <b id="pendingCount">
+            0
+        </b>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
      CONTROLS
 ================================================== -->
 
@@ -634,6 +752,33 @@ button:disabled{
         type="text"
         placeholder="🔍 ନାମ / ମୋବାଇଲ ଖୋଜନ୍ତୁ"
     >
+
+
+    <button
+        class="statusAll"
+        onclick="filterDocumentStatus('all')">
+
+        👥 ସମସ୍ତ
+
+    </button>
+
+
+    <button
+        class="statusSubmitted"
+        onclick="filterDocumentStatus('submitted')">
+
+        📄 ଜମା
+
+    </button>
+
+
+    <button
+        class="statusPending"
+        onclick="filterDocumentStatus('pending')">
+
+        ⏳ ବାକି
+
+    </button>
 
 
     <button
@@ -730,8 +875,10 @@ import { db } from "./firebase.js";
 import {
 
     collection,
-
-    getDocs
+    getDocs,
+    doc,
+    updateDoc,
+    serverTimestamp
 
 }
 
@@ -750,6 +897,13 @@ let filteredMembers = [];
 let currentPage = 1;
 
 const MEMBERS_PER_PAGE = 20;
+
+
+/*
+   Current document filter
+*/
+
+let currentDocumentFilter = "all";
 
 
 /* ==================================================
@@ -796,14 +950,14 @@ async function loadMembers(){
 
 
         snapshot.forEach(
-            doc=>{
+            documentSnapshot => {
 
                 allMembers.push({
 
                     firestoreId:
-                        doc.id,
+                        documentSnapshot.id,
 
-                    ...doc.data()
+                    ...documentSnapshot.data()
 
                 });
 
@@ -836,11 +990,11 @@ async function loadMembers(){
         );
 
 
-        filteredMembers =
-            [...allMembers];
+        updateDocumentCounts();
 
 
-        renderPage();
+        applyCurrentFilter();
+
 
     }
 
@@ -884,9 +1038,7 @@ async function loadMembers(){
 function getTime(value){
 
     if(!value){
-
         return 0;
-
     }
 
 
@@ -913,6 +1065,190 @@ function getTime(value){
     return 0;
 
 }
+
+
+/* ==================================================
+   UPDATE COUNTS
+================================================== */
+
+function updateDocumentCounts(){
+
+    const total =
+        allMembers.length;
+
+
+    const submitted =
+        allMembers.filter(
+            member =>
+                member.documentStatus ===
+                "submitted"
+        ).length;
+
+
+    const pending =
+        total - submitted;
+
+
+    document.getElementById(
+        "totalCount"
+    ).textContent = total;
+
+
+    document.getElementById(
+        "submittedCount"
+    ).textContent = submitted;
+
+
+    document.getElementById(
+        "pendingCount"
+    ).textContent = pending;
+
+}
+
+
+/* ==================================================
+   APPLY CURRENT FILTER
+================================================== */
+
+function applyCurrentFilter(){
+
+    if(
+        currentDocumentFilter ===
+        "submitted"
+    ){
+
+        filteredMembers =
+            allMembers.filter(
+                member =>
+                    member.documentStatus ===
+                    "submitted"
+            );
+
+    }
+
+
+    else if(
+        currentDocumentFilter ===
+        "pending"
+    ){
+
+        filteredMembers =
+            allMembers.filter(
+                member =>
+                    member.documentStatus !==
+                    "submitted"
+            );
+
+    }
+
+
+    else{
+
+        filteredMembers =
+            [...allMembers];
+
+    }
+
+
+    /*
+       Search apply
+    */
+
+    const searchInput =
+        document.getElementById(
+            "search"
+        );
+
+
+    const value =
+        searchInput.value
+        .trim()
+        .toLowerCase();
+
+
+    if(value){
+
+        filteredMembers =
+            filteredMembers.filter(
+                member => {
+
+                    const name =
+                        String(
+                            member.name ||
+                            ""
+                        )
+                        .toLowerCase();
+
+
+                    const mobile =
+                        String(
+                            member.mobile ||
+                            ""
+                        )
+                        .toLowerCase();
+
+
+                    const father =
+                        String(
+                            member.father ||
+                            ""
+                        )
+                        .toLowerCase();
+
+
+                    const memberId =
+                        String(
+                            member.memberId ||
+                            ""
+                        )
+                        .toLowerCase();
+
+
+                    return (
+
+                        name.includes(value)
+
+                        ||
+
+                        mobile.includes(value)
+
+                        ||
+
+                        father.includes(value)
+
+                        ||
+
+                        memberId.includes(value)
+
+                    );
+
+                }
+            );
+
+    }
+
+
+    currentPage = 1;
+
+    renderPage();
+
+}
+
+
+/* ==================================================
+   DOCUMENT FILTER
+================================================== */
+
+window.filterDocumentStatus =
+function(status){
+
+    currentDocumentFilter =
+        status;
+
+
+    applyCurrentFilter();
+
+};
 
 
 /* ==================================================
@@ -1013,7 +1349,7 @@ function renderPage(){
         .textContent =
 
         `Page ${currentPage} / ${totalPages}
-         • ମୋଟ ସଦସ୍ୟ: ${filteredMembers.length}`;
+         • ମୋଟ: ${filteredMembers.length}`;
 
 
     document
@@ -1075,13 +1411,22 @@ function createMemberCard(
 
     const memberId =
         member.memberId ||
-        `ORKS-${number}`;
+        `ORKS-${String(number).padStart(3,"0")}`;
 
 
     const photo =
         member.photoUrl ||
         "";
 
+
+    const isSubmitted =
+        member.documentStatus ===
+        "submitted";
+
+
+    /* ==================================================
+       PHOTO
+    ================================================== */
 
     let photoHTML = "";
 
@@ -1127,6 +1472,82 @@ function createMemberCard(
 
     }
 
+
+    /* ==================================================
+       DOCUMENT AREA
+    ================================================== */
+
+    let documentHTML = "";
+
+
+    if(isSubmitted){
+
+        documentHTML = `
+
+            <p>
+
+                <span
+                    class="documentStatus statusOk">
+
+                    📄 Document ଜମା
+
+                </span>
+
+            </p>
+
+
+            <p>
+
+                <b>Verified:</b>
+
+                ${formatDate(
+                    member.documentVerifiedAt
+                )}
+
+            </p>
+
+        `;
+
+    }
+
+    else{
+
+        documentHTML = `
+
+            <p>
+
+                <span
+                    class="documentStatus statusWait">
+
+                    ⏳ Document ବାକି
+
+                </span>
+
+            </p>
+
+
+            <button
+
+                class="verifyBtn"
+
+                onclick="verifyAndSubmit(
+                    '${escapeAttribute(
+                        member.firestoreId
+                    )}'
+                )">
+
+                🔍 Verify & Submit
+
+            </button>
+
+        `;
+
+    }
+
+
+    /* ==================================================
+       CARD
+    ================================================== */
 
     card.innerHTML = `
 
@@ -1181,12 +1602,217 @@ function createMemberCard(
 
             </p>
 
+
+            ${documentHTML}
+
         </div>
 
     `;
 
 
     return card;
+
+}
+
+
+/* ==================================================
+   VERIFY & SUBMIT
+================================================== */
+
+window.verifyAndSubmit =
+async function(memberId){
+
+    const member =
+        allMembers.find(
+            m =>
+                m.firestoreId ===
+                memberId
+        );
+
+
+    if(!member){
+
+        alert(
+            "❌ Member ମିଳିଲା ନାହିଁ।"
+        );
+
+        return;
+
+    }
+
+
+    const memberName =
+        member.name ||
+        "ଏହି Member";
+
+
+    const confirmed =
+        confirm(
+
+            `${memberName}ଙ୍କ Document Office ରେ ଯାଞ୍ଚ ହୋଇଛି କି?\n\n` +
+
+            `OK = Verify & Submit\n` +
+
+            `Cancel = ବାତିଲ`
+
+        );
+
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+
+    try{
+
+        /*
+           FIRESTORE UPDATE
+        */
+
+        await updateDoc(
+
+            doc(
+                db,
+                "members",
+                memberId
+            ),
+
+            {
+
+                documentStatus:
+                    "submitted",
+
+                documentVerifiedAt:
+                    serverTimestamp()
+
+            }
+
+        );
+
+
+        /*
+           Local update
+        */
+
+        member.documentStatus =
+            "submitted";
+
+
+        member.documentVerifiedAt =
+            {
+                seconds:
+                    Math.floor(
+                        Date.now() /
+                        1000
+                    )
+            };
+
+
+        /*
+           Update count
+        */
+
+        updateDocumentCounts();
+
+
+        /*
+           Re-apply filter
+        */
+
+        applyCurrentFilter();
+
+
+        alert(
+            `✅ ${memberName}\n\nDocument Verify & Submit ହୋଇଗଲା।`
+        );
+
+    }
+
+
+    catch(error){
+
+        console.error(
+            "VERIFY ERROR:",
+            error
+        );
+
+
+        alert(
+
+            "❌ Document Submit ହୋଇପାରିଲା ନାହିଁ।\n\n" +
+
+            error.message
+
+        );
+
+    }
+
+};
+
+
+/* ==================================================
+   FORMAT DATE
+================================================== */
+
+function formatDate(value){
+
+    if(!value){
+
+        return "-";
+
+    }
+
+
+    let date;
+
+
+    if(
+        typeof value.toDate ===
+        "function"
+    ){
+
+        date =
+            value.toDate();
+
+    }
+
+    else if(
+        typeof value.seconds ===
+        "number"
+    ){
+
+        date =
+            new Date(
+                value.seconds *
+                1000
+            );
+
+    }
+
+    else{
+
+        return "-";
+
+    }
+
+
+    return date.toLocaleDateString(
+
+        "en-IN",
+
+        {
+
+            day:"2-digit",
+
+            month:"2-digit",
+
+            year:"numeric"
+
+        }
+
+    );
 
 }
 
@@ -1269,99 +1895,14 @@ document
         "input",
         function(){
 
-            const value =
-                this.value
-                .trim()
-                .toLowerCase();
-
-
-            if(!value){
-
-                filteredMembers =
-                    [...allMembers];
-
-            }
-
-            else{
-
-                filteredMembers =
-                    allMembers.filter(
-                        member=>{
-
-                            const name =
-                                String(
-                                    member.name ||
-                                    ""
-                                )
-                                .toLowerCase();
-
-
-                            const mobile =
-                                String(
-                                    member.mobile ||
-                                    ""
-                                )
-                                .toLowerCase();
-
-
-                            const father =
-                                String(
-                                    member.father ||
-                                    ""
-                                )
-                                .toLowerCase();
-
-
-                            const memberId =
-                                String(
-                                    member.memberId ||
-                                    ""
-                                )
-                                .toLowerCase();
-
-
-                            return (
-
-                                name.includes(
-                                    value
-                                )
-
-                                ||
-
-                                mobile.includes(
-                                    value
-                                )
-
-                                ||
-
-                                father.includes(
-                                    value
-                                )
-
-                                ||
-
-                                memberId.includes(
-                                    value
-                                )
-
-                            );
-
-                        }
-                    );
-
-            }
-
-
-            currentPage = 1;
-
-            renderPage();
+            applyCurrentFilter();
 
         }
     );
 
 
 /* ==================================================
-   COMPRESS ONE IMAGE FOR PRINT
+   COMPRESS IMAGE FOR PRINT
 ================================================== */
 
 async function compressImageForPrint(
@@ -1380,10 +1921,6 @@ async function compressImageForPrint(
         }
 
 
-        /*
-           Already compressed
-        */
-
         if(
             img.dataset.printCompressed ===
             "yes"
@@ -1396,22 +1933,23 @@ async function compressImageForPrint(
 
         const response =
             await fetch(
+
                 img.src,
+
                 {
+
                     mode:"cors",
+
                     cache:"force-cache"
+
                 }
+
             );
 
 
         if(
             !response.ok
         ){
-
-            console.warn(
-                "Image fetch failed:",
-                response.status
-            );
 
             return;
 
@@ -1422,22 +1960,11 @@ async function compressImageForPrint(
             await response.blob();
 
 
-        /*
-           Create bitmap
-        */
-
         const bitmap =
             await createImageBitmap(
                 blob
             );
 
-
-        /*
-           Print image maximum size
-
-           This is enough for
-           the small photo box
-        */
 
         const MAX_WIDTH = 180;
 
@@ -1466,19 +1993,25 @@ async function compressImageForPrint(
 
         width =
             Math.max(
+
                 1,
+
                 Math.round(
                     width * scale
                 )
+
             );
 
 
         height =
             Math.max(
+
                 1,
+
                 Math.round(
                     height * scale
                 )
+
             );
 
 
@@ -1517,13 +2050,7 @@ async function compressImageForPrint(
         );
 
 
-        /*
-           JPEG quality
-
-           0.60 = good balance
-        */
-
-        const compressed =
+        img.src =
             canvas.toDataURL(
 
                 "image/jpeg",
@@ -1531,10 +2058,6 @@ async function compressImageForPrint(
                 0.60
 
             );
-
-
-        img.src =
-            compressed;
 
 
         img.dataset.printCompressed =
@@ -1545,20 +2068,11 @@ async function compressImageForPrint(
 
     }
 
-
     catch(error){
 
-        /*
-           If CORS prevents compression,
-           original image remains.
-        */
-
         console.warn(
-
             "Print compression failed:",
-
             error
-
         );
 
     }
@@ -1581,20 +2095,6 @@ async function compressPrintImages(){
 
         );
 
-
-    if(
-        images.length === 0
-    ){
-
-        return;
-
-    }
-
-
-    /*
-       Compress one by one
-       to avoid memory overload
-    */
 
     for(
         const img of images
@@ -1624,10 +2124,11 @@ async function(){
 
     if(button){
 
-        button.disabled = true;
+        button.disabled =
+            true;
 
         button.textContent =
-            "⏳ Print ପ୍ରସ୍ତୁତ ହେଉଛି...";
+            "⏳ Print ପ୍ରସ୍ତୁତ...";
 
     }
 
@@ -1636,11 +2137,6 @@ async function(){
 
         await compressPrintImages();
 
-
-        /*
-           Small delay so browser
-           updates images
-        */
 
         await new Promise(
             resolve =>
@@ -1659,10 +2155,8 @@ async function(){
     catch(error){
 
         console.error(
-            "Print Error:",
             error
         );
-
 
         window.print();
 
@@ -1673,7 +2167,8 @@ async function(){
 
         if(button){
 
-            button.disabled = false;
+            button.disabled =
+                false;
 
             button.textContent =
                 "🖨️ ଏହି Page Print";
@@ -1693,7 +2188,8 @@ window.printAllMembers =
 async function(){
 
     if(
-        filteredMembers.length === 0
+        filteredMembers.length ===
+        0
     ){
 
         alert(
@@ -1719,17 +2215,14 @@ async function(){
 
     if(button){
 
-        button.disabled = true;
+        button.disabled =
+            true;
 
         button.textContent =
-            "⏳ Print ପ୍ରସ୍ତୁତ ହେଉଛି...";
+            "⏳ Print ପ୍ରସ୍ତୁତ...";
 
     }
 
-
-    /*
-       Save current page
-    */
 
     const oldHTML =
         box.innerHTML;
@@ -1740,10 +2233,6 @@ async function(){
 
 
     try{
-
-        /*
-           Show all members
-        */
 
         box.innerHTML = "";
 
@@ -1762,10 +2251,6 @@ async function(){
                     card
                 );
 
-
-                /*
-                   20 members = 1 A4 page
-                */
 
                 if(
 
@@ -1800,23 +2285,11 @@ async function(){
         );
 
 
-        /*
-           Wait for image elements
-        */
-
         await waitForImages();
 
 
-        /*
-           Compress every photo
-        */
-
         await compressPrintImages();
 
-
-        /*
-           Allow browser to update
-        */
 
         await new Promise(
             resolve =>
@@ -1846,11 +2319,6 @@ async function(){
 
 
     finally{
-
-        /*
-           Restore normal page
-           after print dialog closes
-        */
 
         setTimeout(
             ()=>{
@@ -2023,4 +2491,4 @@ loadMembers();
 
 </body>
 
-</html>
+      </html>
