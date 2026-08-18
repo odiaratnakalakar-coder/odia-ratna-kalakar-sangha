@@ -41,11 +41,8 @@
 .language-selector{
 
     position:absolute;
-
     top:15px;
-
     right:15px;
-
     z-index:9999;
 
 }
@@ -53,17 +50,14 @@
 .language-button{
 
     background:#ffffff;
-
     color:#8B0000;
 
     border:2px solid #d4af37;
-
     border-radius:12px;
 
     padding:9px 13px;
 
     font-size:15px;
-
     font-weight:bold;
 
     cursor:pointer;
@@ -87,7 +81,6 @@
     position:absolute;
 
     top:48px;
-
     right:0;
 
     width:150px;
@@ -146,6 +139,46 @@
     position:relative;
 
     padding-right:150px;
+
+}
+
+
+/* =================================================
+   FOOD STORE MENU CARD
+================================================= */
+
+.food-store-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.food-store-card::after{
+
+    content:"NEW";
+
+    position:absolute;
+
+    top:8px;
+    right:-24px;
+
+    background:#d4af37;
+
+    color:#8B0000;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    padding:4px 25px;
+
+    transform:rotate(45deg);
+
+    box-shadow:
+        0 2px 6px
+        rgba(0,0,0,.20);
 
 }
 
@@ -518,7 +551,6 @@
     .language-selector{
 
         top:10px;
-
         right:10px;
 
     }
@@ -906,6 +938,24 @@
 </a>
 
 
+<!-- =================================================
+     🛒 NEW FOOD STORE
+================================================= -->
+
+<a href="food-store.html"
+   class="card food-store-card">
+
+    <i class="fa-solid fa-basket-shopping"></i>
+
+    <span id="menuFoodStore">
+
+        ଆମ ଗାଁର ଖାଦ୍ୟ
+
+    </span>
+
+</a>
+
+
 <a href="contact.html"
    class="card">
 
@@ -1062,6 +1112,9 @@ const languageData = {
         menuDonation:
             "ସହଯୋଗ ଦାନ",
 
+        menuFoodStore:
+            "ଆମ ଗାଁର ଖାଦ୍ୟ",
+
         menuContact:
             "ଯୋଗାଯୋଗ",
 
@@ -1139,6 +1192,9 @@ const languageData = {
         menuDonation:
             "सहयोग दान",
 
+        menuFoodStore:
+            "हमारे गाँव के खाद्य उत्पाद",
+
         menuContact:
             "संपर्क करें",
 
@@ -1215,6 +1271,9 @@ const languageData = {
 
         menuDonation:
             "Donation",
+
+        menuFoodStore:
+            "Our Village Food Store",
 
         menuContact:
             "Contact Us",
@@ -1374,6 +1433,14 @@ function changeLanguage(language){
         "menuDonation"
     ).textContent =
         data.menuDonation;
+
+
+    /* 🛒 FOOD STORE */
+
+    document.getElementById(
+        "menuFoodStore"
+    ).textContent =
+        data.menuFoodStore;
 
 
     document.getElementById(
@@ -1694,4 +1761,4 @@ if("serviceWorker" in navigator){
 
 </body>
 
-</html>
+      </html>
