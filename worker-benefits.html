@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>ଶ୍ରମିକ ସୁବିଧା ଖୋଜନ୍ତୁ</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="icon" href="logo.png">
+
+<meta name="theme-color" content="#8B0000">
+
+<style>
+
+/* ==================================================
+   PAGE
+================================================== */
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    background:#fffaf0;
+}
+
+
+/* ==================================================
+   LANGUAGE
+================================================== */
+
+.language-selector{
+    position:absolute;
+    top:15px;
+    right:15px;
+    z-index:9999;
+}
+
+.language-button{
+    background:#fff;
+    color:#8B0000;
+    border:2px solid #d4af37;
+    border-radius:12px;
+    padding:9px 13px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,.20);
+}
+
+.language-menu{
+    display:none;
+    position:absolute;
+    top:48px;
+    right:0;
+    width:150px;
+    background:#fff;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,.30);
+}
+
+.language-menu button{
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#fff;
+    color:#333;
+    text-align:left;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.language-menu button:hover{
+    background:#fff0d0;
+}
+
+.language-menu.show{
+    display:block;
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.worker-header{
+    position:relative;
+    background:
+        linear-gradient(
+            135deg,
+            #8B0000,
+            #b30000
+        );
+
+    color:#fff;
+    padding:25px 70px 25px 20px;
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,0,0,.25);
+}
+
+.worker-logo{
+    width:75px;
+    height:75px;
+    object-fit:contain;
+    border-radius:50%;
+    background:#fff;
+    padding:5px;
+}
+
+.worker-header h1{
+    margin:0;
+    font-size:24px;
+}
+
+.worker-header p{
+    margin:6px 0 0;
+    font-size:15px;
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero{
+    margin:20px 15px;
+    padding:28px 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff8e8,
+            #ffffff
+        );
+
+    border:3px solid #d4af37;
+    border-radius:22px;
+
+    text-align:center;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.20);
+}
+
+.hero-icon{
+    width:72px;
+    height:72px;
+
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#8B0000;
+    color:#ffd700;
+
+    font-size:32px;
+
+    box-shadow:
+        0 5px 15px
+        rgba(139,0,0,.35);
+}
+
+.hero h2{
+    color:#8B0000;
+    font-size:28px;
+    margin:15px 0 8px;
+}
+
+.hero-line{
+    width:90px;
+    height:4px;
+
+    background:#d4af37;
+
+    border-radius:10px;
+
+    margin:0 auto 15px;
+}
+
+.hero p{
+    color:#444;
+    line-height:1.8;
+    font-size:16px;
+    margin:0;
+}
+
+
+/* ==================================================
+   MAIN BOX
+================================================== */
+
+.worker-container{
+    max-width:650px;
+    margin:20px auto 40px;
+    padding:0 15px;
+}
+
+
+/* ==================================================
+   QUESTION CARD
+================================================== */
+
+.question-card{
+    background:#fff;
+
+    border:2px solid #d4af37;
+
+    border-radius:20px;
+
+    padding:25px 20px;
+
+    box-shadow:
+        0 7px 22px
+        rgba(0,0,0,.15);
+}
+
+.question-number{
+    color:#8B0000;
+    font-weight:bold;
+    font-size:15px;
+    margin-bottom:8px;
+}
+
+.question-title{
+    color:#8B0000;
+    font-size:21px;
+    font-weight:800;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+
+/* ==================================================
+   OPTIONS
+================================================== */
+
+.option{
+    display:block;
+
+    width:100%;
+
+    padding:15px;
+
+    margin:10px 0;
+
+    background:#fffaf0;
+
+    border:2px solid #ead9a5;
+
+    border-radius:14px;
+
+    color:#333;
+
+    font-size:17px;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.option:hover{
+    border-color:#8B0000;
+    background:#fff4dc;
+}
+
+.option.selected{
+    background:#8B0000;
+    color:#fff;
+
+    border-color:#8B0000;
+
+    box-shadow:
+        0 4px 12px
+        rgba(139,0,0,.25);
+}
+
+
+/* ==================================================
+   PROGRESS
+================================================== */
+
+.progress-area{
+    margin-bottom:18px;
+}
+
+.progress-text{
+    display:flex;
+    justify-content:space-between;
+
+    color:#666;
+    font-size:14px;
+
+    margin-bottom:7px;
+}
+
+.progress-bar{
+    width:100%;
+    height:9px;
+
+    background:#eee;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    width:16.66%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8B0000,
+            #d4af37
+        );
+
+    transition:.3s;
+}
+
+
+/* ==================================================
+   BUTTONS
+================================================== */
+
+.buttons{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.nav-btn{
+    flex:1;
+
+    border:none;
+
+    padding:13px;
+
+    border-radius:30px;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.back-btn{
+    background:#eee;
+    color:#555;
+}
+
+.next-btn,
+.result-btn{
+    background:
+        linear-gradient(
+            135deg,
+            #8B0000,
+            #c40000
+        );
+
+    color:#fff;
+
+    box-shadow:
+        0 4px 12px
+        rgba(139,0,0,.30);
+}
+
+
+/* ==================================================
+   RESULT
+================================================== */
+
+#resultBox{
+    display:none;
+}
+
+.result-title{
+    text-align:center;
+
+    color:#8B0000;
+
+    font-size:26px;
+
+    font-weight:900;
+
+    margin-bottom:8px;
+}
+
+.result-subtitle{
+    text-align:center;
+
+    color:#555;
+
+    line-height:1.7;
+
+    margin-bottom:20px;
+}
+
+
+/* ==================================================
+   BENEFIT CARD
+================================================== */
+
+.benefit-card{
+    background:#fffaf0;
+
+    border:2px solid #d4af37;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin:14px 0;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,.10);
+}
+
+.benefit-icon{
+    width:48px;
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#8B0000;
+    color:#ffd700;
+
+    border-radius:50%;
+
+    font-size:20px;
+
+    margin-bottom:10px;
+}
+
+.benefit-card h3{
+    color:#8B0000;
+    margin:5px 0 8px;
+}
+
+.benefit-card p{
+    color:#444;
+    line-height:1.7;
+    font-size:15px;
+}
+
+.detail-btn{
+    display:inline-block;
+
+    margin-top:8px;
+
+    padding:10px 16px;
+
+    border:none;
+
+    border-radius:25px;
+
+    background:#8B0000;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+
+/* ==================================================
+   DETAIL
+================================================== */
+
+.detail-box{
+    display:none;
+
+    margin-top:12px;
+
+    padding:15px;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    border-left:5px solid #d4af37;
+
+    color:#444;
+
+    line-height:1.8;
+}
+
+.detail-box strong{
+    color:#8B0000;
+}
+
+
+/* ==================================================
+   NOTICE
+================================================== */
+
+.notice{
+    margin-top:20px;
+
+    padding:15px;
+
+    background:#fff8e8;
+
+    border:1px solid #d4af37;
+
+    border-radius:14px;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    color:#555;
+}
+
+
+/* ==================================================
+   HOME BUTTON
+================================================== */
+
+.home-btn{
+    display:block;
+
+    width:100%;
+
+    margin-top:15px;
+
+    padding:13px;
+
+    border-radius:30px;
+
+    background:#333;
+
+    color:#fff;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    font-weight:bold;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width:480px){
+
+    .worker-header{
+        padding:20px 65px 20px 15px;
+    }
+
+    .worker-logo{
+        width:62px;
+        height:62px;
+    }
+
+    .worker-header h1{
+        font-size:20px;
+    }
+
+    .worker-header p{
+        font-size:13px;
+    }
+
+    .hero{
+        margin:15px 10px;
+        padding:24px 14px;
+    }
+
+    .hero h2{
+        font-size:25px;
+    }
+
+    .question-card{
+        padding:20px 15px;
+    }
+
+    .question-title{
+        font-size:19px;
+    }
+
+    .option{
+        font-size:16px;
+        padding:14px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     LANGUAGE
+================================================== -->
+
+<div class="language-selector">
+
+<button
+    class="language-button"
+    onclick="toggleLanguageMenu()">
+
+    🌐 <span id="currentLanguage">ଓଡ଼ିଆ</span> ▾
+
+</button>
+
+<div
+    class="language-menu"
+    id="languageMenu">
+
+    <button onclick="changeLanguage('or')">
+        🇮🇳 ଓଡ଼ିଆ
+    </button>
+
+    <button onclick="changeLanguage('hi')">
+        🇮🇳 हिन्दी
+    </button>
+
+    <button onclick="changeLanguage('en')">
+        🇬🇧 English
+    </button>
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header class="worker-header">
+
+<img
+    src="logo.png"
+    class="worker-logo"
+    alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ">
+
+<div>
+
+<h1 id="headerTitle">
+    ପ୍ରବାସୀ ଓଡ଼ିଆ ଶ୍ରମିକ ସହାୟତା
+</h1>
+
+<p id="headerSub">
+    ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ • ସୁରତ
+</p>
+
+</div>
+
+</header>
+
+
+<!-- ==================================================
+     HERO
+================================================== -->
+
+<section class="hero">
+
+<div class="hero-icon">
+
+<i class="fa-solid fa-helmet-safety"></i>
+
+</div>
+
+<h2 id="heroTitle">
+    🔎 ମୋତେ କେଉଁ ସୁବିଧା ମିଳିବ?
+</h2>
+
+<div class="hero-line"></div>
+
+<p id="heroText">
+
+ଆପଣଙ୍କ କାମ ଓ ଶ୍ରମିକ ପଞ୍ଜୀକରଣ
+ସମ୍ବନ୍ଧୀୟ କିଛି ପ୍ରଶ୍ନର ଉତ୍ତର
+ଦିଅନ୍ତୁ। ଆପଣଙ୍କ ପାଇଁ
+ଯାଞ୍ଚ କରିବାକୁ ଥିବା ସରକାରୀ
+ସେବାଗୁଡ଼ିକ ଦେଖାଯିବ।
+
+</p>
+
+</section>
+
+
+<!-- ==================================================
+     MAIN
+================================================== -->
+
+<main class="worker-container">
+
+
+<!-- QUESTION AREA -->
+
+<div id="questionArea">
+
+<div class="progress-area">
+
+<div class="progress-text">
+
+<span id="questionProgress">
+    ପ୍ରଶ୍ନ 1 / 6
+</span>
+
+<span id="progressPercent">
+    17%
+</span>
+
+</div>
+
+<div class="progress-bar">
+
+<div
+    class="progress-fill"
+    id="progressFill">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="question-card">
+
+<div
+    class="question-number"
+    id="questionNumber">
+
+    ପ୍ରଶ୍ନ 1
+
+</div>
+
+<div
+    class="question-title"
+    id="questionTitle">
+
+    ଆପଣ କେଉଁ ରାଜ୍ୟରେ
+    କାମ କରୁଛନ୍ତି?
+
+</div>
+
+<div id="options"></div>
+
+
+<div class="buttons">
+
+<button
+    class="nav-btn back-btn"
+    id="backButton"
+    onclick="previousQuestion()">
+
+    ← ପଛକୁ
+
+</button>
+
+<button
+    class="nav-btn next-btn"
+    id="nextButton"
+    onclick="nextQuestion()">
+
+    ଆଗକୁ →
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
+     RESULT
+================================================== -->
+
+<div id="resultBox">
+
+<div class="question-card">
+
+<div class="result-title"
+     id="resultTitle">
+
+    📋 ଆପଣଙ୍କ ପାଇଁ ସମ୍ଭାବ୍ୟ ସେବା
+
+</div>
+
+<p class="result-subtitle"
+   id="resultSubtitle">
+
+    ଆପଣ ଦେଇଥିବା ତଥ୍ୟ ଅନୁସାରେ
+    ନିମ୍ନ ସେବାଗୁଡ଼ିକ ଯାଞ୍ଚ କରନ୍ତୁ।
+
+</p>
+
+<div id="benefitResults"></div>
+
+
+<div class="notice">
+
+<strong>
+    ⚠️ ଜରୁରୀ ସୂଚନା:
+</strong>
+
+<br>
+
+ଏହି ପେଜ୍ କେବଳ ସୂଚନା ଓ
+ସହାୟତା ପାଇଁ। ଏଠାରେ ଦିଆଯାଇଥିବା
+ଫଳାଫଳ ଯୋଗ୍ୟତାର ନିଶ୍ଚିତ ପ୍ରମାଣ
+ନୁହେଁ। ଶେଷ ଯୋଗ୍ୟତା ଓ benefit
+ସମ୍ପୃକ୍ତ ସରକାରୀ ବିଭାଗ ନିର୍ଦ୍ଧାରଣ
+କରିବେ।
+
+</div>
+
+
+<a
+    href="https://pareshram-labour.odisha.gov.in/"
+    target="_blank"
+    class="home-btn">
+
+    🏛️ PAReSHRAM Official Portal ↗
+
+</a>
+
+
+<button
+    class="nav-btn next-btn"
+    style="width:100%;margin-top:12px;"
+    onclick="restartQuiz()">
+
+    🔄 ପୁଣି ଯାଞ୍ଚ କରନ୍ତୁ
+
+</button>
+
+
+<a
+    href="index.html"
+    class="home-btn">
+
+    🏠 ମୁଖ୍ୟ ପେଜ୍
+
+</a>
+
+</div>
+
+</div>
+
+</main>
+
+
+<script>
+
+/* ==================================================
+   LANGUAGE DATA
+================================================== */
+
+const languageData = {
+
+or:{
+
+languageName:"ଓଡ଼ିଆ",
+
+headerTitle:"ପ୍ରବାସୀ ଓଡ଼ିଆ ଶ୍ରମିକ ସହାୟତା",
+
+headerSub:"ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ • ସୁରତ",
+
+heroTitle:"🔎 ମୋତେ କେଉଁ ସୁବିଧା ମିଳିବ?",
+
+heroText:
+"ଆପଣଙ୍କ କାମ ଓ ଶ୍ରମିକ ପଞ୍ଜୀକରଣ ସମ୍ବନ୍ଧୀୟ କିଛି ପ୍ରଶ୍ନର ଉତ୍ତର ଦିଅନ୍ତୁ। ଆପଣଙ୍କ ପାଇଁ ଯାଞ୍ଚ କରିବାକୁ ଥିବା ସରକାରୀ ସେବାଗୁଡ଼ିକ ଦେଖାଯିବ।",
+
+back:"← ପଛକୁ",
+
+next:"ଆଗକୁ →",
+
+finish:"ଫଳାଫଳ ଦେଖନ୍ତୁ →",
+
+question:"ପ୍ରଶ୍ନ",
+
+of:"/",
+
+resultTitle:"📋 ଆପଣଙ୍କ ପାଇଁ ସମ୍ଭାବ୍ୟ ସେବା",
+
+resultSubtitle:
+"ଆପଣ ଦେଇଥିବା ତଥ୍ୟ ଅନୁସାରେ ନିମ୍ନ ସେବାଗୁଡ଼ିକ ଯାଞ୍ଚ କରନ୍ତୁ।"
+
+},
+
+hi:{
+
+languageName:"हिन्दी",
+
+headerTitle:"प्रवासी ओड़िया श्रमिक सहायता",
+
+headerSub:"ओड़िया रत्न कलाकार संघ • सूरत",
+
+heroTitle:"🔎 मुझे कौन सी सुविधा मिल सकती है?",
+
+heroText:
+"अपने काम और श्रमिक पंजीकरण से संबंधित कुछ प्रश्नों के उत्तर दें। आपके लिए जांचने योग्य सरकारी सेवाएं दिखाई जाएंगी।",
+
+back:"← पीछे",
+
+next:"आगे →",
+
+finish:"परिणाम देखें →",
+
+question:"प्रश्न",
+
+of:"/",
+
+resultTitle:"📋 आपके लिए संभावित सेवाएं",
+
+resultSubtitle:
+"आपके द्वारा दी गई जानकारी के अनुसार निम्न सेवाओं की जांच करें।"
+
+},
+
+en:{
+
+languageName:"English",
+
+headerTitle:"Migrant Odia Worker Assistance",
+
+headerSub:"Odia Ratna Kalakar Sangha • Surat",
+
+heroTitle:"🔎 What benefits may apply to me?",
+
+heroText:
+"Answer a few questions about your work and worker registration. We will show government services you may need to check.",
+
+back:"← Back",
+
+next:"Next →",
+
+finish:"View Results →",
+
+question:"Question",
+
+of:"/",
+
+resultTitle:"📋 Services You May Need to Check",
+
+resultSubtitle:
+"Based on your answers, please check the following services."
+
+}
+
+};
+
+
+/* ==================================================
+   QUESTIONS
+================================================== */
+
+const questions = [
+
+{
+
+key:"state",
+
+or:"ଆପଣ କେଉଁ ରାଜ୍ୟରେ କାମ କରୁଛନ୍ତି?",
+
+hi:"आप किस राज्य में काम कर रहे हैं?",
+
+en:"Which state are you currently working in?",
+
+options:[
+
+["gujarat","ଗୁଜରାଟ / Gujarat"],
+
+["maharashtra","ମହାରାଷ୍ଟ୍ର / Maharashtra"],
+
+["telangana","ତେଲେଙ୍ଗାନା / Telangana"],
+
+["andhra","ଆନ୍ଧ୍ର ପ୍ରଦେଶ / Andhra Pradesh"],
+
+["other","ଅନ୍ୟ ରାଜ୍ୟ / Other State"]
+
+]
+
+},
+
+{
+
+key:"work",
+
+or:"ଆପଣ କେଉଁ ପ୍ରକାର କାମ କରୁଛନ୍ତି?",
+
+hi:"आप किस प्रकार का काम करते हैं?",
+
+en:"What type of work do you do?",
+
+options:[
+
+["construction","🏗️ ନିର୍ମାଣ କାମ / Construction"],
+
+["factory","🏭 କାରଖାନା / Factory"],
+
+["transport","🚚 ପରିବହନ / Transport"],
+
+["service","🧹 ସେବା କାମ / Service"],
+
+["other","🔧 ଅନ୍ୟ କାମ / Other"]
+
+]
+
+},
+
+{
+
+key:"migrant",
+
+or:"ଆପଣଙ୍କ Migrant Worker Registration ଅଛି କି?",
+
+hi:"क्या आपका Migrant Worker Registration है?",
+
+en:"Do you have Migrant Worker Registration?",
+
+options:[
+
+["yes","✅ ହଁ / Yes"],
+
+["no","❌ ନାହିଁ / No"],
+
+["unknown","❓ ଜାଣିନାହିଁ / Not sure"]
+
+]
+
+},
+
+{
+
+key:"construction",
+
+or:"ଆପଣଙ୍କ Construction Worker Registration ଅଛି କି?",
+
+hi:"क्या आपका Construction Worker Registration है?",
+
+en:"Do you have Construction Worker Registration?",
+
+options:[
+
+["yes","✅ ହଁ / Yes"],
+
+["no","❌ ନାହିଁ / No"],
+
+["unknown","❓ ଜାଣିନାହିଁ / Not sure"],
+
+["notapplicable","➖ ଲାଗୁ ହୁଏ ନାହିଁ / Not applicable"]
+
+]
+
+},
+
+{
+
+key:"esi",
+
+or:"ଆପଣଙ୍କ ESI ଅଛି କି?",
+
+hi:"क्या आपके पास ESI है?",
+
+en:"Do you have ESI coverage?",
+
+options:[
+
+["yes","✅ ହଁ / Yes"],
+
+["no","❌ ନାହିଁ / No"],
+
+["unknown","❓ ଜାଣିନାହିଁ / Not sure"]
+
+]
+
+},
+
+{
+
+key:"problem",
+
+or:"ଆପଣ କେଉଁ ସହାୟତା ଚାହୁଁଛନ୍ତି?",
+
+hi:"आपको किस प्रकार की सहायता चाहिए?",
+
+en:"What type of help do you need?",
+
+options:[
+
+["registration","📝 ପଞ୍ଜୀକରଣ / Registration"],
+
+["salary","💰 ଦରମା ସମସ୍ୟା / Salary issue"],
+
+["medical","🏥 ଚିକିତ୍ସା / Medical help"],
+
+["accident","🆘 ଦୁର୍ଘଟଣା / Accident"],
+
+["return","🏠 ଘରକୁ ଫେରିବା / Return home"],
+
+["scheme","📄 ସରକାରୀ ସୁବିଧା / Government service"],
+
+["other","❓ ଅନ୍ୟ ସମସ୍ୟା / Other"]
+
+]
+
+}
+
+];
+
+
+/* ==================================================
+   STATE
+================================================== */
+
+let currentQuestion = 0;
+
+let answers = {};
+
+
+/* ==================================================
+   RENDER QUESTION
+================================================== */
+
+function renderQuestion(){
+
+    const q = questions[currentQuestion];
+
+    const lang =
+        localStorage.getItem("selectedLanguage")
+        || "or";
+
+    document.getElementById(
+        "questionNumber"
+    ).textContent =
+        `${languageData[lang].question} ${currentQuestion + 1}`;
+
+    document.getElementById(
+        "questionProgress"
+    ).textContent =
+        `${languageData[lang].question} ${currentQuestion + 1} / ${questions.length}`;
+
+    document.getElementById(
+        "progressPercent"
+    ).textContent =
+        Math.round(
+            ((currentQuestion + 1) / questions.length) * 100
+        ) + "%";
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        ((currentQuestion + 1) / questions.length * 100) + "%";
+
+
+    document.getElementById(
+        "questionTitle"
+    ).textContent =
+        q[lang];
+
+
+    const optionsBox =
+        document.getElementById("options");
+
+    optionsBox.innerHTML = "";
+
+
+    q.options.forEach(option => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.type = "button";
+
+        button.textContent = option[1];
+
+        button.dataset.value =
+            option[0];
+
+
+        if(
+            answers[q.key] === option[0]
+        ){
+
+            button.classList.add(
+                "selected"
+            );
+
+        }
+
+
+        button.onclick = function(){
+
+            answers[q.key] =
+                option[0];
+
+            document
+                .querySelectorAll(".option")
+                .forEach(btn =>
+                    btn.classList.remove(
+                        "selected"
+                    )
+                );
+
+            button.classList.add(
+                "selected"
+            );
+
+        };
+
+
+        optionsBox.appendChild(button);
+
+    });
+
+
+    document.getElementById(
+        "backButton"
+    ).style.visibility =
+        currentQuestion === 0
+        ? "hidden"
+        : "visible";
+
+
+    document.getElementById(
+        "nextButton"
+    ).textContent =
+        currentQuestion === questions.length - 1
+        ? languageData[lang].finish
+        : languageData[lang].next;
+
+}
+
+
+/* ==================================================
+   NEXT
+================================================== */
+
+function nextQuestion(){
+
+    const q =
+        questions[currentQuestion];
+
+
+    if(!answers[q.key]){
+
+        alert(
+            "ଦୟାକରି ଗୋଟିଏ ଉତ୍ତର ବାଛନ୍ତୁ।"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        currentQuestion <
+        questions.length - 1
+    ){
+
+        currentQuestion++;
+
+        renderQuestion();
+
+    }else{
+
+        showResults();
+
+    }
+
+}
+
+
+/* ==================================================
+   BACK
+================================================== */
+
+function previousQuestion(){
+
+    if(currentQuestion > 0){
+
+        currentQuestion--;
+
+        renderQuestion();
+
+    }
+
+}
+
+
+/* ==================================================
+   RESULTS
+================================================== */
+
+function showResults(){
+
+    document.getElementById(
+        "questionArea"
+    ).style.display = "none";
+
+
+    document.getElementById(
+        "resultBox"
+    ).style.display = "block";
+
+
+    const results =
+        document.getElementById(
+            "benefitResults"
+        );
+
+    results.innerHTML = "";
+
+
+    let services = [];
+
+
+    /* Migrant registration */
+
+    if(
+        answers.migrant === "no" ||
+        answers.migrant === "unknown" ||
+        answers.problem === "registration"
+    ){
+
+        services.push({
+
+            icon:"fa-id-card",
+
+            title:"📝 ପ୍ରବାସୀ ଶ୍ରମିକ ପଞ୍ଜୀକରଣ",
+
+            text:
+            "ବାହାର ରାଜ୍ୟରେ କାମ କରୁଥିବା ଶ୍ରମିକ PAReSHRAMର Migrant Worker Registration ବିଷୟରେ ଯାଞ୍ଚ କରିପାରିବେ।",
+
+            detail:
+            "<strong>କିପରି ପାଇବେ?</strong><br>" +
+            "PAReSHRAM official portalକୁ ଯାଇ Migrant Worker Registration ସମ୍ବନ୍ଧୀୟ ସେବା ଯାଞ୍ଚ କରନ୍ତୁ।<br><br>" +
+            "<strong>ଆବଶ୍ୟକ ତଥ୍ୟ:</strong><br>" +
+            "Aadhaar, mobile, ଠିକଣା, କାମର ତଥ୍ୟ, destination state ଇତ୍ୟାଦି।",
+
+            link:
+            "https://pareshram-labour.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* Construction */
+
+    if(
+        answers.work === "construction" ||
+        answers.construction === "yes" ||
+        answers.construction === "unknown"
+    ){
+
+        services.push({
+
+            icon:"fa-helmet-safety",
+
+            title:"🏗️ Construction Worker Services",
+
+            text:
+            "ଆପଣ construction worker ହେଲେ ନିଜ worker registration ଓ ସମ୍ପୃକ୍ତ welfare servicesର eligibility ଯାଞ୍ଚ କରନ୍ତୁ।",
+
+            detail:
+            "<strong>କିପରି ପାଇବେ?</strong><br>" +
+            "ପ୍ରଥମେ ଆପଣଙ୍କ construction worker registration ଠିକ୍ ଅଛି କି ଯାଞ୍ଚ କରନ୍ତୁ। ତାପରେ ସମ୍ପୃକ୍ତ welfare benefit ପାଇଁ official process ଅନୁସରଣ କରନ୍ତୁ।<br><br>" +
+            "<strong>ଟୀକା:</strong><br>" +
+            "ପ୍ରତ୍ୟେକ benefit ପାଇଁ eligibility ଅଲଗା ହୋଇପାରେ।",
+
+            link:
+            "https://labourdirectorate.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* ESI */
+
+    if(
+        answers.esi === "yes" ||
+        answers.esi === "unknown" ||
+        answers.problem === "medical"
+    ){
+
+        services.push({
+
+            icon:"fa-heart-pulse",
+
+            title:"🏥 ESI ସେବା",
+
+            text:
+            "ଯଦି ଆପଣ ESI-covered worker, ତେବେ medical ଓ ଅନ୍ୟ ESI benefits ବିଷୟରେ ଯାଞ୍ଚ କରନ୍ତୁ।",
+
+            detail:
+            "<strong>କିପରି ପାଇବେ?</strong><br>" +
+            "ଆପଣଙ୍କ ESI number/coverage ଯାଞ୍ଚ କରି ସମ୍ପୃକ୍ତ ESI medical/service centre ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ।<br><br>" +
+            "<strong>ଟୀକା:</strong><br>" +
+            "ESI benefit eligibility ଆପଣଙ୍କ coverage ଓ ନିୟମ ଉପରେ ନିର୍ଭର କରେ।",
+
+            link:
+            "https://labour.odisha.gov.in/en/directorate/esi-scheme"
+
+        });
+
+    }
+
+
+    /* Salary */
+
+    if(
+        answers.problem === "salary"
+    ){
+
+        services.push({
+
+            icon:"fa-money-bill-wave",
+
+            title:"💰 ଦରମା ସମସ୍ୟା",
+
+            text:
+            "ଦରମା ନମିଳିବା କିମ୍ବା wage-related problem ଥିଲେ ଶ୍ରମ ବିଭାଗର official grievance/support channel ଯାଞ୍ଚ କରନ୍ତୁ।",
+
+            detail:
+            "<strong>ପ୍ରସ୍ତୁତ ରଖନ୍ତୁ:</strong><br>" +
+            "କାମର ପ୍ରମାଣ, employer/contractorର ତଥ୍ୟ, salary/payment records ଏବଂ ଅନ୍ୟ ସମ୍ପୃକ୍ତ documents।<br><br>" +
+            "<strong>ଜରୁରୀ:</strong><br>" +
+            "ଆପଣଙ୍କ ମାମଲା ଅନୁସାରେ ସମ୍ପୃକ୍ତ labour authorityଙ୍କୁ ଯୋଗାଯୋଗ କରନ୍ତୁ।",
+
+            link:
+            "https://labourdirectorate.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* Accident */
+
+    if(
+        answers.problem === "accident"
+    ){
+
+        services.push({
+
+            icon:"fa-triangle-exclamation",
+
+            title:"🆘 ଦୁର୍ଘଟଣା ସହାୟତା",
+
+            text:
+            "ଦୁର୍ଘଟଣା ଘଟିଲେ ପ୍ରଥମେ ସ୍ଥାନୀୟ emergency/medical assistance ନିଅନ୍ତୁ ଏବଂ ପରେ ସମ୍ପୃକ୍ତ labour/insurance authority ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ।",
+
+            detail:
+            "<strong>ପ୍ରଥମ ପଦକ୍ଷେପ:</strong><br>" +
+            "ଜରୁରୀ ଚିକିତ୍ସା ନିଅନ୍ତୁ। ESI/PF/worker insurance ଥିଲେ ସେଥିର details ପ୍ରସ୍ତୁତ ରଖନ୍ତୁ।<br><br>" +
+            "<strong>ଟୀକା:</strong><br>" +
+            "କ୍ଷତିପୂରଣ କିମ୍ବା benefitର ଯୋଗ୍ୟତା ମାମଲା ଅନୁସାରେ ନିର୍ଦ୍ଧାରିତ ହୁଏ।",
+
+            link:
+            "https://labourdirectorate.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* Return Home */
+
+    if(
+        answers.problem === "return"
+    ){
+
+        services.push({
+
+            icon:"fa-house",
+
+            title:"🏠 ଘରକୁ ଫେରିବା ସମ୍ବନ୍ଧୀୟ ସହାୟତା",
+
+            text:
+            "ବାହାର ରାଜ୍ୟରୁ ଓଡ଼ିଶାକୁ ଫେରିବା ସମ୍ବନ୍ଧୀୟ ଅଧିକାର ଓ official support ବିଷୟରେ ଯାଞ୍ଚ କରନ୍ତୁ।",
+
+            detail:
+            "<strong>କଣ କରିବେ?</strong><br>" +
+            "ଆପଣଙ୍କ migrant-worker status, employer/contractor ଓ କାମର ରେକର୍ଡ ପ୍ରସ୍ତୁତ ରଖନ୍ତୁ। ଆବଶ୍ୟକ ହେଲେ Odisha Labour Departmentର official support channelକୁ ଯୋଗାଯୋଗ କରନ୍ତୁ।",
+
+            link:
+            "https://labourdirectorate.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* Government Scheme */
+
+    if(
+        answers.problem === "scheme"
+    ){
+
+        services.push({
+
+            icon:"fa-building-columns",
+
+            title:"🏛️ ସରକାରୀ ଶ୍ରମିକ ସେବା",
+
+            text:
+            "ଆପଣଙ୍କ worker category ଅନୁସାରେ ଉପଲବ୍ଧ ସରକାରୀ labour services ଯାଞ୍ଚ କରନ୍ତୁ।",
+
+            detail:
+            "<strong>କିପରି ପାଇବେ?</strong><br>" +
+            "PAReSHRAMରେ ଆପଣଙ୍କ applicable services ଯାଞ୍ଚ କରି official application process ଅନୁସରଣ କରନ୍ତୁ।",
+
+            link:
+            "https://pareshram-labour.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* Default */
+
+    if(services.length === 0){
+
+        services.push({
+
+            icon:"fa-circle-info",
+
+            title:"📚 ଶ୍ରମିକ ସେବା ବିଷୟରେ ଜାଣନ୍ତୁ",
+
+            text:
+            "ଆପଣଙ୍କ ତଥ୍ୟ ଅନୁସାରେ ପ୍ରଥମେ PAReSHRAMରେ ନିଜ worker details ଓ applicable services ଯାଞ୍ଚ କରନ୍ତୁ।",
+
+            detail:
+            "<strong>ପରବର୍ତ୍ତୀ ପଦକ୍ଷେପ:</strong><br>" +
+            "PAReSHRAM official portal ଖୋଲି ନିଜ ପାଇଁ ଉପଲବ୍ଧ labour services ଯାଞ୍ଚ କରନ୍ତୁ।",
+
+            link:
+            "https://pareshram-labour.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    services.forEach(
+        (service,index) => {
+
+        const card =
+            document.createElement("div");
+
+        card.className =
+            "benefit-card";
+
+        card.innerHTML = `
+
+            <div class="benefit-icon">
+                <i class="fa-solid ${service.icon}"></i>
+            </div>
+
+            <h3>
+                ${service.title}
+            </h3>
+
+            <p>
+                ${service.text}
+            </p>
+
+            <button
+                class="detail-btn"
+                onclick="toggleDetail(${index})">
+
+                📖 କିପରି ପାଇବେ?
+
+            </button>
+
+            <a
+                href="${service.link}"
+                target="_blank"
+                class="detail-btn">
+
+                🏛️ Official Link ↗
+
+            </a>
+
+            <div
+                class="detail-box"
+                id="detail-${index}">
+
+                ${service.detail}
+
+            </div>
+
+        `;
+
+        results.appendChild(card);
+
+    });
+
+}
+
+
+/* ==================================================
+   DETAIL TOGGLE
+================================================== */
+
+function toggleDetail(index){
+
+    const box =
+        document.getElementById(
+            "detail-" + index
+        );
+
+    if(box.style.display === "block"){
+
+        box.style.display = "none";
+
+    }else{
+
+        box.style.display = "block";
+
+    }
+
+}
+
+
+/* ==================================================
+   RESTART
+================================================== */
+
+function restartQuiz(){
+
+    currentQuestion = 0;
+
+    answers = {};
+
+    document.getElementById(
+        "resultBox"
+    ).style.display = "none";
+
+    document.getElementById(
+        "questionArea"
+    ).style.display = "block";
+
+    renderQuestion();
+
+}
+
+
+/* ==================================================
+   LANGUAGE
+================================================== */
+
+function changeLanguage(language){
+
+    const data =
+        languageData[language];
+
+    if(!data) return;
+
+
+    localStorage.setItem(
+        "selectedLanguage",
+        language
+    );
+
+
+    document.documentElement.lang =
+        language;
+
+
+    document.getElementById(
+        "currentLanguage"
+    ).textContent =
+        data.languageName;
+
+
+    document.getElementById(
+        "headerTitle"
+    ).textContent =
+        data.headerTitle;
+
+
+    document.getElementById(
+        "headerSub"
+    ).textContent =
+        data.headerSub;
+
+
+    document.getElementById(
+        "heroTitle"
+    ).textContent =
+        data.heroTitle;
+
+
+    document.getElementById(
+        "heroText"
+    ).textContent =
+        data.heroText;
+
+
+    document.getElementById(
+        "backButton"
+    ).textContent =
+        data.back;
+
+
+    document.getElementById(
+        "resultTitle"
+    ).textContent =
+        data.resultTitle;
+
+
+    document.getElementById(
+        "resultSubtitle"
+    ).textContent =
+        data.resultSubtitle;
+
+
+    document.getElementById(
+        "languageMenu"
+    ).classList.remove(
+        "show"
+    );
+
+
+    renderQuestion();
+
+}
+
+
+/* ==================================================
+   LANGUAGE MENU
+================================================== */
+
+function toggleLanguageMenu(){
+
+    document.getElementById(
+        "languageMenu"
+    ).classList.toggle(
+        "show"
+    );
+
+}
+
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const selector =
+            document.querySelector(
+                ".language-selector"
+            );
+
+        if(
+            !selector.contains(
+                event.target
+            )
+        ){
+
+            document.getElementById(
+                "languageMenu"
+            ).classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   START
+================================================== */
+
+const savedLanguage =
+    localStorage.getItem(
+        "selectedLanguage"
+    ) || "or";
+
+
+changeLanguage(
+    savedLanguage
+);
+
+</script>
+
+</body>
+</html>
