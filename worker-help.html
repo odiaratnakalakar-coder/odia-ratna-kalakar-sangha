@@ -8,12 +8,12 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>ପ୍ରବାସୀ ଶ୍ରମିକ ସହାୟତା</title>
+<title>ପ୍ରବାସୀ ଓଡ଼ିଆ ଶ୍ରମିକ ସହାୟତା</title>
 
 <link rel="stylesheet" href="style.css">
 
 <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <link rel="icon" href="logo.png">
 
@@ -23,67 +23,114 @@
 <style>
 
 /* ==================================================
-   LANGUAGE
+   FORCE LIGHT MODE
 ================================================== */
 
-.language-selector{
-    position:absolute;
-    top:15px;
-    right:15px;
-    z-index:9999;
-}
+html,
+body{
 
-.language-button{
-    background:#fff;
-    color:#8B0000;
-    border:2px solid #d4af37;
-    border-radius:12px;
-    padding:9px 13px;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 4px 12px rgba(0,0,0,.20);
-}
+    margin:0;
+    padding:0;
 
-.language-menu{
-    display:none;
-    position:absolute;
-    top:48px;
-    right:0;
-    width:150px;
-    background:#fff;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 8px 25px rgba(0,0,0,.30);
-}
+    background:#fffaf0 !important;
 
-.language-menu.show{
-    display:block;
-}
+    color:#333 !important;
 
-.language-menu button{
-    width:100%;
-    padding:12px;
-    border:none;
-    background:#fff;
-    color:#333;
-    text-align:left;
-    font-size:16px;
-    cursor:pointer;
-}
-
-.language-menu button:hover{
-    background:#fff0d0;
 }
 
 
 /* ==================================================
-   PAGE
+   LANGUAGE SELECTOR
 ================================================== */
 
-body{
-    background:#fffaf0;
-    margin:0;
+.language-selector{
+
+    position:absolute;
+
+    top:15px;
+    right:15px;
+
+    z-index:9999;
+
+}
+
+.language-button{
+
+    background:#ffffff !important;
+
+    color:#8B0000 !important;
+
+    border:2px solid #d4af37;
+
+    border-radius:12px;
+
+    padding:9px 13px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,.20);
+
+}
+
+.language-menu{
+
+    display:none;
+
+    position:absolute;
+
+    top:48px;
+    right:0;
+
+    width:150px;
+
+    background:#ffffff !important;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.30);
+
+}
+
+.language-menu.show{
+
+    display:block;
+
+}
+
+.language-menu button{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    background:#ffffff !important;
+
+    color:#333 !important;
+
+    text-align:left;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+.language-menu button:hover{
+
+    background:#fff0d0 !important;
+
 }
 
 
@@ -92,6 +139,7 @@ body{
 ================================================== */
 
 .help-header{
+
     position:relative;
 
     background:
@@ -99,13 +147,18 @@ body{
             135deg,
             #8B0000,
             #b30000
-        );
+        ) !important;
 
-    color:white;
+    color:#ffffff !important;
 
-    padding:22px 70px 22px 18px;
+    padding:
+        22px
+        75px
+        22px
+        18px;
 
     display:flex;
+
     align-items:center;
 
     gap:15px;
@@ -113,29 +166,42 @@ body{
     box-shadow:
         0 5px 18px
         rgba(0,0,0,.25);
+
 }
 
 .help-logo{
+
     width:72px;
     height:72px;
 
     object-fit:contain;
 
-    background:white;
+    background:#ffffff;
 
     padding:5px;
 
     border-radius:50%;
+
 }
 
 .help-header h1{
+
     margin:0;
+
     font-size:24px;
+
+    color:#ffffff !important;
+
 }
 
 .help-header p{
+
     margin:6px 0 0;
+
     font-size:14px;
+
+    color:#ffffff !important;
+
 }
 
 
@@ -156,7 +222,7 @@ body{
             145deg,
             #fff8e8,
             #ffffff
-        );
+        ) !important;
 
     border:3px solid #d4af37;
 
@@ -165,6 +231,7 @@ body{
     box-shadow:
         0 8px 25px
         rgba(0,0,0,.20);
+
 }
 
 .help-icon{
@@ -177,24 +244,26 @@ body{
     display:flex;
 
     align-items:center;
+
     justify-content:center;
 
     border-radius:50%;
 
-    background:#8B0000;
+    background:#8B0000 !important;
 
-    color:#ffd700;
+    color:#ffd700 !important;
 
     font-size:30px;
 
     box-shadow:
         0 5px 15px
         rgba(139,0,0,.35);
+
 }
 
 .help-hero h2{
 
-    color:#8B0000;
+    color:#8B0000 !important;
 
     font-size:27px;
 
@@ -208,7 +277,8 @@ body{
 
     height:4px;
 
-    margin:0 auto 15px;
+    margin:
+        0 auto 15px;
 
     border-radius:10px;
 
@@ -218,7 +288,7 @@ body{
 
 .help-hero p{
 
-    color:#444;
+    color:#444 !important;
 
     font-size:16px;
 
@@ -237,9 +307,11 @@ body{
 
     max-width:650px;
 
-    margin:20px auto 40px;
+    margin:
+        20px auto 40px;
 
-    padding:0 15px;
+    padding:
+        0 15px;
 
 }
 
@@ -250,7 +322,9 @@ body{
 
 .form-card{
 
-    background:white;
+    background:#ffffff !important;
+
+    color:#333 !important;
 
     border:2px solid #d4af37;
 
@@ -261,16 +335,17 @@ body{
     box-shadow:
         0 7px 22px
         rgba(0,0,0,.15);
+
 }
 
 
 /* ==================================================
-   FIELD
+   FORM GROUP
 ================================================== */
 
 .form-group{
 
-    margin-bottom:17px;
+    margin-bottom:18px;
 
 }
 
@@ -278,7 +353,7 @@ body{
 
     display:block;
 
-    color:#8B0000;
+    color:#8B0000 !important;
 
     font-weight:bold;
 
@@ -288,11 +363,16 @@ body{
 
 }
 
-.form-group label span{
+.required{
 
-    color:#d00000;
+    color:#d00000 !important;
 
 }
+
+
+/* ==================================================
+   INPUT
+================================================== */
 
 .form-group input,
 .form-group select,
@@ -300,15 +380,21 @@ body{
 
     width:100%;
 
+    box-sizing:border-box;
+
     padding:13px;
 
-    border:2px solid #e2d4a9;
+    border:
+        2px solid
+        #e2d4a9 !important;
 
     border-radius:12px;
 
     font-size:16px;
 
-    background:#fffdf8;
+    background:#fffdf8 !important;
+
+    color:#333 !important;
 
     outline:none;
 
@@ -320,9 +406,24 @@ body{
 .form-group select:focus,
 .form-group textarea:focus{
 
-    border-color:#8B0000;
+    border-color:#8B0000 !important;
 
-    background:white;
+    background:#ffffff !important;
+
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{
+
+    color:#777 !important;
+
+}
+
+.form-group select option{
+
+    background:#ffffff !important;
+
+    color:#333 !important;
 
 }
 
@@ -336,7 +437,7 @@ body{
 
 
 /* ==================================================
-   ROW
+   TWO COLUMN
 ================================================== */
 
 .form-row{
@@ -352,7 +453,56 @@ body{
 
 
 /* ==================================================
-   SUBMIT
+   CONSENT
+================================================== */
+
+.consent-box{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+    padding:12px;
+
+    background:#fff8e8 !important;
+
+    border:
+        1px solid
+        #d4af37;
+
+    border-radius:12px;
+
+    margin-bottom:18px;
+
+}
+
+.consent-box input{
+
+    width:20px;
+
+    height:20px;
+
+    margin-top:2px;
+
+    flex-shrink:0;
+
+}
+
+.consent-box label{
+
+    color:#555 !important;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+}
+
+
+/* ==================================================
+   SUBMIT BUTTON
 ================================================== */
 
 .submit-button{
@@ -370,9 +520,9 @@ body{
             135deg,
             #8B0000,
             #c40000
-        );
+        ) !important;
 
-    color:white;
+    color:#ffffff !important;
 
     font-size:18px;
 
@@ -386,9 +536,11 @@ body{
 
 }
 
-.submit-button:hover{
+.submit-button:disabled{
 
-    transform:translateY(-1px);
+    opacity:.7;
+
+    cursor:not-allowed;
 
 }
 
@@ -403,13 +555,15 @@ body{
 
     padding:14px;
 
-    background:#fff8e8;
+    background:#fff8e8 !important;
 
-    border:1px solid #d4af37;
+    border:
+        1px solid
+        #d4af37;
 
     border-radius:12px;
 
-    color:#555;
+    color:#555 !important;
 
     font-size:14px;
 
@@ -428,9 +582,13 @@ body{
 
     text-align:center;
 
-    background:white;
+    background:#ffffff !important;
 
-    border:3px solid #d4af37;
+    color:#333 !important;
+
+    border:
+        3px solid
+        #d4af37;
 
     border-radius:22px;
 
@@ -439,6 +597,7 @@ body{
     box-shadow:
         0 8px 25px
         rgba(0,0,0,.20);
+
 }
 
 .success-icon{
@@ -451,11 +610,12 @@ body{
     display:flex;
 
     align-items:center;
+
     justify-content:center;
 
     background:#16823b;
 
-    color:white;
+    color:#ffffff;
 
     border-radius:50%;
 
@@ -465,7 +625,7 @@ body{
 
 #successBox h2{
 
-    color:#16823b;
+    color:#16823b !important;
 
     font-size:25px;
 
@@ -477,30 +637,31 @@ body{
 
     padding:15px;
 
-    background:#fff8e8;
+    background:#fff8e8 !important;
 
-    border:2px dashed #d4af37;
+    border:
+        2px dashed
+        #d4af37;
 
     border-radius:14px;
 
-    color:#8B0000;
+    color:#8B0000 !important;
 
     font-size:20px;
 
     font-weight:bold;
 
+    word-break:break-word;
+
 }
-
-
-/* ==================================================
-   BUTTON
-================================================== */
 
 .secondary-button{
 
     display:block;
 
     width:100%;
+
+    box-sizing:border-box;
 
     padding:13px;
 
@@ -510,17 +671,15 @@ body{
 
     border-radius:30px;
 
-    background:#333;
+    background:#8B0000 !important;
 
-    color:white;
+    color:#ffffff !important;
 
     font-size:16px;
 
     font-weight:bold;
 
     text-decoration:none;
-
-    cursor:pointer;
 
 }
 
@@ -535,7 +694,7 @@ body{
 
         padding:
             20px
-            65px
+            70px
             20px
             15px;
 
@@ -576,6 +735,12 @@ body{
 
     }
 
+    .help-hero p{
+
+        font-size:15px;
+
+    }
+
     .form-card{
 
         padding:
@@ -588,6 +753,14 @@ body{
         grid-template-columns:1fr;
 
         gap:0;
+
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea{
+
+        font-size:15px;
 
     }
 
@@ -631,14 +804,12 @@ body{
 
     </button>
 
-
     <button
         onclick="changeLanguage('hi')">
 
         🇮🇳 हिन्दी
 
     </button>
-
 
     <button
         onclick="changeLanguage('en')">
@@ -694,16 +865,13 @@ body{
 
 </div>
 
-
 <h2 id="heroTitle">
 
     🆘 ସହାୟତା ମାଗନ୍ତୁ
 
 </h2>
 
-
 <div class="help-line"></div>
-
 
 <p id="heroText">
 
@@ -718,15 +886,18 @@ body{
 
 
 <!-- ==================================================
-     FORM
+     MAIN
 ================================================== -->
 
 <main class="help-container">
 
 
+<!-- ==================================================
+     FORM
+================================================== -->
+
 <div id="formBox"
      class="form-card">
-
 
 <form id="workerHelpForm">
 
@@ -737,8 +908,11 @@ body{
 
 <label>
 
-    👤 ପୂର୍ଣ୍ଣ ନାମ
-    <span>*</span>
+    👤 <span id="nameLabel">
+    ପୂର୍ଣ୍ଣ ନାମ
+    </span>
+
+    <span class="required">*</span>
 
 </label>
 
@@ -746,6 +920,7 @@ body{
     type="text"
     id="name"
     required
+    autocomplete="name"
     placeholder="ଆପଣଙ୍କ ପୂର୍ଣ୍ଣ ନାମ">
 
 </div>
@@ -757,8 +932,11 @@ body{
 
 <label>
 
-    📱 ମୋବାଇଲ୍ ନମ୍ବର
-    <span>*</span>
+    📱 <span id="mobileLabel">
+    ମୋବାଇଲ୍ ନମ୍ବର
+    </span>
+
+    <span class="required">*</span>
 
 </label>
 
@@ -767,13 +945,14 @@ body{
     id="mobile"
     required
     maxlength="10"
+    inputmode="numeric"
     pattern="[0-9]{10}"
     placeholder="10 ଅଙ୍କର ମୋବାଇଲ୍ ନମ୍ବର">
 
 </div>
 
 
-<!-- ROW -->
+<!-- DISTRICT + STATE -->
 
 <div class="form-row">
 
@@ -784,8 +963,11 @@ body{
 
 <label>
 
-    🏠 ଓଡ଼ିଶା ଜିଲ୍ଲା
-    <span>*</span>
+    🏠 <span id="districtLabel">
+    ଓଡ଼ିଶା ଜିଲ୍ଲା
+    </span>
+
+    <span class="required">*</span>
 
 </label>
 
@@ -803,4 +985,833 @@ body{
 <option>Boudh / ବୌଦ୍ଧ</option>
 <option>Cuttack / କଟକ</option>
 <option>Deogarh / ଦେବଗଡ଼</option>
-<option>Dhenkanal
+<option>Dhenkanal / ଢେଙ୍କାନାଳ</option>
+<option>Gajapati / ଗଜପତି</option>
+<option>Ganjam / ଗଞ୍ଜାମ</option>
+<option>Jagatsinghpur / ଜଗତସିଂହପୁର</option>
+<option>Jajpur / ଯାଜପୁର</option>
+<option>Jharsuguda / ଝାରସୁଗୁଡ଼ା</option>
+<option>Kalahandi / କଳାହାଣ୍ଡି</option>
+<option>Kandhamal / କନ୍ଧମାଳ</option>
+<option>Kendrapara / କେନ୍ଦ୍ରାପଡ଼ା</option>
+<option>Kendujhar / କେନ୍ଦୁଝର</option>
+<option>Khordha / ଖୋର୍ଦ୍ଧା</option>
+<option>Koraput / କୋରାପୁଟ</option>
+<option>Malkangiri / ମାଲକାନଗିରି</option>
+<option>Mayurbhanj / ମୟୂରଭଞ୍ଜ</option>
+<option>Nabarangpur / ନବରଙ୍ଗପୁର</option>
+<option>Nayagarh / ନୟାଗଡ଼</option>
+<option>Nuapada / ନୂଆପଡ଼ା</option>
+<option>Puri / ପୁରୀ</option>
+<option>Rayagada / ରାୟଗଡ଼ା</option>
+<option>Sambalpur / ସମ୍ବଲପୁର</option>
+<option>Subarnapur / ସୁବର୍ଣ୍ଣପୁର</option>
+<option>Sundargarh / ସୁନ୍ଦରଗଡ଼</option>
+
+</select>
+
+</div>
+
+
+<!-- STATE -->
+
+<div class="form-group">
+
+<label>
+
+    📍 <span id="stateLabel">
+    ବର୍ତ୍ତମାନ ରାଜ୍ୟ
+    </span>
+
+    <span class="required">*</span>
+
+</label>
+
+<select id="state" required>
+
+<option value="">
+    ରାଜ୍ୟ ବାଛନ୍ତୁ
+</option>
+
+<option>Gujarat / ଗୁଜରାଟ</option>
+<option>Maharashtra / ମହାରାଷ୍ଟ୍ର</option>
+<option>Telangana / ତେଲେଙ୍ଗାନା</option>
+<option>Andhra Pradesh / ଆନ୍ଧ୍ର ପ୍ରଦେଶ</option>
+<option>Tamil Nadu / ତାମିଲନାଡୁ</option>
+<option>Karnataka / କର୍ଣ୍ଣାଟକ</option>
+<option>Kerala / କେରଳ</option>
+<option>Delhi / ଦିଲ୍ଲୀ</option>
+<option>Rajasthan / ରାଜସ୍ଥାନ</option>
+<option>West Bengal / ପଶ୍ଚିମବଙ୍ଗ</option>
+<option>Madhya Pradesh / ମଧ୍ୟପ୍ରଦେଶ</option>
+<option>Chhattisgarh / ଛତିଶଗଡ଼</option>
+<option>Other State / ଅନ୍ୟ ରାଜ୍ୟ</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<!-- CITY -->
+
+<div class="form-group">
+
+<label>
+
+    🏙️ <span id="cityLabel">
+    ବର୍ତ୍ତମାନ ସହର
+    </span>
+
+    <span class="required">*</span>
+
+</label>
+
+<input
+    type="text"
+    id="city"
+    required
+    placeholder="ଯେଉଁ ସହରରେ କାମ କରୁଛନ୍ତି">
+
+</div>
+
+
+<!-- WORK -->
+
+<div class="form-group">
+
+<label>
+
+    👷 <span id="workLabel">
+    କାମର ପ୍ରକାର
+    </span>
+
+    <span class="required">*</span>
+
+</label>
+
+<select id="work" required>
+
+<option value="">
+    କାମ ବାଛନ୍ତୁ
+</option>
+
+<option>
+    🏗️ Construction / ନିର୍ମାଣ
+</option>
+
+<option>
+    🏭 Factory / କାରଖାନା
+</option>
+
+<option>
+    👕 Garment / ପୋଷାକ
+</option>
+
+<option>
+    🚚 Transport / ପରିବହନ
+</option>
+
+<option>
+    🧹 Service / ସେବା
+</option>
+
+<option>
+    🏪 Shop / ଦୋକାନ
+</option>
+
+<option>
+    🚜 Agriculture / କୃଷି
+</option>
+
+<option>
+    🔧 Other / ଅନ୍ୟ
+</option>
+
+</select>
+
+</div>
+
+
+<!-- PROBLEM -->
+
+<div class="form-group">
+
+<label>
+
+    🆘 <span id="problemLabel">
+    ସମସ୍ୟାର ପ୍ରକାର
+    </span>
+
+    <span class="required">*</span>
+
+</label>
+
+<select id="problem" required>
+
+<option value="">
+    ସମସ୍ୟା ବାଛନ୍ତୁ
+</option>
+
+<option>
+    💰 ଦରମା ମିଳୁନାହିଁ
+</option>
+
+<option>
+    🏥 ଚିକିତ୍ସା ସହାୟତା
+</option>
+
+<option>
+    🆘 ଦୁର୍ଘଟଣା / ଜରୁରୀକାଳୀନ
+</option>
+
+<option>
+    🏠 ଘରକୁ ଫେରିବା ସହାୟତା
+</option>
+
+<option>
+    📄 ସରକାରୀ ଯୋଜନା / ସୁବିଧା
+</option>
+
+<option>
+    📑 ଶ୍ରମିକ ପଞ୍ଜୀକରଣ
+</option>
+
+<option>
+    ⚖️ ଚାକିରି / ନିଯୁକ୍ତି ସମସ୍ୟା
+</option>
+
+<option>
+    🏠 ରହିବା ସମସ୍ୟା
+</option>
+
+<option>
+    ❓ ଅନ୍ୟ ସମସ୍ୟା
+</option>
+
+</select>
+
+</div>
+
+
+<!-- DESCRIPTION -->
+
+<div class="form-group">
+
+<label>
+
+    📝 <span id="descriptionLabel">
+    ସମସ୍ୟାର ବିବରଣୀ
+    </span>
+
+    <span class="required">*</span>
+
+</label>
+
+<textarea
+    id="description"
+    required
+    maxlength="1000"
+    placeholder="ଆପଣଙ୍କ ସମସ୍ୟାକୁ ସ୍ପଷ୍ଟ ଭାବରେ ଲେଖନ୍ତୁ..."></textarea>
+
+</div>
+
+
+<!-- EMERGENCY -->
+
+<div class="form-group">
+
+<label>
+
+    📞 <span id="emergencyLabel">
+    Emergency Contact
+    </span>
+
+    <span class="required">*</span>
+
+</label>
+
+<input
+    type="tel"
+    id="emergency"
+    required
+    maxlength="10"
+    inputmode="numeric"
+    pattern="[0-9]{10}"
+    placeholder="ଜରୁରୀ ସମୟରେ ଯୋଗାଯୋଗ ନମ୍ବର">
+
+</div>
+
+
+<!-- CONSENT -->
+
+<div class="consent-box">
+
+<input
+    type="checkbox"
+    id="consent"
+    required>
+
+<label for="consent">
+
+    ମୁଁ ଦେଇଥିବା ତଥ୍ୟ ସଠିକ୍ ବୋଲି
+    ସ୍ୱୀକାର କରୁଛି ଏବଂ ସହାୟତା ପାଇଁ
+    ଏହି ତଥ୍ୟ ବ୍ୟବହାର କରିବାକୁ
+    ସମ୍ମତି ଦେଉଛି।
+
+</label>
+
+</div>
+
+
+<!-- SUBMIT -->
+
+<button
+    type="submit"
+    class="submit-button"
+    id="submitButton">
+
+    🆘 ସହାୟତା ଅନୁରୋଧ ପଠାନ୍ତୁ
+
+</button>
+
+
+<!-- NOTE -->
+
+<div class="form-note">
+
+<strong>⚠️ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ:</strong>
+
+<br><br>
+
+ଏହି form ଆପଣଙ୍କ ସମସ୍ୟାର
+ସୂଚନା ଆମ ସଂଘକୁ ପଠାଇବା ପାଇଁ।
+ଏହା ସରକାରୀ complaint portal ନୁହେଁ।
+ଆବଶ୍ୟକ ହେଲେ ସମ୍ପୃକ୍ତ ସରକାରୀ
+ବିଭାଗ କିମ୍ବା ସେବା ପର୍ଯ୍ୟନ୍ତ
+ପହଞ୍ଚିବାରେ ଆମେ ମାର୍ଗଦର୍ଶନ
+ଦେଇପାରିବା।
+
+</div>
+
+
+</form>
+
+</div>
+
+
+<!-- ==================================================
+     SUCCESS BOX
+================================================== -->
+
+<div id="successBox">
+
+<div class="success-icon">
+
+<i class="fa-solid fa-check"></i>
+
+</div>
+
+
+<h2 id="successTitle">
+
+    ✅ ଅନୁରୋଧ ସଫଳ ହେଲା
+
+</h2>
+
+
+<p id="successText">
+
+    ଆପଣଙ୍କ ସହାୟତା ଅନୁରୋଧ
+    ସଫଳତାର ସହିତ ପଠାଯାଇଛି।
+
+</p>
+
+
+<div class="request-id">
+
+    Request ID
+
+    <br>
+
+    <span id="requestId"></span>
+
+</div>
+
+
+<p id="saveText">
+
+    ଏହି Request IDଟି ସୁରକ୍ଷିତ
+    ଭାବରେ ରଖନ୍ତୁ।
+
+</p>
+
+
+<a
+    href="worker-benefits.html"
+    class="secondary-button">
+
+    🔎 ଶ୍ରମିକ ସୁବିଧା ଦେଖନ୍ତୁ
+
+</a>
+
+
+<a
+    href="index.html"
+    class="secondary-button">
+
+    🏠 ମୁଖ୍ୟ ପେଜ୍
+
+</a>
+
+</div>
+
+
+</main>
+
+
+<!-- ==================================================
+     FIREBASE + FORM
+================================================== -->
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+
+    collection,
+    addDoc,
+    serverTimestamp
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* ==================================================
+   REQUEST ID
+================================================== */
+
+function generateRequestId(){
+
+    const year =
+        new Date().getFullYear();
+
+    const random =
+        Math.floor(
+            100000 +
+            Math.random() * 900000
+        );
+
+    return "ORSW-" +
+           year +
+           "-" +
+           random;
+
+}
+
+
+/* ==================================================
+   FORM SUBMIT
+================================================== */
+
+document
+.getElementById("workerHelpForm")
+.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+
+        const button =
+            document.getElementById(
+                "submitButton"
+            );
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "⏳ ଅନୁରୋଧ ପଠାଯାଉଛି...";
+
+
+        try{
+
+
+            /* ==========================
+               FORM DATA
+            ========================== */
+
+            const requestId =
+                generateRequestId();
+
+
+            const workerData = {
+
+                requestId:
+                    requestId,
+
+                name:
+                    document
+                    .getElementById("name")
+                    .value
+                    .trim(),
+
+                mobile:
+                    document
+                    .getElementById("mobile")
+                    .value
+                    .trim(),
+
+                district:
+                    document
+                    .getElementById("district")
+                    .value,
+
+                state:
+                    document
+                    .getElementById("state")
+                    .value,
+
+                city:
+                    document
+                    .getElementById("city")
+                    .value
+                    .trim(),
+
+                work:
+                    document
+                    .getElementById("work")
+                    .value,
+
+                problem:
+                    document
+                    .getElementById("problem")
+                    .value,
+
+                description:
+                    document
+                    .getElementById("description")
+                    .value
+                    .trim(),
+
+                emergency:
+                    document
+                    .getElementById("emergency")
+                    .value
+                    .trim(),
+
+                status:
+                    "ନୂଆ",
+
+                createdAt:
+                    serverTimestamp()
+
+            };
+
+
+            /* ==========================
+               FIRESTORE SAVE
+            ========================== */
+
+            const docRef =
+                await addDoc(
+
+                    collection(
+                        db,
+                        "workerHelpRequests"
+                    ),
+
+                    workerData
+
+                );
+
+
+            console.log(
+                "Worker Help Saved:",
+                docRef.id
+            );
+
+
+            /* ==========================
+               SHOW SUCCESS
+            ========================== */
+
+            document
+            .getElementById(
+                "requestId"
+            )
+            .textContent =
+                requestId;
+
+
+            document
+            .getElementById(
+                "formBox"
+            )
+            .style.display =
+                "none";
+
+
+            document
+            .getElementById(
+                "successBox"
+            )
+            .style.display =
+                "block";
+
+
+            window.scrollTo({
+
+                top:0,
+
+                behavior:"smooth"
+
+            });
+
+
+        }
+
+
+        catch(error){
+
+
+            console.error(
+                "Firebase Error:",
+                error
+            );
+
+
+            alert(
+
+                "❌ ଅନୁରୋଧ ପଠାଇବାରେ " +
+                "ସମସ୍ୟା ହେଲା।\n\n" +
+                error.message
+
+            );
+
+
+            button.disabled =
+                false;
+
+
+            button.textContent =
+                "🆘 ସହାୟତା ଅନୁରୋଧ ପଠାନ୍ତୁ";
+
+        }
+
+    }
+
+);
+
+</script>
+
+
+<!-- ==================================================
+     LANGUAGE SYSTEM
+================================================== -->
+
+<script>
+
+
+const languageData = {
+
+
+or:{
+
+    languageName:
+        "ଓଡ଼ିଆ",
+
+    headerTitle:
+        "ପ୍ରବାସୀ ଓଡ଼ିଆ ଶ୍ରମିକ ସହାୟତା",
+
+    headerSub:
+        "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ • ସୁରତ",
+
+    heroTitle:
+        "🆘 ସହାୟତା ମାଗନ୍ତୁ",
+
+    heroText:
+        "ଆପଣ ବାହାର ରାଜ୍ୟରେ କାମ କରୁଥିବା ଓଡ଼ିଆ ଶ୍ରମିକ ହେଲେ ଏବଂ କୌଣସି ସମସ୍ୟାରେ ଅଛନ୍ତି, ଆପଣଙ୍କ ସମସ୍ୟାର ତଥ୍ୟ ଆମକୁ ପଠାନ୍ତୁ।"
+
+},
+
+
+hi:{
+
+    languageName:
+        "हिन्दी",
+
+    headerTitle:
+        "प्रवासी ओड़िया श्रमिक सहायता",
+
+    headerSub:
+        "ओड़िया रत्न कलाकार संघ • सूरत",
+
+    heroTitle:
+        "🆘 सहायता मांगें",
+
+    heroText:
+        "यदि आप दूसरे राज्य में काम करने वाले ओड़िया श्रमिक हैं और किसी समस्या में हैं, तो अपनी समस्या की जानकारी हमें भेजें।"
+
+},
+
+
+en:{
+
+    languageName:
+        "English",
+
+    headerTitle:
+        "Migrant Odia Worker Assistance",
+
+    headerSub:
+        "Odia Ratna Kalakar Sangha • Surat",
+
+    heroTitle:
+        "🆘 Request Assistance",
+
+    heroText:
+        "If you are an Odia worker working in another state and facing a problem, send us the details of your issue."
+
+}
+
+};
+
+
+/* ==================================================
+   CHANGE LANGUAGE
+================================================== */
+
+function changeLanguage(language){
+
+    const data =
+        languageData[language];
+
+    if(!data){
+
+        return;
+
+    }
+
+
+    document.documentElement.lang =
+        language;
+
+
+    document.getElementById(
+        "currentLanguage"
+    ).textContent =
+        data.languageName;
+
+
+    document.getElementById(
+        "headerTitle"
+    ).textContent =
+        data.headerTitle;
+
+
+    document.getElementById(
+        "headerSub"
+    ).textContent =
+        data.headerSub;
+
+
+    document.getElementById(
+        "heroTitle"
+    ).textContent =
+        data.heroTitle;
+
+
+    document.getElementById(
+        "heroText"
+    ).textContent =
+        data.heroText;
+
+
+    localStorage.setItem(
+        "selectedLanguage",
+        language
+    );
+
+
+    document.getElementById(
+        "languageMenu"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* ==================================================
+   LANGUAGE MENU
+================================================== */
+
+function toggleLanguageMenu(){
+
+    document.getElementById(
+        "languageMenu"
+    ).classList.toggle(
+        "show"
+    );
+
+}
+
+
+/* ==================================================
+   CLOSE MENU
+================================================== */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const selector =
+            document.querySelector(
+                ".language-selector"
+            );
+
+
+        if(
+            !selector.contains(
+                event.target
+            )
+        ){
+
+            document.getElementById(
+                "languageMenu"
+            ).classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   LOAD SAVED LANGUAGE
+================================================== */
+
+const savedLanguage =
+    localStorage.getItem(
+        "selectedLanguage"
+    ) || "or";
+
+
+changeLanguage(
+    savedLanguage
+);
+
+</script>
+
+
+</body>
+
+          </html>
