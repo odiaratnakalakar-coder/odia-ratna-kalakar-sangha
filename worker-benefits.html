@@ -10,21 +10,24 @@
 
 <title>ପ୍ରବାସୀ ଓଡ଼ିଆ ଶ୍ରମିକ ସହାୟତା</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="style.css">
 
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-<link rel="icon" href="logo.png">
+<link rel="icon"
+      href="logo.png">
 
-<meta name="theme-color" content="#8B0000">
+<meta name="theme-color"
+      content="#8B0000">
 
 
 <style>
 
-/* ==================================================
+/* =====================================================
    BASIC
-================================================== */
+===================================================== */
 
 *{
     box-sizing:border-box;
@@ -39,15 +42,15 @@ body{
 
 button,
 input,
-textarea{
-    font-family:inherit;
+textarea,
+a{
     -webkit-tap-highlight-color:transparent;
 }
 
 
-/* ==================================================
+/* =====================================================
    LANGUAGE
-================================================== */
+===================================================== */
 
 .language-selector{
     position:absolute;
@@ -91,7 +94,6 @@ textarea{
     color:#333;
     text-align:left;
     font-size:16px;
-    cursor:pointer;
 }
 
 .language-menu button:hover{
@@ -99,11 +101,12 @@ textarea{
 }
 
 
-/* ==================================================
+/* =====================================================
    HEADER
-================================================== */
+===================================================== */
 
 .worker-header{
+
     position:relative;
 
     background:
@@ -116,10 +119,15 @@ textarea{
     color:#fff;
 
     padding:
-    25px 75px 25px 20px;
+    25px
+    75px
+    25px
+    20px;
 
     display:flex;
+
     align-items:center;
+
     gap:15px;
 
     box-shadow:
@@ -128,6 +136,7 @@ textarea{
 }
 
 .worker-logo{
+
     width:72px;
     height:72px;
 
@@ -143,21 +152,26 @@ textarea{
 }
 
 .worker-header h1{
+
     margin:0;
+
     font-size:24px;
 }
 
 .worker-header p{
+
     margin:7px 0 0;
+
     font-size:14px;
 }
 
 
-/* ==================================================
+/* =====================================================
    HERO
-================================================== */
+===================================================== */
 
 .hero{
+
     max-width:680px;
 
     margin:20px auto;
@@ -183,12 +197,14 @@ textarea{
 }
 
 .hero-icon{
+
     width:72px;
     height:72px;
 
     margin:auto;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -202,6 +218,7 @@ textarea{
 }
 
 .hero h2{
+
     color:#8B0000;
 
     font-size:27px;
@@ -210,6 +227,7 @@ textarea{
 }
 
 .hero-line{
+
     width:90px;
     height:4px;
 
@@ -221,6 +239,7 @@ textarea{
 }
 
 .hero p{
+
     color:#444;
 
     line-height:1.8;
@@ -231,11 +250,12 @@ textarea{
 }
 
 
-/* ==================================================
-   MAIN
-================================================== */
+/* =====================================================
+   CONTAINER
+===================================================== */
 
 .worker-container{
+
     max-width:650px;
 
     margin:
@@ -246,11 +266,11 @@ textarea{
 }
 
 
-/* ==================================================
+/* =====================================================
    CARD
-================================================== */
+===================================================== */
 
-.application-card{
+.worker-card{
 
     background:#fff;
 
@@ -263,6 +283,8 @@ textarea{
     box-shadow:
     0 7px 22px
     rgba(0,0,0,.15);
+
+    margin-bottom:20px;
 }
 
 .card-title{
@@ -282,19 +304,17 @@ textarea{
 
     text-align:center;
 
-    color:#666;
+    color:#777;
 
-    font-size:14px;
-
-    line-height:1.7;
+    line-height:1.6;
 
     margin-bottom:20px;
 }
 
 
-/* ==================================================
+/* =====================================================
    INPUT
-================================================== */
+===================================================== */
 
 .input-label{
 
@@ -305,7 +325,7 @@ textarea{
     font-weight:bold;
 
     margin:
-    16px 0 7px;
+    15px 0 7px;
 }
 
 .worker-input{
@@ -336,72 +356,10 @@ textarea{
     rgba(139,0,0,.10);
 }
 
-.worker-textarea{
 
-    min-height:100px;
-
-    resize:vertical;
-}
-
-
-/* ==================================================
-   SECURITY
-================================================== */
-
-.security-note{
-
-    margin-top:18px;
-
-    padding:14px;
-
-    background:#fff8e8;
-
-    border:1px solid #d4af37;
-
-    border-radius:12px;
-
-    color:#555;
-
-    font-size:13px;
-
-    line-height:1.7;
-}
-
-.security-note strong{
-
-    color:#8B0000;
-}
-
-
-/* ==================================================
-   ERROR
-================================================== */
-
-.error-box{
-
-    display:none;
-
-    margin-top:12px;
-
-    padding:11px;
-
-    background:#ffe8e8;
-
-    border:1px solid #d00000;
-
-    border-radius:10px;
-
-    color:#b00000;
-
-    text-align:center;
-
-    font-size:14px;
-}
-
-
-/* ==================================================
-   BUTTON
-================================================== */
+/* =====================================================
+   START BUTTON
+===================================================== */
 
 .start-btn{
 
@@ -409,7 +367,7 @@ textarea{
 
     margin-top:22px;
 
-    padding:15px;
+    padding:14px;
 
     border:none;
 
@@ -435,164 +393,40 @@ textarea{
     rgba(139,0,0,.3);
 }
 
-.start-btn:active{
 
-    transform:scale(.98);
-}
+/* =====================================================
+   ERROR
+===================================================== */
 
-
-/* ==================================================
-   SERVICE OPTIONS
-================================================== */
-
-.service-option{
-
-    width:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
-
-    padding:16px;
-
-    margin:12px 0;
-
-    background:#fffaf0;
-
-    border:2px solid #ead9a5;
-
-    border-radius:15px;
-
-    color:#333;
-
-    text-align:left;
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.service-option:hover{
-
-    border-color:#8B0000;
-
-    background:#fff4dc;
-}
-
-.service-option.selected{
-
-    background:#8B0000;
-
-    border-color:#8B0000;
-
-    color:#fff;
-}
-
-.service-option.selected strong{
-
-    color:#fff;
-}
-
-.service-icon{
-
-    width:50px;
-
-    height:50px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    flex-shrink:0;
-
-    background:#8B0000;
-
-    color:#ffd700;
-
-    border-radius:50%;
-
-    font-size:24px;
-}
-
-.service-option.selected .service-icon{
-
-    background:#fff;
-
-    color:#8B0000;
-}
-
-.service-option strong{
-
-    display:block;
-
-    color:#8B0000;
-
-    font-size:17px;
-
-    line-height:1.5;
-}
-
-.service-option small{
-
-    display:block;
-
-    margin-top:4px;
-
-    color:#777;
-
-    font-size:13px;
-}
-
-.service-option.selected small{
-
-    color:#fff;
-}
-
-
-/* ==================================================
-   SELECTED SERVICE
-================================================== */
-
-.selected-service{
+.error-box{
 
     display:none;
 
-    margin-top:18px;
+    margin-top:12px;
 
-    padding:15px;
+    padding:12px;
 
-    background:#fff8e8;
+    background:#ffecec;
 
-    border:2px solid #d4af37;
+    border:1px solid #d00;
 
-    border-radius:14px;
+    border-radius:10px;
 
-    line-height:1.7;
-
-    color:#555;
-}
-
-.selected-service strong{
-
-    color:#8B0000;
-}
-
-
-/* ==================================================
-   APPLICATION ID
-================================================== */
-
-.application-id-box{
-
-    margin-top:15px;
-
-    padding:22px;
+    color:#b00000;
 
     text-align:center;
+
+    font-size:14px;
+}
+
+
+/* =====================================================
+   APPLICATION ID
+===================================================== */
+
+.application-box{
+
+    display:none;
 
     background:
     linear-gradient(
@@ -601,77 +435,408 @@ textarea{
         #fff
     );
 
-    border:3px solid #d4af37;
+    border:2px solid #d4af37;
 
     border-radius:18px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    text-align:center;
 }
 
-.application-id-box div{
+.application-label{
+
+    color:#777;
+
+    font-size:14px;
+
+    margin-bottom:7px;
+}
+
+.application-id{
 
     color:#8B0000;
 
-    font-weight:bold;
+    font-size:26px;
 
-    font-size:16px;
+    font-weight:900;
+
+    letter-spacing:1px;
 }
 
-.application-id-box strong{
+.application-note{
 
-    display:block;
+    margin-top:10px;
 
-    margin:12px 0;
+    color:#555;
 
-    color:#8B0000;
-
-    font-size:28px;
-
-    letter-spacing:2px;
-
-    word-break:break-all;
-}
-
-.application-id-box small{
-
-    color:#666;
+    line-height:1.6;
 
     font-size:13px;
 }
 
 
-/* ==================================================
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress-area{
+
+    margin-bottom:18px;
+}
+
+.progress-text{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#666;
+
+    font-size:14px;
+
+    margin-bottom:7px;
+}
+
+.progress-bar{
+
+    width:100%;
+
+    height:9px;
+
+    background:#eee;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-fill{
+
+    height:100%;
+
+    width:16.66%;
+
+    background:
+    linear-gradient(
+        90deg,
+        #8B0000,
+        #d4af37
+    );
+
+    transition:.3s;
+}
+
+
+/* =====================================================
+   QUESTION
+===================================================== */
+
+.question-title{
+
+    color:#8B0000;
+
+    font-size:21px;
+
+    font-weight:800;
+
+    line-height:1.5;
+
+    margin-bottom:20px;
+}
+
+.question-number{
+
+    color:#8B0000;
+
+    font-weight:bold;
+
+    margin-bottom:8px;
+}
+
+
+/* =====================================================
+   OPTIONS
+===================================================== */
+
+.option{
+
+    display:block;
+
+    width:100%;
+
+    padding:15px;
+
+    margin:10px 0;
+
+    background:#fffaf0;
+
+    border:2px solid #ead9a5;
+
+    border-radius:14px;
+
+    color:#333;
+
+    font-size:17px;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.option.selected{
+
+    background:#8B0000;
+
+    color:#fff;
+
+    border-color:#8B0000;
+
+    box-shadow:
+    0 4px 12px
+    rgba(139,0,0,.25);
+}
+
+
+/* =====================================================
+   NAV BUTTON
+===================================================== */
+
+.buttons{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.nav-btn{
+
+    flex:1;
+
+    border:none;
+
+    padding:13px;
+
+    border-radius:30px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.back-btn{
+
+    background:#eee;
+
+    color:#555;
+}
+
+.next-btn{
+
+    background:
+    linear-gradient(
+        135deg,
+        #8B0000,
+        #c40000
+    );
+
+    color:#fff;
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+#resultBox{
+
+    display:none;
+}
+
+.result-title{
+
+    text-align:center;
+
+    color:#8B0000;
+
+    font-size:25px;
+
+    font-weight:900;
+
+    margin-bottom:8px;
+}
+
+.result-subtitle{
+
+    text-align:center;
+
+    color:#555;
+
+    line-height:1.7;
+
+    margin-bottom:20px;
+}
+
+
+/* =====================================================
    SUMMARY
-================================================== */
+===================================================== */
 
-.worker-summary{
-
-    margin-top:18px;
-
-    padding:16px;
+.summary-box{
 
     background:#fff8e8;
 
+    border:1px solid #d4af37;
+
+    border-radius:14px;
+
+    padding:15px;
+
+    line-height:1.8;
+
+    margin-bottom:20px;
+}
+
+.summary-title{
+
+    color:#8B0000;
+
+    font-weight:bold;
+
+    margin-bottom:8px;
+}
+
+
+/* =====================================================
+   BENEFIT
+===================================================== */
+
+.benefit-card{
+
+    background:#fffaf0;
+
     border:2px solid #d4af37;
 
-    border-radius:15px;
+    border-radius:18px;
 
-    line-height:1.9;
+    padding:18px;
+
+    margin:15px 0;
+
+    box-shadow:
+    0 4px 12px
+    rgba(0,0,0,.1);
+}
+
+.benefit-icon{
+
+    width:48px;
+    height:48px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#8B0000;
+
+    color:#ffd700;
+
+    border-radius:50%;
+
+    font-size:20px;
+
+    margin-bottom:10px;
+}
+
+.benefit-card h3{
+
+    color:#8B0000;
+
+    margin:5px 0 8px;
+
+    line-height:1.5;
+}
+
+.benefit-card p{
+
+    color:#444;
+
+    line-height:1.7;
 
     font-size:15px;
 }
 
-.worker-summary strong{
+
+/* =====================================================
+   DETAIL
+===================================================== */
+
+.detail-btn{
+
+    display:inline-block;
+
+    margin:
+    8px 5px 0 0;
+
+    padding:
+    10px 16px;
+
+    border:none;
+
+    border-radius:25px;
+
+    background:#8B0000;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.detail-box{
+
+    display:none;
+
+    margin-top:12px;
+
+    padding:15px;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    border-left:5px solid #d4af37;
+
+    color:#444;
+
+    line-height:1.8;
+}
+
+.detail-box strong{
 
     color:#8B0000;
 }
 
 
-/* ==================================================
+/* =====================================================
    NOTICE
-================================================== */
+===================================================== */
 
 .notice{
 
-    margin-top:18px;
+    margin-top:20px;
 
     padding:15px;
 
@@ -688,15 +853,10 @@ textarea{
     color:#555;
 }
 
-.notice strong{
 
-    color:#8B0000;
-}
-
-
-/* ==================================================
+/* =====================================================
    HOME
-================================================== */
+===================================================== */
 
 .home-btn{
 
@@ -722,9 +882,9 @@ textarea{
 }
 
 
-/* ==================================================
+/* =====================================================
    FOOTER
-================================================== */
+===================================================== */
 
 .footer{
 
@@ -739,16 +899,19 @@ textarea{
 }
 
 
-/* ==================================================
+/* =====================================================
    MOBILE
-================================================== */
+===================================================== */
 
 @media(max-width:480px){
 
     .worker-header{
 
         padding:
-        20px 65px 20px 15px;
+        20px
+        65px
+        20px
+        15px;
     }
 
     .worker-logo{
@@ -781,50 +944,23 @@ textarea{
         font-size:24px;
     }
 
-    .worker-container{
-
-        padding:
-        0 10px;
-    }
-
-    .application-card{
+    .worker-card{
 
         padding:
         20px 15px;
     }
 
-    .service-option strong{
+    .option{
 
-        font-size:15px;
+        font-size:16px;
+
+        padding:14px;
     }
 
-}
+    .application-id{
 
-
-/* ==================================================
-   SMALL SCREEN
-================================================== */
-
-@media(max-width:350px){
-
-    .worker-header h1{
-
-        font-size:18px;
+        font-size:22px;
     }
-
-    .worker-header p{
-
-        font-size:12px;
-    }
-
-    .language-button{
-
-        padding:
-        7px 9px;
-
-        font-size:13px;
-    }
-
 }
 
 </style>
@@ -835,9 +971,9 @@ textarea{
 <body>
 
 
-<!-- ==================================================
+<!-- =====================================================
      LANGUAGE
-================================================== -->
+===================================================== -->
 
 <div class="language-selector">
 
@@ -858,25 +994,16 @@ textarea{
     class="language-menu"
     id="languageMenu">
 
-    <button
-        onclick="changeLanguage('or')">
-
+    <button onclick="changeLanguage('or')">
         🇮🇳 ଓଡ଼ିଆ
-
     </button>
 
-    <button
-        onclick="changeLanguage('hi')">
-
+    <button onclick="changeLanguage('hi')">
         🇮🇳 हिन्दी
-
     </button>
 
-    <button
-        onclick="changeLanguage('en')">
-
+    <button onclick="changeLanguage('en')">
         🇬🇧 English
-
     </button>
 
 </div>
@@ -884,9 +1011,9 @@ textarea{
 </div>
 
 
-<!-- ==================================================
+<!-- =====================================================
      HEADER
-================================================== -->
+===================================================== -->
 
 <header class="worker-header">
 
@@ -899,16 +1026,11 @@ textarea{
 <div>
 
 <h1 id="headerTitle">
-
 ପ୍ରବାସୀ ଓଡ଼ିଆ ଶ୍ରମିକ ସହାୟତା
-
 </h1>
 
-
 <p id="headerSub">
-
 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ • ସୁରତ
-
 </p>
 
 </div>
@@ -916,9 +1038,9 @@ textarea{
 </header>
 
 
-<!-- ==================================================
+<!-- =====================================================
      HERO
-================================================== -->
+===================================================== -->
 
 <section class="hero">
 
@@ -931,7 +1053,7 @@ textarea{
 
 <h2 id="heroTitle">
 
-📝 ସରକାରୀ ସେବା ପାଇଁ ସହାୟତା
+🔎 ମୋତେ କେଉଁ ସୁବିଧା ମିଳିବ?
 
 </h2>
 
@@ -941,39 +1063,36 @@ textarea{
 
 <p id="heroText">
 
-ଆପଣ କେଉଁ ସରକାରୀ ଶ୍ରମିକ ସେବା
-ପାଇଁ Apply କରିବାକୁ ଚାହୁଁଛନ୍ତି
-ତାହା ଚିହ୍ନଟ କରିବା ପାଇଁ
-ପ୍ରଥମେ ଆପଣଙ୍କ ମୌଳିକ ତଥ୍ୟ
-ଦିଅନ୍ତୁ।
+ପ୍ରଥମେ ଆପଣଙ୍କ ନାମ, ମୋବାଇଲ୍,
+ବର୍ତ୍ତମାନ କମ୍ପାନୀ ଓ କାମ ସ୍ଥାନର
+ଠିକଣା ଦିଅନ୍ତୁ। ତାପରେ କିଛି
+ପ୍ରଶ୍ନର ଉତ୍ତର ଦିଅନ୍ତୁ।
 
 </p>
 
 </section>
 
 
-<!-- ==================================================
+<!-- =====================================================
      MAIN
-================================================== -->
+===================================================== -->
 
 <main class="worker-container">
 
 
-<!-- ==================================================
-     STEP 1
+<!-- =====================================================
      WORKER DETAILS
-================================================== -->
+===================================================== -->
 
-<div
-    id="workerDetailsArea"
-    class="application-card">
+<div id="workerDetailsArea">
 
+<div class="worker-card">
 
 <div
     class="card-title"
     id="workerDetailsTitle">
 
-👤 ଶ୍ରମିକଙ୍କ ତଥ୍ୟ
+👤 ଆପଣଙ୍କ ତଥ୍ୟ ଦିଅନ୍ତୁ
 
 </div>
 
@@ -982,8 +1101,7 @@ textarea{
     class="card-subtitle"
     id="workerDetailsSubtitle">
 
-ଆପଣଙ୍କ ଠିକ୍ ତଥ୍ୟ ଦିଅନ୍ତୁ।
-ଏହା application record ପାଇଁ
+ଆପଣ ଦେଇଥିବା ତଥ୍ୟ application record ପାଇଁ
 ବ୍ୟବହାର ହେବ।
 
 </div>
@@ -1044,7 +1162,7 @@ textarea{
     type="text"
     id="workerCompany"
     class="worker-input"
-    placeholder="ବର୍ତ୍ତମାନ କମ୍ପାନୀ / କାରଖାନାର ନାମ">
+    placeholder="କମ୍ପାନୀ / କାରଖାନା ନାମ">
 
 
 <!-- ADDRESS -->
@@ -1060,447 +1178,272 @@ textarea{
 
 <textarea
     id="workerAddress"
-    class="worker-input worker-textarea"
-    placeholder="କମ୍ପାନୀ / କାମ ସ୍ଥାନର ପୂର୍ଣ୍ଣ ଠିକଣା"></textarea>
-
-
-<!-- SECURITY -->
-
-<div
-    class="security-note"
-    id="securityNote">
-
-<strong>
-🔐 ଗୋପନୀୟତା:
-</strong>
-
-<br>
-
-ଏହି ପେଜ୍‌ରେ
-<strong>Aadhaar Number, OTP କିମ୍ବା Password</strong>
-ମାଗାଯାଉନାହିଁ।
-
-ସରକାରୀ application
-ସମ୍ପୃକ୍ତ official portalରେ
-ହିଁ କରାଯିବ।
-
-</div>
-
-
-<!-- ERROR -->
-
-<div
-    id="workerError"
-    class="error-box">
-
-ଦୟାକରି ସମସ୍ତ ଆବଶ୍ୟକ ତଥ୍ୟ ଦିଅନ୍ତୁ।
-
-</div>
-
-
-<!-- START -->
-
-<button
-    type="button"
-    class="start-btn"
-    id="startWorkerButton"
-    onclick="startWorkerApplication()">
-
-ଆଗକୁ → ସେବା ଚୟନ କରନ୍ତୁ
-
-</button>
-
-</div>
-
-
-<!-- ==================================================
-     STEP 2
-     PREVIEW
-================================================== -->
-
-<div
-    id="nextArea"
-    style="display:none;">
-
-<div class="application-card">
-
-<div class="card-title">
-
-📋 ଆପଣଙ୍କ ତଥ୍ୟ
-
-</div>
-
-<div class="card-subtitle">
-
-ଆପଣଙ୍କ ତଥ୍ୟ ଠିକ୍ ଅଛି କି
-ଯାଞ୍ଚ କରନ୍ତୁ।
-
-</div>
-
-
-<div class="worker-summary">
-
-<strong>
-👤 ନାମ:
-</strong>
-
-<span id="previewName">
--
-</span>
-
-<br>
-
-<strong>
-📱 Mobile:
-</strong>
-
-<span id="previewMobile">
--
-</span>
-
-<br>
-
-<strong>
-🏢 Company:
-</strong>
-
-<span id="previewCompany">
--
-</span>
-
-<br>
-
-<strong>
-📍 Address:
-</strong>
-
-<span id="previewAddress">
--
-</span>
-
-</div>
-
-
-<button
-    type="button"
-    class="start-btn"
-    onclick="goToServiceSelection()">
-
-➡️ ସରକାରୀ ସେବା ଚୟନ
-
-</button>
-
-
-<button
-    type="button"
-    class="home-btn"
-    onclick="backToWorkerDetails()">
-
-← ପୁଣି ତଥ୍ୟ ବଦଳାନ୍ତୁ
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- ==================================================
-     STEP 3
-     SERVICE SELECTION
-================================================== -->
-
-<div
-    id="serviceArea"
-    style="display:none;">
-
-<div class="application-card">
-
-<div class="card-title">
-
-🏛️ ସରକାରୀ ସେବା ଚୟନ କରନ୍ତୁ
-
-</div>
-
-
-<div class="card-subtitle">
-
-ଆପଣ କେଉଁ ସେବା ପାଇଁ
-ସହାୟତା ଚାହୁଁଛନ୍ତି
-ଚୟନ କରନ୍ତୁ।
-
-</div>
-
-
-<!-- MIGRANT -->
-
-<button
-    type="button"
-    class="service-option"
-    data-service="migrant"
-    onclick="selectService('migrant')">
-
-<span class="service-icon">
-🧑‍🏭
-</span>
-
-<span>
-
-<strong>
-ପ୍ରବାସୀ ଶ୍ରମିକ ପଞ୍ଜୀକରଣ
-</strong>
-
-<small>
-Migrant Worker Registration
-</small>
-
-</span>
-
-</button>
-
-
-<!-- CONSTRUCTION -->
-
-<button
-    type="button"
-    class="service-option"
-    data-service="construction"
-    onclick="selectService('construction')">
-
-<span class="service-icon">
-🏗️
-</span>
-
-<span>
-
-<strong>
-ନିର୍ମାଣ ଶ୍ରମିକ ସେବା
-</strong>
-
-<small>
-Construction Worker Services
-</small>
-
-</span>
-
-</button>
-
-
-<!-- LABOUR -->
-
-<button
-    type="button"
-    class="service-option"
-    data-service="labour"
-    onclick="selectService('labour')">
-
-<span class="service-icon">
-👷
-</span>
-
-<span>
-
-<strong>
-ଶ୍ରମିକ ସରକାରୀ ସେବା
-</strong>
-
-<small>
-Labour Department Services
-</small>
-
-</span>
-
-</button>
-
-
-<!-- ESI -->
-
-<button
-    type="button"
-    class="service-option"
-    data-service="esi"
-    onclick="selectService('esi')">
-
-<span class="service-icon">
-🏥
-</span>
-
-<span>
-
-<strong>
-ESI ସେବା
-</strong>
-
-<small>
-ESI Services
-</small>
-
-</span>
-
-</button>
-
-
-<!-- SELECTED -->
-
-<div
-    id="selectedServiceBox"
-    class="selected-service">
-
-<strong>
-ଚୟନ କରାଯାଇଥିବା ସେବା:
-</strong>
-
-<br>
-
-<span id="selectedServiceName">
--
-</span>
-
-</div>
+    class="worker-input"
+    placeholder="କମ୍ପାନୀ / କାମ ସ୍ଥାନର ପୂର୍ଣ୍ଣ ଠିକଣା"
+    rows="3"></textarea>
 
 
 <div
-    id="serviceError"
-    class="error-box">
-
-ଦୟାକରି ଗୋଟିଏ ସେବା
-ଚୟନ କରନ୍ତୁ।
-
-</div>
-
-
-<button
-    type="button"
-    class="start-btn"
-    onclick="createApplicationID()">
-
-🆔 Application ID ତିଆରି କରନ୍ତୁ
-
-</button>
-
-
-<button
-    type="button"
-    class="home-btn"
-    onclick="backToPreview()">
-
-← ପଛକୁ
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- ==================================================
-     STEP 4
-     APPLICATION ID
-================================================== -->
-
-<div
-    id="applicationArea"
-    style="display:none;">
-
-<div class="application-card">
-
-<div class="card-title">
-
-🎉 Application ପ୍ରସ୍ତୁତ
-
-</div>
-
-
-<div class="card-subtitle">
-
-ଆପଣଙ୍କ application ପାଇଁ
-Application ID ତିଆରି ହୋଇଛି।
-
-</div>
-
-
-<div class="application-id-box">
-
-<div>
-🆔 Application ID
-</div>
-
-<strong id="applicationID">
--
-</strong>
-
-<small>
-ଏହି IDଟି ସୁରକ୍ଷିତ ଭାବରେ
-ରଖନ୍ତୁ।
-</small>
-
-</div>
-
-
-<div
-    id="finalSummary"
-    class="worker-summary">
+    class="error-box"
+    id="workerError">
 
 </div>
 
 
 <div class="notice">
 
-<strong>
-📌 ପରବର୍ତ୍ତୀ ପଦକ୍ଷେପ
-</strong>
-
-<br><br>
-
-Application ID ସହିତ
-ପରବର୍ତ୍ତୀ document submission
-ଓ official application ପ୍ରକ୍ରିୟା
-କରାଯିବ।
-
-<br><br>
-
-<strong>
-⚠️ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ:
+<strong id="privacyTitle">
+🔐 ଗୋପନୀୟତା:
 </strong>
 
 <br>
 
-ଏହି page କେବଳ ସହାୟତା ପାଇଁ।
-ଶେଷ approval ସମ୍ପୃକ୍ତ
-ସରକାରୀ ବିଭାଗ କରିବେ।
+<span id="privacyText">
+
+ଏହି ପେଜ୍‌ରେ Aadhaar Number,
+OTP କିମ୍ବା Password ନିଆଯାଏ ନାହିଁ।
+ସରକାରୀ application ଓ document
+submission ସମ୍ପୃକ୍ତ official portal
+ମାଧ୍ୟମରେ କରାଯିବ।
+
+</span>
 
 </div>
 
 
-<!-- PART 3 PLACEHOLDER -->
-
 <button
     type="button"
     class="start-btn"
-    onclick="continueToDocuments()">
+    onclick="startWorkerCheck()"
+    id="startWorkerButton">
 
-📄 Document Submit କରନ୍ତୁ →
+ଆଗକୁ → ପ୍ରଶ୍ନ ଆରମ୍ଭ କରନ୍ତୁ
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     APPLICATION ID
+===================================================== -->
+
+<div
+    class="application-box"
+    id="applicationBox">
+
+<div
+    class="application-label"
+    id="applicationLabel">
+
+ଆପଣଙ୍କ Application ID
+
+</div>
+
+
+<div
+    class="application-id"
+    id="applicationId">
+
+WRK-000000
+
+</div>
+
+
+<div
+    class="application-note"
+    id="applicationNote">
+
+ଏହି Application ID ଟି screenshot କରି
+ରଖନ୍ତୁ। ପରେ application status
+ଯାଞ୍ଚ କରିବାରେ ଏହା ଦରକାର ହେବ।
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     QUESTION AREA
+===================================================== -->
+
+<div
+    id="questionArea"
+    style="display:none;">
+
+
+<div class="worker-card">
+
+
+<div class="progress-area">
+
+<div class="progress-text">
+
+<span id="questionProgress">
+ପ୍ରଶ୍ନ 1 / 6
+</span>
+
+<span id="progressPercent">
+17%
+</span>
+
+</div>
+
+
+<div class="progress-bar">
+
+<div
+    class="progress-fill"
+    id="progressFill">
+</div>
+
+</div>
+
+</div>
+
+
+<div
+    class="question-number"
+    id="questionNumber">
+
+ପ୍ରଶ୍ନ 1
+
+</div>
+
+
+<div
+    class="question-title"
+    id="questionTitle">
+
+ଆପଣ କେଉଁ ରାଜ୍ୟରେ କାମ କରୁଛନ୍ତି?
+
+</div>
+
+
+<div id="options"></div>
+
+
+<div class="buttons">
+
+<button
+    class="nav-btn back-btn"
+    id="backButton"
+    onclick="previousQuestion()">
+
+← ପଛକୁ
 
 </button>
 
 
 <button
-    type="button"
-    class="home-btn"
-    onclick="restartApplication()">
+    class="nav-btn next-btn"
+    id="nextButton"
+    onclick="nextQuestion()">
 
-🔄 ନୂଆ Application
+ଆଗକୁ →
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     RESULT
+===================================================== -->
+
+<div
+    id="resultBox">
+
+
+<div class="worker-card">
+
+
+<div
+    class="result-title"
+    id="resultTitle">
+
+📋 ଆପଣଙ୍କ ପାଇଁ ସମ୍ଭାବ୍ୟ ସେବା
+
+</div>
+
+
+<p
+    class="result-subtitle"
+    id="resultSubtitle">
+
+ଆପଣ ଦେଇଥିବା ତଥ୍ୟ ଅନୁସାରେ
+ନିମ୍ନ ସେବାଗୁଡ଼ିକ ଯାଞ୍ଚ କରନ୍ତୁ।
+
+</p>
+
+
+<div id="workerSummary"></div>
+
+
+<div id="benefitResults"></div>
+
+
+<div class="notice">
+
+<strong id="noticeTitle">
+
+⚠️ ଜରୁରୀ ସୂଚନା:
+
+</strong>
+
+<br>
+
+<span id="noticeText">
+
+ଏହି ପେଜ୍ କେବଳ ସୂଚନା ଓ ସହାୟତା
+ପାଇଁ। ଏଠାରେ ଦିଆଯାଇଥିବା ଫଳାଫଳ
+ଯୋଗ୍ୟତାର ନିଶ୍ଚିତ ପ୍ରମାଣ ନୁହେଁ।
+ଶେଷ ଯୋଗ୍ୟତା ସମ୍ପୃକ୍ତ ସରକାରୀ
+ବିଭାଗ ନିର୍ଦ୍ଧାରଣ କରିବେ।
+
+</span>
+
+</div>
+
+
+<a
+    href="https://pareshram-labour.odisha.gov.in/"
+    target="_blank"
+    rel="noopener"
+    class="start-btn"
+    id="officialPortal"
+    style="display:block;text-align:center;text-decoration:none;">
+
+🏛️ PAReSHRAM Official Portal ↗
+
+</a>
+
+
+<button
+    class="start-btn"
+    onclick="restartQuiz()"
+    id="restartButton">
+
+🔄 ପୁଣି ଯାଞ୍ଚ କରନ୍ତୁ
 
 </button>
 
 
 <a
     href="index.html"
-    class="home-btn">
+    class="home-btn"
+    id="homeButton">
 
 🏠 ମୁଖ୍ୟ ପେଜ୍
 
 </a>
+
 
 </div>
 
@@ -1509,10 +1452,6 @@ Application ID ସହିତ
 </main>
 
 
-<!-- ==================================================
-     FOOTER
-================================================== -->
-
 <div class="footer">
 
 © 2026 Odia Ratna Kalakar Sangha
@@ -1520,11 +1459,26 @@ Application ID ସହିତ
 </div>
 
 
-<script>
+<script type="module">
 
-/* ==================================================
+/* =====================================================
+   FIREBASE
+===================================================== */
+
+import {
+    db
+} from "./firebase.js";
+
+import {
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =====================================================
    LANGUAGE DATA
-================================================== */
+===================================================== */
 
 const languageData = {
 
@@ -1539,16 +1493,16 @@ headerSub:
 "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ • ସୁରତ",
 
 heroTitle:
-"📝 ସରକାରୀ ସେବା ପାଇଁ ସହାୟତା",
+"🔎 ମୋତେ କେଉଁ ସୁବିଧା ମିଳିବ?",
 
 heroText:
-"ଆପଣ କେଉଁ ସରକାରୀ ଶ୍ରମିକ ସେବା ପାଇଁ Apply କରିବାକୁ ଚାହୁଁଛନ୍ତି ତାହା ଚିହ୍ନଟ କରିବା ପାଇଁ ପ୍ରଥମେ ଆପଣଙ୍କ ମୌଳିକ ତଥ୍ୟ ଦିଅନ୍ତୁ।",
+"ପ୍ରଥମେ ଆପଣଙ୍କ ନାମ, ମୋବାଇଲ୍, ବର୍ତ୍ତମାନ କମ୍ପାନୀ ଓ କାମ ସ୍ଥାନର ଠିକଣା ଦିଅନ୍ତୁ। ତାପରେ କିଛି ପ୍ରଶ୍ନର ଉତ୍ତର ଦିଅନ୍ତୁ।",
 
 workerDetailsTitle:
-"👤 ଶ୍ରମିକଙ୍କ ତଥ୍ୟ",
+"👤 ଆପଣଙ୍କ ତଥ୍ୟ ଦିଅନ୍ତୁ",
 
 workerDetailsSubtitle:
-"ଆପଣଙ୍କ ଠିକ୍ ତଥ୍ୟ ଦିଅନ୍ତୁ। ଏହା application record ପାଇଁ ବ୍ୟବହାର ହେବ।",
+"ଆପଣ ଦେଇଥିବା ତଥ୍ୟ application record ପାଇଁ ବ୍ୟବହାର ହେବ।",
 
 nameLabel:
 "👤 ପୂର୍ଣ୍ଣ ନାମ",
@@ -1566,7 +1520,7 @@ companyLabel:
 "🏢 ବର୍ତ୍ତମାନ କମ୍ପାନୀ / କାରଖାନା ନାମ",
 
 companyPlaceholder:
-"ବର୍ତ୍ତମାନ କମ୍ପାନୀ / କାରଖାନାର ନାମ",
+"କମ୍ପାନୀ / କାରଖାନା ନାମ",
 
 addressLabel:
 "📍 କମ୍ପାନୀ / କାମ ସ୍ଥାନର ଠିକଣା",
@@ -1574,10 +1528,59 @@ addressLabel:
 addressPlaceholder:
 "କମ୍ପାନୀ / କାମ ସ୍ଥାନର ପୂର୍ଣ୍ଣ ଠିକଣା",
 
+privacyTitle:
+"🔐 ଗୋପନୀୟତା:",
+
+privacyText:
+"ଏହି ପେଜ୍‌ରେ Aadhaar Number, OTP କିମ୍ବା Password ନିଆଯାଏ ନାହିଁ। ସରକାରୀ application ଓ document submission ସମ୍ପୃକ୍ତ official portal ମାଧ୍ୟମରେ କରାଯିବ।",
+
 start:
-"ଆଗକୁ → ସେବା ଚୟନ କରନ୍ତୁ"
+"ଆଗକୁ → ପ୍ରଶ୍ନ ଆରମ୍ଭ କରନ୍ତୁ",
+
+question:
+"ପ୍ରଶ୍ନ",
+
+back:
+"← ପଛକୁ",
+
+next:
+"ଆଗକୁ →",
+
+finish:
+"ଫଳାଫଳ ଦେଖନ୍ତୁ →",
+
+applicationLabel:
+"ଆପଣଙ୍କ Application ID",
+
+applicationNote:
+"ଏହି Application ID ଟି screenshot କରି ରଖନ୍ତୁ। ପରେ application status ଯାଞ୍ଚ କରିବାରେ ଏହା ଦରକାର ହେବ।",
+
+resultTitle:
+"📋 ଆପଣଙ୍କ ପାଇଁ ସମ୍ଭାବ୍ୟ ସେବା",
+
+resultSubtitle:
+"ଆପଣ ଦେଇଥିବା ତଥ୍ୟ ଅନୁସାରେ ନିମ୍ନ ସେବାଗୁଡ଼ିକ ଯାଞ୍ଚ କରନ୍ତୁ।",
+
+detailButton:
+"📖 କିପରି ପାଇବେ?",
+
+official:
+"🏛️ Official Link ↗",
+
+noticeTitle:
+"⚠️ ଜରୁରୀ ସୂଚନା:",
+
+noticeText:
+"ଏହି ପେଜ୍ କେବଳ ସୂଚନା ଓ ସହାୟତା ପାଇଁ। ଏଠାରେ ଦିଆଯାଇଥିବା ଫଳାଫଳ ଯୋଗ୍ୟତାର ନିଶ୍ଚିତ ପ୍ରମାଣ ନୁହେଁ। ଶେଷ ଯୋଗ୍ୟତା ସମ୍ପୃକ୍ତ ସରକାରୀ ବିଭାଗ ନିର୍ଦ୍ଧାରଣ କରିବେ।",
+
+restart:
+"🔄 ପୁଣି ଯାଞ୍ଚ କରନ୍ତୁ",
+
+home:
+"🏠 ମୁଖ୍ୟ ପେଜ୍"
 
 },
+
 
 hi:{
 
@@ -1590,16 +1593,16 @@ headerSub:
 "ओड़िया रत्न कलाकार संघ • सूरत",
 
 heroTitle:
-"📝 सरकारी सेवा सहायता",
+"🔎 मुझे कौन सी सुविधा मिल सकती है?",
 
 heroText:
-"आप किस सरकारी श्रमिक सेवा के लिए आवेदन करना चाहते हैं, यह जानने के लिए पहले अपनी मूल जानकारी दें।",
+"पहले अपना नाम, मोबाइल, वर्तमान कंपनी और कार्यस्थल का पता दें। फिर कुछ प्रश्नों के उत्तर दें।",
 
 workerDetailsTitle:
-"👤 श्रमिक की जानकारी",
+"👤 अपनी जानकारी दें",
 
 workerDetailsSubtitle:
-"अपनी सही जानकारी दें। इसका उपयोग application record के लिए किया जाएगा।",
+"आपके द्वारा दी गई जानकारी application record के लिए उपयोग होगी।",
 
 nameLabel:
 "👤 पूरा नाम",
@@ -1617,7 +1620,7 @@ companyLabel:
 "🏢 वर्तमान कंपनी / कारखाने का नाम",
 
 companyPlaceholder:
-"वर्तमान कंपनी / कारखाने का नाम",
+"कंपनी / कारखाने का नाम",
 
 addressLabel:
 "📍 कंपनी / कार्यस्थल का पता",
@@ -1625,10 +1628,59 @@ addressLabel:
 addressPlaceholder:
 "कंपनी / कार्यस्थल का पूरा पता",
 
+privacyTitle:
+"🔐 गोपनीयता:",
+
+privacyText:
+"इस पेज पर Aadhaar Number, OTP या Password नहीं लिया जाता। सरकारी application और document submission संबंधित official portal के माध्यम से किया जाएगा।",
+
 start:
-"आगे → सेवा चुनें"
+"आगे → प्रश्न शुरू करें",
+
+question:
+"प्रश्न",
+
+back:
+"← पीछे",
+
+next:
+"आगे →",
+
+finish:
+"परिणाम देखें →",
+
+applicationLabel:
+"आपका Application ID",
+
+applicationNote:
+"इस Application ID का screenshot रख लें। बाद में application status जांचने के लिए इसकी आवश्यकता होगी।",
+
+resultTitle:
+"📋 आपके लिए संभावित सेवाएं",
+
+resultSubtitle:
+"आपके द्वारा दी गई जानकारी के अनुसार निम्न सेवाओं की जांच करें।",
+
+detailButton:
+"📖 कैसे प्राप्त करें?",
+
+official:
+"🏛️ Official Link ↗",
+
+noticeTitle:
+"⚠️ जरूरी सूचना:",
+
+noticeText:
+"यह पेज केवल सूचना और सहायता के लिए है। अंतिम पात्रता संबंधित सरकारी विभाग द्वारा निर्धारित की जाएगी।",
+
+restart:
+"🔄 फिर से जांच करें",
+
+home:
+"🏠 मुख्य पेज"
 
 },
+
 
 en:{
 
@@ -1641,16 +1693,16 @@ headerSub:
 "Odia Ratna Kalakar Sangha • Surat",
 
 heroTitle:
-"📝 Government Service Assistance",
+"🔎 What benefits may apply to me?",
 
 heroText:
-"First provide your basic information so we can identify the government worker service you may need.",
+"First enter your name, mobile number, current company and worksite address. Then answer a few questions.",
 
 workerDetailsTitle:
-"👤 Worker Information",
+"👤 Enter Your Details",
 
 workerDetailsSubtitle:
-"Enter your correct information. It will be used for your application record.",
+"The information you provide will be used for the application record.",
 
 nameLabel:
 "👤 Full Name",
@@ -1668,7 +1720,7 @@ companyLabel:
 "🏢 Current Company / Factory Name",
 
 companyPlaceholder:
-"Current company / factory name",
+"Company / factory name",
 
 addressLabel:
 "📍 Company / Worksite Address",
@@ -1676,33 +1728,383 @@ addressLabel:
 addressPlaceholder:
 "Full company / worksite address",
 
+privacyTitle:
+"🔐 Privacy:",
+
+privacyText:
+"This page does not collect Aadhaar Number, OTP or Password. Government applications and document submission will be done through the relevant official portal.",
+
 start:
-"Next → Select Service"
+"Next → Start Questions",
+
+question:
+"Question",
+
+back:
+"← Back",
+
+next:
+"Next →",
+
+finish:
+"View Results →",
+
+applicationLabel:
+"Your Application ID",
+
+applicationNote:
+"Save a screenshot of this Application ID. You may need it later to check your application status.",
+
+resultTitle:
+"📋 Services You May Need to Check",
+
+resultSubtitle:
+"Based on your answers, please check the following services.",
+
+detailButton:
+"📖 How to get it?",
+
+official:
+"🏛️ Official Link ↗",
+
+noticeTitle:
+"⚠️ Important Notice:",
+
+noticeText:
+"This page is only for information and assistance. Final eligibility will be determined by the concerned government department.",
+
+restart:
+"🔄 Check Again",
+
+home:
+"🏠 Home"
 
 }
 
 };
 
 
-/* ==================================================
-   WORKER DATA
-================================================== */
+/* =====================================================
+   QUESTIONS
+===================================================== */
 
-let workerData = {
+const questions = [
 
-    name:"",
-    mobile:"",
-    company:"",
-    address:""
+{
 
-};
+key:"state",
 
-let selectedService = "";
+or:"ଆପଣ କେଉଁ ରାଜ୍ୟରେ କାମ କରୁଛନ୍ତି?",
+
+hi:"आप किस राज्य में काम कर रहे हैं?",
+
+en:"Which state are you currently working in?",
+
+options:[
+
+{
+value:"gujarat",
+or:"ଗୁଜରାଟ / Gujarat",
+hi:"गुजरात / Gujarat",
+en:"Gujarat"
+},
+
+{
+value:"maharashtra",
+or:"ମହାରାଷ୍ଟ୍ର / Maharashtra",
+hi:"महाराष्ट्र / Maharashtra",
+en:"Maharashtra"
+},
+
+{
+value:"telangana",
+or:"ତେଲେଙ୍ଗାନା / Telangana",
+hi:"तेलंगाना / Telangana",
+en:"Telangana"
+},
+
+{
+value:"andhra",
+or:"ଆନ୍ଧ୍ର ପ୍ରଦେଶ / Andhra Pradesh",
+hi:"आंध्र प्रदेश / Andhra Pradesh",
+en:"Andhra Pradesh"
+},
+
+{
+value:"other",
+or:"ଅନ୍ୟ ରାଜ୍ୟ",
+hi:"अन्य राज्य",
+en:"Other State"
+}
+
+]
+
+},
 
 
-/* ==================================================
+{
+
+key:"work",
+
+or:"ଆପଣ କେଉଁ ପ୍ରକାର କାମ କରୁଛନ୍ତି?",
+
+hi:"आप किस प्रकार का काम करते हैं?",
+
+en:"What type of work do you do?",
+
+options:[
+
+{
+value:"construction",
+or:"🏗️ ନିର୍ମାଣ କାମ",
+hi:"🏗️ निर्माण कार्य",
+en:"🏗️ Construction"
+},
+
+{
+value:"factory",
+or:"🏭 କାରଖାନା",
+hi:"🏭 कारखाना",
+en:"🏭 Factory"
+},
+
+{
+value:"transport",
+or:"🚚 ପରିବହନ",
+hi:"🚚 परिवहन",
+en:"🚚 Transport"
+},
+
+{
+value:"service",
+or:"🧹 ସେବା କାମ",
+hi:"🧹 सेवा कार्य",
+en:"🧹 Service Work"
+},
+
+{
+value:"other",
+or:"🔧 ଅନ୍ୟ କାମ",
+hi:"🔧 अन्य काम",
+en:"🔧 Other Work"
+}
+
+]
+
+},
+
+
+{
+
+key:"migrant",
+
+or:"ଆପଣଙ୍କ Migrant Worker Registration ଅଛି କି?",
+
+hi:"क्या आपका Migrant Worker Registration है?",
+
+en:"Do you have Migrant Worker Registration?",
+
+options:[
+
+{
+value:"yes",
+or:"✅ ହଁ",
+hi:"✅ हाँ",
+en:"✅ Yes"
+},
+
+{
+value:"no",
+or:"❌ ନାହିଁ",
+hi:"❌ नहीं",
+en:"❌ No"
+},
+
+{
+value:"unknown",
+or:"❓ ଜାଣିନାହିଁ",
+hi:"❓ पता नहीं",
+en:"❓ Not sure"
+}
+
+]
+
+},
+
+
+{
+
+key:"construction",
+
+or:"ଆପଣଙ୍କ Construction Worker Registration ଅଛି କି?",
+
+hi:"क्या आपका Construction Worker Registration है?",
+
+en:"Do you have Construction Worker Registration?",
+
+options:[
+
+{
+value:"yes",
+or:"✅ ହଁ",
+hi:"✅ हाँ",
+en:"✅ Yes"
+},
+
+{
+value:"no",
+or:"❌ ନାହିଁ",
+hi:"❌ नहीं",
+en:"❌ No"
+},
+
+{
+value:"unknown",
+or:"❓ ଜାଣିନାହିଁ",
+hi:"❓ पता नहीं",
+en:"❓ Not sure"
+},
+
+{
+value:"notapplicable",
+or:"➖ ଲାଗୁ ହୁଏ ନାହିଁ",
+hi:"➖ लागू नहीं",
+en:"➖ Not applicable"
+}
+
+]
+
+},
+
+
+{
+
+key:"esi",
+
+or:"ଆପଣଙ୍କ ESI ଅଛି କି?",
+
+hi:"क्या आपके पास ESI है?",
+
+en:"Do you have ESI coverage?",
+
+options:[
+
+{
+value:"yes",
+or:"✅ ହଁ",
+hi:"✅ हाँ",
+en:"✅ Yes"
+},
+
+{
+value:"no",
+or:"❌ ନାହିଁ",
+hi:"❌ नहीं",
+en:"❌ No"
+},
+
+{
+value:"unknown",
+or:"❓ ଜାଣିନାହିଁ",
+hi:"❓ पता नहीं",
+en:"❓ Not sure"
+}
+
+]
+
+},
+
+
+{
+
+key:"problem",
+
+or:"ଆପଣ କେଉଁ ସହାୟତା ଚାହୁଁଛନ୍ତି?",
+
+hi:"आपको किस प्रकार की सहायता चाहिए?",
+
+en:"What type of help do you need?",
+
+options:[
+
+{
+value:"registration",
+or:"📝 ପଞ୍ଜୀକରଣ",
+hi:"📝 पंजीकरण",
+en:"📝 Registration"
+},
+
+{
+value:"salary",
+or:"💰 ଦରମା ସମସ୍ୟା",
+hi:"💰 वेतन समस्या",
+en:"💰 Salary Issue"
+},
+
+{
+value:"medical",
+or:"🏥 ଚିକିତ୍ସା",
+hi:"🏥 चिकित्सा सहायता",
+en:"🏥 Medical Help"
+},
+
+{
+value:"accident",
+or:"🆘 ଦୁର୍ଘଟଣା",
+hi:"🆘 दुर्घटना",
+en:"🆘 Accident"
+},
+
+{
+value:"return",
+or:"🏠 ଘରକୁ ଫେରିବା",
+hi:"🏠 घर वापस जाना",
+en:"🏠 Return Home"
+},
+
+{
+value:"scheme",
+or:"📄 ସରକାରୀ ସୁବିଧା",
+hi:"📄 सरकारी सेवा",
+en:"📄 Government Service"
+},
+
+{
+value:"other",
+or:"❓ ଅନ୍ୟ ସମସ୍ୟା",
+hi:"❓ अन्य समस्या",
+en:"❓ Other Problem"
+}
+
+]
+
+}
+
+];
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let currentQuestion = 0;
+
+let answers = {};
+
+let workerName = "";
+
+let workerMobile = "";
+
+let workerCompany = "";
+
+let workerAddress = "";
+
+let applicationId = "";
+
+
+/* =====================================================
    LANGUAGE
-================================================== */
+===================================================== */
 
 function getLanguage(){
 
@@ -1713,11 +2115,47 @@ function getLanguage(){
 }
 
 
-/* ==================================================
-   START APPLICATION
-================================================== */
+/* =====================================================
+   APPLICATION ID
+===================================================== */
 
-function startWorkerApplication(){
+function generateApplicationId(){
+
+    const now =
+        new Date();
+
+    const date =
+        now.getFullYear()
+        .toString()
+        .slice(-2)
+        +
+        String(
+            now.getMonth()+1
+        ).padStart(2,"0")
+        +
+        String(
+            now.getDate()
+        ).padStart(2,"0");
+
+    const random =
+        Math.floor(
+            100000 +
+            Math.random()*900000
+        );
+
+    return "WRK-" +
+           date +
+           "-" +
+           random;
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+window.startWorkerCheck =
+async function(){
 
     const name =
         document.getElementById(
@@ -1748,543 +2186,998 @@ function startWorkerApplication(){
         getLanguage();
 
 
-    /* NAME */
-
     if(!name){
 
-        error.textContent =
+        showError(
             lang === "hi"
             ? "कृपया अपना नाम लिखें।"
             : lang === "en"
-            ? "Please enter your full name."
-            : "ଦୟାକରି ଆପଣଙ୍କ ପୂର୍ଣ୍ଣ ନାମ ଲେଖନ୍ତୁ।";
-
-        error.style.display =
-            "block";
-
-        document.getElementById(
-            "workerName"
-        ).focus();
+            ? "Please enter your name."
+            : "ଦୟାକରି ଆପଣଙ୍କ ନାମ ଲେଖନ୍ତୁ।"
+        );
 
         return;
     }
 
-
-    /* MOBILE */
 
     if(
         !/^[6-9][0-9]{9}$/.test(mobile)
     ){
 
-        error.textContent =
+        showError(
             lang === "hi"
             ? "कृपया सही 10 अंकों का मोबाइल नंबर डालें।"
             : lang === "en"
             ? "Please enter a valid 10-digit mobile number."
-            : "ଦୟାକରି ସଠିକ୍ ୧୦ ଅଙ୍କର ମୋବାଇଲ୍ ନମ୍ବର ଲେଖନ୍ତୁ।";
-
-        error.style.display =
-            "block";
-
-        document.getElementById(
-            "workerMobile"
-        ).focus();
+            : "ଦୟାକରି ସଠିକ୍ ୧୦ ଅଙ୍କର ମୋବାଇଲ୍ ନମ୍ବର ଲେଖନ୍ତୁ।"
+        );
 
         return;
     }
 
-
-    /* COMPANY */
 
     if(!company){
 
-        error.textContent =
+        showError(
             lang === "hi"
-            ? "कृपया कंपनी / कारखाने का नाम लिखें।"
+            ? "कृपया वर्तमान कंपनी / कारखाने का नाम लिखें।"
             : lang === "en"
-            ? "Please enter your company / factory name."
-            : "ଦୟାକରି କମ୍ପାନୀ / କାରଖାନାର ନାମ ଲେଖନ୍ତୁ।";
-
-        error.style.display =
-            "block";
-
-        document.getElementById(
-            "workerCompany"
-        ).focus();
+            ? "Please enter your current company / factory name."
+            : "ଦୟାକରି ବର୍ତ୍ତମାନ କମ୍ପାନୀ / କାରଖାନାର ନାମ ଲେଖନ୍ତୁ।"
+        );
 
         return;
     }
 
 
-    /* ADDRESS */
-
     if(!address){
 
-        error.textContent =
+        showError(
             lang === "hi"
             ? "कृपया कंपनी / कार्यस्थल का पता लिखें।"
             : lang === "en"
             ? "Please enter the company / worksite address."
-            : "ଦୟାକରି କମ୍ପାନୀ / କାମ ସ୍ଥାନର ଠିକଣା ଲେଖନ୍ତୁ।";
-
-        error.style.display =
-            "block";
-
-        document.getElementById(
-            "workerAddress"
-        ).focus();
+            : "ଦୟାକରି କମ୍ପାନୀ / କାମ ସ୍ଥାନର ଠିକଣା ଲେଖନ୍ତୁ।"
+        );
 
         return;
     }
 
 
-    /* SAVE */
-
-    workerData = {
-
-        name:name,
-
-        mobile:mobile,
-
-        company:company,
-
-        address:address
-
-    };
-
-
-    error.style.display =
-        "none";
-
-
-    /* PREVIEW */
-
-    document.getElementById(
-        "previewName"
-    ).textContent =
+    workerName =
         name;
 
-    document.getElementById(
-        "previewMobile"
-    ).textContent =
+    workerMobile =
         mobile;
 
-    document.getElementById(
-        "previewCompany"
-    ).textContent =
+    workerCompany =
         company;
 
-    document.getElementById(
-        "previewAddress"
-    ).textContent =
+    workerAddress =
         address;
 
 
-    /* SHOW PREVIEW */
+    applicationId =
+        generateApplicationId();
+
+
+    document.getElementById(
+        "applicationId"
+    ).textContent =
+        applicationId;
+
+
+    document.getElementById(
+        "applicationBox"
+    ).style.display =
+        "block";
+
 
     document.getElementById(
         "workerDetailsArea"
     ).style.display =
         "none";
 
+
     document.getElementById(
-        "nextArea"
+        "questionArea"
     ).style.display =
         "block";
 
 
+    currentQuestion =
+        0;
+
+    answers =
+        {};
+
+
+    try{
+
+        await addDoc(
+            collection(
+                db,
+                "workerApplications"
+            ),
+            {
+
+                applicationId:
+                    applicationId,
+
+                name:
+                    workerName,
+
+                mobile:
+                    workerMobile,
+
+                company:
+                    workerCompany,
+
+                address:
+                    workerAddress,
+
+                status:
+                    "New",
+
+                createdAt:
+                    serverTimestamp()
+
+            }
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Firestore error:",
+            error
+        );
+
+        showError(
+            "Application save ହୋଇନାହିଁ। Firebase Rules ଯାଞ୍ଚ କରନ୍ତୁ।"
+        );
+
+        return;
+    }
+
+
+    renderQuestion();
+
     window.scrollTo({
-
         top:0,
-
         behavior:"smooth"
-
     });
 
-}
+};
 
 
-/* ==================================================
-   BACK TO DETAILS
-================================================== */
+/* =====================================================
+   ERROR
+===================================================== */
 
-function backToWorkerDetails(){
+function showError(message){
 
-    document.getElementById(
-        "nextArea"
-    ).style.display =
-        "none";
+    const box =
+        document.getElementById(
+            "workerError"
+        );
 
-    document.getElementById(
-        "workerDetailsArea"
-    ).style.display =
+    box.textContent =
+        message;
+
+    box.style.display =
         "block";
 
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
 }
 
 
-/* ==================================================
-   SERVICE SELECTION
-================================================== */
+/* =====================================================
+   RENDER QUESTION
+===================================================== */
 
-function goToServiceSelection(){
+function renderQuestion(){
+
+    const q =
+        questions[currentQuestion];
+
+    const lang =
+        getLanguage();
+
+    const data =
+        languageData[lang];
+
 
     document.getElementById(
-        "nextArea"
-    ).style.display =
-        "none";
+        "questionNumber"
+    ).textContent =
+        `${data.question} ${currentQuestion+1}`;
+
 
     document.getElementById(
-        "serviceArea"
-    ).style.display =
-        "block";
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-}
+        "questionProgress"
+    ).textContent =
+        `${data.question} ${currentQuestion+1} / ${questions.length}`;
 
 
-/* ==================================================
-   SELECT SERVICE
-================================================== */
-
-function selectService(service){
-
-    selectedService =
-        service;
-
-
-    const names = {
-
-        migrant:
-        "🧑‍🏭 ପ୍ରବାସୀ ଶ୍ରମିକ ପଞ୍ଜୀକରଣ",
-
-        construction:
-        "🏗️ ନିର୍ମାଣ ଶ୍ରମିକ ସେବା",
-
-        labour:
-        "👷 ଶ୍ରମିକ ସରକାରୀ ସେବା",
-
-        esi:
-        "🏥 ESI ସେବା"
-
-    };
+    const percent =
+        Math.round(
+            (
+                (currentQuestion+1)
+                /
+                questions.length
+            ) * 100
+        );
 
 
-    document
-    .querySelectorAll(
-        ".service-option"
-    )
-    .forEach(
-        button => {
+    document.getElementById(
+        "progressPercent"
+    ).textContent =
+        percent + "%";
 
-            button.classList.remove(
-                "selected"
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        percent + "%";
+
+
+    document.getElementById(
+        "questionTitle"
+    ).textContent =
+        q[lang];
+
+
+    const optionsBox =
+        document.getElementById(
+            "options"
+        );
+
+
+    optionsBox.innerHTML =
+        "";
+
+
+    q.options.forEach(
+        option => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "option";
+
+
+            button.textContent =
+                option[lang];
+
+
+            if(
+                answers[q.key]
+                === option.value
+            ){
+
+                button.classList.add(
+                    "selected"
+                );
+
+            }
+
+
+            button.onclick =
+            function(){
+
+                answers[q.key] =
+                    option.value;
+
+
+                document
+                .querySelectorAll(
+                    ".option"
+                )
+                .forEach(
+                    btn =>
+                    btn.classList.remove(
+                        "selected"
+                    )
+                );
+
+
+                button.classList.add(
+                    "selected"
+                );
+
+            };
+
+
+            optionsBox.appendChild(
+                button
             );
 
         }
     );
 
 
-    const selectedButton =
-        document.querySelector(
-            `[data-service="${service}"]`
-        );
-
-
-    if(selectedButton){
-
-        selectedButton.classList.add(
-            "selected"
-        );
-
-    }
+    document.getElementById(
+        "backButton"
+    ).style.visibility =
+        currentQuestion === 0
+        ? "hidden"
+        : "visible";
 
 
     document.getElementById(
-        "selectedServiceName"
+        "nextButton"
     ).textContent =
-        names[service];
-
-
-    document.getElementById(
-        "selectedServiceBox"
-    ).style.display =
-        "block";
-
-
-    document.getElementById(
-        "serviceError"
-    ).style.display =
-        "none";
+        currentQuestion ===
+        questions.length-1
+        ? data.finish
+        : data.next;
 
 }
 
 
-/* ==================================================
-   CREATE APPLICATION ID
-================================================== */
+/* =====================================================
+   NEXT
+===================================================== */
 
-function createApplicationID(){
+window.nextQuestion =
+function(){
 
-    const error =
-        document.getElementById(
-            "serviceError"
+    const q =
+        questions[currentQuestion];
+
+
+    if(!answers[q.key]){
+
+        const lang =
+            getLanguage();
+
+        alert(
+            lang === "hi"
+            ? "कृपया एक उत्तर चुनें।"
+            : lang === "en"
+            ? "Please select an answer."
+            : "ଦୟାକରି ଗୋଟିଏ ଉତ୍ତର ବାଛନ୍ତୁ।"
         );
-
-
-    if(!selectedService){
-
-        error.textContent =
-            "ଦୟାକରି ଗୋଟିଏ ସରକାରୀ ସେବା ଚୟନ କରନ୍ତୁ।";
-
-        error.style.display =
-            "block";
 
         return;
     }
 
 
-    /* CREATE ID */
+    if(
+        currentQuestion
+        <
+        questions.length-1
+    ){
 
-    const now =
-        new Date();
+        currentQuestion++;
+
+        renderQuestion();
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+    else{
+
+        saveFinalApplication();
+
+    }
+
+};
 
 
-    const date =
-        now.getFullYear()
-        .toString()
-        .slice(-2)
-        +
-        String(
-            now.getMonth()+1
-        ).padStart(2,"0")
-        +
-        String(
-            now.getDate()
-        ).padStart(2,"0");
+/* =====================================================
+   SAVE FINAL APPLICATION
+===================================================== */
 
+async function saveFinalApplication(){
 
-    const random =
-        Math.floor(
-            100000 +
-            Math.random()*900000
+    try{
+
+        await addDoc(
+            collection(
+                db,
+                "workerApplicationAnswers"
+            ),
+            {
+
+                applicationId:
+                    applicationId,
+
+                state:
+                    answers.state || "",
+
+                work:
+                    answers.work || "",
+
+                migrant:
+                    answers.migrant || "",
+
+                construction:
+                    answers.construction || "",
+
+                esi:
+                    answers.esi || "",
+
+                problem:
+                    answers.problem || "",
+
+                updatedAt:
+                    serverTimestamp()
+
+            }
         );
 
+    }
 
-    const applicationID =
-        "ORKS-" +
-        date +
-        "-" +
-        random;
+    catch(error){
+
+        console.error(
+            error
+        );
+
+    }
 
 
-    /* SHOW ID */
+    showResults();
+
+}
+
+
+/* =====================================================
+   BACK
+===================================================== */
+
+window.previousQuestion =
+function(){
+
+    if(
+        currentQuestion > 0
+    ){
+
+        currentQuestion--;
+
+        renderQuestion();
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+};
+
+
+/* =====================================================
+   RESULTS
+===================================================== */
+
+function showResults(){
 
     document.getElementById(
-        "applicationID"
-    ).textContent =
-        applicationID;
-
-
-    /* SUMMARY */
-
-    const serviceNames = {
-
-        migrant:
-        "🧑‍🏭 ପ୍ରବାସୀ ଶ୍ରମିକ ପଞ୍ଜୀକରଣ",
-
-        construction:
-        "🏗️ ନିର୍ମାଣ ଶ୍ରମିକ ସେବା",
-
-        labour:
-        "👷 ଶ୍ରମିକ ସରକାରୀ ସେବା",
-
-        esi:
-        "🏥 ESI ସେବା"
-
-    };
+        "questionArea"
+    ).style.display =
+        "none";
 
 
     document.getElementById(
-        "finalSummary"
+        "resultBox"
+    ).style.display =
+        "block";
+
+
+    const lang =
+        getLanguage();
+
+    const data =
+        languageData[lang];
+
+
+    document.getElementById(
+        "workerSummary"
     ).innerHTML = `
 
-        <strong>
-        👤 ନାମ:
-        </strong>
+        <div class="summary-box">
 
-        ${workerData.name}
+            <div class="summary-title">
 
-        <br>
+                ${
+                    lang === "hi"
+                    ? "👤 श्रमिक जानकारी"
+                    : lang === "en"
+                    ? "👤 Worker Information"
+                    : "👤 ଶ୍ରମିକଙ୍କ ତଥ୍ୟ"
+                }
 
-        <strong>
-        📱 Mobile:
-        </strong>
+            </div>
 
-        ${workerData.mobile}
+            📋 <strong>
+                ${applicationId}
+            </strong>
 
-        <br>
+            <br>
 
-        <strong>
-        🏢 Company:
-        </strong>
+            👤 ${workerName}
 
-        ${workerData.company}
+            <br>
 
-        <br>
+            📱 ${workerMobile}
 
-        <strong>
-        📍 Address:
-        </strong>
+            <br>
 
-        ${workerData.address}
+            🏢 ${workerCompany}
 
-        <br>
+            <br>
 
-        <strong>
-        🏛️ Service:
-        </strong>
+            📍 ${workerAddress}
 
-        ${serviceNames[selectedService]}
+        </div>
 
     `;
 
 
-    /* TEMPORARY SESSION SAVE */
+    const results =
+        document.getElementById(
+            "benefitResults"
+        );
 
-    sessionStorage.setItem(
-        "workerApplicationID",
-        applicationID
+
+    results.innerHTML =
+        "";
+
+
+    let services = [];
+
+
+    /* MIGRANT */
+
+    if(
+        answers.migrant === "no" ||
+        answers.migrant === "unknown" ||
+        answers.problem === "registration"
+    ){
+
+        services.push({
+
+            icon:"fa-id-card",
+
+            title:{
+                or:"📝 ପ୍ରବାସୀ ଶ୍ରମିକ ପଞ୍ଜୀକରଣ",
+                hi:"📝 प्रवासी श्रमिक पंजीकरण",
+                en:"📝 Migrant Worker Registration"
+            },
+
+            text:{
+                or:"ବାହାର ରାଜ୍ୟରେ କାମ କରୁଥିବା ଶ୍ରମିକ PAReSHRAMର Migrant Worker Registration ବିଷୟରେ ଯାଞ୍ଚ କରିପାରିବେ।",
+                hi:"दूसरे राज्य में काम करने वाले श्रमिक PAReSHRAM पर Migrant Worker Registration की जानकारी जांच सकते हैं।",
+                en:"Workers working outside Odisha can check Migrant Worker Registration services through PAReSHRAM."
+            },
+
+            detail:{
+                or:"<strong>କିପରି ପାଇବେ?</strong><br>PAReSHRAM official portalକୁ ଯାଇ Migrant Worker Registration ସମ୍ବନ୍ଧୀୟ ସେବା ଯାଞ୍ଚ କରନ୍ତୁ।",
+                hi:"<strong>कैसे प्राप्त करें?</strong><br>PAReSHRAM official portal पर जाकर Migrant Worker Registration से संबंधित सेवा जांचें।",
+                en:"<strong>How to get it?</strong><br>Visit the PAReSHRAM official portal and check the Migrant Worker Registration service."
+            },
+
+            link:
+            "https://pareshram-labour.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* CONSTRUCTION */
+
+    if(
+        answers.work === "construction" ||
+        answers.construction === "yes" ||
+        answers.construction === "unknown"
+    ){
+
+        services.push({
+
+            icon:"fa-helmet-safety",
+
+            title:{
+                or:"🏗️ Construction Worker Services",
+                hi:"🏗️ निर्माण श्रमिक सेवाएं",
+                en:"🏗️ Construction Worker Services"
+            },
+
+            text:{
+                or:"ଆପଣ construction worker ହେଲେ worker registration ଓ ସମ୍ପୃକ୍ତ welfare servicesର eligibility ଯାଞ୍ଚ କରନ୍ତୁ।",
+                hi:"यदि आप construction worker हैं, तो worker registration और संबंधित welfare services की पात्रता जांचें।",
+                en:"If you are a construction worker, check your worker registration and eligibility for related welfare services."
+            },
+
+            detail:{
+                or:"<strong>କିପରି ପାଇବେ?</strong><br>ପ୍ରଥମେ construction worker registration ଠିକ୍ ଅଛି କି ଯାଞ୍ଚ କରନ୍ତୁ। ତାପରେ official process ଅନୁସରଣ କରନ୍ତୁ।",
+                hi:"<strong>कैसे प्राप्त करें?</strong><br>पहले construction worker registration जांचें। उसके बाद official process अपनाएं।",
+                en:"<strong>How to get it?</strong><br>First check your construction worker registration and then follow the official process."
+            },
+
+            link:
+            "https://labourdirectorate.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* ESI */
+
+    if(
+        answers.esi === "yes" ||
+        answers.esi === "unknown" ||
+        answers.problem === "medical"
+    ){
+
+        services.push({
+
+            icon:"fa-heart-pulse",
+
+            title:{
+                or:"🏥 ESI ସେବା",
+                hi:"🏥 ESI सेवाएं",
+                en:"🏥 ESI Services"
+            },
+
+            text:{
+                or:"ଯଦି ଆପଣ ESI-covered worker, ତେବେ medical ଓ ଅନ୍ୟ ESI benefits ବିଷୟରେ ଯାଞ୍ଚ କରନ୍ତୁ।",
+                hi:"यदि आप ESI-covered worker हैं, तो medical और अन्य ESI benefits की जानकारी जांचें।",
+                en:"If you are an ESI-covered worker, check medical and other ESI benefits."
+            },
+
+            detail:{
+                or:"<strong>କିପରି ପାଇବେ?</strong><br>ଆପଣଙ୍କ ESI coverage ଯାଞ୍ଚ କରି ସମ୍ପୃକ୍ତ ESI service centre ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ।",
+                hi:"<strong>कैसे प्राप्त करें?</strong><br>अपना ESI coverage जांचें और संबंधित ESI service centre से संपर्क करें।",
+                en:"<strong>How to get it?</strong><br>Check your ESI coverage and contact the relevant ESI service centre."
+            },
+
+            link:
+            "https://labour.odisha.gov.in/en/directorate/esi-scheme"
+
+        });
+
+    }
+
+
+    /* SALARY */
+
+    if(
+        answers.problem === "salary"
+    ){
+
+        services.push({
+
+            icon:"fa-money-bill-wave",
+
+            title:{
+                or:"💰 ଦରମା ସମସ୍ୟା",
+                hi:"💰 वेतन समस्या",
+                en:"💰 Salary Issue"
+            },
+
+            text:{
+                or:"ଦରମା ନମିଳିବା କିମ୍ବା wage-related problem ଥିଲେ ଶ୍ରମ ବିଭାଗର official support channel ଯାଞ୍ଚ କରନ୍ତୁ।",
+                hi:"वेतन नहीं मिलने या wage-related समस्या होने पर Labour Department के official support channel की जानकारी लें।",
+                en:"For unpaid wages or wage-related problems, check the Labour Department's official support channel."
+            },
+
+            detail:{
+                or:"<strong>ପ୍ରସ୍ତୁତ ରଖନ୍ତୁ:</strong><br>କାମର ପ୍ରମାଣ, employer/contractor ତଥ୍ୟ ଓ salary/payment records।",
+                hi:"<strong>तैयार रखें:</strong><br>काम का प्रमाण, employer/contractor details और salary/payment records।",
+                en:"<strong>Keep ready:</strong><br>Proof of work, employer/contractor details and salary/payment records."
+            },
+
+            link:
+            "https://labourdirectorate.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* ACCIDENT */
+
+    if(
+        answers.problem === "accident"
+    ){
+
+        services.push({
+
+            icon:"fa-triangle-exclamation",
+
+            title:{
+                or:"🆘 ଦୁର୍ଘଟଣା ସହାୟତା",
+                hi:"🆘 दुर्घटना सहायता",
+                en:"🆘 Accident Assistance"
+            },
+
+            text:{
+                or:"ଦୁର୍ଘଟଣା ଘଟିଲେ ପ୍ରଥମେ emergency/medical assistance ନିଅନ୍ତୁ ଏବଂ ପରେ ସମ୍ପୃକ୍ତ authority ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ।",
+                hi:"दुर्घटना होने पर पहले emergency/medical assistance लें और फिर संबंधित authority से संपर्क करें।",
+                en:"In case of an accident, get emergency/medical assistance first and then contact the relevant authority."
+            },
+
+            detail:{
+                or:"<strong>ପ୍ରଥମ ପଦକ୍ଷେପ:</strong><br>ଜରୁରୀ ଚିକିତ୍ସା ନିଅନ୍ତୁ ଏବଂ ଆବଶ୍ୟକ official support ଯାଞ୍ଚ କରନ୍ତୁ।",
+                hi:"<strong>पहला कदम:</strong><br>तुरंत medical assistance लें और आवश्यक official support जांचें।",
+                en:"<strong>First step:</strong><br>Get immediate medical assistance and check the relevant official support."
+            },
+
+            link:
+            "https://labourdirectorate.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* RETURN */
+
+    if(
+        answers.problem === "return"
+    ){
+
+        services.push({
+
+            icon:"fa-house",
+
+            title:{
+                or:"🏠 ଘରକୁ ଫେରିବା ସହାୟତା",
+                hi:"🏠 घर वापस जाने की सहायता",
+                en:"🏠 Return Home Assistance"
+            },
+
+            text:{
+                or:"ବାହାର ରାଜ୍ୟରୁ ଓଡ଼ିଶାକୁ ଫେରିବା ସମ୍ବନ୍ଧୀୟ official support ବିଷୟରେ ଯାଞ୍ଚ କରନ୍ତୁ।",
+                hi:"दूसरे राज्य से ओडिशा वापस आने से संबंधित official support की जानकारी जांचें।",
+                en:"Check official support related to returning to Odisha from another state."
+            },
+
+            detail:{
+                or:"<strong>କଣ କରିବେ?</strong><br>ଆପଣଙ୍କ migrant-worker status ଓ work records ପ୍ରସ୍ତୁତ ରଖନ୍ତୁ।",
+                hi:"<strong>क्या करें?</strong><br>अपना migrant-worker status और work records तैयार रखें।",
+                en:"<strong>What to do?</strong><br>Keep your migrant-worker status and work records ready."
+            },
+
+            link:
+            "https://labourdirectorate.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* GOVERNMENT SERVICE */
+
+    if(
+        answers.problem === "scheme"
+    ){
+
+        services.push({
+
+            icon:"fa-building-columns",
+
+            title:{
+                or:"🏛️ ସରକାରୀ ଶ୍ରମିକ ସେବା",
+                hi:"🏛️ सरकारी श्रमिक सेवाएं",
+                en:"🏛️ Government Worker Services"
+            },
+
+            text:{
+                or:"ଆପଣଙ୍କ worker category ଅନୁସାରେ ଉପଲବ୍ଧ ସରକାରୀ labour services ଯାଞ୍ଚ କରନ୍ତୁ।",
+                hi:"अपनी worker category के अनुसार उपलब्ध सरकारी labour services की जांच करें।",
+                en:"Check available government labour services according to your worker category."
+            },
+
+            detail:{
+                or:"<strong>କିପରି ପାଇବେ?</strong><br>PAReSHRAMରେ applicable services ଯାଞ୍ଚ କରି official application process ଅନୁସରଣ କରନ୍ତୁ।",
+                hi:"<strong>कैसे प्राप्त करें?</strong><br>PAReSHRAM पर applicable services जांचें और official application process अपनाएं।",
+                en:"<strong>How to get it?</strong><br>Check applicable services on PAReSHRAM and follow the official application process."
+            },
+
+            link:
+            "https://pareshram-labour.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* DEFAULT */
+
+    if(
+        services.length === 0
+    ){
+
+        services.push({
+
+            icon:"fa-circle-info",
+
+            title:{
+                or:"📚 ଶ୍ରମିକ ସେବା ବିଷୟରେ ଜାଣନ୍ତୁ",
+                hi:"📚 श्रमिक सेवाओं के बारे में जानें",
+                en:"📚 Learn About Worker Services"
+            },
+
+            text:{
+                or:"PAReSHRAMରେ ନିଜ worker details ଓ applicable services ଯାଞ୍ଚ କରନ୍ତୁ।",
+                hi:"PAReSHRAM पर worker details और applicable services जांचें।",
+                en:"Check your worker details and applicable services on PAReSHRAM."
+            },
+
+            detail:{
+                or:"<strong>ପରବର୍ତ୍ତୀ ପଦକ୍ଷେପ:</strong><br>PAReSHRAM official portal ଖୋଲି ନିଜ ପାଇଁ ଉପଲବ୍ଧ labour services ଯାଞ୍ଚ କରନ୍ତୁ।",
+                hi:"<strong>अगला कदम:</strong><br>PAReSHRAM official portal खोलकर अपने लिए उपलब्ध labour services जांचें।",
+                en:"<strong>Next step:</strong><br>Open the PAReSHRAM official portal and check available labour services."
+            },
+
+            link:
+            "https://pareshram-labour.odisha.gov.in/"
+
+        });
+
+    }
+
+
+    /* CREATE CARDS */
+
+    services.forEach(
+        (service,index) => {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "benefit-card";
+
+
+            card.innerHTML = `
+
+                <div class="benefit-icon">
+
+                    <i class="fa-solid ${service.icon}"></i>
+
+                </div>
+
+
+                <h3>
+                    ${service.title[lang]}
+                </h3>
+
+
+                <p>
+                    ${service.text[lang]}
+                </p>
+
+
+                <button
+                    class="detail-btn"
+                    onclick="toggleDetail(${index})">
+
+                    ${data.detailButton}
+
+                </button>
+
+
+                <a
+                    href="${service.link}"
+                    target="_blank"
+                    rel="noopener"
+                    class="detail-btn">
+
+                    ${data.official}
+
+                </a>
+
+
+                <div
+                    class="detail-box"
+                    id="detail-${index}">
+
+                    ${service.detail[lang]}
+
+                </div>
+
+            `;
+
+
+            results.appendChild(
+                card
+            );
+
+        }
     );
-
-    sessionStorage.setItem(
-        "workerName",
-        workerData.name
-    );
-
-    sessionStorage.setItem(
-        "workerMobile",
-        workerData.mobile
-    );
-
-    sessionStorage.setItem(
-        "workerCompany",
-        workerData.company
-    );
-
-    sessionStorage.setItem(
-        "workerAddress",
-        workerData.address
-    );
-
-    sessionStorage.setItem(
-        "selectedWorkerService",
-        selectedService
-    );
-
-
-    /* SHOW APPLICATION */
-
-    document.getElementById(
-        "serviceArea"
-    ).style.display =
-        "none";
-
-    document.getElementById(
-        "applicationArea"
-    ).style.display =
-        "block";
-
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
 
 }
 
 
-/* ==================================================
-   DOCUMENT SUBMIT
-================================================== */
+/* =====================================================
+   DETAIL TOGGLE
+===================================================== */
 
-function continueToDocuments(){
+window.toggleDetail =
+function(index){
 
-    alert(
-        "Document Submit system Part 3ରେ ଯୋଡ଼ାଯିବ।"
-    );
+    const box =
+        document.getElementById(
+            "detail-" + index
+        );
 
-}
+
+    box.style.display =
+        box.style.display === "block"
+        ? "none"
+        : "block";
+
+};
 
 
-/* ==================================================
+/* =====================================================
    RESTART
-================================================== */
+===================================================== */
 
-function restartApplication(){
+window.restartQuiz =
+function(){
 
-    workerData = {
+    currentQuestion =
+        0;
 
-        name:"",
-        mobile:"",
-        company:"",
-        address:""
+    answers =
+        {};
 
-    };
+    workerName =
+        "";
 
+    workerMobile =
+        "";
 
-    selectedService = "";
+    workerCompany =
+        "";
 
+    workerAddress =
+        "";
 
-    document.getElementById(
-        "workerName"
-    ).value = "";
-
-    document.getElementById(
-        "workerMobile"
-    ).value = "";
-
-    document.getElementById(
-        "workerCompany"
-    ).value = "";
-
-    document.getElementById(
-        "workerAddress"
-    ).value = "";
+    applicationId =
+        "";
 
 
     document.getElementById(
-        "applicationArea"
+        "resultBox"
     ).style.display =
         "none";
 
+
     document.getElementById(
-        "serviceArea"
+        "questionArea"
     ).style.display =
         "none";
 
+
     document.getElementById(
-        "nextArea"
+        "applicationBox"
     ).style.display =
         "none";
+
 
     document.getElementById(
         "workerDetailsArea"
@@ -2292,43 +3185,44 @@ function restartApplication(){
         "block";
 
 
-    document
-    .querySelectorAll(
-        ".service-option"
-    )
-    .forEach(
-        button => {
-
-            button.classList.remove(
-                "selected"
-            );
-
-        }
-    );
+    document.getElementById(
+        "workerName"
+    ).value =
+        "";
 
 
     document.getElementById(
-        "selectedServiceBox"
-    ).style.display =
-        "none";
+        "workerMobile"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "workerCompany"
+    ).value =
+        "";
+
+
+    document.getElementById(
+        "workerAddress"
+    ).value =
+        "";
 
 
     window.scrollTo({
-
         top:0,
-
         behavior:"smooth"
-
     });
 
-}
+};
 
 
-/* ==================================================
-   LANGUAGE CHANGE
-================================================== */
+/* =====================================================
+   CHANGE LANGUAGE
+===================================================== */
 
-function changeLanguage(language){
+window.changeLanguage =
+function(language){
 
     if(
         !languageData[language]
@@ -2444,9 +3338,75 @@ function changeLanguage(language){
 
 
     document.getElementById(
+        "privacyTitle"
+    ).textContent =
+        data.privacyTitle;
+
+
+    document.getElementById(
+        "privacyText"
+    ).textContent =
+        data.privacyText;
+
+
+    document.getElementById(
         "startWorkerButton"
     ).textContent =
         data.start;
+
+
+    document.getElementById(
+        "applicationLabel"
+    ).textContent =
+        data.applicationLabel;
+
+
+    document.getElementById(
+        "applicationNote"
+    ).textContent =
+        data.applicationNote;
+
+
+    document.getElementById(
+        "backButton"
+    ).textContent =
+        data.back;
+
+
+    document.getElementById(
+        "resultTitle"
+    ).textContent =
+        data.resultTitle;
+
+
+    document.getElementById(
+        "resultSubtitle"
+    ).textContent =
+        data.resultSubtitle;
+
+
+    document.getElementById(
+        "noticeTitle"
+    ).textContent =
+        data.noticeTitle;
+
+
+    document.getElementById(
+        "noticeText"
+    ).textContent =
+        data.noticeText;
+
+
+    document.getElementById(
+        "restartButton"
+    ).textContent =
+        data.restart;
+
+
+    document.getElementById(
+        "homeButton"
+    ).textContent =
+        data.home;
 
 
     document.getElementById(
@@ -2455,14 +3415,26 @@ function changeLanguage(language){
         "show"
     );
 
-}
+
+    if(
+        document.getElementById(
+            "questionArea"
+        ).style.display !== "none"
+    ){
+
+        renderQuestion();
+
+    }
+
+};
 
 
-/* ==================================================
+/* =====================================================
    LANGUAGE MENU
-================================================== */
+===================================================== */
 
-function toggleLanguageMenu(){
+window.toggleLanguageMenu =
+function(){
 
     document.getElementById(
         "languageMenu"
@@ -2470,12 +3442,8 @@ function toggleLanguageMenu(){
         "show"
     );
 
-}
+};
 
-
-/* ==================================================
-   CLOSE LANGUAGE MENU
-================================================== */
 
 document.addEventListener(
     "click",
@@ -2505,12 +3473,18 @@ document.addEventListener(
 );
 
 
-/* ==================================================
-   START
-================================================== */
+/* =====================================================
+   START LANGUAGE
+===================================================== */
+
+const savedLanguage =
+    localStorage.getItem(
+        "selectedLanguage"
+    ) || "or";
+
 
 changeLanguage(
-    getLanguage()
+    savedLanguage
 );
 
 </script>
