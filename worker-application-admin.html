@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>ପ୍ରବାସୀ ଶ୍ରମିକ Application Admin</title>
+
+<link rel="icon" href="logo.png">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#111;
+    color:white;
+    padding:15px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+}
+
+/* HEADER */
+
+.header{
+    background:linear-gradient(135deg,#8B0000,#c40000);
+    border:2px solid #ffcc00;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    margin-bottom:20px;
+    box-shadow:0 5px 20px rgba(255,0,0,.25);
+}
+
+.header img{
+    width:70px;
+    height:70px;
+    object-fit:contain;
+    border-radius:50%;
+    background:white;
+    padding:4px;
+    margin-bottom:8px;
+}
+
+.header h1{
+    color:white;
+    font-size:23px;
+    margin-bottom:7px;
+}
+
+.header p{
+    color:#ffeaa7;
+    font-size:14px;
+}
+
+/* TOP BAR */
+
+.topBar{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.topButton{
+    flex:1;
+    display:block;
+    text-decoration:none;
+    border:none;
+    padding:13px 10px;
+    border-radius:10px;
+    background:#c40000;
+    color:white;
+    text-align:center;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.topButton:hover{
+    background:#ff0000;
+}
+
+/* COUNT */
+
+.countCard{
+    background:#222;
+    border:2px solid #ffcc00;
+    border-radius:15px;
+    padding:18px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.countCard h2{
+    color:#ffcc00;
+    font-size:32px;
+    margin-bottom:5px;
+}
+
+.countCard p{
+    color:#ddd;
+}
+
+/* APPLICATION CARD */
+
+.applicationCard{
+    background:#222;
+    border:2px solid #c40000;
+    border-radius:16px;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 5px 15px rgba(255,0,0,.20);
+}
+
+/* HEADER */
+
+.applicationHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.applicationNumber{
+    color:#ffcc00;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.status{
+    padding:7px 12px;
+    border-radius:20px;
+    background:#16823b;
+    color:white;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* APPLICATION ID */
+
+.applicationId{
+    background:#fff8e8;
+    color:#8B0000;
+    border:2px dashed #d4af37;
+    border-radius:10px;
+    padding:12px;
+    text-align:center;
+    font-weight:bold;
+    font-size:18px;
+    margin-bottom:15px;
+    word-break:break-word;
+}
+
+/* DETAILS */
+
+.detail{
+    background:#151515;
+    border-radius:9px;
+    padding:10px;
+    margin-top:8px;
+    line-height:1.6;
+    word-break:break-word;
+}
+
+.detail strong{
+    color:#ffcc00;
+}
+
+.detail a{
+    color:#7ec8ff;
+    text-decoration:none;
+}
+
+.detail a:hover{
+    text-decoration:underline;
+}
+
+/* PROBLEM */
+
+.problem{
+    margin-top:12px;
+    background:#fff8e8;
+    color:#333;
+    border-left:5px solid #c40000;
+    border-radius:10px;
+    padding:14px;
+    line-height:1.7;
+}
+
+.problem strong{
+    color:#8B0000;
+}
+
+/* ACTION */
+
+.actions{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:15px;
+}
+
+.actionButton{
+    border:none;
+    border-radius:9px;
+    padding:12px;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.callButton{
+    background:#16823b;
+    text-decoration:none;
+    text-align:center;
+}
+
+.deleteButton{
+    background:#8B0000;
+}
+
+.deleteButton:hover{
+    background:#d00000;
+}
+
+/* EMPTY */
+
+.empty{
+    background:#222;
+    border:2px solid #555;
+    border-radius:15px;
+    padding:30px 20px;
+    text-align:center;
+    color:#aaa;
+}
+
+.emptyIcon{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+/* LOADING */
+
+.loading{
+    text-align:center;
+    padding:30px;
+    color:#ffcc00;
+    font-size:17px;
+}
+
+/* ERROR */
+
+.errorBox{
+    background:#2b0000;
+    border:2px solid #ff3333;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    color:#ffaaaa;
+    line-height:1.7;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    color:#777;
+    font-size:13px;
+    margin:30px 0 15px;
+}
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+    body{
+        padding:10px;
+    }
+
+    .header{
+        padding:18px 12px;
+    }
+
+    .header h1{
+        font-size:21px;
+    }
+
+    .topButton{
+        font-size:13px;
+        padding:12px 7px;
+    }
+
+    .applicationCard{
+        padding:14px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+
+<div class="header">
+
+<img
+src="logo.png"
+alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ">
+
+<h1>
+📋 ପ୍ରବାସୀ ଶ୍ରମିକ Application Admin
+</h1>
+
+<p>
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ • ସୁରତ
+</p>
+
+</div>
+
+
+<!-- TOP BUTTONS -->
+
+<div class="topBar">
+
+<a
+href="admin.html"
+class="topButton">
+
+← Admin Dashboard
+
+</a>
+
+<button
+class="topButton"
+onclick="loadApplications()">
+
+🔄 Refresh
+
+</button>
+
+</div>
+
+
+<!-- COUNT -->
+
+<div class="countCard">
+
+<h2 id="applicationCount">
+0
+</h2>
+
+<p>
+📋 ମୋଟ ପ୍ରବାସୀ ଶ୍ରମିକ Application
+</p>
+
+</div>
+
+
+<!-- LIST -->
+
+<div id="applicationList">
+
+<div class="loading">
+
+⏳ Data Loading...
+
+</div>
+
+</div>
+
+
+<div class="footer">
+
+© 2026 Odia Ratna Kalakar Sangha
+
+</div>
+
+</div>
+
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+
+    collection,
+    getDocs,
+    deleteDoc,
+    doc
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* ESCAPE */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+
+    .replace(/&/g,"&amp;")
+
+    .replace(/</g,"&lt;")
+
+    .replace(/>/g,"&gt;")
+
+    .replace(/"/g,"&quot;")
+
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* DATE */
+
+function formatDate(value){
+
+    if(!value){
+        return "-";
+    }
+
+    try{
+
+        if(
+            value &&
+            typeof value.toDate === "function"
+        ){
+
+            return value
+            .toDate()
+            .toLocaleString("en-IN");
+
+        }
+
+        return String(value);
+
+    }
+
+    catch(error){
+
+        return "-";
+
+    }
+
+}
+
+
+/* LOAD */
+
+window.loadApplications =
+async function(){
+
+    const list =
+    document.getElementById(
+        "applicationList"
+    );
+
+    const count =
+    document.getElementById(
+        "applicationCount"
+    );
+
+
+    list.innerHTML = `
+
+        <div class="loading">
+
+        ⏳ Application ଲୋଡ୍ ହେଉଛି...
+
+        </div>
+
+    `;
+
+
+    try{
+
+        const snapshot =
+        await getDocs(
+
+            collection(
+                db,
+                "workerApplications"
+            )
+
+        );
+
+
+        console.log(
+            "Worker Applications:",
+            snapshot.size
+        );
+
+
+        count.textContent =
+        snapshot.size;
+
+
+        if(snapshot.empty){
+
+            list.innerHTML = `
+
+                <div class="empty">
+
+                    <div class="emptyIcon">
+                    📭
+                    </div>
+
+                    <h3>
+                    କୌଣସି Application ମିଳିଲା ନାହିଁ
+                    </h3>
+
+                    <p style="margin-top:8px;">
+                    ବର୍ତ୍ତମାନ କୌଣସି Worker Application ନାହିଁ।
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        list.innerHTML = "";
+
+
+        const applications = [];
+
+
+        snapshot.forEach(
+            applicationDoc => {
+
+                applications.push({
+
+                    id:
+                    applicationDoc.id,
+
+                    data:
+                    applicationDoc.data()
+
+                });
+
+            }
+        );
+
+
+        /* SORT NEWEST FIRST */
+
+        applications.sort(
+            (a,b) => {
+
+                const aTime =
+                a.data.createdAt;
+
+                const bTime =
+                b.data.createdAt;
+
+
+                if(
+                    aTime &&
+                    bTime &&
+                    typeof aTime.toMillis === "function" &&
+                    typeof bTime.toMillis === "function"
+                ){
+
+                    return bTime.toMillis()
+                         - aTime.toMillis();
+
+                }
+
+                return 0;
+
+            }
+        );
+
+
+        applications.forEach(
+            (application,index) => {
+
+                createApplicationCard(
+
+                    application.id,
+
+                    application.data,
+
+                    index + 1
+
+                );
+
+            }
+        );
+
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Application Error:",
+            error
+        );
+
+
+        count.textContent =
+        "0";
+
+
+        list.innerHTML = `
+
+            <div class="errorBox">
+
+                <h3>
+                ❌ Data Load Error
+                </h3>
+
+                <p style="margin-top:10px;">
+                Worker Application ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ।
+                </p>
+
+                <p style="margin-top:10px;">
+                ${escapeHTML(error.message)}
+                </p>
+
+                <button
+                onclick="loadApplications()"
+                style="
+                margin-top:15px;
+                padding:10px 20px;
+                border:none;
+                border-radius:8px;
+                background:#c40000;
+                color:white;
+                font-weight:bold;
+                "
+                >
+                🔄 ପୁଣି Try କରନ୍ତୁ
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+};
+
+
+/* CREATE CARD */
+
+function createApplicationCard(
+
+    documentId,
+    data,
+    number
+
+){
+
+    const card =
+    document.createElement(
+        "div"
+    );
+
+    card.className =
+    "applicationCard";
+
+
+    const applicationId =
+    data.applicationId ||
+    documentId;
+
+
+    const name =
+    data.name || "-";
+
+
+    const mobile =
+    data.mobile || "";
+
+
+    const company =
+    data.company || "-";
+
+
+    const address =
+    data.address || "-";
+
+
+    const state =
+    data.state || "-";
+
+
+    const work =
+    data.work || "-";
+
+
+    const migrant =
+    data.migrant || "-";
+
+
+    const construction =
+    data.construction || "-";
+
+
+    const esi =
+    data.esi || "-";
+
+
+    const problem =
+    data.problem || "-";
+
+
+    const language =
+    data.language || "-";
+
+
+    const status =
+    data.status || "New";
+
+
+    const createdAt =
+    formatDate(
+        data.createdAt
+    );
+
+
+    let callButton = "";
+
+
+    if(mobile){
+
+        const cleanMobile =
+        String(mobile)
+        .replace(
+            /[^0-9+]/g,
+            ""
+        );
+
+
+        callButton = `
+
+            <a
+            href="tel:${escapeHTML(cleanMobile)}"
+            class="actionButton callButton">
+
+            📞 Call
+
+            </a>
+
+        `;
+
+    }
+
+    else{
+
+        callButton = `
+
+            <button
+            class="actionButton callButton"
+            disabled
+            style="opacity:.5;">
+
+            📞 Mobile ନାହିଁ
+
+            </button>
+
+        `;
+
+    }
+
+
+    card.innerHTML = `
+
+        <div class="applicationHeader">
+
+            <div class="applicationNumber">
+
+            📋 Application #${number}
+
+            </div>
+
+            <div class="status">
+
+            ${escapeHTML(status)}
+
+            </div>
+
+        </div>
+
+
+        <div class="applicationId">
+
+        🆔 ${escapeHTML(applicationId)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            👤 ନାମ:
+            </strong>
+
+            ${escapeHTML(name)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            📱 Mobile:
+            </strong>
+
+            ${
+                mobile
+                ?
+                `<a href="tel:${escapeHTML(mobile)}">
+                ${escapeHTML(mobile)}
+                </a>`
+                :
+                "-"
+            }
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            🏢 Company:
+            </strong>
+
+            ${escapeHTML(company)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            📍 Address:
+            </strong>
+
+            ${escapeHTML(address)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            📍 State:
+            </strong>
+
+            ${escapeHTML(state)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            👷 Work:
+            </strong>
+
+            ${escapeHTML(work)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            📝 Migrant Registration:
+            </strong>
+
+            ${escapeHTML(migrant)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            🏗️ Construction Registration:
+            </strong>
+
+            ${escapeHTML(construction)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            🏥 ESI:
+            </strong>
+
+            ${escapeHTML(esi)}
+
+        </div>
+
+
+        <div class="problem">
+
+            <strong>
+            🆘 ସହାୟତା / Problem:
+            </strong>
+
+            <br>
+
+            ${escapeHTML(problem)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            🌐 Language:
+            </strong>
+
+            ${escapeHTML(language)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            🕒 Application Time:
+            </strong>
+
+            ${escapeHTML(createdAt)}
+
+        </div>
+
+
+        <div class="actions">
+
+            ${callButton}
+
+
+            <button
+
+            class="actionButton deleteButton"
+
+            onclick="
+            deleteApplication('${escapeHTML(documentId)}')
+            ">
+
+            🗑️ Delete
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    document
+    .getElementById(
+        "applicationList"
+    )
+    .appendChild(card);
+
+}
+
+
+/* DELETE */
+
+window.deleteApplication =
+async function(documentId){
+
+    const confirmDelete =
+    confirm(
+        "ଏହି Worker Application କୁ Delete କରିବେ କି?"
+    );
+
+
+    if(!confirmDelete){
+        return;
+    }
+
+
+    try{
+
+        await deleteDoc(
+
+            doc(
+
+                db,
+
+                "workerApplications",
+
+                documentId
+
+            )
+
+        );
+
+
+        alert(
+            "✅ Application Delete ହୋଇଗଲା।"
+        );
+
+
+        loadApplications();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Delete Error:",
+            error
+        );
+
+
+        alert(
+            "❌ Delete ହୋଇପାରିଲା ନାହିଁ: "
+            +
+            error.message
+        );
+
+    }
+
+};
+
+
+/* START */
+
+loadApplications();
+
+</script>
+
+</body>
+
+</html>
