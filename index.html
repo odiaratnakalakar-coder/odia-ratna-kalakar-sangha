@@ -1,1565 +1,1850 @@
-<!DOCTYPE html>  <html lang="or">  <head>  <meta charset="UTF-8">  <meta name="viewport"  
-content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="or">
 
-<title id="pageTitle">  
-    ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ  
-</title>  <link rel="stylesheet" href="style.css">  <link rel="stylesheet"  
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">  <link rel="manifest" href="manifest.json">  <meta name="theme-color" content="#8B0000">  <link rel="icon" href="logo.png">  <link rel="preload"  
-      as="image"  
-      href="logo.png">  <link rel="preload"  
-      as="image"  
-      href="images/banner-new-2026.jpg">  <style>  
-  
-/* =================================================  
-   LANGUAGE SELECTOR  
-================================================= */  
-  
-.language-selector{  
-  
-    position:absolute;  
-  
-    top:15px;  
-  
-    right:15px;  
-  
-    z-index:9999;  
-  
-}  
-  
-.language-button{  
-  
-    background:#ffffff;  
-  
-    color:#8B0000;  
-  
-    border:2px solid #d4af37;  
-  
-    border-radius:12px;  
-  
-    padding:9px 13px;  
-  
-    font-size:15px;  
-  
-    font-weight:bold;  
-  
-    cursor:pointer;  
-  
-    box-shadow:  
-        0 4px 12px  
-        rgba(0,0,0,.20);  
-  
-}  
-  
-.language-button:hover{  
-  
-    background:#fff8e8;  
-  
-}  
-  
-.language-menu{  
-  
-    display:none;  
-  
-    position:absolute;  
-  
-    top:48px;  
-  
-    right:0;  
-  
-    width:150px;  
-  
-    background:#ffffff;  
-  
-    border-radius:12px;  
-  
-    overflow:hidden;  
-  
-    box-shadow:  
-        0 8px 25px  
-        rgba(0,0,0,.30);  
-  
-}  
-  
-.language-menu button{  
-  
-    width:100%;  
-  
-    padding:12px;  
-  
-    border:none;  
-  
-    background:#ffffff;  
-  
-    color:#333;  
-  
-    text-align:left;  
-  
-    font-size:16px;  
-  
-    cursor:pointer;  
-  
-}  
-  
-.language-menu button:hover{  
-  
-    background:#fff0d0;  
-  
-}  
-  
-.language-menu.show{  
-  
-    display:block;  
-  
-}  
-  
-  
-/* =================================================  
-   HEADER LANGUAGE POSITION  
-================================================= */  
-  
-.header{  
-  
-    position:relative;  
-  
-    padding-right:150px;  
-  
-}  
-  
-  
-/* =================================================  
-   ଆମର ଲକ୍ଷ୍ୟ  
-================================================= */  
-  
-.mission-section{  
-  
-    margin:25px 15px 30px;  
-  
-    padding:28px 20px;  
-  
-    background:  
-        linear-gradient(  
-            145deg,  
-            #fff8e8,  
-            #ffffff  
-        );  
-  
-    border:3px solid #d4af37;  
-  
-    border-radius:22px;  
-  
-    text-align:center;  
-  
-    box-shadow:  
-        0 8px 25px  
-        rgba(0,0,0,0.25);  
-  
-    position:relative;  
-  
-    overflow:hidden;  
-  
-}  
-  
-.mission-section::before{  
-  
-    content:"";  
-  
-    position:absolute;  
-  
-    width:150px;  
-    height:150px;  
-  
-    border-radius:50%;  
-  
-    background:#ffd700;  
-  
-    opacity:0.10;  
-  
-    top:-60px;  
-    right:-50px;  
-  
-}  
-  
-.mission-icon{  
-  
-    width:70px;  
-    height:70px;  
-  
-    margin:0 auto 10px;  
-  
-    border-radius:50%;  
-  
-    display:flex;  
-  
-    align-items:center;  
-    justify-content:center;  
-  
-    background:#8B0000;  
-  
-    color:#ffd700;  
-  
-    font-size:32px;  
-  
-    box-shadow:  
-        0 5px 15px  
-        rgba(139,0,0,0.35);  
-  
-}  
-  
-.mission-title{  
-  
-    font-size:30px;  
-  
-    font-weight:900;  
-  
-    color:#8B0000;  
-  
-    margin:8px 0 12px;  
-  
-}  
-  
-.mission-line{  
-  
-    width:100px;  
-    height:4px;  
-  
-    margin:0 auto 18px;  
-  
-    border-radius:10px;  
-  
-    background:#d4af37;  
-  
-}  
-  
-.mission-text{  
-  
-    font-size:17px;  
-  
-    line-height:1.9;  
-  
-    color:#333;  
-  
-    font-weight:500;  
-  
-    margin:0;  
-  
-}  
-  
-  
-/* =================================================  
-   WELCOME POPUP  
-================================================= */  
-  
-#welcomePopup{  
-  
-    position:fixed;  
-  
-    inset:0;  
-  
-    background:rgba(0,0,0,0.78);  
-  
-    display:flex;  
-  
-    align-items:center;  
-  
-    justify-content:center;  
-  
-    z-index:99999;  
-  
-    padding:20px;  
-  
-    animation:popupBg .5s ease;  
-  
-}  
-  
-.welcomeBox{  
-  
-    width:100%;  
-  
-    max-width:430px;  
-  
-    background:  
-        linear-gradient(  
-            145deg,  
-            #fffaf0,  
-            #ffffff  
-        );  
-  
-    border-radius:25px;  
-  
-    padding:28px 22px;  
-  
-    text-align:center;  
-  
-    box-shadow:  
-        0 15px 50px  
-        rgba(0,0,0,0.45);  
-  
-    border:3px solid #d4af37;  
-  
-    animation:welcomeBox .7s ease;  
-  
-    position:relative;  
-  
-    overflow:hidden;  
-  
-}  
-  
-.welcomeBox::before{  
-  
-    content:"";  
-  
-    position:absolute;  
-  
-    top:-80px;  
-    right:-80px;  
-  
-    width:170px;  
-    height:170px;  
-  
-    background:#ffd700;  
-  
-    opacity:.12;  
-  
-    border-radius:50%;  
-  
-}  
-  
-.welcomeLogo{  
-  
-    width:90px;  
-    height:90px;  
-  
-    object-fit:contain;  
-  
-    border-radius:50%;  
-  
-    margin-bottom:10px;  
-  
-    box-shadow:  
-        0 4px 15px  
-        rgba(0,0,0,.20);  
-  
-}  
-  
-.welcomeTitle{  
-  
-    color:#8B0000;  
-  
-    font-size:28px;  
-  
-    margin:5px 0;  
-  
-    font-weight:bold;  
-  
-}  
-  
-.welcomeOrg{  
-  
-    color:#333;  
-  
-    font-size:21px;  
-  
-    font-weight:bold;  
-  
-    line-height:1.5;  
-  
-    margin:5px 0;  
-  
-}  
-  
-.welcomeLocation{  
-  
-    color:#8B0000;  
-  
-    font-size:17px;  
-  
-    font-weight:bold;  
-  
-    margin-bottom:18px;  
-  
-}  
-  
-.welcomeLine{  
-  
-    width:80px;  
-    height:3px;  
-  
-    background:#d4af37;  
-  
-    margin:12px auto 18px;  
-  
-    border-radius:10px;  
-  
-}  
-  
-.welcomeMessage{  
-  
-    color:#444;  
-  
-    font-size:16px;  
-  
-    line-height:1.8;  
-  
-    margin-bottom:22px;  
-  
-}  
-  
-.welcomeButton{  
-  
-    border:none;  
-  
-    background:  
-        linear-gradient(  
-            135deg,  
-            #8B0000,  
-            #c40000  
-        );  
-  
-    color:white;  
-  
-    padding:13px 28px;  
-  
-    border-radius:30px;  
-  
-    font-size:17px;  
-  
-    font-weight:bold;  
-  
-    cursor:pointer;  
-  
-    box-shadow:  
-        0 5px 15px  
-        rgba(139,0,0,.35);  
-  
-}  
-  
-.welcomeBlessing{  
-  
-    margin-top:18px;  
-  
-    font-size:14px;  
-  
-    color:#777;  
-  
-}  
-  
-  
-/* =================================================  
-   ANIMATION  
-================================================= */  
-  
-@keyframes popupBg{  
-  
-    from{  
-        opacity:0;  
-    }  
-  
-    to{  
-        opacity:1;  
-    }  
-  
-}  
-  
-@keyframes welcomeBox{  
-  
-    from{  
-  
-        opacity:0;  
-  
-        transform:  
-            translateY(40px)  
-            scale(.9);  
-  
-    }  
-  
-    to{  
-  
-        opacity:1;  
-  
-        transform:  
-            translateY(0)  
-            scale(1);  
-  
-    }  
-  
-}  
-  
-  
-/* =================================================  
-   MOBILE  
-================================================= */  
-  
-@media(max-width:480px){  
-  
-    .language-selector{  
-  
-        top:10px;  
-  
-        right:10px;  
-  
-    }  
-  
-    .language-button{  
-  
-        padding:8px 10px;  
-  
-        font-size:13px;  
-  
-    }  
-  
-    .header{  
-  
-        padding-right:125px;  
-  
-    }  
-  
-    .mission-section{  
-  
-        margin:20px 12px 25px;  
-  
-        padding:24px 16px;  
-  
-    }  
-  
-    .mission-icon{  
-  
-        width:62px;  
-        height:62px;  
-  
-        font-size:28px;  
-  
-    }  
-  
-    .mission-title{  
-  
-        font-size:28px;  
-  
-    }  
-  
-    .mission-text{  
-  
-        font-size:16px;  
-  
-        line-height:1.8;  
-  
-    }  
-  
-    .welcomeBox{  
-  
-        padding:24px 18px;  
-  
-        border-radius:22px;  
-  
-    }  
-  
-    .welcomeLogo{  
-  
-        width:78px;  
-        height:78px;  
-  
-    }  
-  
-    .welcomeTitle{  
-  
-        font-size:25px;  
-  
-    }  
-  
-    .welcomeOrg{  
-  
-        font-size:19px;  
-  
-    }  
-  
-    .welcomeMessage{  
-  
-        font-size:15px;  
-  
-        line-height:1.7;  
-  
-    }  
-  
-}  
-  
-</style>  </head>  <body>  <!-- =================================================  
-     LANGUAGE SELECTOR  
-================================================= -->  <div class="language-selector">  <button  
-    class="language-button"  
-    onclick="toggleLanguageMenu()">  
+<head>
 
-    🌐  
-    <span id="currentLanguage">  
-        ଓଡ଼ିଆ  
-    </span>  
-    ▾  
+<meta charset="UTF-8">
 
-</button>  
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title id="pageTitle">
+    ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ
+</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#8B0000">
+
+<link rel="icon" href="logo.png">
+
+<link rel="preload"
+      as="image"
+      href="logo.png">
+
+<link rel="preload"
+      as="image"
+      href="images/banner-new-2026.jpg">
 
 
-<div  
-    class="language-menu"  
-    id="languageMenu">  
+<style>
 
-    <button  
-        onclick="changeLanguage('or')">  
+/* =================================================
+   LANGUAGE SELECTOR
+================================================= */
 
-        🇮🇳 ଓଡ଼ିଆ  
+.language-selector{
 
-    </button>  
+    position:absolute;
+
+    top:15px;
+
+    right:15px;
+
+    z-index:9999;
+
+}
+
+.language-button{
+
+    background:#ffffff;
+
+    color:#8B0000;
+
+    border:2px solid #d4af37;
+
+    border-radius:12px;
+
+    padding:9px 13px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 4px 12px
+        rgba(0,0,0,.20);
+
+}
+
+.language-button:hover{
+
+    background:#fff8e8;
+
+}
+
+.language-menu{
+
+    display:none;
+
+    position:absolute;
+
+    top:48px;
+
+    right:0;
+
+    width:150px;
+
+    background:#ffffff;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.30);
+
+}
+
+.language-menu button{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    background:#ffffff;
+
+    color:#333;
+
+    text-align:left;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+.language-menu button:hover{
+
+    background:#fff0d0;
+
+}
+
+.language-menu.show{
+
+    display:block;
+
+}
 
 
-    <button  
-        onclick="changeLanguage('hi')">  
+/* =================================================
+   HEADER LANGUAGE POSITION
+================================================= */
 
-        🇮🇳 हिन्दी  
+.header{
 
-    </button>  
+    position:relative;
 
+    padding-right:150px;
 
-    <button  
-        onclick="changeLanguage('en')">  
-
-        🇬🇧 English  
-
-    </button>  
-
-</div>
-
-</div>  <!-- =================================================  
-     WELCOME POPUP  
-================================================= -->  <div id="welcomePopup">  <div class="welcomeBox">  
-
-    <img  
-        src="logo.png"  
-        class="welcomeLogo"  
-        alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ଲୋଗୋ"  
-    >  
+}
 
 
-    <div  
-        class="welcomeTitle"  
-        id="welcomeTitle">  
+/* =================================================
+   WORKER BENEFITS CARD
+================================================= */
 
-        🙏 ସ୍ୱାଗତମ୍ 🙏  
+.worker-card{
 
-    </div>  
+    position:relative;
 
+}
 
-    <div class="welcomeLine"></div>  
+.worker-card i{
 
+    color:#8B0000;
 
-    <div  
-        class="welcomeOrg"  
-        id="welcomeOrg">  
-
-        ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ  
-
-    </div>  
+}
 
 
-    <div  
-        class="welcomeLocation"  
-        id="welcomeLocation">  
+/* =================================================
+   ଆମର ଲକ୍ଷ୍ୟ
+================================================= */
 
-        ସୁରତ  
+.mission-section{
 
-    </div>  
+    margin:25px 15px 30px;
+
+    padding:28px 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff8e8,
+            #ffffff
+        );
+
+    border:3px solid #d4af37;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,0.25);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.mission-section::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:150px;
+
+    height:150px;
+
+    border-radius:50%;
+
+    background:#ffd700;
+
+    opacity:0.10;
+
+    top:-60px;
+
+    right:-50px;
+
+}
+
+.mission-icon{
+
+    width:70px;
+
+    height:70px;
+
+    margin:0 auto 10px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#8B0000;
+
+    color:#ffd700;
+
+    font-size:32px;
+
+    box-shadow:
+        0 5px 15px
+        rgba(139,0,0,0.35);
+
+}
+
+.mission-title{
+
+    font-size:30px;
+
+    font-weight:900;
+
+    color:#8B0000;
+
+    margin:8px 0 12px;
+
+}
+
+.mission-line{
+
+    width:100px;
+
+    height:4px;
+
+    margin:0 auto 18px;
+
+    border-radius:10px;
+
+    background:#d4af37;
+
+}
+
+.mission-text{
+
+    font-size:17px;
+
+    line-height:1.9;
+
+    color:#333;
+
+    font-weight:500;
+
+    margin:0;
+
+}
 
 
-    <div  
-        class="welcomeMessage"  
-        id="welcomeMessage">  
+/* =================================================
+   WELCOME POPUP
+================================================= */
 
-        🌸 ଏକ ମନ, ଏକ ପ୍ରାଣ,<br>  
-        ଏକତା ଆମର ପରିଚୟ।<br><br>  
+#welcomePopup{
 
-        ଓଡ଼ିଆ କଳା, ସଂସ୍କୃତି ଓ  
-        କଳାକାରଙ୍କ ସମ୍ମାନ ପାଇଁ  
-        ଆସନ୍ତୁ ଆମେ ସମସ୍ତେ  
-        ଏକାଠି ଆଗକୁ ବଢ଼ିବା। 🙏  
+    position:fixed;
 
-    </div>  
+    inset:0;
+
+    background:rgba(0,0,0,0.78);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:99999;
+
+    padding:20px;
+
+    animation:popupBg .5s ease;
+
+}
+
+.welcomeBox{
+
+    width:100%;
+
+    max-width:430px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffaf0,
+            #ffffff
+        );
+
+    border-radius:25px;
+
+    padding:28px 22px;
+
+    text-align:center;
+
+    box-shadow:
+        0 15px 50px
+        rgba(0,0,0,0.45);
+
+    border:3px solid #d4af37;
+
+    animation:welcomeBox .7s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.welcomeBox::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-80px;
+
+    right:-80px;
+
+    width:170px;
+
+    height:170px;
+
+    background:#ffd700;
+
+    opacity:.12;
+
+    border-radius:50%;
+
+}
+
+.welcomeLogo{
+
+    width:90px;
+
+    height:90px;
+
+    object-fit:contain;
+
+    border-radius:50%;
+
+    margin-bottom:10px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(0,0,0,.20);
+
+}
+
+.welcomeTitle{
+
+    color:#8B0000;
+
+    font-size:28px;
+
+    margin:5px 0;
+
+    font-weight:bold;
+
+}
+
+.welcomeOrg{
+
+    color:#333;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    line-height:1.5;
+
+    margin:5px 0;
+
+}
+
+.welcomeLocation{
+
+    color:#8B0000;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    margin-bottom:18px;
+
+}
+
+.welcomeLine{
+
+    width:80px;
+
+    height:3px;
+
+    background:#d4af37;
+
+    margin:12px auto 18px;
+
+    border-radius:10px;
+
+}
+
+.welcomeMessage{
+
+    color:#444;
+
+    font-size:16px;
+
+    line-height:1.8;
+
+    margin-bottom:22px;
+
+}
+
+.welcomeButton{
+
+    border:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8B0000,
+            #c40000
+        );
+
+    color:white;
+
+    padding:13px 28px;
+
+    border-radius:30px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 5px 15px
+        rgba(139,0,0,.35);
+
+}
+
+.welcomeBlessing{
+
+    margin-top:18px;
+
+    font-size:14px;
+
+    color:#777;
+
+}
 
 
-    <button  
-        class="welcomeButton"  
-        onclick="closeWelcome()"  
-        id="welcomeButton">  
+/* =================================================
+   ANIMATION
+================================================= */
 
-        ପ୍ରବେଶ କରନ୍ତୁ →  
+@keyframes popupBg{
 
-    </button>  
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes welcomeBox{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(40px)
+            scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
 
 
-    <div  
-        class="welcomeBlessing"  
-        id="welcomeBlessing">  
+/* =================================================
+   MOBILE
+================================================= */
 
-        ଆପଣଙ୍କୁ ଆମ ପରିବାରର  
-        ହାର୍ଦ୍ଦିକ ସ୍ୱାଗତ 🙏  
+@media(max-width:480px){
 
-    </div>  
+    .language-selector{
+
+        top:10px;
+
+        right:10px;
+
+    }
+
+    .language-button{
+
+        padding:8px 10px;
+
+        font-size:13px;
+
+    }
+
+    .header{
+
+        padding-right:125px;
+
+    }
+
+    .mission-section{
+
+        margin:20px 12px 25px;
+
+        padding:24px 16px;
+
+    }
+
+    .mission-icon{
+
+        width:62px;
+
+        height:62px;
+
+        font-size:28px;
+
+    }
+
+    .mission-title{
+
+        font-size:28px;
+
+    }
+
+    .mission-text{
+
+        font-size:16px;
+
+        line-height:1.8;
+
+    }
+
+    .welcomeBox{
+
+        padding:24px 18px;
+
+        border-radius:22px;
+
+    }
+
+    .welcomeLogo{
+
+        width:78px;
+
+        height:78px;
+
+    }
+
+    .welcomeTitle{
+
+        font-size:25px;
+
+    }
+
+    .welcomeOrg{
+
+        font-size:19px;
+
+    }
+
+    .welcomeMessage{
+
+        font-size:15px;
+
+        line-height:1.7;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =================================================
+     LANGUAGE SELECTOR
+================================================= -->
+
+<div class="language-selector">
+
+<button
+    class="language-button"
+    onclick="toggleLanguageMenu()">
+
+    🌐
+
+    <span id="currentLanguage">
+        ଓଡ଼ିଆ
+    </span>
+
+    ▾
+
+</button>
+
+
+<div
+    class="language-menu"
+    id="languageMenu">
+
+    <button
+        onclick="changeLanguage('or')">
+
+        🇮🇳 ଓଡ଼ିଆ
+
+    </button>
+
+
+    <button
+        onclick="changeLanguage('hi')">
+
+        🇮🇳 हिन्दी
+
+    </button>
+
+
+    <button
+        onclick="changeLanguage('en')">
+
+        🇬🇧 English
+
+    </button>
 
 </div>
 
-</div>  <!-- =================================================  
-     HEADER  
-================================================= -->  <header class="header">  <img  
-    src="logo.png"  
-    class="logo"  
-    alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ଲୋଗୋ"  
-    width="100"  
-    height="100"  
->  
-
-
-<div>  
-
-    <h2 id="headerOrg">  
-
-        ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ  
-
-    </h2>  
-
-
-    <p id="headerLocation">  
-
-        ସୁରତ, ଗୁଜରାଟ  
-
-    </p>  
-
 </div>
 
-</header>  <!-- =================================================  
-     BANNER  
-================================================= -->  <section class="banner">  <img  
-    src="images/banner-new-2026.jpg"  
-    alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ବ୍ୟାନର"  
-    loading="eager"  
-    width="1500"  
-    height="1000"  
+
+<!-- =================================================
+     WELCOME POPUP
+================================================= -->
+
+<div id="welcomePopup">
+
+<div class="welcomeBox">
+
+
+<img
+    src="logo.png"
+    class="welcomeLogo"
+    alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ଲୋଗୋ"
 >
 
-</section>  <!-- =================================================  
-     ପ୍ରଧାନ ମେନୁ  
-================================================= -->  <section class="menu">  <a href="registration.html"  
-class="card">
 
-<i class="fa-solid fa-user-plus"></i>  
+<div
+    class="welcomeTitle"
+    id="welcomeTitle">
 
-<span id="menuRegistration">  
+    🙏 ସ୍ୱାଗତମ୍ 🙏
 
-    ସଦସ୍ୟ ପଞ୍ଜୀକରଣ  
-
-</span>
-
-</a>  <a href="members.html"  
-class="card">
-
-<i class="fa-solid fa-id-card"></i>  
-
-<span id="menuIdCard">  
-
-    ସଦସ୍ୟ ପରିଚୟ ପତ୍ର  
-
-</span>
-
-</a>  <a href="#"  
-class="card"  
-onclick="openCommittee(); return false;">
-
-<i class="fa-solid fa-users"></i>  
-
-<span id="menuCommittee">  
-
-    କାର୍ଯ୍ୟକାରୀ ସମିତି  
-
-</span>
-
-</a>  <a href="gallery.html"  
-class="card">
-
-<i class="fa-solid fa-image"></i>  
-
-<span id="menuGallery">  
-
-    ଫଟୋ ଗ୍ୟାଲେରୀ  
-
-</span>
-
-</a>  <a href="public-notice.html"  
-class="card">
-
-<i class="fa-solid fa-bullhorn"></i>  
-
-<span id="menuNotice">  
-
-    ସାର୍ବଜନୀନ ସୂଚନା  
-
-</span>
-
-</a>  <a href="blood.html"  
-class="card">
-
-<i class="fa-solid fa-droplet"></i>  
-
-<span id="menuBlood">  
-
-    ରକ୍ତଦାତା  
-
-</span>
-
-</a>  <a href="donation.html"  
-class="card">
-
-<i class="fa-solid fa-hand-holding-heart"></i>  
-
-<span id="menuDonation">  
-
-    ସହଯୋଗ ଦାନ  
-
-</span>
-
-</a>  <a href="contact.html"  
-class="card">
-
-<i class="fa-solid fa-phone"></i>  
-
-<span id="menuContact">  
-
-    ଯୋଗାଯୋଗ  
-
-</span>
-
-</a>  <a href="about.html"  
-class="card">
-
-<i class="fa-solid fa-circle-info"></i>  
-
-<span id="menuAbout">  
-
-    ଆମ ବିଷୟରେ  
-
-</span>
-
-</a>  <a href="login.html"  
-class="card">
-
-<i class="fa-solid fa-chart-line"></i>  
-
-<span id="menuAdmin">  
-
-    ପ୍ରଶାସନିକ ଡ୍ୟାସବୋର୍ଡ  
-
-</span>
-
-</a>  </section>  <!-- =================================================  
-     ଆମର ଲକ୍ଷ୍ୟ  
-================================================= -->  <section class="mission-section">  <div class="mission-icon">  
-
-    <i class="fa-solid fa-hands-holding-circle"></i>  
-
-</div>  
+</div>
 
 
-<h2  
-    class="mission-title"  
-    id="missionTitle">  
-
-    🙏 ଆମର ଲକ୍ଷ୍ୟ  
-
-</h2>  
+<div class="welcomeLine"></div>
 
 
-<div class="mission-line"></div>  
+<div
+    class="welcomeOrg"
+    id="welcomeOrg">
+
+    ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+
+</div>
 
 
-<p  
-    class="mission-text"  
-    id="missionText">  
+<div
+    class="welcomeLocation"
+    id="welcomeLocation">
 
-    ଓଡ଼ିଆ କଳା, ସଂସ୍କୃତି ଓ  
-    ପରମ୍ପରାର ସୁରକ୍ଷା ସହିତ  
-    କଳାକାର ଓ ସମାଜର ଉନ୍ନତି  
-    ପାଇଁ ଏକତାର ସହ  
-    କାର୍ଯ୍ୟ କରିବା।  
+    ସୁରତ
 
-    <br><br>  
+</div>
 
-    🤝 ଏକତା ଆମର ଶକ୍ତି,  
-    ସେବା ଆମର ଧର୍ମ,  
-    ପ୍ରଗତି ଆମର ଲକ୍ଷ୍ୟ। 🙏  
+
+<div
+    class="welcomeMessage"
+    id="welcomeMessage">
+
+    🌸 ଏକ ମନ, ଏକ ପ୍ରାଣ,
+    <br>
+
+    ଏକତା ଆମର ପରିଚୟ।
+    <br><br>
+
+    ଓଡ଼ିଆ କଳା, ସଂସ୍କୃତି ଓ
+    କଳାକାରଙ୍କ ସମ୍ମାନ ପାଇଁ
+    ଆସନ୍ତୁ ଆମେ ସମସ୍ତେ
+    ଏକାଠି ଆଗକୁ ବଢ଼ିବା। 🙏
+
+</div>
+
+
+<button
+    class="welcomeButton"
+    onclick="closeWelcome()"
+    id="welcomeButton">
+
+    ପ୍ରବେଶ କରନ୍ତୁ →
+
+</button>
+
+
+<div
+    class="welcomeBlessing"
+    id="welcomeBlessing">
+
+    ଆପଣଙ୍କୁ ଆମ ପରିବାରର
+    ହାର୍ଦ୍ଦିକ ସ୍ୱାଗତ 🙏
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =================================================
+     HEADER
+================================================= -->
+
+<header class="header">
+
+
+<img
+    src="logo.png"
+    class="logo"
+    alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ଲୋଗୋ"
+    width="100"
+    height="100"
+>
+
+
+<div>
+
+<h2 id="headerOrg">
+
+    ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+
+</h2>
+
+
+<p id="headerLocation">
+
+    ସୁରତ, ଗୁଜରାଟ
 
 </p>
 
-</section>  <!-- =================================================  
-     LANGUAGE SYSTEM  
-================================================= -->  <script>  
-  
-/* =================================================  
-   LANGUAGE DATA  
-================================================= */  
-  
-const languageData = {  
-  
-    or: {  
-  
-        languageName:  
-            "ଓଡ଼ିଆ",  
-  
-        pageTitle:  
-            "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ",  
-  
-        headerOrg:  
-            "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ",  
-  
-        headerLocation:  
-            "ସୁରତ, ଗୁଜରାଟ",  
-  
-        welcomeTitle:  
-            "🙏 ସ୍ୱାଗତମ୍ 🙏",  
-  
-        welcomeOrg:  
-            "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ",  
-  
-        welcomeLocation:  
-            "ସୁରତ",  
-  
-        welcomeMessage:  
-            "🌸 ଏକ ମନ, ଏକ ପ୍ରାଣ,<br>ଏକତା ଆମର ପରିଚୟ।<br><br>ଓଡ଼ିଆ କଳା, ସଂସ୍କୃତି ଓ କଳାକାରଙ୍କ ସମ୍ମାନ ପାଇଁ ଆସନ୍ତୁ ଆମେ ସମସ୍ତେ ଏକାଠି ଆଗକୁ ବଢ଼ିବା। 🙏",  
-  
-        welcomeButton:  
-            "ପ୍ରବେଶ କରନ୍ତୁ →",  
-  
-        welcomeBlessing:  
-            "ଆପଣଙ୍କୁ ଆମ ପରିବାରର ହାର୍ଦ୍ଦିକ ସ୍ୱାଗତ 🙏",  
-  
-        menuRegistration:  
-            "ସଦସ୍ୟ ପଞ୍ଜୀକରଣ",  
-  
-        menuIdCard:  
-            "ସଦସ୍ୟ ପରିଚୟ ପତ୍ର",  
-  
-        menuCommittee:  
-            "କାର୍ଯ୍ୟକାରୀ ସମିତି",  
-  
-        menuGallery:  
-            "ଫଟୋ ଗ୍ୟାଲେରୀ",  
-  
-        menuNotice:  
-            "ସାର୍ବଜନୀନ ସୂଚନା",  
-  
-        menuBlood:  
-            "ରକ୍ତଦାତା",  
-  
-        menuDonation:  
-            "ସହଯୋଗ ଦାନ",  
-  
-        menuContact:  
-            "ଯୋଗାଯୋଗ",  
-  
-        menuAbout:  
-            "ଆମ ବିଷୟରେ",  
-  
-        menuAdmin:  
-            "ପ୍ରଶାସନିକ ଡ୍ୟାସବୋର୍ଡ",  
-  
-        missionTitle:  
-            "🙏 ଆମର ଲକ୍ଷ୍ୟ",  
-  
-        missionText:  
-            "ଓଡ଼ିଆ କଳା, ସଂସ୍କୃତି ଓ ପରମ୍ପରାର ସୁରକ୍ଷା ସହିତ କଳାକାର ଓ ସମାଜର ଉନ୍ନତି ପାଇଁ ଏକତାର ସହ କାର୍ଯ୍ୟ କରିବା।<br><br>🤝 ଏକତା ଆମର ଶକ୍ତି, ସେବା ଆମର ଧର୍ମ, ପ୍ରଗତି ଆମର ଲକ୍ଷ୍ୟ। 🙏",  
-  
-        password:  
-            "ପ୍ରଶାସକଙ୍କ ପାସୱାର୍ଡ ଦିଅନ୍ତୁ",  
-  
-        wrongPassword:  
-            "❌ ଭୁଲ ପାସୱାର୍ଡ"  
-  
-    },  
-  
-  
-    hi: {  
-  
-        languageName:  
-            "हिन्दी",  
-  
-        pageTitle:  
-            "ओड़िया रत्न कलाकार संघ सूरत",  
-  
-        headerOrg:  
-            "ओड़िया रत्न कलाकार संघ",  
-  
-        headerLocation:  
-            "सूरत, गुजरात",  
-  
-        welcomeTitle:  
-            "🙏 स्वागत है 🙏",  
-  
-        welcomeOrg:  
-            "ओड़िया रत्न कलाकार संघ",  
-  
-        welcomeLocation:  
-            "सूरत",  
-  
-        welcomeMessage:  
-            "🌸 एक मन, एक प्राण,<br>एकता हमारी पहचान है।<br><br>ओड़िया कला, संस्कृति और कलाकारों के सम्मान के लिए आइए हम सभी मिलकर आगे बढ़ें। 🙏",  
-  
-        welcomeButton:  
-            "प्रवेश करें →",  
-  
-        welcomeBlessing:  
-            "आपका हमारे परिवार में हार्दिक स्वागत है 🙏",  
-  
-        menuRegistration:  
-            "सदस्य पंजीकरण",  
-  
-        menuIdCard:  
-            "सदस्य पहचान पत्र",  
-  
-        menuCommittee:  
-            "कार्यकारिणी समिति",  
-  
-        menuGallery:  
-            "फोटो गैलरी",  
-  
-        menuNotice:  
-            "सार्वजनिक सूचना",  
-  
-        menuBlood:  
-            "रक्तदाता",  
-  
-        menuDonation:  
-            "सहयोग दान",  
-  
-        menuContact:  
-            "संपर्क करें",  
-  
-        menuAbout:  
-            "हमारे बारे में",  
-  
-        menuAdmin:  
-            "प्रशासनिक डैशबोर्ड",  
-  
-        missionTitle:  
-            "🙏 हमारा उद्देश्य",  
-  
-        missionText:  
-            "ओड़िया कला, संस्कृति और परंपरा की रक्षा के साथ कलाकारों और समाज के विकास के लिए एकता के साथ कार्य करना।<br><br>🤝 एकता हमारी शक्ति है, सेवा हमारा धर्म है, प्रगति हमारा लक्ष्य है। 🙏",  
-  
-        password:  
-            "प्रशासक का पासवर्ड दर्ज करें",  
-  
-        wrongPassword:  
-            "❌ गलत पासवर्ड"  
-  
-    },  
-  
-  
-    en: {  
-  
-        languageName:  
-            "English",  
-  
-        pageTitle:  
-            "Odia Ratna Kalakar Sangha Surat",  
-  
-        headerOrg:  
-            "Odia Ratna Kalakar Sangha",  
-  
-        headerLocation:  
-            "Surat, Gujarat",  
-  
-        welcomeTitle:  
-            "🙏 Welcome 🙏",  
-  
-        welcomeOrg:  
-            "Odia Ratna Kalakar Sangha",  
-  
-        welcomeLocation:  
-            "Surat",  
-  
-        welcomeMessage:  
-            "🌸 One mind, one spirit,<br>Unity is our identity.<br><br>Let us all move forward together for the respect of Odia art, culture and artists. 🙏",  
-  
-        welcomeButton:  
-            "Enter →",  
-  
-        welcomeBlessing:  
-            "A warm welcome to our family 🙏",  
-  
-        menuRegistration:  
-            "Member Registration",  
-  
-        menuIdCard:  
-            "Member ID Card",  
-  
-        menuCommittee:  
-            "Executive Committee",  
-  
-        menuGallery:  
-            "Photo Gallery",  
-  
-        menuNotice:  
-            "Public Notice",  
-  
-        menuBlood:  
-            "Blood Donors",  
-  
-        menuDonation:  
-            "Donation",  
-  
-        menuContact:  
-            "Contact Us",  
-  
-        menuAbout:  
-            "About Us",  
-  
-        menuAdmin:  
-            "Administrative Dashboard",  
-  
-        missionTitle:  
-            "🙏 Our Mission",  
-  
-        missionText:  
-            "To protect Odia art, culture and traditions while working together for the development of artists and society.<br><br>🤝 Unity is our strength, service is our duty, and progress is our goal. 🙏",  
-  
-        password:  
-            "Enter Administrator Password",  
-  
-        wrongPassword:  
-            "❌ Wrong Password"  
-  
-    }  
-  
-};  
-  
-  
-/* =================================================  
-   CHANGE LANGUAGE  
-================================================= */  
-  
-function changeLanguage(language){  
-  
-    const data =  
-        languageData[language];  
-  
-    if(!data){  
-  
-        return;  
-  
-    }  
-  
-  
-    /* HTML LANGUAGE */  
-  
-    document.documentElement.lang =  
-        language;  
-  
-  
-    /* PAGE TITLE */  
-  
-    document.getElementById(  
-        "pageTitle"  
-    ).textContent =  
-        data.pageTitle;  
-  
-  
-    /* LANGUAGE BUTTON */  
-  
-    document.getElementById(  
-        "currentLanguage"  
-    ).textContent =  
-        data.languageName;  
-  
-  
-    /* HEADER */  
-  
-    document.getElementById(  
-        "headerOrg"  
-    ).textContent =  
-        data.headerOrg;  
-  
-  
-    document.getElementById(  
-        "headerLocation"  
-    ).textContent =  
-        data.headerLocation;  
-  
-  
-    /* WELCOME POPUP */  
-  
-    document.getElementById(  
-        "welcomeTitle"  
-    ).textContent =  
-        data.welcomeTitle;  
-  
-  
-    document.getElementById(  
-        "welcomeOrg"  
-    ).textContent =  
-        data.welcomeOrg;  
-  
-  
-    document.getElementById(  
-        "welcomeLocation"  
-    ).textContent =  
-        data.welcomeLocation;  
-  
-  
-    document.getElementById(  
-        "welcomeMessage"  
-    ).innerHTML =  
-        data.welcomeMessage;  
-  
-  
-    document.getElementById(  
-        "welcomeButton"  
-    ).textContent =  
-        data.welcomeButton;  
-  
-  
-    document.getElementById(  
-        "welcomeBlessing"  
-    ).textContent =  
-        data.welcomeBlessing;  
-  
-  
-    /* MENU */  
-  
-    document.getElementById(  
-        "menuRegistration"  
-    ).textContent =  
-        data.menuRegistration;  
-  
-  
-    document.getElementById(  
-        "menuIdCard"  
-    ).textContent =  
-        data.menuIdCard;  
-  
-  
-    document.getElementById(  
-        "menuCommittee"  
-    ).textContent =  
-        data.menuCommittee;  
-  
-  
-    document.getElementById(  
-        "menuGallery"  
-    ).textContent =  
-        data.menuGallery;  
-  
-  
-    document.getElementById(  
-        "menuNotice"  
-    ).textContent =  
-        data.menuNotice;  
-  
-  
-    document.getElementById(  
-        "menuBlood"  
-    ).textContent =  
-        data.menuBlood;  
-  
-  
-    document.getElementById(  
-        "menuDonation"  
-    ).textContent =  
-        data.menuDonation;  
-  
-  
-    document.getElementById(  
-        "menuContact"  
-    ).textContent =  
-        data.menuContact;  
-  
-  
-    document.getElementById(  
-        "menuAbout"  
-    ).textContent =  
-        data.menuAbout;  
-  
-  
-    document.getElementById(  
-        "menuAdmin"  
-    ).textContent =  
-        data.menuAdmin;  
-  
-  
-    /* MISSION */  
-  
-    document.getElementById(  
-        "missionTitle"  
-    ).textContent =  
-        data.missionTitle;  
-  
-  
-    document.getElementById(  
-        "missionText"  
-    ).innerHTML =  
-        data.missionText;  
-  
-  
-    /* SAVE LANGUAGE */  
-  
-    localStorage.setItem(  
-        "selectedLanguage",  
-        language  
-    );  
-  
-  
-    /* CLOSE MENU */  
-  
-    document.getElementById(  
-        "languageMenu"  
-    ).classList.remove(  
-        "show"  
-    );  
-  
-}  
-  
-  
-/* =================================================  
-   LANGUAGE MENU  
-================================================= */  
-  
-function toggleLanguageMenu(){  
-  
-    document.getElementById(  
-        "languageMenu"  
-    ).classList.toggle(  
-        "show"  
-    );  
-  
-}  
-  
-  
-/* =================================================  
-   CLOSE LANGUAGE MENU  
-================================================= */  
-  
-document.addEventListener(  
-    "click",  
-    function(event){  
-  
-        const selector =  
-            document.querySelector(  
-                ".language-selector"  
-            );  
-  
-        if(  
-            !selector.contains(  
-                event.target  
-            )  
-        ){  
-  
-            document.getElementById(  
-                "languageMenu"  
-            ).classList.remove(  
-                "show"  
-            );  
-  
-        }  
-  
-    }  
-);  
-  
-  
-/* =================================================  
-   GET SAVED LANGUAGE  
-================================================= */  
-  
-const savedLanguage =  
-    localStorage.getItem(  
-        "selectedLanguage"  
-    ) || "or";  
-  
-  
-/* =================================================  
-   APPLY LANGUAGE  
-================================================= */  
-  
-changeLanguage(  
-    savedLanguage  
-);  
-  
-</script>  <!-- =================================================  
-     WELCOME POPUP SCRIPT  
-================================================= -->  <script>  
-  
-function closeWelcome(){  
-  
-    const popup =  
-        document.getElementById(  
-            "welcomePopup"  
-        );  
-  
-    popup.style.opacity = "0";  
-  
-    popup.style.transition =  
-        "opacity .4s ease";  
-  
-    setTimeout(() => {  
-  
-        popup.style.display =  
-            "none";  
-  
-    },400);  
-  
-}  
-  
-</script>  <!-- =================================================  
-     COMMITTEE PASSWORD  
-================================================= -->  <script>  
-  
-function openCommittee(){  
-  
-    const language =  
-        localStorage.getItem(  
-            "selectedLanguage"  
-        ) || "or";  
-  
-  
-    const data =  
-        languageData[language];  
-  
-  
-    const pass =  
-        prompt(  
-            data.password  
-        );  
-  
-  
-    if(pass === "2026@"){  
-  
-        window.location.href =  
-            "admin.html";  
-  
-    }else{  
-  
-        window.location.href =  
-            "committee.html";  
-  
-    }  
-  
-}  
-  
-  
-function openAdmin(){  
-  
-    const language =  
-        localStorage.getItem(  
-            "selectedLanguage"  
-        ) || "or";  
-  
-  
-    const data =  
-        languageData[language];  
-  
-  
-    const pass =  
-        prompt(  
-            data.password  
-        );  
-  
-  
-    if(pass === "2026@"){  
-  
-        window.location.href =  
-            "admin.html";  
-  
-    }else if(pass !== null){  
-  
-        alert(  
-            data.wrongPassword  
-        );  
-  
-    }  
-  
-}  
-  
-</script>  <!-- =================================================  
-     ONESIGNAL  
-================================================= -->  <script>  
-  
-setTimeout(() => {  
-  
-    const script =  
-        document.createElement(  
-            "script"  
-        );  
-  
-  
-    script.src =  
-        "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";  
-  
-  
-    script.defer = true;  
-  
-  
-    document.head.appendChild(  
-        script  
-    );  
-  
-  
-    window.OneSignalDeferred =  
-        window.OneSignalDeferred || [];  
-  
-  
-    OneSignalDeferred.push(  
-        async function(OneSignal){  
-  
-            try{  
-  
-                await OneSignal.init({  
-  
-                    appId:  
-                    "9e750c08-3b2d-424f-87a5-c62d08068fcd"  
-  
-                });  
-  
-            }catch(error){  
-  
-                console.error(  
-                    "OneSignal Error:",  
-                    error  
-                );  
-  
-            }  
-  
-        }  
-    );  
-  
-  
-},1500);  
-  
-</script>  <!-- =================================================  
-     SERVICE WORKER  
-================================================= -->  <script>  
-  
-if("serviceWorker" in navigator){  
-  
-    window.addEventListener(  
-        "load",  
-        () => {  
-  
-            navigator.serviceWorker  
-                .register(  
-                    "service-worker.js"  
-                )  
-                .catch(error => {  
-  
-                    console.error(  
-                        "Service Worker Error:",  
-                        error  
-                    );  
-  
-                });  
-  
-        }  
-    );  
-  
-}  
-  
-</script>  </body>  </html>
+</div>
+
+</header>
+
+
+<!-- =================================================
+     BANNER
+================================================= -->
+
+<section class="banner">
+
+<img
+    src="images/banner-new-2026.jpg"
+    alt="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ବ୍ୟାନର"
+    loading="eager"
+    width="1500"
+    height="1000"
+>
+
+</section>
+
+
+<!-- =================================================
+     ପ୍ରଧାନ ମେନୁ
+================================================= -->
+
+<section class="menu">
+
+
+<!-- MEMBER REGISTRATION -->
+
+<a
+    href="registration.html"
+    class="card">
+
+    <i class="fa-solid fa-user-plus"></i>
+
+    <span id="menuRegistration">
+
+        ସଦସ୍ୟ ପଞ୍ଜୀକରଣ
+
+    </span>
+
+</a>
+
+
+<!-- MEMBER ID -->
+
+<a
+    href="members.html"
+    class="card">
+
+    <i class="fa-solid fa-id-card"></i>
+
+    <span id="menuIdCard">
+
+        ସଦସ୍ୟ ପରିଚୟ ପତ୍ର
+
+    </span>
+
+</a>
+
+
+<!-- COMMITTEE -->
+
+<a
+    href="#"
+    class="card"
+    onclick="openCommittee(); return false;">
+
+    <i class="fa-solid fa-users"></i>
+
+    <span id="menuCommittee">
+
+        କାର୍ଯ୍ୟକାରୀ ସମିତି
+
+    </span>
+
+</a>
+
+
+<!-- GALLERY -->
+
+<a
+    href="gallery.html"
+    class="card">
+
+    <i class="fa-solid fa-image"></i>
+
+    <span id="menuGallery">
+
+        ଫଟୋ ଗ୍ୟାଲେରୀ
+
+    </span>
+
+</a>
+
+
+<!-- PUBLIC NOTICE -->
+
+<a
+    href="public-notice.html"
+    class="card">
+
+    <i class="fa-solid fa-bullhorn"></i>
+
+    <span id="menuNotice">
+
+        ସାର୍ବଜନୀନ ସୂଚନା
+
+    </span>
+
+</a>
+
+
+<!-- =================================================
+     WORKER BENEFITS
+================================================= -->
+
+<a
+    href="worker-benefits.html"
+    class="card worker-card">
+
+    <i class="fa-solid fa-person-digging"></i>
+
+    <span id="menuWorkerBenefits">
+
+        🧑‍🔧 ପ୍ରବାସୀ ଶ୍ରମିକ ସୁବିଧା
+
+    </span>
+
+</a>
+
+
+<!-- BLOOD -->
+
+<a
+    href="blood.html"
+    class="card">
+
+    <i class="fa-solid fa-droplet"></i>
+
+    <span id="menuBlood">
+
+        ରକ୍ତଦାତା
+
+    </span>
+
+</a>
+
+
+<!-- DONATION -->
+
+<a
+    href="donation.html"
+    class="card">
+
+    <i class="fa-solid fa-hand-holding-heart"></i>
+
+    <span id="menuDonation">
+
+        ସହଯୋଗ ଦାନ
+
+    </span>
+
+</a>
+
+
+<!-- CONTACT -->
+
+<a
+    href="contact.html"
+    class="card">
+
+    <i class="fa-solid fa-phone"></i>
+
+    <span id="menuContact">
+
+        ଯୋଗାଯୋଗ
+
+    </span>
+
+</a>
+
+
+<!-- ABOUT -->
+
+<a
+    href="about.html"
+    class="card">
+
+    <i class="fa-solid fa-circle-info"></i>
+
+    <span id="menuAbout">
+
+        ଆମ ବିଷୟରେ
+
+    </span>
+
+</a>
+
+
+<!-- ADMIN -->
+
+<a
+    href="login.html"
+    class="card">
+
+    <i class="fa-solid fa-chart-line"></i>
+
+    <span id="menuAdmin">
+
+        ପ୍ରଶାସନିକ ଡ୍ୟାସବୋର୍ଡ
+
+    </span>
+
+</a>
+
+
+</section>
+
+
+<!-- =================================================
+     ଆମର ଲକ୍ଷ୍ୟ
+================================================= -->
+
+<section class="mission-section">
+
+
+<div class="mission-icon">
+
+    <i class="fa-solid fa-hands-holding-circle"></i>
+
+</div>
+
+
+<h2
+    class="mission-title"
+    id="missionTitle">
+
+    🙏 ଆମର ଲକ୍ଷ୍ୟ
+
+</h2>
+
+
+<div class="mission-line"></div>
+
+
+<p
+    class="mission-text"
+    id="missionText">
+
+    ଓଡ଼ିଆ କଳା, ସଂସ୍କୃତି ଓ
+    ପରମ୍ପରାର ସୁରକ୍ଷା ସହିତ
+    କଳାକାର ଓ ସମାଜର ଉନ୍ନତି
+    ପାଇଁ ଏକତାର ସହ
+    କାର୍ଯ୍ୟ କରିବା।
+
+    <br><br>
+
+    🤝 ଏକତା ଆମର ଶକ୍ତି,
+    ସେବା ଆମର ଧର୍ମ,
+    ପ୍ରଗତି ଆମର ଲକ୍ଷ୍ୟ। 🙏
+
+</p>
+
+</section>
+
+
+<!-- =================================================
+     LANGUAGE SYSTEM
+================================================= -->
+
+<script>
+
+
+/* =================================================
+   LANGUAGE DATA
+================================================= */
+
+const languageData = {
+
+
+/* =================================================
+   ODIA
+================================================= */
+
+or: {
+
+languageName:
+    "ଓଡ଼ିଆ",
+
+pageTitle:
+    "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ",
+
+headerOrg:
+    "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ",
+
+headerLocation:
+    "ସୁରତ, ଗୁଜରାଟ",
+
+
+welcomeTitle:
+    "🙏 ସ୍ୱାଗତମ୍ 🙏",
+
+welcomeOrg:
+    "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ",
+
+welcomeLocation:
+    "ସୁରତ",
+
+welcomeMessage:
+    "🌸 ଏକ ମନ, ଏକ ପ୍ରାଣ,<br>ଏକତା ଆମର ପରିଚୟ।<br><br>ଓଡ଼ିଆ କଳା, ସଂସ୍କୃତି ଓ କଳାକାରଙ୍କ ସମ୍ମାନ ପାଇଁ ଆସନ୍ତୁ ଆମେ ସମସ୍ତେ ଏକାଠି ଆଗକୁ ବଢ଼ିବା। 🙏",
+
+welcomeButton:
+    "ପ୍ରବେଶ କରନ୍ତୁ →",
+
+welcomeBlessing:
+    "ଆପଣଙ୍କୁ ଆମ ପରିବାରର ହାର୍ଦ୍ଦିକ ସ୍ୱାଗତ 🙏",
+
+
+menuRegistration:
+    "ସଦସ୍ୟ ପଞ୍ଜୀକରଣ",
+
+menuIdCard:
+    "ସଦସ୍ୟ ପରିଚୟ ପତ୍ର",
+
+menuCommittee:
+    "କାର୍ଯ୍ୟକାରୀ ସମିତି",
+
+menuGallery:
+    "ଫଟୋ ଗ୍ୟାଲେରୀ",
+
+menuNotice:
+    "ସାର୍ବଜନୀନ ସୂଚନା",
+
+menuWorkerBenefits:
+    "🧑‍🔧 ପ୍ରବାସୀ ଶ୍ରମିକ ସୁବିଧା",
+
+menuBlood:
+    "ରକ୍ତଦାତା",
+
+menuDonation:
+    "ସହଯୋଗ ଦାନ",
+
+menuContact:
+    "ଯୋଗାଯୋଗ",
+
+menuAbout:
+    "ଆମ ବିଷୟରେ",
+
+menuAdmin:
+    "ପ୍ରଶାସନିକ ଡ୍ୟାସବୋର୍ଡ",
+
+
+missionTitle:
+    "🙏 ଆମର ଲକ୍ଷ୍ୟ",
+
+missionText:
+    "ଓଡ଼ିଆ କଳା, ସଂସ୍କୃତି ଓ ପରମ୍ପରାର ସୁରକ୍ଷା ସହିତ କଳାକାର ଓ ସମାଜର ଉନ୍ନତି ପାଇଁ ଏକତାର ସହ କାର୍ଯ୍ୟ କରିବା।<br><br>🤝 ଏକତା ଆମର ଶକ୍ତି, ସେବା ଆମର ଧର୍ମ, ପ୍ରଗତି ଆମର ଲକ୍ଷ୍ୟ। 🙏",
+
+
+password:
+    "ପ୍ରଶାସକଙ୍କ ପାସୱାର୍ଡ ଦିଅନ୍ତୁ",
+
+wrongPassword:
+    "❌ ଭୁଲ ପାସୱାର୍ଡ"
+
+},
+
+
+/* =================================================
+   HINDI
+================================================= */
+
+hi: {
+
+languageName:
+    "हिन्दी",
+
+pageTitle:
+    "ओड़िया रत्न कलाकार संघ सूरत",
+
+headerOrg:
+    "ओड़िया रत्न कलाकार संघ",
+
+headerLocation:
+    "सूरत, गुजरात",
+
+
+welcomeTitle:
+    "🙏 स्वागत है 🙏",
+
+welcomeOrg:
+    "ओड़िया रत्न कलाकार संघ",
+
+welcomeLocation:
+    "सूरत",
+
+welcomeMessage:
+    "🌸 एक मन, एक प्राण,<br>एकता हमारी पहचान है।<br><br>ओड़िया कला, संस्कृति और कलाकारों के सम्मान के लिए आइए हम सभी मिलकर आगे बढ़ें। 🙏",
+
+welcomeButton:
+    "प्रवेश करें →",
+
+welcomeBlessing:
+    "आपका हमारे परिवार में हार्दिक स्वागत है 🙏",
+
+
+menuRegistration:
+    "सदस्य पंजीकरण",
+
+menuIdCard:
+    "सदस्य पहचान पत्र",
+
+menuCommittee:
+    "कार्यकारिणी समिति",
+
+menuGallery:
+    "फोटो गैलरी",
+
+menuNotice:
+    "सार्वजनिक सूचना",
+
+menuWorkerBenefits:
+    "🧑‍🔧 प्रवासी श्रमिक सुविधाएँ",
+
+menuBlood:
+    "रक्तदाता",
+
+menuDonation:
+    "सहयोग दान",
+
+menuContact:
+    "संपर्क करें",
+
+menuAbout:
+    "हमारे बारे में",
+
+menuAdmin:
+    "प्रशासनिक डैशबोर्ड",
+
+
+missionTitle:
+    "🙏 हमारा उद्देश्य",
+
+missionText:
+    "ओड़िया कला, संस्कृति और परंपरा की रक्षा के साथ कलाकारों और समाज के विकास के लिए एकता के साथ कार्य करना।<br><br>🤝 एकता हमारी शक्ति है, सेवा हमारा धर्म है, प्रगति हमारा लक्ष्य है। 🙏",
+
+
+password:
+    "प्रशासक का पासवर्ड दर्ज करें",
+
+wrongPassword:
+    "❌ गलत पासवर्ड"
+
+},
+
+
+/* =================================================
+   ENGLISH
+================================================= */
+
+en: {
+
+languageName:
+    "English",
+
+pageTitle:
+    "Odia Ratna Kalakar Sangha Surat",
+
+headerOrg:
+    "Odia Ratna Kalakar Sangha",
+
+headerLocation:
+    "Surat, Gujarat",
+
+
+welcomeTitle:
+    "🙏 Welcome 🙏",
+
+welcomeOrg:
+    "Odia Ratna Kalakar Sangha",
+
+welcomeLocation:
+    "Surat",
+
+welcomeMessage:
+    "🌸 One mind, one spirit,<br>Unity is our identity.<br><br>Let us all move forward together for the respect of Odia art, culture and artists. 🙏",
+
+welcomeButton:
+    "Enter →",
+
+welcomeBlessing:
+    "A warm welcome to our family 🙏",
+
+
+menuRegistration:
+    "Member Registration",
+
+menuIdCard:
+    "Member ID Card",
+
+menuCommittee:
+    "Executive Committee",
+
+menuGallery:
+    "Photo Gallery",
+
+menuNotice:
+    "Public Notice",
+
+menuWorkerBenefits:
+    "🧑‍🔧 Migrant Worker Benefits",
+
+menuBlood:
+    "Blood Donors",
+
+menuDonation:
+    "Donation",
+
+menuContact:
+    "Contact Us",
+
+menuAbout:
+    "About Us",
+
+menuAdmin:
+    "Administrative Dashboard",
+
+
+missionTitle:
+    "🙏 Our Mission",
+
+missionText:
+    "To protect Odia art, culture and traditions while working together for the development of artists and society.<br><br>🤝 Unity is our strength, service is our duty, and progress is our goal. 🙏",
+
+
+password:
+    "Enter Administrator Password",
+
+wrongPassword:
+    "❌ Wrong Password"
+
+}
+
+};
+
+
+/* =================================================
+   CHANGE LANGUAGE
+================================================= */
+
+function changeLanguage(language){
+
+const data =
+    languageData[language];
+
+
+if(!data){
+
+    return;
+
+}
+
+
+/* HTML LANGUAGE */
+
+document.documentElement.lang =
+    language;
+
+
+/* PAGE TITLE */
+
+document.getElementById(
+    "pageTitle"
+).textContent =
+    data.pageTitle;
+
+
+/* LANGUAGE BUTTON */
+
+document.getElementById(
+    "currentLanguage"
+).textContent =
+    data.languageName;
+
+
+/* HEADER */
+
+document.getElementById(
+    "headerOrg"
+).textContent =
+    data.headerOrg;
+
+
+document.getElementById(
+    "headerLocation"
+).textContent =
+    data.headerLocation;
+
+
+/* WELCOME */
+
+document.getElementById(
+    "welcomeTitle"
+).textContent =
+    data.welcomeTitle;
+
+
+document.getElementById(
+    "welcomeOrg"
+).textContent =
+    data.welcomeOrg;
+
+
+document.getElementById(
+    "welcomeLocation"
+).textContent =
+    data.welcomeLocation;
+
+
+document.getElementById(
+    "welcomeMessage"
+).innerHTML =
+    data.welcomeMessage;
+
+
+document.getElementById(
+    "welcomeButton"
+).textContent =
+    data.welcomeButton;
+
+
+document.getElementById(
+    "welcomeBlessing"
+).textContent =
+    data.welcomeBlessing;
+
+
+/* =================================================
+   MENU
+================================================= */
+
+document.getElementById(
+    "menuRegistration"
+).textContent =
+    data.menuRegistration;
+
+
+document.getElementById(
+    "menuIdCard"
+).textContent =
+    data.menuIdCard;
+
+
+document.getElementById(
+    "menuCommittee"
+).textContent =
+    data.menuCommittee;
+
+
+document.getElementById(
+    "menuGallery"
+).textContent =
+    data.menuGallery;
+
+
+document.getElementById(
+    "menuNotice"
+).textContent =
+    data.menuNotice;
+
+
+/* WORKER BENEFITS */
+
+document.getElementById(
+    "menuWorkerBenefits"
+).textContent =
+    data.menuWorkerBenefits;
+
+
+document.getElementById(
+    "menuBlood"
+).textContent =
+    data.menuBlood;
+
+
+document.getElementById(
+    "menuDonation"
+).textContent =
+    data.menuDonation;
+
+
+document.getElementById(
+    "menuContact"
+).textContent =
+    data.menuContact;
+
+
+document.getElementById(
+    "menuAbout"
+).textContent =
+    data.menuAbout;
+
+
+document.getElementById(
+    "menuAdmin"
+).textContent =
+    data.menuAdmin;
+
+
+/* =================================================
+   MISSION
+================================================= */
+
+document.getElementById(
+    "missionTitle"
+).textContent =
+    data.missionTitle;
+
+
+document.getElementById(
+    "missionText"
+).innerHTML =
+    data.missionText;
+
+
+/* SAVE LANGUAGE */
+
+localStorage.setItem(
+    "selectedLanguage",
+    language
+);
+
+
+/* CLOSE MENU */
+
+document.getElementById(
+    "languageMenu"
+).classList.remove(
+    "show"
+);
+
+}
+
+
+/* =================================================
+   LANGUAGE MENU
+================================================= */
+
+function toggleLanguageMenu(){
+
+document.getElementById(
+    "languageMenu"
+).classList.toggle(
+    "show"
+);
+
+}
+
+
+/* =================================================
+   CLOSE LANGUAGE MENU
+================================================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const selector =
+            document.querySelector(
+                ".language-selector"
+            );
+
+
+        if(
+            !selector.contains(
+                event.target
+            )
+        ){
+
+            document.getElementById(
+                "languageMenu"
+            ).classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
+
+/* =================================================
+   SAVED LANGUAGE
+================================================= */
+
+const savedLanguage =
+    localStorage.getItem(
+        "selectedLanguage"
+    ) || "or";
+
+
+/* APPLY */
+
+changeLanguage(
+    savedLanguage
+);
+
+</script>
+
+
+<!-- =================================================
+     WELCOME POPUP SCRIPT
+================================================= -->
+
+<script>
+
+function closeWelcome(){
+
+const popup =
+    document.getElementById(
+        "welcomePopup"
+    );
+
+
+popup.style.opacity =
+    "0";
+
+
+popup.style.transition =
+    "opacity .4s ease";
+
+
+setTimeout(() => {
+
+    popup.style.display =
+        "none";
+
+},400);
+
+}
+
+</script>
+
+
+<!-- =================================================
+     COMMITTEE PASSWORD
+================================================= -->
+
+<script>
+
+function openCommittee(){
+
+const language =
+    localStorage.getItem(
+        "selectedLanguage"
+    ) || "or";
+
+
+const data =
+    languageData[language];
+
+
+const pass =
+    prompt(
+        data.password
+    );
+
+
+if(pass === "2026@"){
+
+    window.location.href =
+        "admin.html";
+
+}else{
+
+    window.location.href =
+        "committee.html";
+
+}
+
+}
+
+
+/* =================================================
+   ADMIN
+================================================= */
+
+function openAdmin(){
+
+const language =
+    localStorage.getItem(
+        "selectedLanguage"
+    ) || "or";
+
+
+const data =
+    languageData[language];
+
+
+const pass =
+    prompt(
+        data.password
+    );
+
+
+if(pass === "2026@"){
+
+    window.location.href =
+        "admin.html";
+
+}
+
+else if(pass !== null){
+
+    alert(
+        data.wrongPassword
+    );
+
+}
+
+}
+
+</script>
+
+
+<!-- =================================================
+     ONESIGNAL
+================================================= -->
+
+<script>
+
+setTimeout(() => {
+
+const script =
+    document.createElement(
+        "script"
+    );
+
+
+script.src =
+    "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js";
+
+
+script.defer =
+    true;
+
+
+document.head.appendChild(
+    script
+);
+
+
+window.OneSignalDeferred =
+    window.OneSignalDeferred || [];
+
+
+OneSignalDeferred.push(
+    async function(OneSignal){
+
+        try{
+
+            await OneSignal.init({
+
+                appId:
+                "9e750c08-3b2d-424f-87a5-c62d08068fcd"
+
+            });
+
+        }
+
+        catch(error){
+
+            console.error(
+                "OneSignal Error:",
+                error
+            );
+
+        }
+
+    }
+);
+
+
+},1500);
+
+</script>
+
+
+<!-- =================================================
+     SERVICE WORKER
+================================================= -->
+
+<script>
+
+if(
+    "serviceWorker"
+    in navigator
+){
+
+window.addEventListener(
+    "load",
+    () => {
+
+        navigator.serviceWorker
+            .register(
+                "service-worker.js"
+            )
+            .catch(error => {
+
+                console.error(
+                    "Service Worker Error:",
+                    error
+                );
+
+            });
+
+    }
+);
+
+}
+
+</script>
+
+
+</body>
+
+    </html>
