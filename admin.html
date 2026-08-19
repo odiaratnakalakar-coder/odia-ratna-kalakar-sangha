@@ -5,9 +5,11 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Admin Dashboard</title>
+
 
 <style>
 
@@ -19,138 +21,310 @@ font-family:Arial,sans-serif;
 }
 
 body{
+
 background:#111;
+
 color:white;
+
 padding:15px;
+
 }
 
 .container{
+
 max-width:600px;
+
 margin:auto;
+
 }
 
 h1{
+
 text-align:center;
+
 color:#ffcc00;
+
 margin-bottom:20px;
+
 }
 
+
+/* ================= DASHBOARD ================= */
+
 .dashboard{
+
 display:grid;
-grid-template-columns:repeat(2,1fr);
+
+grid-template-columns:
+repeat(2,1fr);
+
 gap:12px;
+
 margin-bottom:25px;
+
 }
 
 .card{
+
 background:#222;
+
 border:2px solid #c40000;
+
 border-radius:12px;
+
 padding:20px;
+
 text-align:center;
-box-shadow:0 0 10px rgba(255,0,0,.3);
+
+box-shadow:
+0 0 10px
+rgba(255,0,0,.3);
+
 }
 
 .card h2{
+
 font-size:28px;
+
 margin-bottom:8px;
+
 }
 
 .card p{
+
 font-size:15px;
+
 color:#ddd;
+
 }
 
 
-/* ================= BIRTHDAY CARD ================= */
+/* ================= WORKER CARD ================= */
+
+.workerCard{
+
+grid-column:
+1 / -1;
+
+background:
+linear-gradient(
+135deg,
+#260000,
+#151515
+);
+
+border:
+2px solid
+#ffcc00;
+
+box-shadow:
+0 0 15px
+rgba(255,204,0,.25);
+
+}
+
+.workerCard h2{
+
+color:#ffcc00;
+
+font-size:32px;
+
+}
+
+.workerCard p{
+
+color:#fff;
+
+font-weight:bold;
+
+}
+
+
+/* ================= BIRTHDAY ================= */
 
 .birthdayCard{
-grid-column:1 / -1;
-border:2px solid #ff9900;
+
+grid-column:
+1 / -1;
+
+border:
+2px solid
+#ff9900;
+
 background:#222;
+
 }
 
 .birthdayCard h2{
+
 color:#ffcc00;
+
 font-size:32px;
+
 }
 
 .birthdayCard p{
+
 color:#ffcc00;
+
 font-weight:bold;
+
 }
 
 .birthdayList{
+
 margin-top:12px;
+
 text-align:left;
+
 }
 
 .birthdayMember{
+
 background:#151515;
-border-left:4px solid #ffcc00;
+
+border-left:
+4px solid
+#ffcc00;
+
 border-radius:7px;
+
 padding:9px;
+
 margin-top:7px;
+
 line-height:1.5;
+
 }
 
 .birthdayMember strong{
+
 color:#ffcc00;
+
 }
 
 .noBirthday{
+
 color:#aaa;
+
 text-align:center;
+
 padding:5px;
+
 font-size:14px;
+
 }
 
 
 /* ================= MENU ================= */
 
 .menu{
+
 display:flex;
+
 flex-direction:column;
+
 gap:12px;
+
 }
 
 .menu a{
+
 display:block;
+
 text-decoration:none;
+
 background:#c40000;
+
 color:white;
+
 padding:14px;
+
 border-radius:8px;
+
 text-align:center;
+
 font-size:17px;
+
 font-weight:bold;
+
 transition:.3s;
+
 }
 
 .menu a:hover{
+
 background:#ff0000;
+
+}
+
+
+/* ================= WORKER ADMIN BUTTON ================= */
+
+.workerAdmin{
+
+background:
+linear-gradient(
+135deg,
+#8b0000,
+#c40000
+) !important;
+
+border:
+2px solid
+#ffcc00;
+
+box-shadow:
+0 0 12px
+rgba(255,204,0,.25);
+
+}
+
+.workerAdmin:hover{
+
+background:
+linear-gradient(
+135deg,
+#b00000,
+#ff0000
+) !important;
+
 }
 
 
 /* ================= MEMBER BOOK ================= */
 
 .memberBook{
-background:#8b0000 !important;
-border:2px solid #ffcc00;
+
+background:
+#8b0000 !important;
+
+border:
+2px solid
+#ffcc00;
+
 }
 
 .memberBook:hover{
-background:#b00000 !important;
+
+background:
+#b00000 !important;
+
 }
 
 
 /* ================= FOOTER ================= */
 
 .footer{
+
 margin-top:25px;
+
 text-align:center;
+
 font-size:14px;
+
 color:#aaa;
+
 }
 
 
@@ -159,19 +333,28 @@ color:#aaa;
 @media(max-width:450px){
 
 .dashboard{
+
 gap:10px;
+
 }
 
 .card{
-padding:17px 10px;
+
+padding:
+17px 10px;
+
 }
 
 .card h2{
+
 font-size:26px;
+
 }
 
 .card p{
+
 font-size:14px;
+
 }
 
 }
@@ -188,87 +371,105 @@ font-size:14px;
 
 
 <h1>
+
 📊 Admin Dashboard
+
 </h1>
 
 
 <div class="dashboard">
 
 
-<!-- TOTAL MEMBERS -->
+<!-- ================= TOTAL MEMBERS ================= -->
 
 <div class="card">
 
 <h2 id="memberCount">
+
 0
+
 </h2>
 
 <p>
+
 👥 Total Members
+
 </p>
 
 </div>
 
 
-<!-- COMMITTEE -->
+<!-- ================= COMMITTEE ================= -->
 
 <div class="card">
 
 <h2 id="committeeCount">
+
 0
+
 </h2>
 
 <p>
+
 👨‍💼 Committee Members
+
 </p>
 
 </div>
 
 
-<!-- PUBLIC NOTICE -->
+<!-- ================= WORKER HELP ================= -->
+
+<div class="card workerCard">
+
+<h2 id="workerHelpCount">
+
+0
+
+</h2>
+
+<p>
+
+🆘 Worker Help Requests
+
+</p>
+
+</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- BLOOD -->
+<!-- ================= BLOOD ================= -->
 
 <div class="card">
 
 <h2 id="bloodCount">
+
 0
+
 </h2>
 
 <p>
+
 🩸 Blood Donors
+
 </p>
 
 </div>
 
 
-<!-- DONATION -->
+<!-- ================= DONATION ================= -->
 
 <div class="card">
 
 <h2 id="donationCount">
+
 ₹0
+
 </h2>
 
 <p>
+
 ❤️ Total Donation
+
 </p>
 
 </div>
@@ -279,11 +480,15 @@ font-size:14px;
 <div class="card birthdayCard">
 
 <h2 id="birthdayCount">
+
 0
+
 </h2>
 
 <p>
+
 🎂 Birthday Today
+
 </p>
 
 
@@ -293,7 +498,9 @@ class="birthdayList"
 >
 
 <div class="noBirthday">
+
 Birthday checking...
+
 </div>
 
 </div>
@@ -309,14 +516,28 @@ Birthday checking...
 <div class="menu">
 
 
-<!-- MEMBERS ADMIN -->
+<!-- ================= WORKER HELP ADMIN ================= -->
 
-<a href="members.html">
-👥 Members Admin
+<a
+href="worker-help-admin.html"
+class="workerAdmin"
+>
+
+🆘 ଶ୍ରମିକ ସହାୟତା ଅନୁରୋଧ
+
 </a>
 
 
-<!-- ================= NEW MEMBER BOOK ================= -->
+<!-- ================= MEMBERS ADMIN ================= -->
+
+<a href="members.html">
+
+👥 Members Admin
+
+</a>
+
+
+<!-- ================= MEMBER BOOK ================= -->
 
 <a
 href="members-book.html"
@@ -328,95 +549,123 @@ class="memberBook"
 </a>
 
 
-<!-- MEMBER ADD -->
+<!-- ================= MEMBER ADD ================= -->
 
 <a href="member-add.html">
+
 ➕ Member Add / Edit
+
 </a>
 
 
-<!-- BIRTHDAY -->
+<!-- ================= BIRTHDAY ================= -->
 
 <a href="birthday-admin.html">
+
 🎂 Birthday / DOB Admin
+
 </a>
-<!-- FESTIVAL CALENDAR -->
+
+
+<!-- ================= FESTIVAL ================= -->
 
 <a href="festival-calendar.html">
+
 📅 Festival Calendar
+
 </a>
 
-<!-- PENDING -->
+
+<!-- ================= PENDING ================= -->
 
 <a href="pending-members.html">
+
 ⏳ Pending Members
+
 </a>
 
 
-<!-- COMMITTEE -->
+<!-- ================= COMMITTEE ================= -->
 
 <a href="committee.html">
+
 👨‍💼 Committee Admin
+
 </a>
 
-<!-- PUBLIC NOTICE -->
+
+<!-- ================= PUBLIC NOTICE ================= -->
 
 <a href="public-notice-admin.html">
+
 📢 Public Notice Admin
+
 </a>
 
 
-
-
-
-
-
-<!-- GALLERY -->
+<!-- ================= GALLERY ================= -->
 
 <a href="gallery-admin.html">
+
 🖼️ Gallery Admin
+
 </a>
 
 
-<!-- ID CARD -->
+<!-- ================= ID CARD ================= -->
 
 <a href="idcard.html">
+
 🪪 ID Card
+
 </a>
 
 
-<!-- DONATION -->
+<!-- ================= DONATION ================= -->
 
 <a href="donation-admin.html">
+
 ❤️ Donation Admin
+
 </a>
 
 
-<!-- PAYMENT -->
+<!-- ================= PAYMENT ================= -->
 
 <a href="payment-receipt.html">
+
 🧾 Payment Receipt
+
 </a>
 
 
-<!-- TRUST ACCOUNTS -->
+<!-- ================= TRUST ACCOUNTS ================= -->
 
 <a href="trust-accounts.html">
+
 📊 Trust Accounts Dashboard
+
 </a>
 
 
-<!-- WEBSITE HOME -->
+<!-- ================= WEBSITE HOME ================= -->
 
 <a href="index.html">
+
 🏠 Website Home
+
 </a>
 
 
-<!-- LOGOUT -->
+<!-- ================= LOGOUT ================= -->
 
-<a href="#" onclick="logout()">
+<a
+href="#"
+onclick="logout()"
+>
+
 🚪 Logout
+
 </a>
 
 
@@ -430,25 +679,34 @@ class="memberBook"
 </div>
 
 
-
-<!-- ================= FIREBASE ================= -->
+<!-- ==================================================
+     FIREBASE
+================================================== -->
 
 <script type="module">
 
 
 import {
+
 db,
+
 auth
+
 }
+
 from "./firebase.js";
 
 
 /* ================= FIRESTORE ================= */
 
 import {
+
 collection,
+
 getDocs
+
 }
+
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -456,15 +714,18 @@ from
 /* ================= AUTH ================= */
 
 import {
+
 signOut
+
 }
+
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-/* ================================================= */
-/* LOAD DASHBOARD */
-/* ================================================= */
+/* ==================================================
+   LOAD DASHBOARD
+================================================== */
 
 async function loadDashboard(){
 
@@ -474,11 +735,17 @@ try{
 /* ================= MEMBERS ================= */
 
 const memberSnap =
+
 await getDocs(
+
 collection(
+
 db,
+
 "members"
+
 )
+
 );
 
 
@@ -487,24 +754,35 @@ document
 "memberCount"
 )
 .textContent =
+
 memberSnap.size;
 
 
 /* ================= BIRTHDAY ================= */
 
 loadTodayBirthdays(
+
 memberSnap
+
 );
 
 
 /* ================= COMMITTEE ================= */
 
+try{
+
 const committeeSnap =
+
 await getDocs(
+
 collection(
+
 db,
+
 "Committee"
+
 )
+
 );
 
 
@@ -513,26 +791,74 @@ document
 "committeeCount"
 )
 .textContent =
+
 committeeSnap.size;
 
+}
+
+catch(error){
+
+console.error(
+"Committee Error:",
+error
+);
+
+document
+.getElementById(
+"committeeCount"
+)
+.textContent =
+
+"0";
+
+}
 
 
+/* ================= WORKER HELP ================= */
+
+try{
+
+const workerSnap =
+
+await getDocs(
+
+collection(
+
+db,
+
+"workerHelpRequests"
+
+)
+
+);
 
 
+document
+.getElementById(
+"workerHelpCount"
+)
+.textContent =
 
+workerSnap.size;
 
+}
 
+catch(error){
 
+console.error(
+"Worker Help Error:",
+error
+);
 
+document
+.getElementById(
+"workerHelpCount"
+)
+.textContent =
 
+"0";
 
-
-
-
-
-
-
-
+}
 
 
 /* ================= BLOOD DONORS ================= */
@@ -540,11 +866,17 @@ committeeSnap.size;
 try{
 
 const bloodSnap =
+
 await getDocs(
+
 collection(
+
 db,
+
 "bloodDonors"
+
 )
+
 );
 
 
@@ -553,16 +885,19 @@ document
 "bloodCount"
 )
 .textContent =
+
 bloodSnap.size;
 
 }
-catch(e){
+
+catch(error){
 
 document
 .getElementById(
 "bloodCount"
 )
 .textContent =
+
 "0";
 
 }
@@ -573,27 +908,40 @@ document
 try{
 
 const donationSnap =
+
 await getDocs(
+
 collection(
+
 db,
+
 "donations"
+
 )
+
 );
 
 
 let totalDonation =
+
 0;
 
 
 donationSnap.forEach(
+
 doc=>{
 
 totalDonation +=
+
 Number(
+
 doc.data().amount || 0
+
 );
 
-});
+}
+
+);
 
 
 document
@@ -601,28 +949,35 @@ document
 "donationCount"
 )
 .textContent =
+
 "₹" +
 totalDonation;
 
 }
-catch(e){
+
+catch(error){
 
 document
 .getElementById(
 "donationCount"
 )
 .textContent =
+
 "₹0";
 
 }
 
 
 }
+
 catch(error){
 
 console.error(
+
 "Dashboard Error:",
+
 error
+
 );
 
 }
@@ -630,72 +985,101 @@ error
 }
 
 
-/* ================================================= */
-/* TODAY BIRTHDAY */
-/* ================================================= */
+/* ==================================================
+   TODAY BIRTHDAY
+================================================== */
 
 function loadTodayBirthdays(
+
 memberSnap
+
 ){
 
 const today =
+
 new Date();
 
 
 const todayDay =
+
 String(
+
 today.getDate()
+
 )
+
 .padStart(
+
 2,
+
 "0"
+
 );
 
 
 const todayMonth =
+
 String(
+
 today.getMonth()+1
+
 )
+
 .padStart(
+
 2,
+
 "0"
+
 );
 
 
 const birthdays =
+
 [];
 
 
 /* ================= CHECK MEMBERS ================= */
 
 memberSnap.forEach(
+
 memberDoc=>{
 
 
 const data =
+
 memberDoc.data();
 
 
 const dob =
+
 String(
+
 data.dob || ""
+
 )
+
 .trim();
 
 
 /*
+
 DOB FORMAT:
 
 DD/MM/YYYY
+
 */
 
 
 const parts =
+
 dob.split("/");
 
 
 if(
+
 parts.length !== 3
+
 ){
 
 return;
@@ -704,34 +1088,46 @@ return;
 
 
 const day =
+
 parts[0];
 
 const month =
+
 parts[1];
 
 
 /* ================= MATCH ================= */
 
 if(
+
 day === todayDay &&
+
 month === todayMonth
+
 ){
 
 birthdays.push({
 
 name:
+
 data.name ||
+
 "Member",
 
 memberId:
+
 data.memberId ||
+
 "-",
 
 mobile:
+
 data.mobile ||
+
 "-",
 
 dob:
+
 dob
 
 });
@@ -748,25 +1144,32 @@ document
 "birthdayCount"
 )
 .textContent =
+
 birthdays.length;
 
 
 /* ================= LIST ================= */
 
 const list =
+
 document.getElementById(
+
 "birthdayList"
+
 );
 
 
 list.innerHTML =
+
 "";
 
 
 /* ================= NO BIRTHDAY ================= */
 
 if(
+
 birthdays.length === 0
+
 ){
 
 list.innerHTML = `
@@ -787,16 +1190,21 @@ return;
 /* ================= SHOW BIRTHDAYS ================= */
 
 birthdays.forEach(
+
 member=>{
 
 
 const div =
+
 document.createElement(
+
 "div"
+
 );
 
 
 div.className =
+
 "birthdayMember";
 
 
@@ -805,7 +1213,9 @@ div.innerHTML = `
 🎉 <strong>
 
 ${escapeHTML(
+
 member.name
+
 )}
 
 </strong>
@@ -815,7 +1225,9 @@ member.name
 🎂 DOB:
 
 ${escapeHTML(
+
 member.dob
+
 )}
 
 <br>
@@ -823,14 +1235,18 @@ member.dob
 📱 Mobile:
 
 ${escapeHTML(
+
 member.mobile
+
 )}
 
 `;
 
 
 list.appendChild(
+
 div
+
 );
 
 });
@@ -838,66 +1254,90 @@ div
 }
 
 
-/* ================================================= */
-/* ESCAPE HTML */
-/* ================================================= */
+/* ==================================================
+   ESCAPE HTML
+================================================== */
 
 function escapeHTML(
+
 value
+
 ){
 
 return String(value)
 
 .replace(
+
 /&/g,
+
 "&amp;"
+
 )
 
 .replace(
+
 /</g,
+
 "&lt;"
+
 )
 
 .replace(
+
 />/g,
+
 "&gt;"
+
 )
 
 .replace(
+
 /"/g,
+
 "&quot;"
+
 )
 
 .replace(
+
 /'/g,
+
 "&#039;"
+
 );
 
 }
 
 
-/* ================================================= */
-/* LOGOUT */
-/* ================================================= */
+/* ==================================================
+   LOGOUT
+================================================== */
 
 window.logout =
+
 async function(){
 
 try{
 
 await signOut(
+
 auth
+
 );
 
 
 window.location.href =
+
 "login.html";
 
 }
+
 catch(error){
 
 console.error(
+
 error
+
 );
 
 }
@@ -905,9 +1345,9 @@ error
 };
 
 
-/* ================================================= */
-/* START */
-/* ================================================= */
+/* ==================================================
+   START
+================================================== */
 
 loadDashboard();
 
@@ -916,6 +1356,7 @@ loadDashboard();
 
 
 </div>
+
 
 </body>
 
