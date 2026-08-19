@@ -294,12 +294,6 @@ body{
 
 }
 
-.detail a:hover{
-
-    text-decoration:underline;
-
-}
-
 /* ================= PROBLEM ================= */
 
 .problem{
@@ -361,6 +355,10 @@ body{
 .callButton{
 
     background:#16823b;
+
+    text-decoration:none;
+
+    text-align:center;
 
 }
 
@@ -461,35 +459,24 @@ body{
 @media(max-width:480px){
 
     body{
-
         padding:10px;
-
     }
 
     .header{
-
         padding:18px 12px;
-
     }
 
     .header h1{
-
         font-size:21px;
-
     }
 
     .topButton{
-
         font-size:13px;
-
         padding:12px 7px;
-
     }
 
     .requestCard{
-
         padding:14px;
-
     }
 
 }
@@ -537,7 +524,7 @@ class="topButton"
 
 <button
 class="topButton"
-onclick="loadRequests()"
+onclick="loadApplications()"
 >
 🔄 Refresh
 </button>
@@ -549,24 +536,24 @@ onclick="loadRequests()"
 
 <div class="countCard">
 
-<h2 id="requestCount">
+<h2 id="applicationCount">
 0
 </h2>
 
 <p>
-🆘 ମୋଟ ଶ୍ରମିକ ସହାୟତା ଅନୁରୋଧ
+🆘 ମୋଟ ଶ୍ରମିକ ସହାୟତା Application
 </p>
 
 </div>
 
 
-<!-- ================= REQUEST LIST ================= -->
+<!-- ================= APPLICATION LIST ================= -->
 
-<div id="requestList">
+<div id="applicationList">
 
 <div class="loading">
 
-⏳ Data Loading...
+⏳ Application Loading...
 
 </div>
 
@@ -583,14 +570,15 @@ onclick="loadRequests()"
 </div>
 
 
-<!-- ================= FIREBASE ================= -->
+<!-- ==================================================
+     FIREBASE
+================================================== -->
 
 <script type="module">
 
-
 import {
 
-db
+    db
 
 }
 
@@ -599,13 +587,10 @@ from "./firebase.js";
 
 import {
 
-collection,
-
-getDocs,
-
-deleteDoc,
-
-doc
+    collection,
+    getDocs,
+    deleteDoc,
+    doc
 
 }
 
@@ -671,7 +656,7 @@ function formatDate(value){
 
     catch(error){
 
-        return String(value);
+        return "-";
 
     }
 
@@ -679,19 +664,20 @@ function formatDate(value){
 
 
 /* ==================================================
-   LOAD REQUESTS
+   LOAD APPLICATIONS
 ================================================== */
 
-window.loadRequests = async function(){
+window.loadApplications = async function(){
 
     const list =
     document.getElementById(
-        "requestList"
+        "applicationList"
     );
+
 
     const count =
     document.getElementById(
-        "requestCount"
+        "applicationCount"
     );
 
 
@@ -699,7 +685,7 @@ window.loadRequests = async function(){
 
         <div class="loading">
 
-        ⏳ ଅନୁରୋଧ ଲୋଡ୍ ହେଉଛି...
+        ⏳ ଶ୍ରମିକ Application ଲୋଡ୍ ହେଉଛି...
 
         </div>
 
@@ -708,9 +694,17 @@ window.loadRequests = async function(){
 
     try{
 
-        console.log(
-            "Loading workerHelpRequests..."
-        );
+
+        /*
+        ==================================================
+        IMPORTANT
+
+        Worker application data is saved in:
+
+        workerApplications
+
+        ==================================================
+        */
 
 
         const snapshot =
@@ -721,7 +715,7 @@ window.loadRequests = async function(){
 
                 db,
 
-                "workerHelpRequests"
+                "workerApplications"
 
             )
 
@@ -729,7 +723,7 @@ window.loadRequests = async function(){
 
 
         console.log(
-            "Worker Help Count:",
+            "workerApplications:",
             snapshot.size
         );
 
@@ -753,11 +747,14 @@ window.loadRequests = async function(){
                     </div>
 
                     <h3>
-                    କୌଣସି ସହାୟତା ଅନୁରୋଧ ନାହିଁ
+                    କୌଣସି ଶ୍ରମିକ Application ନାହିଁ
                     </h3>
 
                     <p style="margin-top:8px;">
-                    ବର୍ତ୍ତମାନ କୌଣସି Worker Help Request ମିଳିଲା ନାହିଁ।
+
+                    ବର୍ତ୍ତମାନ କୌଣସି Worker Application
+                    ମିଳିଲା ନାହିଁ।
+
                     </p>
 
                 </div>
@@ -776,20 +773,20 @@ window.loadRequests = async function(){
 
         /* ================= DATA ================= */
 
-        const requests = [];
+        const applications = [];
 
 
         snapshot.forEach(
 
-            requestDoc => {
+            applicationDoc => {
 
-                requests.push({
+                applications.push({
 
                     id:
-                    requestDoc.id,
+                    applicationDoc.id,
 
                     data:
-                    requestDoc.data()
+                    applicationDoc.data()
 
                 });
 
@@ -798,9 +795,9 @@ window.loadRequests = async function(){
         );
 
 
-        /* ================= SORT ================= */
+        /* ================= SORT NEWEST FIRST ================= */
 
-        requests.sort(
+        applications.sort(
 
             (a,b) => {
 
@@ -825,6 +822,7 @@ window.loadRequests = async function(){
 
                 }
 
+
                 return 0;
 
             }
@@ -834,15 +832,15 @@ window.loadRequests = async function(){
 
         /* ================= DISPLAY ================= */
 
-        requests.forEach(
+        applications.forEach(
 
-            (request,index) => {
+            (application,index) => {
 
-                createRequestCard(
+                createApplicationCard(
 
-                    request.id,
+                    application.id,
 
-                    request.data,
+                    application.data,
 
                     index + 1
 
@@ -858,12 +856,13 @@ window.loadRequests = async function(){
     catch(error){
 
         console.error(
-            "Worker Help Error:",
+            "Worker Applications Error:",
             error
         );
 
 
-        count.textContent = "0";
+        count.textContent =
+        "0";
 
 
         list.innerHTML = `
@@ -875,15 +874,22 @@ window.loadRequests = async function(){
                 </h3>
 
                 <p style="margin-top:10px;">
-                Worker Help Request ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ।
+
+                Worker Application
+                ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ।
+
                 </p>
 
                 <p style="margin-top:10px;">
-                ${escapeHTML(error.message)}
+
+                ${escapeHTML(
+                    error.message
+                )}
+
                 </p>
 
                 <button
-                onclick="loadRequests()"
+                onclick="loadApplications()"
                 style="
                 margin-top:15px;
                 padding:10px 20px;
@@ -894,7 +900,9 @@ window.loadRequests = async function(){
                 font-weight:bold;
                 "
                 >
+
                 🔄 ପୁଣି Try କରନ୍ତୁ
+
                 </button>
 
             </div>
@@ -907,10 +915,10 @@ window.loadRequests = async function(){
 
 
 /* ==================================================
-   CREATE REQUEST CARD
+   CREATE APPLICATION CARD
 ================================================== */
 
-function createRequestCard(
+function createApplicationCard(
 
     documentId,
 
@@ -919,6 +927,7 @@ function createRequestCard(
     number
 
 ){
+
 
     const card =
     document.createElement(
@@ -930,153 +939,96 @@ function createRequestCard(
     "requestCard";
 
 
-    /* ================= COMMON FIELDS ================= */
+    /* ================= BASIC DATA ================= */
+
+    const applicationId =
+
+    data.applicationId ||
+    documentId;
+
 
     const name =
+
     data.name ||
-    data.fullName ||
-    data.workerName ||
-    data.worker ||
     "-";
 
 
     const mobile =
+
     data.mobile ||
-    data.phone ||
-    data.contact ||
-    data.phoneNumber ||
     "";
 
 
+    const company =
+
+    data.company ||
+    "-";
+
+
     const address =
+
     data.address ||
-    data.location ||
+    "-";
+
+
+    const state =
+
+    data.state ||
+    "-";
+
+
+    const work =
+
+    data.work ||
+    "-";
+
+
+    const migrant =
+
+    data.migrant ||
+    "-";
+
+
+    const construction =
+
+    data.construction ||
+    "-";
+
+
+    const esi =
+
+    data.esi ||
     "-";
 
 
     const problem =
+
     data.problem ||
-    data.message ||
-    data.description ||
-    data.help ||
-    data.request ||
     "-";
 
 
-    const requestId =
-    data.requestId ||
-    data.id ||
-    documentId;
+    const language =
+
+    data.language ||
+    "-";
 
 
     const status =
+
     data.status ||
-    "ନୂଆ ଅନୁରୋଧ";
+    "New";
 
 
     const createdAt =
+
     formatDate(
         data.createdAt
     );
 
 
-    /* ================= EXTRA DATA ================= */
-
-    let extraHTML = "";
-
-
-    Object.keys(data).forEach(
-
-        key => {
-
-            const value =
-            data[key];
-
-
-            const ignored = [
-
-                "name",
-                "fullName",
-                "workerName",
-                "worker",
-                "mobile",
-                "phone",
-                "contact",
-                "phoneNumber",
-                "address",
-                "location",
-                "problem",
-                "message",
-                "description",
-                "help",
-                "request",
-                "requestId",
-                "id",
-                "status",
-                "createdAt"
-
-            ];
-
-
-            if(
-                ignored.includes(key)
-            ){
-
-                return;
-
-            }
-
-
-            if(
-                value === null ||
-                value === undefined ||
-                value === ""
-            ){
-
-                return;
-
-            }
-
-
-            let displayValue =
-            value;
-
-
-            if(
-                typeof value === "object"
-            ){
-
-                displayValue =
-                JSON.stringify(
-                    value
-                );
-
-            }
-
-
-            extraHTML += `
-
-                <div class="detail">
-
-                    <strong>
-                    ${escapeHTML(key)}
-                    :
-                    </strong>
-
-                    ${escapeHTML(
-                        displayValue
-                    )}
-
-                </div>
-
-            `;
-
-        }
-
-    );
-
-
-    /* ================= CALL BUTTON ================= */
+    /* ==================================================
+       CALL BUTTON
+    ================================================== */
 
     let callButton = "";
 
@@ -1084,6 +1036,7 @@ function createRequestCard(
     if(mobile){
 
         const cleanMobile =
+
         String(mobile)
         .replace(
             /[^0-9+]/g,
@@ -1094,22 +1047,49 @@ function createRequestCard(
         callButton = `
 
             <a
-            href="tel:${escapeHTML(cleanMobile)}"
+
+            href="tel:${escapeHTML(
+                cleanMobile
+            )}"
+
             class="actionButton callButton"
-            style="
-            text-align:center;
-            text-decoration:none;
-            "
+
             >
+
             📞 Call
+
             </a>
 
         `;
 
     }
 
+    else{
 
-    /* ================= CARD ================= */
+        callButton = `
+
+            <button
+
+            class="actionButton callButton"
+
+            disabled
+
+            style="opacity:.5;"
+
+            >
+
+            📞 Mobile ନାହିଁ
+
+            </button>
+
+        `;
+
+    }
+
+
+    /* ==================================================
+       CARD HTML
+    ================================================== */
 
     card.innerHTML = `
 
@@ -1117,7 +1097,7 @@ function createRequestCard(
 
             <div class="requestNumber">
 
-            🆘 Request #${number}
+            📋 Application #${number}
 
             </div>
 
@@ -1132,7 +1112,9 @@ function createRequestCard(
 
         <div class="requestId">
 
-        🆔 ${escapeHTML(requestId)}
+        🆔 ${escapeHTML(
+            applicationId
+        )}
 
         </div>
 
@@ -1151,6 +1133,7 @@ function createRequestCard(
         ${
             mobile
             ?
+
             `
 
             <div class="detail">
@@ -1160,23 +1143,53 @@ function createRequestCard(
                 </strong>
 
                 <a
-                href="tel:${escapeHTML(mobile)}"
+                href="tel:${escapeHTML(
+                    mobile
+                )}"
                 >
+
                 ${escapeHTML(mobile)}
+
                 </a>
 
             </div>
 
             `
+
             :
-            ""
+
+            `
+
+            <div class="detail">
+
+                <strong>
+                📱 Mobile:
+                </strong>
+
+                -
+
+            </div>
+
+            `
+
         }
 
 
         <div class="detail">
 
             <strong>
-            📍 ଠିକଣା:
+            🏢 Company:
+            </strong>
+
+            ${escapeHTML(company)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            📍 Address:
             </strong>
 
             ${escapeHTML(address)}
@@ -1184,10 +1197,65 @@ function createRequestCard(
         </div>
 
 
+        <div class="detail">
+
+            <strong>
+            📍 State:
+            </strong>
+
+            ${escapeHTML(state)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            👷 Work:
+            </strong>
+
+            ${escapeHTML(work)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            📝 Migrant Registration:
+            </strong>
+
+            ${escapeHTML(migrant)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            🏗️ Construction Registration:
+            </strong>
+
+            ${escapeHTML(construction)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            🏥 ESI:
+            </strong>
+
+            ${escapeHTML(esi)}
+
+        </div>
+
+
         <div class="problem">
 
             <strong>
-            📝 ସହାୟତାର ସମସ୍ୟା:
+            🆘 ସହାୟତା / Problem:
             </strong>
 
             <br>
@@ -1200,7 +1268,18 @@ function createRequestCard(
         <div class="detail">
 
             <strong>
-            🕒 ଅନୁରୋଧ ସମୟ:
+            🌐 Language:
+            </strong>
+
+            ${escapeHTML(language)}
+
+        </div>
+
+
+        <div class="detail">
+
+            <strong>
+            🕒 Application Time:
             </strong>
 
             ${escapeHTML(createdAt)}
@@ -1208,24 +1287,9 @@ function createRequestCard(
         </div>
 
 
-        ${extraHTML}
-
-
         <div class="actions">
 
-            ${
-                callButton
-                ||
-                `
-                <button
-                class="actionButton callButton"
-                disabled
-                style="opacity:.5;"
-                >
-                📞 Mobile ନାହିଁ
-                </button>
-                `
-            }
+            ${callButton}
 
 
             <button
@@ -1233,11 +1297,15 @@ function createRequestCard(
             class="actionButton deleteButton"
 
             onclick="
-            deleteRequest('${escapeHTML(documentId)}')
+            deleteApplication(
+                '${escapeHTML(documentId)}'
+            )
             "
 
             >
+
             🗑️ Delete
+
             </button>
 
         </div>
@@ -1247,7 +1315,7 @@ function createRequestCard(
 
     document
     .getElementById(
-        "requestList"
+        "applicationList"
     )
     .appendChild(card);
 
@@ -1255,16 +1323,17 @@ function createRequestCard(
 
 
 /* ==================================================
-   DELETE REQUEST
+   DELETE APPLICATION
 ================================================== */
 
-window.deleteRequest =
+window.deleteApplication =
 
 async function(documentId){
 
     const confirmDelete =
+
     confirm(
-        "ଏହି Worker Help Request କୁ Delete କରିବେ କି?"
+        "ଏହି Worker Application କୁ Delete କରିବେ କି?"
     );
 
 
@@ -1277,13 +1346,14 @@ async function(documentId){
 
     try{
 
+
         await deleteDoc(
 
             doc(
 
                 db,
 
-                "workerHelpRequests",
+                "workerApplications",
 
                 documentId
 
@@ -1293,11 +1363,12 @@ async function(documentId){
 
 
         alert(
-            "✅ Request Delete ହୋଇଗଲା।"
+            "✅ Application Delete ହୋଇଗଲା।"
         );
 
 
-        loadRequests();
+        loadApplications();
+
 
     }
 
@@ -1310,9 +1381,11 @@ async function(documentId){
 
 
         alert(
-            "❌ Delete ହୋଇପାରିଲା ନାହିଁ: "
+
+            "❌ Application Delete ହୋଇପାରିଲା ନାହିଁ।\n\n"
             +
             error.message
+
         );
 
     }
@@ -1324,8 +1397,7 @@ async function(documentId){
    START
 ================================================== */
 
-loadRequests();
-
+loadApplications();
 
 </script>
 
