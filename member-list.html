@@ -1,314 +1,1285 @@
 <!DOCTYPE html>
 <html lang="or">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>ସଦସ୍ୟ ତାଲିକା</title>
 
+
 <style>
+
+/* ================= BASIC ================= */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
+
 
 body{
-background:#f5f7fa;
+    background:#f5f7fa;
 }
+
+
+/* ================= HEADER ================= */
 
 header{
-background:#00695c;
-color:#fff;
-padding:18px;
-text-align:center;
-font-size:24px;
-font-weight:bold;
-position:sticky;
-top:0;
-z-index:100;
+    background:#00695c;
+    color:#fff;
+    padding:18px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+
+    position:sticky;
+    top:0;
+    z-index:100;
 }
+
+
+/* ================= SEARCH ================= */
 
 .search-box{
-padding:15px;
-background:#fff;
-box-shadow:0 2px 5px rgba(0,0,0,.1);
+    padding:15px;
+    background:#fff;
+
+    box-shadow:
+    0 2px 5px rgba(0,0,0,.1);
 }
+
 
 .search-box input{
-width:100%;
-padding:12px;
-font-size:16px;
-border-radius:10px;
-border:1px solid #ccc;
-outline:none;
+
+    width:100%;
+
+    padding:12px;
+
+    font-size:16px;
+
+    border-radius:10px;
+
+    border:1px solid #ccc;
+
+    outline:none;
 }
+
+
+.search-box input:focus{
+
+    border-color:#00695c;
+}
+
+
+/* ================= COUNT ================= */
+
+#memberCount{
+
+    text-align:center;
+
+    padding:10px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    color:#00695c;
+
+    background:#fff;
+}
+
+
+/* ================= MEMBER LIST ================= */
 
 #memberList{
-padding:15px;
+
+    padding:15px;
 }
+
+
+/* ================= MEMBER CARD ================= */
 
 .member-card{
-background:#fff;
-border-radius:12px;
-padding:12px;
-margin-bottom:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-box-shadow:0 2px 10px rgba(0,0,0,.1);
+
+    background:#fff;
+
+    border-radius:12px;
+
+    padding:12px;
+
+    margin-bottom:15px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:
+    0 2px 10px rgba(0,0,0,.1);
 }
+
+
+/* ================= LEFT ================= */
 
 .member-left{
-display:flex;
-align-items:center;
-gap:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    min-width:0;
 }
+
 
 .member-left img{
-width:65px;
-height:65px;
-border-radius:50%;
-object-fit:cover;
-border:3px solid #00695c;
+
+    width:65px;
+
+    height:65px;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #00695c;
 }
+
+
+.member-info{
+
+    min-width:0;
+}
+
 
 .member-name{
-font-size:18px;
-font-weight:bold;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    word-break:break-word;
 }
+
 
 .member-id{
-font-size:14px;
-color:#666;
-margin-top:4px;
+
+    font-size:14px;
+
+    color:#666;
+
+    margin-top:4px;
 }
+
+
+.member-mobile{
+
+    font-size:13px;
+
+    color:#777;
+
+    margin-top:3px;
+}
+
+
+/* ================= VIEW BUTTON ================= */
 
 .view-btn{
-background:#00695c;
-color:#fff;
-border:none;
-padding:8px 16px;
-border-radius:8px;
-cursor:pointer;
+
+    background:#00695c;
+
+    color:#fff;
+
+    border:none;
+
+    padding:8px 16px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    flex-shrink:0;
 }
 
+
 .view-btn:hover{
-background:#004d40;
+
+    background:#004d40;
 }
+
+
+/* ================= LOADING ================= */
+
+.loading{
+
+    text-align:center;
+
+    padding:30px;
+
+    font-size:18px;
+
+    color:#555;
+}
+
+
+/* ================= EMPTY ================= */
+
+.empty{
+
+    text-align:center;
+
+    padding:30px;
+
+    font-size:17px;
+
+    color:#666;
+}
+
+
+/* ================= MODAL ================= */
+
+#memberModal{
+
+    display:none;
+
+    position:fixed;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(0,0,0,.6);
+
+    z-index:9999;
+
+    overflow:auto;
+}
+
+
+.modal-box{
+
+    background:#fff;
+
+    width:90%;
+
+    max-width:420px;
+
+    margin:40px auto;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    position:relative;
+}
+
+
+.close-btn{
+
+    position:absolute;
+
+    right:15px;
+
+    top:10px;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    color:#333;
+}
+
+
+.modal-photo{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:4px solid #00695c;
+}
+
+
+.modal-name{
+
+    margin-top:8px;
+
+    color:#00695c;
+}
+
+
+.modal-id{
+
+    margin-top:5px;
+
+    color:#666;
+}
+
+
+.modal-details{
+
+    margin-top:15px;
+
+    line-height:1.7;
+
+    font-size:16px;
+}
+
+
+.modal-details p{
+
+    margin:7px 0;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.action-buttons{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+
+.action-buttons a{
+
+    flex:1;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    text-align:center;
+
+    font-weight:bold;
+}
+
+
+.call-btn{
+
+    background:#0d6efd;
+}
+
+
+.wa-btn{
+
+    background:#25D366;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:420px){
+
+    .member-card{
+
+        gap:8px;
+    }
+
+
+    .member-left{
+
+        gap:8px;
+    }
+
+
+    .member-left img{
+
+        width:55px;
+
+        height:55px;
+    }
+
+
+    .member-name{
+
+        font-size:16px;
+    }
+
+
+    .view-btn{
+
+        padding:7px 11px;
+
+        font-size:13px;
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- ================= HEADER ================= -->
+
 <header>
+
 👥 ସଦସ୍ୟ ତାଲିକା
+
 </header>
 
+
+<!-- ================= SEARCH ================= -->
+
 <div class="search-box">
+
 <input
-type="text"
-id="search"
-placeholder="ନାମ କିମ୍ବା ମୋବାଇଲ୍ ନମ୍ବରରେ Search କରନ୍ତୁ">
+    type="text"
+    id="search"
+    placeholder="ନାମ କିମ୍ବା ମୋବାଇଲ୍ ନମ୍ବରରେ Search କରନ୍ତୁ"
+    autocomplete="off"
+>
+
 </div>
 
-<div id="memberList"></div>
+
+<!-- ================= COUNT ================= -->
+
+<div id="memberCount">
+
+Loading...
+
+</div>
+
+
+<!-- ================= MEMBER LIST ================= -->
+
+<div id="memberList">
+
+<div class="loading">
+
+ସଦସ୍ୟ ତାଲିକା Loading...
+
+</div>
+
+</div>
+
+
+<!-- ================= MEMBER MODAL ================= -->
+
+<div id="memberModal">
+
+<div class="modal-box">
+
+
+<span
+    class="close-btn"
+    onclick="closeModal()"
+>
+×
+</span>
+
+
+<div style="text-align:center;">
+
+
+<img
+    id="mPhoto"
+    class="modal-photo"
+    src=""
+    alt="Member Photo"
+>
+
+
+<h2
+    id="mName"
+    class="modal-name"
+>
+</h2>
+
+
+<p
+    id="mId"
+    class="modal-id"
+>
+</p>
+
+
+</div>
+
+
+<hr style="margin:15px 0;">
+
+
+<div class="modal-details">
+
+
+<p>
+<b>👨 Father:</b>
+<span id="mFather"></span>
+</p>
+
+
+<p>
+<b>📞 Mobile:</b>
+<span id="mMobile"></span>
+</p>
+
+
+<p>
+<b>🏠 Address:</b>
+<span id="mAddress"></span>
+</p>
+
+
+<p>
+<b>💳 Status:</b>
+<span id="mPaid"></span>
+</p>
+
+
+<p>
+<b>🧾 Txn ID:</b>
+<span id="mTxn"></span>
+</p>
+
+
+</div>
+
+
+<!-- ================= ACTION BUTTONS ================= -->
+
+<div class="action-buttons">
+
+
+<a
+    id="callBtn"
+    class="call-btn"
+    href="#"
+>
+📞 Call
+</a>
+
+
+<a
+    id="waBtn"
+    class="wa-btn"
+    href="#"
+    target="_blank"
+>
+💬 WhatsApp
+</a>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- ================= FIREBASE ================= -->
+
 <script type="module">
+
 
 import { db } from "./firebase.js";
 
-import {
-collection,
-getDocs
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const memberList = document.getElementById("memberList");
-const search = document.getElementById("search");
+import {
+
+    collection,
+    getDocs
+
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+
+const memberList =
+document.getElementById("memberList");
+
+
+const memberCount =
+document.getElementById("memberCount");
+
+
+const search =
+document.getElementById("search");
+
+
+/* =====================================================
+   MEMBERS ARRAY
+===================================================== */
+
 
 let members = [];
 
+
+/* =====================================================
+   LOAD MEMBERS
+===================================================== */
+
+
 async function loadMembers(){
 
-memberList.innerHTML="<h3 style='text-align:center'>Loading...</h3>";
 
-const snap = await getDocs(collection(db,"members"));
+    memberList.innerHTML =
+    `
+    <div class="loading">
+        ⏳ ସଦସ୍ୟ ତାଲିକା Loading...
+    </div>
+    `;
 
-members=[];
 
-snap.forEach(doc=>{
+    try{
 
-members.push({
-id:doc.id,
-...doc.data()
-});
 
-});
+        /*
+        =================================================
+        IMPORTANT
 
-members.sort((a,b)=>
-(a.name||"").localeCompare(b.name||"")
-);
+        ଏହି page କେବଳ Firestore ରୁ READ କରୁଛି।
 
-renderMembers(members);
+        କୌଣସି update
+        କୌଣସି delete
+        କୌଣସି write
+
+        କରୁନାହିଁ।
+
+        ପୁରୁଣା data safe ରହିବ।
+        =================================================
+        */
+
+
+        const snap =
+        await getDocs(
+            collection(db,"members")
+        );
+
+
+        members = [];
+
+
+        snap.forEach(docSnap => {
+
+
+            const data =
+            docSnap.data();
+
+
+            /*
+            =================================================
+            ONLY APPROVED MEMBERS
+
+            paid === true
+            ଥିଲେ ମାତ୍ର Members List ରେ ଆସିବ।
+
+            paid === false
+            paid ନଥିଲେ
+            paid = "Pending" ଥିଲେ
+
+            list ରେ ଆସିବ ନାହିଁ।
+            =================================================
+            */
+
+
+            if(data.paid === true){
+
+
+                members.push({
+
+                    id:docSnap.id,
+
+                    ...data
+
+                });
+
+
+            }
+
+
+        });
+
+
+        /*
+        =================================================
+        A → Z SORT
+        =================================================
+        */
+
+
+        members.sort((a,b)=>
+
+            (a.name || "")
+            .localeCompare(
+                b.name || "",
+                "or"
+            )
+
+        );
+
+
+        /*
+        =================================================
+        SHOW COUNT
+        =================================================
+        */
+
+
+        memberCount.innerHTML =
+        `ମୋଟ ସଦସ୍ୟ : ${members.length}`;
+
+
+        /*
+        =================================================
+        SHOW MEMBERS
+        =================================================
+        */
+
+
+        renderMembers(members);
+
+
+    }
+
+
+    catch(error){
+
+
+        console.error(
+            "Members loading error:",
+            error
+        );
+
+
+        memberCount.innerHTML =
+        "❌ Error";
+
+
+        memberList.innerHTML =
+        `
+        <div class="empty">
+
+        ❌ ସଦସ୍ୟ ତାଲିକା Load ହୋଇପାରିଲା ନାହିଁ
+
+        <br><br>
+
+        ${error.message}
+
+        </div>
+        `;
+
+
+    }
 
 }
+
+
+/* =====================================================
+   RENDER MEMBERS
+===================================================== */
+
 
 function renderMembers(list){
 
-memberList.innerHTML="";
 
-if(list.length===0){
+    memberList.innerHTML = "";
 
-memberList.innerHTML="<h3 style='text-align:center'>କୌଣସି ସଦସ୍ୟ ମିଳିଲା ନାହିଁ</h3>";
 
-return;
+    if(list.length === 0){
+
+
+        memberList.innerHTML =
+        `
+        <div class="empty">
+
+        କୌଣସି Approved ସଦସ୍ୟ ମିଳିଲା ନାହିଁ
+
+        </div>
+        `;
+
+
+        return;
+
+    }
+
+
+    list.forEach(member => {
+
+
+        const card =
+        document.createElement("div");
+
+
+        card.className =
+        "member-card";
+
+
+        /*
+        =================================================
+        MEMBER LEFT
+        =================================================
+        */
+
+
+        const left =
+        document.createElement("div");
+
+
+        left.className =
+        "member-left";
+
+
+        /*
+        =================================================
+        PHOTO
+        =================================================
+        */
+
+
+        const img =
+        document.createElement("img");
+
+
+        img.src =
+        member.photoUrl ||
+        "images/default-user.png";
+
+
+        img.alt =
+        member.name || "Member";
+
+
+        /*
+        =================================================
+        INFO
+        =================================================
+        */
+
+
+        const info =
+        document.createElement("div");
+
+
+        info.className =
+        "member-info";
+
+
+        const name =
+        document.createElement("div");
+
+
+        name.className =
+        "member-name";
+
+
+        name.textContent =
+        member.name || "";
+
+
+        const id =
+        document.createElement("div");
+
+
+        id.className =
+        "member-id";
+
+
+        id.textContent =
+        "ID : " +
+        (member.memberId || "");
+
+
+        const mobile =
+        document.createElement("div");
+
+
+        mobile.className =
+        "member-mobile";
+
+
+        mobile.textContent =
+        "📱 " +
+        (member.mobile || "");
+
+
+        info.appendChild(name);
+
+        info.appendChild(id);
+
+        info.appendChild(mobile);
+
+
+        left.appendChild(img);
+
+        left.appendChild(info);
+
+
+        /*
+        =================================================
+        VIEW BUTTON
+        =================================================
+        */
+
+
+        const button =
+        document.createElement("button");
+
+
+        button.className =
+        "view-btn";
+
+
+        button.textContent =
+        "View";
+
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                viewMember(member.id);
+
+            }
+        );
+
+
+        /*
+        =================================================
+        CARD
+        =================================================
+        */
+
+
+        card.appendChild(left);
+
+        card.appendChild(button);
+
+
+        memberList.appendChild(card);
+
+
+    });
+
 
 }
 
-list.forEach(member=>{
 
-memberList.innerHTML+=`
+/* =====================================================
+   SEARCH
+===================================================== */
 
-<div class="member-card">
 
-<div class="member-left">
+search.addEventListener(
+    "input",
+    function(){
 
-<img src="${member.photoUrl||'images/default-user.png'}">
+        const value =
+        this.value
+        .trim()
+        .toLowerCase();
 
-<div>
 
-<div class="member-name">${member.name||""}</div>
+        const result =
+        members.filter(member => {
 
-<div class="member-id">
-ID : ${member.memberId||""}
-</div>
 
-</div>
+            const name =
+            String(
+                member.name || ""
+            ).toLowerCase();
 
-</div>
 
-<button
-class="view-btn"
-onclick="viewMember('${member.id}')">
-View
-</button>
+            const mobile =
+            String(
+                member.mobile || ""
+            ).toLowerCase();
 
-</div>
 
-`;
+            const memberId =
+            String(
+                member.memberId || ""
+            ).toLowerCase();
 
-});
 
-}
+            return (
 
-search.addEventListener("input",()=>{
+                name.includes(value)
 
-const value=search.value.toLowerCase();
+                ||
 
-const result=members.filter(m=>
+                mobile.includes(value)
 
-(m.name||"").toLowerCase().includes(value) ||
+                ||
 
-(m.mobile||"").includes(value) ||
+                memberId.includes(value)
 
-(m.memberId||"").toLowerCase().includes(value)
+            );
 
+        });
+
+
+        memberCount.innerHTML =
+        `ଦେଖାଯାଉଛି : ${result.length} / ${members.length}`;
+
+
+        renderMembers(result);
+
+
+    }
 );
 
-renderMembers(result);
 
-});
+/* =====================================================
+   VIEW MEMBER
+===================================================== */
 
-window.members=members;
+
+window.viewMember =
+function(id){
+
+
+    const member =
+    members.find(
+        m => m.id === id
+    );
+
+
+    if(!member){
+
+        return;
+
+    }
+
+
+    /*
+    ================= PHOTO =================
+    */
+
+
+    document.getElementById(
+        "mPhoto"
+    ).src =
+    member.photoUrl ||
+    "images/default-user.png";
+
+
+    /*
+    ================= NAME =================
+    */
+
+
+    document.getElementById(
+        "mName"
+    ).innerText =
+    member.name || "";
+
+
+    /*
+    ================= ID =================
+    */
+
+
+    document.getElementById(
+        "mId"
+    ).innerText =
+    "ID : " +
+    (member.memberId || "");
+
+
+    /*
+    ================= FATHER =================
+    */
+
+
+    document.getElementById(
+        "mFather"
+    ).innerText =
+    member.father || "";
+
+
+    /*
+    ================= MOBILE =================
+    */
+
+
+    document.getElementById(
+        "mMobile"
+    ).innerText =
+    member.mobile || "";
+
+
+    /*
+    ================= ADDRESS =================
+    */
+
+
+    document.getElementById(
+        "mAddress"
+    ).innerText =
+    member.address || "";
+
+
+    /*
+    ================= PAYMENT =================
+    */
+
+
+    document.getElementById(
+        "mPaid"
+    ).innerText =
+    member.paid === true
+    ? "✅ Paid"
+    : "❌ Unpaid";
+
+
+    /*
+    ================= TXN ID =================
+    */
+
+
+    document.getElementById(
+        "mTxn"
+    ).innerText =
+    member.txnId || "-";
+
+
+    /*
+    ================= MOBILE NUMBER =================
+    */
+
+
+    const mobile =
+    String(
+        member.mobile || ""
+    ).replace(
+        /\D/g,
+        ""
+    );
+
+
+    /*
+    ================= CALL =================
+    */
+
+
+    document.getElementById(
+        "callBtn"
+    ).href =
+    mobile
+    ? "tel:" + mobile
+    : "#";
+
+
+    /*
+    ================= WHATSAPP =================
+    */
+
+
+    document.getElementById(
+        "waBtn"
+    ).href =
+    mobile
+    ? "https://wa.me/91" + mobile
+    : "#";
+
+
+    /*
+    ================= OPEN MODAL =================
+    */
+
+
+    document.getElementById(
+        "memberModal"
+    ).style.display =
+    "block";
+
+
+};
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+
+window.closeModal =
+function(){
+
+
+    document.getElementById(
+        "memberModal"
+    ).style.display =
+    "none";
+
+
+};
+
+
+/* =====================================================
+   CLOSE MODAL BY OUTSIDE CLICK
+===================================================== */
+
+
+document.getElementById(
+    "memberModal"
+).addEventListener(
+    "click",
+    function(event){
+
+
+        if(
+            event.target === this
+        ){
+
+            closeModal();
+
+        }
+
+
+    }
+);
+
+
+/* =====================================================
+   START
+===================================================== */
+
 
 loadMembers();
-window.viewMember = function(id){
 
-const member = members.find(m => m.id === id);
 
-if(!member) return;
+</script>
 
-document.getElementById("mPhoto").src =
-member.photoUrl || "images/default-user.png";
-
-document.getElementById("mName").innerText =
-member.name || "";
-
-document.getElementById("mId").innerText =
-"ID : " + (member.memberId || "");
-
-document.getElementById("mFather").innerText =
-member.father || "";
-
-document.getElementById("mMobile").innerText =
-member.mobile || "";
-
-document.getElementById("mAddress").innerText =
-member.address || "";
-
-document.getElementById("mPaid").innerText =
-member.paid ? "✅ Paid" : "❌ Unpaid";
-
-document.getElementById("mTxn").innerText =
-member.txnId || "-";
-const mobile = String(member.mobile || "").replace(/\D/g, "");
-
-document.getElementById("callBtn").setAttribute("href", "tel:" + mobile);
-
-document.getElementById("waBtn").setAttribute(
-  "href",
-  "https://wa.me/91" + mobile
-);
-
-document.getElementById("memberModal").style.display = "block";
-alert(document.getElementById("callBtn").href);
-};
-
-window.closeModal = function(){
-
-document.getElementById("memberModal").style.display = "none";
-
-};
-  </script>
-
-<div id="memberModal" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:9999;">
-  <div style="background:#fff;width:90%;max-width:420px;margin:40px auto;padding:20px;border-radius:15px;position:relative;">
-    <span onclick="closeModal()" style="position:absolute;right:15px;top:10px;font-size:28px;cursor:pointer;">×</span>
-
-    <div style="text-align:center;">
-      <img id="mPhoto" src="" style="width:120px;height:120px;border-radius:50%;object-fit:cover;border:4px solid #00695c;">
-      <h2 id="mName"></h2>
-      <p id="mId"></p>
-    </div>
-
-    <hr>
-
-    <p><b>👨 Father:</b> <span id="mFather"></span></p>
-    <p><b>📞 Mobile:</b> <span id="mMobile"></span></p>
-    <p><b>🏠 Address:</b> <span id="mAddress"></span></p>
-    <p><b>💳 Status:</b> <span id="mPaid"></span></p>
-    <p><b>🧾 Txn ID:</b> <span id="mTxn"></span></p>
-    <div style="display:flex;gap:10px;margin-top:20px;">
-  <a id="callBtn"
-     href="#"
-     style="flex:1;background:#0d6efd;color:#fff;text-decoration:none;padding:12px;border-radius:10px;text-align:center;font-weight:bold;">
-     📞 Call
-  </a>
-
-  <a id="waBtn"
-     href="#"
-     target="_blank"
-     style="flex:1;background:#25D366;color:#fff;text-decoration:none;padding:12px;border-radius:10px;text-align:center;font-weight:bold;">
-     💬 WhatsApp
-  </a>
-    </div>
-  </div>
-</div>
 
 </body>
+
 </html>
-
-
-
-
-
