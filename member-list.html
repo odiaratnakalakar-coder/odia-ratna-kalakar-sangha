@@ -13,7 +13,9 @@
 
 <style>
 
-/* ================= BASIC ================= */
+/* =====================================================
+   BASIC
+===================================================== */
 
 *{
     margin:0;
@@ -28,7 +30,9 @@ body{
 }
 
 
-/* ================= HEADER ================= */
+/* =====================================================
+   HEADER
+===================================================== */
 
 header{
     background:#00695c;
@@ -37,21 +41,20 @@ header{
     text-align:center;
     font-size:24px;
     font-weight:bold;
-
     position:sticky;
     top:0;
     z-index:100;
 }
 
 
-/* ================= SEARCH ================= */
+/* =====================================================
+   SEARCH
+===================================================== */
 
 .search-box{
     padding:15px;
     background:#fff;
-
-    box-shadow:
-    0 2px 5px rgba(0,0,0,.1);
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
 }
 
 
@@ -68,16 +71,20 @@ header{
     border:1px solid #ccc;
 
     outline:none;
+
 }
 
 
 .search-box input:focus{
 
     border-color:#00695c;
+
 }
 
 
-/* ================= COUNT ================= */
+/* =====================================================
+   COUNT
+===================================================== */
 
 #memberCount{
 
@@ -92,18 +99,24 @@ header{
     color:#00695c;
 
     background:#fff;
+
 }
 
 
-/* ================= MEMBER LIST ================= */
+/* =====================================================
+   MEMBER LIST
+===================================================== */
 
 #memberList{
 
     padding:15px;
+
 }
 
 
-/* ================= MEMBER CARD ================= */
+/* =====================================================
+   MEMBER CARD
+===================================================== */
 
 .member-card{
 
@@ -121,12 +134,14 @@ header{
 
     align-items:center;
 
-    box-shadow:
-    0 2px 10px rgba(0,0,0,.1);
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+
 }
 
 
-/* ================= LEFT ================= */
+/* =====================================================
+   LEFT
+===================================================== */
 
 .member-left{
 
@@ -137,6 +152,7 @@ header{
     gap:12px;
 
     min-width:0;
+
 }
 
 
@@ -153,12 +169,14 @@ header{
     object-fit:cover;
 
     border:3px solid #00695c;
+
 }
 
 
 .member-info{
 
     min-width:0;
+
 }
 
 
@@ -169,6 +187,7 @@ header{
     font-weight:bold;
 
     word-break:break-word;
+
 }
 
 
@@ -179,6 +198,7 @@ header{
     color:#666;
 
     margin-top:4px;
+
 }
 
 
@@ -189,10 +209,13 @@ header{
     color:#777;
 
     margin-top:3px;
+
 }
 
 
-/* ================= VIEW BUTTON ================= */
+/* =====================================================
+   VIEW BUTTON
+===================================================== */
 
 .view-btn{
 
@@ -211,16 +234,20 @@ header{
     font-weight:bold;
 
     flex-shrink:0;
+
 }
 
 
 .view-btn:hover{
 
     background:#004d40;
+
 }
 
 
-/* ================= LOADING ================= */
+/* =====================================================
+   LOADING
+===================================================== */
 
 .loading{
 
@@ -231,10 +258,13 @@ header{
     font-size:18px;
 
     color:#555;
+
 }
 
 
-/* ================= EMPTY ================= */
+/* =====================================================
+   EMPTY
+===================================================== */
 
 .empty{
 
@@ -245,10 +275,13 @@ header{
     font-size:17px;
 
     color:#666;
+
 }
 
 
-/* ================= MODAL ================= */
+/* =====================================================
+   MODAL
+===================================================== */
 
 #memberModal{
 
@@ -269,6 +302,7 @@ header{
     z-index:9999;
 
     overflow:auto;
+
 }
 
 
@@ -287,6 +321,7 @@ header{
     border-radius:15px;
 
     position:relative;
+
 }
 
 
@@ -303,6 +338,7 @@ header{
     cursor:pointer;
 
     color:#333;
+
 }
 
 
@@ -317,6 +353,7 @@ header{
     object-fit:cover;
 
     border:4px solid #00695c;
+
 }
 
 
@@ -325,6 +362,7 @@ header{
     margin-top:8px;
 
     color:#00695c;
+
 }
 
 
@@ -333,6 +371,7 @@ header{
     margin-top:5px;
 
     color:#666;
+
 }
 
 
@@ -343,16 +382,20 @@ header{
     line-height:1.7;
 
     font-size:16px;
+
 }
 
 
 .modal-details p{
 
     margin:7px 0;
+
 }
 
 
-/* ================= BUTTONS ================= */
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .action-buttons{
 
@@ -361,6 +404,7 @@ header{
     gap:10px;
 
     margin-top:20px;
+
 }
 
 
@@ -379,34 +423,41 @@ header{
     text-align:center;
 
     font-weight:bold;
+
 }
 
 
 .call-btn{
 
     background:#0d6efd;
+
 }
 
 
 .wa-btn{
 
     background:#25D366;
+
 }
 
 
-/* ================= MOBILE ================= */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:420px){
 
     .member-card{
 
         gap:8px;
+
     }
 
 
     .member-left{
 
         gap:8px;
+
     }
 
 
@@ -415,12 +466,14 @@ header{
         width:55px;
 
         height:55px;
+
     }
 
 
     .member-name{
 
         font-size:16px;
+
     }
 
 
@@ -429,6 +482,7 @@ header{
         padding:7px 11px;
 
         font-size:13px;
+
     }
 
 }
@@ -441,166 +495,197 @@ header{
 <body>
 
 
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
-👥 ସଦସ୍ୟ ତାଲିକା
+    👥 ସଦସ୍ୟ ତାଲିକା
 
 </header>
 
 
-<!-- ================= SEARCH ================= -->
+<!-- =====================================================
+     SEARCH
+===================================================== -->
 
 <div class="search-box">
 
-<input
-    type="text"
-    id="search"
-    placeholder="ନାମ କିମ୍ବା ମୋବାଇଲ୍ ନମ୍ବରରେ Search କରନ୍ତୁ"
-    autocomplete="off"
->
+    <input
+        type="text"
+        id="search"
+        placeholder="ନାମ କିମ୍ବା ମୋବାଇଲ୍ ନମ୍ବରରେ Search କରନ୍ତୁ"
+        autocomplete="off"
+    >
 
 </div>
 
 
-<!-- ================= COUNT ================= -->
+<!-- =====================================================
+     COUNT
+===================================================== -->
 
 <div id="memberCount">
 
-Loading...
+    Loading...
 
 </div>
 
 
-<!-- ================= MEMBER LIST ================= -->
+<!-- =====================================================
+     MEMBER LIST
+===================================================== -->
 
 <div id="memberList">
 
-<div class="loading">
+    <div class="loading">
 
-ସଦସ୍ୟ ତାଲିକା Loading...
+        ⏳ ସଦସ୍ୟ ତାଲିକା Loading...
+
+    </div>
 
 </div>
 
-</div>
 
-
-<!-- ================= MEMBER MODAL ================= -->
+<!-- =====================================================
+     MEMBER MODAL
+===================================================== -->
 
 <div id="memberModal">
 
-<div class="modal-box">
+    <div class="modal-box">
 
 
-<span
-    class="close-btn"
-    onclick="closeModal()"
->
-×
-</span>
+        <span
+            class="close-btn"
+            onclick="closeModal()"
+        >
+            ×
+        </span>
 
 
-<div style="text-align:center;">
+        <div style="text-align:center;">
 
 
-<img
-    id="mPhoto"
-    class="modal-photo"
-    src=""
-    alt="Member Photo"
->
+            <img
+                id="mPhoto"
+                class="modal-photo"
+                src=""
+                alt="Member Photo"
+            >
 
 
-<h2
-    id="mName"
-    class="modal-name"
->
-</h2>
+            <h2
+                id="mName"
+                class="modal-name"
+            >
+            </h2>
 
 
-<p
-    id="mId"
-    class="modal-id"
->
-</p>
+            <p
+                id="mId"
+                class="modal-id"
+            >
+            </p>
 
+
+        </div>
+
+
+        <hr style="margin:15px 0;">
+
+
+        <div class="modal-details">
+
+
+            <p>
+
+                <b>👨 Father:</b>
+
+                <span id="mFather"></span>
+
+            </p>
+
+
+            <p>
+
+                <b>📞 Mobile:</b>
+
+                <span id="mMobile"></span>
+
+            </p>
+
+
+            <p>
+
+                <b>🏠 Address:</b>
+
+                <span id="mAddress"></span>
+
+            </p>
+
+
+            <p>
+
+                <b>💳 Status:</b>
+
+                <span id="mPaid"></span>
+
+            </p>
+
+
+            <p>
+
+                <b>🧾 Txn ID:</b>
+
+                <span id="mTxn"></span>
+
+            </p>
+
+
+        </div>
+
+
+        <!-- ACTION BUTTONS -->
+
+        <div class="action-buttons">
+
+
+            <a
+                id="callBtn"
+                class="call-btn"
+                href="#"
+            >
+
+                📞 Call
+
+            </a>
+
+
+            <a
+                id="waBtn"
+                class="wa-btn"
+                href="#"
+                target="_blank"
+            >
+
+                💬 WhatsApp
+
+            </a>
+
+
+        </div>
+
+
+    </div>
 
 </div>
 
 
-<hr style="margin:15px 0;">
-
-
-<div class="modal-details">
-
-
-<p>
-<b>👨 Father:</b>
-<span id="mFather"></span>
-</p>
-
-
-<p>
-<b>📞 Mobile:</b>
-<span id="mMobile"></span>
-</p>
-
-
-<p>
-<b>🏠 Address:</b>
-<span id="mAddress"></span>
-</p>
-
-
-<p>
-<b>💳 Status:</b>
-<span id="mPaid"></span>
-</p>
-
-
-<p>
-<b>🧾 Txn ID:</b>
-<span id="mTxn"></span>
-</p>
-
-
-</div>
-
-
-<!-- ================= ACTION BUTTONS ================= -->
-
-<div class="action-buttons">
-
-
-<a
-    id="callBtn"
-    class="call-btn"
-    href="#"
->
-📞 Call
-</a>
-
-
-<a
-    id="waBtn"
-    class="wa-btn"
-    href="#"
-    target="_blank"
->
-💬 WhatsApp
-</a>
-
-
-</div>
-
-
-</div>
-
-</div>
-
-
-<!-- ================= FIREBASE ================= -->
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
 <script type="module">
 
@@ -614,33 +699,35 @@ import {
     getDocs
 
 }
+
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 
 
 /* =====================================================
    ELEMENTS
 ===================================================== */
 
-
 const memberList =
-document.getElementById("memberList");
+    document.getElementById("memberList");
 
 
 const memberCount =
-document.getElementById("memberCount");
+    document.getElementById("memberCount");
 
 
 const search =
-document.getElementById("search");
+    document.getElementById("search");
+
 
 
 /* =====================================================
    MEMBERS ARRAY
 ===================================================== */
 
-
 let members = [];
+
 
 
 /* =====================================================
@@ -650,33 +737,24 @@ let members = [];
 async function loadMembers(){
 
 
-    memberList.innerHTML =
-    `
-    <div class="loading">
-        ⏳ ସଦସ୍ୟ ତାଲିକା Loading...
-    </div>
+    memberList.innerHTML = `
+
+        <div class="loading">
+
+            ⏳ ସଦସ୍ୟ ତାଲିକା Loading...
+
+        </div>
+
     `;
 
 
     try{
 
 
-        /*
-        =================================================
-        FIRESTORE READ ONLY
-
-        ଏହି page କୌଣସି data
-        update / delete / write କରୁନାହିଁ।
-
-        ପୁରୁଣା data safe ରହିବ।
-        =================================================
-        */
-
-
         const snap =
-        await getDocs(
-            collection(db,"members")
-        );
+            await getDocs(
+                collection(db,"members")
+            );
 
 
         members = [];
@@ -686,43 +764,44 @@ async function loadMembers(){
 
 
             const data =
-            docSnap.data();
+                docSnap.data();
 
 
-            /*
-            =================================================
-            IMPORTANT APPROVAL FILTER
+            /* =================================================
+               APPROVAL COMPATIBILITY
 
-            NEW PENDING MEMBER
-            ------------------
-            status === "pending"
-            → Members List ରେ ଦେଖାଯିବ ନାହିଁ।
+               NEW MEMBERS:
+               approved === true
 
-            APPROVED MEMBER
-            ----------------
-            status === "approved"
-            → Members List ରେ ଦେଖାଯିବ।
+               OLD APPROVED MEMBERS:
+               status === "approved"
 
-            OLD MEMBERS
-            ----------------
-            status field ନଥିଲେ
-            → ପୁରୁଣା data safe ରଖିବା ପାଇଁ
-              List ରେ ରହିବେ।
+               BOTH ARE VALID.
 
-            PAYMENT STATUS (paid)
-            ----------------
-            Members List filter ପାଇଁ
-            ବ୍ୟବହାର ହେଉନାହିଁ।
-            =================================================
-            */
+               NO FIRESTORE WRITE.
+               NO DELETE.
+               ================================================= */
 
 
-            if(data.status === "pending"){
+            const isApproved =
+                data.approved === true ||
+                data.status === "approved";
+
+
+            /* =================================================
+               HIDE NOT APPROVED MEMBERS
+               ================================================= */
+
+            if(!isApproved){
 
                 return;
 
             }
 
+
+            /* =================================================
+               ADD APPROVED MEMBER
+               ================================================= */
 
             members.push({
 
@@ -736,14 +815,11 @@ async function loadMembers(){
         });
 
 
-        /*
-        =================================================
-        A → Z SORT
-        =================================================
-        */
+        /* =================================================
+           SORT A → Z
+           ================================================= */
 
-
-        members.sort((a,b)=>
+        members.sort((a,b) =>
 
             (a.name || "")
             .localeCompare(
@@ -754,26 +830,19 @@ async function loadMembers(){
         );
 
 
-        /*
-        =================================================
-        SHOW COUNT
-        =================================================
-        */
-
+        /* =================================================
+           COUNT
+           ================================================= */
 
         memberCount.innerHTML =
-        `ମୋଟ ସଦସ୍ୟ : ${members.length}`;
+            `ମୋଟ Approved ସଦସ୍ୟ : ${members.length}`;
 
 
-        /*
-        =================================================
-        SHOW MEMBERS
-        =================================================
-        */
-
+        /* =================================================
+           DISPLAY
+           ================================================= */
 
         renderMembers(members);
-
 
     }
 
@@ -788,32 +857,34 @@ async function loadMembers(){
 
 
         memberCount.innerHTML =
-        "❌ Error";
+            "❌ Error";
 
 
-        memberList.innerHTML =
-        `
-        <div class="empty">
+        memberList.innerHTML = `
 
-        ❌ ସଦସ୍ୟ ତାଲିକା Load ହୋଇପାରିଲା ନାହିଁ
+            <div class="empty">
 
-        <br><br>
+                ❌ ସଦସ୍ୟ ତାଲିକା Load ହୋଇପାରିଲା ନାହିଁ
 
-        ${error.message}
+                <br><br>
 
-        </div>
+                ${escapeHTML(
+                    error.message
+                )}
+
+            </div>
+
         `;
-
 
     }
 
 }
 
 
+
 /* =====================================================
    RENDER MEMBERS
 ===================================================== */
-
 
 function renderMembers(list){
 
@@ -824,13 +895,14 @@ function renderMembers(list){
     if(list.length === 0){
 
 
-        memberList.innerHTML =
-        `
-        <div class="empty">
+        memberList.innerHTML = `
 
-        କୌଣସି Approved ସଦସ୍ୟ ମିଳିଲା ନାହିଁ
+            <div class="empty">
 
-        </div>
+                କୌଣସି Approved ସଦସ୍ୟ ମିଳିଲା ନାହିଁ।
+
+            </div>
+
         `;
 
 
@@ -843,99 +915,108 @@ function renderMembers(list){
 
 
         const card =
-        document.createElement("div");
+            document.createElement("div");
 
 
         card.className =
-        "member-card";
+            "member-card";
 
 
-        /*
-        =================================================
-        MEMBER LEFT
-        =================================================
-        */
-
+        /* =================================================
+           LEFT
+           ================================================= */
 
         const left =
-        document.createElement("div");
+            document.createElement("div");
 
 
         left.className =
-        "member-left";
+            "member-left";
 
 
-        /*
-        =================================================
-        PHOTO
-        =================================================
-        */
-
+        /* =================================================
+           PHOTO
+           ================================================= */
 
         const img =
-        document.createElement("img");
+            document.createElement("img");
 
 
         img.src =
-        member.photoUrl ||
-        "images/default-user.png";
+            member.photoUrl ||
+            "images/default-user.png";
 
 
         img.alt =
-        member.name || "Member";
+            member.name ||
+            "Member";
 
 
-        /*
-        =================================================
-        INFO
-        =================================================
-        */
+        img.onerror =
+            function(){
 
+                this.onerror = null;
+
+                this.src =
+                    "images/default-user.png";
+
+            };
+
+
+        /* =================================================
+           INFO
+           ================================================= */
 
         const info =
-        document.createElement("div");
+            document.createElement("div");
 
 
         info.className =
-        "member-info";
+            "member-info";
 
 
         const name =
-        document.createElement("div");
+            document.createElement("div");
 
 
         name.className =
-        "member-name";
+            "member-name";
 
 
         name.textContent =
-        member.name || "";
+            member.name || "";
 
 
         const id =
-        document.createElement("div");
+            document.createElement("div");
 
 
         id.className =
-        "member-id";
+            "member-id";
 
 
         id.textContent =
-        "ID : " +
-        (member.memberId || "");
+            "ID : " +
+            (
+                member.memberId ||
+                ""
+            );
 
 
         const mobile =
-        document.createElement("div");
+            document.createElement("div");
 
 
         mobile.className =
-        "member-mobile";
+            "member-mobile";
 
 
         mobile.textContent =
-        "📱 " +
-        (member.mobile || "");
+            "📱 " +
+            (
+                member.mobile ||
+                ""
+            );
 
 
         info.appendChild(name);
@@ -950,41 +1031,37 @@ function renderMembers(list){
         left.appendChild(info);
 
 
-        /*
-        =================================================
-        VIEW BUTTON
-        =================================================
-        */
-
+        /* =================================================
+           VIEW BUTTON
+           ================================================= */
 
         const button =
-        document.createElement("button");
+            document.createElement("button");
 
 
         button.className =
-        "view-btn";
+            "view-btn";
 
 
         button.textContent =
-        "View";
+            "View";
 
 
         button.addEventListener(
             "click",
             function(){
 
-                viewMember(member.id);
+                viewMember(
+                    member.id
+                );
 
             }
         );
 
 
-        /*
-        =================================================
-        CARD
-        =================================================
-        */
-
+        /* =================================================
+           CARD
+           ================================================= */
 
         card.appendChild(left);
 
@@ -993,91 +1070,85 @@ function renderMembers(list){
 
         memberList.appendChild(card);
 
-
     });
 
-
 }
+
 
 
 /* =====================================================
    SEARCH
 ===================================================== */
 
-
 search.addEventListener(
     "input",
     function(){
 
+
         const value =
-        this.value
-        .trim()
-        .toLowerCase();
+            this.value
+            .trim()
+            .toLowerCase();
 
 
         const result =
-        members.filter(member => {
+            members.filter(member => {
 
 
-            const name =
-            String(
-                member.name || ""
-            ).toLowerCase();
+                const name =
+                    String(
+                        member.name || ""
+                    ).toLowerCase();
 
 
-            const mobile =
-            String(
-                member.mobile || ""
-            ).toLowerCase();
+                const mobile =
+                    String(
+                        member.mobile || ""
+                    ).toLowerCase();
 
 
-            const memberId =
-            String(
-                member.memberId || ""
-            ).toLowerCase();
+                const memberId =
+                    String(
+                        member.memberId || ""
+                    ).toLowerCase();
 
 
-            return (
+                return (
 
-                name.includes(value)
+                    name.includes(value) ||
 
-                ||
+                    mobile.includes(value) ||
 
-                mobile.includes(value)
+                    memberId.includes(value)
 
-                ||
+                );
 
-                memberId.includes(value)
-
-            );
-
-        });
+            });
 
 
         memberCount.innerHTML =
-        `ଦେଖାଯାଉଛି : ${result.length} / ${members.length}`;
+            `ଦେଖାଯାଉଛି : ${result.length} / ${members.length}`;
 
 
         renderMembers(result);
 
-
     }
 );
+
 
 
 /* =====================================================
    VIEW MEMBER
 ===================================================== */
 
-
 window.viewMember =
 function(id){
 
 
     const member =
-    members.find(
-        m => m.id === id
-    );
+        members.find(
+            m => m.id === id
+        );
 
 
     if(!member){
@@ -1087,156 +1158,177 @@ function(id){
     }
 
 
-    /*
-    ================= PHOTO =================
-    */
+    /* =================================================
+       EXTRA SAFETY CHECK
+       ================================================= */
 
+    const isApproved =
+        member.approved === true ||
+        member.status === "approved";
+
+
+    if(!isApproved){
+
+        alert(
+            "⛔ ଏହି Member ଏପର୍ଯ୍ୟନ୍ତ Approve ହୋଇନାହାନ୍ତି।"
+        );
+
+        return;
+
+    }
+
+
+    /* =================================================
+       PHOTO
+       ================================================= */
 
     document.getElementById(
         "mPhoto"
     ).src =
-    member.photoUrl ||
-    "images/default-user.png";
+
+        member.photoUrl ||
+        "images/default-user.png";
 
 
-    /*
-    ================= NAME =================
-    */
-
+    /* =================================================
+       NAME
+       ================================================= */
 
     document.getElementById(
         "mName"
     ).innerText =
-    member.name || "";
+
+        member.name || "";
 
 
-    /*
-    ================= ID =================
-    */
-
+    /* =================================================
+       ID
+       ================================================= */
 
     document.getElementById(
         "mId"
     ).innerText =
-    "ID : " +
-    (member.memberId || "");
+
+        "ID : " +
+        (
+            member.memberId ||
+            ""
+        );
 
 
-    /*
-    ================= FATHER =================
-    */
-
+    /* =================================================
+       FATHER
+       ================================================= */
 
     document.getElementById(
         "mFather"
     ).innerText =
-    member.father || "";
+
+        member.father || "";
 
 
-    /*
-    ================= MOBILE =================
-    */
-
+    /* =================================================
+       MOBILE
+       ================================================= */
 
     document.getElementById(
         "mMobile"
     ).innerText =
-    member.mobile || "";
+
+        member.mobile || "";
 
 
-    /*
-    ================= ADDRESS =================
-    */
-
+    /* =================================================
+       ADDRESS
+       ================================================= */
 
     document.getElementById(
         "mAddress"
     ).innerText =
-    member.address || "";
+
+        member.address || "";
 
 
-    /*
-    ================= PAYMENT =================
-    */
-
+    /* =================================================
+       PAYMENT
+       ================================================= */
 
     document.getElementById(
         "mPaid"
     ).innerText =
-    member.paid === true
-    ? "✅ Paid"
-    : "❌ Unpaid";
+
+        member.paid === true
+        ? "✅ Paid"
+        : "❌ Unpaid";
 
 
-    /*
-    ================= TXN ID =================
-    */
-
+    /* =================================================
+       TXN ID
+       ================================================= */
 
     document.getElementById(
         "mTxn"
     ).innerText =
-    member.txnId || "-";
+
+        member.txnId || "-";
 
 
-    /*
-    ================= MOBILE NUMBER =================
-    */
-
+    /* =================================================
+       MOBILE
+       ================================================= */
 
     const mobile =
-    String(
-        member.mobile || ""
-    ).replace(
-        /\D/g,
-        ""
-    );
+        String(
+            member.mobile || ""
+        ).replace(
+            /\D/g,
+            ""
+        );
 
 
-    /*
-    ================= CALL =================
-    */
-
+    /* =================================================
+       CALL
+       ================================================= */
 
     document.getElementById(
         "callBtn"
     ).href =
-    mobile
-    ? "tel:" + mobile
-    : "#";
+
+        mobile
+        ? "tel:" + mobile
+        : "#";
 
 
-    /*
-    ================= WHATSAPP =================
-    */
-
+    /* =================================================
+       WHATSAPP
+       ================================================= */
 
     document.getElementById(
         "waBtn"
     ).href =
-    mobile
-    ? "https://wa.me/91" + mobile
-    : "#";
+
+        mobile
+        ? "https://wa.me/91" +
+          mobile
+        : "#";
 
 
-    /*
-    ================= OPEN MODAL =================
-    */
-
+    /* =================================================
+       OPEN MODAL
+       ================================================= */
 
     document.getElementById(
         "memberModal"
     ).style.display =
-    "block";
-
+        "block";
 
 };
+
 
 
 /* =====================================================
    CLOSE MODAL
 ===================================================== */
-
 
 window.closeModal =
 function(){
@@ -1245,16 +1337,15 @@ function(){
     document.getElementById(
         "memberModal"
     ).style.display =
-    "none";
-
+        "none";
 
 };
 
 
-/* =====================================================
-   CLOSE MODAL BY OUTSIDE CLICK
-===================================================== */
 
+/* =====================================================
+   CLOSE OUTSIDE CLICK
+===================================================== */
 
 document.getElementById(
     "memberModal"
@@ -1271,15 +1362,51 @@ document.getElementById(
 
         }
 
-
     }
 );
+
+
+
+/* =====================================================
+   HTML SECURITY
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
 
 
 /* =====================================================
    START
 ===================================================== */
-
 
 loadMembers();
 
