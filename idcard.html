@@ -24,103 +24,200 @@
 }
 
 body{
+
     background:#f3f3f3;
+
     font-family:Arial,sans-serif;
+
     padding:15px;
+
 }
 
 
 /* =====================================================
-   MEMBER LIST
+   MEMBER LIST PAGE
 ===================================================== */
 
 #memberListPage{
+
     max-width:600px;
+
     margin:auto;
+
 }
+
 
 .pageTitle{
+
     text-align:center;
+
     color:#b30000;
+
     margin-bottom:15px;
+
     font-size:24px;
+
 }
+
 
 .searchBox{
+
     width:100%;
+
     padding:12px;
+
     border:2px solid #b30000;
+
     border-radius:8px;
+
     font-size:16px;
+
     margin-bottom:15px;
+
     outline:none;
+
 }
+
+
+.searchBox:focus{
+
+    border-color:#700000;
+
+}
+
 
 .memberItem{
+
     background:#fff;
+
     border:1px solid #ddd;
+
     border-left:5px solid #b30000;
+
     border-radius:8px;
+
     padding:12px;
+
     margin-bottom:10px;
+
     box-shadow:0 2px 6px rgba(0,0,0,.1);
+
 }
+
 
 .memberName{
+
     font-size:17px;
+
     font-weight:bold;
+
     color:#222;
+
     margin-bottom:5px;
+
 }
+
 
 .memberInfo{
+
     font-size:13px;
+
     color:#555;
+
     line-height:1.6;
+
 }
+
 
 .idButton{
+
     width:100%;
+
     margin-top:8px;
+
     padding:10px;
+
     background:#c00000;
+
     color:#fff;
+
     border:none;
+
     border-radius:6px;
+
     font-size:15px;
+
     font-weight:bold;
+
     cursor:pointer;
+
 }
 
-.idButton:active{
+
+.idButton:hover{
+
     background:#900000;
+
 }
+
 
 .noMember{
+
     text-align:center;
+
     color:#777;
+
     padding:20px;
+
+}
+
+
+.loading{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#777;
+
 }
 
 
 /* =====================================================
-   ID CARD PAGE
+   CARD PAGE
 ===================================================== */
 
 #cardPage{
+
     display:none;
+
     flex-direction:column;
+
     align-items:center;
+
 }
 
+
+/* =====================================================
+   ID CARD
+===================================================== */
+
 .card{
+
     width:54mm;
-    min-height:85.6mm;
+
+    height:85.6mm;
+
     background:#fff;
+
     border:1.5px solid #b30000;
+
     border-radius:3mm;
+
     overflow:hidden;
+
     position:relative;
+
 }
 
 
@@ -129,38 +226,67 @@ body{
 ===================================================== */
 
 .header{
+
     text-align:center;
+
     padding:3px 4px 4px;
+
     border-bottom:1px solid #b30000;
+
 }
+
 
 .logo{
+
     width:38px;
+
     height:38px;
+
     object-fit:contain;
+
     display:block;
+
     margin:0 auto 1px;
+
 }
+
 
 .header h1{
+
     color:#b30000;
+
     font-size:11px;
+
     font-weight:bold;
+
     line-height:1.15;
+
     margin:1px 0;
+
 }
+
 
 .header h2{
+
     color:#16458f;
+
     font-size:7px;
+
     font-weight:bold;
+
     margin:1px 0;
+
 }
 
+
 .header p{
+
     color:#555;
+
     font-size:7px;
+
     margin:1px 0;
+
 }
 
 
@@ -169,24 +295,34 @@ body{
 ===================================================== */
 
 .photo{
+
     text-align:center;
+
     margin:4px 0 3px;
+
 }
 
+
 .photo img{
+
     width:30mm;
-    height:39mm;
+
+    height:34mm;
 
     object-fit:cover;
+
     object-position:center 25%;
 
     background:#f2f2f2;
 
     border:1px solid #b30000;
+
     border-radius:3mm;
 
     display:block;
+
     margin:auto;
+
 }
 
 
@@ -195,32 +331,56 @@ body{
 ===================================================== */
 
 .details{
+
     padding:0 4px;
+
 }
+
 
 .detail{
+
     display:flex;
+
     align-items:flex-start;
+
     border-bottom:1px dashed #ddd;
+
     padding:2px 0;
+
     min-height:16px;
+
 }
+
 
 .label{
-    width:28%;
+
+    width:30%;
+
     flex-shrink:0;
+
     color:#b30000;
+
     font-size:7px;
+
     font-weight:bold;
+
 }
 
+
 .value{
-    width:72%;
+
+    width:70%;
+
     color:#222;
+
     font-size:7px;
+
     font-weight:600;
+
     line-height:1.25;
+
     word-break:break-word;
+
 }
 
 
@@ -229,54 +389,97 @@ body{
 ===================================================== */
 
 .bottom{
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
-    padding:4px 5px 5px;
+
+    padding:3px 5px 4px;
+
     gap:4px;
+
 }
+
 
 .qrBox{
-    width:45px;
-    min-width:45px;
+
+    width:38px;
+
+    min-width:38px;
+
     text-align:center;
+
 }
 
+
 #qrcode{
-    width:45px;
-    height:45px;
+
+    width:38px;
+
+    height:38px;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
 }
+
 
 #qrcode canvas,
 #qrcode img{
-    width:45px !important;
-    height:45px !important;
+
+    width:38px !important;
+
+    height:38px !important;
+
 }
+
 
 .verify{
+
     flex:1;
+
     color:#b30000;
+
     font-size:6px;
+
     font-weight:bold;
+
     text-align:center;
+
 }
 
+
 .seal{
-    width:38px;
-    height:38px;
-    min-width:38px;
+
+    width:34px;
+
+    height:34px;
+
+    min-width:34px;
+
     border:1px dashed #b30000;
+
     border-radius:50%;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     text-align:center;
+
     color:#b30000;
-    font-size:6px;
+
+    font-size:5px;
+
     font-weight:bold;
+
 }
 
 
@@ -285,39 +488,47 @@ body{
 ===================================================== */
 
 .buttonRow{
+
     display:flex;
+
     gap:8px;
+
     margin-top:15px;
+
 }
+
 
 .printBtn,
 .backBtn{
+
     padding:10px 15px;
+
     color:#fff;
+
     border:none;
+
     border-radius:8px;
+
     font-size:15px;
+
     font-weight:bold;
+
     cursor:pointer;
+
 }
+
 
 .printBtn{
+
     background:#c00000;
+
 }
+
 
 .backBtn{
+
     background:#444;
-}
 
-
-/* =====================================================
-   LOADING
-===================================================== */
-
-.loading{
-    text-align:center;
-    padding:30px;
-    color:#777;
 }
 
 
@@ -328,46 +539,63 @@ body{
 @media print{
 
     @page{
+
         size:54mm 85.6mm;
+
         margin:0;
+
     }
+
 
     html,
     body{
 
         width:54mm !important;
+
         height:85.6mm !important;
 
         margin:0 !important;
+
         padding:0 !important;
 
         background:#fff !important;
+
     }
+
 
     #memberListPage,
     .buttonRow{
 
         display:none !important;
+
     }
+
 
     #cardPage{
 
         display:block !important;
 
         width:54mm !important;
+
         height:85.6mm !important;
 
         margin:0 !important;
+
         padding:0 !important;
+
     }
+
 
     .card{
 
         width:54mm !important;
+
         height:85.6mm !important;
+
         min-height:85.6mm !important;
 
         margin:0 !important;
+
         padding:0 !important;
 
         border-radius:3mm !important;
@@ -375,68 +603,89 @@ body{
         overflow:hidden !important;
 
         box-shadow:none !important;
+
     }
+
 
     .photo{
 
         margin:3px 0 2px !important;
+
     }
+
 
     .photo img{
 
         width:30mm !important;
+
         height:34mm !important;
+
     }
+
 
     .detail{
 
         min-height:14px !important;
 
         padding:1.5px 0 !important;
+
     }
+
 
     .label,
     .value{
 
         font-size:6.5px !important;
+
     }
+
 
     .bottom{
 
         padding:0 4px 0 !important;
 
-        margin-top:-5px !important;
+        margin-top:-2px !important;
+
     }
+
 
     .qrBox,
     #qrcode{
 
         width:32px !important;
+
         height:32px !important;
 
-        margin-top:-3px !important;
     }
+
 
     #qrcode canvas,
     #qrcode img{
 
         width:32px !important;
+
         height:32px !important;
+
     }
+
 
     .seal{
 
         width:30px !important;
+
         height:30px !important;
 
         min-width:30px !important;
 
         font-size:5px !important;
+
     }
+
 
     .verify{
 
         font-size:5px !important;
+
     }
 
 }
@@ -450,10 +699,11 @@ body{
 
 
 <!-- =====================================================
-     MEMBER LIST PAGE
+     MEMBER LIST
 ===================================================== -->
 
 <div id="memberListPage">
+
 
     <h1 class="pageTitle">
 
@@ -475,7 +725,7 @@ body{
 
         <div class="loading">
 
-            ⏳ Members loading...
+            ⏳ Approved Members Loading...
 
         </div>
 
@@ -486,7 +736,7 @@ body{
 
 
 <!-- =====================================================
-     ID CARD PAGE
+     CARD PAGE
 ===================================================== -->
 
 <div id="cardPage">
@@ -536,11 +786,13 @@ body{
 
         <div class="photo">
 
+
             <img
                 id="photo"
                 src="logo.png"
                 alt="Member Photo"
             >
+
 
         </div>
 
@@ -651,7 +903,7 @@ body{
 
 
 
-        <!-- QR / VERIFY / SEAL -->
+        <!-- QR -->
 
         <div class="bottom">
 
@@ -761,41 +1013,92 @@ let allMembers = [];
 
 function isApproved(member){
 
-    return (
+    const approval =
+        String(
+            member.approval ?? ""
+        )
+        .trim()
+        .toLowerCase();
 
-        member.approved === true ||
 
-        member.status === "approved"
+    /*
+       NEW SYSTEM
+    */
 
-    );
+    if(
+        approval === "approved"
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+       OLD APPROVED DATA
+       ONLY IF NEW approval FIELD
+       DOES NOT EXIST
+    */
+
+    if(
+        !member.hasOwnProperty("approval") &&
+        member.approved === true
+    ){
+
+        return true;
+
+    }
+
+
+    if(
+        !member.hasOwnProperty("approval") &&
+
+        String(
+            member.status ?? ""
+        )
+        .trim()
+        .toLowerCase()
+        === "approved"
+    ){
+
+        return true;
+
+    }
+
+
+    return false;
 
 }
 
 
 
 /* =====================================================
-   LOAD APPROVED MEMBERS ONLY
+   LOAD APPROVED MEMBERS
 ===================================================== */
 
 async function loadMembers(){
 
+    const list =
+        document.getElementById(
+            "memberList"
+        );
+
+
+    list.innerHTML = `
+
+        <div class="loading">
+
+            ⏳ Approved Members Loading...
+
+        </div>
+
+    `;
+
+
     try{
 
 
-        document.getElementById(
-            "memberList"
-        ).innerHTML = `
-
-            <div class="loading">
-
-                ⏳ Approved Members Loading...
-
-            </div>
-
-        `;
-
-
-        const snap =
+        const snapshot =
             await getDocs(
                 collection(
                     db,
@@ -807,70 +1110,85 @@ async function loadMembers(){
         allMembers = [];
 
 
-        snap.forEach(item => {
+        snapshot.forEach(
+        docSnap => {
 
 
             const data =
-                item.data();
+                docSnap.data();
 
 
-            /* =========================================
+            /*
                ONLY APPROVED
-               ========================================= */
+            */
 
-            if(!isApproved(data)){
+            if(
+                !isApproved(data)
+            ){
 
                 return;
 
             }
 
 
+            /*
+               ADD MEMBER
+            */
+
             allMembers.push({
 
-                id:item.id,
+                id:
+                    docSnap.id,
 
                 ...data
 
             });
 
+        });
+
+
+        /*
+           A → Z
+        */
+
+        allMembers.sort(
+        (a,b) => {
+
+            return String(
+                a.name || ""
+            )
+            .localeCompare(
+                String(
+                    b.name || ""
+                ),
+                "or",
+                {
+                    sensitivity:"base"
+                }
+            );
 
         });
 
 
-        /* =================================================
-           A → Z SORT
-        ================================================= */
-
-        allMembers.sort(
-            (a,b) =>
-                String(a.name || "")
-                .localeCompare(
-                    String(b.name || ""),
-                    "or"
-                )
+        displayMembers(
+            allMembers
         );
-
-
-        displayMembers(allMembers);
-
 
     }
 
     catch(error){
 
         console.error(
-            "ID Card Members Error:",
+            "ID Card loading error:",
             error
         );
 
 
-        document.getElementById(
-            "memberList"
-        ).innerHTML = `
+        list.innerHTML = `
 
             <div class="noMember">
 
-                ❌ Members load ହେଲା ନାହିଁ।
+                ❌ Members Load ହୋଇପାରିଲା ନାହିଁ।
 
                 <br><br>
 
@@ -903,7 +1221,9 @@ function displayMembers(members){
     list.innerHTML = "";
 
 
-    if(members.length === 0){
+    if(
+        members.length === 0
+    ){
 
         list.innerHTML = `
 
@@ -920,39 +1240,28 @@ function displayMembers(members){
     }
 
 
-    members.forEach(member => {
+    members.forEach(
+    member => {
 
 
-        const name =
-            member.name ||
-            "ନାମ ନାହିଁ";
-
-
-        const memberId =
-            member.memberId ||
-            member.id;
-
-
-        const mobile =
-            member.mobile ||
-            "";
-
-
-        const div =
+        const item =
             document.createElement(
                 "div"
             );
 
 
-        div.className =
+        item.className =
             "memberItem";
 
 
-        div.innerHTML = `
+        item.innerHTML = `
 
             <div class="memberName">
 
-                👤 ${escapeHTML(name)}
+                👤 ${escapeHTML(
+                    member.name ||
+                    "ନାମ ନାହିଁ"
+                )}
 
             </div>
 
@@ -960,19 +1269,27 @@ function displayMembers(members){
             <div class="memberInfo">
 
                 🪪 Member ID:
-                ${escapeHTML(memberId)}
+
+                ${escapeHTML(
+                    member.memberId ||
+                    "-"
+                )}
 
                 <br>
 
                 📱 Mobile:
-                ${escapeHTML(mobile)}
+
+                ${escapeHTML(
+                    member.mobile ||
+                    "-"
+                )}
 
             </div>
 
 
             <button
-                class="idButton"
                 type="button"
+                class="idButton"
             >
 
                 🪪 View ID Card
@@ -982,13 +1299,11 @@ function displayMembers(members){
         `;
 
 
-        const button =
-            div.querySelector(
-                ".idButton"
-            );
-
-
-        button.addEventListener(
+        item
+        .querySelector(
+            ".idButton"
+        )
+        .addEventListener(
             "click",
             function(){
 
@@ -1000,7 +1315,9 @@ function displayMembers(members){
         );
 
 
-        list.appendChild(div);
+        list.appendChild(
+            item
+        );
 
     });
 
@@ -1013,71 +1330,75 @@ function displayMembers(members){
 ===================================================== */
 
 document
-.getElementById("searchBox")
+.getElementById(
+    "searchBox"
+)
 .addEventListener(
-    "input",
-    function(){
+"input",
+function(){
 
-        const search =
-            this.value
-            .trim()
-            .toLowerCase();
-
-
-        if(!search){
-
-            displayMembers(
-                allMembers
-            );
-
-            return;
-
-        }
+    const value =
+        this.value
+        .trim()
+        .toLowerCase();
 
 
-        const filtered =
-            allMembers.filter(
-                member => {
-
-
-                    const name =
-                        String(
-                            member.name || ""
-                        ).toLowerCase();
-
-
-                    const mobile =
-                        String(
-                            member.mobile || ""
-                        ).toLowerCase();
-
-
-                    const memberId =
-                        String(
-                            member.memberId || ""
-                        ).toLowerCase();
-
-
-                    return (
-
-                        name.includes(search) ||
-
-                        mobile.includes(search) ||
-
-                        memberId.includes(search)
-
-                    );
-
-                }
-            );
-
+    if(!value){
 
         displayMembers(
-            filtered
+            allMembers
         );
 
+        return;
+
     }
-);
+
+
+    const filtered =
+        allMembers.filter(
+        member => {
+
+
+            const name =
+                String(
+                    member.name || ""
+                )
+                .toLowerCase();
+
+
+            const mobile =
+                String(
+                    member.mobile || ""
+                )
+                .toLowerCase();
+
+
+            const memberId =
+                String(
+                    member.memberId || ""
+                )
+                .toLowerCase();
+
+
+            return (
+
+                name.includes(value) ||
+
+                mobile.includes(value) ||
+
+                memberId.includes(value)
+
+            );
+
+        }
+        );
+
+
+    displayMembers(
+        filtered
+    );
+
+});
 
 
 
@@ -1089,10 +1410,6 @@ async function openIDCard(id){
 
     try{
 
-
-        /* =============================================
-           READ MEMBER AGAIN
-           ============================================= */
 
         const memberRef =
             doc(
@@ -1108,7 +1425,9 @@ async function openIDCard(id){
             );
 
 
-        if(!memberSnap.exists()){
+        if(
+            !memberSnap.exists()
+        ){
 
             alert(
                 "❌ Member ମିଳିଲା ନାହିଁ।"
@@ -1119,15 +1438,17 @@ async function openIDCard(id){
         }
 
 
-        const data =
+        const member =
             memberSnap.data();
 
 
-        /* =============================================
-           APPROVAL SECURITY
-           ============================================= */
+        /*
+           FINAL APPROVAL CHECK
+        */
 
-        if(!isApproved(data)){
+        if(
+            !isApproved(member)
+        ){
 
             alert(
                 "⛔ ଏହି Member ଏପର୍ଯ୍ୟନ୍ତ Approve ହୋଇନାହାନ୍ତି।"
@@ -1138,9 +1459,9 @@ async function openIDCard(id){
         }
 
 
-        /* =============================================
+        /*
            OPEN CARD
-           ============================================= */
+        */
 
         history.pushState(
             {},
@@ -1151,22 +1472,24 @@ async function openIDCard(id){
 
 
         document
-            .getElementById(
-                "memberListPage"
-            )
-            .style.display =
-                "none";
+        .getElementById(
+            "memberListPage"
+        )
+        .style.display =
+            "none";
 
 
         document
-            .getElementById(
-                "cardPage"
-            )
-            .style.display =
-                "flex";
+        .getElementById(
+            "cardPage"
+        )
+        .style.display =
+            "flex";
 
 
-        loadMember(id);
+        await loadMember(
+            id
+        );
 
     }
 
@@ -1175,7 +1498,7 @@ async function openIDCard(id){
         console.error(error);
 
         alert(
-            "❌ ID Card open error:\n" +
+            "❌ ID Card open error:\n\n" +
             error.message
         );
 
@@ -1208,7 +1531,9 @@ async function loadMember(id){
             );
 
 
-        if(!memberSnap.exists()){
+        if(
+            !memberSnap.exists()
+        ){
 
             alert(
                 "❌ Member ମିଳିଲା ନାହିଁ।"
@@ -1225,11 +1550,13 @@ async function loadMember(id){
             memberSnap.data();
 
 
-        /* =============================================
-           FINAL APPROVAL CHECK
-           ============================================= */
+        /*
+           FINAL SECURITY CHECK
+        */
 
-        if(!isApproved(data)){
+        if(
+            !isApproved(data)
+        ){
 
             alert(
                 "⛔ ଏହି Member ଏପର୍ଯ୍ୟନ୍ତ Approve ହୋଇନାହାନ୍ତି।"
@@ -1244,92 +1571,91 @@ async function loadMember(id){
 
         /* =============================================
            MEMBER ID
-           ============================================= */
+        ============================================= */
 
         document
-            .getElementById(
-                "memberId"
-            )
-            .textContent =
+        .getElementById(
+            "memberId"
+        )
+        .textContent =
 
-                data.memberId ||
-                id ||
-                "-";
+            data.memberId ||
+            "-";
 
 
         /* =============================================
            NAME
-           ============================================= */
+        ============================================= */
 
         document
-            .getElementById(
-                "name"
-            )
-            .textContent =
+        .getElementById(
+            "name"
+        )
+        .textContent =
 
-                data.name ||
-                "-";
+            data.name ||
+            "-";
 
 
         /* =============================================
            FATHER
-           ============================================= */
+        ============================================= */
 
         document
-            .getElementById(
-                "father"
-            )
-            .textContent =
+        .getElementById(
+            "father"
+        )
+        .textContent =
 
-                data.father ||
-                "-";
+            data.father ||
+            "-";
 
 
         /* =============================================
            DOB
-           ============================================= */
+        ============================================= */
 
         document
-            .getElementById(
-                "dob"
-            )
-            .textContent =
+        .getElementById(
+            "dob"
+        )
+        .textContent =
 
-                data.dob ||
-                "-";
+            data.dob ||
+            "-";
 
 
         /* =============================================
            MOBILE
-           ============================================= */
+        ============================================= */
 
         document
-            .getElementById(
-                "mobile"
-            )
-            .textContent =
+        .getElementById(
+            "mobile"
+        )
+        .textContent =
 
-                data.mobile ||
-                "-";
+            data.mobile ||
+            "-";
 
 
         /* =============================================
            ADDRESS
-           ============================================= */
+        ============================================= */
 
         document
-            .getElementById(
-                "address"
-            )
-            .textContent =
+        .getElementById(
+            "address"
+        )
+        .textContent =
 
-                data.address ||
-                "-";
+            data.address ||
+            "-";
 
 
         /* =============================================
            PHOTO
-           ============================================= */
+        ============================================= */
 
         const photo =
             document.getElementById(
@@ -1356,88 +1682,91 @@ async function loadMember(id){
             "";
 
 
-        if(photoURL){
+        photo.onerror =
+        function(){
 
-            photo.src =
-                photoURL;
+            this.onerror = null;
 
-
-            photo.onerror =
-                function(){
-
-                    this.onerror = null;
-
-                    this.src =
-                        "logo.png";
-
-                };
-
-        }
-        else{
-
-            photo.src =
+            this.src =
                 "logo.png";
 
-        }
+        };
+
+
+        photo.src =
+            photoURL ||
+            "logo.png";
 
 
         /* =============================================
            QR VERIFY URL
-           ============================================= */
+        ============================================= */
 
         const verifyURL =
 
             window.location.origin +
 
             window.location.pathname
-                .replace(
-                    "idcard.html",
-                    "view-id.html"
-                ) +
+            .replace(
+                "idcard.html",
+                "view-id.html"
+            ) +
 
             "?id=" +
 
-            encodeURIComponent(id);
+            encodeURIComponent(
+                id
+            );
 
 
         /* =============================================
            CLEAR OLD QR
-           ============================================= */
+        ============================================= */
 
-        document
-            .getElementById(
+        const qr =
+            document.getElementById(
                 "qrcode"
-            )
-            .innerHTML = "";
+            );
+
+
+        qr.innerHTML = "";
 
 
         /* =============================================
            CREATE QR
-           ============================================= */
+        ============================================= */
 
-        new QRCode(
+        if(
+            typeof QRCode !==
+            "undefined"
+        ){
 
-            document.getElementById(
-                "qrcode"
-            ),
+            new QRCode(
+                qr,
+                {
 
-            {
+                    text:
+                        verifyURL,
 
-                text:
-                    verifyURL,
+                    width:
+                        200,
 
-                width:
-                    200,
+                    height:
+                        200,
 
-                height:
-                    200,
+                    correctLevel:
+                        QRCode.CorrectLevel.M
 
-                correctLevel:
-                    QRCode.CorrectLevel.M
+                }
+            );
 
-            }
+        }
+        else{
 
-        );
+            qr.innerHTML =
+                "QR Error";
+
+        }
 
     }
 
@@ -1450,7 +1779,7 @@ async function loadMember(id){
 
 
         alert(
-            "❌ Error:\n" +
+            "❌ Error:\n\n" +
             error.message
         );
 
@@ -1461,7 +1790,7 @@ async function loadMember(id){
 
 
 /* =====================================================
-   BACK TO LIST
+   BACK
 ===================================================== */
 
 window.showMemberList =
@@ -1475,6 +1804,76 @@ function(){
 
 
     document
+    .getElementById(
+        "cardPage"
+    )
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById(
+        "memberListPage"
+    )
+    .style.display =
+        "block";
+
+
+    document
+    .getElementById(
+        "qrcode"
+    )
+    .innerHTML =
+        "";
+
+};
+
+
+
+/* =====================================================
+   BROWSER BACK BUTTON
+===================================================== */
+
+window.addEventListener(
+"popstate",
+function(){
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const id =
+        params.get("id");
+
+
+    if(id){
+
+        document
+        .getElementById(
+            "memberListPage"
+        )
+        .style.display =
+            "none";
+
+
+        document
+        .getElementById(
+            "cardPage"
+        )
+        .style.display =
+            "flex";
+
+
+        loadMember(
+            id
+        );
+
+    }
+    else{
+
+        document
         .getElementById(
             "cardPage"
         )
@@ -1482,21 +1881,16 @@ function(){
             "none";
 
 
-    document
+        document
         .getElementById(
             "memberListPage"
         )
         .style.display =
             "block";
 
+    }
 
-    document
-        .getElementById(
-            "qrcode"
-        )
-        .innerHTML = "";
-
-};
+});
 
 
 
@@ -1538,7 +1932,7 @@ function escapeHTML(value){
 
 
 /* =====================================================
-   DIRECT URL CHECK
+   DIRECT URL
 ===================================================== */
 
 const params =
@@ -1554,22 +1948,24 @@ const urlID =
 if(urlID){
 
     document
-        .getElementById(
-            "memberListPage"
-        )
-        .style.display =
-            "none";
+    .getElementById(
+        "memberListPage"
+    )
+    .style.display =
+        "none";
 
 
     document
-        .getElementById(
-            "cardPage"
-        )
-        .style.display =
-            "flex";
+    .getElementById(
+        "cardPage"
+    )
+    .style.display =
+        "flex";
 
 
-    loadMember(urlID);
+    loadMember(
+        urlID
+    );
 
 }
 else{
@@ -1578,6 +1974,10 @@ else{
 
 }
 
+
+console.log(
+    "✅ Final ID Card System Loaded"
+);
 
 </script>
 
