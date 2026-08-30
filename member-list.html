@@ -394,6 +394,28 @@ header{
 
 
 /* =====================================================
+   STATUS
+===================================================== */
+
+.status-paid{
+
+    color:green;
+
+    font-weight:bold;
+
+}
+
+
+.status-unpaid{
+
+    color:red;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================================
    BUTTONS
 ===================================================== */
 
@@ -668,6 +690,7 @@ header{
                 class="wa-btn"
                 href="#"
                 target="_blank"
+                rel="noopener"
             >
 
                 💬 WhatsApp
@@ -731,6 +754,94 @@ let members = [];
 
 
 /* =====================================================
+   APPROVAL CHECK
+===================================================== */
+
+/*
+   IMPORTANT:
+
+   Pending approval members MUST NOT appear
+   in Members Admin.
+
+   Supported existing formats:
+
+   approval: "approved"
+   approval: "Approved"
+   approved: true
+   status: "approved"
+
+   Pending / rejected / empty values
+   will NOT be shown.
+
+   NO FIRESTORE WRITE.
+   NO DELETE.
+*/
+
+function isMemberApproved(data){
+
+    /* -----------------------------------------------
+       1. Explicit boolean approved === true
+    ------------------------------------------------ */
+
+    if(data.approved === true){
+
+        return true;
+
+    }
+
+
+    /* -----------------------------------------------
+       2. Approval field
+    ------------------------------------------------ */
+
+    const approval =
+        String(
+            data.approval ?? ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    if(
+        approval === "approved" ||
+        approval === "approve"
+    ){
+
+        return true;
+
+    }
+
+
+    /* -----------------------------------------------
+       3. Old status field
+    ------------------------------------------------ */
+
+    const status =
+        String(
+            data.status ?? ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    if(status === "approved"){
+
+        return true;
+
+    }
+
+
+    /* -----------------------------------------------
+       OTHERWISE NOT APPROVED
+    ------------------------------------------------ */
+
+    return false;
+
+}
+
+
+
+/* =====================================================
    LOAD MEMBERS
 ===================================================== */
 
@@ -741,7 +852,7 @@ async function loadMembers(){
 
         <div class="loading">
 
-            ⏳ ସଦସ୍ୟ ତାଲିକା Loading...
+            ⏳ Approved ସଦସ୍ୟ ତାଲିକା Loading...
 
         </div>
 
@@ -768,31 +879,12 @@ async function loadMembers(){
 
 
             /* =================================================
-               APPROVAL COMPATIBILITY
+               APPROVAL FILTER
+            ================================================= */
 
-               NEW MEMBERS:
-               approved === true
-
-               OLD APPROVED MEMBERS:
-               status === "approved"
-
-               BOTH ARE VALID.
-
-               NO FIRESTORE WRITE.
-               NO DELETE.
-               ================================================= */
-
-
-            const isApproved =
-                data.approved === true ||
-                data.status === "approved";
-
-
-            /* =================================================
-               HIDE NOT APPROVED MEMBERS
-               ================================================= */
-
-            if(!isApproved){
+            if(
+                !isMemberApproved(data)
+            ){
 
                 return;
 
@@ -800,8 +892,8 @@ async function loadMembers(){
 
 
             /* =================================================
-               ADD APPROVED MEMBER
-               ================================================= */
+               ADD ONLY APPROVED MEMBER
+            ================================================= */
 
             members.push({
 
@@ -817,22 +909,37 @@ async function loadMembers(){
 
         /* =================================================
            SORT A → Z
-           ================================================= */
+        ================================================= */
 
-        members.sort((a,b) =>
+        members.sort((a,b) => {
 
-            (a.name || "")
-            .localeCompare(
-                b.name || "",
-                "or"
-            )
+            const nameA =
+                String(
+                    a.name || ""
+                )
+                .trim();
 
-        );
+            const nameB =
+                String(
+                    b.name || ""
+                )
+                .trim();
+
+
+            return nameA.localeCompare(
+                nameB,
+                "or",
+                {
+                    sensitivity:"base"
+                }
+            );
+
+        });
 
 
         /* =================================================
            COUNT
-           ================================================= */
+        ================================================= */
 
         memberCount.innerHTML =
             `ମୋଟ Approved ସଦସ୍ୟ : ${members.length}`;
@@ -840,7 +947,7 @@ async function loadMembers(){
 
         /* =================================================
            DISPLAY
-           ================================================= */
+        ================================================= */
 
         renderMembers(members);
 
@@ -924,7 +1031,7 @@ function renderMembers(list){
 
         /* =================================================
            LEFT
-           ================================================= */
+        ================================================= */
 
         const left =
             document.createElement("div");
@@ -936,7 +1043,7 @@ function renderMembers(list){
 
         /* =================================================
            PHOTO
-           ================================================= */
+        ================================================= */
 
         const img =
             document.createElement("img");
@@ -965,7 +1072,7 @@ function renderMembers(list){
 
         /* =================================================
            INFO
-           ================================================= */
+        ================================================= */
 
         const info =
             document.createElement("div");
@@ -1033,7 +1140,7 @@ function renderMembers(list){
 
         /* =================================================
            VIEW BUTTON
-           ================================================= */
+        ================================================= */
 
         const button =
             document.createElement("button");
@@ -1061,7 +1168,7 @@ function renderMembers(list){
 
         /* =================================================
            CARD
-           ================================================= */
+        ================================================= */
 
         card.appendChild(left);
 
@@ -1098,19 +1205,22 @@ search.addEventListener(
                 const name =
                     String(
                         member.name || ""
-                    ).toLowerCase();
+                    )
+                    .toLowerCase();
 
 
                 const mobile =
                     String(
                         member.mobile || ""
-                    ).toLowerCase();
+                    )
+                    .toLowerCase();
 
 
                 const memberId =
                     String(
                         member.memberId || ""
-                    ).toLowerCase();
+                    )
+                    .toLowerCase();
 
 
                 return (
@@ -1159,15 +1269,12 @@ function(id){
 
 
     /* =================================================
-       EXTRA SAFETY CHECK
-       ================================================= */
+       EXTRA APPROVAL SAFETY CHECK
+    ================================================= */
 
-    const isApproved =
-        member.approved === true ||
-        member.status === "approved";
-
-
-    if(!isApproved){
+    if(
+        !isMemberApproved(member)
+    ){
 
         alert(
             "⛔ ଏହି Member ଏପର୍ଯ୍ୟନ୍ତ Approve ହୋଇନାହାନ୍ତି।"
@@ -1180,19 +1287,33 @@ function(id){
 
     /* =================================================
        PHOTO
-       ================================================= */
+    ================================================= */
 
-    document.getElementById(
-        "mPhoto"
-    ).src =
+    const mPhoto =
+        document.getElementById(
+            "mPhoto"
+        );
 
+
+    mPhoto.src =
         member.photoUrl ||
         "images/default-user.png";
 
 
+    mPhoto.onerror =
+        function(){
+
+            this.onerror = null;
+
+            this.src =
+                "images/default-user.png";
+
+        };
+
+
     /* =================================================
        NAME
-       ================================================= */
+    ================================================= */
 
     document.getElementById(
         "mName"
@@ -1203,7 +1324,7 @@ function(id){
 
     /* =================================================
        ID
-       ================================================= */
+    ================================================= */
 
     document.getElementById(
         "mId"
@@ -1218,7 +1339,7 @@ function(id){
 
     /* =================================================
        FATHER
-       ================================================= */
+    ================================================= */
 
     document.getElementById(
         "mFather"
@@ -1229,7 +1350,7 @@ function(id){
 
     /* =================================================
        MOBILE
-       ================================================= */
+    ================================================= */
 
     document.getElementById(
         "mMobile"
@@ -1240,7 +1361,7 @@ function(id){
 
     /* =================================================
        ADDRESS
-       ================================================= */
+    ================================================= */
 
     document.getElementById(
         "mAddress"
@@ -1251,20 +1372,31 @@ function(id){
 
     /* =================================================
        PAYMENT
-       ================================================= */
+    ================================================= */
 
-    document.getElementById(
-        "mPaid"
-    ).innerText =
+    const paidElement =
+        document.getElementById(
+            "mPaid"
+        );
 
-        member.paid === true
-        ? "✅ Paid"
-        : "❌ Unpaid";
+
+    if(member.paid === true){
+
+        paidElement.innerHTML =
+            "<span class='status-paid'>✅ PAID</span>";
+
+    }
+    else{
+
+        paidElement.innerHTML =
+            "<span class='status-unpaid'>❌ UNPAID</span>";
+
+    }
 
 
     /* =================================================
        TXN ID
-       ================================================= */
+    ================================================= */
 
     document.getElementById(
         "mTxn"
@@ -1274,13 +1406,14 @@ function(id){
 
 
     /* =================================================
-       MOBILE
-       ================================================= */
+       MOBILE NUMBER
+    ================================================= */
 
     const mobile =
         String(
             member.mobile || ""
-        ).replace(
+        )
+        .replace(
             /\D/g,
             ""
         );
@@ -1288,7 +1421,7 @@ function(id){
 
     /* =================================================
        CALL
-       ================================================= */
+    ================================================= */
 
     document.getElementById(
         "callBtn"
@@ -1301,7 +1434,7 @@ function(id){
 
     /* =================================================
        WHATSAPP
-       ================================================= */
+    ================================================= */
 
     document.getElementById(
         "waBtn"
@@ -1315,7 +1448,7 @@ function(id){
 
     /* =================================================
        OPEN MODAL
-       ================================================= */
+    ================================================= */
 
     document.getElementById(
         "memberModal"
