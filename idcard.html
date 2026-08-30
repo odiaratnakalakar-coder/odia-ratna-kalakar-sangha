@@ -4,11 +4,18 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>ସଦସ୍ୟ ID Card</title>
 
+
 <style>
+
+/* =====================================================
+   BASIC
+===================================================== */
 
 *{
     box-sizing:border-box;
@@ -22,7 +29,10 @@ body{
     padding:15px;
 }
 
-/* ================= MEMBER LIST ================= */
+
+/* =====================================================
+   MEMBER LIST
+===================================================== */
 
 #memberListPage{
     max-width:600px;
@@ -79,6 +89,7 @@ body{
     border-radius:6px;
     font-size:15px;
     font-weight:bold;
+    cursor:pointer;
 }
 
 .idButton:active{
@@ -91,7 +102,10 @@ body{
     padding:20px;
 }
 
-/* ================= ID CARD ================= */
+
+/* =====================================================
+   ID CARD PAGE
+===================================================== */
 
 #cardPage{
     display:none;
@@ -109,7 +123,10 @@ body{
     position:relative;
 }
 
-/* ================= HEADER ================= */
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 .header{
     text-align:center;
@@ -146,16 +163,15 @@ body{
     margin:1px 0;
 }
 
-/* ================= PHOTO ================= */
+
+/* =====================================================
+   PHOTO
+===================================================== */
 
 .photo{
     text-align:center;
     margin:4px 0 3px;
 }
-
-/* IMPORTANT:
-   Photo crop ହେବ ନାହିଁ
-*/
 
 .photo img{
     width:30mm;
@@ -174,22 +190,9 @@ body{
 }
 
 
-
-    
-
-    
-    
-
-    
-
-    
-    
-
-    
-    
-
-
-/* ================= DETAILS ================= */
+/* =====================================================
+   DETAILS
+===================================================== */
 
 .details{
     padding:0 4px;
@@ -220,7 +223,10 @@ body{
     word-break:break-word;
 }
 
-/* ================= BOTTOM ================= */
+
+/* =====================================================
+   BOTTOM
+===================================================== */
 
 .bottom{
     display:flex;
@@ -273,7 +279,10 @@ body{
     font-weight:bold;
 }
 
-/* ================= BUTTONS ================= */
+
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .buttonRow{
     display:flex;
@@ -289,6 +298,7 @@ body{
     border-radius:8px;
     font-size:15px;
     font-weight:bold;
+    cursor:pointer;
 }
 
 .printBtn{
@@ -299,7 +309,10 @@ body{
     background:#444;
 }
 
-/* ================= LOADING ================= */
+
+/* =====================================================
+   LOADING
+===================================================== */
 
 .loading{
     text-align:center;
@@ -307,249 +320,163 @@ body{
     color:#777;
 }
 
-/* ================= PRINT ================= */
 
-@media print {
+/* =====================================================
+   PRINT
+===================================================== */
 
-    @page {
-        size: 54mm 85.6mm;
-        margin: 0;
+@media print{
+
+    @page{
+        size:54mm 85.6mm;
+        margin:0;
     }
 
     html,
-    body {
-        width: 54mm !important;
-        height: 85.6mm !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: #fff !important;
+    body{
+
+        width:54mm !important;
+        height:85.6mm !important;
+
+        margin:0 !important;
+        padding:0 !important;
+
+        background:#fff !important;
     }
 
     #memberListPage,
-    .buttonRow {
-        display: none !important;
+    .buttonRow{
+
+        display:none !important;
     }
 
-    #cardPage {
-        display: block !important;
-        width: 54mm !important;
-        height: 85.6mm !important;
-        margin: 0 !important;
-        padding: 0 !important;
+    #cardPage{
+
+        display:block !important;
+
+        width:54mm !important;
+        height:85.6mm !important;
+
+        margin:0 !important;
+        padding:0 !important;
     }
 
-    .card {
-        width: 54mm !important;
-        height: 85.6mm !important;
-        min-height: 85.6mm !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border-radius: 3mm !important;
-        overflow: hidden !important;
-        box-shadow: none !important;
+    .card{
+
+        width:54mm !important;
+        height:85.6mm !important;
+        min-height:85.6mm !important;
+
+        margin:0 !important;
+        padding:0 !important;
+
+        border-radius:3mm !important;
+
+        overflow:hidden !important;
+
+        box-shadow:none !important;
     }
 
-    .photo {
-        margin: 3px 0 2px !important;
+    .photo{
+
+        margin:3px 0 2px !important;
     }
 
-    .photo img {
-        width: 30mm !important;
-        height: 34mm !important;
+    .photo img{
+
+        width:30mm !important;
+        height:34mm !important;
     }
 
-    .detail {
-        min-height: 14px !important;
-        padding: 1.5px 0 !important;
+    .detail{
+
+        min-height:14px !important;
+
+        padding:1.5px 0 !important;
     }
 
     .label,
-    .value {
-        font-size: 6.5px !important;
+    .value{
+
+        font-size:6.5px !important;
     }
 
     .bottom{
-    padding:0 4px 0 !important;
-    margin-top:-5px !important;
-}
 
-.qrBox,
-#qrcode{
-    width:32px !important;
-    height:32px !important;
-    margin-top:-3px !important;
-}
+        padding:0 4px 0 !important;
 
-#qrcode canvas,
-#qrcode img{
-    width:32px !important;
-    height:32px !important;
-}
+        margin-top:-5px !important;
+    }
 
-.seal{
-    width:30px !important;
-    height:30px !important;
-    min-width:30px !important;
-    font-size:5px !important;
-}
+    .qrBox,
+    #qrcode{
 
-.verify{
-    font-size:5px !important;
-        }
-        
-    
+        width:32px !important;
+        height:32px !important;
 
-    
+        margin-top:-3px !important;
+    }
 
-    
-    
+    #qrcode canvas,
+    #qrcode img{
 
+        width:32px !important;
+        height:32px !important;
+    }
 
+    .seal{
 
+        width:30px !important;
+        height:30px !important;
 
-    
-    
+        min-width:30px !important;
 
+        font-size:5px !important;
+    }
 
+    .verify{
 
-    
-    
-    
-    
-
-
-
-    
-
-    
-        
-        
-    
-
-    
-    
-        
-        
-    
-
-    
-        
-        
-        
-        
-    
-
-    
-        
-    
+        font-size:5px !important;
+    }
 
 }
-
- 
-
-    
-        
-        
-    
-
-    
-    
-        
-    
-        
-        
-        
-    
-
-    
-        
-    
-
-    
-        
-        
-    
-
-    
-    
-        
-        
-        
-        
-        
-    
-
-    
-    
-        
-    
-
-    
-        
-    
-
-        
-        
-        
-        
-        
-    
-        
-    
-
-    
-        
-        
-        
-        
-        
-        
-        
-    
-
-    
-        
-    
-
- 
-        
-        
-        
-        
-        
-        
-    
-
-
 
 </style>
 
 </head>
 
+
 <body>
 
 
-<!-- ================================================= -->
-<!-- MEMBER LIST PAGE -->
-<!-- ================================================= -->
+<!-- =====================================================
+     MEMBER LIST PAGE
+===================================================== -->
 
 <div id="memberListPage">
 
     <h1 class="pageTitle">
+
         🪪 Member ID Card
+
     </h1>
+
 
     <input
         type="text"
         id="searchBox"
         class="searchBox"
         placeholder="🔍 ନାମ / Mobile / Member ID ଖୋଜନ୍ତୁ..."
+        autocomplete="off"
     >
+
 
     <div id="memberList">
 
         <div class="loading">
-            Members loading...
+
+            ⏳ Members loading...
+
         </div>
 
     </div>
@@ -557,225 +484,323 @@ body{
 </div>
 
 
-<!-- ================================================= -->
-<!-- ID CARD PAGE -->
-<!-- ================================================= -->
+
+<!-- =====================================================
+     ID CARD PAGE
+===================================================== -->
 
 <div id="cardPage">
 
-<div class="card">
 
-    <!-- HEADER -->
+    <div class="card">
 
-    <div class="header">
 
-        <img
-            class="logo"
-            src="logo.png"
-            alt="Logo"
+        <!-- HEADER -->
+
+        <div class="header">
+
+
+            <img
+                class="logo"
+                src="logo.png"
+                alt="Logo"
+            >
+
+
+            <h1>
+
+                ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+
+            </h1>
+
+
+            <h2>
+
+                ODIA RATNA KALAKAR SANGHA
+
+            </h2>
+
+
+            <p>
+
+                Surat, Gujarat
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- PHOTO -->
+
+        <div class="photo">
+
+            <img
+                id="photo"
+                src="logo.png"
+                alt="Member Photo"
+            >
+
+        </div>
+
+
+
+        <!-- DETAILS -->
+
+        <div class="details">
+
+
+            <div class="detail">
+
+                <div class="label">
+                    Member ID:
+                </div>
+
+                <div
+                    class="value"
+                    id="memberId"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="label">
+                    ନାମ:
+                </div>
+
+                <div
+                    class="value"
+                    id="name"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="label">
+                    ପିତାଙ୍କ ନାମ:
+                </div>
+
+                <div
+                    class="value"
+                    id="father"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="label">
+                    ଜନ୍ମ ତାରିଖ:
+                </div>
+
+                <div
+                    class="value"
+                    id="dob"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="label">
+                    ମୋବାଇଲ:
+                </div>
+
+                <div
+                    class="value"
+                    id="mobile"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="detail">
+
+                <div class="label">
+                    ଠିକଣା:
+                </div>
+
+                <div
+                    class="value"
+                    id="address"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- QR / VERIFY / SEAL -->
+
+        <div class="bottom">
+
+
+            <div class="qrBox">
+
+                <div id="qrcode"></div>
+
+            </div>
+
+
+            <div class="verify">
+
+                Scan to Verify
+
+            </div>
+
+
+            <div class="seal">
+
+                OFFICIAL
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttonRow">
+
+
+        <button
+            class="backBtn"
+            onclick="showMemberList()"
         >
 
-        <h1>ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ</h1>
+            ← Back
 
-        <h2>ODIA RATNA KALAKAR SANGHA</h2>
-
-        <p>Surat, Gujarat</p>
-
-    </div>
+        </button>
 
 
-    <!-- PHOTO -->
-
-    <div class="photo">
-
-        <img
-            id="photo"
-            src="logo.png"
-            alt="Member Photo"
+        <button
+            class="printBtn"
+            onclick="window.print()"
         >
 
-    </div>
+            🖨️ Print
 
+        </button>
 
-    <!-- MEMBER DETAILS -->
-
-    <div class="details">
-
-        <div class="detail">
-
-            <div class="label">
-                Member ID:
-            </div>
-
-            <div class="value" id="memberId">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="detail">
-
-            <div class="label">
-                ନାମ:
-            </div>
-
-            <div class="value" id="name">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="detail">
-
-            <div class="label">
-                ପିତାଙ୍କ ନାମ:
-            </div>
-
-            <div class="value" id="father">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="detail">
-
-            <div class="label">
-                ଜନ୍ମ ତାରିଖ:
-            </div>
-
-            <div class="value" id="dob">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="detail">
-
-            <div class="label">
-                ମୋବାଇଲ:
-            </div>
-
-            <div class="value" id="mobile">
-                -
-            </div>
-
-        </div>
-
-
-        <div class="detail">
-
-            <div class="label">
-                ଠିକଣା:
-            </div>
-
-            <div class="value" id="address">
-                -
-            </div>
-
-        </div>
 
     </div>
-
-
-    <!-- QR + VERIFY + SEAL -->
-
-    <div class="bottom">
-
-        <div class="qrBox">
-
-            <div id="qrcode"></div>
-
-        </div>
-
-
-        <div class="verify">
-
-            Scan to Verify
-
-        </div>
-
-
-        <div class="seal">
-
-            OFFICIAL
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- BUTTONS -->
-
-<div class="buttonRow">
-
-    <button
-        class="backBtn"
-        onclick="showMemberList()"
-    >
-        ← Back
-    </button>
-
-    <button
-        class="printBtn"
-        onclick="window.print()"
-    >
-        🖨️ Print
-    </button>
-
-</div>
 
 
 </div>
 
 
-<!-- ================================================= -->
-<!-- QR CODE -->
-<!-- ================================================= -->
+
+<!-- =====================================================
+     QR CODE LIBRARY
+===================================================== -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 
-<!-- ================================================= -->
-<!-- FIREBASE -->
-<!-- ================================================= -->
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
 <script type="module">
 
+
 import { db } from "./firebase.js";
 
+
 import {
+
     collection,
     getDocs,
     doc,
     getDoc
+
 }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* ================================================= */
-/* VARIABLES */
-/* ================================================= */
+
+/* =====================================================
+   VARIABLES
+===================================================== */
 
 let allMembers = [];
 
 
-/* ================================================= */
-/* LOAD MEMBERS */
-/* ================================================= */
+
+/* =====================================================
+   APPROVAL CHECK
+===================================================== */
+
+function isApproved(member){
+
+    return (
+
+        member.approved === true ||
+
+        member.status === "approved"
+
+    );
+
+}
+
+
+
+/* =====================================================
+   LOAD APPROVED MEMBERS ONLY
+===================================================== */
 
 async function loadMembers(){
 
     try{
 
+
+        document.getElementById(
+            "memberList"
+        ).innerHTML = `
+
+            <div class="loading">
+
+                ⏳ Approved Members Loading...
+
+            </div>
+
+        `;
+
+
         const snap =
             await getDocs(
-                collection(db,"members")
+                collection(
+                    db,
+                    "members"
+                )
             );
 
 
@@ -784,44 +809,95 @@ async function loadMembers(){
 
         snap.forEach(item => {
 
+
+            const data =
+                item.data();
+
+
+            /* =========================================
+               ONLY APPROVED
+               ========================================= */
+
+            if(!isApproved(data)){
+
+                return;
+
+            }
+
+
             allMembers.push({
 
                 id:item.id,
 
-                ...item.data()
+                ...data
 
             });
+
 
         });
 
 
+        /* =================================================
+           A → Z SORT
+        ================================================= */
+
+        allMembers.sort(
+            (a,b) =>
+                String(a.name || "")
+                .localeCompare(
+                    String(b.name || ""),
+                    "or"
+                )
+        );
+
+
         displayMembers(allMembers);
+
 
     }
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "ID Card Members Error:",
+            error
+        );
 
-        document.getElementById("memberList").innerHTML =
 
-            `<div class="noMember">
-                ❌ Members load ହେଲା ନାହିଁ
-             </div>`;
+        document.getElementById(
+            "memberList"
+        ).innerHTML = `
+
+            <div class="noMember">
+
+                ❌ Members load ହେଲା ନାହିଁ।
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.message
+                )}
+
+            </div>
+
+        `;
 
     }
 
 }
 
 
-/* ================================================= */
-/* DISPLAY MEMBERS */
-/* ================================================= */
+
+/* =====================================================
+   DISPLAY MEMBERS
+===================================================== */
 
 function displayMembers(members){
 
     const list =
-        document.getElementById("memberList");
+        document.getElementById(
+            "memberList"
+        );
 
 
     list.innerHTML = "";
@@ -829,10 +905,15 @@ function displayMembers(members){
 
     if(members.length === 0){
 
-        list.innerHTML =
-            `<div class="noMember">
-                ❌ Member ମିଳିଲା ନାହିଁ
-             </div>`;
+        list.innerHTML = `
+
+            <div class="noMember">
+
+                ❌ କୌଣସି Approved Member ମିଳିଲା ନାହିଁ।
+
+            </div>
+
+        `;
 
         return;
 
@@ -843,19 +924,24 @@ function displayMembers(members){
 
 
         const name =
-            member.name || "ନାମ ନାହିଁ";
+            member.name ||
+            "ନାମ ନାହିଁ";
 
 
         const memberId =
-            member.memberId || member.id;
+            member.memberId ||
+            member.id;
 
 
         const mobile =
-            member.mobile || "";
+            member.mobile ||
+            "";
 
 
         const div =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         div.className =
@@ -865,34 +951,53 @@ function displayMembers(members){
         div.innerHTML = `
 
             <div class="memberName">
+
                 👤 ${escapeHTML(name)}
+
             </div>
 
+
             <div class="memberInfo">
-                🪪 Member ID: ${escapeHTML(memberId)}
+
+                🪪 Member ID:
+                ${escapeHTML(memberId)}
+
                 <br>
-                📱 Mobile: ${escapeHTML(mobile)}
+
+                📱 Mobile:
+                ${escapeHTML(mobile)}
+
             </div>
+
 
             <button
                 class="idButton"
-                data-id="${member.id}"
+                type="button"
             >
+
                 🪪 View ID Card
+
             </button>
 
         `;
 
 
-        div.querySelector(".idButton")
-            .addEventListener(
-                "click",
-                function(){
-
-                    openIDCard(member.id);
-
-                }
+        const button =
+            div.querySelector(
+                ".idButton"
             );
+
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                openIDCard(
+                    member.id
+                );
+
+            }
+        );
 
 
         list.appendChild(div);
@@ -902,9 +1007,10 @@ function displayMembers(members){
 }
 
 
-/* ================================================= */
-/* SEARCH */
-/* ================================================= */
+
+/* =====================================================
+   SEARCH
+===================================================== */
 
 document
 .getElementById("searchBox")
@@ -920,7 +1026,9 @@ document
 
         if(!search){
 
-            displayMembers(allMembers);
+            displayMembers(
+                allMembers
+            );
 
             return;
 
@@ -928,93 +1036,183 @@ document
 
 
         const filtered =
-            allMembers.filter(member => {
-
-                const name =
-                    String(
-                        member.name || ""
-                    ).toLowerCase();
+            allMembers.filter(
+                member => {
 
 
-                const mobile =
-                    String(
-                        member.mobile || ""
-                    ).toLowerCase();
+                    const name =
+                        String(
+                            member.name || ""
+                        ).toLowerCase();
 
 
-                const memberId =
-                    String(
-                        member.memberId || ""
-                    ).toLowerCase();
+                    const mobile =
+                        String(
+                            member.mobile || ""
+                        ).toLowerCase();
 
 
-                return (
-
-                    name.includes(search) ||
-
-                    mobile.includes(search) ||
-
-                    memberId.includes(search)
-
-                );
-
-            });
+                    const memberId =
+                        String(
+                            member.memberId || ""
+                        ).toLowerCase();
 
 
-        displayMembers(filtered);
+                    return (
+
+                        name.includes(search) ||
+
+                        mobile.includes(search) ||
+
+                        memberId.includes(search)
+
+                    );
+
+                }
+            );
+
+
+        displayMembers(
+            filtered
+        );
 
     }
 );
 
 
-/* ================================================= */
-/* OPEN ID CARD */
-/* ================================================= */
 
-function openIDCard(id){
+/* =====================================================
+   OPEN ID CARD
+===================================================== */
 
-    history.pushState(
-        {},
-        "",
-        "idcard.html?id=" +
-        encodeURIComponent(id)
-    );
+async function openIDCard(id){
+
+    try{
 
 
-    document
-        .getElementById("memberListPage")
-        .style.display = "none";
+        /* =============================================
+           READ MEMBER AGAIN
+           ============================================= */
+
+        const memberRef =
+            doc(
+                db,
+                "members",
+                id
+            );
 
 
-    document
-        .getElementById("cardPage")
-        .style.display = "flex";
+        const memberSnap =
+            await getDoc(
+                memberRef
+            );
 
 
-    loadMember(id);
+        if(!memberSnap.exists()){
+
+            alert(
+                "❌ Member ମିଳିଲା ନାହିଁ।"
+            );
+
+            return;
+
+        }
+
+
+        const data =
+            memberSnap.data();
+
+
+        /* =============================================
+           APPROVAL SECURITY
+           ============================================= */
+
+        if(!isApproved(data)){
+
+            alert(
+                "⛔ ଏହି Member ଏପର୍ଯ୍ୟନ୍ତ Approve ହୋଇନାହାନ୍ତି।"
+            );
+
+            return;
+
+        }
+
+
+        /* =============================================
+           OPEN CARD
+           ============================================= */
+
+        history.pushState(
+            {},
+            "",
+            "idcard.html?id=" +
+            encodeURIComponent(id)
+        );
+
+
+        document
+            .getElementById(
+                "memberListPage"
+            )
+            .style.display =
+                "none";
+
+
+        document
+            .getElementById(
+                "cardPage"
+            )
+            .style.display =
+                "flex";
+
+
+        loadMember(id);
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "❌ ID Card open error:\n" +
+            error.message
+        );
+
+    }
 
 }
 
 
-/* ================================================= */
-/* LOAD MEMBER */
-/* ================================================= */
+
+/* =====================================================
+   LOAD SINGLE MEMBER
+===================================================== */
 
 async function loadMember(id){
 
     try{
 
+
         const memberRef =
-            doc(db,"members",id);
+            doc(
+                db,
+                "members",
+                id
+            );
 
 
         const memberSnap =
-            await getDoc(memberRef);
+            await getDoc(
+                memberRef
+            );
 
 
         if(!memberSnap.exists()){
 
-            alert("Member ମିଳିଲା ନାହିଁ");
+            alert(
+                "❌ Member ମିଳିଲା ନାହିଁ।"
+            );
 
             showMemberList();
 
@@ -1027,133 +1225,216 @@ async function loadMember(id){
             memberSnap.data();
 
 
-        /* MEMBER ID */
+        /* =============================================
+           FINAL APPROVAL CHECK
+           ============================================= */
+
+        if(!isApproved(data)){
+
+            alert(
+                "⛔ ଏହି Member ଏପର୍ଯ୍ୟନ୍ତ Approve ହୋଇନାହାନ୍ତି।"
+            );
+
+            showMemberList();
+
+            return;
+
+        }
+
+
+        /* =============================================
+           MEMBER ID
+           ============================================= */
 
         document
-            .getElementById("memberId")
+            .getElementById(
+                "memberId"
+            )
             .textContent =
-                data.memberId || id;
+
+                data.memberId ||
+                id ||
+                "-";
 
 
-        /* NAME */
+        /* =============================================
+           NAME
+           ============================================= */
 
         document
-            .getElementById("name")
+            .getElementById(
+                "name"
+            )
             .textContent =
-                data.name || "-";
+
+                data.name ||
+                "-";
 
 
-        /* FATHER */
+        /* =============================================
+           FATHER
+           ============================================= */
 
         document
-            .getElementById("father")
+            .getElementById(
+                "father"
+            )
             .textContent =
-                data.father || "-";
+
+                data.father ||
+                "-";
 
 
-        /* DOB */
+        /* =============================================
+           DOB
+           ============================================= */
 
         document
-            .getElementById("dob")
+            .getElementById(
+                "dob"
+            )
             .textContent =
-                data.dob || "-";
+
+                data.dob ||
+                "-";
 
 
-        /* MOBILE */
+        /* =============================================
+           MOBILE
+           ============================================= */
 
         document
-            .getElementById("mobile")
+            .getElementById(
+                "mobile"
+            )
             .textContent =
-                data.mobile || "-";
+
+                data.mobile ||
+                "-";
 
 
-        /* ADDRESS */
+        /* =============================================
+           ADDRESS
+           ============================================= */
 
         document
-            .getElementById("address")
+            .getElementById(
+                "address"
+            )
             .textContent =
-                data.address || "-";
+
+                data.address ||
+                "-";
 
 
-        /* ================================================= */
-        /* PHOTO */
-        /* ================================================= */
+        /* =============================================
+           PHOTO
+           ============================================= */
 
         const photo =
-            document.getElementById("photo");
+            document.getElementById(
+                "photo"
+            );
 
 
         const photoURL =
+
             data.photoUrl ||
+
             data.photoURL ||
+
             data.imageUrl ||
+
             data.photo ||
+
             data.image ||
+
             data.profilePhoto ||
+
             data.profileImage ||
+
             "";
 
 
         if(photoURL){
 
-            photo.src = photoURL;
+            photo.src =
+                photoURL;
 
-            photo.onerror = function(){
 
-                console.warn(
-                    "Photo load failed:",
-                    photoURL
-                );
+            photo.onerror =
+                function(){
 
-                this.src = "logo.png";
+                    this.onerror = null;
 
-            };
+                    this.src =
+                        "logo.png";
+
+                };
 
         }
         else{
 
-            photo.src = "logo.png";
+            photo.src =
+                "logo.png";
 
         }
 
 
-        /* ================================================= */
-        /* VERIFY URL */
-        /* ================================================= */
+        /* =============================================
+           QR VERIFY URL
+           ============================================= */
 
         const verifyURL =
+
             window.location.origin +
+
             window.location.pathname
                 .replace(
                     "idcard.html",
                     "view-id.html"
                 ) +
+
             "?id=" +
+
             encodeURIComponent(id);
 
 
-        /* CLEAR QR */
+        /* =============================================
+           CLEAR OLD QR
+           ============================================= */
 
         document
-            .getElementById("qrcode")
+            .getElementById(
+                "qrcode"
+            )
             .innerHTML = "";
 
 
-        /* QR */
+        /* =============================================
+           CREATE QR
+           ============================================= */
 
         new QRCode(
 
-            document.getElementById("qrcode"),
+            document.getElementById(
+                "qrcode"
+            ),
 
             {
-                text:verifyURL,
 
-                width:200,
+                text:
+                    verifyURL,
 
-                height:200,
+                width:
+                    200,
+
+                height:
+                    200,
 
                 correctLevel:
                     QRCode.CorrectLevel.M
+
             }
 
         );
@@ -1162,10 +1443,14 @@ async function loadMember(id){
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "Load Member Error:",
+            error
+        );
+
 
         alert(
-            "Error: " +
+            "❌ Error:\n" +
             error.message
         );
 
@@ -1174,11 +1459,13 @@ async function loadMember(id){
 }
 
 
-/* ================================================= */
-/* BACK TO MEMBER LIST */
-/* ================================================= */
 
-window.showMemberList = function(){
+/* =====================================================
+   BACK TO LIST
+===================================================== */
+
+window.showMemberList =
+function(){
 
     history.pushState(
         {},
@@ -1188,41 +1475,71 @@ window.showMemberList = function(){
 
 
     document
-        .getElementById("cardPage")
-        .style.display = "none";
+        .getElementById(
+            "cardPage"
+        )
+        .style.display =
+            "none";
 
 
     document
-        .getElementById("memberListPage")
-        .style.display = "block";
+        .getElementById(
+            "memberListPage"
+        )
+        .style.display =
+            "block";
 
 
     document
-        .getElementById("qrcode")
+        .getElementById(
+            "qrcode"
+        )
         .innerHTML = "";
 
 };
 
 
-/* ================================================= */
-/* HTML SECURITY */
-/* ================================================= */
+
+/* =====================================================
+   HTML SECURITY
+===================================================== */
 
 function escapeHTML(value){
 
     return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
-/* ================================================= */
-/* URL ID CHECK */
-/* ================================================= */
+
+/* =====================================================
+   DIRECT URL CHECK
+===================================================== */
 
 const params =
     new URLSearchParams(
@@ -1237,13 +1554,19 @@ const urlID =
 if(urlID){
 
     document
-        .getElementById("memberListPage")
-        .style.display = "none";
+        .getElementById(
+            "memberListPage"
+        )
+        .style.display =
+            "none";
 
 
     document
-        .getElementById("cardPage")
-        .style.display = "flex";
+        .getElementById(
+            "cardPage"
+        )
+        .style.display =
+            "flex";
 
 
     loadMember(urlID);
@@ -1255,7 +1578,9 @@ else{
 
 }
 
+
 </script>
+
 
 </body>
 
