@@ -647,7 +647,6 @@ let members = [];
    LOAD MEMBERS
 ===================================================== */
 
-
 async function loadMembers(){
 
 
@@ -664,15 +663,10 @@ async function loadMembers(){
 
         /*
         =================================================
-        IMPORTANT
+        FIRESTORE READ ONLY
 
-        ଏହି page କେବଳ Firestore ରୁ READ କରୁଛି।
-
-        କୌଣସି update
-        କୌଣସି delete
-        କୌଣସି write
-
-        କରୁନାହିଁ।
+        ଏହି page କୌଣସି data
+        update / delete / write କରୁନାହିଁ।
 
         ପୁରୁଣା data safe ରହିବ।
         =================================================
@@ -697,33 +691,46 @@ async function loadMembers(){
 
             /*
             =================================================
-            ONLY APPROVED MEMBERS
+            IMPORTANT APPROVAL FILTER
 
-            paid === true
-            ଥିଲେ ମାତ୍ର Members List ରେ ଆସିବ।
+            NEW PENDING MEMBER
+            ------------------
+            status === "pending"
+            → Members List ରେ ଦେଖାଯିବ ନାହିଁ।
 
-            paid === false
-            paid ନଥିଲେ
-            paid = "Pending" ଥିଲେ
+            APPROVED MEMBER
+            ----------------
+            status === "approved"
+            → Members List ରେ ଦେଖାଯିବ।
 
-            list ରେ ଆସିବ ନାହିଁ।
+            OLD MEMBERS
+            ----------------
+            status field ନଥିଲେ
+            → ପୁରୁଣା data safe ରଖିବା ପାଇଁ
+              List ରେ ରହିବେ।
+
+            PAYMENT STATUS (paid)
+            ----------------
+            Members List filter ପାଇଁ
+            ବ୍ୟବହାର ହେଉନାହିଁ।
             =================================================
             */
 
 
-            if(data.paid === true){
+            if(data.status === "pending"){
 
-
-                members.push({
-
-                    id:docSnap.id,
-
-                    ...data
-
-                });
-
+                return;
 
             }
+
+
+            members.push({
+
+                id:docSnap.id,
+
+                ...data
+
+            });
 
 
         });
