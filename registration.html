@@ -184,7 +184,6 @@ border:2px solid #b30000;
 border-radius:8px;
 ">
 
-
 </div>
 
 
@@ -247,8 +246,13 @@ margin:15px 0;
 
 <br>
 
-Admin Approval ପରେ Payment Verify
-କରାଯିବ ଏବଂ Member ID ଦିଆଯିବ।
+Admin Approval ପରେ ଆପଣଙ୍କ
+Member Registration ସମ୍ପୂର୍ଣ୍ଣ ହେବ।
+
+<br>
+
+Payment Verify ହେବା ପରେ
+Payment Status <b>Paid</b> ହେବ।
 
 </div>
 
@@ -287,9 +291,9 @@ id="submitBtn">
 <script type="module">
 
 
-// ========================================
+// =====================================================
 // FIREBASE
-// ========================================
+// =====================================================
 
 import { db } from "./firebase.js";
 
@@ -297,60 +301,128 @@ import { db } from "./firebase.js";
 import {
 
     collection,
-
-    addDoc,
-
     doc,
-
     runTransaction,
-
     query,
-
     where,
-
     getDocs,
-
     serverTimestamp
 
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 
-// ========================================
+// =====================================================
 // PHOTO PREVIEW
-// ========================================
+// =====================================================
 
 document
 .getElementById("photo")
-.addEventListener("change", function(){
+.addEventListener(
+"change",
+function(){
 
-    const file = this.files[0];
+    const file =
+        this.files[0];
+
+
+    const previewBox =
+        document.getElementById(
+            "photoPreviewBox"
+        );
+
+
+    const preview =
+        document.getElementById(
+            "photoPreview"
+        );
+
 
     if(!file){
 
-        document
-        .getElementById("photoPreviewBox")
-        .style.display = "none";
+        previewBox.style.display =
+            "none";
 
         return;
 
     }
 
 
+    // -----------------------------------------------
+    // CHECK IMAGE
+    // -----------------------------------------------
+
+    if(
+        !file.type.startsWith(
+            "image/"
+        )
+    ){
+
+        alert(
+            "❌ ଦୟାକରି Image Photo ବାଛନ୍ତୁ।"
+        );
+
+        this.value = "";
+
+        previewBox.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    // -----------------------------------------------
+    // CHECK SIZE
+    // -----------------------------------------------
+
+    if(
+        file.size >
+        10 * 1024 * 1024
+    ){
+
+        alert(
+            "❌ Photo size 10MB ଠାରୁ କମ୍ ହେବା ଦରକାର।"
+        );
+
+        this.value = "";
+
+        previewBox.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    // -----------------------------------------------
+    // PREVIEW
+    // -----------------------------------------------
+
     const reader =
-    new FileReader();
+        new FileReader();
 
 
-    reader.onload = function(e){
+    reader.onload =
+    function(e){
 
-        document
-        .getElementById("photoPreview")
-        .src = e.target.result;
+        preview.src =
+            e.target.result;
+
+        previewBox.style.display =
+            "block";
+
+    };
 
 
-        document
-        .getElementById("photoPreviewBox")
-        .style.display = "block";
+    reader.onerror =
+    function(){
+
+        alert(
+            "❌ Photo preview ହୋଇପାରିଲା ନାହିଁ।"
+        );
 
     };
 
@@ -361,83 +433,97 @@ document
 
 
 
-// ========================================
+// =====================================================
 // COMPRESS PHOTO
-// ========================================
+// =====================================================
 
 async function compressImage(file){
 
-    return new Promise((resolve,reject)=>{
+    return new Promise(
+    (resolve,reject)=>{
 
 
         const img =
-        new Image();
+            new Image();
 
 
         const reader =
-        new FileReader();
+            new FileReader();
 
 
-        reader.onload = function(e){
+        reader.onload =
+        function(e){
 
 
-            img.onload = function(){
+            img.onload =
+            function(){
 
 
                 const canvas =
-                document.createElement("canvas");
+                    document.createElement(
+                        "canvas"
+                    );
 
 
-                const maxWidth = 800;
+                const maxWidth =
+                    800;
 
-                const maxHeight = 800;
+
+                const maxHeight =
+                    800;
 
 
                 let width =
-                img.width;
+                    img.width;
+
 
                 let height =
-                img.height;
+                    img.height;
 
 
-                if(width > height){
+                // -----------------------------------
+                // RESIZE
+                // -----------------------------------
 
-                    if(width > maxWidth){
+                if(
+                    width > maxWidth ||
+                    height > maxHeight
+                ){
 
-                        height =
-                        height * maxWidth / width;
 
-                        width =
-                        maxWidth;
+                    const ratio =
+                        Math.min(
+                            maxWidth / width,
+                            maxHeight / height
+                        );
 
-                    }
 
-                }
+                    width =
+                        Math.round(
+                            width * ratio
+                        );
 
-                else{
 
-                    if(height > maxHeight){
-
-                        width =
-                        width * maxHeight / height;
-
-                        height =
-                        maxHeight;
-
-                    }
+                    height =
+                        Math.round(
+                            height * ratio
+                        );
 
                 }
 
 
                 canvas.width =
-                width;
+                    width;
+
 
                 canvas.height =
-                height;
+                    height;
 
 
                 const ctx =
-                canvas.getContext("2d");
+                    canvas.getContext(
+                        "2d"
+                    );
 
 
                 ctx.drawImage(
@@ -449,35 +535,40 @@ async function compressImage(file){
                 );
 
 
+                // -----------------------------------
+                // JPEG
+                // -----------------------------------
+
                 canvas.toBlob(
-                    function(blob){
+                function(blob){
 
-                        if(blob){
 
-                            resolve(blob);
+                    if(!blob){
 
-                        }
+                        reject(
+                            new Error(
+                                "Photo compression failed"
+                            )
+                        );
 
-                        else{
+                        return;
 
-                            reject(
-                                new Error(
-                                    "Photo compression failed"
-                                )
-                            );
+                    }
 
-                        }
 
-                    },
-                    "image/jpeg",
-                    0.75
+                    resolve(blob);
+
+
+                },
+                "image/jpeg",
+                0.75
                 );
-
 
             };
 
 
-            img.onerror = function(){
+            img.onerror =
+            function(){
 
                 reject(
                     new Error(
@@ -489,12 +580,13 @@ async function compressImage(file){
 
 
             img.src =
-            e.target.result;
+                e.target.result;
 
         };
 
 
-        reader.onerror = function(){
+        reader.onerror =
+        function(){
 
             reject(
                 new Error(
@@ -513,154 +605,224 @@ async function compressImage(file){
 
 
 
-// ========================================
-// SECURE MEMBER ID
-// ========================================
+// =====================================================
+// CREATE MEMBER
+// =====================================================
 
 async function createMemberTransaction(data){
 
 
     const counterRef =
-    doc(db,"system","counter");
+        doc(
+            db,
+            "system",
+            "counter"
+        );
 
 
     const result =
-    await runTransaction(
-        db,
-        async(transaction)=>{
+        await runTransaction(
+            db,
+            async(transaction)=>{
 
 
-            // ============================
-            // CHECK DUPLICATE MOBILE
-            // ============================
+                // =====================================
+                // DUPLICATE MOBILE CHECK
+                // =====================================
 
-            const mobileQuery =
-            query(
-                collection(db,"members"),
-                where(
-                    "mobile",
-                    "==",
-                    data.mobile
-                )
-            );
-
-
-            const mobileSnapshot =
-            await getDocs(mobileQuery);
-
-
-            if(!mobileSnapshot.empty){
-
-                throw new Error(
-                    "DUPLICATE_MOBILE"
-                );
-
-            }
+                const mobileQuery =
+                    query(
+                        collection(
+                            db,
+                            "members"
+                        ),
+                        where(
+                            "mobile",
+                            "==",
+                            data.mobile
+                        )
+                    );
 
 
-            // ============================
-            // GET COUNTER
-            // ============================
-
-            const counterSnapshot =
-            await transaction.get(
-                counterRef
-            );
+                const mobileSnapshot =
+                    await getDocs(
+                        mobileQuery
+                    );
 
 
-            let nextNumber = 1;
+                if(
+                    !mobileSnapshot.empty
+                ){
 
-
-            if(counterSnapshot.exists()){
-
-                const oldNumber =
-                Number(
-                    counterSnapshot.data().lastNumber || 0
-                );
-
-
-                nextNumber =
-                oldNumber + 1;
-
-            }
-
-
-            // ============================
-            // MEMBER ID
-            // ============================
-
-            const memberId =
-            "ORKS" +
-            String(nextNumber)
-            .padStart(4,"0");
-
-
-            // ============================
-            // NEW MEMBER DOCUMENT
-            // ============================
-
-            const memberRef =
-            doc(
-                collection(
-                    db,
-                    "members"
-                )
-            );
-
-
-            // ============================
-            // UPDATE COUNTER
-            // ============================
-
-            transaction.set(
-                counterRef,
-                {
-                    lastNumber:nextNumber
-                }
-            );
-
-
-            // ============================
-            // SAVE MEMBER
-            // ============================
-
-            transaction.set(
-                memberRef,
-                {
-
-                    memberId:memberId,
-
-                    photoUrl:data.photoUrl,
-
-                    name:data.name,
-
-                    father:data.father,
-
-                    mobile:data.mobile,
-
-                    dob:data.dob,
-
-                    address:data.address,
-
-                    status:"pending",
-
-                    paid:false,
-
-                    paymentMode:"",
-
-                    txnId:"",
-
-                    createdAt:
-                    serverTimestamp()
+                    throw new Error(
+                        "DUPLICATE_MOBILE"
+                    );
 
                 }
-            );
 
 
-            return memberId;
+                // =====================================
+                // GET COUNTER
+                // =====================================
 
-        }
-    );
+                const counterSnapshot =
+                    await transaction.get(
+                        counterRef
+                    );
+
+
+                let nextNumber =
+                    1;
+
+
+                if(
+                    counterSnapshot.exists()
+                ){
+
+                    const oldNumber =
+                        Number(
+                            counterSnapshot
+                            .data()
+                            .lastNumber || 0
+                        );
+
+
+                    nextNumber =
+                        oldNumber + 1;
+
+                }
+
+
+                // =====================================
+                // MEMBER ID
+                // =====================================
+
+                const memberId =
+                    "ORKS" +
+                    String(
+                        nextNumber
+                    )
+                    .padStart(
+                        4,
+                        "0"
+                    );
+
+
+                // =====================================
+                // MEMBER DOCUMENT
+                // =====================================
+
+                const memberRef =
+                    doc(
+                        collection(
+                            db,
+                            "members"
+                        )
+                    );
+
+
+                // =====================================
+                // UPDATE COUNTER
+                // =====================================
+
+                transaction.set(
+                    counterRef,
+                    {
+
+                        lastNumber:
+                            nextNumber
+
+                    }
+                );
+
+
+                // =====================================
+                // SAVE NEW MEMBER
+                // =====================================
+
+                transaction.set(
+                    memberRef,
+                    {
+
+                        // -----------------------------
+                        // MEMBER ID
+                        // -----------------------------
+
+                        memberId:
+                            memberId,
+
+
+                        // -----------------------------
+                        // PHOTO
+                        // -----------------------------
+
+                        photoUrl:
+                            data.photoUrl,
+
+
+                        // -----------------------------
+                        // PERSONAL DATA
+                        // -----------------------------
+
+                        name:
+                            data.name,
+
+                        father:
+                            data.father,
+
+                        mobile:
+                            data.mobile,
+
+                        dob:
+                            data.dob,
+
+                        address:
+                            data.address,
+
+
+                        // =============================
+                        // APPROVAL
+                        // =============================
+
+                        approval:
+                            "pending",
+
+                        approved:
+                            false,
+
+                        status:
+                            "pending",
+
+
+                        // =============================
+                        // PAYMENT
+                        // =============================
+
+                        paid:
+                            false,
+
+                        paymentMode:
+                            "",
+
+                        txnId:
+                            "",
+
+
+                        // =============================
+                        // TIME
+                        // =============================
+
+                        createdAt:
+                            serverTimestamp()
+
+                    }
+                );
+
+
+                return memberId;
+
+            }
+        );
 
 
     return result;
@@ -669,12 +831,14 @@ async function createMemberTransaction(data){
 
 
 
-// ========================================
+// =====================================================
 // FORM SUBMIT
-// ========================================
+// =====================================================
 
 document
-.getElementById("registrationForm")
+.getElementById(
+    "registrationForm"
+)
 .addEventListener(
 "submit",
 async function(e){
@@ -684,88 +848,108 @@ async function(e){
 
 
     const form =
-    document.getElementById(
-        "registrationForm"
-    );
+        document.getElementById(
+            "registrationForm"
+        );
 
 
     const submitBtn =
-    document.getElementById(
-        "submitBtn"
-    );
+        document.getElementById(
+            "submitBtn"
+        );
 
 
     const loadingText =
-    document.getElementById(
-        "loadingText"
-    );
+        document.getElementById(
+            "loadingText"
+        );
 
 
-    // ====================================
-    // PREVENT DOUBLE CLICK
-    // ====================================
+    // ================================================
+    // DOUBLE CLICK PROTECTION
+    // ================================================
 
-    if(submitBtn.disabled){
+    if(
+        submitBtn.disabled
+    ){
 
         return;
 
     }
 
 
-    // ====================================
+    // ================================================
+    // FORM VALIDATION
+    // ================================================
+
+    if(
+        !form.checkValidity()
+    ){
+
+        form.reportValidity();
+
+        return;
+
+    }
+
+
+    // ================================================
     // GET VALUES
-    // ====================================
+    // ================================================
 
     const name =
-    document
-    .getElementById("name")
-    .value
-    .trim();
+        document
+        .getElementById("name")
+        .value
+        .trim();
 
 
     const father =
-    document
-    .getElementById("father")
-    .value
-    .trim();
+        document
+        .getElementById("father")
+        .value
+        .trim();
 
 
     const mobile =
-    document
-    .getElementById("mobile")
-    .value
-    .trim();
+        document
+        .getElementById("mobile")
+        .value
+        .trim();
 
 
     const dob =
-    document
-    .getElementById("dob")
-    .value
-    .trim();
+        document
+        .getElementById("dob")
+        .value
+        .trim();
 
 
     const address =
-    document
-    .getElementById("address")
-    .value
-    .trim();
+        document
+        .getElementById("address")
+        .value
+        .trim();
 
 
     const photo =
-    document
-    .getElementById("photo")
-    .files[0];
+        document
+        .getElementById("photo")
+        .files[0];
 
 
-
-    // ====================================
+    // ================================================
     // MOBILE VALIDATION
-    // ====================================
+    // ================================================
 
-    if(!/^[6-9][0-9]{9}$/.test(mobile)){
+    if(
+        !/^[6-9][0-9]{9}$/.test(
+            mobile
+        )
+    ){
 
         alert(
-            "ଦୟାକରି 10 digit ଠିକ୍ Mobile Number ଦିଅନ୍ତୁ।"
+            "❌ ଦୟାକରି 10 digit ଠିକ୍ Mobile Number ଦିଅନ୍ତୁ।"
         );
 
         return;
@@ -773,14 +957,14 @@ async function(e){
     }
 
 
-    // ====================================
-    // PHOTO CHECK
-    // ====================================
+    // ================================================
+    // PHOTO VALIDATION
+    // ================================================
 
     if(!photo){
 
         alert(
-            "ଦୟାକରି Photo ବାଛନ୍ତୁ।"
+            "❌ ଦୟାକରି Photo ବାଛନ୍ତୁ।"
         );
 
         return;
@@ -788,38 +972,41 @@ async function(e){
     }
 
 
-    // ====================================
-    // BUTTON LOADING
-    // ====================================
+    // ================================================
+    // BUTTON LOCK
+    // ================================================
 
-    submitBtn.disabled = true;
+    submitBtn.disabled =
+        true;
+
 
     submitBtn.innerHTML =
-    "⏳ Submitting...";
+        "⏳ Submitting...";
 
 
     loadingText.style.display =
-    "block";
+        "block";
 
 
     try{
 
 
-        // =================================
-        // COMPRESS PHOTO
-        // =================================
+        // ============================================
+        // COMPRESS
+        // ============================================
 
         const compressedPhoto =
-        await compressImage(photo);
+            await compressImage(
+                photo
+            );
 
 
-
-        // =================================
+        // ============================================
         // CLOUDINARY
-        // =================================
+        // ============================================
 
         const formData =
-        new FormData();
+            new FormData();
 
 
         formData.append(
@@ -835,13 +1022,18 @@ async function(e){
 
 
         const response =
-        await fetch(
-            "https://api.cloudinary.com/v1_1/y8toswrt/image/upload",
-            {
-                method:"POST",
-                body:formData
-            }
-        );
+            await fetch(
+                "https://api.cloudinary.com/v1_1/y8toswrt/image/upload",
+                {
+
+                    method:
+                        "POST",
+
+                    body:
+                        formData
+
+                }
+            );
 
 
         if(!response.ok){
@@ -854,10 +1046,12 @@ async function(e){
 
 
         const result =
-        await response.json();
+            await response.json();
 
 
-        if(!result.secure_url){
+        if(
+            !result.secure_url
+        ){
 
             throw new Error(
                 "Photo URL ମିଳିଲା ନାହିଁ"
@@ -867,49 +1061,60 @@ async function(e){
 
 
         const photoUrl =
-        result.secure_url;
+            result.secure_url;
 
 
-
-        // =================================
-        // SECURE FIRESTORE TRANSACTION
-        // =================================
+        // ============================================
+        // FIRESTORE
+        // ============================================
 
         const memberId =
-        await createMemberTransaction({
+            await createMemberTransaction({
 
-            name:name,
+                name:
+                    name,
 
-            father:father,
+                father:
+                    father,
 
-            mobile:mobile,
+                mobile:
+                    mobile,
 
-            dob:dob,
+                dob:
+                    dob,
 
-            address:address,
+                address:
+                    address,
 
-            photoUrl:photoUrl
+                photoUrl:
+                    photoUrl
 
-        });
+            });
 
 
-
-        // =================================
+        // ============================================
         // SUCCESS
-        // =================================
+        // ============================================
 
         alert(
             "✅ Registration ସଫଳତାର ସହ Submit ହୋଇଛି।\n\n" +
+
             "Member ID: " +
             memberId +
+
             "\n\n" +
-            "Admin Approval ପରେ Registration ସମ୍ପୂର୍ଣ୍ଣ ହେବ।"
+
+            "⏳ Approval: Pending\n" +
+
+            "💳 Payment: Pending\n\n" +
+
+            "Admin Approval ପରେ ଆପଣଙ୍କ Member List ଏବଂ ID Card ରେ Member ଦେଖାଯିବ।"
         );
 
 
-        // =================================
-        // RESET FORM
-        // =================================
+        // ============================================
+        // RESET
+        // ============================================
 
         form.reset();
 
@@ -918,12 +1123,11 @@ async function(e){
         .getElementById(
             "photoPreviewBox"
         )
-        .style.display = "none";
+        .style.display =
+            "none";
 
 
     }
-
-
     catch(error){
 
 
@@ -932,10 +1136,6 @@ async function(e){
             error
         );
 
-
-        // =================================
-        // DUPLICATE MOBILE
-        // =================================
 
         if(
             error.message ===
@@ -947,8 +1147,6 @@ async function(e){
             );
 
         }
-
-
         else{
 
             alert(
@@ -961,20 +1159,20 @@ async function(e){
     }
 
 
-    // ====================================
+    // ================================================
     // RESTORE BUTTON
-    // ====================================
+    // ================================================
 
     submitBtn.disabled =
-    false;
+        false;
 
 
     submitBtn.innerHTML =
-    "📝 Registration Submit";
+        "📝 Registration Submit";
 
 
     loadingText.style.display =
-    "none";
+        "none";
 
 
 });
