@@ -5,10 +5,8 @@ import {
     getDocs,
     doc,
     getDoc,
-    setDoc,
     updateDoc,
-    deleteDoc,
-    addDoc
+    deleteDoc
 }
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -23,6 +21,31 @@ const memberList =
 
 
 /* =====================================================
+   APPROVAL CHECK
+===================================================== */
+
+function isApproved(member){
+
+    const approval =
+        String(member.approval ?? "")
+        .trim()
+        .toLowerCase();
+
+    const status =
+        String(member.status ?? "")
+        .trim()
+        .toLowerCase();
+
+    return (
+        member.approved === true ||
+        approval === "approved" ||
+        status === "approved"
+    );
+
+}
+
+
+/* =====================================================
    LOAD PENDING MEMBERS
 ===================================================== */
 
@@ -30,7 +53,7 @@ async function loadPendingMembers(){
 
     memberList.innerHTML = `
         <div class="loading">
-            ⏳ Members Loading...
+            ⏳ Pending Members Loading...
         </div>
     `;
 
@@ -44,6 +67,7 @@ async function loadPendingMembers(){
 
 
         memberList.innerHTML = "";
+
 
         let pendingFound = false;
 
@@ -59,29 +83,20 @@ async function loadPendingMembers(){
             };
 
 
-            /* =================================================
-               APPROVAL CHECK
+            /* =========================================
+               APPROVED MEMBER → DO NOT SHOW
+            ========================================= */
 
-               approved:true
-               OR
-               old data status:"approved"
-
-               = APPROVED
-
-               Otherwise = PENDING
-            ================================================= */
-
-            const isApproved =
-                member.approved === true ||
-                member.status === "approved";
-
-
-            if(isApproved){
+            if(isApproved(member)){
 
                 return;
 
             }
 
+
+            /* =========================================
+               PENDING MEMBER
+            ========================================= */
 
             pendingFound = true;
 
@@ -89,6 +104,17 @@ async function loadPendingMembers(){
             const photo =
                 member.photoUrl ||
                 "images/default-user.png";
+
+
+            const paymentText =
+                member.paid === true
+                ? "✅ Paid"
+                : "⏳ Pending";
+
+
+            const memberId =
+                member.memberId ||
+                "-";
 
 
             memberList.innerHTML += `
@@ -113,6 +139,15 @@ async function loadPendingMembers(){
                         )}
 
                     </h3>
+
+
+                    <p>
+
+                        <b>Member ID:</b>
+
+                        ${escapeHTML(memberId)}
+
+                    </p>
 
 
                     <p>
@@ -145,11 +180,7 @@ async function loadPendingMembers(){
 
                         <span class="payment-status">
 
-                            ${
-                                member.paid === true
-                                ? "✅ Paid"
-                                : "⏳ Pending"
-                            }
+                            ${paymentText}
 
                         </span>
 
@@ -246,60 +277,15 @@ async function loadPendingMembers(){
 
                 <br><br>
 
-                ${escapeHTML(error.message)}
+                ${escapeHTML(
+                    error.message
+                )}
 
             </div>
 
         `;
 
     }
-
-}
-
-
-/* =====================================================
-   GET NEXT MEMBER ID
-===================================================== */
-
-async function getNextMemberId(){
-
-    const counterRef =
-        doc(
-            db,
-            "system",
-            "counter"
-        );
-
-
-    const counterSnap =
-        await getDoc(counterRef);
-
-
-    let number = 1;
-
-
-    if(counterSnap.exists()){
-
-        number =
-            Number(
-                counterSnap.data().lastNumber || 0
-            ) + 1;
-
-    }
-
-
-    await setDoc(
-        counterRef,
-        {
-            lastNumber: number
-        }
-    );
-
-
-    return (
-        "ORKS" +
-        String(number).padStart(4,"0")
-    );
 
 }
 
@@ -313,9 +299,9 @@ async function(id){
 
     try{
 
-        /* =================================================
+        /* =============================================
            GET MEMBER
-        ================================================= */
+        ============================================= */
 
         const memberRef =
             doc(
@@ -344,16 +330,11 @@ async function(id){
             memberSnap.data();
 
 
-        /* =================================================
-           DOUBLE APPROVAL PROTECTION
-        ================================================= */
+        /* =============================================
+           ALREADY APPROVED CHECK
+        ============================================= */
 
-        const alreadyApproved =
-            member.approved === true ||
-            member.status === "approved";
-
-
-        if(alreadyApproved){
+        if(isApproved(member)){
 
             alert(
                 "ℹ️ ଏହି Member ପୂର୍ବରୁ Approved ହୋଇଛନ୍ତି।"
@@ -366,47 +347,27 @@ async function(id){
         }
 
 
-        /* =================================================
+        /* =============================================
            MEMBER NAME
-        ================================================= */
+        ============================================= */
 
         const memberName =
-            member.name || "Member";
+            member.name ||
+            "Member";
 
 
-        /* =================================================
-           MOBILE
-        ================================================= */
-
-        const mobile =
-            String(
-                member.mobile || ""
-            ).replace(
-                /\D/g,
-                ""
-            );
-
-
-        if(!mobile){
-
-            alert(
-                "⚠️ ଏହି Member ଙ୍କ Mobile Number ମିଳିଲା ନାହିଁ।"
-            );
-
-            return;
-
-        }
-
-
-        /* =================================================
-           CONFIRM APPROVAL
-        ================================================= */
+        /* =============================================
+           CONFIRM
+        ============================================= */
 
         const confirmApprove =
             confirm(
                 "✅ ଏହି Member କୁ Approve କରିବେ?\n\n" +
                 "Member: " +
-                memberName
+                memberName +
+                "\n\n" +
+                "Approval ମାତ୍ର Approved ହେବ।\n" +
+                "Payment status ବଦଳିବ ନାହିଁ।"
             );
 
 
@@ -417,192 +378,67 @@ async function(id){
         }
 
 
-        /* =================================================
-           MEMBER ID
-        ================================================= */
-
-        const memberId =
-            await getNextMemberId();
-
-
-        /* =================================================
-           RECEIPT ID
-        ================================================= */
-
-        const txnId =
-            "RCPT-" +
-            Date.now();
-
-
-        /* =================================================
-           UPDATE ONLY THIS MEMBER
-
-           OLD DATA SAFE
-
-           Existing fields are NOT deleted.
-        ================================================= */
+        /* =============================================
+           APPROVE ONLY
+           
+           IMPORTANT:
+           - Member ID unchanged
+           - paid unchanged
+           - txnId unchanged
+           - paymentMode unchanged
+           - income NOT created
+        ============================================= */
 
         await updateDoc(
+
             memberRef,
+
             {
 
-                memberId:
-                    memberId,
+                approval:
+                    "approved",
 
                 approved:
                     true,
 
                 status:
-                    "approved",
-
-                paid:
-                    true,
-
-                txnId:
-                    txnId
+                    "approved"
 
             }
+
         );
 
 
-        /* =================================================
-           INCOME ENTRY
-        ================================================= */
-
-        await addDoc(
-            collection(
-                db,
-                "income"
-            ),
-            {
-
-                memberId:
-                    memberId,
-
-                name:
-                    memberName,
-
-                mobile:
-                    member.mobile || "",
-
-                amount:
-                    1200,
-
-                purpose:
-                    "New Membership Fee",
-
-                paymentMode:
-                    "Online",
-
-                receiptNo:
-                    txnId,
-
-                collectedBy:
-                    "Admin",
-
-                createdAt:
-                    new Date()
-
-            }
-        );
-
-
-        /* =================================================
+        /* =============================================
            SUCCESS
-        ================================================= */
+        ============================================= */
 
         alert(
-            "✅ Member Approved Successfully\n\n" +
+            "✅ Member Successfully Approved\n\n" +
+
             "Member ID: " +
-            memberId
+            (
+                member.memberId ||
+                "-"
+            ) +
+
+            "\n\n" +
+
+            "💳 Payment: " +
+
+            (
+                member.paid === true
+                ? "Paid"
+                : "Pending"
+            )
         );
 
 
-        /* =================================================
-           WHATSAPP MESSAGE
-        ================================================= */
+        /* =============================================
+           RELOAD
+        ============================================= */
 
-        const message = `ନମସ୍କାର 🙏
-
-🌺 ଜୟ ଜଗନ୍ନାଥ 🚩
-
-ପ୍ରିୟ ${memberName},
-
-ଆପଣଙ୍କ ସଦସ୍ୟ ପଞ୍ଜୀକରଣ ସଫଳତାର ସହିତ ଅନୁମୋଦିତ ହୋଇଛି।
-
-ଆପଣ ବର୍ତ୍ତମାନ “ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ”ର ଜଣେ ସ୍ୱୀକୃତ ସଦସ୍ୟ।
-
-ଆପଣଙ୍କ ସଦସ୍ୟ ID: ${memberId}
-
-ସଂଘ ପକ୍ଷରୁ ଆପଣଙ୍କୁ ହାର୍ଦ୍ଦିକ ସ୍ୱାଗତ। 🙏🌹
-
-ଆମର ଲକ୍ଷ୍ୟ — ଏକତା, ସେବା ଓ ଓଡ଼ିଆ ସଂସ୍କୃତିର ସୁରକ୍ଷା। 🤝
-
-ଆପଣଙ୍କ ସହଯୋଗ ଆମ ସଂଘକୁ ଆହୁରି ମଜବୁତ କରିବ।
-
-ଜୟ ଜଗନ୍ନାଥ 🚩🙏
-
-ଧନ୍ୟବାଦ।
-ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`;
-
-
-        /* =================================================
-           WHATSAPP NUMBER
-        ================================================= */
-
-        let whatsappNumber =
-            mobile;
-
-
-        if(
-            whatsappNumber.length === 10
-        ){
-
-            whatsappNumber =
-                "91" +
-                whatsappNumber;
-
-        }
-
-
-        /* =================================================
-           WHATSAPP URL
-        ================================================= */
-
-        const whatsappURL =
-            "https://wa.me/" +
-            whatsappNumber +
-            "?text=" +
-            encodeURIComponent(
-                message
-            );
-
-
-        /* =================================================
-           WHATSAPP CONFIRM
-        ================================================= */
-
-        const openWhatsApp =
-            confirm(
-                "📱 WhatsApp Message ପଠାଇବେ?\n\n" +
-                "Member: " +
-                memberName
-            );
-
-
-        if(openWhatsApp){
-
-            window.location.href =
-                whatsappURL;
-
-        }
-
-
-        /* =================================================
-           RELOAD PENDING LIST
-        ================================================= */
-
-        loadPendingMembers();
+        await loadPendingMembers();
 
     }
 
@@ -615,7 +451,7 @@ async function(id){
 
 
         alert(
-            "❌ Approval failed:\n" +
+            "❌ Approval failed:\n\n" +
             error.message
         );
 
@@ -633,10 +469,50 @@ async function(id){
 
     try{
 
+        const memberRef =
+            doc(
+                db,
+                "members",
+                id
+            );
+
+
+        const memberSnap =
+            await getDoc(memberRef);
+
+
+        if(!memberSnap.exists()){
+
+            alert(
+                "❌ Member ମିଳିଲା ନାହିଁ।"
+            );
+
+            return;
+
+        }
+
+
+        const member =
+            memberSnap.data();
+
+
+        /* =============================================
+           CONFIRM DELETE
+        ============================================= */
+
         const ok =
             confirm(
                 "⚠️ ଏହି Pending Member କୁ Delete କରିବେ?\n\n" +
-                "ଏହା କେବଳ ଏହି Member record କୁ delete କରିବ।"
+
+                "Member: " +
+                (
+                    member.name ||
+                    "Member"
+                ) +
+
+                "\n\n" +
+
+                "ଏହା Members collection ରୁ record delete କରିବ।"
             );
 
 
@@ -647,21 +523,29 @@ async function(id){
         }
 
 
+        /* =============================================
+           DELETE
+        ============================================= */
+
         await deleteDoc(
-            doc(
-                db,
-                "members",
-                id
-            )
+            memberRef
         );
 
+
+        /* =============================================
+           SUCCESS
+        ============================================= */
 
         alert(
-            "❌ Member Rejected Successfully"
+            "❌ Pending Member Rejected Successfully"
         );
 
 
-        loadPendingMembers();
+        /* =============================================
+           RELOAD
+        ============================================= */
+
+        await loadPendingMembers();
 
     }
 
@@ -674,7 +558,7 @@ async function(id){
 
 
         alert(
-            "❌ Reject failed:\n" +
+            "❌ Reject failed:\n\n" +
             error.message
         );
 
@@ -727,5 +611,5 @@ loadPendingMembers();
 
 
 console.log(
-    "✅ Pending Members System Loaded"
+    "✅ Pending Members Approval System Loaded"
 );
