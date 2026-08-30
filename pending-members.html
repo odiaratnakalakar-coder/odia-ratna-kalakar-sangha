@@ -1,98 +1,459 @@
 <!DOCTYPE html>
 <html lang="or">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Pending Members</title>
 
 <link rel="stylesheet" href="style.css">
 
 <style>
-body{
-background:#111;
-color:#fff;
-font-family:Arial,sans-serif;
-margin:0;
-padding:15px;
+
+/* =====================================================
+   BASIC
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
 }
+
+
+body{
+
+    background:#111;
+
+    color:#fff;
+
+    min-height:100vh;
+
+    padding:15px;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
 
 .container{
-max-width:700px;
-margin:auto;
+
+    width:100%;
+
+    max-width:700px;
+
+    margin:auto;
+
 }
+
+
+/* =====================================================
+   HEADER
+===================================================== */
 
 h1{
-text-align:center;
-color:#ffcc00;
-margin-bottom:20px;
+
+    text-align:center;
+
+    color:#ffcc00;
+
+    margin:10px 0 20px;
+
+    font-size:25px;
+
 }
+
+
+/* =====================================================
+   MEMBER LIST
+===================================================== */
+
+#memberList{
+
+    width:100%;
+
+}
+
+
+/* =====================================================
+   MEMBER CARD
+===================================================== */
 
 .member-card{
-background:#222;
-border:2px solid #c40000;
-border-radius:10px;
-padding:15px;
-margin-bottom:15px;
+
+    background:#222;
+
+    border:2px solid #c40000;
+
+    border-radius:12px;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.4);
+
 }
+
+
+/* =====================================================
+   PHOTO
+===================================================== */
 
 .member-card img{
-width:100px;
-height:100px;
-border-radius:50%;
-object-fit:cover;
-display:block;
-margin:auto;
+
+    width:100px;
+
+    height:100px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    display:block;
+
+    margin:0 auto 10px;
+
+    border:3px solid #ffcc00;
+
 }
+
+
+/* =====================================================
+   NAME
+===================================================== */
 
 .member-card h3{
-text-align:center;
-margin:10px 0;
+
+    text-align:center;
+
+    color:#fff;
+
+    font-size:20px;
+
+    margin:8px 0 12px;
+
 }
+
+
+/* =====================================================
+   DETAILS
+===================================================== */
 
 .member-card p{
-margin:6px 0;
+
+    margin:7px 0;
+
+    font-size:15px;
+
+    line-height:1.5;
+
+    color:#ddd;
+
 }
+
+
+.member-card p b{
+
+    color:#ffcc00;
+
+}
+
+
+/* =====================================================
+   PAYMENT STATUS
+===================================================== */
+
+.payment-status{
+
+    display:inline-block;
+
+    background:#7a0000;
+
+    color:#fff;
+
+    padding:4px 9px;
+
+    border-radius:5px;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================================
+   APPROVAL STATUS
+===================================================== */
+
+.approval-status{
+
+    display:inline-block;
+
+    background:#7a0000;
+
+    color:#fff;
+
+    padding:4px 9px;
+
+    border-radius:5px;
+
+    font-weight:bold;
+
+}
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
 
 .actions{
-display:flex;
-gap:10px;
-margin-top:12px;
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:15px;
+
 }
+
 
 .actions button{
-flex:1;
-padding:10px;
-border:none;
-border-radius:6px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
+
+    flex:1;
+
+    padding:11px 8px;
+
+    border:none;
+
+    border-radius:7px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
 }
+
+
+/* =====================================================
+   APPROVE
+===================================================== */
 
 .approve{
-background:green;
-color:white;
+
+    background:#008000;
+
+    color:#fff;
+
 }
 
-.reject{
-background:red;
-color:white;
+
+.approve:hover{
+
+    background:#00a000;
+
 }
+
+
+/* =====================================================
+   REJECT
+===================================================== */
+
+.reject{
+
+    background:#d00000;
+
+    color:#fff;
+
+}
+
+
+.reject:hover{
+
+    background:#f00000;
+
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+
+    text-align:center;
+
+    padding:35px 15px;
+
+    color:#aaa;
+
+    font-size:18px;
+
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+
+    text-align:center;
+
+    padding:35px 15px;
+
+    color:#aaa;
+
+    background:#1c1c1c;
+
+    border-radius:10px;
+
+    border:1px solid #333;
+
+    font-size:17px;
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error{
+
+    text-align:center;
+
+    padding:25px 15px;
+
+    color:#ff6666;
+
+    background:#1c1c1c;
+
+    border-radius:10px;
+
+    border:1px solid #700;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:480px){
+
+    body{
+
+        padding:10px;
+
+    }
+
+
+    h1{
+
+        font-size:22px;
+
+    }
+
+
+    .member-card{
+
+        padding:12px;
+
+    }
+
+
+    .member-card img{
+
+        width:90px;
+
+        height:90px;
+
+    }
+
+
+    .member-card h3{
+
+        font-size:18px;
+
+    }
+
+
+    .member-card p{
+
+        font-size:14px;
+
+    }
+
+
+    .actions button{
+
+        font-size:14px;
+
+        padding:10px 5px;
+
+    }
+
+}
+
 </style>
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
-<h1>🕒 Pending Members</h1>
 
-<div id="memberList">
+    <!-- =================================================
+         PAGE TITLE
+    ================================================= -->
+
+    <h1>
+
+        🕒 Pending Members
+
+    </h1>
+
+
+    <!-- =================================================
+         MEMBER LIST
+    ================================================= -->
+
+    <div id="memberList">
+
+        <div class="loading">
+
+            ⏳ Members Loading...
+
+        </div>
+
+    </div>
+
 
 </div>
-<script type="module" src="pending-members.js"></script>
+
+
+<!-- =====================================================
+     PENDING MEMBERS JAVASCRIPT
+===================================================== -->
+
+<script
+    type="module"
+    src="pending-members.js">
+</script>
+
 
 </body>
+
 </html>
