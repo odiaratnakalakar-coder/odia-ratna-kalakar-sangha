@@ -27,7 +27,7 @@ body{
 
 header{
     background:#00695c;
-    color:white;
+    color:#fff;
     padding:18px;
     text-align:center;
     font-size:24px;
@@ -41,7 +41,7 @@ header{
 
 .search-box{
     padding:15px;
-    background:white;
+    background:#fff;
     box-shadow:0 2px 5px rgba(0,0,0,.1);
 }
 
@@ -66,7 +66,7 @@ header{
     font-size:17px;
     font-weight:bold;
     color:#00695c;
-    background:white;
+    background:#fff;
 }
 
 /* ================= LIST ================= */
@@ -78,7 +78,7 @@ header{
 /* ================= MEMBER CARD ================= */
 
 .member-card{
-    background:white;
+    background:#fff;
     border-radius:12px;
     padding:12px;
     margin-bottom:15px;
@@ -132,11 +132,11 @@ header{
     margin-top:3px;
 }
 
-/* ================= VIEW ================= */
+/* ================= VIEW BUTTON ================= */
 
 .view-btn{
     background:#00695c;
-    color:white;
+    color:#fff;
     border:none;
 
     padding:8px 16px;
@@ -200,7 +200,7 @@ header{
 }
 
 .modal-box{
-    background:white;
+    background:#fff;
 
     width:90%;
     max-width:420px;
@@ -258,15 +258,10 @@ header{
     margin:7px 0;
 }
 
-/* ================= PAYMENT ================= */
+/* ================= STATUS ================= */
 
-.status-paid{
+.status-approved{
     color:green;
-    font-weight:bold;
-}
-
-.status-unpaid{
-    color:red;
     font-weight:bold;
 }
 
@@ -281,7 +276,7 @@ header{
 .action-buttons a{
     flex:1;
 
-    color:white;
+    color:#fff;
     text-decoration:none;
 
     padding:12px;
@@ -339,7 +334,7 @@ header{
 
 <header>
 
-    👥 Members Admin
+    👥 ସଦସ୍ୟ ତାଲିକା
 
 </header>
 
@@ -420,47 +415,32 @@ header{
         <div class="modal-details">
 
             <p>
-
                 <b>👨 Father:</b>
-
                 <span id="mFather"></span>
-
             </p>
 
 
             <p>
-
                 <b>📞 Mobile:</b>
-
                 <span id="mMobile"></span>
-
             </p>
 
 
             <p>
-
                 <b>🏠 Address:</b>
-
                 <span id="mAddress"></span>
-
             </p>
 
 
             <p>
-
                 <b>💳 Payment:</b>
-
                 <span id="mPaid"></span>
-
             </p>
 
 
             <p>
-
                 <b>🧾 Txn ID:</b>
-
                 <span id="mTxn"></span>
-
             </p>
 
         </div>
@@ -544,54 +524,131 @@ let members = [];
 
 
 /* =====================================================
-   APPROVAL CHECK
+   APPROVED CHECK
 ===================================================== */
 
 /*
 =========================================================
 IMPORTANT
 
-NEW REGISTRATION:
+ଏହି function କୌଣସି data change କରେ ନାହିଁ।
 
-status = "pending"
+ଏହା କେବଳ decide କରେ:
 
-→ Members Admin ରେ ଦେଖାଯିବ ନାହିଁ.
+Member List ରେ Member ଦେଖାଯିବ କି ନାହିଁ।
 
+---------------------------------------------------------
 
-AFTER APPROVAL:
+NEW MEMBER:
 
-status = "approved"
+status    = pending
+approved  = false
+approval  = pending
+paid      = false
 
-→ Members Admin ରେ ଦେଖାଯିବ.
+➡️ LIST ରେ ଆସିବ ନାହିଁ।
 
+---------------------------------------------------------
 
-OLD MEMBERS:
+APPROVED NEW MEMBER:
 
-status field ନଥିଲେ
+status    = approved
+approved  = true
+approval  = approved
 
-→ ପୁରୁଣା data safe ରଖିବା ପାଇଁ
-  Members Admin ରେ ରହିବେ.
+➡️ LIST ରେ ଆସିବ।
 
+---------------------------------------------------------
 
-IMPORTANT:
+OLD APPROVED MEMBER:
 
-paid field approval filter ନୁହେଁ।
+paid = true
 
-ଏହି page Firestore write/update/delete କରୁନାହିଁ।
+➡️ ପୁରୁଣା data safe ରଖି
+LIST ରେ ରହିବ।
+
 =========================================================
 */
 
-function isPendingMember(data){
+function isMemberApproved(data){
 
-    const status =
+
+    /* =============================================
+       NEW PENDING MEMBER
+    ============================================= */
+
+    if(
+        data.status === "pending"
+    ){
+
+        return false;
+
+    }
+
+
+    if(
+        data.approved === false
+    ){
+
+        return false;
+
+    }
+
+
+    if(
         String(
-            data.status ?? ""
+            data.approval || ""
         )
-        .trim()
-        .toLowerCase();
+        .toLowerCase()
+        ===
+        "pending"
+    ){
+
+        return false;
+
+    }
 
 
-    return status === "pending";
+    /* =============================================
+       NEW APPROVED MEMBER
+    ============================================= */
+
+    if(
+        data.status === "approved" &&
+        data.approved === true &&
+        String(
+            data.approval || ""
+        )
+        .toLowerCase()
+        ===
+        "approved"
+    ){
+
+        return true;
+
+    }
+
+
+    /* =============================================
+       OLD MEMBER
+
+       ପୁରୁଣା approved member ମାନଙ୍କର
+       approved / approval field ନଥାଇପାରେ।
+
+       paid === true ଥିଲେ
+       ସେମାନଙ୍କୁ list ରେ ରଖିବା।
+    ============================================= */
+
+    if(
+        data.paid === true
+    ){
+
+        return true;
+
+    }
+
+
+    return false;
 
 }
 
@@ -601,7 +658,6 @@ function isPendingMember(data){
 ===================================================== */
 
 async function loadMembers(){
-
 
     memberList.innerHTML = `
 
@@ -617,12 +673,6 @@ async function loadMembers(){
     try{
 
 
-        /*
-        ================================================
-        FIRESTORE READ ONLY
-        ================================================
-        */
-
         const snapshot =
             await getDocs(
                 collection(
@@ -632,7 +682,24 @@ async function loadMembers(){
             );
 
 
+        /*
+        =============================================
+        RESET ARRAY
+        =============================================
+        */
+
         members = [];
+
+
+        /*
+        =============================================
+        READ ONLY
+
+        No update
+        No delete
+        No write
+        =============================================
+        */
 
 
         snapshot.forEach(
@@ -644,19 +711,13 @@ async function loadMembers(){
 
 
             /*
-            =============================================
-            NEW PENDING MEMBER
-            =============================================
-
-            status = pending
-
-            → SKIP
-
-            =============================================
+            =========================================
+            APPROVAL CHECK
+            =========================================
             */
 
             if(
-                isPendingMember(
+                !isMemberApproved(
                     data
                 )
             ){
@@ -665,15 +726,6 @@ async function loadMembers(){
 
             }
 
-
-            /*
-            =============================================
-            OLD MEMBER OR APPROVED MEMBER
-
-            → SHOW
-
-            =============================================
-            */
 
             members.push({
 
@@ -692,8 +744,7 @@ async function loadMembers(){
         ================================================= */
 
         members.sort(
-        (a,b) => {
-
+        (a,b)=>{
 
             const nameA =
                 String(
@@ -729,17 +780,15 @@ async function loadMembers(){
 
 
         /* =================================================
-           DISPLAY
+           RENDER
         ================================================= */
 
         renderMembers(
             members
         );
 
-
     }
     catch(error){
-
 
         console.error(
             "Members Error:",
@@ -755,7 +804,8 @@ async function loadMembers(){
 
             <div class="error">
 
-                ❌ Members load ହୋଇପାରିଲା ନାହିଁ।
+                ❌ ସଦସ୍ୟ ତାଲିକା
+                Load ହୋଇପାରିଲା ନାହିଁ।
 
                 <br><br>
 
@@ -778,7 +828,6 @@ async function loadMembers(){
 
 function renderMembers(list){
 
-
     memberList.innerHTML = "";
 
 
@@ -790,12 +839,12 @@ function renderMembers(list){
 
             <div class="empty">
 
-                କୌଣସି Approved Member ମିଳିଲା ନାହିଁ।
+                ❌ କୌଣସି Approved Member
+                ମିଳିଲା ନାହିଁ।
 
             </div>
 
         `;
-
 
         return;
 
@@ -805,6 +854,10 @@ function renderMembers(list){
     list.forEach(
     member => {
 
+
+        /* =============================================
+           CARD
+        ============================================= */
 
         const card =
             document.createElement(
@@ -961,16 +1014,16 @@ function renderMembers(list){
             );
 
 
+        button.type =
+            "button";
+
+
         button.className =
             "view-btn";
 
 
         button.textContent =
             "View";
-
-
-        button.type =
-            "button";
 
 
         button.addEventListener(
@@ -986,7 +1039,7 @@ function renderMembers(list){
 
 
         /* =============================================
-           CARD
+           CARD APPEND
         ============================================= */
 
         card.appendChild(
@@ -1013,65 +1066,69 @@ function renderMembers(list){
 ===================================================== */
 
 search.addEventListener(
-"input",
-function(){
+    "input",
+    function(){
+
+        const value =
+            this.value
+            .trim()
+            .toLowerCase();
 
 
-    const value =
-        this.value
-        .trim()
-        .toLowerCase();
+        const result =
+            members.filter(
+            member => {
 
 
-    const result =
-        members.filter(
-        member => {
+                const name =
+                    String(
+                        member.name || ""
+                    )
+                    .toLowerCase();
 
 
-            const name =
-                String(
-                    member.name || ""
-                )
-                .toLowerCase();
+                const mobile =
+                    String(
+                        member.mobile || ""
+                    )
+                    .toLowerCase();
 
 
-            const mobile =
-                String(
-                    member.mobile || ""
-                )
-                .toLowerCase();
+                const memberId =
+                    String(
+                        member.memberId || ""
+                    )
+                    .toLowerCase();
 
 
-            const memberId =
-                String(
-                    member.memberId || ""
-                )
-                .toLowerCase();
+                return (
 
+                    name.includes(value)
 
-            return (
+                    ||
 
-                name.includes(value) ||
+                    mobile.includes(value)
 
-                mobile.includes(value) ||
+                    ||
 
-                memberId.includes(value)
+                    memberId.includes(value)
 
+                );
+
+            }
             );
 
-        }
+
+        memberCount.textContent =
+            `ଦେଖାଯାଉଛି : ${result.length} / ${members.length}`;
+
+
+        renderMembers(
+            result
         );
 
-
-    memberCount.textContent =
-        `ଦେଖାଯାଉଛି : ${result.length} / ${members.length}`;
-
-
-    renderMembers(
-        result
-    );
-
-});
+    }
+);
 
 
 /* =====================================================
@@ -1089,6 +1146,27 @@ function(id){
 
 
     if(!member){
+
+        return;
+
+    }
+
+
+    /*
+    =============================================
+    SECURITY CHECK
+    =============================================
+    */
+
+    if(
+        !isMemberApproved(
+            member
+        )
+    ){
+
+        alert(
+            "⛔ ଏହି Member ଏପର୍ଯ୍ୟନ୍ତ Approved ହୋଇନାହାନ୍ତି।"
+        );
 
         return;
 
@@ -1128,7 +1206,8 @@ function(id){
     document.getElementById(
         "mName"
     ).textContent =
-        member.name || "";
+        member.name ||
+        "";
 
 
     /* =============================================
@@ -1152,7 +1231,8 @@ function(id){
     document.getElementById(
         "mFather"
     ).textContent =
-        member.father || "-";
+        member.father ||
+        "-";
 
 
     /* =============================================
@@ -1162,7 +1242,8 @@ function(id){
     document.getElementById(
         "mMobile"
     ).textContent =
-        member.mobile || "-";
+        member.mobile ||
+        "-";
 
 
     /* =============================================
@@ -1172,7 +1253,8 @@ function(id){
     document.getElementById(
         "mAddress"
     ).textContent =
-        member.address || "-";
+        member.address ||
+        "-";
 
 
     /* =============================================
@@ -1190,13 +1272,17 @@ function(id){
     ){
 
         paidElement.innerHTML =
-            "<span class='status-paid'>✅ PAID</span>";
+            `
+            <span class="status-approved">
+                ✅ PAID
+            </span>
+            `;
 
     }
     else{
 
-        paidElement.innerHTML =
-            "<span class='status-unpaid'>⏳ PAYMENT PENDING</span>";
+        paidElement.textContent =
+            "⏳ PAYMENT PENDING";
 
     }
 
@@ -1208,7 +1294,8 @@ function(id){
     document.getElementById(
         "mTxn"
     ).textContent =
-        member.txnId || "-";
+        member.txnId ||
+        "-";
 
 
     /* =============================================
@@ -1217,7 +1304,8 @@ function(id){
 
     const mobile =
         String(
-            member.mobile || ""
+            member.mobile ||
+            ""
         )
         .replace(
             /\D/g,
@@ -1245,7 +1333,8 @@ function(id){
         "waBtn"
     ).href =
         mobile
-        ? "https://wa.me/91" + mobile
+        ? "https://wa.me/91" +
+          mobile
         : "#";
 
 
@@ -1268,7 +1357,6 @@ function(id){
 window.closeModal =
 function(){
 
-
     document.getElementById(
         "memberModal"
     ).style.display =
@@ -1286,19 +1374,19 @@ document
     "memberModal"
 )
 .addEventListener(
-"click",
-function(event){
+    "click",
+    function(event){
 
+        if(
+            event.target === this
+        ){
 
-    if(
-        event.target === this
-    ){
+            closeModal();
 
-        closeModal();
+        }
 
     }
-
-});
+);
 
 
 /* =====================================================
@@ -1306,27 +1394,26 @@ function(event){
 ===================================================== */
 
 document.addEventListener(
-"keydown",
-function(event){
+    "keydown",
+    function(event){
 
+        if(
+            event.key === "Escape"
+        ){
 
-    if(
-        event.key === "Escape"
-    ){
+            closeModal();
 
-        closeModal();
+        }
 
     }
-
-});
+);
 
 
 /* =====================================================
-   HTML SECURITY
+   ESCAPE HTML
 ===================================================== */
 
 function escapeHTML(value){
-
 
     return String(value)
 
@@ -1366,7 +1453,15 @@ loadMembers();
 
 
 console.log(
-    "✅ Members Admin - Pending Members Hidden"
+    "✅ Member List Loaded"
+);
+
+console.log(
+    "🔒 READ ONLY - No Firestore write"
+);
+
+console.log(
+    "🔒 Pending members are hidden"
 );
 
 </script>
