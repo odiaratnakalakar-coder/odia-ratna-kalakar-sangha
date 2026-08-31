@@ -15,117 +15,40 @@
 <style>
 
 #submitBtn{
-
     width:100%;
-
     background:#c90000;
-
     color:white;
-
     border:none;
-
     padding:13px;
-
     border-radius:8px;
-
     font-size:16px;
-
     cursor:pointer;
-
-    font-weight:bold;
-
 }
 
 #submitBtn:disabled{
-
     background:#777;
-
     cursor:not-allowed;
-
 }
 
 #loadingText{
-
     display:none;
-
     text-align:center;
-
     color:#b30000;
-
     font-weight:bold;
-
     margin-top:10px;
-
     line-height:1.6;
-
 }
 
-.photo-preview-box{
-
+#successBox{
     display:none;
-
-    margin-top:12px;
-
-    text-align:center;
-
-}
-
-.photo-preview-title{
-
-    color:#b30000;
-
-    font-weight:bold;
-
-    margin-bottom:8px;
-
-}
-
-.photo-preview{
-
-    width:155px;
-
-    height:160px;
-
-    object-fit:cover;
-
-    border:2px solid #b30000;
-
-    border-radius:8px;
-
-}
-
-.notice{
-
-    background:#fff3cd;
-
-    color:#856404;
-
-    padding:12px;
-
-    border-radius:8px;
-
-    margin:15px 0;
-
-    line-height:1.7;
-
-}
-
-.pending-box{
-
     background:#e8f5e9;
-
-    color:#176b2c;
-
-    border:1px solid #81c784;
-
-    padding:12px;
-
-    border-radius:8px;
-
+    color:#155724;
+    border:1px solid #28a745;
+    padding:15px;
+    border-radius:10px;
     margin-top:15px;
-
-    line-height:1.7;
-
+    text-align:center;
+    font-weight:bold;
 }
 
 </style>
@@ -139,10 +62,6 @@
 <div class="container">
 
 
-<!-- =====================================================
-     LOGO
-===================================================== -->
-
 <img
     src="logo.png"
     class="logo"
@@ -151,19 +70,19 @@
 
 
 <h2>
-ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+    ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
 </h2>
 
 
 <form id="registrationForm">
 
 
-<!-- =====================================================
+<!-- =========================
      NAME
-===================================================== -->
+========================= -->
 
 <label>
-ପୂର୍ଣ୍ଣ ନାମ
+    ପୂର୍ଣ୍ଣ ନାମ
 </label>
 
 <input
@@ -173,12 +92,12 @@
 >
 
 
-<!-- =====================================================
+<!-- =========================
      FATHER
-===================================================== -->
+========================= -->
 
 <label>
-ପିତାଙ୍କ ନାମ
+    ପିତାଙ୍କ ନାମ
 </label>
 
 <input
@@ -188,12 +107,12 @@
 >
 
 
-<!-- =====================================================
+<!-- =========================
      MOBILE
-===================================================== -->
+========================= -->
 
 <label>
-ମୋବାଇଲ୍ ନମ୍ବର
+    ମୋବାଇଲ୍ ନମ୍ବର
 </label>
 
 <input
@@ -201,17 +120,16 @@
     id="mobile"
     inputmode="numeric"
     maxlength="10"
-    pattern="[6-9][0-9]{9}"
     required
 >
 
 
-<!-- =====================================================
+<!-- =========================
      DOB
-===================================================== -->
+========================= -->
 
 <label>
-🎂 ଜନ୍ମ ତାରିଖ (DD/MM/YYYY)
+    🎂 ଜନ୍ମ ତାରିଖ (DD/MM/YYYY)
 </label>
 
 <input
@@ -223,27 +141,26 @@
 >
 
 
-<!-- =====================================================
+<!-- =========================
      ADDRESS
-===================================================== -->
+========================= -->
 
 <label>
-ଠିକଣା
+    ଠିକଣା
 </label>
 
 <textarea
     id="address"
     rows="3"
-    required
-></textarea>
+    required></textarea>
 
 
-<!-- =====================================================
+<!-- =========================
      PHOTO
-===================================================== -->
+========================= -->
 
 <label>
-📷 ପାସପୋର୍ଟ ସାଇଜ ଫଟୋ
+    📷 ପାସପୋର୍ଟ ସାଇଜ ଫଟୋ
 </label>
 
 <input
@@ -254,46 +171,60 @@
 >
 
 
-<!-- =====================================================
+<!-- =========================
      PHOTO PREVIEW
-===================================================== -->
+========================= -->
 
 <div
     id="photoPreviewBox"
-    class="photo-preview-box"
+    style="
+        display:none;
+        margin-top:12px;
+        text-align:center;
+    "
 >
 
-    <p class="photo-preview-title">
+<p style="
+    color:#b30000;
+    font-weight:bold;
+    margin-bottom:8px;
+">
 
-        👤 Photo Preview
+    👤 Photo Preview
 
-    </p>
+</p>
 
 
-    <img
-        id="photoPreview"
-        class="photo-preview"
-        alt="Photo Preview"
-    >
+<img
+    id="photoPreview"
+    alt="Photo Preview"
+    style="
+        width:155px;
+        height:160px;
+        object-fit:cover;
+        border:2px solid #b30000;
+        border-radius:8px;
+    "
+>
 
 </div>
 
 
-<!-- =====================================================
-     MEMBERSHIP FEE
-===================================================== -->
+<!-- =========================
+     FEE
+========================= -->
 
 <h3 style="color:red;">
 
-💳 Membership Fee : ₹1200
+    💳 Membership Fee : ₹1200
 
 </h3>
 
 
 <p>
 
-ନିମ୍ନରେ ଥିବା QR Code ସ୍କାନ୍ କରି
-₹1200 ପେମେଣ୍ଟ କରନ୍ତୁ।
+    ନିମ୍ନରେ ଥିବା QR Code ସ୍କାନ୍ କରି
+    ₹1200 ପେମେଣ୍ଟ କରନ୍ତୁ।
 
 </p>
 
@@ -301,62 +232,62 @@
 <img
     src="paytm-qr.jpg"
     width="250"
+    alt="Payment QR"
     style="
         display:block;
         margin:auto;
     "
-    alt="Payment QR"
 >
 
 
 <p>
 
-<b>UPI ID:</b>
-9827275681@pthdfc
+    <b>UPI ID:</b>
+    9827275681@pthdfc
 
 </p>
 
 
-<!-- =====================================================
-     IMPORTANT NOTICE
-===================================================== -->
+<!-- =========================
+     NOTICE
+========================= -->
 
-<div class="notice">
+<div
+    class="notice"
+    style="
+        background:#fff3cd;
+        color:#856404;
+        padding:12px;
+        border-radius:8px;
+        margin:15px 0;
+    "
+>
 
-    <b>⚠️ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ସୂଚନା</b>
+<b>⚠️ ସୂଚନା</b>
 
-    <br><br>
+<br><br>
 
-    ଆପଣଙ୍କ Registration ପ୍ରଥମେ
-    <b>Pending</b> ରେ ଯିବ।
+ଆପଣଙ୍କ Registration ପ୍ରଥମେ
+<b>Pending</b> ରେ ଯିବ।
 
-    <br>
+<br><br>
 
-    Admin Approval ପୂର୍ବରୁ
-    <b>Member List</b> ରେ ଆପଣଙ୍କ ନାମ
-    ଦେଖାଯିବ ନାହିଁ।
+Admin Approval ପରେ Payment Verify
+କରାଯିବ ଏବଂ Member ID ଦିଆଯିବ।
 
-    <br>
+<br><br>
 
-    Admin Approval ପରେ
-    <b>Member ID</b> ଦିଆଯିବ।
-
-    <br>
-
-    Approval ପରେ ହିଁ
-    <b>ID Card</b> ଉପଲବ୍ଧ ହେବ।
-
-    <br>
-
-    Payment Verify ହେବା ପରେ
-    <b>Payment Status = Paid</b> ହେବ।
+<b>
+⚠️ Approval ପୂର୍ବରୁ ଆପଣଙ୍କ ନାମ
+Member List ରେ ଦେଖାଯିବ ନାହିଁ।
+</b>
 
 </div>
 
 
-<!-- =====================================================
+<!-- =========================
      SUBMIT
-===================================================== -->
+========================= -->
 
 <button
     type="submit"
@@ -367,10 +298,6 @@
 
 </button>
 
-
-<!-- =====================================================
-     LOADING
-===================================================== -->
 
 <div id="loadingText">
 
@@ -383,15 +310,26 @@
 </div>
 
 
+<div id="successBox">
+
+    ✅ Registration ସଫଳ ହୋଇଛି।
+
+</div>
+
+
 </form>
 
 
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
+</div>
+
+
 
 <script type="module">
 
+
+/* =====================================================
+   FIREBASE
+===================================================== */
 
 import { db } from "./firebase.js";
 
@@ -399,21 +337,13 @@ import { db } from "./firebase.js";
 import {
 
     collection,
-
-    doc,
-
-    runTransaction,
-
+    addDoc,
     query,
-
     where,
-
     getDocs,
-
     serverTimestamp
 
 }
-
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -441,19 +371,25 @@ const loadingText =
     );
 
 
+const successBox =
+    document.getElementById(
+        "successBox"
+    );
+
+
 const photoInput =
     document.getElementById(
         "photo"
     );
 
 
-const previewBox =
+const photoPreviewBox =
     document.getElementById(
         "photoPreviewBox"
     );
 
 
-const preview =
+const photoPreview =
     document.getElementById(
         "photoPreview"
     );
@@ -474,68 +410,36 @@ photoInput.addEventListener(
 
         if(!file){
 
-            previewBox.style.display =
+            photoPreviewBox.style.display =
                 "none";
 
-            preview.removeAttribute(
-                "src"
-            );
+            photoPreview.src =
+                "";
 
             return;
 
         }
 
 
-        /* ---------------------------------------------
-           IMAGE TYPE CHECK
-        --------------------------------------------- */
+        /* Image type check */
 
         if(
-            !file.type.startsWith(
-                "image/"
-            )
+            !file.type.startsWith("image/")
         ){
 
             alert(
-                "❌ ଦୟାକରି Image Photo ବାଛନ୍ତୁ।"
+                "⚠️ ଦୟାକରି କେବଳ Image file ବାଛନ୍ତୁ।"
             );
 
             this.value = "";
 
-            previewBox.style.display =
+            photoPreviewBox.style.display =
                 "none";
 
             return;
 
         }
 
-
-        /* ---------------------------------------------
-           SIZE CHECK
-        --------------------------------------------- */
-
-        if(
-            file.size >
-            10 * 1024 * 1024
-        ){
-
-            alert(
-                "❌ Photo size 10MB ଠାରୁ କମ୍ ହେବା ଦରକାର।"
-            );
-
-            this.value = "";
-
-            previewBox.style.display =
-                "none";
-
-            return;
-
-        }
-
-
-        /* ---------------------------------------------
-           PREVIEW
-        --------------------------------------------- */
 
         const reader =
             new FileReader();
@@ -544,21 +448,12 @@ photoInput.addEventListener(
         reader.onload =
         function(e){
 
-            preview.src =
+            photoPreview.src =
                 e.target.result;
 
-            previewBox.style.display =
+
+            photoPreviewBox.style.display =
                 "block";
-
-        };
-
-
-        reader.onerror =
-        function(){
-
-            alert(
-                "❌ Photo preview ହୋଇପାରିଲା ନାହିଁ।"
-            );
 
         };
 
@@ -577,325 +472,298 @@ photoInput.addEventListener(
 async function compressImage(file){
 
     return new Promise(
-        (resolve,reject)=>{
+    (resolve,reject)=>{
 
-            const img =
-                new Image();
-
-
-            const reader =
-                new FileReader();
+        const img =
+            new Image();
 
 
-            reader.onload =
-            function(e){
-
-                img.onload =
-                function(){
-
-                    const canvas =
-                        document.createElement(
-                            "canvas"
-                        );
+        const reader =
+            new FileReader();
 
 
-                    const maxWidth =
-                        800;
+        reader.onload =
+        function(e){
+
+            img.onload =
+            function(){
+
+                const canvas =
+                    document.createElement(
+                        "canvas"
+                    );
 
 
-                    const maxHeight =
-                        800;
+                const maxWidth =
+                    800;
 
 
-                    let width =
-                        img.width;
+                const maxHeight =
+                    800;
 
 
-                    let height =
-                        img.height;
+                let width =
+                    img.width;
 
 
-                    /* ---------------------------------
-                       RESIZE
-                    --------------------------------- */
-
-                    if(
-                        width > maxWidth ||
-                        height > maxHeight
-                    ){
-
-                        const ratio =
-                            Math.min(
-                                maxWidth / width,
-                                maxHeight / height
-                            );
+                let height =
+                    img.height;
 
 
-                        width =
-                            Math.round(
-                                width * ratio
-                            );
+                /* =========================
+                   RESIZE
+                ========================= */
 
+                if(width > height){
+
+                    if(width > maxWidth){
 
                         height =
-                            Math.round(
-                                height * ratio
-                            );
+                            height *
+                            maxWidth /
+                            width;
+
+                        width =
+                            maxWidth;
 
                     }
 
+                }
+                else{
 
-                    canvas.width =
-                        width;
+                    if(height > maxHeight){
+
+                        width =
+                            width *
+                            maxHeight /
+                            height;
+
+                        height =
+                            maxHeight;
+
+                    }
+
+                }
 
 
-                    canvas.height =
-                        height;
+                canvas.width =
+                    width;
 
 
-                    const ctx =
-                        canvas.getContext(
-                            "2d"
-                        );
+                canvas.height =
+                    height;
 
 
-                    ctx.drawImage(
-                        img,
-                        0,
-                        0,
-                        width,
-                        height
+                const ctx =
+                    canvas.getContext(
+                        "2d"
                     );
 
 
-                    /* ---------------------------------
-                       JPEG
-                    --------------------------------- */
+                ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    width,
+                    height
+                );
 
-                    canvas.toBlob(
-                        function(blob){
 
-                            if(!blob){
+                /* =========================
+                   JPEG
+                ========================= */
 
-                                reject(
-                                    new Error(
-                                        "Photo compression failed"
-                                    )
-                                );
+                canvas.toBlob(
+                    function(blob){
 
-                                return;
-
-                            }
-
+                        if(blob){
 
                             resolve(blob);
 
-                        },
-                        "image/jpeg",
-                        0.75
-                    );
+                        }
+                        else{
 
-                };
+                            reject(
+                                new Error(
+                                    "Photo compression failed"
+                                )
+                            );
 
+                        }
 
-                img.onerror =
-                function(){
-
-                    reject(
-                        new Error(
-                            "Photo load failed"
-                        )
-                    );
-
-                };
-
-
-                img.src =
-                    e.target.result;
+                    },
+                    "image/jpeg",
+                    0.75
+                );
 
             };
 
 
-            reader.onerror =
+            img.onerror =
             function(){
 
                 reject(
                     new Error(
-                        "Photo read failed"
+                        "Photo load failed"
                     )
                 );
 
             };
 
 
-            reader.readAsDataURL(file);
+            img.src =
+                e.target.result;
 
-        }
-    );
+        };
+
+
+        reader.onerror =
+        function(){
+
+            reject(
+                new Error(
+                    "Photo read failed"
+                )
+            );
+
+        };
+
+
+        reader.readAsDataURL(file);
+
+    });
 
 }
 
 
 
 /* =====================================================
-   CREATE PENDING MEMBER
+   CHECK DUPLICATE MOBILE
 ===================================================== */
 
-/*
-   IMPORTANT:
+async function checkDuplicateMobile(
+    mobile
+){
 
-   THIS FUNCTION DOES NOT:
-
-   ❌ Generate Member ID
-   ❌ Update system/counter
-   ❌ Modify old members
-   ❌ Delete old members
-
-   It ONLY creates a NEW pending document.
-*/
-
-async function createPendingMember(data){
-
-    return await runTransaction(
-        db,
-        async(transaction)=>{
-
-            /* =========================================
-               DUPLICATE MOBILE CHECK
-            ========================================= */
-
-            const mobileQuery =
-                query(
-                    collection(
-                        db,
-                        "members"
-                    ),
-                    where(
-                        "mobile",
-                        "==",
-                        data.mobile
-                    )
-                );
+    const q =
+        query(
+            collection(
+                db,
+                "members"
+            ),
+            where(
+                "mobile",
+                "==",
+                mobile
+            )
+        );
 
 
-            const mobileSnapshot =
-                await getDocs(
-                    mobileQuery
-                );
+    const snapshot =
+        await getDocs(q);
 
 
-            if(
-                !mobileSnapshot.empty
-            ){
+    return !snapshot.empty;
 
-                throw new Error(
-                    "DUPLICATE_MOBILE"
-                );
-
-            }
+}
 
 
-            /* =========================================
-               NEW DOCUMENT ONLY
-            ========================================= */
 
-            const memberRef =
-                doc(
-                    collection(
-                        db,
-                        "members"
-                    )
-                );
+/* =====================================================
+   SAVE PENDING MEMBER
+===================================================== */
 
+async function savePendingMember(
+    data
+){
 
-            /* =========================================
-               SAVE NEW PENDING MEMBER
-            ========================================= */
+    /*
+    =====================================================
+    IMPORTANT
 
-            transaction.set(
-                memberRef,
-                {
+    Registration ସମୟରେ:
 
-                    /* ---------------------------------
-                       NO MEMBER ID YET
-                    --------------------------------- */
+    ❌ Member ID generate ନାହିଁ
+    ❌ system/counter update ନାହିଁ
+    ❌ income entry ନାହିଁ
+    ❌ paid = true ନାହିଁ
 
-                    memberId:
-                        "",
+    କେବଳ Pending data save ହେବ।
+    =====================================================
+    */
 
 
-                    /* ---------------------------------
-                       PHOTO
-                    --------------------------------- */
+    await addDoc(
+        collection(
+            db,
+            "members"
+        ),
+        {
 
-                    photoUrl:
-                        data.photoUrl,
+            /* ===============================
+               MEMBER ID
+            =============================== */
 
-
-                    /* ---------------------------------
-                       PERSONAL INFORMATION
-                    --------------------------------- */
-
-                    name:
-                        data.name,
-
-                    father:
-                        data.father,
-
-                    mobile:
-                        data.mobile,
-
-                    dob:
-                        data.dob,
-
-                    address:
-                        data.address,
+            memberId:"",
 
 
-                    /* ---------------------------------
-                       APPROVAL
-                    --------------------------------- */
+            /* ===============================
+               MEMBER DATA
+            =============================== */
 
-                    approval:
-                        "pending",
+            name:
+                data.name,
 
-                    approved:
-                        false,
+            father:
+                data.father,
 
-                    status:
-                        "pending",
+            mobile:
+                data.mobile,
 
+            dob:
+                data.dob,
 
-                    /* ---------------------------------
-                       PAYMENT
-                    --------------------------------- */
+            address:
+                data.address,
 
-                    paid:
-                        false,
-
-                    paymentMode:
-                        "",
-
-                    txnId:
-                        "",
+            photoUrl:
+                data.photoUrl,
 
 
-                    /* ---------------------------------
-                       CREATION TIME
-                    --------------------------------- */
+            /* ===============================
+               APPROVAL
+            =============================== */
 
-                    createdAt:
-                        serverTimestamp()
+            status:
+                "pending",
 
-                }
-            );
+            approved:
+                false,
+
+            approval:
+                "pending",
 
 
-            /* -----------------------------------------
-               RETURN FIRESTORE DOCUMENT ID ONLY
-            ----------------------------------------- */
+            /* ===============================
+               PAYMENT
+            =============================== */
 
-            return memberRef.id;
+            paid:
+                false,
+
+            paymentMode:
+                "",
+
+            txnId:
+                "",
+
+
+            /* ===============================
+               CREATED DATE
+            =============================== */
+
+            createdAt:
+                serverTimestamp()
 
         }
     );
@@ -922,21 +790,6 @@ form.addEventListener(
         if(
             submitBtn.disabled
         ){
-
-            return;
-
-        }
-
-
-        /* =============================================
-           HTML VALIDATION
-        ============================================= */
-
-        if(
-            !form.checkValidity()
-        ){
-
-            form.reportValidity();
 
             return;
 
@@ -986,8 +839,39 @@ form.addEventListener(
             photoInput.files[0];
 
 
+
         /* =============================================
-           MOBILE VALIDATION
+           NAME CHECK
+        ============================================= */
+
+        if(!name){
+
+            alert(
+                "⚠️ ଦୟାକରି ନାମ ଦିଅନ୍ତୁ।"
+            );
+
+            return;
+
+        }
+
+
+        /* =============================================
+           FATHER CHECK
+        ============================================= */
+
+        if(!father){
+
+            alert(
+                "⚠️ ଦୟାକରି ପିତାଙ୍କ ନାମ ଦିଅନ୍ତୁ।"
+            );
+
+            return;
+
+        }
+
+
+        /* =============================================
+           MOBILE CHECK
         ============================================= */
 
         if(
@@ -997,7 +881,7 @@ form.addEventListener(
         ){
 
             alert(
-                "❌ ଦୟାକରି 10 digit ଠିକ୍ Mobile Number ଦିଅନ୍ତୁ।"
+                "⚠️ ଦୟାକରି 10 digit ଠିକ୍ Mobile Number ଦିଅନ୍ତୁ।"
             );
 
             return;
@@ -1006,17 +890,31 @@ form.addEventListener(
 
 
         /* =============================================
-           DOB VALIDATION
+           DOB CHECK
         ============================================= */
 
         if(
-            !/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/[0-9]{4}$/.test(
-                dob
-            )
+            !/^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/[0-9]{4}$/
+            .test(dob)
         ){
 
             alert(
-                "❌ ଜନ୍ମ ତାରିଖ DD/MM/YYYY format ରେ ଦିଅନ୍ତୁ।"
+                "⚠️ DOB ଠିକ୍ format ରେ ଦିଅନ୍ତୁ।\n\nଉଦାହରଣ: 07/03/1989"
+            );
+
+            return;
+
+        }
+
+
+        /* =============================================
+           ADDRESS CHECK
+        ============================================= */
+
+        if(!address){
+
+            alert(
+                "⚠️ ଦୟାକରି ଠିକଣା ଦିଅନ୍ତୁ।"
             );
 
             return;
@@ -1031,7 +929,7 @@ form.addEventListener(
         if(!photo){
 
             alert(
-                "❌ ଦୟାକରି Photo ବାଛନ୍ତୁ।"
+                "⚠️ ଦୟାକରି Photo ବାଛନ୍ତୁ।"
             );
 
             return;
@@ -1040,7 +938,7 @@ form.addEventListener(
 
 
         /* =============================================
-           LOCK BUTTON
+           BUTTON LOADING
         ============================================= */
 
         submitBtn.disabled =
@@ -1055,7 +953,30 @@ form.addEventListener(
             "block";
 
 
+        successBox.style.display =
+            "none";
+
+
         try{
+
+
+            /* =========================================
+               DUPLICATE MOBILE
+            ========================================= */
+
+            const duplicate =
+                await checkDuplicateMobile(
+                    mobile
+                );
+
+
+            if(duplicate){
+
+                throw new Error(
+                    "DUPLICATE_MOBILE"
+                );
+
+            }
 
 
             /* =========================================
@@ -1092,20 +1013,13 @@ form.addEventListener(
                 await fetch(
                     "https://api.cloudinary.com/v1_1/y8toswrt/image/upload",
                     {
-
-                        method:
-                            "POST",
-
-                        body:
-                            formData
-
+                        method:"POST",
+                        body:formData
                     }
                 );
 
 
-            if(
-                !response.ok
-            ){
+            if(!response.ok){
 
                 throw new Error(
                     "Photo upload failed"
@@ -1133,54 +1047,70 @@ form.addEventListener(
                 result.secure_url;
 
 
+
             /* =========================================
-               CREATE NEW PENDING MEMBER
+               SAVE PENDING MEMBER
             ========================================= */
 
-            const firestoreId =
-                await createPendingMember({
+            await savePendingMember({
 
-                    name:
-                        name,
+                name:
+                    name,
 
-                    father:
-                        father,
+                father:
+                    father,
 
-                    mobile:
-                        mobile,
+                mobile:
+                    mobile,
 
-                    dob:
-                        dob,
+                dob:
+                    dob,
 
-                    address:
-                        address,
+                address:
+                    address,
 
-                    photoUrl:
-                        photoUrl
+                photoUrl:
+                    photoUrl
 
-                });
+            });
 
 
             /* =========================================
                SUCCESS
             ========================================= */
 
-            console.log(
-                "New pending member:",
-                firestoreId
-            );
+            successBox.innerHTML = `
+
+                ✅ Registration ସଫଳ ହୋଇଛି।
+
+                <br><br>
+
+                ⏳ Approval: Pending
+
+                <br>
+
+                💳 Payment: Pending
+
+                <br><br>
+
+                Admin Approval ପରେ
+                Member ID ଦିଆଯିବ।
+
+            `;
+
+
+            successBox.style.display =
+                "block";
 
 
             alert(
-                "✅ Registration ସଫଳତାର ସହ Submit ହୋଇଛି।\n\n" +
+                "✅ Registration ସଫଳ ହୋଇଛି।\n\n" +
 
                 "⏳ Approval: Pending\n" +
 
                 "💳 Payment: Pending\n\n" +
 
-                "Admin Approval ପରେ Member ID ଦିଆଯିବ।\n\n" +
-
-                "Approval ପୂର୍ବରୁ Member List ଏବଂ ID Card ରେ ଦେଖାଯିବ ନାହିଁ।"
+                "Admin Approval ପରେ Member ID ଦିଆଯିବ।"
             );
 
 
@@ -1191,18 +1121,16 @@ form.addEventListener(
             form.reset();
 
 
-            previewBox.style.display =
+            photoPreview.src =
+                "";
+
+
+            photoPreviewBox.style.display =
                 "none";
-
-
-            preview.removeAttribute(
-                "src"
-            );
 
 
         }
         catch(error){
-
 
             console.error(
                 "Registration Error:",
@@ -1234,51 +1162,46 @@ form.addEventListener(
             }
 
         }
-        finally{
 
 
-            /* =========================================
-               UNLOCK BUTTON
-            ========================================= */
+        /* =============================================
+           RESTORE BUTTON
+        ============================================= */
 
-            submitBtn.disabled =
-                false;
-
-
-            submitBtn.innerHTML =
-                "📝 Registration Submit";
+        submitBtn.disabled =
+            false;
 
 
-            loadingText.style.display =
-                "none";
+        submitBtn.innerHTML =
+            "📝 Registration Submit";
 
-        }
+
+        loadingText.style.display =
+            "none";
 
     }
 );
 
 
+
+/* =====================================================
+   START
+===================================================== */
+
 console.log(
-    "✅ New Registration System Loaded"
+    "✅ Registration Pending System Loaded"
 );
 
 console.log(
-    "✅ New registrations are PENDING only"
+    "🔒 Member ID will be generated ONLY after Approval"
 );
 
 console.log(
-    "✅ Existing member data is NOT modified"
+    "🔒 Existing member data is not modified"
 );
-
-console.log(
-    "✅ Member ID will be generated ONLY after Admin Approval"
-);
-
 
 </script>
 
-
-</div>
 
 </body>
 
