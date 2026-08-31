@@ -6,7 +6,9 @@ import {
     doc,
     getDoc,
     updateDoc,
-    deleteDoc
+    deleteDoc,
+    runTransaction,
+    addDoc
 }
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -21,40 +23,19 @@ const memberList =
 
 
 /* =====================================================
-   APPROVAL CHECK
-===================================================== */
-
-function isApproved(member){
-
-    const approval =
-        String(member.approval ?? "")
-        .trim()
-        .toLowerCase();
-
-    const status =
-        String(member.status ?? "")
-        .trim()
-        .toLowerCase();
-
-    return (
-        member.approved === true ||
-        approval === "approved" ||
-        status === "approved"
-    );
-
-}
-
-
-/* =====================================================
    LOAD PENDING MEMBERS
 ===================================================== */
 
 async function loadPendingMembers(){
 
     memberList.innerHTML = `
-        <div class="loading">
-            ⏳ Pending Members Loading...
-        </div>
+        <h3 style="
+            text-align:center;
+            color:#aaa;
+            padding:20px;
+        ">
+            ⏳ Loading...
+        </h3>
     `;
 
 
@@ -62,196 +43,393 @@ async function loadPendingMembers(){
 
         const snapshot =
             await getDocs(
-                collection(db,"members")
+                collection(
+                    db,
+                    "members"
+                )
             );
 
 
         memberList.innerHTML = "";
 
-
         let pendingFound = false;
 
 
-        snapshot.forEach(docSnap => {
+        snapshot.forEach(
+        docSnap => {
 
             const member = {
 
-                id: docSnap.id,
+                id:
+                    docSnap.id,
 
                 ...docSnap.data()
 
             };
 
 
-            /* =========================================
-               APPROVED MEMBER → DO NOT SHOW
-            ========================================= */
+            /* =================================================
+               ONLY NEW PENDING MEMBERS
+            ================================================= */
 
-            if(isApproved(member)){
+            const status =
+                String(
+                    member.status ?? ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            const approved =
+                member.approved === true;
+
+
+            const approval =
+                String(
+                    member.approval ?? ""
+                )
+                .trim()
+                .toLowerCase();
+
+
+            /*
+            -------------------------------------------------
+            Pending member means:
+
+            status = pending
+
+            AND
+
+            approved != true
+
+            AND
+
+            approval != approved
+            -------------------------------------------------
+            */
+
+            if(
+                status !== "pending" ||
+                approved === true ||
+                approval === "approved"
+            ){
 
                 return;
 
             }
 
 
-            /* =========================================
-               PENDING MEMBER
-            ========================================= */
-
             pendingFound = true;
 
 
+            /* =================================================
+               CARD
+            ================================================= */
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "member-card";
+
+
+            /* =================================================
+               PHOTO
+            ================================================= */
+
             const photo =
+                document.createElement(
+                    "img"
+                );
+
+
+            photo.src =
                 member.photoUrl ||
                 "images/default-user.png";
 
 
-            const paymentText =
-                member.paid === true
-                ? "✅ Paid"
-                : "⏳ Pending";
+            photo.alt =
+                member.name ||
+                "Member";
 
+
+            photo.onerror =
+            function(){
+
+                this.onerror = null;
+
+                this.src =
+                    "images/default-user.png";
+
+            };
+
+
+            card.appendChild(
+                photo
+            );
+
+
+            /* =================================================
+               NAME
+            ================================================= */
+
+            const name =
+                document.createElement(
+                    "h3"
+                );
+
+
+            name.textContent =
+                member.name ||
+                "Member";
+
+
+            card.appendChild(
+                name
+            );
+
+
+            /* =================================================
+               MEMBER ID
+            ================================================= */
 
             const memberId =
-                member.memberId ||
-                "-";
+                document.createElement(
+                    "p"
+                );
 
 
-            memberList.innerHTML += `
-
-                <div class="member-card">
-
-                    <img
-                        src="${escapeHTML(photo)}"
-                        onerror="
-                            this.onerror=null;
-                            this.src='images/default-user.png';
-                        "
-                        alt="Member Photo"
-                    >
+            memberId.innerHTML =
+                "<b>Member ID:</b> " +
+                (
+                    member.memberId ||
+                    "-"
+                );
 
 
-                    <h3>
-
-                        ${escapeHTML(
-                            member.name ||
-                            "Member"
-                        )}
-
-                    </h3>
+            card.appendChild(
+                memberId
+            );
 
 
-                    <p>
+            /* =================================================
+               MOBILE
+            ================================================= */
 
-                        <b>Member ID:</b>
-
-                        ${escapeHTML(memberId)}
-
-                    </p>
-
-
-                    <p>
-
-                        <b>Mobile:</b>
-
-                        ${escapeHTML(
-                            member.mobile ||
-                            "-"
-                        )}
-
-                    </p>
+            const mobile =
+                document.createElement(
+                    "p"
+                );
 
 
-                    <p>
-
-                        <b>Address:</b>
-
-                        ${escapeHTML(
-                            member.address ||
-                            "-"
-                        )}
-
-                    </p>
+            mobile.innerHTML =
+                "<b>Mobile:</b> " +
+                (
+                    member.mobile ||
+                    "-"
+                );
 
 
-                    <p>
-
-                        <b>Payment:</b>
-
-                        <span class="payment-status">
-
-                            ${paymentText}
-
-                        </span>
-
-                    </p>
+            card.appendChild(
+                mobile
+            );
 
 
-                    <p>
+            /* =================================================
+               ADDRESS
+            ================================================= */
 
-                        <b>Approval:</b>
-
-                        <span class="approval-status">
-
-                            ⏳ Pending
-
-                        </span>
-
-                    </p>
+            const address =
+                document.createElement(
+                    "p"
+                );
 
 
-                    <div class="actions">
+            address.innerHTML =
+                "<b>Address:</b> " +
+                (
+                    member.address ||
+                    "-"
+                );
 
 
-                        <button
-                            class="approve"
-                            onclick="
-                                approveMember(
-                                    '${member.id}'
-                                )
-                            "
-                        >
-
-                            ✅ Approve
-
-                        </button>
+            card.appendChild(
+                address
+            );
 
 
-                        <button
-                            class="reject"
-                            onclick="
-                                rejectMember(
-                                    '${member.id}'
-                                )
-                            "
-                        >
+            /* =================================================
+               PAYMENT
+            ================================================= */
 
-                            ❌ Reject
-
-                        </button>
+            const payment =
+                document.createElement(
+                    "p"
+                );
 
 
-                    </div>
+            payment.innerHTML =
+                `
+                <b>Payment:</b>
+                <span style="color:#ffcc00;">
+                    ⏳ Pending
+                </span>
+                `;
 
-                </div>
 
-            `;
+            card.appendChild(
+                payment
+            );
+
+
+            /* =================================================
+               APPROVAL
+            ================================================= */
+
+            const approvalText =
+                document.createElement(
+                    "p"
+                );
+
+
+            approvalText.innerHTML =
+                `
+                <b>Approval:</b>
+                <span style="color:#ffcc00;">
+                    ⏳ Pending
+                </span>
+                `;
+
+
+            card.appendChild(
+                approvalText
+            );
+
+
+            /* =================================================
+               ACTIONS
+            ================================================= */
+
+            const actions =
+                document.createElement(
+                    "div"
+                );
+
+
+            actions.className =
+                "actions";
+
+
+            /* =================================================
+               APPROVE BUTTON
+            ================================================= */
+
+            const approveButton =
+                document.createElement(
+                    "button"
+                );
+
+
+            approveButton.className =
+                "approve";
+
+
+            approveButton.type =
+                "button";
+
+
+            approveButton.textContent =
+                "✅ Approve";
+
+
+            approveButton.addEventListener(
+                "click",
+                function(){
+
+                    approveMember(
+                        member.id
+                    );
+
+                }
+            );
+
+
+            /* =================================================
+               REJECT BUTTON
+            ================================================= */
+
+            const rejectButton =
+                document.createElement(
+                    "button"
+                );
+
+
+            rejectButton.className =
+                "reject";
+
+
+            rejectButton.type =
+                "button";
+
+
+            rejectButton.textContent =
+                "❌ Reject";
+
+
+            rejectButton.addEventListener(
+                "click",
+                function(){
+
+                    rejectMember(
+                        member.id
+                    );
+
+                }
+            );
+
+
+            actions.appendChild(
+                approveButton
+            );
+
+
+            actions.appendChild(
+                rejectButton
+            );
+
+
+            card.appendChild(
+                actions
+            );
+
+
+            memberList.appendChild(
+                card
+            );
 
         });
 
 
         /* =================================================
-           NO PENDING MEMBER
+           NO PENDING
         ================================================= */
 
         if(!pendingFound){
 
             memberList.innerHTML = `
 
-                <div class="empty">
+                <div style="
+                    text-align:center;
+                    padding:30px;
+                    color:#aaa;
+                    font-size:17px;
+                ">
 
-                    🎉 ବର୍ତ୍ତମାନ କୌଣସି Pending
-                    Member ନାହାନ୍ତି।
+                    🎉 ବର୍ତ୍ତମାନ କୌଣସି
+                    Pending Member ନାହାନ୍ତି।
 
                 </div>
 
@@ -260,7 +438,6 @@ async function loadPendingMembers(){
         }
 
     }
-
     catch(error){
 
         console.error(
@@ -271,9 +448,14 @@ async function loadPendingMembers(){
 
         memberList.innerHTML = `
 
-            <div class="error">
+            <div style="
+                color:#ff6666;
+                text-align:center;
+                padding:25px;
+            ">
 
-                ❌ Member load ହୋଇପାରିଲା ନାହିଁ।
+                ❌ Member load
+                ହୋଇପାରିଲା ନାହିଁ।
 
                 <br><br>
 
@@ -291,6 +473,74 @@ async function loadPendingMembers(){
 
 
 /* =====================================================
+   GENERATE NEXT MEMBER ID
+===================================================== */
+
+async function getNextMemberId(){
+
+    const counterRef =
+        doc(
+            db,
+            "system",
+            "counter"
+        );
+
+
+    const memberId =
+        await runTransaction(
+            db,
+            async(transaction)=>{
+
+
+                const counterSnap =
+                    await transaction.get(
+                        counterRef
+                    );
+
+
+                let number =
+                    1;
+
+
+                if(
+                    counterSnap.exists()
+                ){
+
+                    number =
+                        Number(
+                            counterSnap
+                            .data()
+                            .lastNumber || 0
+                        ) + 1;
+
+                }
+
+
+                transaction.set(
+                    counterRef,
+                    {
+                        lastNumber:
+                            number
+                    }
+                );
+
+
+                return (
+                    "ORKS" +
+                    String(number)
+                    .padStart(4,"0")
+                );
+
+            }
+        );
+
+
+    return memberId;
+
+}
+
+
+/* =====================================================
    APPROVE MEMBER
 ===================================================== */
 
@@ -299,9 +549,9 @@ async function(id){
 
     try{
 
-        /* =============================================
-           GET MEMBER
-        ============================================= */
+        /* =================================================
+           MEMBER REFERENCE
+        ================================================= */
 
         const memberRef =
             doc(
@@ -312,10 +562,14 @@ async function(id){
 
 
         const memberSnap =
-            await getDoc(memberRef);
+            await getDoc(
+                memberRef
+            );
 
 
-        if(!memberSnap.exists()){
+        if(
+            !memberSnap.exists()
+        ){
 
             alert(
                 "❌ Member ମିଳିଲା ନାହିଁ।"
@@ -330,14 +584,24 @@ async function(id){
             memberSnap.data();
 
 
-        /* =============================================
-           ALREADY APPROVED CHECK
-        ============================================= */
+        /* =================================================
+           CHECK CURRENT STATUS
+        ================================================= */
 
-        if(isApproved(member)){
+        const currentStatus =
+            String(
+                member.status ?? ""
+            )
+            .trim()
+            .toLowerCase();
+
+
+        if(
+            currentStatus !== "pending"
+        ){
 
             alert(
-                "ℹ️ ଏହି Member ପୂର୍ବରୁ Approved ହୋଇଛନ୍ତି।"
+                "⚠️ ଏହି Member Pending ରେ ନାହାନ୍ତି।"
             );
 
             loadPendingMembers();
@@ -347,101 +611,233 @@ async function(id){
         }
 
 
-        /* =============================================
-           MEMBER NAME
-        ============================================= */
+        /* =================================================
+           CONFIRM APPROVAL
+        ================================================= */
 
-        const memberName =
-            member.name ||
-            "Member";
-
-
-        /* =============================================
-           CONFIRM
-        ============================================= */
-
-        const confirmApprove =
+        const confirmApproval =
             confirm(
-                "✅ ଏହି Member କୁ Approve କରିବେ?\n\n" +
-                "Member: " +
-                memberName +
-                "\n\n" +
-                "Approval ମାତ୍ର Approved ହେବ।\n" +
-                "Payment status ବଦଳିବ ନାହିଁ।"
+                "ଏହି Member କୁ Approve କରିବେ?\n\n" +
+                "Name: " +
+                (
+                    member.name ||
+                    "Member"
+                )
             );
 
 
-        if(!confirmApprove){
+        if(!confirmApproval){
 
             return;
 
         }
 
 
-        /* =============================================
-           APPROVE ONLY
-           
-           IMPORTANT:
-           - Member ID unchanged
-           - paid unchanged
-           - txnId unchanged
-           - paymentMode unchanged
-           - income NOT created
-        ============================================= */
+        /* =================================================
+           GET MEMBER ID
+        ================================================= */
+
+        const memberId =
+            await getNextMemberId();
+
+
+        /* =================================================
+           RECEIPT
+        ================================================= */
+
+        const txnId =
+            "RCPT-" +
+            Date.now();
+
+
+        /* =================================================
+           UPDATE MEMBER
+
+           ONLY THIS PENDING MEMBER
+        ================================================= */
 
         await updateDoc(
-
             memberRef,
-
             {
 
-                approval:
+                memberId:
+                    memberId,
+
+                status:
                     "approved",
 
                 approved:
                     true,
 
-                status:
-                    "approved"
+                approval:
+                    "approved",
+
+                paid:
+                    true,
+
+                txnId:
+                    txnId
+
+            }
+        );
+
+
+        /* =================================================
+           INCOME ENTRY
+        ================================================= */
+
+        await addDoc(
+            collection(
+                db,
+                "income"
+            ),
+            {
+
+                memberId:
+                    memberId,
+
+                name:
+                    member.name ||
+                    "",
+
+                mobile:
+                    member.mobile ||
+                    "",
+
+                amount:
+                    1200,
+
+                purpose:
+                    "New Membership Fee",
+
+                paymentMode:
+                    "Online",
+
+                receiptNo:
+                    txnId,
+
+                collectedBy:
+                    "Admin",
+
+                createdAt:
+                    new Date()
+
+            }
+        );
+
+
+        /* =================================================
+           SUCCESS
+        ================================================= */
+
+        alert(
+            "✅ Member Approved Successfully\n\n" +
+
+            "Name: " +
+            (
+                member.name ||
+                "Member"
+            ) +
+
+            "\n\nMember ID: " +
+            memberId
+        );
+
+
+        /* =================================================
+           WHATSAPP
+        ================================================= */
+
+        const mobile =
+            String(
+                member.mobile ||
+                ""
+            )
+            .replace(
+                /\D/g,
+                ""
+            );
+
+
+        if(mobile){
+
+            let whatsappNumber =
+                mobile;
+
+
+            if(
+                whatsappNumber.length === 10
+            ){
+
+                whatsappNumber =
+                    "91" +
+                    whatsappNumber;
 
             }
 
-        );
+
+            const message =
+`ନମସ୍କାର 🙏
+
+🌺 ଜୟ ଜଗନ୍ନାଥ 🚩
+
+ପ୍ରିୟ ${member.name || "Member"},
+
+ଆପଣଙ୍କ ସଦସ୍ୟ ପଞ୍ଜୀକରଣ ସଫଳତାର ସହିତ ଅନୁମୋଦିତ ହୋଇଛି।
+
+ଆପଣ ବର୍ତ୍ତମାନ “ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ”ର ଜଣେ ସ୍ୱୀକୃତ ସଦସ୍ୟ।
+
+ଆପଣଙ୍କ ସଦସ୍ୟ ID: ${memberId}
+
+ସଂଘ ପକ୍ଷରୁ ଆପଣଙ୍କୁ ହାର୍ଦ୍ଦିକ ସ୍ୱାଗତ। 🙏🌹
+
+ଆମର ଲକ୍ଷ୍ୟ — ଏକତା, ସେବା ଓ ଓଡ଼ିଆ ସଂସ୍କୃତିର ସୁରକ୍ଷା। 🤝
+
+ଜୟ ଜଗନ୍ନାଥ 🚩🙏
+
+ଧନ୍ୟବାଦ।
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`;
 
 
-        /* =============================================
-           SUCCESS
-        ============================================= */
-
-        alert(
-            "✅ Member Successfully Approved\n\n" +
-
-            "Member ID: " +
-            (
-                member.memberId ||
-                "-"
-            ) +
-
-            "\n\n" +
-
-            "💳 Payment: " +
-
-            (
-                member.paid === true
-                ? "Paid"
-                : "Pending"
-            )
-        );
+            const whatsappURL =
+                "https://wa.me/" +
+                whatsappNumber +
+                "?text=" +
+                encodeURIComponent(
+                    message
+                );
 
 
-        /* =============================================
-           RELOAD
-        ============================================= */
+            const openWhatsApp =
+                confirm(
+                    "📱 WhatsApp Message ପଠାଇବେ?\n\n" +
+                    "Member: " +
+                    (
+                        member.name ||
+                        "Member"
+                    )
+                );
 
-        await loadPendingMembers();
+
+            if(openWhatsApp){
+
+                window.location.href =
+                    whatsappURL;
+
+                return;
+
+            }
+
+        }
+
+
+        /* =================================================
+           RELOAD PENDING LIST
+        ================================================= */
+
+        loadPendingMembers();
 
     }
-
     catch(error){
 
         console.error(
@@ -478,10 +874,14 @@ async function(id){
 
 
         const memberSnap =
-            await getDoc(memberRef);
+            await getDoc(
+                memberRef
+            );
 
 
-        if(!memberSnap.exists()){
+        if(
+            !memberSnap.exists()
+        ){
 
             alert(
                 "❌ Member ମିଳିଲା ନାହିଁ।"
@@ -496,23 +896,33 @@ async function(id){
             memberSnap.data();
 
 
-        /* =============================================
-           CONFIRM DELETE
-        ============================================= */
+        /* =================================================
+           ONLY PENDING CAN BE REJECTED
+        ================================================= */
+
+        if(
+            member.status !== "pending"
+        ){
+
+            alert(
+                "⚠️ ଏହି Member Pending ରେ ନାହାନ୍ତି।"
+            );
+
+            loadPendingMembers();
+
+            return;
+
+        }
+
 
         const ok =
             confirm(
-                "⚠️ ଏହି Pending Member କୁ Delete କରିବେ?\n\n" +
-
-                "Member: " +
+                "ଏହି Pending Member କୁ Delete କରିବେ?\n\n" +
+                "Name: " +
                 (
                     member.name ||
                     "Member"
-                ) +
-
-                "\n\n" +
-
-                "ଏହା Members collection ରୁ record delete କରିବ।"
+                )
             );
 
 
@@ -523,32 +933,19 @@ async function(id){
         }
 
 
-        /* =============================================
-           DELETE
-        ============================================= */
-
         await deleteDoc(
             memberRef
         );
 
 
-        /* =============================================
-           SUCCESS
-        ============================================= */
-
         alert(
-            "❌ Pending Member Rejected Successfully"
+            "❌ Member Rejected Successfully"
         );
 
 
-        /* =============================================
-           RELOAD
-        ============================================= */
-
-        await loadPendingMembers();
+        loadPendingMembers();
 
     }
-
     catch(error){
 
         console.error(
@@ -611,5 +1008,13 @@ loadPendingMembers();
 
 
 console.log(
-    "✅ Pending Members Approval System Loaded"
+    "✅ Pending Members System Loaded"
+);
+
+console.log(
+    "🔒 Approval required before Members List"
+);
+
+console.log(
+    "🔒 Member ID generated only after approval"
 );
