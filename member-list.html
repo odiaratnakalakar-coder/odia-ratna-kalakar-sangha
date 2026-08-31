@@ -537,51 +537,51 @@ const search =
 
 
 /* =====================================================
-   MEMBERS
+   MEMBERS ARRAY
 ===================================================== */
 
 let members = [];
 
 
 /* =====================================================
-   APPROVAL SECURITY
+   APPROVAL CHECK
 ===================================================== */
 
 /*
 =========================================================
-IMPORTANT APPROVAL RULE
-=========================================================
+IMPORTANT
 
-A Member will appear ONLY when:
+NEW REGISTRATION:
 
-    approved === true
+status = "pending"
 
-AND
+→ Members Admin ରେ ଦେଖାଯିବ ନାହିଁ.
 
-    status === "approved"
 
-AND
+AFTER APPROVAL:
 
-    approval === "approved"
+status = "approved"
 
-Pending member:
+→ Members Admin ରେ ଦେଖାଯିବ.
 
-    approved === false
-    status === "pending"
-    approval === "pending"
 
-will NEVER appear.
+OLD MEMBERS:
 
-Payment has NO connection with approval.
+status field ନଥିଲେ
 
+→ ପୁରୁଣା data safe ରଖିବା ପାଇଁ
+  Members Admin ରେ ରହିବେ.
+
+
+IMPORTANT:
+
+paid field approval filter ନୁହେଁ।
+
+ଏହି page Firestore write/update/delete କରୁନାହିଁ।
 =========================================================
 */
 
-function isMemberApproved(data){
-
-    const approved =
-        data.approved === true;
-
+function isPendingMember(data){
 
     const status =
         String(
@@ -591,38 +591,17 @@ function isMemberApproved(data){
         .toLowerCase();
 
 
-    const approval =
-        String(
-            data.approval ?? ""
-        )
-        .trim()
-        .toLowerCase();
-
-
-    /*
-    -----------------------------------------------
-    FINAL STRICT CHECK
-    -----------------------------------------------
-    */
-
-    return (
-
-        approved === true &&
-
-        status === "approved" &&
-
-        approval === "approved"
-
-    );
+    return status === "pending";
 
 }
 
 
 /* =====================================================
-   LOAD APPROVED MEMBERS
+   LOAD MEMBERS
 ===================================================== */
 
 async function loadMembers(){
+
 
     memberList.innerHTML = `
 
@@ -636,6 +615,13 @@ async function loadMembers(){
 
 
     try{
+
+
+        /*
+        ================================================
+        FIRESTORE READ ONLY
+        ================================================
+        */
 
         const snapshot =
             await getDocs(
@@ -652,24 +638,25 @@ async function loadMembers(){
         snapshot.forEach(
         docSnap => {
 
+
             const data =
                 docSnap.data();
 
 
             /*
             =============================================
-            VERY IMPORTANT
+            NEW PENDING MEMBER
             =============================================
 
-            Pending member will be skipped here.
+            status = pending
 
-            No Firestore write.
-            No delete.
-            No update.
+            → SKIP
+
+            =============================================
             */
 
             if(
-                !isMemberApproved(
+                isPendingMember(
                     data
                 )
             ){
@@ -678,6 +665,15 @@ async function loadMembers(){
 
             }
 
+
+            /*
+            =============================================
+            OLD MEMBER OR APPROVED MEMBER
+
+            → SHOW
+
+            =============================================
+            */
 
             members.push({
 
@@ -697,6 +693,7 @@ async function loadMembers(){
 
         members.sort(
         (a,b) => {
+
 
             const nameA =
                 String(
@@ -728,7 +725,7 @@ async function loadMembers(){
         ================================================= */
 
         memberCount.textContent =
-            `ମୋଟ Approved ସଦସ୍ୟ : ${members.length}`;
+            `ମୋଟ ସଦସ୍ୟ : ${members.length}`;
 
 
         /* =================================================
@@ -739,9 +736,10 @@ async function loadMembers(){
             members
         );
 
-    }
 
+    }
     catch(error){
+
 
         console.error(
             "Members Error:",
@@ -775,10 +773,11 @@ async function loadMembers(){
 
 
 /* =====================================================
-   RENDER
+   RENDER MEMBERS
 ===================================================== */
 
 function renderMembers(list){
+
 
     memberList.innerHTML = "";
 
@@ -791,11 +790,12 @@ function renderMembers(list){
 
             <div class="empty">
 
-                ❌ କୌଣସି Approved Member ମିଳିଲା ନାହିଁ।
+                କୌଣସି Approved Member ମିଳିଲା ନାହିଁ।
 
             </div>
 
         `;
+
 
         return;
 
@@ -1016,6 +1016,7 @@ search.addEventListener(
 "input",
 function(){
 
+
     const value =
         this.value
         .trim()
@@ -1080,6 +1081,7 @@ function(){
 window.viewMember =
 function(id){
 
+
     const member =
         members.find(
             m => m.id === id
@@ -1087,27 +1089,6 @@ function(id){
 
 
     if(!member){
-
-        return;
-
-    }
-
-
-    /*
-    =============================================
-    FINAL SECURITY CHECK
-    =============================================
-    */
-
-    if(
-        !isMemberApproved(
-            member
-        )
-    ){
-
-        alert(
-            "⛔ ଏହି Member ଏପର୍ଯ୍ୟନ୍ତ Approved ହୋଇନାହାନ୍ତି।"
-        );
 
         return;
 
@@ -1231,7 +1212,7 @@ function(id){
 
 
     /* =============================================
-       MOBILE
+       MOBILE NUMBER
     ============================================= */
 
     const mobile =
@@ -1287,6 +1268,7 @@ function(id){
 window.closeModal =
 function(){
 
+
     document.getElementById(
         "memberModal"
     ).style.display =
@@ -1307,6 +1289,7 @@ document
 "click",
 function(event){
 
+
     if(
         event.target === this
     ){
@@ -1326,6 +1309,7 @@ document.addEventListener(
 "keydown",
 function(event){
 
+
     if(
         event.key === "Escape"
     ){
@@ -1342,6 +1326,7 @@ function(event){
 ===================================================== */
 
 function escapeHTML(value){
+
 
     return String(value)
 
@@ -1381,11 +1366,12 @@ loadMembers();
 
 
 console.log(
-    "✅ Members Admin - STRICT APPROVAL SYSTEM LOADED"
+    "✅ Members Admin - Pending Members Hidden"
 );
 
 </script>
 
+
 </body>
 
-      </html>
+</html>
