@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#111111">
+
+<title>
+Committee Conference Call
+</title>
+
+<style>
+
+/* ==================================================
+   RESET
+================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+
+/* ==================================================
+   BODY
+================================================== */
+
+body{
+
+    background:#111;
+
+    color:white;
+
+    min-height:100vh;
+
+    padding:15px;
+
+}
+
+
+/* ==================================================
+   CONTAINER
+================================================== */
+
+.container{
+
+    max-width:600px;
+
+    margin:auto;
+
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+.header{
+
+    text-align:center;
+
+    padding:20px 10px;
+
+}
+
+
+.header h1{
+
+    color:#ffcc00;
+
+    font-size:27px;
+
+    margin-bottom:8px;
+
+}
+
+
+.header p{
+
+    color:#ccc;
+
+    font-size:15px;
+
+}
+
+
+/* ==================================================
+   CALL CARD
+================================================== */
+
+.callCard{
+
+    background:
+    linear-gradient(
+        145deg,
+        #181818,
+        #252525
+    );
+
+    border:
+    2px solid
+    #00c853;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    box-shadow:
+    0 0 18px
+    rgba(0,255,80,.18);
+
+}
+
+
+/* ==================================================
+   STATUS
+================================================== */
+
+.status{
+
+    text-align:center;
+
+    padding:12px;
+
+    background:#111;
+
+    border-radius:10px;
+
+    margin-bottom:18px;
+
+}
+
+
+.statusText{
+
+    color:#00ff66;
+
+    font-weight:bold;
+
+}
+
+
+/* ==================================================
+   MEMBERS
+================================================== */
+
+.membersTitle{
+
+    color:#ffcc00;
+
+    text-align:center;
+
+    margin-bottom:12px;
+
+    font-size:20px;
+
+}
+
+
+.members{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:9px;
+
+}
+
+
+/* ==================================================
+   MEMBER
+================================================== */
+
+.member{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    background:#151515;
+
+    border:
+    1px solid
+    #333;
+
+    border-radius:10px;
+
+    padding:12px;
+
+}
+
+
+.memberNumber{
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#c40000;
+
+    color:white;
+
+    font-weight:bold;
+
+}
+
+
+.memberInfo{
+
+    flex:1;
+
+}
+
+
+.memberName{
+
+    font-weight:bold;
+
+    color:white;
+
+}
+
+
+.memberStatus{
+
+    font-size:13px;
+
+    color:#00ff66;
+
+    margin-top:3px;
+
+}
+
+
+/* ==================================================
+   BUTTONS
+================================================== */
+
+.buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    margin-top:22px;
+
+}
+
+
+button{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:15px;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+/* ==================================================
+   START CALL
+================================================== */
+
+.startCall{
+
+    background:
+    linear-gradient(
+        135deg,
+        #006400,
+        #00a000
+    );
+
+    border:
+    2px solid
+    #00ff66;
+
+}
+
+
+.startCall:hover{
+
+    background:
+    linear-gradient(
+        135deg,
+        #008000,
+        #00c000
+    );
+
+}
+
+
+/* ==================================================
+   VIDEO
+================================================== */
+
+.videoCall{
+
+    background:
+    linear-gradient(
+        135deg,
+        #0047ab,
+        #007bff
+    );
+
+    border:
+    2px solid
+    #66b3ff;
+
+}
+
+
+/* ==================================================
+   VOICE
+================================================== */
+
+.voiceCall{
+
+    background:
+    linear-gradient(
+        135deg,
+        #5b0099,
+        #8e24aa
+    );
+
+    border:
+    2px solid
+    #d580ff;
+
+}
+
+
+/* ==================================================
+   BACK
+================================================== */
+
+.backButton{
+
+    background:#333;
+
+    border:
+    1px solid
+    #666;
+
+}
+
+
+/* ==================================================
+   MEETING LINK
+================================================== */
+
+.linkBox{
+
+    display:none;
+
+    margin-top:18px;
+
+    background:#0d0d0d;
+
+    border:
+    1px solid
+    #444;
+
+    border-radius:10px;
+
+    padding:15px;
+
+}
+
+
+.linkTitle{
+
+    color:#ffcc00;
+
+    font-weight:bold;
+
+    margin-bottom:8px;
+
+}
+
+
+#meetingLink{
+
+    width:100%;
+
+    background:#222;
+
+    color:#fff;
+
+    border:
+    1px solid
+    #555;
+
+    border-radius:7px;
+
+    padding:11px;
+
+    font-size:13px;
+
+}
+
+
+.copyButton{
+
+    margin-top:10px;
+
+    background:#c40000;
+
+}
+
+
+/* ==================================================
+   NOTE
+================================================== */
+
+.note{
+
+    margin-top:18px;
+
+    background:#211f12;
+
+    border-left:
+    4px solid
+    #ffcc00;
+
+    border-radius:7px;
+
+    padding:12px;
+
+    color:#ddd;
+
+    font-size:13px;
+
+    line-height:1.6;
+
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+.footer{
+
+    text-align:center;
+
+    color:#888;
+
+    font-size:13px;
+
+    margin-top:22px;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width:450px){
+
+    body{
+
+        padding:10px;
+
+    }
+
+    .header h1{
+
+        font-size:24px;
+
+    }
+
+    .callCard{
+
+        padding:15px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<div class="header">
+
+<h1>
+
+📞 Committee Conference Call
+
+</h1>
+
+<p>
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ
+
+</p>
+
+</div>
+
+
+<!-- ==================================================
+     CALL CARD
+================================================== -->
+
+<div class="callCard">
+
+
+<!-- STATUS -->
+
+<div class="status">
+
+<span class="statusText"
+      id="statusText">
+
+🟢 Meeting Ready
+
+</span>
+
+</div>
+
+
+<!-- MEMBERS -->
+
+<div class="membersTitle">
+
+👥 Committee Members — 7
+
+</div>
+
+
+<div class="members">
+
+
+<div class="member">
+
+<div class="memberNumber">
+1
+</div>
+
+<div class="memberInfo">
+
+<div class="memberName">
+Committee Member 1
+</div>
+
+<div class="memberStatus">
+🟢 Ready
+</div>
+
+</div>
+
+</div>
+
+
+<div class="member">
+
+<div class="memberNumber">
+2
+</div>
+
+<div class="memberInfo">
+
+<div class="memberName">
+Committee Member 2
+</div>
+
+<div class="memberStatus">
+🟢 Ready
+</div>
+
+</div>
+
+</div>
+
+
+<div class="member">
+
+<div class="memberNumber">
+3
+</div>
+
+<div class="memberInfo">
+
+<div class="memberName">
+Committee Member 3
+</div>
+
+<div class="memberStatus">
+🟢 Ready
+</div>
+
+</div>
+
+</div>
+
+
+<div class="member">
+
+<div class="memberNumber">
+4
+</div>
+
+<div class="memberInfo">
+
+<div class="memberName">
+Committee Member 4
+</div>
+
+<div class="memberStatus">
+🟢 Ready
+</div>
+
+</div>
+
+</div>
+
+
+<div class="member">
+
+<div class="memberNumber">
+5
+</div>
+
+<div class="memberInfo">
+
+<div class="memberName">
+Committee Member 5
+</div>
+
+<div class="memberStatus">
+🟢 Ready
+</div>
+
+</div>
+
+</div>
+
+
+<div class="member">
+
+<div class="memberNumber">
+6
+</div>
+
+<div class="memberInfo">
+
+<div class="memberName">
+Committee Member 6
+</div>
+
+<div class="memberStatus">
+🟢 Ready
+</div>
+
+</div>
+
+</div>
+
+
+<div class="member">
+
+<div class="memberNumber">
+7
+</div>
+
+<div class="memberInfo">
+
+<div class="memberName">
+Committee Member 7
+</div>
+
+<div class="memberStatus">
+🟢 Ready
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- ==================================================
+     BUTTONS
+================================================== -->
+
+<div class="buttons">
+
+
+<button
+class="startCall"
+onclick="startMeeting()">
+
+📞 Start Committee Meeting
+
+</button>
+
+
+<button
+class="videoCall"
+onclick="startVideoCall()">
+
+🎥 Start Video Conference
+
+</button>
+
+
+<button
+class="voiceCall"
+onclick="startVoiceCall()">
+
+🎙️ Start Voice Conference
+
+</button>
+
+
+<button
+class="backButton"
+onclick="goBack()">
+
+⬅️ Back to Admin
+
+</button>
+
+
+</div>
+
+
+<!-- ==================================================
+     MEETING LINK
+================================================== -->
+
+<div
+class="linkBox"
+id="linkBox">
+
+<div class="linkTitle">
+
+🔗 Meeting Link
+
+</div>
+
+
+<input
+type="text"
+id="meetingLink"
+readonly>
+
+
+<button
+class="copyButton"
+onclick="copyMeetingLink()">
+
+📋 Copy Meeting Link
+
+</button>
+
+</div>
+
+
+<!-- ==================================================
+     NOTE
+================================================== -->
+
+<div class="note">
+
+<strong>
+ℹ️ ସୂଚନା:
+</strong>
+
+<br>
+
+ଏହି page ରେ 7 ଜଣ Committee Member ପାଇଁ
+Conference Meeting ଆରମ୍ଭ କରିବାର interface ରହିଛି।
+
+ପରବର୍ତ୍ତୀ ପଦକ୍ଷେପରେ Live Video / Voice
+system ଯୋଡ଼ାଯିବ।
+
+</div>
+
+
+</div>
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<div class="footer">
+
+© 2026 Odia Ratna Kalakar Sangha
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   START MEETING
+================================================== */
+
+function startMeeting(){
+
+    const roomId =
+        "ORKS-" +
+        Date.now();
+
+    const link =
+        window.location.origin +
+        window.location.pathname +
+        "?room=" +
+        roomId;
+
+
+    document
+    .getElementById("meetingLink")
+    .value = link;
+
+
+    document
+    .getElementById("linkBox")
+    .style.display = "block";
+
+
+    document
+    .getElementById("statusText")
+    .textContent =
+    "🟢 Meeting Created";
+
+
+    alert(
+        "Conference Meeting ତିଆରି ହୋଇଗଲା।"
+    );
+
+}
+
+
+/* ==================================================
+   VIDEO CALL
+================================================== */
+
+function startVideoCall(){
+
+    startMeeting();
+
+
+    setTimeout(function(){
+
+        document
+        .getElementById("statusText")
+        .textContent =
+        "🎥 Video Conference Ready";
+
+    },500);
+
+}
+
+
+/* ==================================================
+   VOICE CALL
+================================================== */
+
+function startVoiceCall(){
+
+    startMeeting();
+
+
+    setTimeout(function(){
+
+        document
+        .getElementById("statusText")
+        .textContent =
+        "🎙️ Voice Conference Ready";
+
+    },500);
+
+}
+
+
+/* ==================================================
+   COPY LINK
+================================================== */
+
+async function copyMeetingLink(){
+
+    const input =
+        document.getElementById(
+            "meetingLink"
+        );
+
+
+    try{
+
+        await navigator.clipboard.writeText(
+            input.value
+        );
+
+
+        alert(
+            "Meeting Link Copy ହୋଇଗଲା ✅"
+        );
+
+    }
+
+    catch(error){
+
+        input.select();
+
+        document.execCommand("copy");
+
+        alert(
+            "Meeting Link Copy ହୋଇଗଲା ✅"
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   BACK
+================================================== */
+
+function goBack(){
+
+    window.location.href =
+    "admin.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
