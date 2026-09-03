@@ -12,8 +12,9 @@
       content="#111111">
 
 <title>
-Committee Conference Call
+Committee Live Conference
 </title>
+
 
 <style>
 
@@ -41,7 +42,7 @@ body{
 
     min-height:100vh;
 
-    padding:15px;
+    padding:10px;
 
 }
 
@@ -52,7 +53,9 @@ body{
 
 .container{
 
-    max-width:600px;
+    width:100%;
+
+    max-width:900px;
 
     margin:auto;
 
@@ -67,7 +70,7 @@ body{
 
     text-align:center;
 
-    padding:20px 10px;
+    padding:15px 5px;
 
 }
 
@@ -76,46 +79,18 @@ body{
 
     color:#ffcc00;
 
-    font-size:27px;
+    font-size:26px;
 
-    margin-bottom:8px;
+    margin-bottom:6px;
 
 }
 
 
 .header p{
 
-    color:#ccc;
+    color:#bbb;
 
-    font-size:15px;
-
-}
-
-
-/* ==================================================
-   CALL CARD
-================================================== */
-
-.callCard{
-
-    background:
-    linear-gradient(
-        145deg,
-        #181818,
-        #252525
-    );
-
-    border:
-    2px solid
-    #00c853;
-
-    border-radius:15px;
-
-    padding:20px;
-
-    box-shadow:
-    0 0 18px
-    rgba(0,255,80,.18);
+    font-size:14px;
 
 }
 
@@ -126,161 +101,69 @@ body{
 
 .status{
 
-    text-align:center;
+    background:#1d1d1d;
 
-    padding:12px;
-
-    background:#111;
+    border:
+    2px solid
+    #00d95f;
 
     border-radius:10px;
 
-    margin-bottom:18px;
-
-}
-
-
-.statusText{
-
-    color:#00ff66;
-
-    font-weight:bold;
-
-}
-
-
-/* ==================================================
-   MEMBERS
-================================================== */
-
-.membersTitle{
-
-    color:#ffcc00;
+    padding:12px;
 
     text-align:center;
 
     margin-bottom:12px;
 
-    font-size:20px;
-
 }
 
 
-.members{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:9px;
-
-}
-
-
-/* ==================================================
-   MEMBER
-================================================== */
-
-.member{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    background:#151515;
-
-    border:
-    1px solid
-    #333;
-
-    border-radius:10px;
-
-    padding:12px;
-
-}
-
-
-.memberNumber{
-
-    width:35px;
-
-    height:35px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:#c40000;
-
-    color:white;
-
-    font-weight:bold;
-
-}
-
-
-.memberInfo{
-
-    flex:1;
-
-}
-
-
-.memberName{
-
-    font-weight:bold;
-
-    color:white;
-
-}
-
-
-.memberStatus{
-
-    font-size:13px;
+#statusText{
 
     color:#00ff66;
 
-    margin-top:3px;
+    font-weight:bold;
+
+}
+
+
+#participantCount{
+
+    color:#ffcc00;
+
+    margin-left:8px;
 
 }
 
 
 /* ==================================================
-   BUTTONS
+   CONTROL AREA
 ================================================== */
 
-.buttons{
+.controls{
 
     display:flex;
 
-    flex-direction:column;
+    gap:10px;
 
-    gap:12px;
-
-    margin-top:22px;
+    margin-bottom:12px;
 
 }
 
 
-button{
+.controlButton{
 
-    width:100%;
+    flex:1;
 
     border:none;
 
-    border-radius:10px;
+    border-radius:9px;
 
-    padding:15px;
+    padding:13px 8px;
 
     color:white;
 
-    font-size:17px;
+    font-size:15px;
 
     font-weight:bold;
 
@@ -290,16 +173,16 @@ button{
 
 
 /* ==================================================
-   START CALL
+   SHARE
 ================================================== */
 
-.startCall{
+.shareButton{
 
     background:
     linear-gradient(
         135deg,
-        #006400,
-        #00a000
+        #008000,
+        #00b83d
     );
 
     border:
@@ -309,54 +192,22 @@ button{
 }
 
 
-.startCall:hover{
-
-    background:
-    linear-gradient(
-        135deg,
-        #008000,
-        #00c000
-    );
-
-}
-
-
 /* ==================================================
-   VIDEO
+   WHATSAPP
 ================================================== */
 
-.videoCall{
+.whatsappButton{
 
     background:
     linear-gradient(
         135deg,
-        #0047ab,
-        #007bff
+        #087f23,
+        #16a63a
     );
 
     border:
     2px solid
-    #66b3ff;
-
-}
-
-
-/* ==================================================
-   VOICE
-================================================== */
-
-.voiceCall{
-
-    background:
-    linear-gradient(
-        135deg,
-        #5b0099,
-        #8e24aa
-    );
-
-    border:
-    2px solid
-    #d580ff;
+    #55ff77;
 
 }
 
@@ -377,16 +228,141 @@ button{
 
 
 /* ==================================================
-   MEETING LINK
+   MEETING AREA
+================================================== */
+
+#meet{
+
+    width:100%;
+
+    min-height:600px;
+
+    background:#000;
+
+    border:
+    2px solid
+    #333;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    display:none;
+
+}
+
+
+/* ==================================================
+   WELCOME
+================================================== */
+
+.welcome{
+
+    background:
+    linear-gradient(
+        145deg,
+        #191919,
+        #252525
+    );
+
+    border:
+    2px solid
+    #00c853;
+
+    border-radius:14px;
+
+    padding:25px 18px;
+
+    text-align:center;
+
+}
+
+
+.welcome h2{
+
+    color:#ffcc00;
+
+    margin-bottom:12px;
+
+}
+
+
+.welcome p{
+
+    color:#ccc;
+
+    line-height:1.6;
+
+    font-size:14px;
+
+}
+
+
+/* ==================================================
+   START BUTTON
+================================================== */
+
+.startButton{
+
+    width:100%;
+
+    margin-top:18px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #006400,
+        #00a000
+    );
+
+    color:white;
+
+    border:
+    2px solid
+    #00ff66;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+.voiceButton{
+
+    background:
+    linear-gradient(
+        135deg,
+        #5b0099,
+        #8e24aa
+    );
+
+    border:
+    2px solid
+    #d580ff;
+
+}
+
+
+/* ==================================================
+   LINK BOX
 ================================================== */
 
 .linkBox{
 
     display:none;
 
-    margin-top:18px;
+    margin-bottom:12px;
 
-    background:#0d0d0d;
+    background:#1a1a1a;
 
     border:
     1px solid
@@ -394,12 +370,12 @@ button{
 
     border-radius:10px;
 
-    padding:15px;
+    padding:12px;
 
 }
 
 
-.linkTitle{
+.linkBox p{
 
     color:#ffcc00;
 
@@ -414,9 +390,9 @@ button{
 
     width:100%;
 
-    background:#222;
+    padding:10px;
 
-    color:#fff;
+    background:#111;
 
     border:
     1px solid
@@ -424,18 +400,34 @@ button{
 
     border-radius:7px;
 
-    padding:11px;
+    color:white;
 
-    font-size:13px;
+    font-size:12px;
 
 }
 
 
+/* ==================================================
+   COPY
+================================================== */
+
 .copyButton{
 
-    margin-top:10px;
+    width:100%;
+
+    margin-top:8px;
+
+    padding:11px;
+
+    border:none;
+
+    border-radius:7px;
 
     background:#c40000;
+
+    color:white;
+
+    font-weight:bold;
 
 }
 
@@ -446,7 +438,9 @@ button{
 
 .note{
 
-    margin-top:18px;
+    margin-top:15px;
+
+    padding:12px;
 
     background:#211f12;
 
@@ -455,8 +449,6 @@ button{
     #ffcc00;
 
     border-radius:7px;
-
-    padding:12px;
 
     color:#ddd;
 
@@ -468,43 +460,44 @@ button{
 
 
 /* ==================================================
-   FOOTER
-================================================== */
-
-.footer{
-
-    text-align:center;
-
-    color:#888;
-
-    font-size:13px;
-
-    margin-top:22px;
-
-}
-
-
-/* ==================================================
    MOBILE
 ================================================== */
 
-@media(max-width:450px){
+@media(max-width:600px){
 
     body{
 
-        padding:10px;
+        padding:7px;
 
     }
+
 
     .header h1{
 
-        font-size:24px;
+        font-size:23px;
 
     }
 
-    .callCard{
 
-        padding:15px;
+    .controls{
+
+        flex-direction:column;
+
+    }
+
+
+    .controlButton{
+
+        width:100%;
+
+    }
+
+
+    #meet{
+
+        min-height:70vh;
+
+        border-radius:8px;
 
     }
 
@@ -529,7 +522,7 @@ button{
 
 <h1>
 
-📞 Committee Conference Call
+📞 Committee Live Conference
 
 </h1>
 
@@ -543,207 +536,52 @@ button{
 
 
 <!-- ==================================================
-     CALL CARD
+     STATUS
 ================================================== -->
-
-<div class="callCard">
-
-
-<!-- STATUS -->
 
 <div class="status">
 
-<span class="statusText"
-      id="statusText">
+<span id="statusText">
 
 🟢 Meeting Ready
+
+</span>
+
+<span id="participantCount">
+
+👥 0
 
 </span>
 
 </div>
 
 
-<!-- MEMBERS -->
-
-<div class="membersTitle">
-
-👥 Committee Members — 7
-
-</div>
-
-
-<div class="members">
-
-
-<div class="member">
-
-<div class="memberNumber">
-1
-</div>
-
-<div class="memberInfo">
-
-<div class="memberName">
-Committee Member 1
-</div>
-
-<div class="memberStatus">
-🟢 Ready
-</div>
-
-</div>
-
-</div>
-
-
-<div class="member">
-
-<div class="memberNumber">
-2
-</div>
-
-<div class="memberInfo">
-
-<div class="memberName">
-Committee Member 2
-</div>
-
-<div class="memberStatus">
-🟢 Ready
-</div>
-
-</div>
-
-</div>
-
-
-<div class="member">
-
-<div class="memberNumber">
-3
-</div>
-
-<div class="memberInfo">
-
-<div class="memberName">
-Committee Member 3
-</div>
-
-<div class="memberStatus">
-🟢 Ready
-</div>
-
-</div>
-
-</div>
-
-
-<div class="member">
-
-<div class="memberNumber">
-4
-</div>
-
-<div class="memberInfo">
-
-<div class="memberName">
-Committee Member 4
-</div>
-
-<div class="memberStatus">
-🟢 Ready
-</div>
-
-</div>
-
-</div>
-
-
-<div class="member">
-
-<div class="memberNumber">
-5
-</div>
-
-<div class="memberInfo">
-
-<div class="memberName">
-Committee Member 5
-</div>
-
-<div class="memberStatus">
-🟢 Ready
-</div>
-
-</div>
-
-</div>
-
-
-<div class="member">
-
-<div class="memberNumber">
-6
-</div>
-
-<div class="memberInfo">
-
-<div class="memberName">
-Committee Member 6
-</div>
-
-<div class="memberStatus">
-🟢 Ready
-</div>
-
-</div>
-
-</div>
-
-
-<div class="member">
-
-<div class="memberNumber">
-7
-</div>
-
-<div class="memberInfo">
-
-<div class="memberName">
-Committee Member 7
-</div>
-
-<div class="memberStatus">
-🟢 Ready
-</div>
-
-</div>
-
-</div>
-
-
-</div>
-
-
 <!-- ==================================================
-     BUTTONS
+     WELCOME
 ================================================== -->
 
-<div class="buttons">
+<div
+class="welcome"
+id="welcomeBox">
+
+<h2>
+
+👥 7 ସଦସ୍ୟଙ୍କ Live Meeting
+
+</h2>
+
+
+<p>
+
+ଏଠାରୁ Committee ର Live
+Video / Voice Conference ଆରମ୍ଭ କରନ୍ତୁ।
+
+</p>
 
 
 <button
-class="startCall"
-onclick="startMeeting()">
-
-📞 Start Committee Meeting
-
-</button>
-
-
-<button
-class="videoCall"
-onclick="startVideoCall()">
+class="startButton"
+onclick="startVideoMeeting()">
 
 🎥 Start Video Conference
 
@@ -751,43 +589,32 @@ onclick="startVideoCall()">
 
 
 <button
-class="voiceCall"
-onclick="startVoiceCall()">
+class="startButton voiceButton"
+onclick="startVoiceMeeting()">
 
 🎙️ Start Voice Conference
 
 </button>
 
-
-<button
-class="backButton"
-onclick="goBack()">
-
-⬅️ Back to Admin
-
-</button>
-
-
 </div>
 
 
 <!-- ==================================================
-     MEETING LINK
+     LINK BOX
 ================================================== -->
 
 <div
 class="linkBox"
 id="linkBox">
 
-<div class="linkTitle">
+<p>
 
 🔗 Meeting Link
 
-</div>
+</p>
 
 
 <input
-type="text"
 id="meetingLink"
 readonly>
 
@@ -804,25 +631,86 @@ onclick="copyMeetingLink()">
 
 
 <!-- ==================================================
+     CONTROLS
+================================================== -->
+
+<div
+class="controls"
+id="controls"
+style="display:none;">
+
+<button
+class="controlButton shareButton"
+onclick="shareMeeting()">
+
+📤 Share Meeting
+
+</button>
+
+
+<button
+class="controlButton whatsappButton"
+onclick="shareWhatsApp()">
+
+💬 WhatsApp
+
+</button>
+
+
+<button
+class="controlButton backButton"
+onclick="goBack()">
+
+⬅️ Admin
+
+</button>
+
+</div>
+
+
+<!-- ==================================================
+     JITSI MEETING
+================================================== -->
+
+<div id="meet"></div>
+
+
+<!-- ==================================================
      NOTE
 ================================================== -->
 
 <div class="note">
 
 <strong>
-ℹ️ ସୂଚନା:
+ℹ️ କିପରି ବ୍ୟବହାର କରିବେ?
 </strong>
+
+<br><br>
+
+1️⃣ Admin ରୁ
+<strong>Start Video Conference</strong>
+ଦବାନ୍ତୁ।
 
 <br>
 
-ଏହି page ରେ 7 ଜଣ Committee Member ପାଇଁ
-Conference Meeting ଆରମ୍ଭ କରିବାର interface ରହିଛି।
+2️⃣ Meeting ଆରମ୍ଭ ହେଲେ
+<strong>Meeting Link</strong>
+ତିଆରି ହେବ।
 
-ପରବର୍ତ୍ତୀ ପଦକ୍ଷେପରେ Live Video / Voice
-system ଯୋଡ଼ାଯିବ।
+<br>
 
-</div>
+3️⃣ ସେହି Link 7 ଜଣ Committee Member
+ଙ୍କୁ WhatsApp ରେ ପଠାନ୍ତୁ।
 
+<br>
+
+4️⃣ ସମସ୍ତେ Link ଖୋଲି
+ନିଜ ନାମ ଦେଇ Join କରିପାରିବେ।
+
+<br>
+
+5️⃣ Camera ଏବଂ Microphone permission
+<strong>Allow</strong> କରିବାକୁ ପଡ଼ିବ।
 
 </div>
 
@@ -831,96 +719,329 @@ system ଯୋଡ଼ାଯିବ।
      FOOTER
 ================================================== -->
 
-<div class="footer">
+<div class="header">
+
+<p>
 
 © 2026 Odia Ratna Kalakar Sangha
 
+</p>
+
 </div>
 
 
 </div>
+
+
+<!-- ==================================================
+     JITSI API
+================================================== -->
+
+<script src="https://meet.jit.si/external_api.js"></script>
 
 
 <script>
 
 /* ==================================================
+   GLOBAL
+================================================== */
+
+let api = null;
+
+let roomName = "";
+
+let meetingURL = "";
+
+
+/* ==================================================
+   RANDOM ROOM
+================================================== */
+
+function createRoomName(){
+
+    const random =
+        Math.random()
+        .toString(36)
+        .substring(2,10);
+
+    return "OdiaRatnaCommittee-" +
+           Date.now() +
+           "-" +
+           random;
+
+}
+
+
+/* ==================================================
+   START VIDEO
+================================================== */
+
+function startVideoMeeting(){
+
+    startMeeting(false);
+
+}
+
+
+/* ==================================================
+   START VOICE
+================================================== */
+
+function startVoiceMeeting(){
+
+    startMeeting(true);
+
+}
+
+
+/* ==================================================
    START MEETING
 ================================================== */
 
-function startMeeting(){
+function startMeeting(voiceOnly){
 
-    const roomId =
-        "ORKS-" +
-        Date.now();
+    if(api){
 
-    const link =
-        window.location.origin +
-        window.location.pathname +
-        "?room=" +
-        roomId;
+        return;
 
+    }
+
+
+    roomName =
+        createRoomName();
+
+
+    meetingURL =
+        "https://meet.jit.si/" +
+        roomName;
+
+
+    /* ==================================================
+       SHOW LINK
+    ================================================== */
 
     document
     .getElementById("meetingLink")
-    .value = link;
+    .value =
+    meetingURL;
 
 
     document
     .getElementById("linkBox")
-    .style.display = "block";
+    .style.display =
+    "block";
+
+
+    document
+    .getElementById("controls")
+    .style.display =
+    "flex";
+
+
+    document
+    .getElementById("welcomeBox")
+    .style.display =
+    "none";
+
+
+    document
+    .getElementById("meet")
+    .style.display =
+    "block";
 
 
     document
     .getElementById("statusText")
     .textContent =
-    "🟢 Meeting Created";
+    voiceOnly
+    ?
+    "🎙️ Voice Conference Live"
+    :
+    "🎥 Video Conference Live";
 
 
-    alert(
-        "Conference Meeting ତିଆରି ହୋଇଗଲା।"
-    );
+    /* ==================================================
+       JITSI OPTIONS
+    ================================================== */
+
+    const options = {
+
+        roomName: roomName,
+
+        width: "100%",
+
+        height: "600px",
+
+        parentNode:
+        document.querySelector("#meet"),
+
+        userInfo: {
+
+            displayName:
+            "Odia Ratna Committee"
+
+        },
+
+        configOverwrite: {
+
+            startWithAudioMuted:
+            false,
+
+            startWithVideoMuted:
+            voiceOnly,
+
+            prejoinConfig: {
+
+                enabled:true
+
+            },
+
+            disableAP: true
+
+        },
+
+        interfaceConfigOverwrite: {
+
+            MOBILE_APP_PROMO:
+            false
+
+        }
+
+    };
+
+
+    /* ==================================================
+       CREATE JITSI
+    ================================================== */
+
+    try{
+
+        api =
+        new JitsiMeetExternalAPI(
+            "meet.jit.si",
+            options
+        );
+
+
+        /* ==================================================
+           PARTICIPANT JOIN
+        ================================================== */
+
+        api.addListener(
+            "participantJoined",
+            function(){
+
+                updateParticipantCount();
+
+            }
+        );
+
+
+        /* ==================================================
+           PARTICIPANT LEFT
+        ================================================== */
+
+        api.addListener(
+            "participantLeft",
+            function(){
+
+                updateParticipantCount();
+
+            }
+        );
+
+
+        /* ==================================================
+           READY
+        ================================================== */
+
+        api.addListener(
+            "videoConferenceJoined",
+            function(){
+
+                document
+                .getElementById("statusText")
+                .textContent =
+                voiceOnly
+                ?
+                "🎙️ Voice Conference Live"
+                :
+                "🎥 Video Conference Live";
+
+                updateParticipantCount();
+
+            }
+        );
+
+
+        /* ==================================================
+           LEFT
+        ================================================== */
+
+        api.addListener(
+            "videoConferenceLeft",
+            function(){
+
+                document
+                .getElementById("statusText")
+                .textContent =
+                "🔴 Meeting Ended";
+
+                api = null;
+
+            }
+        );
+
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Conference ଆରମ୍ଭ ହୋଇପାରିଲା ନାହିଁ।"
+        );
+
+    }
 
 }
 
 
 /* ==================================================
-   VIDEO CALL
+   PARTICIPANT COUNT
 ================================================== */
 
-function startVideoCall(){
+function updateParticipantCount(){
 
-    startMeeting();
+    if(!api){
 
+        return;
 
-    setTimeout(function(){
-
-        document
-        .getElementById("statusText")
-        .textContent =
-        "🎥 Video Conference Ready";
-
-    },500);
-
-}
+    }
 
 
-/* ==================================================
-   VOICE CALL
-================================================== */
-
-function startVoiceCall(){
-
-    startMeeting();
-
-
-    setTimeout(function(){
+    api.getNumberOfParticipants()
+    .then(function(count){
 
         document
-        .getElementById("statusText")
+        .getElementById(
+            "participantCount"
+        )
         .textContent =
-        "🎙️ Voice Conference Ready";
+        "👥 " + count;
 
-    },500);
+    })
+    .catch(function(){
+
+        document
+        .getElementById(
+            "participantCount"
+        )
+        .textContent =
+        "👥 Live";
+
+    });
 
 }
 
@@ -966,6 +1087,106 @@ async function copyMeetingLink(){
 
 
 /* ==================================================
+   SHARE
+================================================== */
+
+async function shareMeeting(){
+
+    if(!meetingURL){
+
+        return;
+
+    }
+
+
+    const shareData = {
+
+        title:
+        "Odia Ratna Committee Meeting",
+
+        text:
+        "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘର Committee Meeting ରେ Join କରନ୍ତୁ।",
+
+        url:
+        meetingURL
+
+    };
+
+
+    if(
+        navigator.share
+    ){
+
+        try{
+
+            await navigator.share(
+                shareData
+            );
+
+        }
+
+        catch(error){
+
+            console.log(
+                "Share cancelled"
+            );
+
+        }
+
+    }
+
+    else{
+
+        copyMeetingLink();
+
+    }
+
+}
+
+
+/* ==================================================
+   WHATSAPP
+================================================== */
+
+function shareWhatsApp(){
+
+    if(!meetingURL){
+
+        return;
+
+    }
+
+
+    const message =
+
+    "📞 *Odia Ratna Committee Meeting*\n\n" +
+
+    "ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘର Committee " +
+    "Conference ରେ Join କରନ୍ତୁ।\n\n" +
+
+    "🔗 Meeting Link:\n" +
+
+    meetingURL;
+
+
+    const whatsappURL =
+
+    "https://wa.me/?text=" +
+
+    encodeURIComponent(
+        message
+    );
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+}
+
+
+/* ==================================================
    BACK
 ================================================== */
 
@@ -975,6 +1196,34 @@ function goBack(){
     "admin.html";
 
 }
+
+
+/* ==================================================
+   PAGE CLOSE
+================================================== */
+
+window.addEventListener(
+    "beforeunload",
+    function(){
+
+        if(api){
+
+            try{
+
+                api.dispose();
+
+            }
+
+            catch(error){
+
+                console.log(error);
+
+            }
+
+        }
+
+    }
+);
 
 </script>
 
