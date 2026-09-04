@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#fff8e7">
+
+<title>ସଦସ୍ୟ ମତାମତ — Admin</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:
+        "Noto Sans Oriya",
+        "Nirmala UI",
+        Arial,
+        sans-serif;
+
+    background:#f5f6f8;
+    color:#222;
+}
+
+/* HEADER */
+
+.header{
+    background:linear-gradient(135deg,#7b1e1e,#b71c1c);
+    color:white;
+    padding:18px 15px;
+    text-align:center;
+    box-shadow:0 3px 10px rgba(0,0,0,.18);
+}
+
+.header h1{
+    font-size:23px;
+    margin-bottom:5px;
+}
+
+.header p{
+    font-size:14px;
+    opacity:.9;
+}
+
+/* CONTAINER */
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:15px;
+}
+
+/* SECURITY */
+
+.security{
+    background:#fff3cd;
+    border-left:5px solid #ff9800;
+    padding:13px;
+    border-radius:8px;
+    margin-bottom:15px;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.card{
+    background:white;
+    padding:18px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+    text-align:center;
+}
+
+.card-title{
+    font-size:14px;
+    color:#666;
+    margin-bottom:8px;
+}
+
+.card-number{
+    font-size:28px;
+    font-weight:bold;
+    color:#b71c1c;
+}
+
+/* SEARCH */
+
+.search-box{
+    background:white;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:15px;
+    box-shadow:0 2px 7px rgba(0,0,0,.06);
+}
+
+.search-box input{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    font-size:15px;
+    outline:none;
+}
+
+.search-box input:focus{
+    border-color:#b71c1c;
+}
+
+/* FEEDBACK */
+
+.feedback-list{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.feedback{
+    background:white;
+    border-radius:12px;
+    padding:17px;
+    box-shadow:0 2px 9px rgba(0,0,0,.08);
+}
+
+.feedback-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    border-bottom:1px solid #eee;
+    padding-bottom:12px;
+    margin-bottom:12px;
+}
+
+.member-name{
+    font-size:18px;
+    font-weight:bold;
+    color:#7b1e1e;
+}
+
+.member-id{
+    font-size:13px;
+    color:#666;
+    margin-top:3px;
+}
+
+.date{
+    font-size:12px;
+    color:#777;
+    text-align:right;
+}
+
+/* QUESTIONS */
+
+.question{
+    margin-bottom:14px;
+}
+
+.question-title{
+    font-weight:bold;
+    color:#444;
+    margin-bottom:5px;
+    line-height:1.5;
+}
+
+.answer{
+    background:#f8f9fa;
+    border-left:4px solid #b71c1c;
+    padding:9px 11px;
+    border-radius:5px;
+    line-height:1.6;
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+
+/* EMPTY */
+
+.empty{
+    text-align:center;
+    background:white;
+    padding:35px 15px;
+    border-radius:12px;
+    color:#777;
+}
+
+/* LOADING */
+
+.loading{
+    text-align:center;
+    padding:30px;
+    color:#777;
+}
+
+/* BACK */
+
+.back-btn{
+    display:inline-block;
+    margin-bottom:15px;
+    padding:10px 15px;
+    background:#333;
+    color:white;
+    text-decoration:none;
+    border-radius:7px;
+    font-size:14px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .cards{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .header h1{
+        font-size:20px;
+    }
+
+    .feedback-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .date{
+        text-align:left;
+    }
+
+    .member-name{
+        font-size:17px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>📊 ସଦସ୍ୟ ମତାମତ</h1>
+
+    <p>
+        ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ
+    </p>
+
+</div>
+
+
+<div class="container">
+
+    <a href="admin.html" class="back-btn">
+        ← Admin Dashboard
+    </a>
+
+
+    <!-- SECURITY NOTICE -->
+
+    <div class="security">
+
+        🔐 <b>ଗୋପନୀୟ ସୂଚନା:</b><br>
+
+        ଏଠାରେ ଥିବା ସଦସ୍ୟମାନଙ୍କର
+        ମତାମତ କେବଳ ଅଧିକୃତ Admin
+        ଦେଖିପାରିବେ।
+
+        ଏହି ତଥ୍ୟ Public Member List
+        କିମ୍ବା ସାଧାରଣ ସଦସ୍ୟଙ୍କ ପାଇଁ
+        ଦେଖାଯିବ ନାହିଁ।
+
+    </div>
+
+
+    <!-- SUMMARY -->
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-title">
+                ମୋଟ ମତାମତ
+            </div>
+
+            <div class="card-number"
+                 id="totalFeedback">
+                0
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                ମତାମତ ଦେଇଥିବା ସଦସ୍ୟ
+            </div>
+
+            <div class="card-number"
+                 id="uniqueMembers">
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="search"
+            id="search"
+            placeholder="🔍 ସଦସ୍ୟ ନାମ / Member ID ଖୋଜନ୍ତୁ..."
+        >
+
+    </div>
+
+
+    <!-- LIST -->
+
+    <div id="loading"
+         class="loading">
+
+        ⏳ ମତାମତ ଲୋଡ୍ ହେଉଛି...
+
+    </div>
+
+
+    <div id="feedbackList"
+         class="feedback-list">
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+    db,
+    auth
+} from "./firebase.js";
+
+
+const feedbackList =
+    document.getElementById("feedbackList");
+
+const loading =
+    document.getElementById("loading");
+
+const totalFeedback =
+    document.getElementById("totalFeedback");
+
+const uniqueMembers =
+    document.getElementById("uniqueMembers");
+
+const search =
+    document.getElementById("search");
+
+
+let allFeedback = [];
+
+
+/* ================================
+   AUTH CHECK
+================================ */
+
+onAuthStateChanged(auth, async (user) => {
+
+    if(!user){
+
+        alert("⚠️ Admin Login ଆବଶ୍ୟକ।");
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+    /*
+       Admin authentication ଥିବା user
+       ହିଁ ଏହି page ବ୍ୟବହାର କରିବେ।
+
+       Firestore Rules ରେ ମଧ୍ୟ
+       Admin-only read ଲଗାଇବା ଆବଶ୍ୟକ।
+    */
+
+    await loadFeedback();
+
+});
+
+
+/* ================================
+   LOAD FEEDBACK
+================================ */
+
+async function loadFeedback(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "member_feedback"
+                )
+            );
+
+
+        allFeedback = [];
+
+
+        snapshot.forEach(docSnap => {
+
+            allFeedback.push({
+
+                id:docSnap.id,
+
+                ...docSnap.data()
+
+            });
+
+        });
+
+
+        /* NEWEST FIRST */
+
+        allFeedback.sort((a,b)=>{
+
+            const da =
+                a.createdAt?.toDate
+                ? a.createdAt.toDate()
+                : new Date(0);
+
+            const dbb =
+                b.createdAt?.toDate
+                ? b.createdAt.toDate()
+                : new Date(0);
+
+            return dbb - da;
+
+        });
+
+
+        /* TOTAL */
+
+        totalFeedback.textContent =
+            allFeedback.length;
+
+
+        /* UNIQUE MEMBERS */
+
+        const memberSet =
+            new Set();
+
+        allFeedback.forEach(item => {
+
+            if(item.memberDocId){
+
+                memberSet.add(
+                    item.memberDocId
+                );
+
+            }else if(item.memberId){
+
+                memberSet.add(
+                    item.memberId
+                );
+
+            }
+
+        });
+
+
+        uniqueMembers.textContent =
+            memberSet.size;
+
+
+        loading.style.display =
+            "none";
+
+
+        renderFeedback(
+            allFeedback
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        loading.innerHTML = `
+            ❌ ମତାମତ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ।
+            <br><br>
+            <small>
+            ${escapeHTML(error.message)}
+            </small>
+        `;
+
+    }
+
+}
+
+
+/* ================================
+   RENDER
+================================ */
+
+function renderFeedback(list){
+
+    feedbackList.innerHTML = "";
+
+
+    if(list.length === 0){
+
+        feedbackList.innerHTML = `
+
+            <div class="empty">
+
+                📭 ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି
+                ସଦସ୍ୟ ମତାମତ ଦେଇନାହାନ୍ତି।
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.forEach((item,index)=>{
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "feedback";
+
+
+        const date =
+            formatDate(item.createdAt);
+
+
+        div.innerHTML = `
+
+            <div class="feedback-header">
+
+                <div>
+
+                    <div class="member-name">
+
+                        ${escapeHTML(
+                            item.memberName || "ନାମ ନାହିଁ"
+                        )}
+
+                    </div>
+
+                    <div class="member-id">
+
+                        Member ID:
+                        ${escapeHTML(
+                            item.memberId || "—"
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div class="date">
+
+                    ${date}
+
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <div class="question-title">
+                    1️⃣ ଆପଣଙ୍କୁ କୌଣସି ସଦସ୍ୟ ବା
+                    କମିଟି ସଦସ୍ୟ ସଂଘରେ ଯୋଗ ଦେବା
+                    ପାଇଁ ବାଧ୍ୟ କରିଛନ୍ତି କି?
+                </div>
+
+                <div class="answer">
+                    ${escapeHTML(
+                        item.q1 || "ଉତ୍ତର ନାହିଁ"
+                    )}
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <div class="question-title">
+                    2️⃣ ଆପଣଙ୍କ ମନରେ ସଂଘ ପ୍ରତି
+                    ଯୋଗଦେବାର ଇଚ୍ଛା କିପରି
+                    ସୃଷ୍ଟି ହେଲା?
+                </div>
+
+                <div class="answer">
+                    ${escapeHTML(
+                        item.q2 || "ଉତ୍ତର ନାହିଁ"
+                    )}
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <div class="question-title">
+                    3️⃣ ଆପଣ ସଂଘକୁ କେଉଁ ଭାବରେ
+                    ଗ୍ରହଣ କରିଛନ୍ତି?
+                </div>
+
+                <div class="answer">
+                    ${escapeHTML(
+                        item.q3 || "ଉତ୍ତର ନାହିଁ"
+                    )}
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <div class="question-title">
+                    4️⃣ ଆପଣ ସଂଘର ଉନ୍ନତି ପାଇଁ
+                    କ’ଣ କରିପାରିବେ?
+                </div>
+
+                <div class="answer">
+                    ${escapeHTML(
+                        item.q4 || "ଉତ୍ତର ନାହିଁ"
+                    )}
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <div class="question-title">
+                    5️⃣ ସଂଘରେ ଯୋଗ ଦେବା ପରେ
+                    ଆପଣଙ୍କୁ କେମିତି ଲାଗୁଛି?
+                </div>
+
+                <div class="answer">
+                    ${escapeHTML(
+                        item.q5 || "ଉତ୍ତର ନାହିଁ"
+                    )}
+                </div>
+
+            </div>
+
+
+            <div class="question">
+
+                <div class="question-title">
+                    6️⃣ ସଂଘର ଉନ୍ନତି ପାଇଁ
+                    ଆପଣଙ୍କ ମତାମତ ଓ ପରାମର୍ଶ
+                </div>
+
+                <div class="answer">
+                    ${escapeHTML(
+                        item.q6 || "ଉତ୍ତର ନାହିଁ"
+                    )}
+                </div>
+
+            </div>
+
+        `;
+
+
+        feedbackList.appendChild(div);
+
+    });
+
+}
+
+
+/* ================================
+   SEARCH
+================================ */
+
+search.addEventListener(
+    "input",
+    function(){
+
+        const text =
+            this.value
+                .trim()
+                .toLowerCase();
+
+
+        if(!text){
+
+            renderFeedback(
+                allFeedback
+            );
+
+            return;
+
+        }
+
+
+        const filtered =
+            allFeedback.filter(item=>{
+
+                const name =
+                    String(
+                        item.memberName || ""
+                    ).toLowerCase();
+
+                const id =
+                    String(
+                        item.memberId || ""
+                    ).toLowerCase();
+
+                return (
+                    name.includes(text) ||
+                    id.includes(text)
+                );
+
+            });
+
+
+        renderFeedback(
+            filtered
+        );
+
+    }
+);
+
+
+/* ================================
+   DATE
+================================ */
+
+function formatDate(timestamp){
+
+    if(
+        !timestamp ||
+        !timestamp.toDate
+    ){
+
+        return "ତାରିଖ ନାହିଁ";
+
+    }
+
+
+    const date =
+        timestamp.toDate();
+
+
+    return date.toLocaleString(
+        "or-IN",
+        {
+            day:"2-digit",
+            month:"2-digit",
+            year:"numeric",
+            hour:"2-digit",
+            minute:"2-digit"
+        }
+    );
+
+}
+
+
+/* ================================
+   SECURITY
+================================ */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+</script>
+
+</body>
+</html>
