@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#7b1e1e">
+
+<title>ସଦସ୍ୟ ମତାମତ</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:
+    "Noto Sans Oriya",
+    "Nirmala UI",
+    Arial,
+    sans-serif;
+
+    background:
+    linear-gradient(135deg,#fff8e7,#f5eeee);
+
+    color:#222;
+    min-height:100vh;
+    padding:15px;
+}
+
+.container{
+    max-width:650px;
+    margin:auto;
+}
+
+.header{
+    background:
+    linear-gradient(135deg,#7b1e1e,#b71c1c);
+
+    color:white;
+    text-align:center;
+    padding:20px 15px;
+    border-radius:15px;
+    margin-bottom:15px;
+
+    box-shadow:
+    0 4px 12px rgba(0,0,0,.18);
+}
+
+.header h1{
+    font-size:23px;
+    margin-bottom:6px;
+}
+
+.header p{
+    font-size:14px;
+}
+
+.security{
+    background:#fff3cd;
+    border-left:5px solid #ff9800;
+    padding:13px;
+    border-radius:8px;
+    margin-bottom:15px;
+    line-height:1.6;
+    font-size:14px;
+}
+
+.box{
+    background:white;
+    padding:18px;
+    border-radius:13px;
+    margin-bottom:15px;
+
+    box-shadow:
+    0 3px 10px rgba(0,0,0,.08);
+}
+
+.box h2{
+    color:#7b1e1e;
+    font-size:19px;
+    margin-bottom:13px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+    line-height:1.5;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:12px;
+
+    border:1px solid #ccc;
+    border-radius:8px;
+
+    font-size:15px;
+    outline:none;
+
+    margin-bottom:14px;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+    border-color:#b71c1c;
+}
+
+textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+button{
+    width:100%;
+    padding:14px;
+
+    border:none;
+    border-radius:9px;
+
+    background:#b71c1c;
+    color:white;
+
+    font-size:17px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+button:hover{
+    background:#8f1515;
+}
+
+button:disabled{
+    background:#999;
+    cursor:not-allowed;
+}
+
+.verify-btn{
+    background:#333;
+}
+
+.verify-btn:hover{
+    background:#111;
+}
+
+#feedbackForm{
+    display:none;
+}
+
+.memberInfo{
+    background:#f8f9fa;
+
+    border-left:4px solid #b71c1c;
+
+    padding:11px;
+    border-radius:7px;
+
+    margin-bottom:15px;
+
+    line-height:1.7;
+}
+
+.message{
+    padding:12px;
+    border-radius:8px;
+
+    margin-top:12px;
+
+    display:none;
+
+    line-height:1.6;
+}
+
+.success{
+    background:#dff5e5;
+    color:#146c2e;
+    border:1px solid #8bd19c;
+}
+
+.error{
+    background:#ffe1e1;
+    color:#9d1515;
+    border:1px solid #e49a9a;
+}
+
+.note{
+    background:#eef5ff;
+
+    border-left:4px solid #2878d0;
+
+    padding:10px;
+
+    margin-top:12px;
+
+    font-size:13px;
+    line-height:1.6;
+}
+
+.radio-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+
+    margin-bottom:15px;
+}
+
+.radio-option{
+    display:flex;
+    align-items:flex-start;
+    gap:8px;
+
+    background:#f8f8f8;
+
+    padding:10px;
+
+    border-radius:7px;
+}
+
+.radio-option input{
+    width:auto;
+    margin:3px 0 0 0;
+}
+
+.radio-option label{
+    margin:0;
+    font-weight:normal;
+}
+
+.footer{
+    text-align:center;
+    color:#777;
+    font-size:13px;
+    padding:15px;
+}
+
+@media(max-width:450px){
+
+    body{
+        padding:10px;
+    }
+
+    .header h1{
+        font-size:20px;
+    }
+
+    .box{
+        padding:15px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<div class="header">
+
+    <h1>
+        📊 ସଦସ୍ୟ ମତାମତ
+    </h1>
+
+    <p>
+        ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ
+    </p>
+
+</div>
+
+
+<!-- ==================================================
+     SECURITY
+================================================== -->
+
+<div class="security">
+
+    🔐 <b>ଗୋପନୀୟତା:</b><br>
+
+    ଆପଣଙ୍କ ମତାମତ ସାଧାରଣ
+    Members କିମ୍ବା Public
+    ଦେଖିପାରିବେ ନାହିଁ।
+
+    କେବଳ ଅଧିକୃତ Admin
+    ମତାମତ ଦେଖିପାରିବେ।
+
+</div>
+
+
+<!-- ==================================================
+     MEMBER VERIFICATION
+================================================== -->
+
+<div class="box">
+
+    <h2>
+        👤 ସଦସ୍ୟ ପରିଚୟ ଯାଞ୍ଚ
+    </h2>
+
+
+    <label>
+        🪪 Member ID
+    </label>
+
+    <input
+        type="text"
+        id="memberId"
+        placeholder="ଉଦାହରଣ: ORKS0228"
+        autocomplete="off"
+    >
+
+
+    <label>
+        📱 Registered Mobile Number
+    </label>
+
+    <input
+        type="tel"
+        id="mobile"
+        placeholder="10 digit mobile number"
+        inputmode="numeric"
+        autocomplete="off"
+    >
+
+
+    <button
+        type="button"
+        id="verifyBtn"
+        class="verify-btn"
+    >
+
+        🔍 Verify Member
+
+    </button>
+
+
+    <div
+        id="verifyMessage"
+        class="message"
+    ></div>
+
+</div>
+
+
+<!-- ==================================================
+     FEEDBACK FORM
+================================================== -->
+
+<div
+    class="box"
+    id="feedbackForm"
+>
+
+    <h2>
+        📝 ଆପଣଙ୍କ ମତାମତ
+    </h2>
+
+
+    <!-- MEMBER INFO -->
+
+    <div
+        id="memberInfo"
+        class="memberInfo"
+    ></div>
+
+
+    <!-- ==================================================
+         QUESTION 1
+    ================================================== -->
+
+    <label>
+
+        1️⃣ ଆପଣଙ୍କୁ କୌଣସି ସଦସ୍ୟ ବା କମିଟି ସଦସ୍ୟ
+        ସଂଘରେ ଯୋଗ ଦେବା ପାଇଁ ବାଧ୍ୟ କରିଛନ୍ତି କି?
+
+    </label>
+
+
+    <div class="radio-group">
+
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q1"
+                value="ନା"
+                id="q1no"
+            >
+
+            <label for="q1no">
+                ନା
+            </label>
+
+        </div>
+
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q1"
+                value="ହଁ"
+                id="q1yes"
+            >
+
+            <label for="q1yes">
+                ହଁ
+            </label>
+
+        </div>
+
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q1"
+                value="ଅନ୍ୟ"
+                id="q1other"
+            >
+
+            <label for="q1other">
+                ଅନ୍ୟ
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================================
+         QUESTION 2
+    ================================================== -->
+
+    <label for="q2">
+
+        2️⃣ ଆପଣଙ୍କ ମନରେ ସଂଘ ପ୍ରତି
+        ଯୋଗଦେବାର ଇଚ୍ଛା କିପରି
+        ସୃଷ୍ଟି ହେଲା?
+
+    </label>
+
+    <textarea
+        id="q2"
+        placeholder="ଆପଣଙ୍କ ମତାମତ ଲେଖନ୍ତୁ..."
+    ></textarea>
+
+
+    <!-- ==================================================
+         QUESTION 3
+    ================================================== -->
+
+    <label for="q3">
+
+        3️⃣ ଆପଣ ସଂଘକୁ କେଉଁ ଭାବରେ
+        ଗ୍ରହଣ କରିଛନ୍ତି?
+
+    </label>
+
+    <select id="q3">
+
+        <option value="">
+            -- ଚୟନ କରନ୍ତୁ --
+        </option>
+
+        <option value="ମୋ ପରିବାର ଭଳି">
+            ମୋ ପରିବାର ଭଳି
+        </option>
+
+        <option value="ମୋର ନିଜ ସଂଘ">
+            ମୋର ନିଜ ସଂଘ
+        </option>
+
+        <option value="ଓଡ଼ିଆ ସମାଜର ଏକତା">
+            ଓଡ଼ିଆ ସମାଜର ଏକତା
+        </option>
+
+        <option value="କଳା ଓ ସଂସ୍କୃତିର ସୁରକ୍ଷା">
+            କଳା ଓ ସଂସ୍କୃତିର ସୁରକ୍ଷା
+        </option>
+
+        <option value="ସାମାଜିକ ସେବା">
+            ସାମାଜିକ ସେବା
+        </option>
+
+    </select>
+
+
+    <!-- ==================================================
+         QUESTION 4
+    ================================================== -->
+
+    <label for="q4">
+
+        4️⃣ ଆପଣ ସଂଘର ଉନ୍ନତି ପାଇଁ
+        କ’ଣ କରିପାରିବେ?
+
+    </label>
+
+    <textarea
+        id="q4"
+        placeholder="ଆପଣ କଣ କରିପାରିବେ ଲେଖନ୍ତୁ..."
+    ></textarea>
+
+
+    <!-- ==================================================
+         QUESTION 5
+    ================================================== -->
+
+    <label for="q5">
+
+        5️⃣ ସଂଘରେ ଯୋଗ ଦେବା ପରେ
+        ଆପଣଙ୍କୁ କେମିତି ଲାଗୁଛି?
+
+    </label>
+
+    <select id="q5">
+
+        <option value="">
+            -- ଚୟନ କରନ୍ତୁ --
+        </option>
+
+        <option value="ବହୁତ ଭଲ">
+            ବହୁତ ଭଲ
+        </option>
+
+        <option value="ଭଲ">
+            ଭଲ
+        </option>
+
+        <option value="ସାଧାରଣ">
+            ସାଧାରଣ
+        </option>
+
+        <option value="ଆଶା ଅନୁସାରେ ନୁହେଁ">
+            ଆଶା ଅନୁସାରେ ନୁହେଁ
+        </option>
+
+        <option value="ପରିବର୍ତ୍ତନ ଆଶା କରୁଛି">
+            ପରିବର୍ତ୍ତନ ଆଶା କରୁଛି
+        </option>
+
+    </select>
+
+
+    <!-- ==================================================
+         QUESTION 6
+    ================================================== -->
+
+    <label for="q6">
+
+        6️⃣ ସଂଘର ଉନ୍ନତି ପାଇଁ
+        ଆପଣଙ୍କ ମତାମତ ଓ ପରାମର୍ଶ
+        ଲେଖନ୍ତୁ।
+
+    </label>
+
+    <textarea
+        id="q6"
+        placeholder="ଆପଣଙ୍କ ମୂଲ୍ୟବାନ ପରାମର୍ଶ..."
+    ></textarea>
+
+
+    <div class="note">
+
+        💡 ଆପଣଙ୍କ ମତାମତ ସଂଘର ଉନ୍ନତି
+        ପାଇଁ ବ୍ୟବହାର କରାଯିବ।
+
+        ଦୟାକରି ସତ୍ୟ ଓ ନିର୍ଭୟ ଭାବରେ
+        ନିଜ ମତାମତ ଦିଅନ୍ତୁ।
+
+    </div>
+
+
+    <br>
+
+
+    <button
+        type="button"
+        id="submitBtn"
+    >
+
+        ✅ ମତାମତ Submit କରନ୍ତୁ
+
+    </button>
+
+
+    <div
+        id="submitMessage"
+        class="message"
+    ></div>
+
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    © 2026 Odia Ratna Kalakar Sangha
+
+</div>
+
+
+</div>
+
+
+<script type="module">
+
+
+/* ==================================================
+   FIREBASE
+================================================== */
+
+import {
+
+    db
+
+}
+from "./firebase.js";
+
+
+import {
+
+    collection,
+    query,
+    where,
+    getDocs,
+    doc,
+    setDoc,
+    serverTimestamp
+
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* ==================================================
+   ELEMENTS
+================================================== */
+
+const memberIdInput =
+document.getElementById("memberId");
+
+
+const mobileInput =
+document.getElementById("mobile");
+
+
+const verifyBtn =
+document.getElementById("verifyBtn");
+
+
+const verifyMessage =
+document.getElementById("verifyMessage");
+
+
+const feedbackForm =
+document.getElementById("feedbackForm");
+
+
+const memberInfo =
+document.getElementById("memberInfo");
+
+
+const submitBtn =
+document.getElementById("submitBtn");
+
+
+const submitMessage =
+document.getElementById("submitMessage");
+
+
+/* ==================================================
+   VERIFIED MEMBER
+================================================== */
+
+let verifiedMember = null;
+
+
+/* ==================================================
+   NORMALIZE MOBILE
+================================================== */
+
+function normalizeMobile(value){
+
+    return String(value || "")
+        .replace(/\D/g,"")
+        .slice(-10);
+
+}
+
+
+/* ==================================================
+   SHOW MESSAGE
+================================================== */
+
+function showMessage(
+    element,
+    text,
+    type
+){
+
+    element.textContent = text;
+
+    element.className =
+        "message " + type;
+
+    element.style.display =
+        "block";
+
+}
+
+
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==================================================
+   VERIFY MEMBER
+================================================== */
+
+verifyBtn.addEventListener(
+    "click",
+    async function(){
+
+        const memberId =
+            memberIdInput.value.trim();
+
+
+        const mobile =
+            normalizeMobile(
+                mobileInput.value
+            );
+
+
+        verifyMessage.style.display =
+            "none";
+
+
+        feedbackForm.style.display =
+            "none";
+
+
+        verifiedMember =
+            null;
+
+
+        /* ===============================
+           VALIDATION
+        =============================== */
+
+        if(!memberId){
+
+            showMessage(
+                verifyMessage,
+                "⚠️ Member ID ଦିଅନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(mobile.length !== 10){
+
+            showMessage(
+                verifyMessage,
+                "⚠️ ସଠିକ୍ 10 digit mobile number ଦିଅନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        verifyBtn.disabled =
+            true;
+
+
+        verifyBtn.textContent =
+            "⏳ Verification ହେଉଛି...";
+
+
+        try{
+
+
+            /* ===============================
+               SEARCH MEMBER ID
+            =============================== */
+
+            const memberQuery =
+
+            query(
+
+                collection(
+                    db,
+                    "members"
+                ),
+
+                where(
+                    "memberId",
+                    "==",
+                    memberId
+                )
+
+            );
+
+
+            const snapshot =
+                await getDocs(
+                    memberQuery
+                );
+
+
+            if(snapshot.empty){
+
+                showMessage(
+                    verifyMessage,
+                    "❌ Member ID ମିଳିଲା ନାହିଁ।",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* ===============================
+               CHECK MOBILE + STATUS
+            =============================== */
+
+            let foundMember =
+                null;
+
+
+            snapshot.forEach(
+                memberDoc => {
+
+                    const data =
+                        memberDoc.data();
+
+
+                    const registeredMobile =
+                        normalizeMobile(
+                            data.mobile
+                        );
+
+
+                    const status =
+                        String(
+                            data.status || ""
+                        )
+                        .toLowerCase();
+
+
+                    if(
+
+                        registeredMobile === mobile &&
+
+                        (
+                            status === "approved" ||
+                            status === ""
+                        )
+
+                    ){
+
+                        foundMember = {
+
+                            docId:
+                                memberDoc.id,
+
+                            ...data
+
+                        };
+
+                    }
+
+                }
+            );
+
+
+            if(!foundMember){
+
+                showMessage(
+                    verifyMessage,
+                    "❌ Member ID ଓ Registered Mobile Number ମେଳ ଖାଉନାହିଁ।",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            /* ===============================
+               SAVE VERIFIED MEMBER
+            =============================== */
+
+            verifiedMember =
+                foundMember;
+
+
+            memberInfo.innerHTML = `
+
+                👤 <b>ନାମ:</b>
+                ${escapeHTML(
+                    foundMember.name || "-"
+                )}
+
+                <br>
+
+                🪪 <b>Member ID:</b>
+                ${escapeHTML(
+                    foundMember.memberId || "-"
+                )}
+
+            `;
+
+
+            /* ===============================
+               SHOW FORM
+            =============================== */
+
+            feedbackForm.style.display =
+                "block";
+
+
+            showMessage(
+                verifyMessage,
+                "✅ Member verification ସଫଳ। ଏବେ Feedback ଦିଅନ୍ତୁ।",
+                "success"
+            );
+
+
+            window.scrollTo({
+
+                top:
+                    feedbackForm.offsetTop - 10,
+
+                behavior:
+                    "smooth"
+
+            });
+
+
+        }
+
+        catch(error){
+
+            console.error(
+                "Verification Error:",
+                error
+            );
+
+
+            showMessage(
+                verifyMessage,
+                "❌ Verification ବିଫଳ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+                "error"
+            );
+
+        }
+
+        finally{
+
+            verifyBtn.disabled =
+                false;
+
+
+            verifyBtn.textContent =
+                "🔍 Verify Member";
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   SUBMIT FEEDBACK
+================================================== */
+
+submitBtn.addEventListener(
+    "click",
+    async function(){
+
+        submitMessage.style.display =
+            "none";
+
+
+        if(!verifiedMember){
+
+            showMessage(
+                submitMessage,
+                "❌ ପ୍ରଥମେ Member Verification କରନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* ===============================
+           GET ANSWERS
+        =============================== */
+
+        const q1Element =
+            document.querySelector(
+                'input[name="q1"]:checked'
+            );
+
+
+        const q1 =
+            q1Element
+            ? q1Element.value
+            : "";
+
+
+        const q2 =
+            document.getElementById(
+                "q2"
+            ).value.trim();
+
+
+        const q3 =
+            document.getElementById(
+                "q3"
+            ).value.trim();
+
+
+        const q4 =
+            document.getElementById(
+                "q4"
+            ).value.trim();
+
+
+        const q5 =
+            document.getElementById(
+                "q5"
+            ).value.trim();
+
+
+        const q6 =
+            document.getElementById(
+                "q6"
+            ).value.trim();
+
+
+        /* ===============================
+           VALIDATION
+        =============================== */
+
+        if(!q1){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ପ୍ରଶ୍ନ 1ର ଉତ୍ତର ଦିଅନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!q2){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ପ୍ରଶ୍ନ 2ର ଉତ୍ତର ଦିଅନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!q3){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ପ୍ରଶ୍ନ 3ର ଉତ୍ତର ଚୟନ କରନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!q4){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ପ୍ରଶ୍ନ 4ର ଉତ୍ତର ଦିଅନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!q5){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ପ୍ରଶ୍ନ 5ର ଉତ୍ତର ଚୟନ କରନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!q6){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ପ୍ରଶ୍ନ 6ର ଉତ୍ତର ଦିଅନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* ===============================
+           DISABLE BUTTON
+        =============================== */
+
+        submitBtn.disabled =
+            true;
+
+
+        submitBtn.textContent =
+            "⏳ Feedback Save ହେଉଛି...";
+
+
+        try{
+
+
+            /* ==================================================
+               ONE MEMBER = ONE FEEDBACK
+
+               Member Firestore document ID
+               କୁ Feedback document ID କରାଯାଇଛି।
+            ================================================== */
+
+            const feedbackRef =
+
+            doc(
+
+                db,
+
+                "member_feedback",
+
+                verifiedMember.docId
+
+            );
+
+
+            /* ===============================
+               SAVE
+            =============================== */
+
+            await setDoc(
+
+                feedbackRef,
+
+                {
+
+                    memberDocId:
+                        verifiedMember.docId,
+
+                    memberId:
+                        String(
+                            verifiedMember.memberId || ""
+                        ),
+
+                    memberName:
+                        String(
+                            verifiedMember.name || ""
+                        ),
+
+                    q1:
+                        q1,
+
+                    q2:
+                        q2,
+
+                    q3:
+                        q3,
+
+                    q4:
+                        q4,
+
+                    q5:
+                        q5,
+
+                    q6:
+                        q6,
+
+                    createdAt:
+                        serverTimestamp()
+
+                }
+
+            );
+
+
+            /* ===============================
+               SUCCESS
+            =============================== */
+
+            showMessage(
+                submitMessage,
+                "🎉 ଆପଣଙ୍କ Feedback ସଫଳତାର ସହିତ Submit ହୋଇଛି। ଧନ୍ୟବାଦ।",
+                "success"
+            );
+
+
+            submitBtn.textContent =
+                "✅ Feedback Submitted";
+
+
+            /* ===============================
+               LOCK FORM
+            =============================== */
+
+            const fields =
+                feedbackForm.querySelectorAll(
+                    "input, textarea, select"
+                );
+
+
+            fields.forEach(
+                field => {
+
+                    field.disabled =
+                        true;
+
+                }
+            );
+
+
+        }
+
+        catch(error){
+
+            console.error(
+                "Feedback Submit Error:",
+                error
+            );
+
+
+            if(
+                error.code ===
+                "permission-denied"
+            ){
+
+                showMessage(
+                    submitMessage,
+                    "ℹ️ ଏହି Memberଙ୍କ Feedback ପୂର୍ବରୁ Submit ହୋଇସାରିଛି କିମ୍ବା Submit କରିବାକୁ permission ନାହିଁ।",
+                    "error"
+                );
+
+            }
+
+            else{
+
+                showMessage(
+                    submitMessage,
+                    "❌ Feedback Submit ହୋଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+                    "error"
+                );
+
+            }
+
+
+            submitBtn.disabled =
+                false;
+
+
+            submitBtn.textContent =
+                "✅ ମତାମତ Submit କରନ୍ତୁ";
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+  </html>
