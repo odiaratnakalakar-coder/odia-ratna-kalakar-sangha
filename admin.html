@@ -1,1302 +1,1783 @@
-<!DOCTYPE html>  <html lang="or">  <head>  <meta charset="UTF-8">  <meta name="viewport"  
-content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="or">
 
-<title>Admin Dashboard</title>  <style>  
-  
-/* ==================================================  
-   RESET  
-================================================== */  
-  
-*{  
-    margin:0;  
-    padding:0;  
-    box-sizing:border-box;  
-    font-family:Arial,sans-serif;  
-}  
-  
-  
-/* ==================================================  
-   BODY  
-================================================== */  
-  
-body{  
-  
-    background:#111;  
-  
-    color:white;  
-  
-    padding:15px;  
-  
-}  
-  
-  
-/* ==================================================  
-   CONTAINER  
-================================================== */  
-  
-.container{  
-  
-    max-width:600px;  
-  
-    margin:auto;  
-  
-}  
-  
-  
-/* ==================================================  
-   TITLE  
-================================================== */  
-  
-h1{  
-  
-    text-align:center;  
-  
-    color:#ffcc00;  
-  
-    margin-bottom:20px;  
-  
-}  
-  
-  
-/* ==================================================  
-   DASHBOARD  
-================================================== */  
-  
-.dashboard{  
-  
-    display:grid;  
-  
-    grid-template-columns:  
-    repeat(2,1fr);  
-  
-    gap:12px;  
-  
-    margin-bottom:25px;  
-  
-}  
-  
-  
-/* ==================================================  
-   CARD  
-================================================== */  
-  
-.card{  
-  
-    background:#222;  
-  
-    border:  
-    2px solid  
-    #c40000;  
-  
-    border-radius:12px;  
-  
-    padding:20px;  
-  
-    text-align:center;  
-  
-    box-shadow:  
-    0 0 10px  
-    rgba(255,0,0,.3);  
-  
-}  
-  
-  
-.card h2{  
-  
-    font-size:28px;  
-  
-    margin-bottom:8px;  
-  
-}  
-  
-  
-.card p{  
-  
-    font-size:15px;  
-  
-    color:#ddd;  
-  
-}  
-  
-  
-/* ==================================================  
-   APPLICATION CARD  
-================================================== */  
-  
-.applicationCard{  
-  
-    grid-column:  
-    1 / -1;  
-  
-    background:  
-    linear-gradient(  
-        135deg,  
-        #260000,  
-        #151515  
-    );  
-  
-    border:  
-    2px solid  
-    #ffcc00;  
-  
-    box-shadow:  
-    0 0 15px  
-    rgba(255,204,0,.25);  
-  
-    text-decoration:none;  
-  
-    color:inherit;  
-  
-    display:block;  
-  
-    cursor:pointer;  
-  
-}  
-  
-  
-.applicationCard h2{  
-  
-    color:#ffcc00;  
-  
-    font-size:32px;  
-  
-}  
-  
-  
-.applicationCard p{  
-  
-    color:#fff;  
-  
-    font-weight:bold;  
-  
-}  
-  
-  
-/* ==================================================  
-   BIRTHDAY  
-================================================== */  
-  
-.birthdayCard{  
-  
-    grid-column:  
-    1 / -1;  
-  
-    border:  
-    2px solid  
-    #ff9900;  
-  
-    background:#222;  
-  
-}  
-  
-  
-.birthdayCard h2{  
-  
-    color:#ffcc00;  
-  
-    font-size:32px;  
-  
-}  
-  
-  
-.birthdayCard p{  
-  
-    color:#ffcc00;  
-  
-    font-weight:bold;  
-  
-}  
-  
-  
-.birthdayList{  
-  
-    margin-top:12px;  
-  
-    text-align:left;  
-  
-}  
-  
-  
-.birthdayMember{  
-  
-    background:#151515;  
-  
-    border-left:  
-    4px solid  
-    #ffcc00;  
-  
-    border-radius:7px;  
-  
-    padding:9px;  
-  
-    margin-top:7px;  
-  
-    line-height:1.5;  
-  
-}  
-  
-  
-.birthdayMember strong{  
-  
-    color:#ffcc00;  
-  
-}  
-  
-  
-.noBirthday{  
-  
-    color:#aaa;  
-  
-    text-align:center;  
-  
-    padding:5px;  
-  
-    font-size:14px;  
-  
-}  
-  
-  
-/* ==================================================  
-   MENU  
-================================================== */  
-  
-.menu{  
-  
-    display:flex;  
-  
-    flex-direction:column;  
-  
-    gap:12px;  
-  
-}  
-  
-  
-.menu a{  
-  
-    display:block;  
-  
-    text-decoration:none;  
-  
-    background:#c40000;  
-  
-    color:white;  
-  
-    padding:14px;  
-  
-    border-radius:8px;  
-  
-    text-align:center;  
-  
-    font-size:17px;  
-  
-    font-weight:bold;  
-  
-    transition:.3s;  
-  
-}  
-  
-  
-.menu a:hover{  
-  
-    background:#ff0000;  
-  
-}  
-  
-  
-/* ==================================================  
-   APPLICATION ADMIN BUTTON  
-================================================== */  
-  
-.applicationAdmin{  
-  
-    background:  
-    linear-gradient(  
-        135deg,  
-        #8b0000,  
-        #c40000  
-    ) !important;  
-  
-    border:  
-    2px solid  
-    #ffcc00;  
-  
-    box-shadow:  
-    0 0 12px  
-    rgba(255,204,0,.25);  
-  
-}  
-  
-  
-.applicationAdmin:hover{  
-  
-    background:  
-    linear-gradient(  
-        135deg,  
-        #b00000,  
-        #ff0000  
-    ) !important;  
-  
-}  
-  
-  
-/* ==================================================  
-   MEMBER BOOK  
-================================================== */  
-  
-.memberBook{  
-  
-    background:  
-    #8b0000 !important;  
-  
-    border:  
-    2px solid  
-    #ffcc00;  
-  
-}  
-  
-  
-.memberBook:hover{  
-  
-    background:  
-    #b00000 !important;  
-  
-}  
-  
-  
-/* ==================================================  
-   FOOTER  
-================================================== */  
-  
-.footer{  
-  
-    margin-top:25px;  
-  
-    text-align:center;  
-  
-    font-size:14px;  
-  
-    color:#aaa;  
-  
-}  
-  
-  
-/* ==================================================  
-   MOBILE  
-================================================== */  
-  
-@media(max-width:450px){  
-  
-    .dashboard{  
-  
-        gap:10px;  
-  
-    }  
-  
-  
-    .card{  
-  
-        padding:  
-        17px 10px;  
-  
-    }  
-  
-  
-    .card h2{  
-  
-        font-size:26px;  
-  
-    }  
-  
-  
-    .card p{  
-  
-        font-size:14px;  
-  
-    }  
-  
-}  
-  
-</style>  </head>  <body>  <div class="container">  <!-- ==================================================  
-     TITLE  
-================================================== -->  <h1>  📊 Admin Dashboard
+<head>
 
-</h1>  <!-- ==================================================  
-     DASHBOARD CARDS  
-================================================== -->  <div class="dashboard">  <!-- ==================================================  
-     TOTAL MEMBERS  
-================================================== -->  <div class="card">  <h2 id="memberCount">  0
+<meta charset="UTF-8">
 
-</h2>  <p>  👥 Total Members
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-</p>  </div>  <!-- ==================================================  
-     COMMITTEE  
-================================================== -->  <div class="card">  <h2 id="committeeCount">  0
+<meta name="theme-color"
+      content="#111111">
 
-</h2>  <p>  👨‍💼 Committee Members
+<title>Admin Dashboard</title>
 
-</p>  </div>  <!-- ==================================================  
-     APPLICATIONS  
-================================================== -->  <a
+
+<style>
+
+/* ==================================================
+   RESET
+================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+
+/* ==================================================
+   BODY
+================================================== */
+
+body{
+
+    background:#111;
+
+    color:white;
+
+    padding:15px;
+
+}
+
+
+/* ==================================================
+   CONTAINER
+================================================== */
+
+.container{
+
+    max-width:600px;
+
+    margin:auto;
+
+}
+
+
+/* ==================================================
+   TITLE
+================================================== */
+
+h1{
+
+    text-align:center;
+
+    color:#ffcc00;
+
+    margin-bottom:20px;
+
+}
+
+
+/* ==================================================
+   DASHBOARD
+================================================== */
+
+.dashboard{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:12px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==================================================
+   CARD
+================================================== */
+
+.card{
+
+    background:#222;
+
+    border:
+    2px solid
+    #c40000;
+
+    border-radius:12px;
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:
+    0 0 10px
+    rgba(255,0,0,.3);
+
+}
+
+
+.card h2{
+
+    font-size:28px;
+
+    margin-bottom:8px;
+
+}
+
+
+.card p{
+
+    font-size:15px;
+
+    color:#ddd;
+
+}
+
+
+/* ==================================================
+   APPLICATION CARD
+================================================== */
+
+.applicationCard{
+
+    grid-column:
+    1 / -1;
+
+    background:
+    linear-gradient(
+        135deg,
+        #260000,
+        #151515
+    );
+
+    border:
+    2px solid
+    #ffcc00;
+
+    box-shadow:
+    0 0 15px
+    rgba(255,204,0,.25);
+
+    text-decoration:none;
+
+    color:inherit;
+
+    display:block;
+
+    cursor:pointer;
+
+}
+
+
+.applicationCard h2{
+
+    color:#ffcc00;
+
+    font-size:32px;
+
+}
+
+
+.applicationCard p{
+
+    color:#fff;
+
+    font-weight:bold;
+
+}
+
+
+/* ==================================================
+   FEEDBACK CARD
+================================================== */
+
+.feedbackCard{
+
+    grid-column:
+    1 / -1;
+
+    background:
+    linear-gradient(
+        135deg,
+        #001f26,
+        #151515
+    );
+
+    border:
+    2px solid
+    #00d9ff;
+
+    box-shadow:
+    0 0 15px
+    rgba(0,217,255,.20);
+
+    text-decoration:none;
+
+    color:inherit;
+
+    display:block;
+
+    cursor:pointer;
+
+}
+
+
+.feedbackCard h2{
+
+    color:#00d9ff;
+
+    font-size:32px;
+
+}
+
+
+.feedbackCard p{
+
+    color:#fff;
+
+    font-weight:bold;
+
+}
+
+
+.feedbackCountText{
+
+    font-size:13px !important;
+
+    color:#aaa !important;
+
+    margin-top:5px;
+
+}
+
+
+/* ==================================================
+   BIRTHDAY
+================================================== */
+
+.birthdayCard{
+
+    grid-column:
+    1 / -1;
+
+    border:
+    2px solid
+    #ff9900;
+
+    background:#222;
+
+}
+
+
+.birthdayCard h2{
+
+    color:#ffcc00;
+
+    font-size:32px;
+
+}
+
+
+.birthdayCard p{
+
+    color:#ffcc00;
+
+    font-weight:bold;
+
+}
+
+
+.birthdayList{
+
+    margin-top:12px;
+
+    text-align:left;
+
+}
+
+
+.birthdayMember{
+
+    background:#151515;
+
+    border-left:
+    4px solid
+    #ffcc00;
+
+    border-radius:7px;
+
+    padding:9px;
+
+    margin-top:7px;
+
+    line-height:1.5;
+
+}
+
+
+.birthdayMember strong{
+
+    color:#ffcc00;
+
+}
+
+
+.noBirthday{
+
+    color:#aaa;
+
+    text-align:center;
+
+    padding:5px;
+
+    font-size:14px;
+
+}
+
+
+/* ==================================================
+   MENU
+================================================== */
+
+.menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+
+.menu a{
+
+    display:block;
+
+    text-decoration:none;
+
+    background:#c40000;
+
+    color:white;
+
+    padding:14px;
+
+    border-radius:8px;
+
+    text-align:center;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+
+.menu a:hover{
+
+    background:#ff0000;
+
+}
+
+
+/* ==================================================
+   APPLICATION ADMIN BUTTON
+================================================== */
+
+.applicationAdmin{
+
+    background:
+    linear-gradient(
+        135deg,
+        #8b0000,
+        #c40000
+    ) !important;
+
+    border:
+    2px solid
+    #ffcc00;
+
+    box-shadow:
+    0 0 12px
+    rgba(255,204,0,.25);
+
+}
+
+
+.applicationAdmin:hover{
+
+    background:
+    linear-gradient(
+        135deg,
+        #b00000,
+        #ff0000
+    ) !important;
+
+}
+
+
+/* ==================================================
+   FEEDBACK ADMIN BUTTON
+================================================== */
+
+.feedbackAdmin{
+
+    background:
+    linear-gradient(
+        135deg,
+        #004b5c,
+        #006b80
+    ) !important;
+
+    border:
+    2px solid
+    #00d9ff;
+
+    box-shadow:
+    0 0 12px
+    rgba(0,217,255,.20);
+
+}
+
+
+.feedbackAdmin:hover{
+
+    background:
+    linear-gradient(
+        135deg,
+        #006b80,
+        #008da8
+    ) !important;
+
+}
+
+
+/* ==================================================
+   MEMBER BOOK
+================================================== */
+
+.memberBook{
+
+    background:
+    #8b0000 !important;
+
+    border:
+    2px solid
+    #ffcc00;
+
+}
+
+
+.memberBook:hover{
+
+    background:
+    #b00000 !important;
+
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+.footer{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    font-size:14px;
+
+    color:#aaa;
+
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width:450px){
+
+    .dashboard{
+
+        gap:10px;
+
+    }
+
+
+    .card{
+
+        padding:
+        17px 10px;
+
+    }
+
+
+    .card h2{
+
+        font-size:26px;
+
+    }
+
+
+    .card p{
+
+        font-size:14px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- ==================================================
+     TITLE
+================================================== -->
+
+<h1>
+
+📊 Admin Dashboard
+
+</h1>
+
+
+<!-- ==================================================
+     DASHBOARD CARDS
+================================================== -->
+
+<div class="dashboard">
+
+
+<!-- ==================================================
+     TOTAL MEMBERS
+================================================== -->
+
+<div class="card">
+
+<h2 id="memberCount">
+
+0
+
+</h2>
+
+<p>
+
+👥 Total Members
+
+</p>
+
+</div>
+
+
+<!-- ==================================================
+     COMMITTEE
+================================================== -->
+
+<div class="card">
+
+<h2 id="committeeCount">
+
+0
+
+</h2>
+
+<p>
+
+👨‍💼 Committee Members
+
+</p>
+
+</div>
+
+
+<!-- ==================================================
+     APPLICATIONS
+================================================== -->
+
+<a
 href="worker-help-admin.html"
 class="card applicationCard"
+>
 
-> 
+<h2 id="applicationCount">
 
-<h2 id="applicationCount">  0
+0
 
-</h2>  <p>  📋 ସହାୟତା Application
+</h2>
 
-</p>  </a>  <!-- ==================================================  
-     BLOOD DONORS  
-================================================== -->  <div class="card">  <h2 id="bloodCount">  0
-
-</h2>  <p>  🩸 Blood Donors
-
-</p>  </div>  <!-- ==================================================  
-     DONATION  
-================================================== -->  <div class="card">  <h2 id="donationCount">  ₹0
-
-</h2>  <p>  ❤️ Total Donation
-
-</p>  </div>  <!-- ==================================================  
-     BIRTHDAY  
-================================================== -->  <div class="card birthdayCard">  <h2 id="birthdayCount">  0
-
-</h2>  <p>  🎂 Birthday Today
-
-</p>  <div  
-id="birthdayList"  
-class="birthdayList"  
->  <div class="noBirthday">  Birthday checking...
-
-</div>  </div>  </div>  </div>  <!-- ==================================================  
-     MENU  
-================================================== -->  <div class="menu">  <!-- ==================================================  
-     APPLICATION ADMIN  
-================================================== -->  <a
-href="worker-help-admin.html"
-class="applicationAdmin"
-
-> 
+<p>
 
 📋 ସହାୟତା Application
 
-</a>  <!-- ==================================================  
-     MEMBERS ADMIN  
-================================================== -->  <a href="members.html">  👥 Members Admin
+</p>
 
-</a>  <!-- ==================================================  
-     MEMBER BOOK  
-================================================== -->  <a
+</a>
+
+
+<!-- ==================================================
+     BLOOD DONORS
+================================================== -->
+
+<div class="card">
+
+<h2 id="bloodCount">
+
+0
+
+</h2>
+
+<p>
+
+🩸 Blood Donors
+
+</p>
+
+</div>
+
+
+<!-- ==================================================
+     DONATION
+================================================== -->
+
+<div class="card">
+
+<h2 id="donationCount">
+
+₹0
+
+</h2>
+
+<p>
+
+❤️ Total Donation
+
+</p>
+
+</div>
+
+
+<!-- ==================================================
+     MEMBER FEEDBACK
+================================================== -->
+
+<a
+href="admin-feedback.html"
+class="card feedbackCard"
+>
+
+<h2 id="feedbackCount">
+
+0
+
+</h2>
+
+<p>
+
+📊 ସଦସ୍ୟ ମତାମତ
+
+</p>
+
+<p class="feedbackCountText">
+
+ମତାମତ ଦେଇଥିବା ସଦସ୍ୟ
+
+</p>
+
+</a>
+
+
+<!-- ==================================================
+     BIRTHDAY
+================================================== -->
+
+<div class="card birthdayCard">
+
+<h2 id="birthdayCount">
+
+0
+
+</h2>
+
+<p>
+
+🎂 Birthday Today
+
+</p>
+
+
+<div
+id="birthdayList"
+class="birthdayList"
+>
+
+<div class="noBirthday">
+
+Birthday checking...
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- ==================================================
+     MENU
+================================================== -->
+
+<div class="menu">
+
+
+<!-- APPLICATION ADMIN -->
+
+<a
+href="worker-help-admin.html"
+class="applicationAdmin"
+>
+
+📋 ସହାୟତା Application
+
+</a>
+
+
+<!-- MEMBERS ADMIN -->
+
+<a href="members.html">
+
+👥 Members Admin
+
+</a>
+
+
+<!-- MEMBER BOOK -->
+
+<a
 href="members-book.html"
 class="memberBook"
-
-> 
+>
 
 📖 Member Register / Members Book
 
-</a>  <!-- ==================================================  
-     MEMBER ADD  
-================================================== -->  <a href="member-add.html">  ➕ Member Add / Edit
+</a>
 
-</a>  <!-- ==================================================  
-     BIRTHDAY  
-================================================== -->  <a href="birthday-admin.html">  🎂 Birthday / DOB Admin
 
-</a>  <!-- ==================================================  
-     FESTIVAL  
-================================================== -->  <a href="festival-calendar.html">  📅 Festival Calendar
+<!-- MEMBER ADD -->
 
-</a>  <!-- ==================================================  
-     PENDING  
-================================================== -->  <a href="pending-members.html">  ⏳ Pending Members
+<a href="member-add.html">
 
-</a>  <!-- ==================================================  
-     COMMITTEE  
-================================================== -->  <a href="committee.html">  👨‍💼 Committee Admin
+➕ Member Add / Edit
 
-</a>  <!-- ==================================================  
-     PUBLIC NOTICE  
-================================================== -->  <a href="public-notice-admin.html">  📢 Public Notice Admin
+</a>
 
-</a>  <!-- ==================================================  
-     GALLERY  
-================================================== -->  <a href="gallery-admin.html">  🖼️ Gallery Admin
 
-</a>  <!-- ==================================================  
-     ID CARD  
-================================================== -->  <a href="idcard.html">  🪪 ID Card
+<!-- BIRTHDAY -->
 
-</a>  <!-- ==================================================  
-     DONATION  
-================================================== -->  <a href="donation-admin.html">  ❤️ Donation Admin
+<a href="birthday-admin.html">
 
-</a>  <!-- ==================================================  
-     PAYMENT  
-================================================== -->  <a href="payment-receipt.html">  🧾 Payment Receipt
+🎂 Birthday / DOB Admin
 
-</a>  <!-- ==================================================  
-     TRUST ACCOUNTS  
-================================================== -->  <a href="trust-accounts.html">  📊 Trust Accounts Dashboard
+</a>
 
-</a>  <!-- ==================================================  
-     WEBSITE HOME  
-================================================== -->  <a href="index.html">  🏠 Website Home
 
-</a>  <!-- ==================================================  
-     LOGOUT  
-================================================== -->  <a
+<!-- FESTIVAL -->
+
+<a href="festival-calendar.html">
+
+📅 Festival Calendar
+
+</a>
+
+
+<!-- PENDING -->
+
+<a href="pending-members.html">
+
+⏳ Pending Members
+
+</a>
+
+
+<!-- COMMITTEE -->
+
+<a href="committee.html">
+
+👨‍💼 Committee Admin
+
+</a>
+
+
+<!-- PUBLIC NOTICE -->
+
+<a href="public-notice-admin.html">
+
+📢 Public Notice Admin
+
+</a>
+
+
+<!-- GALLERY -->
+
+<a href="gallery-admin.html">
+
+🖼️ Gallery Admin
+
+</a>
+
+
+<!-- ID CARD -->
+
+<a href="idcard.html">
+
+🪪 ID Card
+
+</a>
+
+
+<!-- DONATION -->
+
+<a href="donation-admin.html">
+
+❤️ Donation Admin
+
+</a>
+
+
+<!-- PAYMENT -->
+
+<a href="payment-receipt.html">
+
+🧾 Payment Receipt
+
+</a>
+
+
+<!-- TRUST ACCOUNTS -->
+
+<a href="trust-accounts.html">
+
+📊 Trust Accounts Dashboard
+
+</a>
+
+
+<!-- ==================================================
+     MEMBER FEEDBACK ADMIN
+================================================== -->
+
+<a
+href="admin-feedback.html"
+class="feedbackAdmin"
+>
+
+📊 ସଦସ୍ୟ ମତାମତ Admin
+
+</a>
+
+
+<!-- WEBSITE HOME -->
+
+<a href="index.html">
+
+🏠 Website Home
+
+</a>
+
+
+<!-- LOGOUT -->
+
+<a
 href="#"
 onclick="logout()"
-
-> 
+>
 
 🚪 Logout
 
-</a>  </div>  <!-- ==================================================  
-     FOOTER  
-================================================== -->  <div class="footer">  © 2026 Odia Ratna Kalakar Sangha
+</a>
 
-</div>  <!-- ==================================================  
-     FIREBASE  
-================================================== -->  <script type="module">  
-  
-  
-import {  
-  
-    db,  
-  
-    auth  
-  
-}  
-  
-from "./firebase.js";  
-  
-  
-/* ==================================================  
-   FIRESTORE  
-================================================== */  
-  
-import {  
-  
-    collection,  
-  
-    getDocs  
-  
-}  
-  
-from  
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";  
-  
-  
-/* ==================================================  
-   AUTH  
-================================================== */  
-  
-import {  
-  
-    signOut  
-  
-}  
-  
-from  
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";  
-  
-  
-/* ==================================================  
-   LOAD DASHBOARD  
-================================================== */  
-  
-async function loadDashboard(){  
-  
-    try{  
-  
-  
-        /* ==================================================  
-           MEMBERS  
-        ================================================== */  
-  
-        const memberSnap =  
-  
-        await getDocs(  
-  
-            collection(  
-  
-                db,  
-  
-                "members"  
-  
-            )  
-  
-        );  
-  
-  
-        document  
-        .getElementById(  
-            "memberCount"  
-        )  
-        .textContent =  
-  
-        memberSnap.size;  
-  
-  
-        /* ==================================================  
-           BIRTHDAY  
-        ================================================== */  
-  
-        loadTodayBirthdays(  
-  
-            memberSnap  
-  
-        );  
-  
-  
-        /* ==================================================  
-           COMMITTEE  
-        ================================================== */  
-  
-        try{  
-  
-            const committeeSnap =  
-  
-            await getDocs(  
-  
-                collection(  
-  
-                    db,  
-  
-                    "Committee"  
-  
-                )  
-  
-            );  
-  
-  
-            document  
-            .getElementById(  
-                "committeeCount"  
-            )  
-            .textContent =  
-  
-            committeeSnap.size;  
-  
-        }  
-  
-        catch(error){  
-  
-            console.error(  
-  
-                "Committee Error:",  
-  
-                error  
-  
-            );  
-  
-  
-            document  
-            .getElementById(  
-                "committeeCount"  
-            )  
-            .textContent =  
-  
-            "0";  
-  
-        }  
-  
-  
-        /* ==================================================  
-           APPLICATIONS  
-             
-           IMPORTANT:  
-           Application Admin uses workerApplications  
-        ================================================== */  
-  
-        try{  
-  
-            const applicationSnap =  
-  
-            await getDocs(  
-  
-                collection(  
-  
-                    db,  
-  
-                    "workerApplications"  
-  
-                )  
-  
-            );  
-  
-  
-            document  
-            .getElementById(  
-                "applicationCount"  
-            )  
-            .textContent =  
-  
-            applicationSnap.size;  
-  
-        }  
-  
-        catch(error){  
-  
-            console.error(  
-  
-                "Application Error:",  
-  
-                error  
-  
-            );  
-  
-  
-            document  
-            .getElementById(  
-                "applicationCount"  
-            )  
-            .textContent =  
-  
-            "0";  
-  
-        }  
-  
-  
-        /* ==================================================  
-           BLOOD DONORS  
-        ================================================== */  
-  
-        try{  
-  
-            const bloodSnap =  
-  
-            await getDocs(  
-  
-                collection(  
-  
-                    db,  
-  
-                    "bloodDonors"  
-  
-                )  
-  
-            );  
-  
-  
-            document  
-            .getElementById(  
-                "bloodCount"  
-            )  
-            .textContent =  
-  
-            bloodSnap.size;  
-  
-        }  
-  
-        catch(error){  
-  
-            console.error(  
-  
-                "Blood Error:",  
-  
-                error  
-  
-            );  
-  
-  
-            document  
-            .getElementById(  
-                "bloodCount"  
-            )  
-            .textContent =  
-  
-            "0";  
-  
-        }  
-  
-  
-        /* ==================================================  
-           DONATION  
-        ================================================== */  
-  
-        try{  
-  
-            const donationSnap =  
-  
-            await getDocs(  
-  
-                collection(  
-  
-                    db,  
-  
-                    "donations"  
-  
-                )  
-  
-            );  
-  
-  
-            let totalDonation =  
-  
-            0;  
-  
-  
-            donationSnap.forEach(  
-  
-                doc => {  
-  
-                    totalDonation +=  
-  
-                    Number(  
-  
-                        doc.data().amount || 0  
-  
-                    );  
-  
-                }  
-  
-            );  
-  
-  
-            document  
-            .getElementById(  
-                "donationCount"  
-            )  
-            .textContent =  
-  
-            "₹" +  
-  
-            totalDonation;  
-  
-        }  
-  
-        catch(error){  
-  
-            console.error(  
-  
-                "Donation Error:",  
-  
-                error  
-  
-            );  
-  
-  
-            document  
-            .getElementById(  
-                "donationCount"  
-            )  
-            .textContent =  
-  
-            "₹0";  
-  
-        }  
-  
-  
-    }  
-  
-    catch(error){  
-  
-        console.error(  
-  
-            "Dashboard Error:",  
-  
-            error  
-  
-        );  
-  
-    }  
-  
-}  
-  
-  
-/* ==================================================  
-   TODAY BIRTHDAYS  
-================================================== */  
-  
-function loadTodayBirthdays(  
-  
-    memberSnap  
-  
-){  
-  
-    const today =  
-  
-    new Date();  
-  
-  
-    const todayDay =  
-  
-    String(  
-  
-        today.getDate()  
-  
-    )  
-  
-    .padStart(  
-  
-        2,  
-  
-        "0"  
-  
-    );  
-  
-  
-    const todayMonth =  
-  
-    String(  
-  
-        today.getMonth()+1  
-  
-    )  
-  
-    .padStart(  
-  
-        2,  
-  
-        "0"  
-  
-    );  
-  
-  
-    const birthdays =  
-  
-    [];  
-  
-  
-    /* ==================================================  
-       CHECK MEMBERS  
-    ================================================== */  
-  
-    memberSnap.forEach(  
-  
-        memberDoc => {  
-  
-  
-            const data =  
-  
-            memberDoc.data();  
-  
-  
-            const dob =  
-  
-            String(  
-  
-                data.dob || ""  
-  
-            )  
-  
-            .trim();  
-  
-  
-            /*  
-  
-            DOB FORMAT:  
-  
-            DD/MM/YYYY  
-  
-            */  
-  
-  
-            const parts =  
-  
-            dob.split("/");  
-  
-  
-            if(  
-  
-                parts.length !== 3  
-  
-            ){  
-  
-                return;  
-  
-            }  
-  
-  
-            const day =  
-  
-            parts[0];  
-  
-            const month =  
-  
-            parts[1];  
-  
-  
-            /* ==================================================  
-               MATCH  
-            ================================================== */  
-  
-            if(  
-  
-                day === todayDay &&  
-  
-                month === todayMonth  
-  
-            ){  
-  
-                birthdays.push({  
-  
-                    name:  
-  
-                    data.name ||  
-  
-                    "Member",  
-  
-  
-                    memberId:  
-  
-                    data.memberId ||  
-  
-                    "-",  
-  
-  
-                    mobile:  
-  
-                    data.mobile ||  
-  
-                    "-",  
-  
-  
-                    dob:  
-  
-                    dob  
-  
-                });  
-  
-            }  
-  
-        }  
-  
-    );  
-  
-  
-    /* ==================================================  
-       COUNT  
-    ================================================== */  
-  
-    document  
-    .getElementById(  
-        "birthdayCount"  
-    )  
-    .textContent =  
-  
-    birthdays.length;  
-  
-  
-    /* ==================================================  
-       LIST  
-    ================================================== */  
-  
-    const list =  
-  
-    document.getElementById(  
-  
-        "birthdayList"  
-  
-    );  
-  
-  
-    list.innerHTML =  
-  
-    "";  
-  
-  
-    /* ==================================================  
-       NO BIRTHDAY  
-    ================================================== */  
-  
-    if(  
-  
-        birthdays.length === 0  
-  
-    ){  
-  
-        list.innerHTML = `  
-  
-        <div class="noBirthday">  
-  
-        🎉 ଆଜି କୌଣସି Member ଙ୍କ Birthday ନାହିଁ  
-  
-        </div>  
-  
-        `;  
-  
-        return;  
-  
-    }  
-  
-  
-    /* ==================================================  
-       SHOW BIRTHDAYS  
-    ================================================== */  
-  
-    birthdays.forEach(  
-  
-        member => {  
-  
-  
-            const div =  
-  
-            document.createElement(  
-  
-                "div"  
-  
-            );  
-  
-  
-            div.className =  
-  
-            "birthdayMember";  
-  
-  
-            div.innerHTML = `  
-  
-            🎉 <strong>  
-  
-            ${escapeHTML(  
-  
-                member.name  
-  
-            )}  
-  
-            </strong>  
-  
-            <br>  
-  
-            🎂 DOB:  
-  
-            ${escapeHTML(  
-  
-                member.dob  
-  
-            )}  
-  
-            <br>  
-  
-            📱 Mobile:  
-  
-            ${escapeHTML(  
-  
-                member.mobile  
-  
-            )}  
-  
-            `;  
-  
-  
-            list.appendChild(  
-  
-                div  
-  
-            );  
-  
-        }  
-  
-    );  
-  
-}  
-  
-  
-/* ==================================================  
-   ESCAPE HTML  
-================================================== */  
-  
-function escapeHTML(  
-  
-    value  
-  
-){  
-  
-    return String(  
-  
-        value ?? ""  
-  
-    )  
-  
-    .replace(  
-  
-        /&/g,  
-  
-        "&amp;"  
-  
-    )  
-  
-    .replace(  
-  
-        /</g,  
-  
-        "&lt;"  
-  
-    )  
-  
-    .replace(  
-  
-        />/g,  
-  
-        "&gt;"  
-  
-    )  
-  
-    .replace(  
-  
-        /"/g,  
-  
-        "&quot;"  
-  
-    )  
-  
-    .replace(  
-  
-        /'/g,  
-  
-        "&#039;"  
-  
-    );  
-  
-}  
-  
-  
-/* ==================================================  
-   LOGOUT  
-================================================== */  
-  
-window.logout =  
-  
-async function(){  
-  
-    try{  
-  
-        await signOut(  
-  
-            auth  
-  
-        );  
-  
-  
-        window.location.href =  
-  
-        "login.html";  
-  
-    }  
-  
-    catch(error){  
-  
-        console.error(  
-  
-            "Logout Error:",  
-  
-            error  
-  
-        );  
-  
-    }  
-  
-};  
-  
-  
-/* ==================================================  
-   START  
-================================================== */  
-  
-loadDashboard();  
-  
-  
-</script>  </div>  </body>  </html>
+
+</div>
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<div class="footer">
+
+© 2026 Odia Ratna Kalakar Sangha
+
+</div>
+
+
+<!-- ==================================================
+     FIREBASE
+================================================== -->
+
+<script type="module">
+
+
+import {
+
+    db,
+
+    auth
+
+}
+
+from "./firebase.js";
+
+
+/* ==================================================
+   FIRESTORE
+================================================== */
+
+import {
+
+    collection,
+
+    getDocs
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* ==================================================
+   AUTH
+================================================== */
+
+import {
+
+    signOut
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+/* ==================================================
+   LOAD DASHBOARD
+================================================== */
+
+async function loadDashboard(){
+
+    try{
+
+
+        /* ==================================================
+           MEMBERS
+        ================================================== */
+
+        const memberSnap =
+
+        await getDocs(
+
+            collection(
+
+                db,
+
+                "members"
+
+            )
+
+        );
+
+
+        document
+        .getElementById(
+            "memberCount"
+        )
+        .textContent =
+
+        memberSnap.size;
+
+
+        /* ==================================================
+           BIRTHDAY
+        ================================================== */
+
+        loadTodayBirthdays(
+
+            memberSnap
+
+        );
+
+
+        /* ==================================================
+           COMMITTEE
+        ================================================== */
+
+        try{
+
+            const committeeSnap =
+
+            await getDocs(
+
+                collection(
+
+                    db,
+
+                    "Committee"
+
+                )
+
+            );
+
+
+            document
+            .getElementById(
+                "committeeCount"
+            )
+            .textContent =
+
+            committeeSnap.size;
+
+        }
+
+        catch(error){
+
+            console.error(
+
+                "Committee Error:",
+
+                error
+
+            );
+
+
+            document
+            .getElementById(
+                "committeeCount"
+            )
+            .textContent =
+
+            "0";
+
+        }
+
+
+        /* ==================================================
+           APPLICATIONS
+        ================================================== */
+
+        try{
+
+            const applicationSnap =
+
+            await getDocs(
+
+                collection(
+
+                    db,
+
+                    "workerApplications"
+
+                )
+
+            );
+
+
+            document
+            .getElementById(
+                "applicationCount"
+            )
+            .textContent =
+
+            applicationSnap.size;
+
+        }
+
+        catch(error){
+
+            console.error(
+
+                "Application Error:",
+
+                error
+
+            );
+
+
+            document
+            .getElementById(
+                "applicationCount"
+            )
+            .textContent =
+
+            "0";
+
+        }
+
+
+        /* ==================================================
+           BLOOD DONORS
+        ================================================== */
+
+        try{
+
+            const bloodSnap =
+
+            await getDocs(
+
+                collection(
+
+                    db,
+
+                    "bloodDonors"
+
+                )
+
+            );
+
+
+            document
+            .getElementById(
+                "bloodCount"
+            )
+            .textContent =
+
+            bloodSnap.size;
+
+        }
+
+        catch(error){
+
+            console.error(
+
+                "Blood Error:",
+
+                error
+
+            );
+
+
+            document
+            .getElementById(
+                "bloodCount"
+            )
+            .textContent =
+
+            "0";
+
+        }
+
+
+        /* ==================================================
+           DONATION
+        ================================================== */
+
+        try{
+
+            const donationSnap =
+
+            await getDocs(
+
+                collection(
+
+                    db,
+
+                    "donations"
+
+                )
+
+            );
+
+
+            let totalDonation =
+
+            0;
+
+
+            donationSnap.forEach(
+
+                doc => {
+
+                    totalDonation +=
+
+                    Number(
+
+                        doc.data().amount || 0
+
+                    );
+
+                }
+
+            );
+
+
+            document
+            .getElementById(
+                "donationCount"
+            )
+            .textContent =
+
+            "₹" +
+
+            totalDonation;
+
+        }
+
+        catch(error){
+
+            console.error(
+
+                "Donation Error:",
+
+                error
+
+            );
+
+
+            document
+            .getElementById(
+                "donationCount"
+            )
+            .textContent =
+
+            "₹0";
+
+        }
+
+
+        /* ==================================================
+           MEMBER FEEDBACK
+        ================================================== */
+
+        try{
+
+            const feedbackSnap =
+
+            await getDocs(
+
+                collection(
+
+                    db,
+
+                    "member_feedback"
+
+                )
+
+            );
+
+
+            /*
+              Unique member count
+
+              memberDocId ଥିଲେ
+              ତାହାକୁ priority ଦିଆଯିବ।
+
+              memberId fallback ଭାବରେ
+              ବ୍ୟବହାର ହେବ।
+            */
+
+            const uniqueMembers =
+
+            new Set();
+
+
+            feedbackSnap.forEach(
+
+                feedbackDoc => {
+
+                    const data =
+
+                    feedbackDoc.data();
+
+
+                    if(
+                        data.memberDocId
+                    ){
+
+                        uniqueMembers.add(
+
+                            data.memberDocId
+
+                        );
+
+                    }
+
+                    else if(
+                        data.memberId
+                    ){
+
+                        uniqueMembers.add(
+
+                            data.memberId
+
+                        );
+
+                    }
+
+                }
+
+            );
+
+
+            document
+            .getElementById(
+                "feedbackCount"
+            )
+            .textContent =
+
+            uniqueMembers.size;
+
+
+        }
+
+        catch(error){
+
+            console.error(
+
+                "Feedback Error:",
+
+                error
+
+            );
+
+
+            document
+            .getElementById(
+                "feedbackCount"
+            )
+            .textContent =
+
+            "0";
+
+        }
+
+
+    }
+
+    catch(error){
+
+        console.error(
+
+            "Dashboard Error:",
+
+            error
+
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   TODAY BIRTHDAYS
+================================================== */
+
+function loadTodayBirthdays(
+
+    memberSnap
+
+){
+
+
+    const today =
+
+    new Date();
+
+
+    const todayDay =
+
+    String(
+
+        today.getDate()
+
+    )
+
+    .padStart(
+
+        2,
+
+        "0"
+
+    );
+
+
+    const todayMonth =
+
+    String(
+
+        today.getMonth()+1
+
+    )
+
+    .padStart(
+
+        2,
+
+        "0"
+
+    );
+
+
+    const birthdays =
+
+    [];
+
+
+    /* ==================================================
+       CHECK MEMBERS
+    ================================================== */
+
+    memberSnap.forEach(
+
+        memberDoc => {
+
+
+            const data =
+
+            memberDoc.data();
+
+
+            const dob =
+
+            String(
+
+                data.dob || ""
+
+            )
+
+            .trim();
+
+
+            /*
+
+            DOB FORMAT:
+
+            DD/MM/YYYY
+
+            */
+
+
+            const parts =
+
+            dob.split("/");
+
+
+            if(
+
+                parts.length !== 3
+
+            ){
+
+                return;
+
+            }
+
+
+            const day =
+
+            parts[0];
+
+
+            const month =
+
+            parts[1];
+
+
+            /* ==================================================
+               MATCH
+            ================================================== */
+
+            if(
+
+                day === todayDay &&
+
+                month === todayMonth
+
+            ){
+
+                birthdays.push({
+
+                    name:
+
+                    data.name ||
+
+                    "Member",
+
+
+                    memberId:
+
+                    data.memberId ||
+
+                    "-",
+
+
+                    mobile:
+
+                    data.mobile ||
+
+                    "-",
+
+
+                    dob:
+
+                    dob
+
+                });
+
+            }
+
+        }
+
+    );
+
+
+    /* ==================================================
+       COUNT
+    ================================================== */
+
+    document
+    .getElementById(
+        "birthdayCount"
+    )
+    .textContent =
+
+    birthdays.length;
+
+
+    /* ==================================================
+       LIST
+    ================================================== */
+
+    const list =
+
+    document.getElementById(
+
+        "birthdayList"
+
+    );
+
+
+    list.innerHTML =
+
+    "";
+
+
+    /* ==================================================
+       NO BIRTHDAY
+    ================================================== */
+
+    if(
+
+        birthdays.length === 0
+
+    ){
+
+        list.innerHTML = `
+
+        <div class="noBirthday">
+
+        🎉 ଆଜି କୌଣସି Member ଙ୍କ Birthday ନାହିଁ
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* ==================================================
+       SHOW BIRTHDAYS
+    ================================================== */
+
+    birthdays.forEach(
+
+        member => {
+
+
+            const div =
+
+            document.createElement(
+
+                "div"
+
+            );
+
+
+            div.className =
+
+            "birthdayMember";
+
+
+            div.innerHTML = `
+
+            🎉 <strong>
+
+            ${escapeHTML(
+
+                member.name
+
+            )}
+
+            </strong>
+
+            <br>
+
+            🎂 DOB:
+
+            ${escapeHTML(
+
+                member.dob
+
+            )}
+
+            <br>
+
+            📱 Mobile:
+
+            ${escapeHTML(
+
+                member.mobile
+
+            )}
+
+            `;
+
+
+            list.appendChild(
+
+                div
+
+            );
+
+        }
+
+    );
+
+}
+
+
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function escapeHTML(
+
+    value
+
+){
+
+    return String(
+
+        value ?? ""
+
+    )
+
+    .replace(
+
+        /&/g,
+
+        "&amp;"
+
+    )
+
+    .replace(
+
+        /</g,
+
+        "&lt;"
+
+    )
+
+    .replace(
+
+        />/g,
+
+        "&gt;"
+
+    )
+
+    .replace(
+
+        /"/g,
+
+        "&quot;"
+
+    )
+
+    .replace(
+
+        /'/g,
+
+        "&#039;"
+
+    );
+
+}
+
+
+/* ==================================================
+   LOGOUT
+================================================== */
+
+window.logout =
+
+async function(){
+
+    try{
+
+        await signOut(
+
+            auth
+
+        );
+
+
+        window.location.href =
+
+        "login.html";
+
+    }
+
+    catch(error){
+
+        console.error(
+
+            "Logout Error:",
+
+            error
+
+        );
+
+    }
+
+};
+
+
+/* ==================================================
+   START
+================================================== */
+
+loadDashboard();
+
+
+</script>
+
+
+</div>
+
+
+</body>
+
+</html>
