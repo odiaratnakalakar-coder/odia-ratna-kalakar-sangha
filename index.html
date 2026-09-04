@@ -168,6 +168,23 @@
 
 
 /* =================================================
+   MEMBER FEEDBACK CARD
+================================================= */
+
+.feedback-card{
+
+    position:relative;
+
+}
+
+.feedback-card i{
+
+    color:#8B0000;
+
+}
+
+
+/* =================================================
    ଆମର ଲକ୍ଷ୍ୟ
 ================================================= */
 
@@ -735,9 +752,8 @@
 </div>
 
 
-<div
-    class="welcomeLocation"
-    id="welcomeLocation">
+<div class="welcomeLocation"
+     id="welcomeLocation">
 
     ସୁରତ
 
@@ -927,6 +943,25 @@
     <span id="menuNotice">
 
         ସାର୍ବଜନୀନ ସୂଚନା
+
+    </span>
+
+</a>
+
+
+<!-- =================================================
+     📊 MEMBER FEEDBACK
+================================================= -->
+
+<a
+    href="member-feedback.html"
+    class="card feedback-card">
+
+    <i class="fa-solid fa-chart-pie"></i>
+
+    <span id="menuFeedback">
+
+        📊 ସଦସ୍ୟ ମୂଲ୍ୟାୟନ
 
     </span>
 
@@ -1154,6 +1189,9 @@ menuGallery:
 menuNotice:
     "ସାର୍ବଜନୀନ ସୂଚନା",
 
+menuFeedback:
+    "📊 ସଦସ୍ୟ ମୂଲ୍ୟାୟନ",
+
 menuWorkerBenefits:
     "🧑‍🔧 ପ୍ରବାସୀ ଶ୍ରମିକ ସୁବିଧା",
 
@@ -1242,6 +1280,9 @@ menuGallery:
 menuNotice:
     "सार्वजनिक सूचना",
 
+menuFeedback:
+    "📊 सदस्य मूल्यांकन",
+
 menuWorkerBenefits:
     "🧑‍🔧 प्रवासी श्रमिक सुविधाएँ",
 
@@ -1329,6 +1370,9 @@ menuGallery:
 
 menuNotice:
     "Public Notice",
+
+menuFeedback:
+    "📊 Member Feedback",
 
 menuWorkerBenefits:
     "🧑‍🔧 Migrant Worker Benefits",
@@ -1490,6 +1534,14 @@ document.getElementById(
     "menuNotice"
 ).textContent =
     data.menuNotice;
+
+
+/* MEMBER FEEDBACK */
+
+document.getElementById(
+    "menuFeedback"
+).textContent =
+    data.menuFeedback;
 
 
 /* WORKER BENEFITS */
@@ -1847,4 +1899,4 @@ window.addEventListener(
 
 </body>
 
-    </html>
+</html>
