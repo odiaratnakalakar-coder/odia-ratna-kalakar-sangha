@@ -574,7 +574,7 @@ async function approveMember(id){
 
 ଆପଣଙ୍କ ସଦସ୍ୟ ID: ${memberId}
 
-💳 Payment Status: Pending
+💳 Payment Status: Successful
 
 ସଂଘ ପକ୍ଷରୁ ଆପଣଙ୍କୁ ହାର୍ଦ୍ଦିକ ସ୍ୱାଗତ। 🙏🌹
 
