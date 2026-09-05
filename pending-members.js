@@ -7,8 +7,7 @@ import {
     getDoc,
     updateDoc,
     deleteDoc,
-    runTransaction,
-    addDoc
+    runTransaction
 }
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -59,20 +58,18 @@ async function loadPendingMembers(){
                 .toLowerCase();
 
 
-            /*
-            =============================================
-            ONLY TRUE PENDING MEMBERS
-            =============================================
-            */
+            /* =============================================
+               ONLY TRUE PENDING MEMBERS
+            ============================================= */
 
             if(status !== "pending"){
                 return;
             }
 
 
-            /*
-            Approved member NEVER comes here.
-            */
+            /* =============================================
+               APPROVED MEMBER NEVER COMES HERE
+            ============================================= */
 
             if(member.approved === true){
                 return;
@@ -92,7 +89,7 @@ async function loadPendingMembers(){
 
 
             /* =========================================
-               CARD
+               MEMBER CARD
             ========================================= */
 
             const card =
@@ -102,7 +99,9 @@ async function loadPendingMembers(){
                 "member-card";
 
 
-            /* PHOTO */
+            /* =========================================
+               PHOTO
+            ========================================= */
 
             const photo =
                 document.createElement("img");
@@ -126,7 +125,9 @@ async function loadPendingMembers(){
             card.appendChild(photo);
 
 
-            /* NAME */
+            /* =========================================
+               NAME
+            ========================================= */
 
             const name =
                 document.createElement("h3");
@@ -137,7 +138,9 @@ async function loadPendingMembers(){
             card.appendChild(name);
 
 
-            /* MEMBER ID */
+            /* =========================================
+               MEMBER ID
+            ========================================= */
 
             const memberId =
                 document.createElement("p");
@@ -151,7 +154,9 @@ async function loadPendingMembers(){
             card.appendChild(memberId);
 
 
-            /* MOBILE */
+            /* =========================================
+               MOBILE
+            ========================================= */
 
             const mobile =
                 document.createElement("p");
@@ -165,7 +170,9 @@ async function loadPendingMembers(){
             card.appendChild(mobile);
 
 
-            /* ADDRESS */
+            /* =========================================
+               ADDRESS
+            ========================================= */
 
             const address =
                 document.createElement("p");
@@ -179,7 +186,9 @@ async function loadPendingMembers(){
             card.appendChild(address);
 
 
-            /* PAYMENT */
+            /* =========================================
+               PAYMENT
+            ========================================= */
 
             const payment =
                 document.createElement("p");
@@ -194,7 +203,9 @@ async function loadPendingMembers(){
             card.appendChild(payment);
 
 
-            /* APPROVAL */
+            /* =========================================
+               APPROVAL
+            ========================================= */
 
             const approval =
                 document.createElement("p");
@@ -209,7 +220,9 @@ async function loadPendingMembers(){
             card.appendChild(approval);
 
 
-            /* ACTIONS */
+            /* =========================================
+               ACTIONS
+            ========================================= */
 
             const actions =
                 document.createElement("div");
@@ -218,7 +231,9 @@ async function loadPendingMembers(){
                 "actions";
 
 
-            /* APPROVE */
+            /* =========================================
+               APPROVE BUTTON
+            ========================================= */
 
             const approveButton =
                 document.createElement("button");
@@ -245,7 +260,9 @@ async function loadPendingMembers(){
             );
 
 
-            /* REJECT */
+            /* =========================================
+               REJECT BUTTON
+            ========================================= */
 
             const rejectButton =
                 document.createElement("button");
@@ -290,6 +307,10 @@ async function loadPendingMembers(){
 
         });
 
+
+        /* =============================================
+           NO PENDING MEMBER
+        ============================================= */
 
         if(!pendingFound){
 
@@ -451,6 +472,10 @@ async function approveMember(id){
         }
 
 
+        /* =============================================
+           CONFIRM APPROVAL
+        ============================================= */
+
         const ok =
             confirm(
                 "ଏହି Member କୁ Approve କରିବେ?\n\n" +
@@ -482,13 +507,13 @@ async function approveMember(id){
 
         /* =============================================
            APPROVE ONLY THIS MEMBER
-           
+
            IMPORTANT:
-           paid ଏଠାରେ CHANGE କରାଯାଉନାହିଁ।
-           
-           ଯଦି registration ର paid=false ଅଛି,
-           paid=false ହିଁ ରହିବ।
-           ============================================= */
+           paid FIELD CHANGE କରାଯାଉନାହିଁ।
+
+           ପୁରୁଣା paid value ଯାହା ଅଛି
+           ସେହି value ହିଁ ରହିବ।
+        ============================================= */
 
         await updateDoc(
             memberRef,
@@ -514,14 +539,14 @@ async function approveMember(id){
 
 
         /* =============================================
-           INCOME ENTRY
-           
-           Payment verified ହେଲେ ମାତ୍ର
-           income add କରିବା ଉଚିତ।
-           
-           ତେଣୁ ଏଠାରେ AUTO ₹1200 ADD ନାହିଁ।
-           ============================================= */
+           SUCCESS ALERT
 
+           କେବଳ MESSAGE ରେ Successful
+           ଦେଖାଯିବ।
+
+           Firebase paid FIELD ରେ
+           କୌଣସି ପରିବର୍ତ୍ତନ ନାହିଁ।
+        ============================================= */
 
         alert(
             "✅ Member Approved Successfully\n\n" +
@@ -529,7 +554,7 @@ async function approveMember(id){
             (member.name || "Member") +
             "\n\nMember ID: " +
             memberId +
-            "\n\n💳 Payment: Pending"
+            "\n\n💳 Payment Status: Successful ✅"
         );
 
 
@@ -552,6 +577,10 @@ async function approveMember(id){
                 mobile;
 
 
+            /* =========================================
+               INDIA MOBILE NUMBER
+            ========================================= */
+
             if(
                 whatsappNumber.length === 10
             ){
@@ -562,6 +591,10 @@ async function approveMember(id){
 
             }
 
+
+            /* =========================================
+               WHATSAPP MESSAGE
+            ========================================= */
 
             const message =
 `ନମସ୍କାର 🙏
@@ -574,7 +607,7 @@ async function approveMember(id){
 
 ଆପଣଙ୍କ ସଦସ୍ୟ ID: ${memberId}
 
-💳 Payment Status: Successful
+💳 Payment Status: Successful ✅
 
 ସଂଘ ପକ୍ଷରୁ ଆପଣଙ୍କୁ ହାର୍ଦ୍ଦିକ ସ୍ୱାଗତ। 🙏🌹
 
@@ -584,6 +617,10 @@ async function approveMember(id){
 ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ`;
 
 
+            /* =========================================
+               WHATSAPP URL
+            ========================================= */
+
             const whatsappURL =
                 "https://wa.me/" +
                 whatsappNumber +
@@ -592,6 +629,10 @@ async function approveMember(id){
                     message
                 );
 
+
+            /* =========================================
+               ASK BEFORE WHATSAPP
+            ========================================= */
 
             const send =
                 confirm(
@@ -610,6 +651,10 @@ async function approveMember(id){
 
         }
 
+
+        /* =============================================
+           RELOAD LIST
+        ============================================= */
 
         await loadPendingMembers();
 
@@ -669,6 +714,10 @@ async function rejectMember(id){
             memberSnap.data();
 
 
+        /* =============================================
+           MUST BE PENDING
+        ============================================= */
+
         const status =
             String(
                 member.status || ""
@@ -690,6 +739,10 @@ async function rejectMember(id){
         }
 
 
+        /* =============================================
+           CONFIRM DELETE
+        ============================================= */
+
         const ok =
             confirm(
                 "⚠️ ଏହି Pending Registration କୁ Delete କରିବେ?\n\n" +
@@ -702,6 +755,10 @@ async function rejectMember(id){
             return;
         }
 
+
+        /* =============================================
+           DELETE PENDING MEMBER
+        ============================================= */
 
         await deleteDoc(
             memberRef
@@ -780,4 +837,8 @@ console.log(
 
 console.log(
     "🔒 Payment remains separate from Approval"
+);
+
+console.log(
+    "💳 WhatsApp Payment Status = Successful"
 );
