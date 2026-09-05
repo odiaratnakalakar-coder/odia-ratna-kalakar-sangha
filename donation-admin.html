@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="or">
+
 <head>
 
 <meta charset="UTF-8">
@@ -88,6 +89,12 @@ background:#2196F3;
 background:#c40000;
 }
 
+.whatsappBtn{
+background:#25D366;
+color:#fff;
+font-weight:bold;
+}
+
 </style>
 
 </head>
@@ -107,6 +114,7 @@ background:#c40000;
 </div>
 
 <div id="donationList"></div>
+
 <script type="module">
 
 import { db } from "./firebase.js";
@@ -114,6 +122,7 @@ import { db } from "./firebase.js";
 import {
 collection,
 getDocs,
+getDoc,
 updateDoc,
 deleteDoc,
 doc,
@@ -121,13 +130,24 @@ query,
 orderBy
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const donationList = document.getElementById("donationList");
-const totalAmount = document.getElementById("totalAmount");
+
+const donationList =
+document.getElementById("donationList");
+
+const totalAmount =
+document.getElementById("totalAmount");
+
+
+/* =====================================================
+   LOAD DONATIONS
+===================================================== */
 
 async function loadDonations(){
 
 donationList.innerHTML="";
 let total=0;
+
+try{
 
 const q=query(
 collection(db,"donations"),
@@ -142,32 +162,60 @@ const data=item.data();
 
 total += Number(data.amount || 0);
 
+
+/* =====================================================
+   DONATION CARD
+===================================================== */
+
 donationList.innerHTML += `
 
 <div class="card">
 
-<h3>${data.name}</h3>
+<h3>❤️ ${escapeHTML(data.name || "-")}</h3>
 
-<p>📱 ${data.mobile}</p>
+<p>📱 ${escapeHTML(data.mobile || "-")}</p>
 
-<p>💰 ₹${data.amount}</p>
+<p>💰 ₹${Number(data.amount || 0)}</p>
 
-<p>📝 ${data.purpose || "-"}</p>
+<p>📝 ${escapeHTML(data.purpose || "-")}</p>
 
-<button class="editBtn"
-onclick="editDonation(
-'${item.id}',
-'${data.name}',
-'${data.mobile}',
-'${data.amount}',
-'${data.purpose || ""}'
-)">
-✏️ Edit
+
+<!-- WHATSAPP THANK YOU -->
+
+<button
+class="whatsappBtn"
+onclick="whatsappThankYou('${item.id}')">
+
+🙏 WhatsApp Thank You
+
 </button>
 
-<button class="deleteBtn"
+
+<!-- EDIT -->
+
+<button
+class="editBtn"
+onclick="editDonation(
+'${item.id}',
+${JSON.stringify(data.name || "")},
+${JSON.stringify(data.mobile || "")},
+'${data.amount || ""}',
+${JSON.stringify(data.purpose || "")}
+)">
+
+✏️ Edit
+
+</button>
+
+
+<!-- DELETE -->
+
+<button
+class="deleteBtn"
 onclick="deleteDonation('${item.id}')">
+
 🗑️ Delete
+
 </button>
 
 </div>
@@ -178,52 +226,324 @@ onclick="deleteDonation('${item.id}')">
 
 totalAmount.textContent="₹"+total;
 
+}catch(error){
+
+console.error(error);
+
+donationList.innerHTML=`
+
+<div class="card">
+
+<p>❌ Donation load ହୋଇପାରିଲା ନାହିଁ।</p>
+
+</div>
+
+`;
+
 }
 
-window.editDonation=async function(id,name,mobile,amount,purpose){
+}
 
-const newName=prompt("ନୂଆ ନାମ",name);
-const newMobile=prompt("ନୂଆ ମୋବାଇଲ୍",mobile);
-const newAmount=prompt("ନୂଆ ରାଶି",amount);
-const newPurpose=prompt("ନୂଆ ଉଦ୍ଦେଶ୍ୟ",purpose);
 
-if(!newName || !newMobile || !newAmount) return;
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
-await updateDoc(doc(db,"donations",id),{
+function escapeHTML(value){
+
+return String(value)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDonationDate(createdAt){
+
+if(!createdAt){
+return new Date().toLocaleDateString(
+"en-IN"
+);
+}
+
+try{
+
+let date;
+
+if(createdAt.toDate){
+
+date=createdAt.toDate();
+
+}else if(createdAt.seconds){
+
+date=new Date(
+createdAt.seconds * 1000
+);
+
+}else{
+
+date=new Date(createdAt);
+
+}
+
+return date.toLocaleDateString(
+"en-IN",
+{
+day:"2-digit",
+month:"2-digit",
+year:"numeric"
+}
+);
+
+}catch(error){
+
+return new Date().toLocaleDateString(
+"en-IN"
+);
+
+}
+
+}
+
+
+/* =====================================================
+   WHATSAPP THANK YOU
+===================================================== */
+
+window.whatsappThankYou = async function(id){
+
+try{
+
+const donationRef =
+doc(db,"donations",id);
+
+const donationSnap =
+await getDoc(donationRef);
+
+if(!donationSnap.exists()){
+
+alert("❌ Donation data ମିଳିଲା ନାହିଁ।");
+
+return;
+
+}
+
+const data =
+donationSnap.data();
+
+
+/* MEMBER DETAILS */
+
+const name =
+data.name || "ସଦସ୍ୟ";
+
+const amount =
+Number(data.amount || 0);
+
+const mobile =
+String(data.mobile || "")
+.replace(/\D/g,"");
+
+const date =
+formatDonationDate(data.createdAt);
+
+
+/* MOBILE CHECK */
+
+if(!mobile){
+
+alert("❌ ଏହି Member ଙ୍କ Mobile Number ମିଳିଲା ନାହିଁ।");
+
+return;
+
+}
+
+
+/* =====================================================
+   FINAL THANK YOU MESSAGE
+===================================================== */
+
+const message = `ଜୟଜଗନ୍ନାଥ 🙏
+
+🙏 ଧନ୍ୟବାଦ ${name} ଜୀ 🙏
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତକୁ ଆପଣ ₹${amount} Donation କରିଥିବାରୁ ହୃଦୟରୁ ଅନେକ ଅନେକ ଧନ୍ୟବାଦ। ❤️
+
+📅 ତାରିଖ: ${date}
+💰 Donation: ₹${amount}
+
+ଆପଣଙ୍କର ଏହି ସହଯୋଗ ଆମ ସଂଘର କଳା, ସଂସ୍କୃତି ଓ ସମାଜସେବାମୂଳକ କାର୍ଯ୍ୟକୁ ଆହୁରି ଶକ୍ତି ଦେବ।
+
+ଆପଣଙ୍କ ସହଯୋଗ — ଆମର ଶକ୍ତି। 🙏
+ଆମ ସଂସ୍କୃତି — ଆମର ପରିଚୟ। ❤️
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସୁରତ`;
+
+
+/* =====================================================
+   WHATSAPP LINK
+===================================================== */
+
+const whatsappURL =
+"https://wa.me/" +
+mobile +
+"?text=" +
+encodeURIComponent(message);
+
+
+/* OPEN WHATSAPP */
+
+window.open(
+whatsappURL,
+"_blank"
+);
+
+
+}catch(error){
+
+console.error(
+"WhatsApp Error:",
+error
+);
+
+alert(
+"❌ WhatsApp message ତିଆରି କରିବାରେ ସମସ୍ୟା ହେଲା।"
+);
+
+}
+
+};
+
+
+/* =====================================================
+   EDIT DONATION
+===================================================== */
+
+window.editDonation =
+async function(
+id,
+name,
+mobile,
+amount,
+purpose
+){
+
+const newName =
+prompt(
+"ନୂଆ ନାମ",
+name
+);
+
+const newMobile =
+prompt(
+"ନୂଆ ମୋବାଇଲ୍",
+mobile
+);
+
+const newAmount =
+prompt(
+"ନୂଆ ରାଶି",
+amount
+);
+
+const newPurpose =
+prompt(
+"ନୂଆ ଉଦ୍ଦେଶ୍ୟ",
+purpose
+);
+
+if(
+!newName ||
+!newMobile ||
+!newAmount
+){
+
+return;
+
+}
+
+await updateDoc(
+doc(db,"donations",id),
+{
 name:newName,
 mobile:newMobile,
 amount:Number(newAmount),
 purpose:newPurpose
-});
+}
+);
 
-alert("✅ Donation Updated");
+alert(
+"✅ Donation Updated"
+);
 
 loadDonations();
 
-}
+};
 
-window.deleteDonation=async function(id){
 
-const password=prompt("🔒 Delete Password");
+/* =====================================================
+   DELETE DONATION
+===================================================== */
 
-if(password!=="2026@"){
-alert("❌ ଭୁଲ Password");
+window.deleteDonation =
+async function(id){
+
+const password =
+prompt(
+"🔒 Delete Password"
+);
+
+if(
+password !== "2026@"
+){
+
+alert(
+"❌ ଭୁଲ Password"
+);
+
 return;
+
 }
 
-if(!confirm("ଏହି Donation କୁ Delete କରିବେ?")) return;
+if(
+!confirm(
+"ଏହି Donation କୁ Delete କରିବେ?"
+)
+){
 
-await deleteDoc(doc(db,"donations",id));
+return;
 
-alert("✅ Donation Deleted");
+}
+
+await deleteDoc(
+doc(db,"donations",id)
+);
+
+alert(
+"✅ Donation Deleted"
+);
 
 loadDonations();
 
-}
+};
+
+
+/* =====================================================
+   START
+===================================================== */
 
 loadDonations();
 
 </script>
+
+</div>
 
 </body>
 </html>
