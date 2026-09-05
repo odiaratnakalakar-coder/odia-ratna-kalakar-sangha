@@ -12,6 +12,10 @@
 
 <style>
 
+/* =====================================================
+   BASIC
+===================================================== */
+
 *{
 margin:0;
 padding:0;
@@ -30,11 +34,21 @@ max-width:600px;
 margin:auto;
 }
 
+
+/* =====================================================
+   TITLE
+===================================================== */
+
 h1{
 text-align:center;
 color:#ff9800;
 margin-bottom:20px;
 }
+
+
+/* =====================================================
+   SUMMARY
+===================================================== */
 
 .summary{
 background:#222;
@@ -55,6 +69,11 @@ margin-bottom:8px;
 font-size:16px;
 }
 
+
+/* =====================================================
+   DONATION CARD
+===================================================== */
+
 .card{
 background:#222;
 border:2px solid #ff9800;
@@ -66,40 +85,83 @@ margin-bottom:15px;
 .card h3{
 color:#ffcc00;
 margin-bottom:10px;
+font-size:21px;
 }
 
 .card p{
-margin:6px 0;
+margin:7px 0;
 font-size:16px;
 word-break:break-word;
 }
 
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
 button{
 padding:10px 15px;
 border:none;
-border-radius:6px;
+border-radius:7px;
 cursor:pointer;
 color:#fff;
 font-size:15px;
-margin:5px;
+margin:5px 3px;
 }
 
 button:active{
 transform:scale(.97);
 }
 
-.editBtn{
-background:#2196F3;
-}
 
-.deleteBtn{
-background:#c40000;
-}
+/* =====================================================
+   WHATSAPP
+===================================================== */
 
 .whatsappBtn{
 background:#25D366;
 color:#fff;
 font-weight:bold;
+}
+
+
+/* =====================================================
+   EDIT
+===================================================== */
+
+.editBtn{
+background:#2196F3;
+}
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+.deleteBtn{
+background:#c40000;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:450px){
+
+button{
+font-size:14px;
+padding:10px 12px;
+}
+
+.card h3{
+font-size:20px;
+}
+
+.card p{
+font-size:16px;
+}
+
 }
 
 </style>
@@ -113,17 +175,35 @@ font-weight:bold;
 <div class="container">
 
 
-<h1>❤️ Donation Admin</h1>
+<!-- =====================================================
+     TITLE
+===================================================== -->
 
+<h1>
+❤️ Donation Admin
+</h1>
+
+
+<!-- =====================================================
+     TOTAL DONATION
+===================================================== -->
 
 <div class="summary">
 
-<h2 id="totalAmount">₹0</h2>
+<h2 id="totalAmount">
+₹0
+</h2>
 
-<p>Total Donation Amount</p>
+<p>
+Total Donation Amount
+</p>
 
 </div>
 
+
+<!-- =====================================================
+     DONATION LIST
+===================================================== -->
 
 <div id="donationList"></div>
 
@@ -189,39 +269,49 @@ function formatDonationDate(createdAt){
 
 if(!createdAt){
 
-return new Date().toLocaleDateString("en-IN");
+return new Date().toLocaleDateString(
+"en-IN"
+);
 
 }
+
 
 try{
 
 let date;
+
 
 if(
 createdAt &&
 typeof createdAt.toDate === "function"
 ){
 
-date=createdAt.toDate();
+date =
+createdAt.toDate();
 
 }
+
 
 else if(
 createdAt &&
 createdAt.seconds
 ){
 
-date=new Date(
+date =
+new Date(
 createdAt.seconds * 1000
 );
 
 }
 
+
 else{
 
-date=new Date(createdAt);
+date =
+new Date(createdAt);
 
 }
+
 
 return date.toLocaleDateString(
 "en-IN",
@@ -233,6 +323,7 @@ year:"numeric"
 );
 
 }
+
 
 catch(error){
 
@@ -259,22 +350,26 @@ let total=0;
 try{
 
 
-const q=query(
+/* QUERY */
 
+const q =
+query(
 collection(db,"donations"),
-
 orderBy("createdAt","desc")
-
 );
 
 
-const snapshot=
+/* GET DATA */
+
+const snapshot =
 await getDocs(q);
 
 
+/* EMPTY */
+
 if(snapshot.empty){
 
-donationList.innerHTML=`
+donationList.innerHTML = `
 
 <div class="card">
 
@@ -286,7 +381,8 @@ donationList.innerHTML=`
 
 `;
 
-totalAmount.textContent="₹0";
+totalAmount.textContent =
+"₹0";
 
 return;
 
@@ -294,55 +390,67 @@ return;
 
 
 /* =====================================================
-   SHOW DONATIONS
+   CREATE CARDS
 ===================================================== */
 
 snapshot.forEach((item)=>{
 
 
-const data=item.data();
+const data =
+item.data();
 
 
-const name=
+const name =
 data.name || "-";
 
-const mobile=
+
+const mobile =
 data.mobile || "-";
 
-const amount=
+
+const amount =
 Number(data.amount || 0);
 
-const purpose=
+
+const purpose =
 data.purpose || "-";
 
+
+/* TOTAL */
 
 total += amount;
 
 
 /* =====================================================
-   CARD
+   CARD HTML
 ===================================================== */
 
 donationList.innerHTML += `
 
 <div class="card">
 
+
 <h3>
 ❤️ ${escapeHTML(name)}
 </h3>
+
 
 <p>
 📱 ${escapeHTML(mobile)}
 </p>
 
+
 <p>
 💰 ₹${amount}
 </p>
+
 
 <p>
 📝 ${escapeHTML(purpose)}
 </p>
 
+
+<!-- WHATSAPP -->
 
 <button
 class="whatsappBtn"
@@ -353,6 +461,8 @@ data-id="${item.id}">
 </button>
 
 
+<!-- EDIT -->
+
 <button
 class="editBtn"
 data-id="${item.id}">
@@ -361,6 +471,8 @@ data-id="${item.id}">
 
 </button>
 
+
+<!-- DELETE -->
 
 <button
 class="deleteBtn"
@@ -378,13 +490,20 @@ data-id="${item.id}">
 });
 
 
-totalAmount.textContent=
-"₹"+total;
+/* =====================================================
+   TOTAL
+===================================================== */
+
+totalAmount.textContent =
+"₹" + total;
 
 
 /* =====================================================
-   ADD BUTTON EVENTS
+   BUTTON EVENTS
 ===================================================== */
+
+
+/* EDIT BUTTONS */
 
 document
 .querySelectorAll(".editBtn")
@@ -403,6 +522,8 @@ this.dataset.id
 });
 
 
+/* DELETE BUTTONS */
+
 document
 .querySelectorAll(".deleteBtn")
 .forEach(button=>{
@@ -419,6 +540,8 @@ this.dataset.id
 
 });
 
+
+/* WHATSAPP BUTTONS */
 
 document
 .querySelectorAll(".whatsappBtn")
@@ -439,6 +562,7 @@ this.dataset.id
 
 }
 
+
 catch(error){
 
 console.error(
@@ -447,7 +571,7 @@ error
 );
 
 
-donationList.innerHTML=`
+donationList.innerHTML = `
 
 <div class="card">
 
@@ -477,14 +601,23 @@ async function editDonation(id){
 try{
 
 
-/* GET CURRENT DATA */
+/* GET DOCUMENT */
 
-const donationRef=
-doc(db,"donations",id);
+const donationRef =
+doc(
+db,
+"donations",
+id
+);
 
-const donationSnap=
-await getDoc(donationRef);
 
+const donationSnap =
+await getDoc(
+donationRef
+);
+
+
+/* CHECK */
 
 if(!donationSnap.exists()){
 
@@ -497,36 +630,40 @@ return;
 }
 
 
-const data=
+/* DATA */
+
+const data =
 donationSnap.data();
 
 
-/* =====================================================
-   CURRENT VALUES
-===================================================== */
+/* OLD VALUES */
 
-const oldName=
+const oldName =
 data.name || "";
 
-const oldMobile=
+
+const oldMobile =
 data.mobile || "";
 
-const oldAmount=
+
+const oldAmount =
 data.amount || "";
 
-const oldPurpose=
+
+const oldPurpose =
 data.purpose || "";
 
 
 /* =====================================================
-   EDIT
+   NEW NAME
 ===================================================== */
 
-const newName=
+const newName =
 prompt(
 "👤 ନୂଆ ନାମ",
 oldName
 );
+
 
 if(newName === null){
 
@@ -535,11 +672,16 @@ return;
 }
 
 
-const newMobile=
+/* =====================================================
+   NEW MOBILE
+===================================================== */
+
+const newMobile =
 prompt(
 "📱 ନୂଆ ମୋବାଇଲ୍",
 oldMobile
 );
+
 
 if(newMobile === null){
 
@@ -548,11 +690,16 @@ return;
 }
 
 
-const newAmount=
+/* =====================================================
+   NEW AMOUNT
+===================================================== */
+
+const newAmount =
 prompt(
 "💰 ନୂଆ ରାଶି",
 oldAmount
 );
+
 
 if(newAmount === null){
 
@@ -561,11 +708,16 @@ return;
 }
 
 
-const newPurpose=
+/* =====================================================
+   NEW PURPOSE
+===================================================== */
+
+const newPurpose =
 prompt(
 "📝 ନୂଆ ଉଦ୍ଦେଶ୍ୟ",
 oldPurpose
 );
+
 
 if(newPurpose === null){
 
@@ -593,7 +745,9 @@ return;
 }
 
 
-const amountNumber=
+/* AMOUNT */
+
+const amountNumber =
 Number(newAmount);
 
 
@@ -612,7 +766,7 @@ return;
 
 
 /* =====================================================
-   UPDATE FIRESTORE
+   UPDATE
 ===================================================== */
 
 await updateDoc(
@@ -621,18 +775,24 @@ donationRef,
 
 {
 
-name:newName.trim(),
+name:
+newName.trim(),
 
-mobile:newMobile.trim(),
+mobile:
+newMobile.trim(),
 
-amount:amountNumber,
+amount:
+amountNumber,
 
-purpose:newPurpose.trim()
+purpose:
+newPurpose.trim()
 
 }
 
 );
 
+
+/* SUCCESS */
 
 alert(
 "✅ Donation Successfully Updated"
@@ -641,10 +801,11 @@ alert(
 
 /* RELOAD */
 
-loadDonations();
+await loadDonations();
 
 
 }
+
 
 catch(error){
 
@@ -653,8 +814,9 @@ console.error(
 error
 );
 
+
 alert(
-"❌ Edit କରିବା ସମୟରେ ସମସ୍ୟା ହେଲା।\n\n"+
+"❌ Edit କରିବାରେ ସମସ୍ୟା ହେଲା।\n\n" +
 error.message
 );
 
@@ -672,7 +834,9 @@ async function deleteDonation(id){
 try{
 
 
-const password=
+/* PASSWORD */
+
+const password =
 prompt(
 "🔒 Delete Password"
 );
@@ -689,7 +853,9 @@ return;
 }
 
 
-const confirmDelete=
+/* CONFIRM */
+
+const confirmDelete =
 confirm(
 "⚠️ ଏହି Donation କୁ Delete କରିବେ?"
 );
@@ -702,20 +868,31 @@ return;
 }
 
 
+/* DELETE */
+
 await deleteDoc(
-doc(db,"donations",id)
+doc(
+db,
+"donations",
+id
+)
 );
 
+
+/* SUCCESS */
 
 alert(
 "✅ Donation Deleted"
 );
 
 
-loadDonations();
+/* RELOAD */
+
+await loadDonations();
 
 
 }
+
 
 catch(error){
 
@@ -724,8 +901,9 @@ console.error(
 error
 );
 
+
 alert(
-"❌ Delete କରିବାରେ ସମସ୍ୟା ହେଲା।\n\n"+
+"❌ Delete କରିବାରେ ସମସ୍ୟା ହେଲା।\n\n" +
 error.message
 );
 
@@ -743,13 +921,23 @@ async function whatsappThankYou(id){
 try{
 
 
-const donationRef=
-doc(db,"donations",id);
+/* GET DONATION */
+
+const donationRef =
+doc(
+db,
+"donations",
+id
+);
 
 
-const donationSnap=
-await getDoc(donationRef);
+const donationSnap =
+await getDoc(
+donationRef
+);
 
+
+/* CHECK */
 
 if(!donationSnap.exists()){
 
@@ -762,41 +950,125 @@ return;
 }
 
 
-const data=
+/* DATA */
+
+const data =
 donationSnap.data();
 
 
 /* =====================================================
-   DATA
+   MEMBER NAME
 ===================================================== */
 
-const name=
-data.name || "ସଦସ୍ୟ";
+const name =
+data.name ||
+"ସଦସ୍ୟ";
 
 
-const amount=
-Number(data.amount || 0);
+/* =====================================================
+   AMOUNT
+===================================================== */
 
-
-const mobile=
-String(data.mobile || "")
-.replace(/\D/g,"");
-
-
-const date=
-formatDonationDate(
-data.createdAt
+const amount =
+Number(
+data.amount || 0
 );
 
 
 /* =====================================================
-   MOBILE CHECK
+   MOBILE
 ===================================================== */
 
-if(!mobile){
+let mobile =
+String(
+data.mobile || ""
+)
+.replace(
+/\D/g,
+""
+);
+
+
+/* =====================================================
+   INDIAN NUMBER FIX
+===================================================== */
+
+
+/*
+   10 digit:
+   8401319341
+
+   becomes:
+
+   918401319341
+*/
+
+
+if(
+mobile.length === 10
+){
+
+mobile =
+"91" + mobile;
+
+}
+
+
+/*
+   0XXXXXXXXXX
+
+   becomes:
+
+   91XXXXXXXXXX
+*/
+
+else if(
+mobile.length === 11 &&
+mobile.startsWith("0")
+){
+
+mobile =
+"91" +
+mobile.substring(1);
+
+}
+
+
+/*
+   Already 91XXXXXXXXXX
+*/
+
+else if(
+mobile.length === 12 &&
+mobile.startsWith("91")
+){
+
+mobile =
+mobile;
+
+}
+
+
+/*
+   +91XXXXXXXXXX
+
+   '+' already removed
+   above
+*/
+
+
+/* =====================================================
+   FINAL VALIDATION
+===================================================== */
+
+if(
+mobile.length !== 12 ||
+!mobile.startsWith("91")
+){
 
 alert(
-"❌ ଏହି Member ଙ୍କ Mobile Number ମିଳିଲା ନାହିଁ।"
+"❌ Mobile Number ଠିକ୍ ନୁହେଁ।\n\n" +
+"Firestore ରେ 10 digit Indian mobile number ରଖନ୍ତୁ।"
 );
 
 return;
@@ -805,10 +1077,20 @@ return;
 
 
 /* =====================================================
-   WHATSAPP MESSAGE
+   DATE
 ===================================================== */
 
-const message=
+const date =
+formatDonationDate(
+data.createdAt
+);
+
+
+/* =====================================================
+   FINAL WHATSAPP MESSAGE
+===================================================== */
+
+const message =
 
 `ଜୟଜଗନ୍ନାଥ 🙏
 
@@ -828,24 +1110,29 @@ const message=
 
 
 /* =====================================================
-   WHATSAPP
+   WHATSAPP URL
 ===================================================== */
 
-const whatsappURL=
+const whatsappURL =
 
-"https://wa.me/"+
-mobile+
-"?text="+
-encodeURIComponent(message);
-
-
-window.open(
-whatsappURL,
-"_blank"
+"https://wa.me/" +
+mobile +
+"?text=" +
+encodeURIComponent(
+message
 );
 
 
+/* =====================================================
+   OPEN WHATSAPP
+===================================================== */
+
+window.location.href =
+whatsappURL;
+
+
 }
+
 
 catch(error){
 
@@ -854,8 +1141,10 @@ console.error(
 error
 );
 
+
 alert(
-"❌ WhatsApp message ତିଆରି କରିବାରେ ସମସ୍ୟା ହେଲା।"
+"❌ WhatsApp message ତିଆରି କରିବାରେ ସମସ୍ୟା ହେଲା।\n\n" +
+error.message
 );
 
 }
@@ -864,7 +1153,7 @@ alert(
 
 
 /* =====================================================
-   LOAD
+   START
 ===================================================== */
 
 loadDonations();
@@ -872,7 +1161,9 @@ loadDonations();
 
 </script>
 
+
 </div>
+
 
 </body>
 
