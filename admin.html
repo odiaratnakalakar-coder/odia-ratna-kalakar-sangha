@@ -13,7 +13,6 @@
 
 <title>Admin Dashboard</title>
 
-
 <style>
 
 /* ==================================================
@@ -33,13 +32,9 @@
 ================================================== */
 
 body{
-
     background:#111;
-
     color:white;
-
     padding:15px;
-
 }
 
 
@@ -48,11 +43,8 @@ body{
 ================================================== */
 
 .container{
-
     max-width:600px;
-
     margin:auto;
-
 }
 
 
@@ -61,13 +53,9 @@ body{
 ================================================== */
 
 h1{
-
     text-align:center;
-
     color:#ffcc00;
-
     margin-bottom:20px;
-
 }
 
 
@@ -76,16 +64,10 @@ h1{
 ================================================== */
 
 .dashboard{
-
     display:grid;
-
-    grid-template-columns:
-    repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
     gap:12px;
-
     margin-bottom:25px;
-
 }
 
 
@@ -94,41 +76,27 @@ h1{
 ================================================== */
 
 .card{
-
     background:#222;
-
-    border:
-    2px solid
-    #c40000;
-
+    border:2px solid #c40000;
     border-radius:12px;
-
     padding:20px;
-
     text-align:center;
 
     box-shadow:
     0 0 10px
     rgba(255,0,0,.3);
-
 }
 
 
 .card h2{
-
     font-size:28px;
-
     margin-bottom:8px;
-
 }
 
 
 .card p{
-
     font-size:15px;
-
     color:#ddd;
-
 }
 
 
@@ -138,8 +106,7 @@ h1{
 
 .applicationCard{
 
-    grid-column:
-    1 / -1;
+    grid-column:1 / -1;
 
     background:
     linear-gradient(
@@ -148,40 +115,28 @@ h1{
         #151515
     );
 
-    border:
-    2px solid
-    #ffcc00;
+    border:2px solid #ffcc00;
 
     box-shadow:
     0 0 15px
     rgba(255,204,0,.25);
 
     text-decoration:none;
-
     color:inherit;
-
     display:block;
-
     cursor:pointer;
-
 }
 
 
 .applicationCard h2{
-
     color:#ffcc00;
-
     font-size:32px;
-
 }
 
 
 .applicationCard p{
-
     color:#fff;
-
     font-weight:bold;
-
 }
 
 
@@ -191,8 +146,7 @@ h1{
 
 .feedbackCard{
 
-    grid-column:
-    1 / -1;
+    grid-column:1 / -1;
 
     background:
     linear-gradient(
@@ -201,51 +155,35 @@ h1{
         #151515
     );
 
-    border:
-    2px solid
-    #00d9ff;
+    border:2px solid #00d9ff;
 
     box-shadow:
     0 0 15px
     rgba(0,217,255,.20);
 
     text-decoration:none;
-
     color:inherit;
-
     display:block;
-
     cursor:pointer;
-
 }
 
 
 .feedbackCard h2{
-
     color:#00d9ff;
-
     font-size:32px;
-
 }
 
 
 .feedbackCard p{
-
     color:#fff;
-
     font-weight:bold;
-
 }
 
 
 .feedbackCountText{
-
     font-size:13px !important;
-
     color:#aaa !important;
-
     margin-top:5px;
-
 }
 
 
@@ -255,42 +193,29 @@ h1{
 
 .birthdayCard{
 
-    grid-column:
-    1 / -1;
+    grid-column:1 / -1;
 
-    border:
-    2px solid
-    #ff9900;
+    border:2px solid #ff9900;
 
     background:#222;
-
 }
 
 
 .birthdayCard h2{
-
     color:#ffcc00;
-
     font-size:32px;
-
 }
 
 
 .birthdayCard p{
-
     color:#ffcc00;
-
     font-weight:bold;
-
 }
 
 
 .birthdayList{
-
     margin-top:12px;
-
     text-align:left;
-
 }
 
 
@@ -298,9 +223,7 @@ h1{
 
     background:#151515;
 
-    border-left:
-    4px solid
-    #ffcc00;
+    border-left:4px solid #ffcc00;
 
     border-radius:7px;
 
@@ -309,26 +232,260 @@ h1{
     margin-top:7px;
 
     line-height:1.5;
-
 }
 
 
 .birthdayMember strong{
-
     color:#ffcc00;
-
 }
 
 
 .noBirthday{
-
     color:#aaa;
+    text-align:center;
+    padding:5px;
+    font-size:14px;
+}
+
+
+/* ==================================================
+   DAILY MEMBER REPORT
+================================================== */
+
+.dailyMemberCard{
+
+    grid-column:1 / -1;
+
+    background:
+    linear-gradient(
+        135deg,
+        #001d00,
+        #151515
+    );
+
+    border:2px solid #00cc66;
+
+    box-shadow:
+    0 0 15px
+    rgba(0,204,102,.20);
+}
+
+
+.dailyMemberCard h2{
+
+    color:#00ff88;
+
+    font-size:30px;
+
+}
+
+
+.dailyMemberCard p{
+
+    color:#fff;
+
+    font-weight:bold;
+
+}
+
+
+/* ==================================================
+   DAILY STATS
+================================================== */
+
+.dailyStats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
+
+
+.dailyStat{
+
+    background:#151515;
+
+    border:
+    1px solid
+    #555;
+
+    border-radius:8px;
+
+    padding:12px;
 
     text-align:center;
 
-    padding:5px;
+}
 
-    font-size:14px;
+
+.dailyStat strong{
+
+    display:block;
+
+    color:#00ff88;
+
+    font-size:25px;
+
+    margin-bottom:5px;
+
+}
+
+
+.dailyStat span{
+
+    color:#ccc;
+
+    font-size:13px;
+
+}
+
+
+/* ==================================================
+   DATE REPORT
+================================================== */
+
+.dateReport{
+
+    margin-top:15px;
+
+    background:#151515;
+
+    padding:12px;
+
+    border-radius:8px;
+
+}
+
+
+.dateReportTitle{
+
+    color:#ffcc00;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+
+.dayRow{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:#222;
+
+    border-radius:6px;
+
+    padding:10px;
+
+    margin-top:6px;
+
+    cursor:pointer;
+
+}
+
+
+.dayRow:hover{
+
+    background:#333;
+
+}
+
+
+.dayRow .dayName{
+
+    color:#fff;
+
+}
+
+
+.dayRow .dayCount{
+
+    color:#00ff88;
+
+    font-weight:bold;
+
+}
+
+
+/* ==================================================
+   SELECTED DAY MEMBERS
+================================================== */
+
+.selectedDay{
+
+    margin-top:15px;
+
+    display:none;
+
+    background:#151515;
+
+    padding:12px;
+
+    border-radius:8px;
+
+}
+
+
+.selectedDay h3{
+
+    color:#ffcc00;
+
+    margin-bottom:10px;
+
+}
+
+
+.dailyMember{
+
+    background:#222;
+
+    border-left:
+    4px solid
+    #00cc66;
+
+    border-radius:7px;
+
+    padding:10px;
+
+    margin-top:7px;
+
+    line-height:1.5;
+
+}
+
+
+.dailyMember strong{
+
+    color:#00ff88;
+
+}
+
+
+.statusPending{
+
+    color:#ff9900;
+
+    font-weight:bold;
+
+}
+
+
+.statusApproved{
+
+    color:#00ff88;
+
+    font-weight:bold;
 
 }
 
@@ -500,31 +657,27 @@ h1{
 @media(max-width:450px){
 
     .dashboard{
-
         gap:10px;
-
     }
 
 
     .card{
-
-        padding:
-        17px 10px;
-
+        padding:17px 10px;
     }
 
 
     .card h2{
-
         font-size:26px;
-
     }
 
 
     .card p{
-
         font-size:14px;
+    }
 
+
+    .dailyStats{
+        grid-template-columns:repeat(2,1fr);
     }
 
 }
@@ -558,9 +711,7 @@ h1{
 <div class="dashboard">
 
 
-<!-- ==================================================
-     TOTAL MEMBERS
-================================================== -->
+<!-- TOTAL MEMBERS -->
 
 <div class="card">
 
@@ -579,9 +730,7 @@ h1{
 </div>
 
 
-<!-- ==================================================
-     COMMITTEE
-================================================== -->
+<!-- COMMITTEE -->
 
 <div class="card">
 
@@ -600,9 +749,7 @@ h1{
 </div>
 
 
-<!-- ==================================================
-     APPLICATIONS
-================================================== -->
+<!-- APPLICATIONS -->
 
 <a
 href="worker-help-admin.html"
@@ -624,9 +771,7 @@ class="card applicationCard"
 </a>
 
 
-<!-- ==================================================
-     BLOOD DONORS
-================================================== -->
+<!-- BLOOD DONORS -->
 
 <div class="card">
 
@@ -645,9 +790,7 @@ class="card applicationCard"
 </div>
 
 
-<!-- ==================================================
-     DONATION
-================================================== -->
+<!-- DONATION -->
 
 <div class="card">
 
@@ -666,9 +809,7 @@ class="card applicationCard"
 </div>
 
 
-<!-- ==================================================
-     MEMBER FEEDBACK
-================================================== -->
+<!-- MEMBER FEEDBACK -->
 
 <a
 href="admin-feedback.html"
@@ -694,6 +835,142 @@ class="card feedbackCard"
 </p>
 
 </a>
+
+
+<!-- ==================================================
+     DAILY MEMBER REPORT
+================================================== -->
+
+<div class="card dailyMemberCard">
+
+<h2>
+
+📊 <span id="todayNewMembers">0</span>
+
+</h2>
+
+<p>
+
+ଆଜି ନୂଆ ସଦସ୍ୟ
+
+</p>
+
+
+<div class="dailyStats">
+
+
+<div class="dailyStat">
+
+<strong id="yesterdayMembers">
+
+0
+
+</strong>
+
+<span>
+
+📅 ଗତକାଲି
+
+</span>
+
+</div>
+
+
+<div class="dailyStat">
+
+<strong id="weekMembers">
+
+0
+
+</strong>
+
+<span>
+
+📆 ଏହି ସପ୍ତାହ
+
+</span>
+
+</div>
+
+
+<div class="dailyStat">
+
+<strong id="monthMembers">
+
+0
+
+</strong>
+
+<span>
+
+🗓️ ଏହି ମାସ
+
+</span>
+
+</div>
+
+
+<div class="dailyStat">
+
+<strong id="totalRegisteredMembers">
+
+0
+
+</strong>
+
+<span>
+
+📝 Total Registration
+
+</span>
+
+</div>
+
+</div>
+
+
+<div class="dateReport">
+
+<div class="dateReportTitle">
+
+📈 ଶେଷ 7 ଦିନର Registration
+
+</div>
+
+
+<div id="dailyList">
+
+<div class="noBirthday">
+
+Data loading...
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+id="selectedDay"
+class="selectedDay"
+>
+
+<h3 id="selectedDayTitle">
+
+📋 Member List
+
+</h3>
+
+
+<div id="selectedDayMembers">
+
+</div>
+
+</div>
+
+
+</div>
 
 
 <!-- ==================================================
@@ -741,8 +1018,6 @@ Birthday checking...
 <div class="menu">
 
 
-<!-- APPLICATION ADMIN -->
-
 <a
 href="worker-help-admin.html"
 class="applicationAdmin"
@@ -753,16 +1028,12 @@ class="applicationAdmin"
 </a>
 
 
-<!-- MEMBERS ADMIN -->
-
 <a href="members.html">
 
 👥 Members Admin
 
 </a>
 
-
-<!-- MEMBER BOOK -->
 
 <a
 href="members-book.html"
@@ -774,16 +1045,12 @@ class="memberBook"
 </a>
 
 
-<!-- MEMBER ADD -->
-
 <a href="member-add.html">
 
 ➕ Member Add / Edit
 
 </a>
 
-
-<!-- BIRTHDAY -->
 
 <a href="birthday-admin.html">
 
@@ -792,16 +1059,12 @@ class="memberBook"
 </a>
 
 
-<!-- FESTIVAL -->
-
 <a href="festival-calendar.html">
 
 📅 Festival Calendar
 
 </a>
 
-
-<!-- PENDING -->
 
 <a href="pending-members.html">
 
@@ -810,16 +1073,12 @@ class="memberBook"
 </a>
 
 
-<!-- COMMITTEE -->
-
 <a href="committee.html">
 
 👨‍💼 Committee Admin
 
 </a>
 
-
-<!-- PUBLIC NOTICE -->
 
 <a href="public-notice-admin.html">
 
@@ -828,16 +1087,12 @@ class="memberBook"
 </a>
 
 
-<!-- GALLERY -->
-
 <a href="gallery-admin.html">
 
 🖼️ Gallery Admin
 
 </a>
 
-
-<!-- ID CARD -->
 
 <a href="idcard.html">
 
@@ -846,16 +1101,12 @@ class="memberBook"
 </a>
 
 
-<!-- DONATION -->
-
 <a href="donation-admin.html">
 
 ❤️ Donation Admin
 
 </a>
 
-
-<!-- PAYMENT -->
 
 <a href="payment-receipt.html">
 
@@ -864,18 +1115,12 @@ class="memberBook"
 </a>
 
 
-<!-- TRUST ACCOUNTS -->
-
 <a href="trust-accounts.html">
 
 📊 Trust Accounts Dashboard
 
 </a>
 
-
-<!-- ==================================================
-     MEMBER FEEDBACK ADMIN
-================================================== -->
 
 <a
 href="admin-feedback.html"
@@ -887,16 +1132,12 @@ class="feedbackAdmin"
 </a>
 
 
-<!-- WEBSITE HOME -->
-
 <a href="index.html">
 
 🏠 Website Home
 
 </a>
 
-
-<!-- LOGOUT -->
 
 <a
 href="#"
@@ -911,10 +1152,6 @@ onclick="logout()"
 </div>
 
 
-<!-- ==================================================
-     FOOTER
-================================================== -->
-
 <div class="footer">
 
 © 2026 Odia Ratna Kalakar Sangha
@@ -922,12 +1159,12 @@ onclick="logout()"
 </div>
 
 
-<!-- ==================================================
-     FIREBASE
-================================================== -->
-
 <script type="module">
 
+
+/* ==================================================
+   FIREBASE
+================================================== */
 
 import {
 
@@ -939,10 +1176,6 @@ import {
 
 from "./firebase.js";
 
-
-/* ==================================================
-   FIRESTORE
-================================================== */
 
 import {
 
@@ -956,10 +1189,6 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* ==================================================
-   AUTH
-================================================== */
-
 import {
 
     signOut
@@ -968,6 +1197,13 @@ import {
 
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+/* ==================================================
+   GLOBAL MEMBER SNAPSHOT
+================================================== */
+
+let globalMemberSnap = null;
 
 
 /* ==================================================
@@ -998,6 +1234,9 @@ async function loadDashboard(){
         );
 
 
+        globalMemberSnap = memberSnap;
+
+
         document
         .getElementById(
             "memberCount"
@@ -1005,6 +1244,17 @@ async function loadDashboard(){
         .textContent =
 
         memberSnap.size;
+
+
+        /* ==================================================
+           DAILY MEMBER REPORT
+        ================================================== */
+
+        loadDailyMemberReport(
+
+            memberSnap
+
+        );
 
 
         /* ==================================================
@@ -1275,16 +1525,6 @@ async function loadDashboard(){
             );
 
 
-            /*
-              Unique member count
-
-              memberDocId ଥିଲେ
-              ତାହାକୁ priority ଦିଆଯିବ।
-
-              memberId fallback ଭାବରେ
-              ବ୍ୟବହାର ହେବ।
-            */
-
             const uniqueMembers =
 
             new Set();
@@ -1336,7 +1576,6 @@ async function loadDashboard(){
 
             uniqueMembers.size;
 
-
         }
 
         catch(error){
@@ -1379,6 +1618,677 @@ async function loadDashboard(){
 
 
 /* ==================================================
+   DAILY MEMBER REPORT
+================================================== */
+
+function loadDailyMemberReport(
+
+    memberSnap
+
+){
+
+    const members = [];
+
+
+    memberSnap.forEach(
+
+        memberDoc => {
+
+            const data =
+            memberDoc.data();
+
+
+            const createdAt =
+            data.createdAt;
+
+
+            if(
+                !createdAt
+            ){
+
+                return;
+
+            }
+
+
+            let date;
+
+
+            try{
+
+                if(
+                    typeof createdAt.toDate ===
+                    "function"
+                ){
+
+                    date =
+                    createdAt.toDate();
+
+                }
+
+                else if(
+                    createdAt.seconds
+                ){
+
+                    date =
+                    new Date(
+                        createdAt.seconds * 1000
+                    );
+
+                }
+
+                else{
+
+                    date =
+                    new Date(createdAt);
+
+                }
+
+            }
+
+            catch(error){
+
+                return;
+
+            }
+
+
+            if(
+                isNaN(date.getTime())
+            ){
+
+                return;
+
+            }
+
+
+            members.push({
+
+                id:
+                memberDoc.id,
+
+                name:
+                data.name || "Member",
+
+                mobile:
+                data.mobile || "-",
+
+                memberId:
+                data.memberId || "-",
+
+                status:
+                data.status || "pending",
+
+                createdAt:
+                date
+
+            });
+
+        }
+
+    );
+
+
+    /* ==================================================
+       TOTAL REGISTRATION
+    ================================================== */
+
+    document
+    .getElementById(
+        "totalRegisteredMembers"
+    )
+    .textContent =
+
+    members.length;
+
+
+    const now =
+    new Date();
+
+
+    /* ==================================================
+       START OF TODAY
+    ================================================== */
+
+    const todayStart =
+    new Date(
+
+        now.getFullYear(),
+
+        now.getMonth(),
+
+        now.getDate(),
+
+        0,0,0,0
+
+    );
+
+
+    const tomorrowStart =
+    new Date(
+
+        now.getFullYear(),
+
+        now.getMonth(),
+
+        now.getDate()+1,
+
+        0,0,0,0
+
+    );
+
+
+    /* ==================================================
+       TODAY
+    ================================================== */
+
+    const todayMembers =
+
+    members.filter(
+
+        member =>
+
+        member.createdAt >= todayStart &&
+
+        member.createdAt < tomorrowStart
+
+    );
+
+
+    document
+    .getElementById(
+        "todayNewMembers"
+    )
+    .textContent =
+
+    todayMembers.length;
+
+
+    /* ==================================================
+       YESTERDAY
+    ================================================== */
+
+    const yesterdayStart =
+    new Date(
+
+        now.getFullYear(),
+
+        now.getMonth(),
+
+        now.getDate()-1,
+
+        0,0,0,0
+
+    );
+
+
+    const yesterdayEnd =
+    todayStart;
+
+
+    const yesterdayMembers =
+
+    members.filter(
+
+        member =>
+
+        member.createdAt >= yesterdayStart &&
+
+        member.createdAt < yesterdayEnd
+
+    );
+
+
+    document
+    .getElementById(
+        "yesterdayMembers"
+    )
+    .textContent =
+
+    yesterdayMembers.length;
+
+
+    /* ==================================================
+       THIS WEEK
+    ================================================== */
+
+    const weekStart =
+    new Date(now);
+
+
+    const day =
+    weekStart.getDay();
+
+
+    const diff =
+    day === 0
+    ? 6
+    : day - 1;
+
+
+    weekStart.setDate(
+
+        weekStart.getDate() - diff
+
+    );
+
+
+    weekStart.setHours(
+
+        0,0,0,0
+
+    );
+
+
+    const weekMembers =
+
+    members.filter(
+
+        member =>
+
+        member.createdAt >= weekStart &&
+
+        member.createdAt < tomorrowStart
+
+    );
+
+
+    document
+    .getElementById(
+        "weekMembers"
+    )
+    .textContent =
+
+    weekMembers.length;
+
+
+    /* ==================================================
+       THIS MONTH
+    ================================================== */
+
+    const monthStart =
+    new Date(
+
+        now.getFullYear(),
+
+        now.getMonth(),
+
+        1,
+
+        0,0,0,0
+
+    );
+
+
+    const monthMembers =
+
+    members.filter(
+
+        member =>
+
+        member.createdAt >= monthStart &&
+
+        member.createdAt < tomorrowStart
+
+    );
+
+
+    document
+    .getElementById(
+        "monthMembers"
+    )
+    .textContent =
+
+    monthMembers.length;
+
+
+    /* ==================================================
+       LAST 7 DAYS
+    ================================================== */
+
+    const dailyList =
+    document.getElementById(
+        "dailyList"
+    );
+
+
+    dailyList.innerHTML = "";
+
+
+    for(
+
+        let i = 6;
+
+        i >= 0;
+
+        i--
+
+    ){
+
+        const date =
+        new Date(
+
+            now.getFullYear(),
+
+            now.getMonth(),
+
+            now.getDate() - i,
+
+            0,0,0,0
+
+        );
+
+
+        const nextDate =
+        new Date(
+
+            now.getFullYear(),
+
+            now.getMonth(),
+
+            now.getDate() - i + 1,
+
+            0,0,0,0
+
+        );
+
+
+        const dayMembers =
+
+        members.filter(
+
+            member =>
+
+            member.createdAt >= date &&
+
+            member.createdAt < nextDate
+
+        );
+
+
+        const row =
+        document.createElement(
+            "div"
+        );
+
+
+        row.className =
+        "dayRow";
+
+
+        const dayText =
+
+        formatDate(date);
+
+
+        row.innerHTML = `
+
+            <span class="dayName">
+
+                📅 ${dayText}
+
+            </span>
+
+            <span class="dayCount">
+
+                ${dayMembers.length} ଜଣ
+
+            </span>
+
+        `;
+
+
+        row.addEventListener(
+
+            "click",
+
+            function(){
+
+                showSelectedDay(
+
+                    date,
+
+                    nextDate,
+
+                    dayMembers
+
+                );
+
+            }
+
+        );
+
+
+        dailyList.appendChild(
+
+            row
+
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   SHOW SELECTED DAY MEMBERS
+================================================== */
+
+function showSelectedDay(
+
+    date,
+
+    nextDate,
+
+    dayMembers
+
+){
+
+    const selected =
+    document.getElementById(
+        "selectedDay"
+    );
+
+
+    const title =
+    document.getElementById(
+        "selectedDayTitle"
+    );
+
+
+    const list =
+    document.getElementById(
+        "selectedDayMembers"
+    );
+
+
+    selected.style.display =
+    "block";
+
+
+    title.textContent =
+
+    "📋 " +
+
+    formatDate(date) +
+
+    " — " +
+
+    dayMembers.length +
+
+    " ଜଣ Member";
+
+
+    list.innerHTML = "";
+
+
+    if(
+        dayMembers.length === 0
+    ){
+
+        list.innerHTML = `
+
+            <div class="noBirthday">
+
+                ଏହି ଦିନ କୌଣସି Registration ହୋଇନାହିଁ।
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    dayMembers
+    .sort(
+
+        (a,b) =>
+
+        a.createdAt - b.createdAt
+
+    )
+    .forEach(
+
+        member => {
+
+            const div =
+            document.createElement(
+                "div"
+            );
+
+
+            div.className =
+            "dailyMember";
+
+
+            const status =
+            String(
+                member.status
+            ).toLowerCase();
+
+
+            const statusText =
+
+            status === "approved"
+
+            ? `<span class="statusApproved">
+
+                ✅ Approved
+
+              </span>`
+
+            : `<span class="statusPending">
+
+                ⏳ Pending
+
+              </span>`;
+
+
+            div.innerHTML = `
+
+                👤 <strong>
+
+                    ${escapeHTML(member.name)}
+
+                </strong>
+
+                <br>
+
+                🆔 Member ID:
+
+                ${escapeHTML(member.memberId)}
+
+                <br>
+
+                📱 Mobile:
+
+                ${escapeHTML(member.mobile)}
+
+                <br>
+
+                ${statusText}
+
+            `;
+
+
+            list.appendChild(
+
+                div
+
+            );
+
+        }
+
+    );
+
+}
+
+
+/* ==================================================
+   FORMAT DATE
+================================================== */
+
+function formatDate(
+
+    date
+
+){
+
+    const day =
+
+    String(
+
+        date.getDate()
+
+    ).padStart(
+
+        2,
+
+        "0"
+
+    );
+
+
+    const month =
+
+    String(
+
+        date.getMonth()+1
+
+    ).padStart(
+
+        2,
+
+        "0"
+
+    );
+
+
+    const year =
+
+    date.getFullYear();
+
+
+    return (
+
+        day +
+
+        "/" +
+
+        month +
+
+        "/" +
+
+        year
+
+    );
+
+}
+
+
+/* ==================================================
    TODAY BIRTHDAYS
 ================================================== */
 
@@ -1388,9 +2298,7 @@ function loadTodayBirthdays(
 
 ){
 
-
     const today =
-
     new Date();
 
 
@@ -1400,9 +2308,7 @@ function loadTodayBirthdays(
 
         today.getDate()
 
-    )
-
-    .padStart(
+    ).padStart(
 
         2,
 
@@ -1417,9 +2323,7 @@ function loadTodayBirthdays(
 
         today.getMonth()+1
 
-    )
-
-    .padStart(
+    ).padStart(
 
         2,
 
@@ -1428,54 +2332,31 @@ function loadTodayBirthdays(
     );
 
 
-    const birthdays =
+    const birthdays = [];
 
-    [];
-
-
-    /* ==================================================
-       CHECK MEMBERS
-    ================================================== */
 
     memberSnap.forEach(
 
         memberDoc => {
 
-
             const data =
-
             memberDoc.data();
 
 
             const dob =
-
             String(
 
                 data.dob || ""
 
-            )
-
-            .trim();
-
-
-            /*
-
-            DOB FORMAT:
-
-            DD/MM/YYYY
-
-            */
+            ).trim();
 
 
             const parts =
-
             dob.split("/");
 
 
             if(
-
                 parts.length !== 3
-
             ){
 
                 return;
@@ -1484,18 +2365,12 @@ function loadTodayBirthdays(
 
 
             const day =
-
             parts[0];
 
 
             const month =
-
             parts[1];
 
-
-            /* ==================================================
-               MATCH
-            ================================================== */
 
             if(
 
@@ -1508,28 +2383,15 @@ function loadTodayBirthdays(
                 birthdays.push({
 
                     name:
-
-                    data.name ||
-
-                    "Member",
-
+                    data.name || "Member",
 
                     memberId:
-
-                    data.memberId ||
-
-                    "-",
-
+                    data.memberId || "-",
 
                     mobile:
-
-                    data.mobile ||
-
-                    "-",
-
+                    data.mobile || "-",
 
                     dob:
-
                     dob
 
                 });
@@ -1541,10 +2403,6 @@ function loadTodayBirthdays(
     );
 
 
-    /* ==================================================
-       COUNT
-    ================================================== */
-
     document
     .getElementById(
         "birthdayCount"
@@ -1554,32 +2412,17 @@ function loadTodayBirthdays(
     birthdays.length;
 
 
-    /* ==================================================
-       LIST
-    ================================================== */
-
     const list =
-
     document.getElementById(
-
         "birthdayList"
-
     );
 
 
-    list.innerHTML =
+    list.innerHTML = "";
 
-    "";
-
-
-    /* ==================================================
-       NO BIRTHDAY
-    ================================================== */
 
     if(
-
         birthdays.length === 0
-
     ){
 
         list.innerHTML = `
@@ -1597,26 +2440,17 @@ function loadTodayBirthdays(
     }
 
 
-    /* ==================================================
-       SHOW BIRTHDAYS
-    ================================================== */
-
     birthdays.forEach(
 
         member => {
 
-
             const div =
-
             document.createElement(
-
                 "div"
-
             );
 
 
             div.className =
-
             "birthdayMember";
 
 
@@ -1624,11 +2458,7 @@ function loadTodayBirthdays(
 
             🎉 <strong>
 
-            ${escapeHTML(
-
-                member.name
-
-            )}
+            ${escapeHTML(member.name)}
 
             </strong>
 
@@ -1636,21 +2466,13 @@ function loadTodayBirthdays(
 
             🎂 DOB:
 
-            ${escapeHTML(
-
-                member.dob
-
-            )}
+            ${escapeHTML(member.dob)}
 
             <br>
 
             📱 Mobile:
 
-            ${escapeHTML(
-
-                member.mobile
-
-            )}
+            ${escapeHTML(member.mobile)}
 
             `;
 
@@ -1777,7 +2599,6 @@ loadDashboard();
 
 </div>
 
-
 </body>
 
-</html>
+      </html>
