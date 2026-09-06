@@ -11,6 +11,9 @@
 <meta name="theme-color"
       content="#7b1e1e">
 
+<meta name="description"
+      content="ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ - ସଦସ୍ୟ ମତାମତ">
+
 <title>ସଦସ୍ୟ ମତାମତ</title>
 
 <style>
@@ -110,6 +113,8 @@ select{
     outline:none;
 
     margin-bottom:14px;
+
+    font-family:inherit;
 }
 
 input:focus,
@@ -137,6 +142,8 @@ button{
     font-weight:bold;
 
     cursor:pointer;
+
+    font-family:inherit;
 }
 
 button:hover{
@@ -154,6 +161,15 @@ button:disabled{
 
 .verify-btn:hover{
     background:#111;
+}
+
+.whatsapp-btn{
+    background:#25D366;
+    margin-top:12px;
+}
+
+.whatsapp-btn:hover{
+    background:#1ebe5d;
 }
 
 #feedbackForm{
@@ -239,6 +255,30 @@ button:disabled{
     font-weight:normal;
 }
 
+.thankyou-box{
+    display:none;
+
+    background:
+    linear-gradient(135deg,#f0fff5,#e7f9ed);
+
+    border:1px solid #8bd19c;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    margin-top:15px;
+
+    text-align:center;
+
+    line-height:1.7;
+}
+
+.thankyou-box h3{
+    color:#146c2e;
+    margin-bottom:8px;
+}
+
 .footer{
     text-align:center;
     color:#777;
@@ -268,7 +308,6 @@ button:disabled{
 
 
 <body>
-
 
 <div class="container">
 
@@ -318,7 +357,6 @@ button:disabled{
         👤 ସଦସ୍ୟ ପରିଚୟ ଯାଞ୍ଚ
     </h2>
 
-
     <label>
         🪪 Member ID
     </label>
@@ -329,7 +367,6 @@ button:disabled{
         placeholder="ଉଦାହରଣ: ORKS0228"
         autocomplete="off"
     >
-
 
     <label>
         📱 Registered Mobile Number
@@ -343,17 +380,13 @@ button:disabled{
         autocomplete="off"
     >
 
-
     <button
         type="button"
         id="verifyBtn"
         class="verify-btn"
     >
-
         🔍 Verify Member
-
     </button>
-
 
     <div
         id="verifyMessage"
@@ -385,9 +418,7 @@ button:disabled{
     ></div>
 
 
-    <!-- ==================================================
-         QUESTION 1
-    ================================================== -->
+    <!-- QUESTION 1 -->
 
     <label>
 
@@ -396,9 +427,7 @@ button:disabled{
 
     </label>
 
-
     <div class="radio-group">
-
 
         <div class="radio-option">
 
@@ -415,7 +444,6 @@ button:disabled{
 
         </div>
 
-
         <div class="radio-option">
 
             <input
@@ -430,7 +458,6 @@ button:disabled{
             </label>
 
         </div>
-
 
         <div class="radio-option">
 
@@ -450,9 +477,7 @@ button:disabled{
     </div>
 
 
-    <!-- ==================================================
-         QUESTION 2
-    ================================================== -->
+    <!-- QUESTION 2 -->
 
     <label for="q2">
 
@@ -468,9 +493,7 @@ button:disabled{
     ></textarea>
 
 
-    <!-- ==================================================
-         QUESTION 3
-    ================================================== -->
+    <!-- QUESTION 3 -->
 
     <label for="q3">
 
@@ -508,9 +531,7 @@ button:disabled{
     </select>
 
 
-    <!-- ==================================================
-         QUESTION 4
-    ================================================== -->
+    <!-- QUESTION 4 -->
 
     <label for="q4">
 
@@ -525,9 +546,7 @@ button:disabled{
     ></textarea>
 
 
-    <!-- ==================================================
-         QUESTION 5
-    ================================================== -->
+    <!-- QUESTION 5 -->
 
     <label for="q5">
 
@@ -565,9 +584,7 @@ button:disabled{
     </select>
 
 
-    <!-- ==================================================
-         QUESTION 6
-    ================================================== -->
+    <!-- QUESTION 6 -->
 
     <label for="q6">
 
@@ -593,9 +610,7 @@ button:disabled{
 
     </div>
 
-
     <br>
-
 
     <button
         type="button"
@@ -612,6 +627,41 @@ button:disabled{
         class="message"
     ></div>
 
+
+    <!-- ==================================================
+         WHATSAPP THANK YOU
+    ================================================== -->
+
+    <div
+        id="thankyouBox"
+        class="thankyou-box"
+    >
+
+        <h3>
+            🙏 ଆପଣଙ୍କୁ ହୃଦୟରୁ ଧନ୍ୟବାଦ
+        </h3>
+
+        <div>
+
+            ଆପଣ ଆମ ସଂଘ ପ୍ରତି
+            ଦେଖାଇଥିବା ଆସ୍ଥା ଓ
+            ମୂଲ୍ୟବାନ ମତାମତ ପାଇଁ
+            ଆମେ ଅତ୍ୟନ୍ତ କୃତଜ୍ଞ। 🌸
+
+        </div>
+
+
+        <button
+            type="button"
+            id="whatsappBtn"
+            class="whatsapp-btn"
+        >
+
+            📲 WhatsApp ରେ ଧନ୍ୟବାଦ
+
+        </button>
+
+    </div>
 
 </div>
 
@@ -665,33 +715,32 @@ from
 const memberIdInput =
 document.getElementById("memberId");
 
-
 const mobileInput =
 document.getElementById("mobile");
-
 
 const verifyBtn =
 document.getElementById("verifyBtn");
 
-
 const verifyMessage =
 document.getElementById("verifyMessage");
-
 
 const feedbackForm =
 document.getElementById("feedbackForm");
 
-
 const memberInfo =
 document.getElementById("memberInfo");
-
 
 const submitBtn =
 document.getElementById("submitBtn");
 
-
 const submitMessage =
 document.getElementById("submitMessage");
+
+const thankyouBox =
+document.getElementById("thankyouBox");
+
+const whatsappBtn =
+document.getElementById("whatsappBtn");
 
 
 /* ==================================================
@@ -744,13 +793,9 @@ function escapeHTML(value){
     return String(value ?? "")
 
         .replace(/&/g,"&amp;")
-
         .replace(/</g,"&lt;")
-
         .replace(/>/g,"&gt;")
-
         .replace(/"/g,"&quot;")
-
         .replace(/'/g,"&#039;");
 
 }
@@ -767,20 +812,19 @@ verifyBtn.addEventListener(
         const memberId =
             memberIdInput.value.trim();
 
-
         const mobile =
             normalizeMobile(
                 mobileInput.value
             );
 
-
         verifyMessage.style.display =
             "none";
-
 
         feedbackForm.style.display =
             "none";
 
+        thankyouBox.style.display =
+            "none";
 
         verifiedMember =
             null;
@@ -818,7 +862,6 @@ verifyBtn.addEventListener(
 
         verifyBtn.disabled =
             true;
-
 
         verifyBtn.textContent =
             "⏳ Verification ହେଉଛି...";
@@ -882,12 +925,10 @@ verifyBtn.addEventListener(
                     const data =
                         memberDoc.data();
 
-
                     const registeredMobile =
                         normalizeMobile(
                             data.mobile
                         );
-
 
                     const status =
                         String(
@@ -985,7 +1026,6 @@ verifyBtn.addEventListener(
 
             });
 
-
         }
 
         catch(error){
@@ -1008,7 +1048,6 @@ verifyBtn.addEventListener(
 
             verifyBtn.disabled =
                 false;
-
 
             verifyBtn.textContent =
                 "🔍 Verify Member";
@@ -1052,7 +1091,6 @@ submitBtn.addEventListener(
             document.querySelector(
                 'input[name="q1"]:checked'
             );
-
 
         const q1 =
             q1Element
@@ -1106,7 +1144,6 @@ submitBtn.addEventListener(
 
         }
 
-
         if(!q2){
 
             showMessage(
@@ -1118,7 +1155,6 @@ submitBtn.addEventListener(
             return;
 
         }
-
 
         if(!q3){
 
@@ -1132,7 +1168,6 @@ submitBtn.addEventListener(
 
         }
 
-
         if(!q4){
 
             showMessage(
@@ -1145,7 +1180,6 @@ submitBtn.addEventListener(
 
         }
 
-
         if(!q5){
 
             showMessage(
@@ -1157,7 +1191,6 @@ submitBtn.addEventListener(
             return;
 
         }
-
 
         if(!q6){
 
@@ -1173,12 +1206,11 @@ submitBtn.addEventListener(
 
 
         /* ===============================
-           DISABLE BUTTON
+           DISABLE
         =============================== */
 
         submitBtn.disabled =
             true;
-
 
         submitBtn.textContent =
             "⏳ Feedback Save ହେଉଛି...";
@@ -1189,9 +1221,6 @@ submitBtn.addEventListener(
 
             /* ==================================================
                ONE MEMBER = ONE FEEDBACK
-
-               Member Firestore document ID
-               କୁ Feedback document ID କରାଯାଇଛି।
             ================================================== */
 
             const feedbackRef =
@@ -1272,6 +1301,14 @@ submitBtn.addEventListener(
 
 
             /* ===============================
+               SHOW WHATSAPP
+            =============================== */
+
+            thankyouBox.style.display =
+                "block";
+
+
+            /* ===============================
                LOCK FORM
             =============================== */
 
@@ -1284,8 +1321,15 @@ submitBtn.addEventListener(
             fields.forEach(
                 field => {
 
-                    field.disabled =
-                        true;
+                    if(
+                        field.id !==
+                        "whatsappBtn"
+                    ){
+
+                        field.disabled =
+                            true;
+
+                    }
 
                 }
             );
@@ -1328,7 +1372,6 @@ submitBtn.addEventListener(
             submitBtn.disabled =
                 false;
 
-
             submitBtn.textContent =
                 "✅ ମତାମତ Submit କରନ୍ତୁ";
 
@@ -1337,8 +1380,80 @@ submitBtn.addEventListener(
     }
 );
 
+
+/* ==================================================
+   WHATSAPP THANK YOU
+================================================== */
+
+whatsappBtn.addEventListener(
+    "click",
+    function(){
+
+        if(!verifiedMember){
+
+            return;
+
+        }
+
+
+        const mobile =
+            normalizeMobile(
+                verifiedMember.mobile
+            );
+
+
+        if(mobile.length !== 10){
+
+            alert(
+                "❌ Memberଙ୍କ mobile number ସଠିକ୍ ନୁହେଁ।"
+            );
+
+            return;
+
+        }
+
+
+        const name =
+            String(
+                verifiedMember.name || "ସଦସ୍ୟ"
+            );
+
+
+        const message =
+
+`🙏 ${name} ଜୀ,
+
+ଆପଣ ଆମ ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ ପ୍ରତି ଦେଖାଇଥିବା ଆସ୍ଥା ଓ ମୂଲ୍ୟବାନ ମତାମତ ପାଇଁ ଆମେ ଅତ୍ୟନ୍ତ କୃତଜ୍ଞ। 🌸
+
+ଆପଣଙ୍କ ମତାମତ ଆମ ପାଇଁ ଏକ ମାର୍ଗଦର୍ଶନ। ଆପଣଙ୍କ ପରାମର୍ଶକୁ ସମ୍ମାନ ଦେଇ ଆମେ ସଂଘର କାର୍ଯ୍ୟକୁ ଆହୁରି ସୁନ୍ଦର ଓ ଉନ୍ନତ କରିବାକୁ ପ୍ରୟାସ କରିବୁ।
+
+ଆପଣଙ୍କ ସହଯୋଗ ଓ ଆଶୀର୍ବାଦ ଆମର ଶକ୍ତି। ❤️
+
+🙏 ଧନ୍ୟବାଦ ଓ ଶୁଭେଚ୍ଛା
+
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ 🌺`;
+
+
+        const whatsappURL =
+
+            "https://wa.me/91" +
+            mobile +
+            "?text=" +
+            encodeURIComponent(
+                message
+            );
+
+
+        window.open(
+            whatsappURL,
+            "_blank"
+        );
+
+    }
+);
+
 </script>
 
 </body>
 
-  </html>
+</html>
