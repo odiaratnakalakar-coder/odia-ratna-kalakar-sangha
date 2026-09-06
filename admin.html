@@ -15,21 +15,12 @@
 
 <style>
 
-/* ==================================================
-   RESET
-================================================== */
-
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,sans-serif;
+    font-family:Arial,"Noto Sans Oriya","Nirmala UI",sans-serif;
 }
-
-
-/* ==================================================
-   BODY
-================================================== */
 
 body{
     background:#111;
@@ -37,31 +28,17 @@ body{
     padding:15px;
 }
 
-
-/* ==================================================
-   CONTAINER
-================================================== */
-
 .container{
     max-width:600px;
     margin:auto;
 }
 
-
-/* ==================================================
-   TITLE
-================================================== */
-
 h1{
     text-align:center;
     color:#ffcc00;
     margin-bottom:20px;
+    font-size:30px;
 }
-
-
-/* ==================================================
-   DASHBOARD
-================================================== */
 
 .dashboard{
     display:grid;
@@ -70,191 +47,100 @@ h1{
     margin-bottom:25px;
 }
 
-
-/* ==================================================
-   CARD
-================================================== */
-
 .card{
     background:#222;
     border:2px solid #c40000;
     border-radius:12px;
-    padding:20px;
+    padding:20px 10px;
     text-align:center;
-
-    box-shadow:
-    0 0 10px
-    rgba(255,0,0,.3);
+    box-shadow:0 0 10px rgba(255,0,0,.3);
 }
-
 
 .card h2{
-    font-size:28px;
+    font-size:30px;
     margin-bottom:8px;
 }
-
 
 .card p{
     font-size:15px;
     color:#ddd;
 }
 
-
-/* ==================================================
-   APPLICATION CARD
-================================================== */
+/* APPLICATION */
 
 .applicationCard{
-
-    grid-column:1 / -1;
-
-    background:
-    linear-gradient(
-        135deg,
-        #260000,
-        #151515
-    );
-
+    grid-column:1/-1;
+    background:linear-gradient(135deg,#260000,#151515);
     border:2px solid #ffcc00;
-
-    box-shadow:
-    0 0 15px
-    rgba(255,204,0,.25);
-
     text-decoration:none;
-    color:inherit;
-    display:block;
-    cursor:pointer;
+    color:white;
 }
-
 
 .applicationCard h2{
     color:#ffcc00;
-    font-size:32px;
 }
 
-
-.applicationCard p{
-    color:#fff;
-    font-weight:bold;
-}
-
-
-/* ==================================================
-   FEEDBACK CARD
-================================================== */
+/* MEMBER FEEDBACK */
 
 .feedbackCard{
+    grid-column:1/-1;
+    background:linear-gradient(135deg,#001f26,#151515);
+    border:2px solid #00d9ff;
+    text-decoration:none;
+    color:white;
+}
 
-    grid-column:1 / -1;
+.feedbackCard h2{
+    color:#00d9ff;
+}
+
+/* PUBLIC FEEDBACK */
+
+.publicFeedbackCard{
+    grid-column:1/-1;
 
     background:
     linear-gradient(
         135deg,
-        #001f26,
+        #351600,
         #151515
     );
 
-    border:2px solid #00d9ff;
+    border:3px solid #ff9900;
 
     box-shadow:
-    0 0 15px
-    rgba(0,217,255,.20);
+    0 0 18px
+    rgba(255,153,0,.35);
 
     text-decoration:none;
-    color:inherit;
+
+    color:white;
+
     display:block;
+
     cursor:pointer;
 }
 
-
-.feedbackCard h2{
-    color:#00d9ff;
-    font-size:32px;
+.publicFeedbackCard h2{
+    color:#ff9900;
+    font-size:34px;
 }
 
-
-.feedbackCard p{
-    color:#fff;
+.publicFeedbackCard p{
+    color:white;
     font-weight:bold;
 }
 
-
-.feedbackCountText{
+.publicFeedbackCountText{
+    color:#bbb !important;
     font-size:13px !important;
-    color:#aaa !important;
     margin-top:5px;
 }
 
-
-/* ==================================================
-   BIRTHDAY
-================================================== */
-
-.birthdayCard{
-
-    grid-column:1 / -1;
-
-    border:2px solid #ff9900;
-
-    background:#222;
-}
-
-
-.birthdayCard h2{
-    color:#ffcc00;
-    font-size:32px;
-}
-
-
-.birthdayCard p{
-    color:#ffcc00;
-    font-weight:bold;
-}
-
-
-.birthdayList{
-    margin-top:12px;
-    text-align:left;
-}
-
-
-.birthdayMember{
-
-    background:#151515;
-
-    border-left:4px solid #ffcc00;
-
-    border-radius:7px;
-
-    padding:9px;
-
-    margin-top:7px;
-
-    line-height:1.5;
-}
-
-
-.birthdayMember strong{
-    color:#ffcc00;
-}
-
-
-.noBirthday{
-    color:#aaa;
-    text-align:center;
-    padding:5px;
-    font-size:14px;
-}
-
-
-/* ==================================================
-   DAILY MEMBER REPORT
-================================================== */
+/* DAILY */
 
 .dailyMemberCard{
-
-    grid-column:1 / -1;
+    grid-column:1/-1;
 
     background:
     linear-gradient(
@@ -264,321 +150,208 @@ h1{
     );
 
     border:2px solid #00cc66;
+}
+
+.dailyMemberCard h2{
+    color:#00ff88;
+}
+
+.dailyMemberCard p{
+    color:white;
+    font-weight:bold;
+}
+
+.dailyStats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.dailyStat{
+    background:#151515;
+    border:1px solid #555;
+    border-radius:8px;
+    padding:12px;
+    text-align:center;
+}
+
+.dailyStat strong{
+    display:block;
+    color:#00ff88;
+    font-size:25px;
+    margin-bottom:5px;
+}
+
+.dailyStat span{
+    color:#ccc;
+    font-size:13px;
+}
+
+.dateReport{
+    margin-top:15px;
+    background:#151515;
+    padding:12px;
+    border-radius:8px;
+}
+
+.dateReportTitle{
+    color:#ffcc00;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.dayRow{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#222;
+    border-radius:6px;
+    padding:10px;
+    margin-top:6px;
+    cursor:pointer;
+}
+
+.dayRow:hover{
+    background:#333;
+}
+
+.dayCount{
+    color:#00ff88;
+    font-weight:bold;
+}
+
+.selectedDay{
+    margin-top:15px;
+    display:none;
+    background:#151515;
+    padding:12px;
+    border-radius:8px;
+}
+
+.selectedDay h3{
+    color:#ffcc00;
+    margin-bottom:10px;
+}
+
+.dailyMember{
+    background:#222;
+    border-left:4px solid #00cc66;
+    border-radius:7px;
+    padding:10px;
+    margin-top:7px;
+    line-height:1.5;
+}
+
+.dailyMember strong{
+    color:#00ff88;
+}
+
+.statusPending{
+    color:#ff9900;
+    font-weight:bold;
+}
+
+.statusApproved{
+    color:#00ff88;
+    font-weight:bold;
+}
+
+/* BIRTHDAY */
+
+.birthdayCard{
+    grid-column:1/-1;
+    border:2px solid #ff9900;
+    background:#222;
+}
+
+.birthdayCard h2{
+    color:#ffcc00;
+}
+
+.birthdayCard p{
+    color:#ffcc00;
+    font-weight:bold;
+}
+
+.birthdayList{
+    margin-top:12px;
+    text-align:left;
+}
+
+.birthdayMember{
+    background:#151515;
+    border-left:4px solid #ffcc00;
+    border-radius:7px;
+    padding:9px;
+    margin-top:7px;
+    line-height:1.5;
+}
+
+.birthdayMember strong{
+    color:#ffcc00;
+}
+
+.noBirthday{
+    color:#aaa;
+    text-align:center;
+    padding:5px;
+    font-size:14px;
+}
+
+/* MENU */
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.menu a{
+    display:block;
+    text-decoration:none;
+    background:#c40000;
+    color:white;
+    padding:15px;
+    border-radius:8px;
+    text-align:center;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.menu a:hover{
+    background:#ff0000;
+}
+
+/* PUBLIC FEEDBACK BUTTON */
+
+.publicFeedbackAdmin{
+    background:
+    linear-gradient(
+        135deg,
+        #8b4a00,
+        #d87800
+    ) !important;
+
+    border:3px solid #ff9900;
 
     box-shadow:
     0 0 15px
-    rgba(0,204,102,.20);
+    rgba(255,153,0,.30);
 }
 
-
-.dailyMemberCard h2{
-
-    color:#00ff88;
-
-    font-size:30px;
-
-}
-
-
-.dailyMemberCard p{
-
-    color:#fff;
-
-    font-weight:bold;
-
-}
-
-
-/* ==================================================
-   DAILY STATS
-================================================== */
-
-.dailyStats{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(2,1fr);
-
-    gap:10px;
-
-    margin-top:15px;
-
-}
-
-
-.dailyStat{
-
-    background:#151515;
-
-    border:
-    1px solid
-    #555;
-
-    border-radius:8px;
-
-    padding:12px;
-
-    text-align:center;
-
-}
-
-
-.dailyStat strong{
-
-    display:block;
-
-    color:#00ff88;
-
-    font-size:25px;
-
-    margin-bottom:5px;
-
-}
-
-
-.dailyStat span{
-
-    color:#ccc;
-
-    font-size:13px;
-
-}
-
-
-/* ==================================================
-   DATE REPORT
-================================================== */
-
-.dateReport{
-
-    margin-top:15px;
-
-    background:#151515;
-
-    padding:12px;
-
-    border-radius:8px;
-
-}
-
-
-.dateReportTitle{
-
-    color:#ffcc00;
-
-    font-weight:bold;
-
-    margin-bottom:10px;
-
-}
-
-
-.dayRow{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    background:#222;
-
-    border-radius:6px;
-
-    padding:10px;
-
-    margin-top:6px;
-
-    cursor:pointer;
-
-}
-
-
-.dayRow:hover{
-
-    background:#333;
-
-}
-
-
-.dayRow .dayName{
-
-    color:#fff;
-
-}
-
-
-.dayRow .dayCount{
-
-    color:#00ff88;
-
-    font-weight:bold;
-
-}
-
-
-/* ==================================================
-   SELECTED DAY MEMBERS
-================================================== */
-
-.selectedDay{
-
-    margin-top:15px;
-
-    display:none;
-
-    background:#151515;
-
-    padding:12px;
-
-    border-radius:8px;
-
-}
-
-
-.selectedDay h3{
-
-    color:#ffcc00;
-
-    margin-bottom:10px;
-
-}
-
-
-.dailyMember{
-
-    background:#222;
-
-    border-left:
-    4px solid
-    #00cc66;
-
-    border-radius:7px;
-
-    padding:10px;
-
-    margin-top:7px;
-
-    line-height:1.5;
-
-}
-
-
-.dailyMember strong{
-
-    color:#00ff88;
-
-}
-
-
-.statusPending{
-
-    color:#ff9900;
-
-    font-weight:bold;
-
-}
-
-
-.statusApproved{
-
-    color:#00ff88;
-
-    font-weight:bold;
-
-}
-
-
-/* ==================================================
-   MENU
-================================================== */
-
-.menu{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:12px;
-
-}
-
-
-.menu a{
-
-    display:block;
-
-    text-decoration:none;
-
-    background:#c40000;
-
-    color:white;
-
-    padding:14px;
-
-    border-radius:8px;
-
-    text-align:center;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    transition:.3s;
-
-}
-
-
-.menu a:hover{
-
-    background:#ff0000;
-
-}
-
-
-/* ==================================================
-   APPLICATION ADMIN BUTTON
-================================================== */
-
-.applicationAdmin{
-
+.publicFeedbackAdmin:hover{
     background:
     linear-gradient(
         135deg,
-        #8b0000,
-        #c40000
+        #b85f00,
+        #ed8500
     ) !important;
-
-    border:
-    2px solid
-    #ffcc00;
-
-    box-shadow:
-    0 0 12px
-    rgba(255,204,0,.25);
-
 }
 
-
-.applicationAdmin:hover{
-
-    background:
-    linear-gradient(
-        135deg,
-        #b00000,
-        #ff0000
-    ) !important;
-
-}
-
-
-/* ==================================================
-   FEEDBACK ADMIN BUTTON
-================================================== */
+/* MEMBER FEEDBACK BUTTON */
 
 .feedbackAdmin{
-
     background:
     linear-gradient(
         135deg,
@@ -586,98 +359,60 @@ h1{
         #006b80
     ) !important;
 
-    border:
-    2px solid
-    #00d9ff;
-
-    box-shadow:
-    0 0 12px
-    rgba(0,217,255,.20);
-
+    border:2px solid #00d9ff;
 }
 
+/* APPLICATION BUTTON */
 
-.feedbackAdmin:hover{
-
+.applicationAdmin{
     background:
     linear-gradient(
         135deg,
-        #006b80,
-        #008da8
+        #8b0000,
+        #c40000
     ) !important;
 
+    border:2px solid #ffcc00;
 }
 
-
-/* ==================================================
-   MEMBER BOOK
-================================================== */
+/* MEMBER BOOK */
 
 .memberBook{
-
-    background:
-    #8b0000 !important;
-
-    border:
-    2px solid
-    #ffcc00;
-
+    background:#8b0000 !important;
+    border:2px solid #ffcc00;
 }
 
-
-.memberBook:hover{
-
-    background:
-    #b00000 !important;
-
-}
-
-
-/* ==================================================
-   FOOTER
-================================================== */
+/* FOOTER */
 
 .footer{
-
     margin-top:25px;
-
     text-align:center;
-
     font-size:14px;
-
     color:#aaa;
-
 }
 
-
-/* ==================================================
-   MOBILE
-================================================== */
+/* MOBILE */
 
 @media(max-width:450px){
+
+    body{
+        padding:10px;
+    }
 
     .dashboard{
         gap:10px;
     }
 
-
     .card{
-        padding:17px 10px;
+        padding:18px 8px;
     }
-
 
     .card h2{
-        font-size:26px;
+        font-size:27px;
     }
-
 
     .card p{
         font-size:14px;
-    }
-
-
-    .dailyStats{
-        grid-template-columns:repeat(2,1fr);
     }
 
 }
@@ -686,45 +421,30 @@ h1{
 
 </head>
 
-
 <body>
-
 
 <div class="container">
 
-
-<!-- ==================================================
-     TITLE
-================================================== -->
-
 <h1>
-
 📊 Admin Dashboard
-
 </h1>
 
 
 <!-- ==================================================
-     DASHBOARD CARDS
+     DASHBOARD
 ================================================== -->
 
 <div class="dashboard">
 
 
-<!-- TOTAL MEMBERS -->
+<!-- MEMBERS -->
 
 <div class="card">
 
-<h2 id="memberCount">
-
-0
-
-</h2>
+<h2 id="memberCount">0</h2>
 
 <p>
-
 👥 Total Members
-
 </p>
 
 </div>
@@ -734,22 +454,16 @@ h1{
 
 <div class="card">
 
-<h2 id="committeeCount">
-
-0
-
-</h2>
+<h2 id="committeeCount">0</h2>
 
 <p>
-
 👨‍💼 Committee Members
-
 </p>
 
 </div>
 
 
-<!-- APPLICATIONS -->
+<!-- APPLICATION -->
 
 <a
 href="worker-help-admin.html"
@@ -757,34 +471,26 @@ class="card applicationCard"
 >
 
 <h2 id="applicationCount">
-
 0
-
 </h2>
 
 <p>
-
 📋 ସହାୟତା Application
-
 </p>
 
 </a>
 
 
-<!-- BLOOD DONORS -->
+<!-- BLOOD -->
 
 <div class="card">
 
 <h2 id="bloodCount">
-
 0
-
 </h2>
 
 <p>
-
 🩸 Blood Donors
-
 </p>
 
 </div>
@@ -795,15 +501,11 @@ class="card applicationCard"
 <div class="card">
 
 <h2 id="donationCount">
-
 ₹0
-
 </h2>
 
 <p>
-
 ❤️ Total Donation
-
 </p>
 
 </div>
@@ -817,21 +519,39 @@ class="card feedbackCard"
 >
 
 <h2 id="feedbackCount">
-
 0
-
 </h2>
 
 <p>
-
 📊 ସଦସ୍ୟ ମତାମତ
-
 </p>
 
-<p class="feedbackCountText">
-
+<p>
 ମତାମତ ଦେଇଥିବା ସଦସ୍ୟ
+</p>
 
+</a>
+
+
+<!-- ==================================================
+     ⭐ PUBLIC FEEDBACK
+================================================== -->
+
+<a
+href="public-feedback-admin.html"
+class="card publicFeedbackCard"
+>
+
+<h2 id="publicFeedbackCount">
+0
+</h2>
+
+<p>
+💬 ଜନସାଧାରଣଙ୍କ ମତାମତ
+</p>
+
+<p class="publicFeedbackCountText">
+Feedback ଦେଇଥିବା ସାଧାରଣ ଲୋକ
 </p>
 
 </a>
@@ -844,15 +564,11 @@ class="card feedbackCard"
 <div class="card dailyMemberCard">
 
 <h2>
-
 📊 <span id="todayNewMembers">0</span>
-
 </h2>
 
 <p>
-
 ଆଜି ନୂଆ ସଦସ୍ୟ
-
 </p>
 
 
@@ -862,15 +578,11 @@ class="card feedbackCard"
 <div class="dailyStat">
 
 <strong id="yesterdayMembers">
-
 0
-
 </strong>
 
 <span>
-
 📅 ଗତକାଲି
-
 </span>
 
 </div>
@@ -879,15 +591,11 @@ class="card feedbackCard"
 <div class="dailyStat">
 
 <strong id="weekMembers">
-
 0
-
 </strong>
 
 <span>
-
 📆 ଏହି ସପ୍ତାହ
-
 </span>
 
 </div>
@@ -896,15 +604,11 @@ class="card feedbackCard"
 <div class="dailyStat">
 
 <strong id="monthMembers">
-
 0
-
 </strong>
 
 <span>
-
 🗓️ ଏହି ମାସ
-
 </span>
 
 </div>
@@ -913,15 +617,11 @@ class="card feedbackCard"
 <div class="dailyStat">
 
 <strong id="totalRegisteredMembers">
-
 0
-
 </strong>
 
 <span>
-
 📝 Total Registration
-
 </span>
 
 </div>
@@ -932,18 +632,13 @@ class="card feedbackCard"
 <div class="dateReport">
 
 <div class="dateReportTitle">
-
 📈 ଶେଷ 7 ଦିନର Registration
-
 </div>
-
 
 <div id="dailyList">
 
 <div class="noBirthday">
-
 Data loading...
-
 </div>
 
 </div>
@@ -957,40 +652,28 @@ class="selectedDay"
 >
 
 <h3 id="selectedDayTitle">
-
 📋 Member List
-
 </h3>
 
-
 <div id="selectedDayMembers">
-
 </div>
 
 </div>
 
-
 </div>
 
 
-<!-- ==================================================
-     BIRTHDAY
-================================================== -->
+<!-- BIRTHDAY -->
 
 <div class="card birthdayCard">
 
 <h2 id="birthdayCount">
-
 0
-
 </h2>
 
 <p>
-
 🎂 Birthday Today
-
 </p>
-
 
 <div
 id="birthdayList"
@@ -998,9 +681,7 @@ class="birthdayList"
 >
 
 <div class="noBirthday">
-
 Birthday checking...
-
 </div>
 
 </div>
@@ -1022,16 +703,12 @@ Birthday checking...
 href="worker-help-admin.html"
 class="applicationAdmin"
 >
-
 📋 ସହାୟତା Application
-
 </a>
 
 
 <a href="members.html">
-
 👥 Members Admin
-
 </a>
 
 
@@ -1039,123 +716,104 @@ class="applicationAdmin"
 href="members-book.html"
 class="memberBook"
 >
-
 📖 Member Register / Members Book
-
 </a>
 
 
 <a href="member-add.html">
-
 ➕ Member Add / Edit
-
 </a>
 
 
 <a href="birthday-admin.html">
-
 🎂 Birthday / DOB Admin
-
 </a>
 
 
 <a href="festival-calendar.html">
-
 📅 Festival Calendar
-
 </a>
 
 
 <a href="pending-members.html">
-
 ⏳ Pending Members
-
 </a>
 
 
 <a href="committee.html">
-
 👨‍💼 Committee Admin
-
 </a>
 
 
 <a href="public-notice-admin.html">
-
 📢 Public Notice Admin
-
 </a>
 
 
 <a href="gallery-admin.html">
-
 🖼️ Gallery Admin
-
 </a>
 
 
 <a href="idcard.html">
-
 🪪 ID Card
-
 </a>
 
 
 <a href="donation-admin.html">
-
 ❤️ Donation Admin
-
 </a>
 
 
 <a href="payment-receipt.html">
-
 🧾 Payment Receipt
-
 </a>
 
 
 <a href="trust-accounts.html">
-
 📊 Trust Accounts Dashboard
-
 </a>
 
+
+<!-- MEMBER FEEDBACK -->
 
 <a
 href="admin-feedback.html"
 class="feedbackAdmin"
 >
-
 📊 ସଦସ୍ୟ ମତାମତ Admin
+</a>
 
+
+<!-- ==================================================
+     ⭐ PUBLIC FEEDBACK ADMIN
+================================================== -->
+
+<a
+href="public-feedback-admin.html"
+class="publicFeedbackAdmin"
+>
+💬 ଜନସାଧାରଣ Feedback Admin
 </a>
 
 
 <a href="index.html">
-
 🏠 Website Home
-
 </a>
 
 
 <a
 href="#"
-onclick="logout()"
+onclick="logout(); return false;"
 >
-
 🚪 Logout
-
 </a>
-
 
 </div>
 
 
 <div class="footer">
-
 © 2026 Odia Ratna Kalakar Sangha
-
 </div>
 
 
@@ -1167,43 +825,66 @@ onclick="logout()"
 ================================================== */
 
 import {
-
     db,
-
     auth
-
 }
-
 from "./firebase.js";
 
 
 import {
-
     collection,
-
     getDocs
-
 }
-
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
 import {
-
     signOut
-
 }
-
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 /* ==================================================
-   GLOBAL MEMBER SNAPSHOT
+   ADMIN UID
 ================================================== */
 
-let globalMemberSnap = null;
+const ADMIN_UID =
+"fhVIMYqbYaT4kvnnaEP3ue3DojO2";
+
+
+/* ==================================================
+   ESCAPE
+================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==================================================
+   FORMAT DATE
+================================================== */
+
+function formatDate(date){
+
+    return (
+        String(date.getDate()).padStart(2,"0")
+        + "/" +
+        String(date.getMonth()+1).padStart(2,"0")
+        + "/" +
+        date.getFullYear()
+    );
+
+}
 
 
 /* ==================================================
@@ -1215,401 +896,249 @@ async function loadDashboard(){
     try{
 
 
-        /* ==================================================
-           MEMBERS
-        ================================================== */
+        /* MEMBERS */
 
         const memberSnap =
-
         await getDocs(
-
-            collection(
-
-                db,
-
-                "members"
-
-            )
-
+            collection(db,"members")
         );
 
-
-        globalMemberSnap = memberSnap;
-
-
         document
-        .getElementById(
-            "memberCount"
-        )
+        .getElementById("memberCount")
         .textContent =
-
         memberSnap.size;
 
 
-        /* ==================================================
-           DAILY MEMBER REPORT
-        ================================================== */
-
         loadDailyMemberReport(
-
             memberSnap
-
         );
-
-
-        /* ==================================================
-           BIRTHDAY
-        ================================================== */
 
         loadTodayBirthdays(
-
             memberSnap
-
         );
 
 
-        /* ==================================================
-           COMMITTEE
-        ================================================== */
+        /* COMMITTEE */
 
         try{
 
-            const committeeSnap =
-
+            const snap =
             await getDocs(
-
-                collection(
-
-                    db,
-
-                    "Committee"
-
-                )
-
+                collection(db,"Committee")
             );
 
-
             document
-            .getElementById(
-                "committeeCount"
-            )
+            .getElementById("committeeCount")
             .textContent =
-
-            committeeSnap.size;
+            snap.size;
 
         }
-
         catch(error){
 
             console.error(
-
-                "Committee Error:",
-
+                "Committee:",
                 error
-
             );
-
-
-            document
-            .getElementById(
-                "committeeCount"
-            )
-            .textContent =
-
-            "0";
 
         }
 
 
-        /* ==================================================
-           APPLICATIONS
-        ================================================== */
+        /* APPLICATION */
 
         try{
 
-            const applicationSnap =
-
+            const snap =
             await getDocs(
-
                 collection(
-
                     db,
-
                     "workerApplications"
-
                 )
-
             );
 
-
             document
-            .getElementById(
-                "applicationCount"
-            )
+            .getElementById("applicationCount")
             .textContent =
-
-            applicationSnap.size;
+            snap.size;
 
         }
-
         catch(error){
 
             console.error(
-
-                "Application Error:",
-
+                "Applications:",
                 error
-
             );
-
-
-            document
-            .getElementById(
-                "applicationCount"
-            )
-            .textContent =
-
-            "0";
 
         }
 
 
-        /* ==================================================
-           BLOOD DONORS
-        ================================================== */
+        /* BLOOD */
 
         try{
 
-            const bloodSnap =
-
+            const snap =
             await getDocs(
-
                 collection(
-
                     db,
-
                     "bloodDonors"
-
                 )
-
             );
 
-
             document
-            .getElementById(
-                "bloodCount"
-            )
+            .getElementById("bloodCount")
             .textContent =
-
-            bloodSnap.size;
+            snap.size;
 
         }
-
         catch(error){
 
             console.error(
-
-                "Blood Error:",
-
+                "Blood:",
                 error
-
             );
-
-
-            document
-            .getElementById(
-                "bloodCount"
-            )
-            .textContent =
-
-            "0";
 
         }
 
 
-        /* ==================================================
-           DONATION
-        ================================================== */
+        /* DONATION */
 
         try{
 
-            const donationSnap =
-
+            const snap =
             await getDocs(
-
                 collection(
-
                     db,
-
                     "donations"
-
                 )
-
             );
 
+            let total = 0;
 
-            let totalDonation =
+            snap.forEach(
+                item => {
 
-            0;
-
-
-            donationSnap.forEach(
-
-                doc => {
-
-                    totalDonation +=
-
+                    total +=
                     Number(
-
-                        doc.data().amount || 0
-
+                        item.data().amount || 0
                     );
 
                 }
-
             );
 
-
             document
-            .getElementById(
-                "donationCount"
-            )
+            .getElementById("donationCount")
             .textContent =
-
-            "₹" +
-
-            totalDonation;
+            "₹" + total;
 
         }
-
         catch(error){
 
             console.error(
-
-                "Donation Error:",
-
+                "Donation:",
                 error
-
             );
-
-
-            document
-            .getElementById(
-                "donationCount"
-            )
-            .textContent =
-
-            "₹0";
 
         }
 
 
-        /* ==================================================
-           MEMBER FEEDBACK
-        ================================================== */
+        /* MEMBER FEEDBACK */
 
         try{
 
-            const feedbackSnap =
-
+            const snap =
             await getDocs(
-
                 collection(
-
                     db,
-
                     "member_feedback"
-
                 )
-
             );
 
-
-            const uniqueMembers =
-
+            const unique =
             new Set();
 
-
-            feedbackSnap.forEach(
-
-                feedbackDoc => {
+            snap.forEach(
+                item => {
 
                     const data =
+                    item.data();
 
-                    feedbackDoc.data();
+                    if(data.memberDocId){
 
-
-                    if(
-                        data.memberDocId
-                    ){
-
-                        uniqueMembers.add(
-
+                        unique.add(
                             data.memberDocId
-
                         );
 
                     }
+                    else if(data.memberId){
 
-                    else if(
-                        data.memberId
-                    ){
-
-                        uniqueMembers.add(
-
+                        unique.add(
                             data.memberId
-
                         );
 
                     }
 
                 }
-
             );
 
-
             document
-            .getElementById(
-                "feedbackCount"
-            )
+            .getElementById("feedbackCount")
             .textContent =
-
-            uniqueMembers.size;
+            unique.size;
 
         }
-
         catch(error){
 
             console.error(
-
-                "Feedback Error:",
-
+                "Member Feedback:",
                 error
-
             );
 
+        }
+
+
+        /* ==================================================
+           ⭐ PUBLIC FEEDBACK
+        ================================================== */
+
+        try{
+
+            const publicSnap =
+            await getDocs(
+                collection(
+                    db,
+                    "public_feedback"
+                )
+            );
 
             document
             .getElementById(
-                "feedbackCount"
+                "publicFeedbackCount"
             )
             .textContent =
+            publicSnap.size;
 
+        }
+        catch(error){
+
+            console.error(
+                "Public Feedback:",
+                error
+            );
+
+            document
+            .getElementById(
+                "publicFeedbackCount"
+            )
+            .textContent =
             "0";
 
         }
 
-
     }
-
     catch(error){
 
         console.error(
-
             "Dashboard Error:",
-
             error
-
         );
 
     }
@@ -1618,41 +1147,30 @@ async function loadDashboard(){
 
 
 /* ==================================================
-   DAILY MEMBER REPORT
+   DAILY REPORT
 ================================================== */
 
 function loadDailyMemberReport(
-
     memberSnap
-
 ){
 
     const members = [];
 
 
     memberSnap.forEach(
-
         memberDoc => {
 
             const data =
             memberDoc.data();
 
-
             const createdAt =
             data.createdAt;
 
-
-            if(
-                !createdAt
-            ){
-
+            if(!createdAt){
                 return;
-
             }
 
-
             let date;
-
 
             try{
 
@@ -1665,18 +1183,6 @@ function loadDailyMemberReport(
                     createdAt.toDate();
 
                 }
-
-                else if(
-                    createdAt.seconds
-                ){
-
-                    date =
-                    new Date(
-                        createdAt.seconds * 1000
-                    );
-
-                }
-
                 else{
 
                     date =
@@ -1685,13 +1191,11 @@ function loadDailyMemberReport(
                 }
 
             }
-
             catch(error){
 
                 return;
 
             }
-
 
             if(
                 isNaN(date.getTime())
@@ -1701,11 +1205,9 @@ function loadDailyMemberReport(
 
             }
 
-
             members.push({
 
-                id:
-                memberDoc.id,
+                id:memberDoc.id,
 
                 name:
                 data.name || "Member",
@@ -1719,26 +1221,19 @@ function loadDailyMemberReport(
                 status:
                 data.status || "pending",
 
-                createdAt:
-                date
+                createdAt:date
 
             });
 
         }
-
     );
 
-
-    /* ==================================================
-       TOTAL REGISTRATION
-    ================================================== */
 
     document
     .getElementById(
         "totalRegisteredMembers"
     )
     .textContent =
-
     members.length;
 
 
@@ -1746,52 +1241,29 @@ function loadDailyMemberReport(
     new Date();
 
 
-    /* ==================================================
-       START OF TODAY
-    ================================================== */
-
     const todayStart =
     new Date(
-
         now.getFullYear(),
-
         now.getMonth(),
-
         now.getDate(),
-
         0,0,0,0
-
     );
 
 
     const tomorrowStart =
     new Date(
-
         now.getFullYear(),
-
         now.getMonth(),
-
         now.getDate()+1,
-
         0,0,0,0
-
     );
 
 
-    /* ==================================================
-       TODAY
-    ================================================== */
-
-    const todayMembers =
-
+    const today =
     members.filter(
-
-        member =>
-
-        member.createdAt >= todayStart &&
-
-        member.createdAt < tomorrowStart
-
+        m =>
+        m.createdAt >= todayStart &&
+        m.createdAt < tomorrowStart
     );
 
 
@@ -1800,42 +1272,23 @@ function loadDailyMemberReport(
         "todayNewMembers"
     )
     .textContent =
+    today.length;
 
-    todayMembers.length;
-
-
-    /* ==================================================
-       YESTERDAY
-    ================================================== */
 
     const yesterdayStart =
     new Date(
-
         now.getFullYear(),
-
         now.getMonth(),
-
         now.getDate()-1,
-
         0,0,0,0
-
     );
 
 
-    const yesterdayEnd =
-    todayStart;
-
-
-    const yesterdayMembers =
-
+    const yesterday =
     members.filter(
-
-        member =>
-
-        member.createdAt >= yesterdayStart &&
-
-        member.createdAt < yesterdayEnd
-
+        m =>
+        m.createdAt >= yesterdayStart &&
+        m.createdAt < todayStart
     );
 
 
@@ -1844,13 +1297,8 @@ function loadDailyMemberReport(
         "yesterdayMembers"
     )
     .textContent =
+    yesterday.length;
 
-    yesterdayMembers.length;
-
-
-    /* ==================================================
-       THIS WEEK
-    ================================================== */
 
     const weekStart =
     new Date(now);
@@ -1861,35 +1309,23 @@ function loadDailyMemberReport(
 
 
     const diff =
-    day === 0
-    ? 6
-    : day - 1;
+    day === 0 ? 6 : day-1;
 
 
     weekStart.setDate(
-
-        weekStart.getDate() - diff
-
+        weekStart.getDate()-diff
     );
-
 
     weekStart.setHours(
-
         0,0,0,0
-
     );
 
 
-    const weekMembers =
-
+    const week =
     members.filter(
-
-        member =>
-
-        member.createdAt >= weekStart &&
-
-        member.createdAt < tomorrowStart
-
+        m =>
+        m.createdAt >= weekStart &&
+        m.createdAt < tomorrowStart
     );
 
 
@@ -1898,38 +1334,23 @@ function loadDailyMemberReport(
         "weekMembers"
     )
     .textContent =
+    week.length;
 
-    weekMembers.length;
-
-
-    /* ==================================================
-       THIS MONTH
-    ================================================== */
 
     const monthStart =
     new Date(
-
         now.getFullYear(),
-
         now.getMonth(),
-
         1,
-
         0,0,0,0
-
     );
 
 
-    const monthMembers =
-
+    const month =
     members.filter(
-
-        member =>
-
-        member.createdAt >= monthStart &&
-
-        member.createdAt < tomorrowStart
-
+        m =>
+        m.createdAt >= monthStart &&
+        m.createdAt < tomorrowStart
     );
 
 
@@ -1938,13 +1359,8 @@ function loadDailyMemberReport(
         "monthMembers"
     )
     .textContent =
+    month.length;
 
-    monthMembers.length;
-
-
-    /* ==================================================
-       LAST 7 DAYS
-    ================================================== */
 
     const dailyList =
     document.getElementById(
@@ -1955,115 +1371,66 @@ function loadDailyMemberReport(
     dailyList.innerHTML = "";
 
 
-    for(
-
-        let i = 6;
-
-        i >= 0;
-
-        i--
-
-    ){
+    for(let i=6;i>=0;i--){
 
         const date =
         new Date(
-
             now.getFullYear(),
-
             now.getMonth(),
-
-            now.getDate() - i,
-
+            now.getDate()-i,
             0,0,0,0
-
         );
 
 
         const nextDate =
         new Date(
-
             now.getFullYear(),
-
             now.getMonth(),
-
-            now.getDate() - i + 1,
-
+            now.getDate()-i+1,
             0,0,0,0
-
         );
 
 
         const dayMembers =
-
         members.filter(
-
-            member =>
-
-            member.createdAt >= date &&
-
-            member.createdAt < nextDate
-
+            m =>
+            m.createdAt >= date &&
+            m.createdAt < nextDate
         );
 
 
         const row =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
 
         row.className =
         "dayRow";
 
 
-        const dayText =
-
-        formatDate(date);
-
-
         row.innerHTML = `
 
-            <span class="dayName">
-
-                📅 ${dayText}
-
+            <span>
+                📅 ${formatDate(date)}
             </span>
 
             <span class="dayCount">
-
                 ${dayMembers.length} ଜଣ
-
             </span>
 
         `;
 
 
-        row.addEventListener(
+        row.onclick = () => {
 
-            "click",
+            showSelectedDay(
+                date,
+                dayMembers
+            );
 
-            function(){
-
-                showSelectedDay(
-
-                    date,
-
-                    nextDate,
-
-                    dayMembers
-
-                );
-
-            }
-
-        );
+        };
 
 
-        dailyList.appendChild(
-
-            row
-
-        );
+        dailyList.appendChild(row);
 
     }
 
@@ -2071,30 +1438,23 @@ function loadDailyMemberReport(
 
 
 /* ==================================================
-   SHOW SELECTED DAY MEMBERS
+   SELECTED DAY
 ================================================== */
 
 function showSelectedDay(
-
     date,
-
-    nextDate,
-
-    dayMembers
-
+    members
 ){
 
-    const selected =
+    const box =
     document.getElementById(
         "selectedDay"
     );
-
 
     const title =
     document.getElementById(
         "selectedDayTitle"
     );
-
 
     const list =
     document.getElementById(
@@ -2102,36 +1462,27 @@ function showSelectedDay(
     );
 
 
-    selected.style.display =
+    box.style.display =
     "block";
 
 
     title.textContent =
-
     "📋 " +
-
     formatDate(date) +
-
     " — " +
-
-    dayMembers.length +
-
+    members.length +
     " ଜଣ Member";
 
 
     list.innerHTML = "";
 
 
-    if(
-        dayMembers.length === 0
-    ){
+    if(!members.length){
 
         list.innerHTML = `
 
             <div class="noBirthday">
-
                 ଏହି ଦିନ କୌଣସି Registration ହୋଇନାହିଁ।
-
             </div>
 
         `;
@@ -2141,23 +1492,11 @@ function showSelectedDay(
     }
 
 
-    dayMembers
-    .sort(
-
-        (a,b) =>
-
-        a.createdAt - b.createdAt
-
-    )
-    .forEach(
-
+    members.forEach(
         member => {
 
             const div =
-            document.createElement(
-                "div"
-            );
-
+            document.createElement("div");
 
             div.className =
             "dailyMember";
@@ -2169,174 +1508,75 @@ function showSelectedDay(
             ).toLowerCase();
 
 
-            const statusText =
-
-            status === "approved"
-
-            ? `<span class="statusApproved">
-
-                ✅ Approved
-
-              </span>`
-
-            : `<span class="statusPending">
-
-                ⏳ Pending
-
-              </span>`;
-
-
             div.innerHTML = `
 
                 👤 <strong>
-
-                    ${escapeHTML(member.name)}
-
+                ${escapeHTML(member.name)}
                 </strong>
 
                 <br>
 
                 🆔 Member ID:
-
                 ${escapeHTML(member.memberId)}
 
                 <br>
 
                 📱 Mobile:
-
                 ${escapeHTML(member.mobile)}
 
                 <br>
 
-                ${statusText}
+                ${
+                    status === "approved"
+
+                    ? `<span class="statusApproved">
+                        ✅ Approved
+                       </span>`
+
+                    : `<span class="statusPending">
+                        ⏳ Pending
+                       </span>`
+                }
 
             `;
 
 
-            list.appendChild(
-
-                div
-
-            );
+            list.appendChild(div);
 
         }
-
     );
 
 }
 
 
 /* ==================================================
-   FORMAT DATE
-================================================== */
-
-function formatDate(
-
-    date
-
-){
-
-    const day =
-
-    String(
-
-        date.getDate()
-
-    ).padStart(
-
-        2,
-
-        "0"
-
-    );
-
-
-    const month =
-
-    String(
-
-        date.getMonth()+1
-
-    ).padStart(
-
-        2,
-
-        "0"
-
-    );
-
-
-    const year =
-
-    date.getFullYear();
-
-
-    return (
-
-        day +
-
-        "/" +
-
-        month +
-
-        "/" +
-
-        year
-
-    );
-
-}
-
-
-/* ==================================================
-   TODAY BIRTHDAYS
+   BIRTHDAY
 ================================================== */
 
 function loadTodayBirthdays(
-
     memberSnap
-
 ){
 
     const today =
     new Date();
 
 
-    const todayDay =
-
+    const day =
     String(
-
         today.getDate()
-
-    ).padStart(
-
-        2,
-
-        "0"
-
-    );
+    ).padStart(2,"0");
 
 
-    const todayMonth =
-
+    const month =
     String(
-
         today.getMonth()+1
-
-    ).padStart(
-
-        2,
-
-        "0"
-
-    );
+    ).padStart(2,"0");
 
 
     const birthdays = [];
 
 
     memberSnap.forEach(
-
         memberDoc => {
 
             const data =
@@ -2345,9 +1585,7 @@ function loadTodayBirthdays(
 
             const dob =
             String(
-
                 data.dob || ""
-
             ).trim();
 
 
@@ -2355,29 +1593,14 @@ function loadTodayBirthdays(
             dob.split("/");
 
 
-            if(
-                parts.length !== 3
-            ){
-
+            if(parts.length !== 3){
                 return;
-
             }
 
 
-            const day =
-            parts[0];
-
-
-            const month =
-            parts[1];
-
-
             if(
-
-                day === todayDay &&
-
-                month === todayMonth
-
+                parts[0] === day &&
+                parts[1] === month
             ){
 
                 birthdays.push({
@@ -2385,21 +1608,16 @@ function loadTodayBirthdays(
                     name:
                     data.name || "Member",
 
-                    memberId:
-                    data.memberId || "-",
-
                     mobile:
                     data.mobile || "-",
 
-                    dob:
-                    dob
+                    dob:dob
 
                 });
 
             }
 
         }
-
     );
 
 
@@ -2408,7 +1626,6 @@ function loadTodayBirthdays(
         "birthdayCount"
     )
     .textContent =
-
     birthdays.length;
 
 
@@ -2421,17 +1638,13 @@ function loadTodayBirthdays(
     list.innerHTML = "";
 
 
-    if(
-        birthdays.length === 0
-    ){
+    if(!birthdays.length){
 
         list.innerHTML = `
 
-        <div class="noBirthday">
-
-        🎉 ଆଜି କୌଣସି Member ଙ୍କ Birthday ନାହିଁ
-
-        </div>
+            <div class="noBirthday">
+                🎉 ଆଜି କୌଣସି Member ଙ୍କ Birthday ନାହିଁ
+            </div>
 
         `;
 
@@ -2441,14 +1654,10 @@ function loadTodayBirthdays(
 
 
     birthdays.forEach(
-
         member => {
 
             const div =
-            document.createElement(
-                "div"
-            );
-
+            document.createElement("div");
 
             div.className =
             "birthdayMember";
@@ -2456,94 +1665,26 @@ function loadTodayBirthdays(
 
             div.innerHTML = `
 
-            🎉 <strong>
+                🎉 <strong>
+                ${escapeHTML(member.name)}
+                </strong>
 
-            ${escapeHTML(member.name)}
+                <br>
 
-            </strong>
+                🎂 DOB:
+                ${escapeHTML(member.dob)}
 
-            <br>
+                <br>
 
-            🎂 DOB:
-
-            ${escapeHTML(member.dob)}
-
-            <br>
-
-            📱 Mobile:
-
-            ${escapeHTML(member.mobile)}
+                📱 Mobile:
+                ${escapeHTML(member.mobile)}
 
             `;
 
 
-            list.appendChild(
-
-                div
-
-            );
+            list.appendChild(div);
 
         }
-
-    );
-
-}
-
-
-/* ==================================================
-   ESCAPE HTML
-================================================== */
-
-function escapeHTML(
-
-    value
-
-){
-
-    return String(
-
-        value ?? ""
-
-    )
-
-    .replace(
-
-        /&/g,
-
-        "&amp;"
-
-    )
-
-    .replace(
-
-        /</g,
-
-        "&lt;"
-
-    )
-
-    .replace(
-
-        />/g,
-
-        "&gt;"
-
-    )
-
-    .replace(
-
-        /"/g,
-
-        "&quot;"
-
-    )
-
-    .replace(
-
-        /'/g,
-
-        "&#039;"
-
     );
 
 }
@@ -2554,32 +1695,21 @@ function escapeHTML(
 ================================================== */
 
 window.logout =
-
 async function(){
 
     try{
 
-        await signOut(
-
-            auth
-
-        );
-
+        await signOut(auth);
 
         window.location.href =
-
         "login.html";
 
     }
-
     catch(error){
 
         console.error(
-
             "Logout Error:",
-
             error
-
         );
 
     }
@@ -2588,17 +1718,47 @@ async function(){
 
 
 /* ==================================================
-   START
+   START AFTER LOGIN
 ================================================== */
 
-loadDashboard();
+auth.onAuthStateChanged(
+    user => {
 
+        if(!user){
+
+            window.location.href =
+            "login.html";
+
+            return;
+
+        }
+
+
+        if(
+            user.uid !== ADMIN_UID
+        ){
+
+            alert(
+                "❌ Admin Permission ନାହିଁ।"
+            );
+
+            window.location.href =
+            "login.html";
+
+            return;
+
+        }
+
+
+        loadDashboard();
+
+    }
+);
 
 </script>
-
 
 </div>
 
 </body>
 
-      </html>
+</html>
