@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#7b1e1e">
+
+<title>ଜନସାଧାରଣଙ୍କ ମତାମତ</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:
+    "Noto Sans Oriya",
+    "Nirmala UI",
+    Arial,
+    sans-serif;
+
+    background:
+    linear-gradient(135deg,#fff8e7,#f5eeee);
+
+    color:#222;
+    min-height:100vh;
+    padding:15px;
+}
+
+.container{
+    max-width:650px;
+    margin:auto;
+}
+
+/* HEADER */
+
+.header{
+    background:
+    linear-gradient(135deg,#7b1e1e,#b71c1c);
+
+    color:white;
+    text-align:center;
+
+    padding:22px 15px;
+
+    border-radius:15px;
+
+    margin-bottom:15px;
+
+    box-shadow:
+    0 4px 12px rgba(0,0,0,.18);
+}
+
+.header h1{
+    font-size:24px;
+    margin-bottom:7px;
+}
+
+.header p{
+    font-size:14px;
+}
+
+/* SECURITY */
+
+.security{
+    background:#fff3cd;
+
+    border-left:5px solid #ff9800;
+
+    padding:14px;
+
+    border-radius:9px;
+
+    margin-bottom:15px;
+
+    line-height:1.7;
+
+    font-size:14px;
+}
+
+/* BOX */
+
+.box{
+    background:white;
+
+    padding:18px;
+
+    border-radius:13px;
+
+    margin-bottom:15px;
+
+    box-shadow:
+    0 3px 10px rgba(0,0,0,.08);
+}
+
+.box h2{
+    color:#7b1e1e;
+
+    font-size:19px;
+
+    margin-bottom:15px;
+}
+
+/* LABEL */
+
+label{
+    display:block;
+
+    font-weight:bold;
+
+    margin-bottom:7px;
+
+    line-height:1.6;
+}
+
+/* INPUT */
+
+input,
+textarea,
+select{
+
+    width:100%;
+
+    padding:12px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    outline:none;
+
+    margin-bottom:15px;
+
+    font-family:inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+
+    border-color:#b71c1c;
+
+    box-shadow:
+    0 0 0 2px rgba(183,28,28,.08);
+}
+
+textarea{
+
+    min-height:110px;
+
+    resize:vertical;
+}
+
+/* RATING */
+
+.rating{
+
+    display:flex;
+
+    flex-direction:row-reverse;
+
+    justify-content:flex-end;
+
+    gap:5px;
+
+    margin-bottom:18px;
+}
+
+.rating input{
+
+    display:none;
+}
+
+.rating label{
+
+    font-size:35px;
+
+    color:#ccc;
+
+    cursor:pointer;
+
+    margin:0;
+
+    transition:.2s;
+}
+
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked ~ label{
+
+    color:#ffb300;
+}
+
+/* RADIO */
+
+.radio-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    margin-bottom:15px;
+}
+
+.radio-option{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:8px;
+
+    background:#f8f8f8;
+
+    padding:11px;
+
+    border-radius:8px;
+
+    border:1px solid #eee;
+}
+
+.radio-option input{
+
+    width:auto;
+
+    margin:4px 0 0 0;
+}
+
+.radio-option label{
+
+    margin:0;
+
+    font-weight:normal;
+
+    cursor:pointer;
+}
+
+/* BUTTON */
+
+button{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:9px;
+
+    background:#b71c1c;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+button:hover{
+
+    background:#8f1515;
+}
+
+button:disabled{
+
+    background:#999;
+
+    cursor:not-allowed;
+}
+
+/* MESSAGE */
+
+.message{
+
+    padding:12px;
+
+    border-radius:8px;
+
+    margin-top:12px;
+
+    display:none;
+
+    line-height:1.6;
+}
+
+.success{
+
+    background:#dff5e5;
+
+    color:#146c2e;
+
+    border:1px solid #8bd19c;
+}
+
+.error{
+
+    background:#ffe1e1;
+
+    color:#9d1515;
+
+    border:1px solid #e49a9a;
+}
+
+/* NOTE */
+
+.note{
+
+    background:#eef5ff;
+
+    border-left:4px solid #2878d0;
+
+    padding:11px;
+
+    margin-top:5px;
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    border-radius:6px;
+}
+
+/* FOOTER */
+
+.footer{
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:13px;
+
+    padding:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:450px){
+
+    body{
+        padding:10px;
+    }
+
+    .header h1{
+        font-size:21px;
+    }
+
+    .box{
+        padding:15px;
+    }
+
+    .rating label{
+        font-size:31px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<div class="header">
+
+    <h1>
+        💬 ଜନସାଧାରଣଙ୍କ ମତାମତ
+    </h1>
+
+    <p>
+        ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ
+    </p>
+
+</div>
+
+
+<!-- ==================================================
+     SECURITY
+================================================== -->
+
+<div class="security">
+
+    🔐 <b>ଗୋପନୀୟତା:</b><br>
+
+    ଆପଣଙ୍କ ନାମ ଓ Mobile Number
+    ସାଧାରଣ Public ଙ୍କ ପାଇଁ
+    ପ୍ରକାଶ କରାଯିବ ନାହିଁ।
+
+    ଆପଣଙ୍କ ମତାମତ କେବଳ
+    ଟ୍ରଷ୍ଟର ଅଧିକୃତ Admin
+    ଦେଖିପାରିବେ।
+
+</div>
+
+
+<!-- ==================================================
+     PERSONAL INFORMATION
+================================================== -->
+
+<div class="box">
+
+    <h2>
+        🙏 ନମସ୍କାର
+    </h2>
+
+
+    <label for="name">
+        👤 ଆପଣଙ୍କ ନାମ
+    </label>
+
+    <input
+        type="text"
+        id="name"
+        placeholder="ଆପଣଙ୍କ ନାମ ଲେଖନ୍ତୁ"
+        autocomplete="name"
+    >
+
+
+    <label for="mobile">
+        📱 Mobile Number
+    </label>
+
+    <input
+        type="tel"
+        id="mobile"
+        placeholder="10 digit mobile number"
+        inputmode="numeric"
+        maxlength="10"
+        autocomplete="tel"
+    >
+
+
+    <div class="note">
+
+        🔒 ଆପଣଙ୍କ ନାମ ଓ Mobile Number
+        Public ରେ ଦେଖାଯିବ ନାହିଁ।
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     FEEDBACK
+================================================== -->
+
+<div class="box">
+
+    <h2>
+        📝 ଆପଣଙ୍କ ମତାମତ
+    </h2>
+
+
+    <!-- QUESTION 1 -->
+
+    <label>
+
+        1️⃣ ଆପଣଙ୍କ ମତରେ ଟ୍ରଷ୍ଟର
+        କାର୍ଯ୍ୟକଳାପ କେମିତି?
+
+    </label>
+
+
+    <div class="rating">
+
+        <input
+            type="radio"
+            name="rating"
+            id="star5"
+            value="5"
+        >
+
+        <label for="star5">★</label>
+
+
+        <input
+            type="radio"
+            name="rating"
+            id="star4"
+            value="4"
+        >
+
+        <label for="star4">★</label>
+
+
+        <input
+            type="radio"
+            name="rating"
+            id="star3"
+            value="3"
+        >
+
+        <label for="star3">★</label>
+
+
+        <input
+            type="radio"
+            name="rating"
+            id="star2"
+            value="2"
+        >
+
+        <label for="star2">★</label>
+
+
+        <input
+            type="radio"
+            name="rating"
+            id="star1"
+            value="1"
+        >
+
+        <label for="star1">★</label>
+
+    </div>
+
+
+    <!-- QUESTION 2 -->
+
+    <label>
+
+        2️⃣ ଟ୍ରଷ୍ଟର କାର୍ଯ୍ୟରେ
+        ପାରଦର୍ଶିତା କେମିତି ଲାଗୁଛି?
+
+    </label>
+
+
+    <div class="radio-group">
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q2"
+                value="ଅତ୍ୟନ୍ତ ଭଲ"
+            >
+
+            <label>
+                ଅତ୍ୟନ୍ତ ଭଲ
+            </label>
+
+        </div>
+
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q2"
+                value="ଭଲ"
+            >
+
+            <label>
+                ଭଲ
+            </label>
+
+        </div>
+
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q2"
+                value="ମଧ୍ୟମ"
+            >
+
+            <label>
+                ମଧ୍ୟମ
+            </label>
+
+        </div>
+
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q2"
+                value="ଉନ୍ନତି ଆବଶ୍ୟକ"
+            >
+
+            <label>
+                ଉନ୍ନତି ଆବଶ୍ୟକ
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION 3 -->
+
+    <label>
+
+        3️⃣ ଆପଣ ଭାବୁଛନ୍ତି କି ଟ୍ରଷ୍ଟ
+        ସମାଜ ପାଇଁ ଠିକ୍ ଭାବରେ
+        କାମ କରୁଛି?
+
+    </label>
+
+
+    <div class="radio-group">
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q3"
+                value="ହଁ"
+            >
+
+            <label>
+                ହଁ 👍
+            </label>
+
+        </div>
+
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q3"
+                value="କିଛି ପରିମାଣରେ"
+            >
+
+            <label>
+                କିଛି ପରିମାଣରେ
+            </label>
+
+        </div>
+
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q3"
+                value="ନା"
+            >
+
+            <label>
+                ନା
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- QUESTION 4 -->
+
+    <label for="q4">
+
+        4️⃣ ଆମର କେଉଁ କାମଟି
+        ଆପଣଙ୍କୁ ସବୁଠାରୁ ଭଲ ଲାଗୁଛି?
+
+    </label>
+
+
+    <textarea
+        id="q4"
+        placeholder="ଆପଣଙ୍କ ଉତ୍ତର ଲେଖନ୍ତୁ..."
+    ></textarea>
+
+
+    <!-- QUESTION 5 -->
+
+    <label for="q5">
+
+        5️⃣ କେଉଁ କ୍ଷେତ୍ରରେ
+        ଆମକୁ ଆହୁରି ଉନ୍ନତି
+        କରିବା ଦରକାର?
+
+    </label>
+
+
+    <textarea
+        id="q5"
+        placeholder="ଆପଣଙ୍କ ପରାମର୍ଶ ଲେଖନ୍ତୁ..."
+    ></textarea>
+
+
+    <!-- QUESTION 6 -->
+
+    <label for="q6">
+
+        6️⃣ ଟ୍ରଷ୍ଟ ପାଇଁ
+        ଆପଣଙ୍କ ବିଶେଷ ପରାମର୍ଶ କଣ?
+
+    </label>
+
+
+    <textarea
+        id="q6"
+        placeholder="ନିର୍ଭୟରେ ଆପଣଙ୍କ ମତାମତ ଲେଖନ୍ତୁ..."
+    ></textarea>
+
+
+    <!-- QUESTION 7 -->
+
+    <label>
+
+        7️⃣ ଆପଣ ଆମ ଟ୍ରଷ୍ଟକୁ
+        ଅନ୍ୟମାନଙ୍କୁ ସୁପାରିଶ କରିବେ କି?
+
+    </label>
+
+
+    <div class="radio-group">
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q7"
+                value="ହଁ"
+            >
+
+            <label>
+                👍 ହଁ
+            </label>
+
+        </div>
+
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q7"
+                value="ହୋଇପାରେ"
+            >
+
+            <label>
+                🤔 ହୋଇପାରେ
+            </label>
+
+        </div>
+
+
+        <div class="radio-option">
+
+            <input
+                type="radio"
+                name="q7"
+                value="ନା"
+            >
+
+            <label>
+                👎 ନା
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <!-- FINAL NOTE -->
+
+    <div class="note">
+
+        ❤️ <b>ଆପଣଙ୍କ ସତ୍ୟ ମତାମତ
+        ଆମ ପାଇଁ ମୂଲ୍ୟବାନ।</b>
+
+        <br><br>
+
+        ଆପଣଙ୍କ Feedback ଆମ ଟ୍ରଷ୍ଟର
+        ଉନ୍ନତି ପାଇଁ ବ୍ୟବହାର କରାଯିବ।
+
+    </div>
+
+
+    <br>
+
+
+    <button
+        type="button"
+        id="submitBtn"
+    >
+
+        📨 ଗୁପ୍ତ ଭାବରେ Feedback ପଠାନ୍ତୁ
+
+    </button>
+
+
+    <div
+        id="submitMessage"
+        class="message"
+    ></div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    © 2026 Odia Ratna Kalakar Sangha
+
+</div>
+
+
+</div>
+
+
+<script type="module">
+
+
+/* ==================================================
+   FIREBASE
+================================================== */
+
+import {
+
+    db
+
+}
+from "./firebase.js";
+
+
+import {
+
+    collection,
+    addDoc,
+    serverTimestamp
+
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* ==================================================
+   ELEMENTS
+================================================== */
+
+const nameInput =
+document.getElementById("name");
+
+
+const mobileInput =
+document.getElementById("mobile");
+
+
+const submitBtn =
+document.getElementById("submitBtn");
+
+
+const submitMessage =
+document.getElementById("submitMessage");
+
+
+/* ==================================================
+   NORMALIZE MOBILE
+================================================== */
+
+function normalizeMobile(value){
+
+    return String(value || "")
+        .replace(/\D/g,"")
+        .slice(-10);
+
+}
+
+
+/* ==================================================
+   SHOW MESSAGE
+================================================== */
+
+function showMessage(
+    element,
+    text,
+    type
+){
+
+    element.textContent = text;
+
+    element.className =
+        "message " + type;
+
+    element.style.display =
+        "block";
+
+}
+
+
+/* ==================================================
+   SUBMIT
+================================================== */
+
+submitBtn.addEventListener(
+    "click",
+    async function(){
+
+        submitMessage.style.display =
+            "none";
+
+
+        /* ===============================
+           GET PERSONAL DATA
+        =============================== */
+
+        const name =
+            nameInput.value.trim();
+
+
+        const mobile =
+            normalizeMobile(
+                mobileInput.value
+            );
+
+
+        /* ===============================
+           GET RATING
+        =============================== */
+
+        const ratingElement =
+            document.querySelector(
+                'input[name="rating"]:checked'
+            );
+
+
+        const rating =
+            ratingElement
+            ? ratingElement.value
+            : "";
+
+
+        /* ===============================
+           GET ANSWERS
+        =============================== */
+
+        const q2Element =
+            document.querySelector(
+                'input[name="q2"]:checked'
+            );
+
+
+        const q3Element =
+            document.querySelector(
+                'input[name="q3"]:checked'
+            );
+
+
+        const q7Element =
+            document.querySelector(
+                'input[name="q7"]:checked'
+            );
+
+
+        const q2 =
+            q2Element
+            ? q2Element.value
+            : "";
+
+
+        const q3 =
+            q3Element
+            ? q3Element.value
+            : "";
+
+
+        const q4 =
+            document.getElementById(
+                "q4"
+            ).value.trim();
+
+
+        const q5 =
+            document.getElementById(
+                "q5"
+            ).value.trim();
+
+
+        const q6 =
+            document.getElementById(
+                "q6"
+            ).value.trim();
+
+
+        const q7 =
+            q7Element
+            ? q7Element.value
+            : "";
+
+
+        /* ===============================
+           VALIDATION
+        =============================== */
+
+        if(!name){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ଦୟାକରି ଆପଣଙ୍କ ନାମ ଦିଅନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(mobile.length !== 10){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ସଠିକ୍ 10 digit Mobile Number ଦିଅନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!rating){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ଦୟାକରି Rating ଦିଅନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!q2){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ପ୍ରଶ୍ନ 2ର ଉତ୍ତର ଚୟନ କରନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!q3){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ପ୍ରଶ୍ନ 3ର ଉତ୍ତର ଚୟନ କରନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!q4){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ପ୍ରଶ୍ନ 4ର ଉତ୍ତର ଦିଅନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!q5){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ପ୍ରଶ୍ନ 5ର ଉତ୍ତର ଦିଅନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!q6){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ପ୍ରଶ୍ନ 6ର ଉତ୍ତର ଦିଅନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if(!q7){
+
+            showMessage(
+                submitMessage,
+                "⚠️ ପ୍ରଶ୍ନ 7ର ଉତ୍ତର ଚୟନ କରନ୍ତୁ।",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        /* ===============================
+           DISABLE
+        =============================== */
+
+        submitBtn.disabled =
+            true;
+
+
+        submitBtn.textContent =
+            "⏳ Feedback Save ହେଉଛି...";
+
+
+        try{
+
+
+            /* ==================================================
+               SAVE TO FIRESTORE
+
+               Collection:
+               public_feedback
+            ================================================== */
+
+            await addDoc(
+
+                collection(
+                    db,
+                    "public_feedback"
+                ),
+
+                {
+
+                    name:
+                        name,
+
+                    mobile:
+                        mobile,
+
+                    rating:
+                        Number(rating),
+
+                    q2:
+                        q2,
+
+                    q3:
+                        q3,
+
+                    q4:
+                        q4,
+
+                    q5:
+                        q5,
+
+                    q6:
+                        q6,
+
+                    q7:
+                        q7,
+
+                    createdAt:
+                        serverTimestamp(),
+
+                    source:
+                        "public"
+
+                }
+
+            );
+
+
+            /* ===============================
+               SUCCESS
+            =============================== */
+
+            showMessage(
+                submitMessage,
+                "🎉 ଆପଣଙ୍କ Feedback ସଫଳତାର ସହିତ ପଠାଯାଇଛି। ଆପଣଙ୍କ ମତାମତ ପାଇଁ ଧନ୍ୟବାଦ। 🙏",
+                "success"
+            );
+
+
+            submitBtn.textContent =
+                "✅ Feedback Submitted";
+
+
+            /* ===============================
+               LOCK FORM
+            =============================== */
+
+            const fields =
+                document.querySelectorAll(
+                    "input, textarea, select"
+                );
+
+
+            fields.forEach(
+                field => {
+
+                    field.disabled =
+                        true;
+
+                }
+            );
+
+
+        }
+
+        catch(error){
+
+            console.error(
+                "Public Feedback Error:",
+                error
+            );
+
+
+            showMessage(
+                submitMessage,
+                "❌ Feedback ପଠାଯାଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+                "error"
+            );
+
+
+            submitBtn.disabled =
+                false;
+
+
+            submitBtn.textContent =
+                "📨 ଗୁପ୍ତ ଭାବରେ Feedback ପଠାନ୍ତୁ";
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
