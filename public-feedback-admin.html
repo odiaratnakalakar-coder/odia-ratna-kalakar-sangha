@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#111111">
+
+<title>ଜନସାଧାରଣ Feedback Admin</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:
+    "Noto Sans Oriya",
+    "Nirmala UI",
+    Arial,
+    sans-serif;
+}
+
+body{
+    background:#111;
+    color:white;
+    padding:15px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+}
+
+/* HEADER */
+
+.header{
+    background:
+    linear-gradient(135deg,#004b5c,#006b80);
+
+    border:2px solid #00d9ff;
+
+    border-radius:15px;
+
+    padding:20px 15px;
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+    box-shadow:
+    0 0 15px rgba(0,217,255,.20);
+}
+
+.header h1{
+    color:white;
+    font-size:24px;
+    margin-bottom:7px;
+}
+
+.header p{
+    color:#dffaff;
+    font-size:14px;
+}
+
+/* SUMMARY */
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.summaryCard{
+    background:#222;
+    border:2px solid #00d9ff;
+    border-radius:12px;
+    padding:15px;
+    text-align:center;
+}
+
+.summaryCard strong{
+    display:block;
+    color:#00d9ff;
+    font-size:28px;
+    margin-bottom:5px;
+}
+
+.summaryCard span{
+    color:#ccc;
+    font-size:14px;
+}
+
+/* SEARCH */
+
+.searchBox{
+    margin-bottom:15px;
+}
+
+.searchBox input{
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:9px;
+    outline:none;
+    font-size:16px;
+}
+
+/* FEEDBACK */
+
+.feedback{
+    background:#1d1d1d;
+    border:1px solid #444;
+    border-left:5px solid #00d9ff;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:15px;
+}
+
+.feedbackHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:8px;
+}
+
+.feedbackName{
+    color:#00d9ff;
+    font-size:19px;
+    font-weight:bold;
+}
+
+.feedbackDate{
+    color:#999;
+    font-size:12px;
+    text-align:right;
+}
+
+.mobile{
+    color:#ffcc00;
+    font-size:15px;
+    margin-bottom:10px;
+}
+
+/* RATING */
+
+.rating{
+    background:#151515;
+    border-radius:8px;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.ratingTitle{
+    color:#aaa;
+    font-size:13px;
+    margin-bottom:4px;
+}
+
+.ratingStars{
+    color:#ffd700;
+    font-size:25px;
+}
+
+.ratingNumber{
+    color:#fff;
+    font-size:14px;
+    margin-left:5px;
+}
+
+/* QUESTION */
+
+.question{
+    background:#151515;
+    border-radius:8px;
+    padding:11px;
+    margin-top:8px;
+    line-height:1.6;
+}
+
+.questionTitle{
+    color:#aaa;
+    font-size:13px;
+    margin-bottom:3px;
+}
+
+.questionAnswer{
+    color:#fff;
+    font-size:15px;
+}
+
+/* DELETE */
+
+.deleteBtn{
+    width:100%;
+    margin-top:13px;
+    padding:11px;
+    border:none;
+    border-radius:8px;
+    background:#a00000;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.deleteBtn:hover{
+    background:#e00000;
+}
+
+/* EMPTY */
+
+.empty{
+    background:#222;
+    border-radius:10px;
+    padding:25px;
+    text-align:center;
+    color:#aaa;
+    line-height:1.7;
+}
+
+/* BACK */
+
+.backBtn{
+    display:block;
+    text-decoration:none;
+    text-align:center;
+    background:#004b5c;
+    color:white;
+    padding:13px;
+    border-radius:8px;
+    margin-top:20px;
+    font-weight:bold;
+    border:1px solid #00d9ff;
+}
+
+.backBtn:hover{
+    background:#006b80;
+}
+
+/* MOBILE */
+
+@media(max-width:450px){
+
+    body{
+        padding:10px;
+    }
+
+    .header h1{
+        font-size:21px;
+    }
+
+    .feedbackHeader{
+        flex-direction:column;
+    }
+
+    .feedbackDate{
+        text-align:left;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>
+        💬 ଜନସାଧାରଣ Feedback Admin
+    </h1>
+
+    <p>
+        ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ, ସୁରତ
+    </p>
+
+</div>
+
+
+<!-- SUMMARY -->
+
+<div class="summary">
+
+    <div class="summaryCard">
+
+        <strong id="totalFeedback">
+            0
+        </strong>
+
+        <span>
+            📝 Total Feedback
+        </span>
+
+    </div>
+
+
+    <div class="summaryCard">
+
+        <strong id="averageRating">
+            0
+        </strong>
+
+        <span>
+            ⭐ Average Rating
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- SEARCH -->
+
+<div class="searchBox">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔎 Name / Mobile Search..."
+    >
+
+</div>
+
+
+<!-- FEEDBACK LIST -->
+
+<div id="feedbackList">
+
+    <div class="empty">
+
+        ⏳ Feedback loading...
+
+    </div>
+
+</div>
+
+
+<!-- BACK -->
+
+<a
+    href="admin.html"
+    class="backBtn"
+>
+
+    ⬅️ Admin Dashboard
+
+</a>
+
+
+</div>
+
+
+<script type="module">
+
+
+/* ==================================================
+   FIREBASE
+================================================== */
+
+import {
+
+    db,
+    auth
+
+}
+from "./firebase.js";
+
+
+import {
+
+    collection,
+    getDocs,
+    deleteDoc,
+    doc
+
+}
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+/* ==================================================
+   ADMIN UID
+================================================== */
+
+const ADMIN_UID =
+"fhVIMYqbYaT4kvnnaEP3ue3DojO2";
+
+
+/* ==================================================
+   GLOBAL DATA
+================================================== */
+
+let allFeedback = [];
+
+
+/* ==================================================
+   ESCAPE HTML
+================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==================================================
+   DATE FORMAT
+================================================== */
+
+function formatDate(timestamp){
+
+    if(!timestamp){
+
+        return "ତାରିଖ ନାହିଁ";
+
+    }
+
+    try{
+
+        let date;
+
+        if(
+            typeof timestamp.toDate ===
+            "function"
+        ){
+
+            date = timestamp.toDate();
+
+        }
+
+        else{
+
+            date = new Date(timestamp);
+
+        }
+
+        if(isNaN(date.getTime())){
+
+            return "ତାରିଖ ନାହିଁ";
+
+        }
+
+        return (
+
+            String(date.getDate()).padStart(2,"0")
+            + "/"
+            +
+            String(date.getMonth()+1).padStart(2,"0")
+            + "/"
+            +
+            date.getFullYear()
+            + " "
+            +
+            String(date.getHours()).padStart(2,"0")
+            + ":"
+            +
+            String(date.getMinutes()).padStart(2,"0")
+
+        );
+
+    }
+
+    catch(error){
+
+        return "ତାରିଖ ନାହିଁ";
+
+    }
+
+}
+
+
+/* ==================================================
+   RATING
+================================================== */
+
+function getStars(rating){
+
+    const number =
+    Number(rating || 0);
+
+    let stars = "";
+
+    for(let i=1;i<=5;i++){
+
+        stars +=
+        i <= number
+        ? "★"
+        : "☆";
+
+    }
+
+    return stars;
+
+}
+
+
+/* ==================================================
+   LOAD FEEDBACK
+================================================== */
+
+async function loadFeedback(){
+
+    const feedbackList =
+    document.getElementById(
+        "feedbackList"
+    );
+
+    try{
+
+        /* ADMIN CHECK */
+
+        if(!auth.currentUser){
+
+            feedbackList.innerHTML = `
+
+                <div class="empty">
+
+                    🔐 Admin Login ଆବଶ୍ୟକ।
+
+                    <br><br>
+
+                    ପ୍ରଥମେ Admin Login କରନ୍ତୁ।
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        if(
+            auth.currentUser.uid !==
+            ADMIN_UID
+        ){
+
+            feedbackList.innerHTML = `
+
+                <div class="empty">
+
+                    ❌ ଆପଣଙ୍କ ପାଖରେ
+                    Admin Permission ନାହିଁ।
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        /* FIRESTORE */
+
+        const snapshot =
+
+        await getDocs(
+
+            collection(
+                db,
+                "public_feedback"
+            )
+
+        );
+
+
+        allFeedback = [];
+
+
+        snapshot.forEach(
+
+            feedbackDoc => {
+
+                allFeedback.push({
+
+                    id:
+                    feedbackDoc.id,
+
+                    ...feedbackDoc.data()
+
+                });
+
+            }
+
+        );
+
+
+        /* NEWEST FIRST */
+
+        allFeedback.sort(
+
+            (a,b) => {
+
+                const aTime =
+                a.createdAt &&
+                typeof a.createdAt.toMillis ===
+                "function"
+
+                ?
+
+                a.createdAt.toMillis()
+
+                :
+
+                0;
+
+
+                const bTime =
+                b.createdAt &&
+                typeof b.createdAt.toMillis ===
+                "function"
+
+                ?
+
+                b.createdAt.toMillis()
+
+                :
+
+                0;
+
+
+                return bTime - aTime;
+
+            }
+
+        );
+
+
+        updateSummary();
+
+
+        renderFeedback(
+            allFeedback
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Feedback Error:",
+            error
+        );
+
+        feedbackList.innerHTML = `
+
+            <div class="empty">
+
+                ❌ Feedback Load ହୋଇପାରିଲା ନାହିଁ।
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.message
+                )}
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* ==================================================
+   SUMMARY
+================================================== */
+
+function updateSummary(){
+
+    const total =
+    allFeedback.length;
+
+
+    document
+    .getElementById(
+        "totalFeedback"
+    )
+    .textContent =
+    total;
+
+
+    if(total === 0){
+
+        document
+        .getElementById(
+            "averageRating"
+        )
+        .textContent =
+        "0";
+
+        return;
+
+    }
+
+
+    let ratingTotal = 0;
+
+
+    allFeedback.forEach(
+
+        item => {
+
+            ratingTotal +=
+            Number(
+                item.rating || 0
+            );
+
+        }
+
+    );
+
+
+    const average =
+    ratingTotal / total;
+
+
+    document
+    .getElementById(
+        "averageRating"
+    )
+    .textContent =
+    average.toFixed(1);
+
+}
+
+
+/* ==================================================
+   RENDER
+================================================== */
+
+function renderFeedback(
+    feedbackArray
+){
+
+    const feedbackList =
+    document.getElementById(
+        "feedbackList"
+    );
+
+    feedbackList.innerHTML = "";
+
+
+    if(
+        feedbackArray.length === 0
+    ){
+
+        feedbackList.innerHTML = `
+
+            <div class="empty">
+
+                📭 କୌଣସି Feedback ମିଳିଲା ନାହିଁ।
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    feedbackArray.forEach(
+
+        item => {
+
+            const div =
+            document.createElement(
+                "div"
+            );
+
+            div.className =
+            "feedback";
+
+
+            div.innerHTML = `
+
+                <div class="feedbackHeader">
+
+                    <div class="feedbackName">
+
+                        👤
+                        ${escapeHTML(
+                            item.name
+                        )}
+
+                    </div>
+
+                    <div class="feedbackDate">
+
+                        📅
+                        ${formatDate(
+                            item.createdAt
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div class="mobile">
+
+                    📱
+                    ${escapeHTML(
+                        item.mobile
+                    )}
+
+                </div>
+
+
+                <!-- QUESTION 1 -->
+
+                <div class="rating">
+
+                    <div class="ratingTitle">
+
+                        1️⃣ ଆପଣଙ୍କ ମତରେ
+                        ଟ୍ରଷ୍ଟର କାର୍ଯ୍ୟକଳାପ କେମିତି?
+
+                    </div>
+
+                    <div class="ratingStars">
+
+                        ${getStars(
+                            item.rating
+                        )}
+
+                        <span
+                            class="ratingNumber"
+                        >
+
+                            ${Number(
+                                item.rating || 0
+                            )}/5
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUESTION 2 -->
+
+                <div class="question">
+
+                    <div class="questionTitle">
+
+                        2️⃣ ଟ୍ରଷ୍ଟର କାର୍ଯ୍ୟରେ
+                        ପାରଦର୍ଶିତା କେମିତି ଲାଗୁଛି?
+
+                    </div>
+
+                    <div class="questionAnswer">
+
+                        ${escapeHTML(
+                            item.q2
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUESTION 3 -->
+
+                <div class="question">
+
+                    <div class="questionTitle">
+
+                        3️⃣ ଆପଣ ଭାବୁଛନ୍ତି କି
+                        ଟ୍ରଷ୍ଟ ସମାଜ ପାଇଁ
+                        ଠିକ୍ ଭାବରେ କାମ କରୁଛି?
+
+                    </div>
+
+                    <div class="questionAnswer">
+
+                        ${escapeHTML(
+                            item.q3
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUESTION 4 -->
+
+                <div class="question">
+
+                    <div class="questionTitle">
+
+                        4️⃣ ଆମର କେଉଁ କାମଟି
+                        ଆପଣଙ୍କୁ ସବୁଠାରୁ ଭଲ ଲାଗୁଛି?
+
+                    </div>
+
+                    <div class="questionAnswer">
+
+                        ${escapeHTML(
+                            item.q4
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUESTION 5 -->
+
+                <div class="question">
+
+                    <div class="questionTitle">
+
+                        5️⃣ କେଉଁ କ୍ଷେତ୍ରରେ
+                        ଆମକୁ ଆହୁରି ଉନ୍ନତି
+                        କରିବା ଦରକାର?
+
+                    </div>
+
+                    <div class="questionAnswer">
+
+                        ${escapeHTML(
+                            item.q5
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUESTION 6 -->
+
+                <div class="question">
+
+                    <div class="questionTitle">
+
+                        6️⃣ ଟ୍ରଷ୍ଟ ପାଇଁ
+                        ଆପଣଙ୍କ ବିଶେଷ ପରାମର୍ଶ କଣ?
+
+                    </div>
+
+                    <div class="questionAnswer">
+
+                        ${escapeHTML(
+                            item.q6
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUESTION 7 -->
+
+                <div class="question">
+
+                    <div class="questionTitle">
+
+                        7️⃣ ଆପଣ ଆମ ଟ୍ରଷ୍ଟକୁ
+                        ଅନ୍ୟମାନଙ୍କୁ
+                        ସୁପାରିଶ କରିବେ କି?
+
+                    </div>
+
+                    <div class="questionAnswer">
+
+                        ${escapeHTML(
+                            item.q7
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="deleteBtn"
+                    data-id="${escapeHTML(
+                        item.id
+                    )}"
+                >
+
+                    🗑️ Feedback Delete
+
+                </button>
+
+            `;
+
+
+            div.querySelector(
+                ".deleteBtn"
+            ).addEventListener(
+
+                "click",
+
+                function(){
+
+                    deleteFeedback(
+                        item.id
+                    );
+
+                }
+
+            );
+
+
+            feedbackList.appendChild(
+                div
+            );
+
+        }
+
+    );
+
+}
+
+
+/* ==================================================
+   DELETE
+================================================== */
+
+async function deleteFeedback(id){
+
+    const ok =
+    confirm(
+        "ଏହି Feedback କୁ Delete କରିବେ କି?"
+    );
+
+
+    if(!ok){
+
+        return;
+
+    }
+
+
+    try{
+
+        await deleteDoc(
+
+            doc(
+                db,
+                "public_feedback",
+                id
+            )
+
+        );
+
+
+        alert(
+            "✅ Feedback Delete ହୋଇଗଲା।"
+        );
+
+
+        await loadFeedback();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "Delete Error:",
+            error
+        );
+
+
+        alert(
+            "❌ Feedback Delete ହୋଇପାରିଲା ନାହିଁ।"
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   SEARCH
+================================================== */
+
+document
+.getElementById(
+    "searchInput"
+)
+.addEventListener(
+
+    "input",
+
+    function(){
+
+        const search =
+        this.value
+        .trim()
+        .toLowerCase();
+
+
+        if(!search){
+
+            renderFeedback(
+                allFeedback
+            );
+
+            return;
+
+        }
+
+
+        const filtered =
+        allFeedback.filter(
+
+            item => {
+
+                const name =
+                String(
+                    item.name || ""
+                )
+                .toLowerCase();
+
+
+                const mobile =
+                String(
+                    item.mobile || ""
+                )
+                .toLowerCase();
+
+
+                return (
+
+                    name.includes(search)
+
+                    ||
+
+                    mobile.includes(search)
+
+                );
+
+            }
+
+        );
+
+
+        renderFeedback(
+            filtered
+        );
+
+    }
+
+);
+
+
+/* ==================================================
+   AUTH
+================================================== */
+
+auth.onAuthStateChanged(
+
+    user => {
+
+        if(user){
+
+            loadFeedback();
+
+        }
+
+        else{
+
+            document
+            .getElementById(
+                "feedbackList"
+            )
+            .innerHTML = `
+
+                <div class="empty">
+
+                    🔐 Admin Login କରନ୍ତୁ।
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+);
+
+</script>
+
+</body>
+
+</html>
