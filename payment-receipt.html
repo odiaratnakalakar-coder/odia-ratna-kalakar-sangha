@@ -20,7 +20,7 @@ content="width=device-width, initial-scale=1.0">
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:Arial,"Noto Sans Oriya",sans-serif;
 }
 
 body{
@@ -177,6 +177,93 @@ font-size:15px;
 .member-details strong{
 
 color:#ffcc00;
+
+}
+
+
+/* =========================
+   HISTORY
+========================= */
+
+.history-box{
+
+display:none;
+
+background:#222;
+
+border:2px solid #555;
+
+border-radius:12px;
+
+padding:15px;
+
+margin-bottom:20px;
+
+}
+
+.history-title{
+
+text-align:center;
+
+color:#ffcc00;
+
+font-size:21px;
+
+font-weight:bold;
+
+margin-bottom:15px;
+
+}
+
+.history-card{
+
+background:#181818;
+
+border:1px solid #555;
+
+border-radius:10px;
+
+padding:13px;
+
+margin-bottom:12px;
+
+}
+
+.history-card p{
+
+margin:6px 0;
+
+font-size:14px;
+
+}
+
+.history-card strong{
+
+color:#ffcc00;
+
+}
+
+.history-print{
+
+background:#006400;
+
+margin-top:10px;
+
+}
+
+.history-print:hover{
+
+background:#008000;
+
+}
+
+.no-history{
+
+text-align:center;
+
+color:#aaa;
+
+padding:15px;
 
 }
 
@@ -382,6 +469,21 @@ background:#777;
 
 
 /* =========================
+   LOADING
+========================= */
+
+.loading{
+
+text-align:center;
+
+color:#ffcc00;
+
+padding:15px;
+
+}
+
+
+/* =========================
    PRINT
 ========================= */
 
@@ -405,6 +507,7 @@ h1,
 .search-box,
 #message,
 .member-details,
+.history-box,
 .receipt-buttons{
 
 display:none !important;
@@ -421,6 +524,49 @@ border:none;
 
 border-radius:0;
 
+padding:20px;
+
+}
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:500px){
+
+.receipt{
+
+padding:15px;
+
+}
+
+.receipt-header h2{
+
+font-size:20px;
+
+}
+
+.receipt-info td{
+
+font-size:13px;
+
+padding:8px;
+
+}
+
+.signature-section{
+
+gap:10px;
+
+}
+
+.signature-box img{
+
+width:100px;
+
 }
 
 }
@@ -436,7 +582,9 @@ border-radius:0;
 <div class="container">
 
 
-<h1>🧾 Payment Receipt</h1>
+<h1>
+🧾 Payment Receipt
+</h1>
 
 
 <!-- =========================
@@ -467,7 +615,8 @@ inputmode="numeric"
 </button>
 
 
-<div id="searchStatus"
+<div
+id="searchStatus"
 style="
 margin-top:12px;
 text-align:center;
@@ -556,7 +705,29 @@ id="memberDetails"
 
 
 <!-- =========================
-     RECEIPT
+     PAYMENT HISTORY
+========================= -->
+
+<div
+class="history-box"
+id="historyBox"
+>
+
+<div class="history-title">
+
+📋 Member Payment History
+
+</div>
+
+<div id="historyList">
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     CURRENT RECEIPT
 ========================= -->
 
 <div
@@ -710,7 +881,6 @@ Received By
 
 <div class="signature-box">
 
-
 <img
 src="images/signature.png"
 alt="Digital Signature"
@@ -728,7 +898,6 @@ Digital Signature
 S.K. Behera
 </strong>
 
-
 </div>
 
 
@@ -736,7 +905,7 @@ S.K. Behera
 
 
 <!-- =========================
-     THANK YOU MESSAGE
+     THANK YOU
 ========================= -->
 
 <div class="thankyou">
@@ -804,6 +973,7 @@ onclick="window.location.href='admin.html'"
 </div>
 
 
+
 <!-- =========================
      FIREBASE
 ========================= -->
@@ -830,11 +1000,21 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
+
 /* =========================
    SELECTED MEMBER
 ========================= */
 
 let selectedMember = null;
+
+
+
+/* =========================
+   CURRENT RECEIPT DATA
+========================= */
+
+let currentReceipt = null;
+
 
 
 /* =========================
@@ -852,22 +1032,36 @@ document
 
 
 const status =
-document.getElementById("searchStatus");
+document
+.getElementById("searchStatus");
 
 
 const message =
-document.getElementById("message");
+document
+.getElementById("message");
 
 
 const details =
-document.getElementById("memberDetails");
+document
+.getElementById("memberDetails");
+
+
+const historyBox =
+document
+.getElementById("historyBox");
 
 
 /* Clear old result */
 
 selectedMember = null;
 
+currentReceipt = null;
+
 details.style.display = "none";
+
+historyBox.style.display = "none";
+
+message.textContent = "";
 
 
 /* Check mobile */
@@ -911,7 +1105,7 @@ try{
 
 
 /* =========================
-   FIRESTORE SEARCH
+   SEARCH MEMBER
 ========================= */
 
 const q =
@@ -967,7 +1161,7 @@ docId:docSnap.id,
 
 
 /* =========================
-   SHOW DETAILS
+   SHOW MEMBER DETAILS
 ========================= */
 
 document
@@ -1007,13 +1201,18 @@ details.style.display =
 status.textContent =
 "✅ Member ମିଳିଗଲା";
 
-
 status.style.color =
 "#00ff66";
 
 
-message.textContent =
-"";
+/* =========================
+   LOAD PAYMENT HISTORY
+========================= */
+
+await loadPaymentHistory(
+selectedMember.memberId,
+selectedMember.mobile
+);
 
 
 }catch(error){
@@ -1034,6 +1233,309 @@ status.style.color =
 }
 
 };
+
+
+
+/* =========================
+   LOAD PAYMENT HISTORY
+========================= */
+
+async function loadPaymentHistory(
+memberId,
+mobile
+){
+
+
+const historyBox =
+document
+.getElementById("historyBox");
+
+
+const historyList =
+document
+.getElementById("historyList");
+
+
+historyBox.style.display =
+"block";
+
+
+historyList.innerHTML =
+'<div class="loading">🔄 Payment History Loading...</div>';
+
+
+try{
+
+
+/*
+   First search by Member ID.
+
+   This will work with the new
+   receipt records.
+*/
+
+let q =
+query(
+
+collection(db,"receipts"),
+
+where(
+"memberId",
+"==",
+memberId
+)
+
+);
+
+
+let snap =
+await getDocs(q);
+
+
+/*
+   If Member ID history is empty,
+   try Mobile Number.
+
+   This also helps older receipt
+   records if required.
+*/
+
+if(snap.empty && mobile){
+
+q =
+query(
+
+collection(db,"receipts"),
+
+where(
+"mobile",
+"==",
+mobile
+)
+
+);
+
+snap =
+await getDocs(q);
+
+}
+
+
+/* =========================
+   NO HISTORY
+========================= */
+
+if(snap.empty){
+
+historyList.innerHTML = `
+
+<div class="no-history">
+
+📭 ଏହି Member ଙ୍କର
+କୌଣସି Payment Receipt ମିଳିଲା ନାହିଁ।
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+/* =========================
+   CONVERT DATA
+========================= */
+
+let receipts = [];
+
+
+snap.forEach(function(docSnap){
+
+const data =
+docSnap.data();
+
+
+receipts.push({
+
+id:docSnap.id,
+
+...data
+
+});
+
+});
+
+
+/* =========================
+   SORT NEWEST FIRST
+========================= */
+
+receipts.sort(function(a,b){
+
+const dateA =
+a.createdAt &&
+a.createdAt.seconds
+? a.createdAt.seconds
+: 0;
+
+
+const dateB =
+b.createdAt &&
+b.createdAt.seconds
+? b.createdAt.seconds
+: 0;
+
+
+return dateB - dateA;
+
+});
+
+
+/* =========================
+   DISPLAY HISTORY
+========================= */
+
+historyList.innerHTML = "";
+
+
+receipts.forEach(function(receipt,index){
+
+
+const card =
+document.createElement("div");
+
+
+card.className =
+"history-card";
+
+
+card.innerHTML = `
+
+<p>
+<strong>Receipt No:</strong>
+${escapeHtml(receipt.receiptNo || "-")}
+</p>
+
+<p>
+<strong>Date:</strong>
+${escapeHtml(receipt.paymentDate || "-")}
+</p>
+
+<p>
+<strong>Amount:</strong>
+₹${escapeHtml(String(receipt.amount || 0))}
+</p>
+
+<p>
+<strong>Transaction ID:</strong>
+${escapeHtml(receipt.txnId || "-")}
+</p>
+
+<p>
+<strong>Received By:</strong>
+${escapeHtml(receipt.receivedBy || "-")}
+</p>
+
+<p>
+<strong>Status:</strong>
+PAID
+</p>
+
+<button
+class="history-print"
+data-index="${index}"
+>
+
+🖨️ Print This Receipt
+
+</button>
+
+`;
+
+
+historyList.appendChild(card);
+
+});
+
+
+/* =========================
+   PRINT BUTTON EVENTS
+========================= */
+
+const printButtons =
+historyList.querySelectorAll(
+".history-print"
+);
+
+
+printButtons.forEach(function(button){
+
+button.addEventListener(
+"click",
+function(){
+
+const index =
+Number(
+button.getAttribute("data-index")
+);
+
+
+printOldReceipt(
+receipts[index]
+);
+
+});
+
+});
+
+
+}catch(error){
+
+
+console.error(error);
+
+
+historyList.innerHTML = `
+
+<div class="no-history">
+
+❌ Payment History Load Error
+
+<br>
+
+${escapeHtml(error.message)}
+
+</div>
+
+`;
+
+}
+
+}
+
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+return String(value)
+
+.replaceAll("&","&amp;")
+
+.replaceAll("<","&lt;")
+
+.replaceAll(">","&gt;")
+
+.replaceAll('"',"&quot;")
+
+.replaceAll("'","&#039;");
+
+}
+
 
 
 /* =========================
@@ -1125,6 +1627,7 @@ month:"2-digit",
 year:"numeric"
 
 }
+
 );
 
 
@@ -1140,29 +1643,10 @@ now.getTime();
 
 
 /* =========================
-   SAVE ONLY TO RECEIPTS
+   SAVE TO RECEIPTS
 ========================= */
 
-/*
-
-IMPORTANT:
-
-members collection କୁ
-କିଛି update/delete ହେଉନାହିଁ।
-
-କେବଳ receipts collection
-ରେ ନୂଆ document save ହେଉଛି।
-
-*/
-
-await addDoc(
-
-collection(
-db,
-"receipts"
-),
-
-{
+const receiptData = {
 
 receiptNo:
 receiptNumber,
@@ -1188,12 +1672,63 @@ receivedBy,
 paymentDate:
 dateText,
 
+paymentStatus:
+"PAID",
+
 createdAt:
 serverTimestamp()
 
-}
+};
+
+
+/* =========================
+   SAVE FIRESTORE
+========================= */
+
+const receiptRef =
+await addDoc(
+
+collection(
+db,
+"receipts"
+),
+
+receiptData
 
 );
+
+
+/* =========================
+   CURRENT RECEIPT
+========================= */
+
+currentReceipt = {
+
+id:receiptRef.id,
+
+receiptNo:receiptNumber,
+
+memberId:
+selectedMember.memberId || "",
+
+memberName:
+selectedMember.name || "",
+
+mobile:
+selectedMember.mobile || "",
+
+amount:amount,
+
+txnId:
+selectedMember.txnId || "",
+
+receivedBy:receivedBy,
+
+paymentDate:dateText,
+
+paymentStatus:"PAID"
+
+};
 
 
 /* =========================
@@ -1259,14 +1794,29 @@ document
 
 
 message.textContent =
-"✅ Receipt Successfully Created";
+"✅ Receipt Successfully Created & Saved";
 
 
 message.style.color =
 "#00ff66";
 
 
-/* Scroll */
+/* =========================
+   REFRESH HISTORY
+========================= */
+
+await loadPaymentHistory(
+
+selectedMember.memberId,
+
+selectedMember.mobile
+
+);
+
+
+/* =========================
+   SCROLL
+========================= */
 
 setTimeout(function(){
 
@@ -1299,16 +1849,124 @@ error.message
 };
 
 
+
 /* =========================
-   PRINT / DOWNLOAD
+   PRINT CURRENT RECEIPT
 ========================= */
 
 window.downloadReceipt =
 function(){
 
+if(!currentReceipt){
+
+alert(
+"ପ୍ରଥମେ Receipt Generate କରନ୍ତୁ।"
+);
+
+return;
+
+}
+
 window.print();
 
 };
+
+
+
+/* =========================
+   PRINT OLD RECEIPT
+========================= */
+
+function printOldReceipt(receipt){
+
+/*
+   Put old receipt data
+   into current receipt area.
+*/
+
+
+document
+.getElementById("rReceiptNo")
+.textContent =
+receipt.receiptNo || "-";
+
+
+document
+.getElementById("rDate")
+.textContent =
+receipt.paymentDate || "-";
+
+
+document
+.getElementById("rMemberId")
+.textContent =
+receipt.memberId || "-";
+
+
+document
+.getElementById("rName")
+.textContent =
+receipt.memberName || "-";
+
+
+document
+.getElementById("rMobile")
+.textContent =
+receipt.mobile || "-";
+
+
+document
+.getElementById("rTxnId")
+.textContent =
+receipt.txnId || "-";
+
+
+document
+.getElementById("rAmount")
+.textContent =
+receipt.amount || "0";
+
+
+document
+.getElementById("rReceivedBy")
+.textContent =
+receipt.receivedBy || "-";
+
+
+currentReceipt = receipt;
+
+
+/* Show receipt */
+
+document
+.getElementById("receipt")
+.style.display =
+"block";
+
+
+/* Scroll to receipt */
+
+document
+.getElementById("receipt")
+.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+
+/*
+   Small delay so browser
+   finishes rendering before print.
+*/
+
+setTimeout(function(){
+
+window.print();
+
+},500);
+
+}
 
 
 </script>
@@ -1316,4 +1974,4 @@ window.print();
 
 </body>
 
-  </html>
+</html>
