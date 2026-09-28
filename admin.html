@@ -11,15 +11,27 @@
 <meta name="theme-color"
       content="#111111">
 
+<meta name="description"
+      content="Odia Ratna Kalakar Sangha Admin Dashboard">
+
 <title>Admin Dashboard</title>
 
+
 <style>
+
+/* ==================================================
+   BASIC
+================================================== */
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,"Noto Sans Oriya","Nirmala UI",sans-serif;
+    font-family:
+        Arial,
+        "Noto Sans Oriya",
+        "Nirmala UI",
+        sans-serif;
 }
 
 body{
@@ -40,6 +52,11 @@ h1{
     font-size:30px;
 }
 
+
+/* ==================================================
+   DASHBOARD GRID
+================================================== */
+
 .dashboard{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -53,7 +70,13 @@ h1{
     border-radius:12px;
     padding:20px 10px;
     text-align:center;
-    box-shadow:0 0 10px rgba(255,0,0,.3);
+
+    box-shadow:
+        0 0 10px
+        rgba(255,0,0,.3);
+
+    text-decoration:none;
+    color:white;
 }
 
 .card h2{
@@ -66,59 +89,70 @@ h1{
     color:#ddd;
 }
 
-/* APPLICATION */
+
+/* ==================================================
+   APPLICATION
+================================================== */
 
 .applicationCard{
     grid-column:1/-1;
-    background:linear-gradient(135deg,#260000,#151515);
+
+    background:
+        linear-gradient(
+            135deg,
+            #260000,
+            #151515
+        );
+
     border:2px solid #ffcc00;
-    text-decoration:none;
-    color:white;
 }
 
 .applicationCard h2{
     color:#ffcc00;
 }
 
-/* MEMBER FEEDBACK */
+
+/* ==================================================
+   MEMBER FEEDBACK
+================================================== */
 
 .feedbackCard{
     grid-column:1/-1;
-    background:linear-gradient(135deg,#001f26,#151515);
+
+    background:
+        linear-gradient(
+            135deg,
+            #001f26,
+            #151515
+        );
+
     border:2px solid #00d9ff;
-    text-decoration:none;
-    color:white;
 }
 
 .feedbackCard h2{
     color:#00d9ff;
 }
 
-/* PUBLIC FEEDBACK */
+
+/* ==================================================
+   PUBLIC FEEDBACK
+================================================== */
 
 .publicFeedbackCard{
     grid-column:1/-1;
 
     background:
-    linear-gradient(
-        135deg,
-        #351600,
-        #151515
-    );
+        linear-gradient(
+            135deg,
+            #351600,
+            #151515
+        );
 
     border:3px solid #ff9900;
 
     box-shadow:
-    0 0 18px
-    rgba(255,153,0,.35);
-
-    text-decoration:none;
-
-    color:white;
-
-    display:block;
-
-    cursor:pointer;
+        0 0 18px
+        rgba(255,153,0,.35);
 }
 
 .publicFeedbackCard h2{
@@ -137,17 +171,80 @@ h1{
     margin-top:5px;
 }
 
-/* DAILY */
+
+/* ==================================================
+   PAYMENT DASHBOARD CARD
+================================================== */
+
+.paymentCard{
+    grid-column:1/-1;
+
+    background:
+        linear-gradient(
+            135deg,
+            #003d12,
+            #151515
+        );
+
+    border:3px solid #00ff66;
+
+    box-shadow:
+        0 0 18px
+        rgba(0,255,102,.25);
+
+    cursor:pointer;
+}
+
+.paymentCard h2{
+    color:#00ff66;
+    font-size:34px;
+}
+
+.paymentCard p{
+    color:white;
+    font-weight:bold;
+}
+
+.paymentStats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.paymentStat{
+    background:#151515;
+    border:1px solid #555;
+    border-radius:8px;
+    padding:12px;
+}
+
+.paymentStat strong{
+    display:block;
+    color:#00ff66;
+    font-size:24px;
+    margin-bottom:4px;
+}
+
+.paymentStat span{
+    color:#ccc;
+    font-size:13px;
+}
+
+
+/* ==================================================
+   DAILY MEMBER
+================================================== */
 
 .dailyMemberCard{
     grid-column:1/-1;
 
     background:
-    linear-gradient(
-        135deg,
-        #001d00,
-        #151515
-    );
+        linear-gradient(
+            135deg,
+            #001d00,
+            #151515
+        );
 
     border:2px solid #00cc66;
 }
@@ -205,10 +302,15 @@ h1{
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     background:#222;
+
     border-radius:6px;
+
     padding:10px;
+
     margin-top:6px;
+
     cursor:pointer;
 }
 
@@ -257,11 +359,16 @@ h1{
     font-weight:bold;
 }
 
-/* BIRTHDAY */
+
+/* ==================================================
+   BIRTHDAY
+================================================== */
 
 .birthdayCard{
     grid-column:1/-1;
+
     border:2px solid #ff9900;
+
     background:#222;
 }
 
@@ -281,10 +388,15 @@ h1{
 
 .birthdayMember{
     background:#151515;
+
     border-left:4px solid #ffcc00;
+
     border-radius:7px;
+
     padding:9px;
+
     margin-top:7px;
+
     line-height:1.5;
 }
 
@@ -299,7 +411,10 @@ h1{
     font-size:14px;
 }
 
-/* MENU */
+
+/* ==================================================
+   MENU
+================================================== */
 
 .menu{
     display:flex;
@@ -309,13 +424,21 @@ h1{
 
 .menu a{
     display:block;
+
     text-decoration:none;
+
     background:#c40000;
+
     color:white;
+
     padding:15px;
+
     border-radius:8px;
+
     text-align:center;
+
     font-size:17px;
+
     font-weight:bold;
 }
 
@@ -323,75 +446,125 @@ h1{
     background:#ff0000;
 }
 
-/* PUBLIC FEEDBACK BUTTON */
+
+/* ==================================================
+   PAYMENT MENU
+================================================== */
+
+.paymentAdmin{
+    background:
+        linear-gradient(
+            135deg,
+            #006400,
+            #008000
+        ) !important;
+
+    border:3px solid #00ff66;
+
+    box-shadow:
+        0 0 15px
+        rgba(0,255,102,.25);
+}
+
+.paymentAdmin:hover{
+    background:
+        linear-gradient(
+            135deg,
+            #008000,
+            #00aa00
+        ) !important;
+}
+
+
+/* ==================================================
+   PUBLIC FEEDBACK BUTTON
+================================================== */
 
 .publicFeedbackAdmin{
     background:
-    linear-gradient(
-        135deg,
-        #8b4a00,
-        #d87800
-    ) !important;
+        linear-gradient(
+            135deg,
+            #8b4a00,
+            #d87800
+        ) !important;
 
     border:3px solid #ff9900;
 
     box-shadow:
-    0 0 15px
-    rgba(255,153,0,.30);
+        0 0 15px
+        rgba(255,153,0,.30);
 }
 
 .publicFeedbackAdmin:hover{
     background:
-    linear-gradient(
-        135deg,
-        #b85f00,
-        #ed8500
-    ) !important;
+        linear-gradient(
+            135deg,
+            #b85f00,
+            #ed8500
+        ) !important;
 }
 
-/* MEMBER FEEDBACK BUTTON */
+
+/* ==================================================
+   MEMBER FEEDBACK BUTTON
+================================================== */
 
 .feedbackAdmin{
     background:
-    linear-gradient(
-        135deg,
-        #004b5c,
-        #006b80
-    ) !important;
+        linear-gradient(
+            135deg,
+            #004b5c,
+            #006b80
+        ) !important;
 
     border:2px solid #00d9ff;
 }
 
-/* APPLICATION BUTTON */
+
+/* ==================================================
+   APPLICATION BUTTON
+================================================== */
 
 .applicationAdmin{
     background:
-    linear-gradient(
-        135deg,
-        #8b0000,
-        #c40000
-    ) !important;
+        linear-gradient(
+            135deg,
+            #8b0000,
+            #c40000
+        ) !important;
 
     border:2px solid #ffcc00;
 }
 
-/* MEMBER BOOK */
+
+/* ==================================================
+   MEMBER BOOK
+================================================== */
 
 .memberBook{
     background:#8b0000 !important;
     border:2px solid #ffcc00;
 }
 
-/* FOOTER */
+
+/* ==================================================
+   FOOTER
+================================================== */
 
 .footer{
     margin-top:25px;
+
     text-align:center;
+
     font-size:14px;
+
     color:#aaa;
 }
 
-/* MOBILE */
+
+/* ==================================================
+   MOBILE
+================================================== */
 
 @media(max-width:450px){
 
@@ -415,15 +588,22 @@ h1{
         font-size:14px;
     }
 
+    .paymentCard h2{
+        font-size:30px;
+    }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
 
+
 <div class="container">
+
 
 <h1>
 📊 Admin Dashboard
@@ -437,11 +617,15 @@ h1{
 <div class="dashboard">
 
 
-<!-- MEMBERS -->
+<!-- ==================================================
+     TOTAL MEMBERS
+================================================== -->
 
 <div class="card">
 
-<h2 id="memberCount">0</h2>
+<h2 id="memberCount">
+0
+</h2>
 
 <p>
 👥 Total Members
@@ -450,11 +634,15 @@ h1{
 </div>
 
 
-<!-- COMMITTEE -->
+<!-- ==================================================
+     COMMITTEE
+================================================== -->
 
 <div class="card">
 
-<h2 id="committeeCount">0</h2>
+<h2 id="committeeCount">
+0
+</h2>
 
 <p>
 👨‍💼 Committee Members
@@ -463,7 +651,9 @@ h1{
 </div>
 
 
-<!-- APPLICATION -->
+<!-- ==================================================
+     APPLICATION
+================================================== -->
 
 <a
 href="worker-help-admin.html"
@@ -481,7 +671,9 @@ class="card applicationCard"
 </a>
 
 
-<!-- BLOOD -->
+<!-- ==================================================
+     BLOOD
+================================================== -->
 
 <div class="card">
 
@@ -496,7 +688,9 @@ class="card applicationCard"
 </div>
 
 
-<!-- DONATION -->
+<!-- ==================================================
+     DONATION
+================================================== -->
 
 <div class="card">
 
@@ -511,7 +705,61 @@ class="card applicationCard"
 </div>
 
 
-<!-- MEMBER FEEDBACK -->
+<!-- ==================================================
+     ⭐ PAYMENT RECEIVED
+================================================== -->
+
+<a
+href="payment-received.html"
+class="card paymentCard"
+>
+
+<h2>
+💰 Payment Received
+</h2>
+
+<p>
+Receipt / Payment Records
+</p>
+
+
+<div class="paymentStats">
+
+
+<div class="paymentStat">
+
+<strong id="paymentRecordCount">
+0
+</strong>
+
+<span>
+🧾 Payment Records
+</span>
+
+</div>
+
+
+<div class="paymentStat">
+
+<strong id="paymentTotalAmount">
+₹0
+</strong>
+
+<span>
+💵 Total Collection
+</span>
+
+</div>
+
+
+</div>
+
+</a>
+
+
+<!-- ==================================================
+     MEMBER FEEDBACK
+================================================== -->
 
 <a
 href="admin-feedback.html"
@@ -534,7 +782,7 @@ class="card feedbackCard"
 
 
 <!-- ==================================================
-     ⭐ PUBLIC FEEDBACK
+     PUBLIC FEEDBACK
 ================================================== -->
 
 <a
@@ -564,7 +812,10 @@ Feedback ଦେଇଥିବା ସାଧାରଣ ଲୋକ
 <div class="card dailyMemberCard">
 
 <h2>
-📊 <span id="todayNewMembers">0</span>
+📊
+<span id="todayNewMembers">
+0
+</span>
 </h2>
 
 <p>
@@ -626,6 +877,7 @@ Feedback ଦେଇଥିବା ସାଧାରଣ ଲୋକ
 
 </div>
 
+
 </div>
 
 
@@ -660,10 +912,13 @@ class="selectedDay"
 
 </div>
 
+
 </div>
 
 
-<!-- BIRTHDAY -->
+<!-- ==================================================
+     BIRTHDAY
+================================================== -->
 
 <div class="card birthdayCard">
 
@@ -674,6 +929,7 @@ class="selectedDay"
 <p>
 🎂 Birthday Today
 </p>
+
 
 <div
 id="birthdayList"
@@ -690,6 +946,7 @@ Birthday checking...
 
 
 </div>
+
 
 
 <!-- ==================================================
@@ -765,13 +1022,38 @@ class="memberBook"
 </a>
 
 
-<a href="payment-receipt.html">
+<!-- ==================================================
+     PAYMENT RECEIPT
+================================================== -->
+
+<a href="payment-receipt.html"
+   class="paymentAdmin">
+
 🧾 Payment Receipt
+
 </a>
 
 
+<!-- ==================================================
+     PAYMENT RECEIVED MEMBERS
+================================================== -->
+
+<a href="payment-received.html"
+   class="paymentAdmin">
+
+💰 Payment Received Members
+
+</a>
+
+
+<!-- ==================================================
+     TRUST ACCOUNTS
+================================================== -->
+
 <a href="trust-accounts.html">
+
 📊 Trust Accounts Dashboard
+
 </a>
 
 
@@ -781,24 +1063,28 @@ class="memberBook"
 href="admin-feedback.html"
 class="feedbackAdmin"
 >
+
 📊 ସଦସ୍ୟ ମତାମତ Admin
+
 </a>
 
 
-<!-- ==================================================
-     ⭐ PUBLIC FEEDBACK ADMIN
-================================================== -->
+<!-- PUBLIC FEEDBACK -->
 
 <a
 href="public-feedback-admin.html"
 class="publicFeedbackAdmin"
 >
+
 💬 ଜନସାଧାରଣ Feedback Admin
+
 </a>
 
 
 <a href="index.html">
+
 🏠 Website Home
+
 </a>
 
 
@@ -806,16 +1092,29 @@ class="publicFeedbackAdmin"
 href="#"
 onclick="logout(); return false;"
 >
+
 🚪 Logout
+
 </a>
+
 
 </div>
 
 
 <div class="footer">
+
 © 2026 Odia Ratna Kalakar Sangha
+
 </div>
 
+
+</div>
+
+
+
+<!-- ==================================================
+     FIREBASE SCRIPT
+================================================== -->
 
 <script type="module">
 
@@ -840,10 +1139,12 @@ from
 
 
 import {
-    signOut
+    signOut,
+    onAuthStateChanged
 }
 from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 
 
 /* ==================================================
@@ -854,20 +1155,27 @@ const ADMIN_UID =
 "fhVIMYqbYaT4kvnnaEP3ue3DojO2";
 
 
+
 /* ==================================================
-   ESCAPE
+   ESCAPE HTML
 ================================================== */
 
 function escapeHTML(value){
 
     return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+
+        .replace(/&/g,"&amp;")
+
+        .replace(/</g,"&lt;")
+
+        .replace(/>/g,"&gt;")
+
+        .replace(/"/g,"&quot;")
+
+        .replace(/'/g,"&#039;");
 
 }
+
 
 
 /* ==================================================
@@ -877,14 +1185,116 @@ function escapeHTML(value){
 function formatDate(date){
 
     return (
-        String(date.getDate()).padStart(2,"0")
-        + "/" +
-        String(date.getMonth()+1).padStart(2,"0")
-        + "/" +
+
+        String(
+            date.getDate()
+        ).padStart(2,"0")
+
+        + "/"
+
+        +
+
+        String(
+            date.getMonth()+1
+        ).padStart(2,"0")
+
+        + "/"
+
+        +
+
         date.getFullYear()
+
     );
 
 }
+
+
+
+/* ==================================================
+   PAYMENT DASHBOARD
+================================================== */
+
+async function loadPaymentSummary(){
+
+    try{
+
+        const snap =
+        await getDocs(
+            collection(
+                db,
+                "receipts"
+            )
+        );
+
+
+        let totalAmount = 0;
+
+        let totalRecords =
+        snap.size;
+
+
+        snap.forEach(
+            docSnap => {
+
+                const data =
+                docSnap.data();
+
+
+                totalAmount +=
+                Number(
+                    data.amount || 0
+                );
+
+            }
+        );
+
+
+        document
+        .getElementById(
+            "paymentRecordCount"
+        )
+        .textContent =
+        totalRecords;
+
+
+        document
+        .getElementById(
+            "paymentTotalAmount"
+        )
+        .textContent =
+        "₹" +
+        totalAmount.toLocaleString(
+            "en-IN"
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Payment Summary:",
+            error
+        );
+
+
+        document
+        .getElementById(
+            "paymentRecordCount"
+        )
+        .textContent =
+        "0";
+
+
+        document
+        .getElementById(
+            "paymentTotalAmount"
+        )
+        .textContent =
+        "₹0";
+
+    }
+
+}
+
 
 
 /* ==================================================
@@ -896,15 +1306,23 @@ async function loadDashboard(){
     try{
 
 
-        /* MEMBERS */
+        /* ==================================================
+           MEMBERS
+        ================================================== */
 
         const memberSnap =
         await getDocs(
-            collection(db,"members")
+            collection(
+                db,
+                "members"
+            )
         );
 
+
         document
-        .getElementById("memberCount")
+        .getElementById(
+            "memberCount"
+        )
         .textContent =
         memberSnap.size;
 
@@ -913,22 +1331,40 @@ async function loadDashboard(){
             memberSnap
         );
 
+
         loadTodayBirthdays(
             memberSnap
         );
 
 
-        /* COMMITTEE */
+
+        /* ==================================================
+           PAYMENT
+        ================================================== */
+
+        await loadPaymentSummary();
+
+
+
+        /* ==================================================
+           COMMITTEE
+        ================================================== */
 
         try{
 
             const snap =
             await getDocs(
-                collection(db,"Committee")
+                collection(
+                    db,
+                    "Committee"
+                )
             );
 
+
             document
-            .getElementById("committeeCount")
+            .getElementById(
+                "committeeCount"
+            )
             .textContent =
             snap.size;
 
@@ -943,7 +1379,10 @@ async function loadDashboard(){
         }
 
 
-        /* APPLICATION */
+
+        /* ==================================================
+           APPLICATION
+        ================================================== */
 
         try{
 
@@ -955,8 +1394,11 @@ async function loadDashboard(){
                 )
             );
 
+
             document
-            .getElementById("applicationCount")
+            .getElementById(
+                "applicationCount"
+            )
             .textContent =
             snap.size;
 
@@ -971,7 +1413,10 @@ async function loadDashboard(){
         }
 
 
-        /* BLOOD */
+
+        /* ==================================================
+           BLOOD
+        ================================================== */
 
         try{
 
@@ -983,8 +1428,11 @@ async function loadDashboard(){
                 )
             );
 
+
             document
-            .getElementById("bloodCount")
+            .getElementById(
+                "bloodCount"
+            )
             .textContent =
             snap.size;
 
@@ -999,7 +1447,10 @@ async function loadDashboard(){
         }
 
 
-        /* DONATION */
+
+        /* ==================================================
+           DONATION
+        ================================================== */
 
         try{
 
@@ -1011,7 +1462,9 @@ async function loadDashboard(){
                 )
             );
 
+
             let total = 0;
+
 
             snap.forEach(
                 item => {
@@ -1024,10 +1477,16 @@ async function loadDashboard(){
                 }
             );
 
+
             document
-            .getElementById("donationCount")
+            .getElementById(
+                "donationCount"
+            )
             .textContent =
-            "₹" + total;
+            "₹" +
+            total.toLocaleString(
+                "en-IN"
+            );
 
         }
         catch(error){
@@ -1040,7 +1499,10 @@ async function loadDashboard(){
         }
 
 
-        /* MEMBER FEEDBACK */
+
+        /* ==================================================
+           MEMBER FEEDBACK
+        ================================================== */
 
         try{
 
@@ -1052,8 +1514,10 @@ async function loadDashboard(){
                 )
             );
 
+
             const unique =
             new Set();
+
 
             snap.forEach(
                 item => {
@@ -1061,14 +1525,19 @@ async function loadDashboard(){
                     const data =
                     item.data();
 
-                    if(data.memberDocId){
+
+                    if(
+                        data.memberDocId
+                    ){
 
                         unique.add(
                             data.memberDocId
                         );
 
                     }
-                    else if(data.memberId){
+                    else if(
+                        data.memberId
+                    ){
 
                         unique.add(
                             data.memberId
@@ -1079,8 +1548,11 @@ async function loadDashboard(){
                 }
             );
 
+
             document
-            .getElementById("feedbackCount")
+            .getElementById(
+                "feedbackCount"
+            )
             .textContent =
             unique.size;
 
@@ -1095,8 +1567,9 @@ async function loadDashboard(){
         }
 
 
+
         /* ==================================================
-           ⭐ PUBLIC FEEDBACK
+           PUBLIC FEEDBACK
         ================================================== */
 
         try{
@@ -1108,6 +1581,7 @@ async function loadDashboard(){
                     "public_feedback"
                 )
             );
+
 
             document
             .getElementById(
@@ -1124,6 +1598,7 @@ async function loadDashboard(){
                 error
             );
 
+
             document
             .getElementById(
                 "publicFeedbackCount"
@@ -1132,6 +1607,7 @@ async function loadDashboard(){
             "0";
 
         }
+
 
     }
     catch(error){
@@ -1146,8 +1622,9 @@ async function loadDashboard(){
 }
 
 
+
 /* ==================================================
-   DAILY REPORT
+   DAILY MEMBER REPORT
 ================================================== */
 
 function loadDailyMemberReport(
@@ -1163,14 +1640,20 @@ function loadDailyMemberReport(
             const data =
             memberDoc.data();
 
+
             const createdAt =
             data.createdAt;
 
+
             if(!createdAt){
+
                 return;
+
             }
 
+
             let date;
+
 
             try{
 
@@ -1186,7 +1669,9 @@ function loadDailyMemberReport(
                 else{
 
                     date =
-                    new Date(createdAt);
+                    new Date(
+                        createdAt
+                    );
 
                 }
 
@@ -1197,31 +1682,41 @@ function loadDailyMemberReport(
 
             }
 
+
             if(
-                isNaN(date.getTime())
+                isNaN(
+                    date.getTime()
+                )
             ){
 
                 return;
 
             }
 
+
             members.push({
 
-                id:memberDoc.id,
+                id:
+                memberDoc.id,
 
                 name:
-                data.name || "Member",
+                data.name ||
+                "Member",
 
                 mobile:
-                data.mobile || "-",
+                data.mobile ||
+                "-",
 
                 memberId:
-                data.memberId || "-",
+                data.memberId ||
+                "-",
 
                 status:
-                data.status || "pending",
+                data.status ||
+                "pending",
 
-                createdAt:date
+                createdAt:
+                date
 
             });
 
@@ -1262,8 +1757,11 @@ function loadDailyMemberReport(
     const today =
     members.filter(
         m =>
-        m.createdAt >= todayStart &&
-        m.createdAt < tomorrowStart
+        m.createdAt >=
+        todayStart
+        &&
+        m.createdAt <
+        tomorrowStart
     );
 
 
@@ -1274,6 +1772,11 @@ function loadDailyMemberReport(
     .textContent =
     today.length;
 
+
+
+    /* ==================================================
+       YESTERDAY
+    ================================================== */
 
     const yesterdayStart =
     new Date(
@@ -1287,8 +1790,11 @@ function loadDailyMemberReport(
     const yesterday =
     members.filter(
         m =>
-        m.createdAt >= yesterdayStart &&
-        m.createdAt < todayStart
+        m.createdAt >=
+        yesterdayStart
+        &&
+        m.createdAt <
+        todayStart
     );
 
 
@@ -1300,6 +1806,11 @@ function loadDailyMemberReport(
     yesterday.length;
 
 
+
+    /* ==================================================
+       WEEK
+    ================================================== */
+
     const weekStart =
     new Date(now);
 
@@ -1309,12 +1820,16 @@ function loadDailyMemberReport(
 
 
     const diff =
-    day === 0 ? 6 : day-1;
+    day === 0
+    ? 6
+    : day - 1;
 
 
     weekStart.setDate(
-        weekStart.getDate()-diff
+        weekStart.getDate() -
+        diff
     );
+
 
     weekStart.setHours(
         0,0,0,0
@@ -1324,8 +1839,11 @@ function loadDailyMemberReport(
     const week =
     members.filter(
         m =>
-        m.createdAt >= weekStart &&
-        m.createdAt < tomorrowStart
+        m.createdAt >=
+        weekStart
+        &&
+        m.createdAt <
+        tomorrowStart
     );
 
 
@@ -1336,6 +1854,11 @@ function loadDailyMemberReport(
     .textContent =
     week.length;
 
+
+
+    /* ==================================================
+       MONTH
+    ================================================== */
 
     const monthStart =
     new Date(
@@ -1349,8 +1872,11 @@ function loadDailyMemberReport(
     const month =
     members.filter(
         m =>
-        m.createdAt >= monthStart &&
-        m.createdAt < tomorrowStart
+        m.createdAt >=
+        monthStart
+        &&
+        m.createdAt <
+        tomorrowStart
     );
 
 
@@ -1362,16 +1888,26 @@ function loadDailyMemberReport(
     month.length;
 
 
+
+    /* ==================================================
+       LAST 7 DAYS
+    ================================================== */
+
     const dailyList =
     document.getElementById(
         "dailyList"
     );
 
 
-    dailyList.innerHTML = "";
+    dailyList.innerHTML =
+    "";
 
 
-    for(let i=6;i>=0;i--){
+    for(
+        let i = 6;
+        i >= 0;
+        i--
+    ){
 
         const date =
         new Date(
@@ -1394,13 +1930,18 @@ function loadDailyMemberReport(
         const dayMembers =
         members.filter(
             m =>
-            m.createdAt >= date &&
-            m.createdAt < nextDate
+            m.createdAt >=
+            date
+            &&
+            m.createdAt <
+            nextDate
         );
 
 
         const row =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
         row.className =
@@ -1420,7 +1961,8 @@ function loadDailyMemberReport(
         `;
 
 
-        row.onclick = () => {
+        row.onclick =
+        function(){
 
             showSelectedDay(
                 date,
@@ -1430,11 +1972,14 @@ function loadDailyMemberReport(
         };
 
 
-        dailyList.appendChild(row);
+        dailyList.appendChild(
+            row
+        );
 
     }
 
 }
+
 
 
 /* ==================================================
@@ -1451,10 +1996,12 @@ function showSelectedDay(
         "selectedDay"
     );
 
+
     const title =
     document.getElementById(
         "selectedDayTitle"
     );
+
 
     const list =
     document.getElementById(
@@ -1474,7 +2021,8 @@ function showSelectedDay(
     " ଜଣ Member";
 
 
-    list.innerHTML = "";
+    list.innerHTML =
+    "";
 
 
     if(!members.length){
@@ -1482,7 +2030,10 @@ function showSelectedDay(
         list.innerHTML = `
 
             <div class="noBirthday">
-                ଏହି ଦିନ କୌଣସି Registration ହୋଇନାହିଁ।
+
+                ଏହି ଦିନ କୌଣସି
+                Registration ହୋଇନାହିଁ।
+
             </div>
 
         `;
@@ -1496,7 +2047,10 @@ function showSelectedDay(
         member => {
 
             const div =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
             div.className =
             "dailyMember";
@@ -1510,43 +2064,58 @@ function showSelectedDay(
 
             div.innerHTML = `
 
-                👤 <strong>
-                ${escapeHTML(member.name)}
+                👤
+
+                <strong>
+                    ${escapeHTML(
+                        member.name
+                    )}
                 </strong>
 
                 <br>
 
                 🆔 Member ID:
-                ${escapeHTML(member.memberId)}
+                ${escapeHTML(
+                    member.memberId
+                )}
 
                 <br>
 
                 📱 Mobile:
-                ${escapeHTML(member.mobile)}
+                ${escapeHTML(
+                    member.mobile
+                )}
 
                 <br>
 
                 ${
                     status === "approved"
 
-                    ? `<span class="statusApproved">
-                        ✅ Approved
-                       </span>`
+                    ?
 
-                    : `<span class="statusPending">
+                    `<span class="statusApproved">
+                        ✅ Approved
+                    </span>`
+
+                    :
+
+                    `<span class="statusPending">
                         ⏳ Pending
-                       </span>`
+                    </span>`
                 }
 
             `;
 
 
-            list.appendChild(div);
+            list.appendChild(
+                div
+            );
 
         }
     );
 
 }
+
 
 
 /* ==================================================
@@ -1564,13 +2133,19 @@ function loadTodayBirthdays(
     const day =
     String(
         today.getDate()
-    ).padStart(2,"0");
+    ).padStart(
+        2,
+        "0"
+    );
 
 
     const month =
     String(
         today.getMonth()+1
-    ).padStart(2,"0");
+    ).padStart(
+        2,
+        "0"
+    );
 
 
     const birthdays = [];
@@ -1593,25 +2168,33 @@ function loadTodayBirthdays(
             dob.split("/");
 
 
-            if(parts.length !== 3){
+            if(
+                parts.length !== 3
+            ){
+
                 return;
+
             }
 
 
             if(
-                parts[0] === day &&
+                parts[0] === day
+                &&
                 parts[1] === month
             ){
 
                 birthdays.push({
 
                     name:
-                    data.name || "Member",
+                    data.name ||
+                    "Member",
 
                     mobile:
-                    data.mobile || "-",
+                    data.mobile ||
+                    "-",
 
-                    dob:dob
+                    dob:
+                    dob
 
                 });
 
@@ -1635,7 +2218,8 @@ function loadTodayBirthdays(
     );
 
 
-    list.innerHTML = "";
+    list.innerHTML =
+    "";
 
 
     if(!birthdays.length){
@@ -1643,7 +2227,10 @@ function loadTodayBirthdays(
         list.innerHTML = `
 
             <div class="noBirthday">
-                🎉 ଆଜି କୌଣସି Member ଙ୍କ Birthday ନାହିଁ
+
+                🎉 ଆଜି କୌଣସି
+                Member ଙ୍କ Birthday ନାହିଁ
+
             </div>
 
         `;
@@ -1657,7 +2244,10 @@ function loadTodayBirthdays(
         member => {
 
             const div =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
             div.className =
             "birthdayMember";
@@ -1665,29 +2255,40 @@ function loadTodayBirthdays(
 
             div.innerHTML = `
 
-                🎉 <strong>
-                ${escapeHTML(member.name)}
+                🎉
+
+                <strong>
+                    ${escapeHTML(
+                        member.name
+                    )}
                 </strong>
 
                 <br>
 
                 🎂 DOB:
-                ${escapeHTML(member.dob)}
+                ${escapeHTML(
+                    member.dob
+                )}
 
                 <br>
 
                 📱 Mobile:
-                ${escapeHTML(member.mobile)}
+                ${escapeHTML(
+                    member.mobile
+                )}
 
             `;
 
 
-            list.appendChild(div);
+            list.appendChild(
+                div
+            );
 
         }
     );
 
 }
+
 
 
 /* ==================================================
@@ -1699,7 +2300,10 @@ async function(){
 
     try{
 
-        await signOut(auth);
+        await signOut(
+            auth
+        );
+
 
         window.location.href =
         "login.html";
@@ -1717,11 +2321,13 @@ async function(){
 };
 
 
+
 /* ==================================================
-   START AFTER LOGIN
+   AUTH CHECK
 ================================================== */
 
-auth.onAuthStateChanged(
+onAuthStateChanged(
+    auth,
     user => {
 
         if(!user){
@@ -1735,12 +2341,14 @@ auth.onAuthStateChanged(
 
 
         if(
-            user.uid !== ADMIN_UID
+            user.uid !==
+            ADMIN_UID
         ){
 
             alert(
                 "❌ Admin Permission ନାହିଁ।"
             );
+
 
             window.location.href =
             "login.html";
@@ -1757,7 +2365,6 @@ auth.onAuthStateChanged(
 
 </script>
 
-</div>
 
 </body>
 
