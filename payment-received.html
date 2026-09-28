@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Payment Received Members</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,"Noto Sans Oriya",sans-serif;
+}
+
+body{
+    background:#111;
+    color:white;
+    padding:15px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    color:#ffcc00;
+    margin:10px 0 20px;
+    font-size:27px;
+}
+
+
+/* =========================
+   SUMMARY
+========================= */
+
+.summary{
+    display:grid;
+    grid-template-columns:
+    repeat(2,1fr);
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.summary-card{
+    background:#222;
+    border:2px solid #555;
+    border-radius:12px;
+    padding:18px;
+    text-align:center;
+}
+
+.summary-card .icon{
+    font-size:28px;
+}
+
+.summary-card .title{
+    color:#aaa;
+    margin-top:6px;
+}
+
+.summary-card .value{
+    color:#ffcc00;
+    font-size:25px;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box{
+    background:#222;
+    border:2px solid #c40000;
+    border-radius:12px;
+    padding:18px;
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    color:#ffcc00;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+input{
+    width:100%;
+    padding:13px;
+    border:0;
+    border-radius:8px;
+    margin-bottom:12px;
+    font-size:16px;
+}
+
+.filter-row{
+    display:grid;
+    grid-template-columns:
+    1fr 1fr;
+    gap:10px;
+}
+
+button{
+    width:100%;
+    padding:13px;
+    border:0;
+    border-radius:8px;
+    background:#c40000;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+button:hover{
+    background:#ff0000;
+}
+
+.refresh{
+    background:#006400;
+}
+
+.refresh:hover{
+    background:#008000;
+}
+
+.back{
+    background:#555;
+}
+
+.back:hover{
+    background:#777;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+#status{
+    text-align:center;
+    padding:12px;
+    color:#ffcc00;
+    font-weight:bold;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.table-box{
+    background:#222;
+    border:2px solid #555;
+    border-radius:12px;
+    padding:10px;
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:950px;
+}
+
+th{
+    background:#c40000;
+    color:white;
+    padding:12px 8px;
+    text-align:left;
+    white-space:nowrap;
+}
+
+td{
+    border-bottom:1px solid #444;
+    padding:11px 8px;
+    font-size:14px;
+    white-space:nowrap;
+}
+
+tr:hover{
+    background:#292929;
+}
+
+.amount{
+    color:#00ff66;
+    font-weight:bold;
+}
+
+.paid{
+    color:#00ff66;
+    font-weight:bold;
+}
+
+
+/* =========================
+   PRINT BUTTON
+========================= */
+
+.print-btn{
+    background:#006400;
+    padding:8px 12px;
+    font-size:13px;
+    width:auto;
+    margin:0;
+}
+
+.print-btn:hover{
+    background:#008000;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    text-align:center;
+    padding:30px;
+    color:#aaa;
+    font-size:17px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    body{
+        padding:10px;
+    }
+
+    h1{
+        font-size:23px;
+    }
+
+    .summary{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .summary-card{
+        padding:13px 8px;
+    }
+
+    .summary-card .value{
+        font-size:20px;
+    }
+
+    .filter-row{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<h1>
+💰 Payment Received Members
+</h1>
+
+
+<!-- =========================
+     SUMMARY
+========================= -->
+
+<div class="summary">
+
+
+<div class="summary-card">
+
+<div class="icon">
+👥
+</div>
+
+<div class="title">
+Payment Records
+</div>
+
+<div
+class="value"
+id="totalRecords">
+0
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="icon">
+💰
+</div>
+
+<div class="title">
+Total Collection
+</div>
+
+<div
+class="value"
+id="totalAmount">
+₹0
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================
+     SEARCH / FILTER
+========================= -->
+
+<div class="search-box">
+
+
+<label>
+🔎 Search Member
+</label>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Member ID / Name / Mobile / Receipt No."
+oninput="filterList()"
+>
+
+
+<div class="filter-row">
+
+<div>
+
+<label>
+📅 From Date
+</label>
+
+<input
+type="date"
+id="fromDate"
+onchange="filterList()"
+>
+
+</div>
+
+
+<div>
+
+<label>
+📅 To Date
+</label>
+
+<input
+type="date"
+id="toDate"
+onchange="filterList()"
+>
+
+</div>
+
+</div>
+
+
+<button
+class="refresh"
+onclick="loadPayments()"
+>
+
+🔄 Refresh Payment List
+
+</button>
+
+
+</div>
+
+
+<div id="status">
+🔄 Payment List Loading...
+</div>
+
+
+<!-- =========================
+     PAYMENT TABLE
+========================= -->
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+No.
+</th>
+
+<th>
+Receipt No.
+</th>
+
+<th>
+Member ID
+</th>
+
+<th>
+Member Name
+</th>
+
+<th>
+Mobile
+</th>
+
+<th>
+Amount
+</th>
+
+<th>
+Date
+</th>
+
+<th>
+Received By
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Print
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="paymentTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<br>
+
+
+<button
+class="back"
+onclick="window.location.href='admin.html'"
+>
+
+⬅️ Back to Admin Dashboard
+
+</button>
+
+
+</div>
+
+
+
+<script type="module">
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+import { db }
+from "./firebase.js";
+
+
+import {
+
+collection,
+getDocs
+
+}
+
+from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+/* =========================
+   DATA
+========================= */
+
+let allPayments = [];
+
+
+
+/* =========================
+   LOAD PAYMENTS
+========================= */
+
+window.loadPayments =
+async function(){
+
+const status =
+document.getElementById("status");
+
+const table =
+document.getElementById("paymentTable");
+
+
+status.textContent =
+"🔄 Payment List Loading...";
+
+status.style.color =
+"#ffcc00";
+
+
+table.innerHTML = "";
+
+
+try{
+
+
+const snap =
+await getDocs(
+
+collection(
+db,
+"receipts"
+)
+
+);
+
+
+allPayments = [];
+
+
+snap.forEach(function(docSnap){
+
+const data =
+docSnap.data();
+
+
+allPayments.push({
+
+id:docSnap.id,
+
+...data
+
+});
+
+});
+
+
+/* =========================
+   SORT NEWEST FIRST
+========================= */
+
+allPayments.sort(function(a,b){
+
+const aTime =
+a.createdAt &&
+a.createdAt.seconds
+? a.createdAt.seconds
+: 0;
+
+const bTime =
+b.createdAt &&
+b.createdAt.seconds
+? b.createdAt.seconds
+: 0;
+
+return bTime - aTime;
+
+});
+
+
+filterList();
+
+
+status.textContent =
+"✅ Payment List Loaded";
+
+status.style.color =
+"#00ff66";
+
+
+}catch(error){
+
+console.error(error);
+
+status.textContent =
+"❌ Error: " +
+error.message;
+
+status.style.color =
+"red";
+
+}
+
+};
+
+
+
+/* =========================
+   FILTER LIST
+========================= */
+
+window.filterList =
+function(){
+
+const search =
+document
+.getElementById("searchInput")
+.value
+.trim()
+.toLowerCase();
+
+
+const fromDate =
+document
+.getElementById("fromDate")
+.value;
+
+
+const toDate =
+document
+.getElementById("toDate")
+.value;
+
+
+const filtered =
+allPayments.filter(function(payment){
+
+
+/* =========================
+   SEARCH
+========================= */
+
+const text = (
+
+(payment.receiptNo || "") +
+" " +
+(payment.memberId || "") +
+" " +
+(payment.memberName || "") +
+" " +
+(payment.mobile || "")
+
+).toLowerCase();
+
+
+if(
+search &&
+!text.includes(search)
+){
+
+return false;
+
+}
+
+
+/* =========================
+   DATE FILTER
+========================= */
+
+if(
+fromDate &&
+!isDateAfterOrEqual(
+payment.paymentDate,
+fromDate
+)
+){
+
+return false;
+
+}
+
+
+if(
+toDate &&
+!isDateBeforeOrEqual(
+payment.paymentDate,
+toDate
+)
+){
+
+return false;
+
+}
+
+
+return true;
+
+});
+
+
+renderPayments(filtered);
+
+};
+
+
+
+/* =========================
+   DATE HELPERS
+========================= */
+
+function parsePaymentDate(dateText){
+
+if(!dateText){
+    return null;
+}
+
+
+/*
+   Expected:
+   DD/MM/YYYY
+*/
+
+const parts =
+dateText.split("/");
+
+
+if(parts.length !== 3){
+    return null;
+}
+
+
+const day =
+Number(parts[0]);
+
+const month =
+Number(parts[1]);
+
+const year =
+Number(parts[2]);
+
+
+if(
+!day ||
+!month ||
+!year
+){
+
+return null;
+
+}
+
+
+return new Date(
+year,
+month - 1,
+day
+);
+
+}
+
+
+function parseInputDate(dateText){
+
+if(!dateText){
+    return null;
+}
+
+const parts =
+dateText.split("-");
+
+
+return new Date(
+Number(parts[0]),
+Number(parts[1]) - 1,
+Number(parts[2])
+);
+
+}
+
+
+function isDateAfterOrEqual(
+paymentDate,
+filterDate
+){
+
+const p =
+parsePaymentDate(paymentDate);
+
+const f =
+parseInputDate(filterDate);
+
+
+if(!p || !f){
+    return true;
+}
+
+
+return p >= f;
+
+}
+
+
+function isDateBeforeOrEqual(
+paymentDate,
+filterDate
+){
+
+const p =
+parsePaymentDate(paymentDate);
+
+const f =
+parseInputDate(filterDate);
+
+
+if(!p || !f){
+    return true;
+}
+
+
+return p <= f;
+
+}
+
+
+
+/* =========================
+   RENDER TABLE
+========================= */
+
+function renderPayments(payments){
+
+const table =
+document.getElementById(
+"paymentTable"
+);
+
+
+table.innerHTML = "";
+
+
+/* =========================
+   SUMMARY
+========================= */
+
+document
+.getElementById("totalRecords")
+.textContent =
+payments.length;
+
+
+let total = 0;
+
+
+payments.forEach(function(payment){
+
+const amount =
+Number(payment.amount || 0);
+
+
+total += amount;
+
+});
+
+
+document
+.getElementById("totalAmount")
+.textContent =
+"₹" +
+total.toLocaleString("en-IN");
+
+
+/* =========================
+   EMPTY
+========================= */
+
+if(payments.length === 0){
+
+table.innerHTML = `
+
+<tr>
+
+<td
+colspan="10"
+class="empty"
+>
+
+📭 Payment Record ମିଳିଲା ନାହିଁ
+
+</td>
+
+</tr>
+
+`;
+
+return;
+
+}
+
+
+/* =========================
+   ROWS
+========================= */
+
+payments.forEach(function(
+payment,
+index
+){
+
+
+const row =
+document.createElement("tr");
+
+
+row.innerHTML = `
+
+<td>
+${index + 1}
+</td>
+
+<td>
+${escapeHtml(
+payment.receiptNo || "-"
+)}
+</td>
+
+<td>
+${escapeHtml(
+payment.memberId || "-"
+)}
+</td>
+
+<td>
+${escapeHtml(
+payment.memberName || "-"
+)}
+</td>
+
+<td>
+${escapeHtml(
+payment.mobile || "-"
+)}
+</td>
+
+<td class="amount">
+₹${Number(
+payment.amount || 0
+).toLocaleString("en-IN")}
+</td>
+
+<td>
+${escapeHtml(
+payment.paymentDate || "-"
+)}
+</td>
+
+<td>
+${escapeHtml(
+payment.receivedBy || "-"
+)}
+</td>
+
+<td class="paid">
+${escapeHtml(
+payment.paymentStatus ||
+"PAID"
+)}
+</td>
+
+<td>
+
+<button
+class="print-btn"
+data-id="${payment.id}"
+>
+
+🖨️ Print
+
+</button>
+
+</td>
+
+`;
+
+
+table.appendChild(row);
+
+});
+
+
+/* =========================
+   PRINT EVENTS
+========================= */
+
+document
+.querySelectorAll(".print-btn")
+.forEach(function(button){
+
+button.addEventListener(
+"click",
+function(){
+
+const id =
+button.getAttribute(
+"data-id"
+);
+
+
+const payment =
+allPayments.find(
+function(item){
+
+return item.id === id;
+
+});
+
+if(payment){
+
+printReceipt(payment);
+
+}
+
+});
+
+});
+
+}
+
+
+
+/* =========================
+   PRINT RECEIPT
+========================= */
+
+function printReceipt(payment){
+
+const receiptNo =
+escapeHtml(
+payment.receiptNo || "-"
+);
+
+const date =
+escapeHtml(
+payment.paymentDate || "-"
+);
+
+const memberId =
+escapeHtml(
+payment.memberId || "-"
+);
+
+const memberName =
+escapeHtml(
+payment.memberName || "-"
+);
+
+const mobile =
+escapeHtml(
+payment.mobile || "-"
+);
+
+const txnId =
+escapeHtml(
+payment.txnId || "-"
+);
+
+const amount =
+Number(
+payment.amount || 0
+).toLocaleString("en-IN");
+
+const receivedBy =
+escapeHtml(
+payment.receivedBy || "-"
+);
+
+
+const printWindow =
+window.open(
+"",
+"_blank",
+"width=800,height=900"
+);
+
+
+if(!printWindow){
+
+alert(
+"Popup Blocked ହୋଇଛି। Browser ରେ popup allow କରନ୍ତୁ।"
+);
+
+return;
+
+}
+
+
+printWindow.document.write(`
+
+<!DOCTYPE html>
+
+<html lang="or">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+Payment Receipt
+</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,
+"Noto Sans Oriya",
+sans-serif;
+
+padding:30px;
+
+color:#111;
+}
+
+.receipt{
+max-width:700px;
+margin:auto;
+border:2px solid #111;
+padding:25px;
+}
+
+.header{
+text-align:center;
+border-bottom:2px solid #111;
+padding-bottom:15px;
+}
+
+.header h2{
+margin:0 0 5px;
+font-size:24px;
+}
+
+.header p{
+margin:0;
+}
+
+.title{
+text-align:center;
+font-size:22px;
+font-weight:bold;
+margin:20px 0;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+td{
+border:1px solid #999;
+padding:10px;
+}
+
+td:first-child{
+font-weight:bold;
+width:40%;
+}
+
+.amount{
+margin-top:18px;
+border:2px solid #111;
+padding:14px;
+text-align:center;
+font-size:21px;
+font-weight:bold;
+}
+
+.sign{
+margin-top:50px;
+display:flex;
+justify-content:space-between;
+text-align:center;
+}
+
+.sign div{
+width:40%;
+border-top:1px solid #111;
+padding-top:6px;
+}
+
+.thank{
+text-align:center;
+margin-top:40px;
+border-top:1px solid #aaa;
+padding-top:15px;
+font-size:13px;
+line-height:1.8;
+}
+
+@media print{
+
+body{
+padding:0;
+}
+
+.receipt{
+border:none;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="receipt">
+
+
+<div class="header">
+
+<h2>
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ
+</h2>
+
+<p>
+ସୁରତ
+</p>
+
+</div>
+
+
+<div class="title">
+
+PAYMENT RECEIPT
+
+</div>
+
+
+<table>
+
+<tr>
+<td>Receipt No.</td>
+<td>${receiptNo}</td>
+</tr>
+
+<tr>
+<td>Payment Date</td>
+<td>${date}</td>
+</tr>
+
+<tr>
+<td>Member ID</td>
+<td>${memberId}</td>
+</tr>
+
+<tr>
+<td>Member Name</td>
+<td>${memberName}</td>
+</tr>
+
+<tr>
+<td>Mobile Number</td>
+<td>${mobile}</td>
+</tr>
+
+<tr>
+<td>Transaction ID</td>
+<td>${txnId}</td>
+</tr>
+
+<tr>
+<td>Payment Status</td>
+<td>PAID</td>
+</tr>
+
+</table>
+
+
+<div class="amount">
+
+Amount Received:
+₹${amount}
+
+</div>
+
+
+<div class="sign">
+
+<div>
+
+Received By<br>
+
+<strong>
+${receivedBy}
+</strong>
+
+</div>
+
+
+<div>
+
+Digital Signature<br>
+
+<strong>
+S.K. Behera
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="thank">
+
+<strong>
+ଓଡ଼ିଆ ରତ୍ନ କଳାକାର ସଂଘ ସହିତ
+ଯୋଡ଼ି ହୋଇଥିବାରୁ
+ଆପଣଙ୍କୁ ଅନେକ ଧନ୍ୟବାଦ।
+</strong>
+
+<br>
+
+🙏 ଜୟ ଜଗନ୍ନାଥ 🙏
+
+</div>
+
+
+</div>
+
+
+<script>
+
+window.onload = function(){
+
+window.print();
+
+};
+
+window.onafterprint = function(){
+
+window.close();
+
+};
+
+<\/script>
+
+
+</body>
+
+</html>
+
+`);
+
+
+printWindow.document.close();
+
+}
+
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+return String(value)
+
+.replaceAll("&","&amp;")
+
+.replaceAll("<","&lt;")
+
+.replaceAll(">","&gt;")
+
+.replaceAll('"',"&quot;")
+
+.replaceAll("'","&#039;");
+
+}
+
+
+
+/* =========================
+   START
+========================= */
+
+loadPayments();
+
+
+</script>
+
+
+</body>
+
+</html>
